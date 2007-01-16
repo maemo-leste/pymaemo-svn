@@ -11,7 +11,7 @@
 <div class="thebox">
 	<div class="logo"><a href="#">Python for Maemo</a></div>
   	<ul class="header">
-        <li><a href="#installation">installation</a></li>
+        <li><a href="#auto_installation">installation</a></li>
         <li><a href="#documentation">documentation</a></li>
 	</ul>
 	<div class="side">
@@ -58,7 +58,8 @@
 
 	<p> The repository lies at <a href="http://repository.maemo.org/extras/">http://repository.maemo.org/extras/</a>.
 	This repository contains Python 2.5 packages for <tt>bora</tt> and <tt>scirocco</tt> versions of the SDK (components
-	<tt>free</tt> and <tt>non-free</tt>). The <i>/etc/apt/sources.list</i> lines to be added are:
+	<tt>free</tt> and <tt>non-free</tt>). This new package can be installed using an automatic script or mannualy. 
+	The <i>/etc/apt/sources.list</i> lines added are:
 
 	<pre>
 	# Pick one group accordingly to your SDK version
@@ -72,8 +73,17 @@
 	deb-src http://repository.maemo.org/extras/ scirocco free non-free
 	</pre>
 
+        <h3><a name="auto_installation">Automatic Installation</a></h3>
 
-        <h3><a name="installation">Installation</a></h3>
+	<p> To perform the automatic installation, choose the correct maemo version of installer, download and copy it to 
+	device. Inside the device file manager double click python2.5-runtime file and proceed clicking the <e>OK</e> button.
+	
+	<ul>	
+	<li><a href="http://repository.maemo.org/extras/dists/bora/install/python2.5-runtime.install">Bora installer</a></li>
+	<li><a href="http://repository.maemo.org/extras/dists/scirocco/install/python2.5-runtime.install">Scirocco installer</a></li>
+	</ul>
+
+        <h3><a name="manual_installation">Manual Installation</a></h3>
 
 	<p>In the SDK, add the abovementioned repository lines to <i>/etc/apt/sources.list</i>, run
 	<i>apt-get update</i> and you are ready to install <i>python2.5</i> plus bindings. All Python
