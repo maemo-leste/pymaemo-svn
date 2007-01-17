@@ -75,6 +75,9 @@
 
         <h3><a name="auto_installation">Automatic Installation</a></h3>
 
+	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
+	to ensure that all python2.4 packages will be correctly removed.</p>
+
 	<p> To perform the automatic installation, choose the correct maemo version of installer, download and copy it to 
 	device. Inside the device file manager double click <i>python2.5-runtime</i> file and proceed clicking the <i>OK</i> button.
 	
@@ -84,6 +87,9 @@
 	</ul>
 
         <h3><a name="manual_installation">Manual Installation</a></h3>
+
+	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
+	to ensure that all python2.4 packages will be correctly removed.</p>
 
 	<p>In the SDK, add the abovementioned repository lines to <i>/etc/apt/sources.list</i>, run
 	<i>apt-get update</i> and you are ready to install <i>python2.5</i> plus bindings. All Python
