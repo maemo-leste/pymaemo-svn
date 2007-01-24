@@ -25,14 +25,13 @@
 		<a href="#screenshots">Screenshots</a><br/>
 		<a href="#applications">Applications</a><br/>
 		<a href="#about">About</a><br/>
-        <h2>Contributing</h2>
+	        <h2>Contributing</h2>
 		<a href="http://garage.maemo.org/projects/pymaemo/">Project Page</a><br/>
-        <a href="https://garage.maemo.org/tracker/?atid=229&group_id=40&func=browse">Bugs</a><br/>
-        <a href="https://garage.maemo.org/tracker/?atid=231&group_id=40&func=browse">Patches</a><br/>
-        <a href="https://garage.maemo.org/scm/?group_id=40">SVN</a><br/>
-        <a href="https://garage.maemo.org/plugins/wiki/index.php?id=40&type=g">Wiki</a><br/>
-        <a href="https://maemo.org/mailman/listinfo/maemo-developers">Mailing List</a><br/>
-
+	        <a href="https://garage.maemo.org/tracker/?atid=229&group_id=40&func=browse">Bugs</a><br/>
+        	<a href="https://garage.maemo.org/tracker/?atid=231&group_id=40&func=browse">Patches</a><br/>
+	        <a href="https://garage.maemo.org/scm/?group_id=40">SVN</a><br/>
+	        <a href="https://garage.maemo.org/plugins/wiki/index.php?id=40&type=g">Wiki</a><br/>
+	        <a href="https://maemo.org/mailman/listinfo/maemo-developers">Mailing List</a><br/>
 		<h2>Links</h2>
 		<a href="http://www.indt.org">INdT</a><br/>
 		<a href="http://www.python.org">Python</a><br/>
@@ -41,14 +40,14 @@
 	<div class="content">
 
         <h2><a name="what-is-python-for-maemo">What is Python for Maemo?</a></h2>
-        <p>Python for Maemo (PyMaemo for short) main objective is to make
+        <p> Python for Maemo (PyMaemo for short) main objective is to make
         possible to use <a href="http://www.python.org" title="Python
         Programming Language Official site">Python</a> programming language as
         the scripting and development language for Maemo Platform, providing a
         better alternative for fast prototyping and programming in Maemo
         environment besides the C programming language.</p>
 
-        <p>But what is <a href="http://www.maemo.org" title="The Official Maemo
+        <p> But what is <a href="http://www.maemo.org" title="The Official Maemo
         platform website">Maemo</a>? Maemo is a Linux based development platform
         from Nokia for compliant handheld devices like <a
         href="http://www.nokia.com/770">Nokia 770 Internet tablet</a> and <a
@@ -58,10 +57,10 @@
         today. Maemo adapts these components to the handheld environment and
         contributes new technologies.</p>
 
-        <p>Why we choose Python? First of all forget about C development because
+        <p> Why we choose Python? First of all forget about C development because
         it takes too much time to develop and debug.</p>
 
-        <p>Python is for serious programming and to have fun. Python has a nice
+        <p> Python is for serious programming and to have fun. Python has a nice
         syntax, it's easy to learn and powerful enough for a vast range of
         applications, this is why we choose Python for Maemo.</p>
 
@@ -76,7 +75,7 @@
 
         <h2><a name="components">Components</a></h2>
 
-        <p>The current PyMaemo version is derived from <a
+        <p> The current PyMaemo version is derived from <a
         href="http://www.python.org/2.5/">Python 2.5</a> with customizations in
         order to fit constrains of space (memory/storage) and speed required by
         small devices. There are bindings for Python to write games with Pygame
@@ -84,7 +83,7 @@
         calculus, Internet protocols HTTP, SMTP, POP, IMAP, XML processing and
         so on.</p>
 
-        <p>From the lastest release of Python for Maemo2.1 (Scirocco) / Maemo3.0 (Bora) 
+        <p> From the lastest release of Python for Maemo2.1 (Scirocco) / Maemo3.0 (Bora) 
         you can use:</p>
 
         <ul>
@@ -103,20 +102,36 @@
             <li>Runtime 0.4</li>
         </ul>
 
-        <p>This set of packages is also known as: <em>Python for Maemo
+        <p> This set of packages is also known as: <em>Python for Maemo
         2.1/3.0</em>.</p>
 
-        <p>The old Python for Maemo distributions (1.0 and 2.0) is now
+        <p> The old Python for Maemo distributions (1.0 and 2.0) is now
         deprecated.</p>
 
         <h2><a name="installation">Installation</a></h2>
 
 	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
-	to ensure that all python2.4 packages will be correctly removed.</p>
+	to ensure that all python2.4 packages will be correctly removed. </p>
+
+	<p>The next steps only work if following repository is already present. To check this, open the Application Manager and verify the Application 		catalog. It must contain:</p>
+
+	<p><i>for Bora</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org
+	Distribution: bora
+	Components:   free non-free
+	</pre>
+
+	<p><i>for Scirocco</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org
+	Distribution: scirocco
+	Components:   free non-free
+	</pre>
 
 	<p> To perform the automatic installation of Python2.5 for Maemo, choose the correct maemo installer version, download and copy it to 
-	device. Inside the device file manager double click <i>python2.5-runtime</i> file and proceed clicking the <i>OK</i> button.
-	
+	device. Inside the device file manager double click <i>python2.5-runtime</i> file and proceed clicking the <i>OK</i> button.</p>
+
 	<ul>	
 	<li><a href="http://repository.maemo.org/extras/dists/bora/install/python2.5-runtime.install">Bora installer</a></li>
 	<li><a href="http://repository.maemo.org/extras/dists/scirocco/install/python2.5-runtime.install">Scirocco installer</a></li>
@@ -157,7 +172,7 @@
 
         <h2><a name="about">About the project</a></h2>
 
-            <p>This project is sponsored by <a href="http://www.indt.org">Instituto Nokia de Tecnologia</a>. The developers are:</p>
+	<p> This project is sponsored by <a href="http://www.indt.org">Instituto Nokia de Tecnologia</a>. The developers are:</p>
 
         <ul>
             <li>Current Developers</li>
@@ -174,7 +189,7 @@
             </ul>
         </ul>
 
-        <p>PyMaemo is free software, contributions are welcome!</p>
+        <p> PyMaemo is free software, contributions are welcome!</p>
 
 <!--Please do not remove this text if you want to support mywebcreator-->
 <!--mywebcreator http://www.bapuli.co.nr is available under the GNU GPL. See the GNU General Public License for more details. -->
