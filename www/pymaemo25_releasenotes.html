@@ -101,6 +101,8 @@
 	<li><a href="http://repository.maemo.org/extras/dists/scirocco/install/python2.5-runtime.install">Scirocco installer</a></li>
 	</ul>
 
+	To install the development packages, check the steps <a href="dev_install">here</a>.
+
         <h3><a name="manual_installation">Manual Installation</a></h3>
 
 	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
@@ -130,6 +132,19 @@
 	<p> In the device, open the Application Installer, add the repository to your repository list and
 	install the <i>python2.5-runtime</i> package, which will automatically pull all available
 	Python bindings, but not the development packages.
+
+	To install the development packages, check the steps <a href="dev_install">below</a>.
+
+        <h3><a name="dev_install">Development Packages</a></h3>
+	To be able to develop and test applications using the device its necessary to install python2.5-dev package. The steps to do this are decribed
+	below.
+	<pre>
+	Open a xterm session. Inside this session run:
+	<i>sudo /usr/sbin/gainroot</i>
+	Now install the package using apt-get utility:
+	<i>apt-get install python2.5-dev</i>
+	And finnaly exit from gainroot:
+	<i>exit</i>
 
 	<h3>Converting existing Maemo applications to PyMaemo 2.5</h3>
 
