@@ -99,3 +99,30 @@ color:#888;
 h4{
 font-size:1.1em;
 }
+
+.screenshots img {
+    border: #808080 solid 1px;
+    padding: 3px;
+    margin: 5px;
+}
+
+.screenshot {
+    width: 645px;
+    text-align: center;
+}
+.screenshot img {
+    border: black solid 1px;
+    padding: 3px;
+}
+
+.navi {
+    width: 645px;
+}
+
+.back {
+    float: left;
+}
+.next {
+    float: right;
+}
+
