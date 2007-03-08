@@ -1,0 +1,10 @@
+Index: python-numeric/setup.py
+===================================================================
+--- python-numeric.orig/setup.py	2007-03-06 18:01:22.000000000 -0300
++++ python-numeric/setup.py	2007-03-06 18:01:35.000000000 -0300
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ # To use:
+ #       python setup.py install
+ # or:

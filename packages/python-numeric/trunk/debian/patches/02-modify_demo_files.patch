@@ -1,0 +1,42 @@
+Index: python-numeric/Demo/life.py
+===================================================================
+--- python-numeric.orig/Demo/life.py	2007-03-06 17:57:43.000000000 -0300
++++ python-numeric/Demo/life.py	2007-03-06 17:58:11.000000000 -0300
+@@ -67,7 +67,7 @@
+ 	return transpose(shift_down(transpose(cells)))
+ 
+ def randomcells(width, height, chance = 5):
+-	from whrandom import randint
++	from random import randint
+ 	cells = zeros((height, width), Int8)
+ 
+ 	_range = range
+@@ -83,7 +83,7 @@
+ 	thing = "+" + y * "-" + "+"
+ 	lines = [thing]
+ 	for i in range(x):
+-		list = map(lambda x: " O"[x], cells[i])
++		list = map(lambda x: "O ", cells[i])
+ 		lines.append("|"+string.join(list, "")+"|")
+ 	lines.append(thing)
+ 	print string.join(lines, "\n")
+Index: python-numeric/Demo/mandelbrot.py
+===================================================================
+--- python-numeric.orig/Demo/mandelbrot.py	2007-03-06 17:57:43.000000000 -0300
++++ python-numeric/Demo/mandelbrot.py	2007-03-06 17:58:11.000000000 -0300
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ #
+ # Mandelbrot ASCII-art using Numeric Python 1.0beta1
+ #
+Index: python-numeric/Demo/sieve.py
+===================================================================
+--- python-numeric.orig/Demo/sieve.py	2007-03-06 17:57:43.000000000 -0300
++++ python-numeric/Demo/sieve.py	2007-03-06 17:58:11.000000000 -0300
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/env python2.5
+ from Numeric import *
+ 
+ def sieve(max):

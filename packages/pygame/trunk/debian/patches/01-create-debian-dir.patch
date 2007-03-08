@@ -1,0 +1,242 @@
+Index: pygame/debian/changelog
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygame/debian/changelog	2007-03-06 16:30:03.000000000 -0300
+@@ -0,0 +1,86 @@
++pygame (1.7.1-1osso1) unstable; urgency=low
++
++  * upgraded to pygame v1.7.1
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  14 Nov 2006 17:00:00 -0300
++
++pygame (1.6-2osso5) unstable; urgency=low
++
++  * total refactoring in debian/rules
++  * added shlibs dependencies
++  * added -mthumb flags
++  * changed architecture from 'any' to 'all'
++
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed,  7 Jun 2006 19:13:00 -0300
++
++pygame (1.6-2osso4) unstable; urgency=low
++
++  * Added python2.4-numeric-dev package in Build-Depends
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 1 Jun 2006 23:50:00 -0300
++
++pygame (1.6-2osso3) unstable; urgency=low
++
++  * Fixes in pygame package
++  * split pygame in pygame and pygame-dev packages
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 May 2006 17:38:00 -0300
++
++pygame (1.6-2osso2) unstable; urgency=low
++
++  * Recompiled agains SDK 2.0 RC3
++  * Removed requirement for SMPEG
++ 
++ -- Elvis Pfutzenreuter <elvis.pfutzenreuter@indt.org.br>  Fri, 28 Apr 2006 09:15:00 -0300
++
++pygame (1.6-2osso1) unstable; urgency=low
++
++  * First OSSO release for SDK 1.2
++ 
++ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 09 Feb 2006 15:01:42 -0300
++
++pygame (1.6-2indt6) unstable; urgency=low
++
++  * Recompiled against SDK 1.1rc8
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Fri, 02 Dec 2005 17:10:57 -0300
++
++pygame (1.6-2indt5) unstable; urgency=low
++
++  * Recompiled against rootstrap 1.1-Beta3
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 19 Sep 2005 18:56:39 -0300
++
++pygame (1.6-2indt4) unstable; urgency=low
++
++  * Remove python-pygame package (now we've only python2.4-pygame)
++
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue,  6 Sep 2005 10:56:00 -0300
++
++pygame (1.6-2indt3) unstable; urgency=low
++
++  * Recompiled against rootstrap 1.1-Beta2
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Tue, 30 Aug 2005 19:09:09 -0300
++
++pygame (1.6-2indt2) unstable; urgency=low
++
++  * Recompiled against new Python (with -O2 CFLAGS)
++ 
++ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 08 Aug 2005 16:31:28 -0300
++
++pygame (1.6-2indt1) unstable; urgency=low
++
++  * Adopted by INdT
++  * Recompiled against Python 2.4
++  * Removed build and dependencies on Python less than 2.4
++  * Removed dependence on sharutils
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 16 Jun 2005 10:29:00 -0300
++
++pygame (1.6-2) unstable; urgency=low
++
++  * Actually build-depend on python (for dh_python)
++    * Closes: #264086
++
++ -- Ed Boraas <ed@debian.org>  Sun,  8 Aug 2004 00:10:10 -0600
+Index: pygame/debian/compat
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygame/debian/compat	2007-03-06 16:30:03.000000000 -0300
+@@ -0,0 +1 @@
++4
+Index: pygame/debian/control
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygame/debian/control	2007-03-06 16:30:03.000000000 -0300
+@@ -0,0 +1,21 @@
++Source: pygame
++Section: python
++Priority: optional
++Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
++Build-Depends: debhelper (>= 4.1.25), python2.5, python2.5-dev, libsdl1.2-dev (>= 1.2.2-3.1), libsdl-image1.2-dev (>= 1.2.0-1.1), libsdl-mixer1.2-dev (>= 1.2.0-1.1), libsdl-ttf2.0-dev (>= 1.2.2-1.1), python2.5-numeric, python2.5-numeric-dev, libx11-dev
++Standards-Version: 3.6.1
++
++Package: python2.5-pygame
++Architecture: any
++Depends: python2.5, python2.5-numeric, libsdl1.2, libsdl-image1.2, libsdl-mixer1.2, libsdl-ttf2.0-0, ${shlibs:Depends}
++Description: SDL bindings for games development in Python 2.4
++ A multimedia development kit for Python. Pygame provides modules for you
++ to access the video display, play sounds, track time, read the mouse and
++ joystick, control the CD player, render true type fonts and more. It does
++ this using mainly the cross-platform SDL library, a lightweight wrapper
++ to OS-specific APIs.
++
++Package: python2.5-pygame-dev
++Architecture: all
++Depends: python2.5-pygame (= ${Source-Version})
++Description: Pygame development files.
+Index: pygame/debian/copyright
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygame/debian/copyright	2007-03-06 16:30:03.000000000 -0300
+@@ -0,0 +1,19 @@
++This package was debianized by Francis Irving <francis@flourish.org> on
++Fri,  5 Jan 2001 00:22:42 +0000.
++
++It was adopted by Ed Boraas <ed@debian.org> on
++Tue, 26 Jun 2001 18:39:37 -0600.
++
++And now is maintained by Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
++
++It was downloaded from http://www.pygame.org/ftp
++
++Upstream Author: Pete Shinners <pete@shinners.org>
++
++Copyright:
++
++This software is covered by the GNU Library General Public Licence
++(version 2, or if you choose, a later version).
++
++On Debian GNU/Linux systems, the complete text of the GNU Library General
++Public License can be found in /usr/share/common-licenses/LGPL
+Index: pygame/debian/rules
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygame/debian/rules	2007-03-06 16:30:03.000000000 -0300
+@@ -0,0 +1,90 @@
++#!/usr/bin/make -f
++
++PYVER=2.5
++PYTHON=python$(PYVER)
++
++p_base=$(PYTHON)-pygame
++p_dev=$(p_base)-dev
++
++d_base=debian/$(p_base)
++d_dev=debian/$(p_dev)
++
++doclist=$(filter-out docs/util docs/fullinstall.txt docs/LGPL,$(wildcard docs/*))
++
++ifeq ($(DEB_BUILD_ARCH),armel)
++    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
++else
++    CFLAGS=-Os -Wall -Wstrict-prototypes
++endif
++
++build: build-stamp
++build-stamp:
++	dh_testdir
++	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py build
++	touch build-stamp
++
++clean:
++	dh_testdir
++	dh_testroot
++	-rm -f build-stamp
++	-rm -rf build dist
++	-rm -rf $(d_base) $(d_dev)
++	-$(PYTHON) setup.py clean
++	find . -name "*.py[co]" | xargs rm -f
++	-rm -f Setup
++	dh_clean
++
++install: build
++	dh_testdir
++	dh_testroot
++	dh_clean -k
++	dh_installdirs
++
++	$(PYTHON) config.py -auto
++	$(PYTHON) setup.py install --no-compile --root=$(d_base)
++	$(PYTHON) -OO -m compileall -f $(d_base)
++	cp -a $(d_base)/* $(d_dev)
++
++	# base
++	find $(d_base) -name "*.py" | xargs rm -f
++	rm -rf $(d_base)/usr/include
++
++	# dev
++	dh_installexamples -i -p$(p_dev) examples/*
++	dh_installdocs     -i -p$(p_dev) $(doclist)
++	dh_installchangelogs -i -p$(p_dev) WHATSNEW
++	find $(d_dev)/usr/lib/$(PYTHON)/site-packages/pygame -not -name "*.py" -type f | xargs rm -f
++	find $(d_dev) -name ".svn" | xargs rm -rf
++
++binary: binary-indep binary-arch
++binary-indep: install
++	dh_testdir
++	dh_testroot
++	dh_installdirs
++	dh_installchangelogs -p$(p_dev)
++	dh_installdocs -p$(p_dev)
++	dh_strip
++	dh_compress -p$(p_dev) -X.py -Xexamples
++	dh_fixperms
++	dh_makeshlibs
++	dh_installdeb
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++binary-arch: install
++	dh_testdir
++	dh_testroot
++	dh_installdirs
++	dh_strip
++	dh_fixperms
++	dh_makeshlibs
++	dh_installdeb
++	dh_shlibdeps 
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++.PHONY: build build-stamp clean install binary-indep binary-arch binary
++

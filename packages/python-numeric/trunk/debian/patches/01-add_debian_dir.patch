@@ -1,0 +1,330 @@
+Index: python-numeric/debian/changelog
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/debian/changelog	2007-03-06 17:55:37.000000000 -0300
+@@ -0,0 +1,104 @@
++python-numeric (24.2-1osso4) unstable; urgency=low
++
++  * moved from Python2.4 to 2.5
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  16 Nov 2006 11:45:00 -0300
++
++python-numeric (24.2-1osso3) unstable; urgency=low
++
++  * refactored all debian/rules
++
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu,  8 Jun 2006 01:01:47 -0300
++
++python-numeric (24.2-1osso2) unstable; urgency=low
++
++  * added shlibs dependencies
++  * enable -mthumb and -mfloat-abi=softfp flags for armel architecture
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 6 Jun 2006 18:00:00 -0300
++
++python-numeric (24.2-1osso1) unstable; urgency=low
++
++  * updated to 24.2 version wich includes Legal.htm with license
++    informations)
++  * removed pdubois tutorial from documentation
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 30 May 2006 10:25:00 -0300
++
++python-numeric (23.8-1osso5) unstable; urgency=low
++
++  * fixed reference to COPYING file. This file was missing and license terms
++    is in README file instead.
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 19 May 2006 13:41:00 -0300
++
++python-numeric (23.8-1osso4) unstable; urgency=low
++
++  * renamed documentation directory in development package
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 May 2006 17:58:00 -0300
++
++python-numeric (23.8-1osso3) unstable; urgency=low
++
++  *  some Debian package cleanups
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 3 May 2006 19:45:00 -0300
++
++python-numeric (23.8-1osso2) unstable; urgency=low
++
++  *  First OSSO release for SDK 2.0
++  *  Changed dependency from g77-3.3 to g77-3.4
++ 
++ -- Elvis Pfutzenreuter <elvis.pfutzenreuterindt.org.br>  Wed, 26 Apr 2006 16:00:00 -0300
++
++python-numeric (23.8-1osso1) unstable; urgency=low
++
++  *  First OSSO release for SDK 1.2
++ 
++ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 09 Feb 2006 11:27:48 -0300
++
++python-numeric (23.8-1indt6) unstable; urgency=low
++  
++  * Recompiled against SDK 1.1rc8
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 05 Dec 2005 15:39:06 -0300
++
++python-numeric (23.8-1indt5) unstable; urgency=low
++  
++  * Recompiled against rootstrap 1.1-PreFinal
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 26 Sep 2005 17:18:04 -0300
++
++python-numeric (23.8-1indt4) unstable; urgency=low
++  
++  * Recompiled against rootstrap 1.1-Beta3
++
++ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 19 Sep 2005 15:43:58 -0300
++
++python-numeric (23.8-1indt3) unstable; urgency=low
++
++  * Package Improves
++  * Added python-numeric-tutorial subpackage
++ 
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue,  6 Sep 2005 09:37:00 -0300
++
++python-numeric (23.8-1indt2) unstable; urgency=low
++
++  * Recompiled against new Python (with -O2 CFLAGS)
++ 
++ -- Ruda Moura <ruda.moura@indt.org.br>  Wed, 15 Jun 2005 15:08:48 -0300
++
++python-numeric (23.8-1indt1) unstable; urgency=low
++
++  * Adopted by INdT
++  * Force build on Python 2.4 only
++  * Disable build of pynumeric 2.1, 2.2 and 2.3 and tutorial
++  * Force build with included lapack (for i386)
++ 
++ -- Ruda Moura <ruda.moura@indt.org.br>  Wed, 15 Jun 2005 15:08:48 -0300
++
++python-numeric (23.8-1) unstable; urgency=low
++
++  * New upstream version.
++
++ -- Matthias Klose <doko@debian.org>  Mon,  7 Mar 2005 01:26:04 +0100
+Index: python-numeric/debian/compat
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/debian/compat	2007-03-06 17:55:37.000000000 -0300
+@@ -0,0 +1 @@
++4
+Index: python-numeric/debian/control
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/debian/control	2007-03-06 17:55:37.000000000 -0300
+@@ -0,0 +1,40 @@
++Source: python-numeric
++Section: python
++Priority: optional
++Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
++Standards-Version: 3.6.1
++Build-Depends: python2.5-dev, debhelper (>= 4.1.67), g77-3.4
++
++Package: python2.5-numeric
++Architecture: any
++Depends: python2.5, ${shlibs:Depends}
++Description: Numerical (matrix-oriented) Mathematics for Python
++ The Numeric Extensions to Python (NumPy) add powerful
++ multi-dimensional array objects to the wonderful general purpose
++ programming language Python. These new objects give Python the number
++ crunching power of numeric languages like Matlab and IDL while
++ maintaining all of the advantages of the general-purpose programming
++ language Python.
++ .
++ These extensions add two new object types to Python, and then include
++ a number of extensions that take advantage of these two new objects:
++ .
++  - Multidimensional Array Objects
++    * Efficient arrays of homogeneous machine types (floats, longs,
++      complex doubles)
++    * Arbitrary number of dimensions
++    * Sophisticated structural operations
++  - Universal Function Objects
++    * Support mathematical functions on all Python objects
++    * Very efficient for array objects
++  - Simple interfaces to existing numerical libraries:
++    * Linear Algebra (LAPACK)
++    * Fourier Transforms (FFTPACK)
++    * Random Arrays (RANLIB)
++    * Independent Random Streams (RNG, ranf)
++    * Masked Arrays (MA)
++
++Package: python2.5-numeric-dev
++Architecture: all
++Depends: python2.5-numeric (= ${Source-Version})
++Description: Development files for Numeric Python
+Index: python-numeric/debian/copyright
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/debian/copyright	2007-03-06 17:55:37.000000000 -0300
+@@ -0,0 +1,48 @@
++This package was debianized by Matthias Klose doko@debian.org on
++Mon,  9 Mar 1998 11:00:24 +0100.
++
++It was downloaded from http://numpy.sourceforge.net/
++
++Copyright:
++
++Distributed as a public service by X-Division, Lawrence Livermore
++National Laboratory. Contact support@icf.llnl.gov for questions
++regarding this distribution.
++
++Most of Numerical Python was developed outside of LLNL. To the extent
++that any of this package represents work done at LLNL the following
++notice applies.
++
++*** Legal Notice for all LLNL-contributed files or revisions ***
++
++			Copyright (c) 1996.
++	    The Regents of the University of California.
++			All rights reserved.
++
++Permission to use, copy, modify, and distribute this software for any
++purpose without fee is hereby granted, provided that this entire notice
++is included in all copies of any software which is or includes a copy
++or modification of this software and in all copies of the supporting
++documentation for such software.
++
++This work was produced at the University of California, Lawrence
++Livermore National Laboratory under contract no. W-7405-ENG-48 between
++the U.S. Department of Energy and The Regents of the University of
++California for the operation of UC LLNL.
++
++			      DISCLAIMER
++
++This software was prepared as an account of work sponsored by an
++agency of the United States Government. Neither the United States
++Government nor the University of California nor any of their employees,
++makes any warranty, express or implied, or assumes any liability or
++responsibility for the accuracy, completeness, or usefulness of any
++information, apparatus, product, or process disclosed, or represents
++that its use would not infringe privately-owned rights. Reference
++herein to any specific commercial products, process, or service by
++trade name, trademark, manufacturer, or otherwise, does not necessarily
++constitute or imply its endorsement, recommendation, or favoring by the
++United States Government or the University of California. The views and
++opinions of authors expressed herein do not necessarily state or reflect
++those of the United States Government or the University of California,
++and shall not be used for advertising or product endorsement purposes.
+Index: python-numeric/debian/rules
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/debian/rules	2007-03-06 17:55:37.000000000 -0300
+@@ -0,0 +1,112 @@
++#!/usr/bin/make -f
++
++PYVER=2.5
++PYTHON=python$(PYVER)
++
++p_base	= python$(PYVER)-numeric
++p_dev   = python$(PYVER)-numeric-dev
++
++d_base	= debian/$(p_base)
++d_dev   = debian/$(p_dev)
++
++pysite=usr/lib/python$(PYVER)/site-packages
++
++ifeq ($(DEB_BUILD_ARCH),armel)
++    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
++else
++    CFLAGS=-Os -Wall -Wstrict-prototypes
++endif
++
++build: stamp-build
++stamp-build:
++	dh_testdir
++	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py build
++	touch stamp-build
++
++clean:
++	dh_testdir
++	dh_testroot
++	-rm -f stamp-build
++	-rm -rf `find -name build -type d`
++	-rm -rf $(d_base) $(d_dev)
++	-rm -rf doc/www.pfdubois.com
++	dh_clean
++
++install: build
++	dh_testdir
++	dh_testroot
++	dh_clean -k
++	dh_installdirs
++
++	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py install --prefix=$(d_base)/usr
++	CFLAGS="$(CFLAGS)" $(PYTHON) -OO -m compileall -f $(d_base)/usr
++	cp -a $(d_base)/* $(d_dev)
++
++	# base
++	find $(d_base) -type f -name "*.py" | xargs rm -f
++	find $(d_base) -type f -name "*.pyc" | xargs rm -f
++	rm -rf $(d_base)/usr/include
++
++	# dev
++	find $(d_dev) -type f -name "*.so" | xargs rm -f
++	find $(d_dev) -type f -name "*.py[co]" | xargs rm -f
++	rm -f $(d_dev)/$(pysite)/Numeric.pth
++
++	dh_installdirs -p$(p_dev) $(pysite)/NumTut usr/share/doc/$(p_dev)
++
++	cp -a Demo/NumTut $(d_dev)/$(pysite)
++	chmod a+x $(d_dev)/$(pysite)/NumTut/__init__.py $(d_dev)/$(pysite)/NumTut/view.py
++
++	dh_link -p$(p_dev) /$(pysite)/NumTut /usr/share/doc/$(p_dev)/NumTut
++	install -m 644 doc/numpy.pdf $(d_dev)/usr/share/doc/$(p_dev)
++
++	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/Demo
++	cp -a Test $(d_dev)/usr/share/doc/$(p_dev)/examples
++	cp -p Demo/*.py $(d_dev)/usr/share/doc/$(p_dev)/examples/Demo
++	rm -f $(d_dev)/usr/share/doc/$(p_dev)/examples/Test/testwin.bat
++
++	# cleanup
++	find $(d_base) $(d_dev) -name '.svn' | xargs rm -rf
++	
++	# fix interpreter
++	for i in `find $(d_dev) $(d_base) -type f`; do \
++	  sed '1s,#!.*python[^ ]*\(.*\),#!/usr/bin/python2.5\1,' \
++		$$i > $$i.temp; \
++	  if cmp --quiet $$i $$i.temp; then \
++	    rm -f $$i.temp; \
++	  else \
++	    mv -f $$i.temp $$i; \
++	    chmod 755 $$i; \
++	    echo "fixed interpreter: $$i"; \
++	  fi; \
++	done
++
++binary: binary-indep binary-arch
++binary-indep: install
++	dh_testdir
++	dh_testroot
++	dh_installdirs
++	dh_installchangelogs -p$(p_dev)
++	dh_installdocs -p$(p_dev)
++	dh_compress -p$(p_dev) -X.py -Xexamples
++	dh_fixperms
++	dh_installdeb
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++binary-arch: install
++	dh_testdir
++	dh_testroot
++	dh_installdirs
++	dh_strip
++	dh_fixperms
++	dh_makeshlibs
++	dh_installdeb
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++.PHONY: build clean install binary-indep binary-arch binary
++
