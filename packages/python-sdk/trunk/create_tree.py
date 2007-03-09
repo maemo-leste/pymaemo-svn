@@ -28,13 +28,22 @@ def download_source_package(config, section):
     new_dir_name = section
 
     status = os.popen('wget -c -nc ' + source_url+' && tar xf '+package_name+' && mv '+old_dir_name+' '+new_dir_name)
+#    status = os.popen('mv '+package_name+' sources && ln -s sources/+'package_name'+' orig')
+
+def apply_patches(package_name):
+    status = os.popen('cd '+package_name+' && quilt push -a --quiltrc ../quiltrc')
 
 def create_tree(config):
+    status = os.popen('mkdir sources')
     for section in config.sections():
         print section
+        apply = 'No'
         if config.has_option(section, 'source_url'):
-            download_source_package(config, section)
-        download_from_svn(config, section)
+#            download_source_package(config, section)
+            apply = 'Yes'
+#        download_from_svn(config, section)
+        if apply == 'Yes':
+            apply_patches(section)
 
 def main():
     config = read_cfg_file("packages.ini")   
