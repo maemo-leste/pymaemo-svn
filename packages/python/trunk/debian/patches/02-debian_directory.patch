@@ -308,7 +308,7 @@ Index: python/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python/debian/rules	2007-03-06 17:09:22.000000000 -0300
-@@ -0,0 +1,216 @@
+@@ -0,0 +1,218 @@
 +#!/usr/bin/make -f
 +
 +PYMAJOR=2
@@ -320,6 +320,8 @@ Index: python/debian/rules
 +p_dev=$(PYTHON)-dev
 +d_base=$(CURDIR)/debian/$(p_base)
 +d_dev=$(CURDIR)/debian/$(p_dev)
++
++include /usr/share/quilt/quilt.make
 +
 +only_dev_list=$(CURDIR)/debian/onlysdk
 +
