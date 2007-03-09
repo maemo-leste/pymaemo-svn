@@ -1,0 +1,90 @@
+python-runtime (0.4-8) unstable; urgency=low
+
+  * bump release version 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 23 Feb 2007 10:13:00 -0300
+
+python-runtime (0.4-7) unstable; urgency=low
+
+  * python package now contains pyexpat module
+  * fixed race condition with signals inside python
+  * python-osso fixes #388, #389
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 22 Feb 2007 09:35:00 -0300
+
+python-runtime (0.4-6) unstable; urgency=low
+
+  * changed the package group
+  * removed the pyrex and python-runtime dependencies
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 24 Jan 2007 10:28:00 -0300
+
+python-runtime (0.4-5) unstable; urgency=low
+
+  * update dependencies' versions
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 24 Jan 2007 10:21:00 -0300
+
+python-runtime (0.4-4) unstable; urgency=low
+
+  * added sqlite3 support to Python
+  * added bindings for g_set/get_application_name() in pygtk
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 23 Jan 2007 10:45:00 -0300
+
+python-runtime (0.4-3) unstable; urgency=low
+
+  * fix a problem with "Provides" item inside /debian/control file.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 10 Jan 2007 16:28:00 -0300
+
+python-runtime (0.4-2) unstable; urgency=low
+
+  * now, python-runtime provides "python" too.
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 8 Jan 2007 13:38:00 -0300
+
+python-runtime (0.4-1) unstable; urgency=low
+
+  * new python release (2.5)
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 19 Jul 2006 17:23:57 -0300
+
+python-runtime (0.3-2) unstable; urgency=low
+
+  * fixed the target 'binary' in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 14 Jun 2006 16:34:40 -0300
+
+python-runtime (0.2-2) unstable; urgency=low
+
+  * minor cleanup in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri,  9 Jun 2006 16:26:53 -0300
+
+python-runtime (0.2-1) unstable; urgency=low
+
+  * changed architecture from 'any' to 'all'
+  * changed package versioning
+  * remove verbose option in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 5 Jun 2006 15:28:00 -0300
+
+python-runtime (0.1-1osso3) unstable; urgency=low
+
+  * remove 'touch binary-stamp' from debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 1 Jun 2006 23:52:00 -0300
+
+python-runtime (0.1-1osso2) unstable; urgency=low
+
+  * Now, python-runtime is a meta package
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 25 May 2006 13:51:00 -0300
+
+python-runtime (0.1-1osso1) unstable; urgency=low
+
+  * First Run-Time Environment package.
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 16 May 2006 17:39:00 -0300
+
