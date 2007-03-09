@@ -33,6 +33,9 @@ def download_source_package(config, section):
 def apply_patches(package_name):
     status = os.popen('cd '+package_name+' && quilt push -a --quiltrc ../quiltrc')
 
+#def compile():
+#    dpkg-buildpackage -rfakeroot -sa -tc -I.pc -us -uc (armel)
+
 def create_tree(config):
     status = os.popen('mkdir sources')
     for section in config.sections():
