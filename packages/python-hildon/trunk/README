@@ -1,0 +1,10 @@
+To build this file:
+
+	$ autoconf
+	$ automake
+	$ ./configure
+	$ make
+
+To install:
+
+	$ make install
