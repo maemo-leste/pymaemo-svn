@@ -5,3 +5,4 @@
 05-using_python2.5_in_setup-py.patch
 06-using_python2.5_in_clapck_scrub-py.patch
 07-create_COPYING_file.patch
+08-add-doc-dir.patch
