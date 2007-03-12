@@ -9,6 +9,10 @@ def read_cfg_file(config_file):
     return config
 
 def download_from_svn(config, section):
+    if os.path.exists(section):
+        print 'There is a(n) section package already created!'
+        return
+
     svn_url = config.get(section, 'svn_url')
     status = os.popen('svn co ' + svn_url)
     print status.read()
@@ -33,8 +37,10 @@ def download_source_package(config, section):
 def apply_patches(package_name):
     status = os.popen('cd '+package_name+' && quilt push -a --quiltrc ../quiltrc')
 
-#def compile():
-#    dpkg-buildpackage -rfakeroot -sa -tc -I.pc -us -uc (armel)
+def compile(config):
+    for section in config.sections():
+        status = os.popen('cd '+section+' && echo dpkg && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
+        print status.read()
 
 def create_tree(config):
     status = os.popen('mkdir sources')
@@ -49,10 +55,11 @@ def create_tree(config):
             apply_patches(section)
 
 def main():
-    config = read_cfg_file("packages.ini")   
+    config = read_cfg_file('packages.ini')   
     create_tree(config)
+    compile(config)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
 
 # vim:ts=4:sw=4:et:sm:ai
