@@ -51,8 +51,12 @@ def download_source_package(config, section):
     old_dir_name = config.get(section, 'source_dir_name')
     new_dir_name = section
 
-    status = os.popen('cd '+sources_dir+' && wget -c -nc '+source_url+' && tar xf '+package_name+' && mv '+old_dir_name+' ..\\'+new_dir_name)
+    #TODO: Improve this. It runs tar xf and only checks if its possible to move after this.
+    status = os.popen('cd '+sources_dir+' && wget -c -nc '+source_url+' && tar xf '+package_name+' && mv '+old_dir_name+' ../'+new_dir_name)
     print status.read()
+    if os.path.exists(sources_dir+'/'+old_dir_name):
+        status = os.popen('rm -rf '+sources_dir+'/'+old_dir_name)
+        print status
 
 def apply_patches(package_name):
     '''Apply the patches when necessary'''
