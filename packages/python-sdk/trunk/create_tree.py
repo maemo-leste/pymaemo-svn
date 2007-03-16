@@ -26,7 +26,7 @@ def download_from_svn(config, section):
 
     if config.has_option(section, 'source_url'):
         old_dir_name = 'debian'
-        path_to_test = 'debian/patches'
+        path_to_test = section+'/debian/patches'
     else:
         old_dir_name = 'trunk'
         path_to_test = section
