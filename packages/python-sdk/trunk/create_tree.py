@@ -8,8 +8,7 @@ config_file = 'packages.ini'
 sources_dir = 'source_packages'
 debs_dir = 'deb_packages'
 
-
-#TODO: verify error conditions
+#TODO: - verify error conditions
 
 def read_cfg_file(config_file):
     '''Read ini file that contains all the packages to be generated, ordered by dependencies.'''
@@ -32,10 +31,13 @@ def download_from_svn(config, section):
         path_to_test = section
         
     if os.path.exists(path_to_test):
-        print 'There is a(n) %s package already created!' % (section)
+        print 'Running svn update inside %s module' % (section)
+        status = os.popen('cd '+path_to_test+' && svn up')
+        print status
         return
 
     svn_url = config.get(section, 'svn_url')
+    print 'Running svn checkout of %s module' % (section)
     status = os.popen('svn co ' + svn_url)
     print status.read()
 
@@ -67,14 +69,22 @@ def apply_patches(package_name):
 def compile(config):
     '''Create all deb files'''
 
-    if not os.path.exists(debs_dir):
-        status = os.popen('mkdir ' + debs_dir)
+    status = os.popen('dpkg-architecture -qDEB_BUILD_ARCH')
+    arch_dir = status.read()
+
+    if not os.path.exists(debs_dir+'/'+arch_dir):
+        status = os.popen('mkdir -p ' + debs_dir + '/' + arch_dir)
         print status.read()
         
-    for section in config.sections():
-        status = os.popen('cd '+section+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
+    build_order = config.get('build-order', 'order').split(',')
+    
+    for module in build_order:
+        status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
         print status.read()
-        status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir)
+        status = os.popen('dpkg -i *.deb')
+        print status.read()
+        status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir+'/'+arch_dir)
+        print status.read()
     #TODO: Test if deb package has been generated. If not, stop the 'for' loop.
 
 def create_tree(config):
@@ -86,13 +96,14 @@ def create_tree(config):
 
     for section in config.sections():
         print section
-        apply = 'No'
-        if config.has_option(section, 'source_url'):
-            download_source_package(config, section)
-            apply = 'Yes'
-        download_from_svn(config, section)
-        if apply == 'Yes':
-            apply_patches(section)
+        if section != 'build-order':
+            apply = 'No'
+            if config.has_option(section, 'source_url'):
+                download_source_package(config, section)
+                apply = 'Yes'
+            download_from_svn(config, section)
+            if apply == 'Yes':
+                apply_patches(section)
 
 def main():
     '''Construct python for maemo source tree, with all modules contained in packages.ini config file'''
