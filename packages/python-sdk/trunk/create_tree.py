@@ -67,9 +67,15 @@ def apply_patches(package_name):
 def compile(config):
     '''Create all deb files'''
 
+    if not os.path.exists(debs_dir):
+        status = os.popen('mkdir ' + debs_dir)
+        print status.read()
+        
     for section in config.sections():
         status = os.popen('cd '+section+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
         print status.read()
+        status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir)
+    #TODO: Test if deb package has been generated. If not, stop the 'for' loop.
 
 def create_tree(config):
     '''Process all packages listed in config file, to create the source tree, patch it and generate debian packages.'''
