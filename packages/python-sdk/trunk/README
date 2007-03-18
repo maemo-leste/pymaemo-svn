@@ -1,0 +1,36 @@
+Components and Description
+--------------------------
+-create_tree.py: main script to build the source tree, compile it and generate
+deb packages.
+-packages.ini: configuration file, containing information were source code is
+available for download and naming rules.
+-quiltrc: configuration file used by 'quilt', the patch tool used by pymaemo
+repository.
+
+Using and Contributing
+----------------------
+
+This repository uses python (v2.3 provided by rootstrap image) to generate the
+entire source tree. To have a smaller repository, this version is based on patches.
+All modules that have source code in tar.gz format are downloaded from their
+websites. Then the patches are downloaded from pymaemo repository to be applied.
+Modules like python-hildon, that does not have external source code will be kept
+completly in pymaemo repository.
+
+-Downloading
+To download the newest version of pymaemo, just run 'python ./create_tree.py'.
+It will get all source code needed, apply the patches and build deb packages.
+
+-Contributing
+Pymaemo source tree uses 'quilt' to keep patches. It is a great tool, that provides
+great control over modifications in source code and generates patch files, to be
+uploaded on pymaemo svn repository.
+First of all you need to export the QUILT_PATCHES variable. This can be done
+copying .quiltrc file to your home or running export QUILT_PATCHES=debian/patches.
+Before starting modifications, you must run quilt add <filename>, where filename
+is the file that will be modified. Then run quilt new <patch_filename> to create
+a new patch file named <patch_filename>. Now you can edit files. After this, run
+quilt refresh, to flush all information inside patch file. To commit this new patch,
+enter debian/patches directory and run svn commit -m "Message describing what you
+did". To have more information on quilt and svn tools, take a look on their webpages
+or manpages.
