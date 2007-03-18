@@ -56,6 +56,9 @@ def download_source_package(config, section):
     #TODO: Improve this. It runs tar xf and only checks if its possible to move after this.
     status = os.popen('cd '+sources_dir+' && wget -c -nc '+source_url+' && tar xf '+package_name+' && mv '+old_dir_name+' ../'+new_dir_name)
     print status.read()
+    if not os.path.exists(section+'.orig.tar.gz'):
+        status = os.popen('ln -s '+sources_dir+'/'+package_name+' '+section+'.orig.tar.gz')
+        print status
     if os.path.exists(sources_dir+'/'+old_dir_name):
         status = os.popen('rm -rf '+sources_dir+'/'+old_dir_name)
         print status
