@@ -7,3 +7,4 @@
 07-osso-browser-support.patch
 08-disable-tk_support.patch
 09-lib-site.patch
+10-gdbm-dependency.patch
