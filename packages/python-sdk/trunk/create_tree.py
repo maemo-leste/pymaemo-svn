@@ -77,8 +77,7 @@ def download_source_package(config, section):
     status = os.popen('cd '+sources_dir+' && wget -c -nc '+source_url+' && tar xf '+package_name+' && mv '+old_dir_name+' ../'+new_dir_name)
     print status.read()
     if not os.path.exists(section+'.orig.tar.gz'):
-        status = os.popen('ln -s '+sources_dir+'/'+package_name+' '+section+'.orig.tar.gz')
-        print status
+        os.symlink(sources_dir+'/'+package_name, section+'.orig.tar.gz')
     if os.path.exists(sources_dir+'/'+old_dir_name):
         status = os.popen('rm -rf '+sources_dir+'/'+old_dir_name)
         print status
@@ -102,25 +101,27 @@ def compile(config):
     build_order = config.get('build-order', 'order').split(',')
     
     for module in build_order:
-        status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
-        print status.read()
-        status = os.popen('dpkg -i *.deb')
-        print status.read()
-        
-        list_dir = os.listdir('.')
-        deb_found = 'No'
-        for item in list_dir:
-            if item.find('.deb') != -1:
-                deb_found = 'Yes'
-                break
-        if deb_found == 'No':
-            print "ERROR INSTALLING %s!"%(module)
-            return
-        status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir+'/'+arch_dir)
-        print status.read()
-        status = os.popen('mv '+debs_dir+'/'+arch_dir+'/*.orig.tar.gz .')
-        print status.read()
-    #TODO: Test if deb package has been generated. If not, stop the 'for' loop.
+        if not os.path.exists(module+'-stamp'):
+            status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
+            print status.read()
+            status = os.popen('dpkg -i *.deb')
+            print status.read()
+            
+            list_dir = os.listdir('.')
+            deb_found = 'No'
+            for item in list_dir:
+                if item.find('.deb') != -1:
+                    deb_found = 'Yes'
+                    break
+            if deb_found == 'No':
+                print "ERROR INSTALLING %s!"%(module)
+                return
+            status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir+'/'+arch_dir)
+            print status.read()
+            status = os.popen('mv '+debs_dir+'/'+arch_dir+'/*.orig.tar.gz .')
+            print status.read()
+            status = os.popen('touch '+module+'-stamp')
+            print status.read()
 
 def create_tree(config):
     '''Process all packages listed in config file, to create the source tree, patch it and generate debian packages.'''
@@ -144,7 +145,7 @@ def main():
     '''Construct python for maemo source tree, with all modules contained in packages.ini config file'''
 
     config = read_cfg_file(config_file)
-#    create_tree(config)
+    create_tree(config)
     compile(config)
 
 if __name__ == '__main__':
