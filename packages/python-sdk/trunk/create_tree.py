@@ -26,6 +26,7 @@ import sys
 config_file = 'packages.ini'
 sources_dir = 'source_packages'
 debs_dir = 'deb_packages'
+quiltrc_file = '.quiltrc'
 
 #TODO: - verify error conditions
 
@@ -85,7 +86,7 @@ def download_source_package(config, section):
 def apply_patches(package_name):
     '''Apply the patches when necessary'''
 
-    status = os.popen('cd '+package_name+' && quilt push -a --quiltrc ../quiltrc')
+    status = os.popen('cd '+package_name+' && quilt push -a --quiltrc ../'+quiltrc_file)
     print status
 
 def compile(config):
@@ -105,12 +106,19 @@ def compile(config):
         print status.read()
         status = os.popen('dpkg -i *.deb')
         print status.read()
-        if not os.path.exists('*.deb'):
+        
+        list_dir = os.listdir('.')
+        deb_found = 'No'
+        for item in list_dir:
+            if item.find('.deb') != -1:
+                deb_found = 'Yes'
+                break
+        if deb_found == 'No':
             print "ERROR INSTALLING %s!"%(module)
             return
         status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir+'/'+arch_dir)
         print status.read()
-        status = os.popen('mv '+debs_dir+'/'+arch_dir+'*.orig.tar.gz *.deb .')
+        status = os.popen('mv '+debs_dir+'/'+arch_dir+'/*.orig.tar.gz .')
         print status.read()
     #TODO: Test if deb package has been generated. If not, stop the 'for' loop.
 
@@ -136,7 +144,7 @@ def main():
     '''Construct python for maemo source tree, with all modules contained in packages.ini config file'''
 
     config = read_cfg_file(config_file)
-    create_tree(config)
+#    create_tree(config)
     compile(config)
 
 if __name__ == '__main__':
