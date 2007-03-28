@@ -77,7 +77,7 @@ Index: gnome-python-maemo/debian/rules
 +
 +d=debian/tmp
 +d_base=debian/python$(PYVER)-gnome
-+d_dev=debian/python$(PYVER)-gnome
++d_dev=debian/python$(PYVER)-gnome-dev
 +
 +ifeq ($(DEB_BUILD_ARCH),armel)
 +   CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes

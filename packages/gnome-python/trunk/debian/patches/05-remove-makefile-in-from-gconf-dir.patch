@@ -1071,7 +1071,7 @@ Index: gnome-python-maemo/setup.py
 +        '-Os',
 +        '-DXTHREADS',
 +        '-DXUSE_MTSAFE_API',
-+        '-DGCONF_DISABLE_DEPRECATED'
++#        '-DGCONF_DISABLE_DEPRECATED',
 +#        '-ansi',
 +#        '-pedantic',
 +#        '-Wno-long-long',
