@@ -101,7 +101,7 @@ def compile(config):
     build_order = config.get('build-order', 'order').split(',')
     
     for module in build_order:
-        if not os.path.exists(module+'-stamp'):
+        if not os.path.exists(module+'-'+arch_dir.strip()+'-stamp'):
             if arch_dir == 'armel':
                 status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
             else:
@@ -123,15 +123,14 @@ def compile(config):
             print status.read()
             status = os.popen('mv '+debs_dir+'/'+arch_dir+'/*.orig.tar.gz .')
             print status.read()
-            status = os.popen('touch '+module+'-stamp')
+            status = os.popen('touch '+module+'-'+arch_dir.strip()+'-stamp')
             print status.read()
 
 def create_tree(config):
     '''Process all packages listed in config file, to create the source tree, patch it and generate debian packages.'''
 
     if not os.path.exists(sources_dir):
-        status = os.popen('mkdir '+sources_dir)
-        print status
+        os.mkdir(sources_dir)
 
     for section in config.sections():
         print section
