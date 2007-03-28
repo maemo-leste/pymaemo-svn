@@ -102,7 +102,10 @@ def compile(config):
     
     for module in build_order:
         if not os.path.exists(module+'-stamp'):
-            status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
+            if arch_dir == 'armel':
+                status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
+            else:
+                status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.svn -us -uc')
             print status.read()
             status = os.popen('dpkg -i *.deb')
             print status.read()
