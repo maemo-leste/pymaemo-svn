@@ -1,0 +1,140 @@
+Index: gnome-python-maemo/debian/changelog
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/debian/changelog	2007-03-27 18:25:44.000000000 -0300
+@@ -0,0 +1,8 @@
++python-gnome (0.1-1osso1) unstable; urgency=low
++
++  * Osso rpc functions revised (closes #388, #389):
++    - rpc_run and rpc_async_run now can send correctly rpc arguments
++    - callback function of rpc_async_run now has an extra param: retval
++      eg: def callbackfunc (interface, method, retval, userdata):
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 16 Jan 2007 14:50:00 -0300
+Index: gnome-python-maemo/debian/compat
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/debian/compat	2007-03-27 18:25:44.000000000 -0300
+@@ -0,0 +1 @@
++4
+Index: gnome-python-maemo/debian/control
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/debian/control	2007-03-27 18:25:44.000000000 -0300
+@@ -0,0 +1,17 @@
++Source: python-gnome
++Priority: optional
++Section: python
++Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
++Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev, python2.5-dev, libgconf-2-dev, libglib2.0-dev
++Standards-Version: 3.6.1
++
++Package: python2.5-gnome
++Architecture: any
++Depends: python2.5, libgconf-2, libglib2.0-0, ${shlibs:Depends}
++Description: Python bindings for GConf and GnomeVFS 
++
++Package: python2.5-gnome-dev
++Architecture: all
++Depends: python2.5-gnome (= ${Source-Version})
++Description: Examples and header files for bindings of GConf and GnomeVFS
++
+Index: gnome-python-maemo/debian/copyright
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/debian/copyright	2007-03-27 18:25:44.000000000 -0300
+@@ -0,0 +1,12 @@
++This package was debianized by Osvaldo Santana Neto <osvaldo.santana@indt.org.br> on
++Thu, 16 Jun 2005 15:58:17 -0300.
++
++It was downloaded from http://pymaemo.sourceforge.net
++
++Copyright:
++
++Upstream Author(s): Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
++
++License:
++
++See COPYING file.
+Index: gnome-python-maemo/debian/files
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/debian/files	2007-03-27 18:25:44.000000000 -0300
+@@ -0,0 +1,2 @@
++python2.5-gnome_0.1-1osso1_armel.deb python optional
++python2.5-gnome-dev_0.1-1osso1_all.deb python optional
+Index: gnome-python-maemo/debian/rules
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/debian/rules	2007-03-27 18:25:44.000000000 -0300
+@@ -0,0 +1,70 @@
++#!/usr/bin/make -f
++
++PYVER=2.5
++
++DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
++DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
++
++d=debian/tmp
++d_base=debian/python$(PYVER)-gnome
++d_dev=debian/python$(PYVER)-gnome
++
++ifeq ($(DEB_BUILD_ARCH),armel)
++   CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
++else
++   CFLAGS=-Os -Wall -Wstrict-prototypes
++endif
++
++CLEANFILES = gconf/gconf.c gconf/*.pyo gconf/*.lo gconf/*.la gconf/*.in
++
++build: build-stamp
++build-stamp:
++	dh_testdir
++	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py build
++	touch build-stamp
++
++clean:
++	dh_testdir
++	dh_testroot
++	rm -f build-stamp 
++	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py clean -a
++	dh_clean $(CLEANFILES)
++
++install: build
++	dh_testdir
++	dh_testroot
++	dh_clean -k
++	dh_installdirs
++
++	python$(PYVER) setup.py install --prefix=$(d_base)/usr --skip-build
++	python$(PYVER) -OO -m compileall -l .
++
++	# base
++
++	# dev
++	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/
++	mkdir -p $(d_dev)/usr/share/python-gnome/defs
++	cp examples/gconf/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples
++	cp gconf/gconf.defs $(d_dev)/usr/share/python-gnome/defs
++
++	# finish
++	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
++	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
++
++binary-indep: build install
++binary-arch: build install
++	dh_testdir
++	dh_testroot
++	dh_installman
++	dh_link
++	dh_strip
++	dh_fixperms
++	dh_makeshlibs
++	dh_installdeb
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++binary: binary-indep binary-arch
++.PHONY: build clean binary-indep binary-arch binary install 

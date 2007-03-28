@@ -1,0 +1,6 @@
+01-create-debian-dir.patch
+02-update-gconf-defs.patch
+03-create-headers-file.patch
+04-update-headers-inside-gconf-dir.patch
+05-remove-makefile-in-from-gconf-dir.patch
+06-remove-makefile-am-from-gconf-dir.patch
