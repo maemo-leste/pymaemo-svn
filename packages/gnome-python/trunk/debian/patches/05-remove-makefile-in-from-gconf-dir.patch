@@ -661,7 +661,7 @@ Index: gnome-python-maemo/setup.py
 ===================================================================
 --- gnome-python-maemo.orig/setup.py	2007-03-28 09:40:19.000000000 -0300
 +++ gnome-python-maemo/setup.py	2007-03-28 09:40:26.000000000 -0300
-@@ -1,354 +1,119 @@
+@@ -1,354 +1,117 @@
 -#!/usr/bin/env python
 -#
 -# setup.py - distutils configuration for pygtk
@@ -1118,8 +1118,6 @@ Index: gnome-python-maemo/setup.py
 +    author = 'Luciano Miguel Wolf',
 +    author_email = 'luciano.wolf@indt.org.br',
 +    url = 'http://www.maemo.org',
-+    package_dir = {'gnome': 'gnome-init'},
-+    packages = ['gnome'],
 +    ext_package = 'gnome',
 +    ext_modules = [gconf],
 +    cmdclass={'build': PyGconfBuild}
