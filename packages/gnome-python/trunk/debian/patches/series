@@ -4,3 +4,6 @@
 04-update-headers-inside-gconf-dir.patch
 05-remove-makefile-in-from-gconf-dir.patch
 06-remove-makefile-am-from-gconf-dir.patch
+07-removing-incompatible-fields.patch
+08-bonobo-removal-and-init-modification.patch
+09-update-setup-file.patch
