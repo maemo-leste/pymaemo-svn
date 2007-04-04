@@ -7,3 +7,4 @@
 07-removing-incompatible-fields.patch
 08-bonobo-removal-and-init-modification.patch
 09-update-setup-file.patch
+10-modify-vfs-examples.patch

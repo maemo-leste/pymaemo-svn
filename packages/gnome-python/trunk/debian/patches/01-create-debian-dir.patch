@@ -67,7 +67,7 @@ Index: gnome-python-maemo/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ gnome-python-maemo/debian/rules	2007-03-27 18:25:44.000000000 -0300
-@@ -0,0 +1,70 @@
+@@ -0,0 +1,72 @@
 +#!/usr/bin/make -f
 +
 +PYVER=2.5
@@ -113,9 +113,11 @@ Index: gnome-python-maemo/debian/rules
 +
 +	# dev
 +	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/
++	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/gnomevfs
 +	mkdir -p $(d_dev)/usr/share/python-gnome/defs
 +	cp examples/gconf/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples
 +	cp gconf/gconf.defs $(d_dev)/usr/share/python-gnome/defs
++	cp examples/vfs/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples/gnomevfs
 +
 +	# finish
 +	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
