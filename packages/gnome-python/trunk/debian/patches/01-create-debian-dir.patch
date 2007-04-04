@@ -26,12 +26,12 @@ Index: gnome-python-maemo/debian/control
 +Priority: optional
 +Section: python
 +Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-+Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev, python2.5-dev, libgconf2-dev, libglib2.0-dev
++Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev, python2.5-dev, libgconf2-dev, libglib2.0-dev, libosso-gnomevfs2-dev
 +Standards-Version: 3.6.1
 +
 +Package: python2.5-gnome
 +Architecture: any
-+Depends: python2.5, libgconf-2, libglib2.0-0, ${shlibs:Depends}
++Depends: python2.5, libgconf2-6, libglib2.0-0, libosso-gnomevfs2-0, ${shlibs:Depends}
 +Description: Python bindings for GConf and GnomeVFS 
 +
 +Package: python2.5-gnome-dev
