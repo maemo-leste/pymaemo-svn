@@ -58,47 +58,18 @@
 	<p> The repository lies at <a href="http://repository.maemo.org/extras/">http://repository.maemo.org/extras/</a>.
 	This repository contains Python 2.5 packages for <tt>bora</tt> and <tt>scirocco</tt> versions of the SDK (components
 	<tt>free</tt> and <tt>non-free</tt>). This new package can be installed using an automatic script or mannualy. 
-	The <i>/etc/apt/sources.list</i> lines added are:
-
-	<pre>
-	# Pick one group accordingly to your SDK version
-
-	# for 3.0 ("bora")
-	deb http://repository.maemo.org/extras/ bora free non-free
-	deb-src http://repository.maemo.org/extras/ bora free non-free
-
-	# for 2.1 ("scirocco")
-	deb http://repository.maemo.org/extras/ scirocco free non-free
-	deb-src http://repository.maemo.org/extras/ scirocco free non-free
-	</pre>
 
         <h3><a name="auto_installation">Automatic Installation</a></h3>
 
 	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
 	to ensure that all python2.4 packages will be correctly removed.</p>
 
-	<p>The next steps only work if following repository is already present. To check this, open the Application Manager and verify the Application 		catalog. It must contain:</p>
-
-	<p><i>for Bora</i></p>
-	<pre>
-	Web address:  http://repository.maemo.org
-	Distribution: bora
-	Components:   free non-free
-	</pre>
-
-	<p><i>for Scirocco</i></p>
-	<pre>
-	Web address:  http://repository.maemo.org
-	Distribution: scirocco
-	Components:   free non-free
-	</pre>
-
-	<p> To perform the automatic installation, choose the correct maemo version of installer, download and copy it to 
-	device. Inside the device file manager double click <i>python2.5-runtime</i> file and proceed clicking the <i>OK</i> button.
+	<p> To perform automatic installation just download both .install files. Then inside device's file manager double click first <i>Base repository</i> 
+        file and proceed clicking the <i>OK</i> button. Do the same with <i>Python runtime</i> file.
 	
 	<ul>	
-	<li><a href="http://repository.maemo.org/extras/dists/bora/install/python2.5-runtime.install">Bora installer</a></li>
-	<li><a href="http://repository.maemo.org/extras/dists/scirocco/install/python2.5-runtime.install">Scirocco installer</a></li>
+	<li><a href="http://pymaemo.garage.maemo.org/base-repository.install">Base repository</a></li>
+	<li><a href="http://pymaemo.garage.maemo.org/python2.5-runtime.install">Python 2.5 installer</a></li>
 	</ul>
 
 	<p>To install the development packages, check the steps <a href="#dev_install">here</a>.</p>
@@ -109,17 +80,31 @@
 	to ensure that all python2.4 packages will be correctly removed.</p>
 
 	<p>The next steps only work if following repository is already present. To check this, open the Application Manager and verify the Application 		catalog. It must contain:</p>
-
-	<p><i>for Bora</i></p>
+	
+	<p><i>Base packages for Bora</i></p>
 	<pre>
 	Web address:  http://repository.maemo.org
 	Distribution: bora
 	Components:   free non-free
 	</pre>
+	
+	<p><i>Python2.5 for Bora</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org/extras
+	Distribution: bora
+	Components:   free non-free
+	</pre>
 
-	<p><i>for Scirocco</i></p>
+	<p><i>Base packages for Scirocco</i></p>
 	<pre>
 	Web address:  http://repository.maemo.org
+	Distribution: scirocco
+	Components:   free non-free
+	</pre>
+	
+	<p><i>Python2.5 for Scirocco</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org/extras
 	Distribution: scirocco
 	Components:   free non-free
 	</pre>
