@@ -110,7 +110,7 @@ Index: gnome-python-maemo/debian/rules
 +	python$(PYVER) -OO -m compileall -l .
 +
 +	# base
-+	touch $(d_base)/usr/python$(PYVER)/site-packages/gnome/__init__.py
++	touch $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
 +
 +	# dev
 +	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/
