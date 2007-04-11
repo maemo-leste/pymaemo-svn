@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Copyright (C) 2006 INdT.
 #
 # Contact: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
@@ -17,31 +18,70 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
 # USA
 
-from ConfigParser import *
-import string
-import os
-import sys
+''' create source tree & build pymaemo packages '''
+__revision__ = 'r'+'$Revision$'
+
+from ConfigParser import ConfigParser
+from optparse import OptionParser
+from commands import getstatusoutput
+import os, sys, re, urllib, urlparse, tarfile, shutil
 
 #Some global definitions
 config_file = 'packages.ini'
-sources_dir = 'source_packages'
+sources_dir = 'source_packages/'
 debs_dir = 'deb_packages'
-quiltrc_file = '.quiltrc'
+quiltrc = '.quiltrc'
+OK     =  0
 
-#TODO: - verify error conditions
+class BuildException(Exception):
+    ''' Handles build exceptions '''
 
-def read_cfg_file(config_file):
-    '''Read ini file that contains all the packages to be generated, ordered by dependencies.'''
+    def __init__(self, msg, code):
+        ''' Constructor. Stores error message. '''
+        Exception.__init__(self)
+        self.msg = msg
+        self.code = code
+
+    def __str__(self):
+        ''' Returns the message '''
+        return self.msg
+
+    def exitcode(self):
+        ''' Returns exeption code '''
+        return self.code
+
+def run_command(command, directory = None, force = False):
+    ''' Runs command. Chdir to directory if specified '''
+
+    if directory:
+        savedir = os.getcwd()
+        os.chdir(directory)
+
+    status = getstatusoutput(command)
+
+    if directory:
+        os.chdir(savedir)
+
+    if status[0] and not force:
+        print status[1]
+        raise BuildException('Error running command %s\nExit code: %d' 
+                % (command, status[0]), status[0])
+
+def read_cfg_file(conf_file):
+    '''Read ini file that contains all the packages to be generated, 
+    ordered by dependencies.'''
 
     config = ConfigParser()
-    config.read(config_file)
+    config.read(conf_file)
+
     return config
 
 def download_from_svn(config, section):
-    '''Download all necessary information from svn repository. Modules can contain only patches or the
-       entire source tree (only projects without source.tar.gz in another site - e.g.: python-hildon).
-       After downloading, the directory is moved inside source tree (if its just patch) or the directory
-       is renamed to the correct module name.'''
+    '''Download all necessary information from svn repository. Modules can 
+    contain only patches or the entire source tree (only projects without
+    source.tar.gz in another site - e.g.: python-hildon). After downloading, 
+    the directory is moved inside source tree (if its just patch) or the 
+    directory is renamed to the correct module name.'''
 
     if config.has_option(section, 'source_url'):
         old_dir_name = 'debian'
@@ -49,108 +89,178 @@ def download_from_svn(config, section):
     else:
         old_dir_name = 'trunk'
         path_to_test = section
-        
+
     if os.path.exists(path_to_test):
         print 'Running svn update inside %s module' % (section)
-        status = os.popen('cd '+path_to_test+' && svn up')
-        print status
-        return
+        run_command('svn up ' + path_to_test)
+    else:
+        if old_dir_name == 'trunk':
+            target = section
+        else:
+            target = section+'/debian'
 
-    svn_url = config.get(section, 'svn_url')
-    print 'Running svn checkout of %s module' % (section)
-    status = os.popen('svn co ' + svn_url)
-    print status.read()
-
-    new_dir_name = section
-    status = os.popen('mv ' + old_dir_name + ' ' + new_dir_name)
-    print status.read()
+        svn_url = config.get(section, 'svn_url')
+        print 'Running svn checkout of %s module' % (section)
+        run_command('svn co %s %s' % (svn_url, target))
 
 def download_source_package(config, section):
-    '''Download tar.gz files from websites listed in config file and put them in source_packages directory'''
+    '''Download tar.gz files from websites listed in config file 
+       and put them into source_packages directory'''
 
-    package_name = config.get(section, 'package_name')
-    source_url = config.get(section, 'source_url') + package_name
-    old_dir_name = config.get(section, 'source_dir_name')
-    new_dir_name = section
+    url = config.get(section, 'source_url')
+    tarball = os.path.basename(urlparse.urlparse(url)[2])
+    tarballpath = sources_dir + tarball
+    origtarball = section+'.orig.tar.gz'#includes release, tar.gz and tgz
+    origtarball = origtarball.replace('-', '_')
 
-    #TODO: Improve this. It runs tar xf and only checks if its possible to move after this.
-    status = os.popen('cd '+sources_dir+' && wget -c -nc '+source_url+' && tar xf '+package_name+' && mv '+old_dir_name+' ../'+new_dir_name)
-    print status.read()
-    if not os.path.exists(section+'.orig.tar.gz'):
-        os.symlink(sources_dir+'/'+package_name, section+'.orig.tar.gz')
-    if os.path.exists(sources_dir+'/'+old_dir_name):
-        status = os.popen('rm -rf '+sources_dir+'/'+old_dir_name)
-        print status
+    if not os.access(tarballpath, os.R_OK):
+        print 'Downloading %s ...' % tarball
+        urllib.urlretrieve(url, tarballpath)
+    else:
+        print 'file %s already downloaded, skipping' % tarball
+
+    if not os.path.exists(origtarball):
+        os.symlink(tarballpath, origtarball)
+
+    # unpack only if not unpacked yet
+    if not os.path.isdir(section):
+        tarf = tarfile.open(origtarball)
+        for member in tarf:
+            tarf.extract(member)
+        os.rename(tarf.getnames()[0], section)
+        tarf.close()
 
 def apply_patches(package_name):
-    '''Apply the patches when necessary'''
+    '''reapply the patches'''
+    run_command('quilt pop -a --quiltrc ../'+quiltrc, package_name, force = True)
+    run_command('quilt push -a --quiltrc ../'+quiltrc, package_name)
 
-    status = os.popen('cd '+package_name+' && quilt push -a --quiltrc ../'+quiltrc_file)
-    print status
-
-def compile(config):
+def build_packages(config):
     '''Create all deb files'''
 
-    status = os.popen('dpkg-architecture -qDEB_BUILD_ARCH')
-    arch_dir = status.read()
+    status = getstatusoutput('dpkg-architecture -qDEB_BUILD_ARCH')
+    if status[0]:
+        raise BuildException(
+                'Error determining dpkg architecture, errcode = %d' % \
+                status[0], status[0])
+    arch = status[1]
 
-    if not os.path.exists(debs_dir+'/'+arch_dir):
-        status = os.popen('mkdir -p ' + debs_dir + '/' + arch_dir)
-        print status.read()
-        
+    targetdir = debs_dir+'/'+arch
+
+    if not os.path.exists(targetdir):
+        os.makedirs(targetdir)
+
     build_order = config.get('build-order', 'order').split(',')
-    
+
     for module in build_order:
-        if not os.path.exists(module+'-'+arch_dir.strip()+'-stamp'):
-            if arch_dir == 'armel':
-                status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.svn -us -uc')
+        print '\n===== Building module %s ======' % module
+        if os.path.exists(module+'-'+arch+'-stamp'):
+            print 'module is already built, skipping'
+            continue
+        if arch == 'armel':
+            run_command(
+            'dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.pc -us -uc'\
+            , module)
+        else:
+            run_command(
+            'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc'\
+            , module)
+
+        # get package name and version from last changelog entry           
+        chlog = open(module+'/debian/changelog')
+        result = re.match('([^ ]+) \(([^)]+)\).*', chlog.readline())
+        chlog.close()
+
+        # make name of changes file
+        changes = '_'.join([result.group(1), result.group(2), arch])+'.changes'
+        changesf = open(changes)
+
+        lines = changesf.readlines()
+        # check if it contains section 'Files:'
+        if not [line for line in lines if line.strip() == 'Files:']:
+            continue
+        changesf.close()
+
+        # Put section 'Files:' on top of the list
+        lines.reverse()
+
+        debs_to_install = ''
+        for line in lines:
+            if line.strip() == 'Files:':
+                break
             else:
-                status = os.popen('cd '+module+' && dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.svn -us -uc')
-            print status.read()
-            status = os.popen('dpkg -i *.deb')
-            print status.read()
-            
-            list_dir = os.listdir('.')
-            deb_found = 'No'
-            for item in list_dir:
-                if item.find('.deb') != -1:
-                    deb_found = 'Yes'
-                    break
-            if deb_found == 'No':
-                print "ERROR INSTALLING %s!"%(module)
-                return
-            status = os.popen('mv *.dsc *.changes *.tar.gz *.deb '+debs_dir+'/'+arch_dir)
-            print status.read()
-            status = os.popen('mv '+debs_dir+'/'+arch_dir+'/*.orig.tar.gz .')
-            print status.read()
-            status = os.popen('touch '+module+'-'+arch_dir.strip()+'-stamp')
-            print status.read()
+                # process 'Files:' section
+                fname = line.strip().split(' ')[-1]
+                if fname.endswith('.deb'):
+                    debs_to_install += fname+' '
+                if not fname.endswith('.orig.tar.gz') and not fname.endswith('.deb'):
+                    shutil.move(fname, targetdir)
+
+        run_command('fakeroot dpkg -i ' + debs_to_install)
+        files = debs_to_install.strip().split()
+        for file in files:
+            shutil.move(file, targetdir)
+        shutil.move(changes, targetdir)
+
+        # touch stamp
+        open(module+'-'+arch+'-stamp', 'w').close()
 
 def create_tree(config):
-    '''Process all packages listed in config file, to create the source tree, patch it and generate debian packages.'''
+    '''Process all packages listed in config file, to create 
+    and patch the source tree.'''
 
     if not os.path.exists(sources_dir):
         os.mkdir(sources_dir)
 
     for section in config.sections():
-        print section
-        if section != 'build-order':
-            apply = 'No'
-            if config.has_option(section, 'source_url'):
-                download_source_package(config, section)
-                apply = 'Yes'
+        print '\n==== section %s ====' % section
+        if config.has_option(section, 'source_url'):
+            download_source_package(config, section)
+
+        if config.has_option(section, 'svn_url'):
             download_from_svn(config, section)
-            if apply == 'Yes':
-                apply_patches(section)
 
-def main():
-    '''Construct python for maemo source tree, with all modules contained in packages.ini config file'''
+        if config.has_option(section, 'source_url'):
+            apply_patches(section)
 
-    config = read_cfg_file(config_file)
-    create_tree(config)
-    compile(config)
+def parsecommandline(argv):
+    ''' Commandline parser '''
+
+    parser = OptionParser (usage = '%prog [options]')
+
+    parser.add_option('--only-create', action='store_true', dest='onlycreate',
+             help='only create source tree, don\'t build packages')
+    parser.add_option('--only-build', action='store_true', dest='onlybuild',
+             help='only build packages, don\'t create/update source tree')
+
+    (opts, _) = parser.parse_args(argv)
+
+    return opts
+
+def main(argv = None):
+    '''Construct python for maemo source tree, with all modules 
+    contained in packages.ini config file'''
+
+    if argv is None:
+        argv = sys.argv
+
+    # Parsing commandline
+    options = parsecommandline(argv)
+
+    try:
+        config = read_cfg_file(config_file)
+        if not options.onlybuild:
+            create_tree(config)
+        if not options.onlycreate:
+            build_packages(config)
+
+    except BuildException, exobj:
+        print exobj
+        return exobj.exitcode()
+
+    return OK
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
 
 # vim:ts=4:sw=4:et:sm:ai
