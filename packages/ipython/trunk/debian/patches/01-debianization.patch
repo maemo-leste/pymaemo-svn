@@ -552,7 +552,7 @@ Index: trunk/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ trunk/debian/rules	2007-04-01 17:00:11.000000000 +0300
-@@ -0,0 +1,116 @@
+@@ -0,0 +1,126 @@
 +#!/usr/bin/make -f
 +# ipython debian/rules file
 +#
@@ -665,7 +665,17 @@ Index: trunk/debian/rules
 +
 +# Build architecture-dependent files here.
 +binary-arch: build install
-+# We have nothing to do by default.
++	dh_testdir
++	dh_testroot
++	dh_installdirs
++	dh_strip
++	dh_fixperms
++	dh_makeshlibs
++	dh_installdeb
++	dh_shlibdeps 
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
 +
 +binary: binary-indep binary-arch
 +.PHONY: build clean binary-indep binary-arch binary install configure
