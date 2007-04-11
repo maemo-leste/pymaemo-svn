@@ -120,7 +120,7 @@ def download_source_package(config, section):
         print 'file %s already downloaded, skipping' % tarball
 
     if not os.path.exists(origtarball):
-        os.symlink(tarballpath, origtarball)
+        shutil.copy(tarballpath, origtarball)
 
     # unpack only if not unpacked yet
     if not os.path.isdir(section):
@@ -193,13 +193,19 @@ def build_packages(config):
                 fname = line.strip().split(' ')[-1]
                 if fname.endswith('.deb'):
                     debs_to_install += fname+' '
-                if not fname.endswith('.orig.tar.gz') and not fname.endswith('.deb'):
+                elif not fname.endswith('.orig.tar.gz'):
                     shutil.move(fname, targetdir)
+                else:
+                    shutil.copy(fname, targetdir)
 
-        run_command('fakeroot dpkg -i ' + debs_to_install)
-        files = debs_to_install.strip().split()
-        for file in files:
-            shutil.move(file, targetdir)
+        if debs_to_install:
+            run_command('fakeroot dpkg -i ' + debs_to_install)
+            files = debs_to_install.strip().split()
+            for file in files:
+                shutil.move(file, targetdir)
+        else:
+            raise BuildException('No deb package generated.', '')
+
         shutil.move(changes, targetdir)
 
         # touch stamp

@@ -51,6 +51,9 @@ patch control program. It is necessary to install libreadline4 and libreadline4-
 packages, through apt-get, to met build dependencies. Now just run 
 'python ./create_tree.py'. It will get all source code needed, apply the patches 
 and build deb packages.
+Its possible to pass some options to the script:
+--only-build :only build deb packages;
+--only-create :just download and create source tree.
 
 -Contributing
 Pymaemo source tree uses 'quilt' to keep patches. It is a great tool, that provides
@@ -69,6 +72,5 @@ TODO
 ----
 This first version miss some features like:
 - improve create_tree.py, using more os functions instead os.popen only;
-- add support for command line args to be passed to the script;
 - improve create_tree.py using classes, with build, clean, etc methods;
 - improve error condition management.
