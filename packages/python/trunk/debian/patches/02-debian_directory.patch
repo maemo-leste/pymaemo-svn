@@ -347,7 +347,7 @@ Index: python/debian/rules
 +		--prefix=/usr \
 +		--with-fpectl \
 +		--enable-ipv6 \
-+		--enable-unicode=ucs2 \
++		--enable-unicode=ucs4 \
 +		--without-cxx \
 +		--enable-shared \
 +		--with-system-ffi \
