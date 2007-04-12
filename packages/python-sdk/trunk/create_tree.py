@@ -174,12 +174,15 @@ def build_packages(config):
         # make name of changes file
         changes = '_'.join([result.group(1), result.group(2), arch])+'.changes'
         changesf = open(changes)
-
         lines = changesf.readlines()
+        changesf.close()
+
         # check if it contains section 'Files:'
         if not [line for line in lines if line.strip() == 'Files:']:
-            continue
-        changesf.close()
+            all_arch_file = 'python2.5-'+(changes.replace('i386','all')).replace('changes','deb')
+            lines = ['Files:', all_arch_file]
+            if not os.path.exists(all_arch_file):
+                continue
 
         # Put section 'Files:' on top of the list
         lines.reverse()
@@ -198,13 +201,10 @@ def build_packages(config):
                 else:
                     shutil.copy(fname, targetdir)
 
-        if debs_to_install:
-            run_command('fakeroot dpkg -i ' + debs_to_install)
-            files = debs_to_install.strip().split()
-            for file in files:
-                shutil.move(file, targetdir)
-        else:
-            raise BuildException('No deb package generated.', '')
+        run_command('fakeroot dpkg -i ' + debs_to_install)
+        files = debs_to_install.strip().split()
+        for file in files:
+            shutil.move(file, targetdir)
 
         shutil.move(changes, targetdir)
 
