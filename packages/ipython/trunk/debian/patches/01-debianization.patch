@@ -356,7 +356,7 @@ Index: trunk/debian/control
 +Build-Depends-Indep: debhelper (>= 4), quilt (>= 0.45), python2.5-dev (>= 2.5.0-1osso10)
 +Standards-Version: 3.7.2.1
 +
-+Package: ipython
++Package: python2.5-ipython
 +Architecture: all
 +Depends: python2.5-dev, libreadline4
 +Recommends: python-numeric, python-numeric-ext, python-pexpect
