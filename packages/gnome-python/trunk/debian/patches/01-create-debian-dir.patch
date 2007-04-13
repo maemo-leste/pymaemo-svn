@@ -2,15 +2,12 @@ Index: gnome-python-maemo/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ gnome-python-maemo/debian/changelog	2007-03-27 18:25:44.000000000 -0300
-@@ -0,0 +1,8 @@
-+python-gnome (0.1-1osso1) unstable; urgency=low
+@@ -0,0 +1,5 @@
++python-gnome (2.18.0-1osso1) unstable; urgency=low
 +
-+  * Osso rpc functions revised (closes #388, #389):
-+    - rpc_run and rpc_async_run now can send correctly rpc arguments
-+    - callback function of rpc_async_run now has an extra param: retval
-+      eg: def callbackfunc (interface, method, retval, userdata):
++  * PythonGnome2.18 release for PyMaemo.
 +
-+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 16 Jan 2007 14:50:00 -0300
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 13 Apr 2007 09:30:00 -0300
 Index: gnome-python-maemo/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
