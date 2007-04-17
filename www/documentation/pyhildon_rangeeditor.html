@@ -1,0 +1,679 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.7">
+<meta name="Forrest-skin-name" content="pelt">
+<title>hildon.RangeEditor</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<div class="breadtrail">
+<a href="http://www.apache.org/">myGroup</a> &gt; <a href="http://forrest.apache.org/">myProject</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<div class="header">
+<div class="grouplogo">
+<a href="http://mygroup.org"><img class="logoImage" alt="MyGroup" src="../images/group.png" title="MyGroup Description"></a>
+</div>
+<div class="projectlogo">
+<a href="http://myproj.mygroup.org/"><img class="logoImage" alt="MyProject" src="../images/project.png" title="MyProject Description"></a>
+</div>
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="mydomain" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input attr="value" name="Search" value="Search" type="submit">
+</form>
+</div>
+<ul id="tabs">
+<li class="current">
+<a class="base-selected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="base-not-selected" href="../samples/sample.html">Samples</a>
+</li>
+<li>
+<a class="base-not-selected" href="http://xml.apache.org">Apache XML Projects</a>
+</li>
+<li>
+<a class="base-not-selected" href="../pluginDocs/plugins_0_70/index.html">Plugins</a>
+</li>
+<li>
+<a class="base-not-selected" href="../my_work/index.html">My Work</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<div id="level2tabs"></div>
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="breadtrail">
+             
+             &nbsp;
+           </div>
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">About</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../index.html" title="Welcome to MyProj">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', '../skin/')" id="menu_1.2Title" class="menutitle">Samples</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/sample.html" title="A nonsense document using all possible elements in the current document v2.0">Apache doc v2.0</a>
+</div>
+<div class="menuitem">
+<a href="../samples/document-v13.html" title="A nonsense document using all possible elements in the document v1.3">Apache doc v1.3</a>
+</div>
+<div class="menuitem">
+<a href="../samples/static.html" title="Static raw un-processed content">Static content</a>
+</div>
+<div class="menuitem">
+<a href="../samples/linking.html" title="Linking explained and demonstrated">Linking</a>
+</div>
+<div class="menuitem">
+<a href="../samples/embedded_html.html" title="Test of Embedded HTML">Embedded HTML</a>
+</div>
+<div class="menuitem">
+<a href="../samples/ascii-art.html" title="Sample Ascii Art page">ascii-art page</a>
+</div>
+<div class="menuitem">
+<a href="../samples/usemap.html" title="Client-side imagemap">usemap</a>
+</div>
+<div class="menuitem">
+<a href="../samples/customSchema.html" title="Custom XML Schemas">User Schemas</a>
+</div>
+<div class="menuitem">
+<a href="../samples/custom.html" title="A custom XML file">Custom File</a>
+</div>
+<div class="menuitem">
+<a href="../samples/faq.html" title="Frequently Asked Questions">FAQ</a>
+</div>
+<div onclick="SwitchMenu('menu_1.2.11', '../skin/')" id="menu_1.2.11Title" class="menutitle">Subdir</div>
+<div id="menu_1.2.11" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/subdir/index.html" title="Page generated from a sub-directory">Index</a>
+</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', '../skin/')" id="menu_1.3Title" class="menutitle">Plugins</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="../pluginDocs/plugins_0_70/index.html" title="List of plugins available for Forrest">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.4', '../skin/')" id="menu_1.4Title" class="menutitle">My Work</div>
+<div id="menu_1.4" class="menuitemgroup">
+<div class="menuitem">
+<a href="../my_work/index.html" title="Documents produced so far">Index</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_maemo_howto.html" title="How To Use Python In Maemo">Python Maemo How-to</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_libosso_api.html" title="LibOSSO API for Python">LibOSSO API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<div id="credit2"></div>
+</div>
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="pyhildon_rangeeditor.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>hildon.RangeEditor</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Description">Description</a>
+</li>
+<li>
+<a href="#Ancestry">Ancestry</a>
+</li>
+<li>
+<a href="#Usage+Example">Usage Example</a>
+</li>
+<li>
+<a href="#Properties">Properties</a>
+</li>
+<li>
+<a href="#Style+Properties">Style Properties</a>
+</li>
+<li>
+<a href="#Constructor">Constructor</a>
+</li>
+<li>
+<a href="#Methods">Methods</a>
+<ul class="minitoc">
+<li>
+<a href="#get_range">get_range</a>
+</li>
+<li>
+<a href="#set_range">set_range</a>
+</li>
+<li>
+<a href="#set_limits">set_limits</a>
+</li>
+<li>
+<a href="#get_lower">get_lower</a>
+</li>
+<li>
+<a href="#set_lower">set_lower</a>
+</li>
+<li>
+<a href="#get_higher">get_higher</a>
+</li>
+<li>
+<a href="#set_higher">set_higher</a>
+</li>
+<li>
+<a href="#get_min">get_min</a>
+</li>
+<li>
+<a href="#set_min">set_min</a>
+</li>
+<li>
+<a href="#get_max">get_max</a>
+</li>
+<li>
+<a href="#set_max">set_max</a>
+</li>
+<li>
+<a href="#get_separator">get_separator</a>
+</li>
+<li>
+<a href="#set_separator">set_separator</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<div style="text-align: center;">
+<img class="figure" alt="hildon.RangeEditor" src="hildon_rangeeditor_small.jpg"></div>
+    
+<p>Used to set a number range from specific limits.</p>
+    
+<a name="N10013"></a><a name="Description"></a>
+<h2 class="boxed">Description</h2>
+<div class="section">
+<p>
+<span class="codefrag">hildon.RangeEditor</span> is used to set a number range/interval from specific limits.</p>
+</div>
+    
+<a name="N1001F"></a><a name="Ancestry"></a>
+<h2 class="boxed">Ancestry</h2>
+<div class="section">
+<p>Up to the first non-hildon ancestor:</p>
+<pre class="code">
+...
+ +-- gtk.Container
+      +-- hildon.RangeEditor
+</pre>
+</div>
+    
+<a name="N1002D"></a><a name="Usage+Example"></a>
+<h2 class="boxed">Usage Example</h2>
+<div class="section">
+<pre class="code">
+import gtk
+import hildon
+
+window = hildon.Window()
+window.set_title("Test App")
+
+range_editor = hildon.RangeEditor()
+range_editor.set_limits(-100, 100)
+range_editor.set_range(-10, 23)
+range_editor.set_separator("to")
+
+window.add(range_editor)
+
+window.show_all()
+
+gtk.main()
+      </pre>
+</div>
+    
+<a name="N10038"></a><a name="Properties"></a>
+<h2 class="boxed">Properties</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="1" rowspan="1">Name</th>
+          <th colspan="1" rowspan="1">Access</th>
+          <th colspan="1" rowspan="1">Description</th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"min"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Minimum value in a range.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"max"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Maximum value in a range.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"lower"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Current value in the entry presenting lower end of selected range.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"higher"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Current value in the entry presenting higher end of selected range.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"separator"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Separator string to separate lower and higher entries.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N100B3"></a><a name="Style+Properties"></a>
+<h2 class="boxed">Style Properties</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="1" rowspan="1">Name</th>
+          <th colspan="1" rowspan="1">Access</th>
+          <th colspan="1" rowspan="1">Description</th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"hildon_range_editor_entry_alignment"</span></td>
+          <td colspan="1" rowspan="1">Read</td>
+          <td colspan="1" rowspan="1">Hildon RangeEditor entry alignment.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"hildon_range_editor_separator_padding"</span></td>
+          <td colspan="1" rowspan="1">Read</td>
+          <td colspan="1" rowspan="1">Hildon RangeEditor separaror padding.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N100F5"></a><a name="Constructor"></a>
+<h2 class="boxed">Constructor</h2>
+<div class="section">
+<p>
+<span class="codefrag">hildon.RangeEditor</span> contains two <span class="codefrag">gtk.Entry</span> that accepts numbers and minus.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="2" rowspan="1">
+            <span class="codefrag">hildon.RangeEditor()</span>
+          </th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1">Returns</td>
+          <td colspan="1" rowspan="1">A new <span class="codefrag">hildon.RangeEditor</span> widget.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N10122"></a><a name="Methods"></a>
+<h2 class="boxed">Methods</h2>
+<div class="section">
+<a name="N10128"></a><a name="get_range"></a>
+<h3 class="boxed">get_range</h3>
+<p>Gets the current range (the lower and higher entry values).</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.get_range()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">A tuple of the form <span class="codefrag">(lower, higher)</span> containing the current range set.</td>
+          
+</tr>
+          
+</table>
+<a name="N10150"></a><a name="set_range"></a>
+<h3 class="boxed">set_range</h3>
+<p>Sets the current range (the lower and higher entry values).</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.set_range(lower, higher)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">lower</span></td>
+            <td colspan="1" rowspan="1">Interval's lower bound.</td>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">higher</span></td>
+            <td colspan="1" rowspan="1">Interval's upper bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N10184"></a><a name="set_limits"></a>
+<h3 class="boxed">set_limits</h3>
+<p>Sets the limits for allowable range values. The range will be forced to stay within these limits.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.set_limits(min, max)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">min</span></td>
+            <td colspan="1" rowspan="1">Minimum allowable lower bound.</td>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">max</span></td>
+            <td colspan="1" rowspan="1">Maximum allowable upper bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N101B8"></a><a name="get_lower"></a>
+<h3 class="boxed">get_lower</h3>
+<p>Gets range's lower entry value.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.get_lower()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Interval's lower bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N101DD"></a><a name="set_lower"></a>
+<h3 class="boxed">set_lower</h3>
+<p>Sets range's lower entry value.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.set_lower(value)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">value</span></td>
+            <td colspan="1" rowspan="1">Interval's lower bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N10203"></a><a name="get_higher"></a>
+<h3 class="boxed">get_higher</h3>
+<p>Gets range's higher entry value.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.get_higher()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Interval's upper bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N10228"></a><a name="set_higher"></a>
+<h3 class="boxed">set_higher</h3>
+<p>Sets range's higher entry value.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.set_higher(value)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">value</span></td>
+            <td colspan="1" rowspan="1">Interval's upper bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N1024E"></a><a name="get_min"></a>
+<h3 class="boxed">get_min</h3>
+<p>Gets the minimun allowable value for range's lower entry.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.get_min()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Minimum allowable lower bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N10273"></a><a name="set_min"></a>
+<h3 class="boxed">set_min</h3>
+<p>Sets the minimun allowable value for range's lower entry.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.Set_min(value)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">value</span></td>
+            <td colspan="1" rowspan="1">Minimum allowable lower bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N10299"></a><a name="get_max"></a>
+<h3 class="boxed">get_max</h3>
+<p>Gets the maximun allowable value for range's higher entry.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.get_max()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Maximum allowable upper bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N102BE"></a><a name="set_max"></a>
+<h3 class="boxed">set_max</h3>
+<p>Sets the maximun allowable value for range's higher entry.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.Set_max(value)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">value</span></td>
+            <td colspan="1" rowspan="1">Maximum allowable upper bound.</td>
+          
+</tr>
+          
+</table>
+<a name="N102E4"></a><a name="get_separator"></a>
+<h3 class="boxed">get_separator</h3>
+<p>Gets the string that separates lower and higher entries.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.get_separator()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">String that separates lower and higher entries.</td>
+          
+</tr>
+          
+</table>
+<a name="N10309"></a><a name="set_separator"></a>
+<h3 class="boxed">set_separator</h3>
+<p>Sets the string that separates lower and higher entries.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.RangeEditor.set_separator(separator)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">separator</span></td>
+            <td colspan="1" rowspan="1">String that separates lower and higher entries.</td>
+          
+</tr>
+          
+</table>
+</div>
+  
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2005 The Acme Software Foundation.</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:webmaster@foo.com?subject=Feedback%C2%A0my_work/pyhildon_rangeeditor.html">webmaster@foo.com</a>
+</div>
+</div>
+</body>
+</html>
