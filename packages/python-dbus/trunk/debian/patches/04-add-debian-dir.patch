@@ -89,7 +89,7 @@ Index: python-dbus/debian/control
 +
 +Package: python2.5-dbus
 +Architecture: any
-+Depends: python2.5, libdbus-1-2 (>= 0.61), libdbus-glib-1-2 (>= 0.61), ${shlibs:Depends}
++Depends: python2.5, python2.5-xml, libdbus-1-2 (>= 0.61), libdbus-glib-1-2 (>= 0.61), ${shlibs:Depends}
 +Description: Python wrappers around D-Bus.
 +
 +Package: python2.5-dbus-dev
