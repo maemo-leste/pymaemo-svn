@@ -33,7 +33,7 @@ Index: gnome-python-2.18/gnomevfs/vfsmodule.c
         * python wrapper to the C structure */
      pygnome_vfs_xfer_progress_info_set(py_info, NULL);
  
-+/*INdT - this line crashes application
++/*INdT - sometimes application crashes when trying to DECREF pyinfo. Threads are enabled at this point.
      Py_DECREF(py_info);
 -
 +*/
