@@ -356,7 +356,7 @@ Index: trunk/debian/control
 +Build-Depends-Indep: debhelper (>= 4), quilt (>= 0.45), python2.5-dev (>= 2.5.0-1osso10)
 +Standards-Version: 3.7.2.1
 +
-+Package: python2.5-ipython
++Package: ipython
 +Architecture: all
 +Depends: python2.5-dev, libreadline4
 +Recommends: python-numeric, python-numeric-ext, python-pexpect
@@ -552,7 +552,7 @@ Index: trunk/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ trunk/debian/rules	2007-04-01 17:00:11.000000000 +0300
-@@ -0,0 +1,126 @@
+@@ -0,0 +1,116 @@
 +#!/usr/bin/make -f
 +# ipython debian/rules file
 +#
@@ -635,7 +635,7 @@ Index: trunk/debian/rules
 +	mv $(CURDIR)/debian/python2.5-ipython/usr/share/man/man1/pycolor.1.gz $(CURDIR)/debian/python2.5-ipython/usr/share/man/man1/python2.5-pycolor.1.gz
 +endif
 +
-+binary-indep: build install
++binary-arch: build install
 +	dh_testdir
 +	dh_testroot
 +	dh_link
@@ -664,18 +664,8 @@ Index: trunk/debian/rules
 +	dh_builddeb
 +
 +# Build architecture-dependent files here.
-+binary-arch: build install
-+	dh_testdir
-+	dh_testroot
-+	dh_installdirs
-+	dh_strip
-+	dh_fixperms
-+	dh_makeshlibs
-+	dh_installdeb
-+	dh_shlibdeps 
-+	dh_gencontrol
-+	dh_md5sums
-+	dh_builddeb
++binary-indep: build install
++# We have nothing to do by default.
 +
 +binary: binary-indep binary-arch
 +.PHONY: build clean binary-indep binary-arch binary install configure
