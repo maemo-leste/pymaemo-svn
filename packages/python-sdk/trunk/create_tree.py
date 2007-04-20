@@ -166,47 +166,54 @@ def build_packages(config):
             'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc'\
             , module)
 
-        # get package name and version from last changelog entry           
+        # get package name and version from last changelog entry
         chlog = open(module+'/debian/changelog')
         result = re.match('([^ ]+) \(([^)]+)\).*', chlog.readline())
         chlog.close()
 
         # make name of changes file
-        changes = '_'.join([result.group(1), result.group(2), arch])+'.changes'
+        name_version = '_'.join([result.group(1), result.group(2)])
+        changes = name_version+'_'+arch+'.changes'
         changesf = open(changes)
         lines = changesf.readlines()
         changesf.close()
 
         # check if it contains section 'Files:'
-        if not [line for line in lines if line.strip() == 'Files:']:
-            all_arch_file = 'python2.5-'+(changes.replace('i386','all')).replace('changes','deb')
-            lines = ['Files:', all_arch_file]
-            if not os.path.exists(all_arch_file):
-                continue
+        controlf = open(module+'/debian/control')
+        lines = controlf.readlines()
+        controlf.close()
 
-        # Put section 'Files:' on top of the list
-        lines.reverse()
-
-        debs_to_install = ''
+        deb_files = ''
         for line in lines:
-            if line.strip() == 'Files:':
-                break
-            else:
-                # process 'Files:' section
-                fname = line.strip().split(' ')[-1]
-                if fname.endswith('.deb'):
-                    debs_to_install += fname+' '
-                elif not fname.endswith('.orig.tar.gz'):
-                    shutil.move(fname, targetdir)
+            if line.find('Package:') > -1:
+                package = line.replace('Package:', '').strip()
+            elif line.find('Architecture:') > -1:
+                file_arch = line.replace('Architecture:', '').strip()
+                if file_arch == 'any':
+                    package_arch = arch
                 else:
-                    shutil.copy(fname, targetdir)
+                    package_arch = 'all'
+                deb_file = '_'.join([package, result.group(2), package_arch])+'.deb'
+                if os.path.exists(deb_file):
+                    deb_files += deb_file+' '
 
-        run_command('fakeroot dpkg -i ' + debs_to_install)
-        files = debs_to_install.strip().split()
+        # install deb files
+        run_command('fakeroot dpkg -i ' + deb_files)
+
+        # move files to deb_packages directory
+        files = deb_files.strip().split()
+        files.append(name_version+'.dsc')
+        files.append(changes)
+
+        if os.path.exists(module.replace('-','_')+'.orig.tar.gz'):
+            shutil.copy(module.replace('-','_')+'.orig.tar.gz', targetdir)
+            files.append(name_version+'.diff.gz')
+        else:
+            files.append(name_version+'.tar.gz')
+
         for file in files:
-            shutil.move(file, targetdir)
-
-        shutil.move(changes, targetdir)
+            if os.path.exists(file):
+                shutil.move(file, targetdir)
 
         # touch stamp
         open(module+'-'+arch+'-stamp', 'w').close()
