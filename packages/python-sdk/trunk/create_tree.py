@@ -182,8 +182,8 @@ def build_packages(config):
 
         module_name, module_version = read_name_and_version(module)
 
-        name_version = '_'.join([module_name], [module_version])
-        changes = '_'.join([name_version], [arch]) + '.changes'
+        name_version = '_'.join([module_name, module_version])
+        changes = '_'.join([name_version, arch]) + '.changes'
 
         # open control file to discover package names:
         controlf = open(module+'/debian/control')
@@ -212,7 +212,7 @@ def build_packages(config):
         files.append(name_version + '.dsc')
         files.append(changes)
         
-        orig_file = '_'.join([module_name], [module_version.split('-')[0]])+'.orig.tar.gz'
+        orig_file = '_'.join([module_name, module_version.split('-')[0]])+'.orig.tar.gz'
         if os.path.exists(orig_file):
             shutil.copy(orig_file, targetdir)
             files.append(name_version+'.diff.gz')
