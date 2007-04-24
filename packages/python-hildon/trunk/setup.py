@@ -28,13 +28,13 @@ def gen_auto_file(filename, subproc_args):
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
-    cmdresult = proc.stdout
-    error = proc.stderr
+    cmdresult = proc.communicate()[0]  
+#   error = proc.stderr
 #   Print disabled to avoid problems with scratchbox
 #   print >>sys.sdterr, error.read()
     if cmdresult:
         new_file = open(filename, 'w')
-        new_file.write(cmdresult.read())
+        new_file.write(cmdresult)
 	new_file.close()
 
 class PyHildonBuild(build):
