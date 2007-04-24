@@ -76,6 +76,18 @@ def read_cfg_file(conf_file):
 
     return config
 
+def read_name_and_version(module):
+    '''Read debian/changelog file to get module name and version'''
+
+    chlog = open(module+'/debian/changelog')
+    result = re.match('([^ ]+) \(([^)]+)\).*', chlog.readline())
+    chlog.close()
+
+    module_name = result.group(1)
+    module_version = result.group(2)
+    
+    return module_name, module_version
+
 def download_from_svn(config, section):
     '''Download all necessary information from svn repository. Modules can 
     contain only patches or the entire source tree (only projects without
@@ -97,7 +109,7 @@ def download_from_svn(config, section):
         if old_dir_name == 'trunk':
             target = section
         else:
-            target = section+'/debian'
+            target = section + '/debian'
 
         svn_url = config.get(section, 'svn_url')
         print 'Running svn checkout of %s module' % (section)
@@ -110,8 +122,9 @@ def download_source_package(config, section):
     url = config.get(section, 'source_url')
     tarball = os.path.basename(urlparse.urlparse(url)[2])
     tarballpath = sources_dir + tarball
-    origtarball = section+'.orig.tar.gz'#includes release, tar.gz and tgz
-    origtarball = origtarball.replace('-', '_')
+
+    #replace the last '-' character with '_'
+    origtarball = re.sub('(.*)-','\\1_',section)+'.orig.tar.gz'
 
     if not os.access(tarballpath, os.R_OK):
         print 'Downloading %s ...' % tarball
@@ -166,19 +179,13 @@ def build_packages(config):
             'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc'\
             , module)
 
-        # get package name and version from last changelog entry
-        chlog = open(module+'/debian/changelog')
-        result = re.match('([^ ]+) \(([^)]+)\).*', chlog.readline())
-        chlog.close()
 
-        # make name of changes file
-        name_version = '_'.join([result.group(1), result.group(2)])
-        changes = name_version+'_'+arch+'.changes'
-        changesf = open(changes)
-        lines = changesf.readlines()
-        changesf.close()
+        module_name, module_version = read_name_and_version(module)
 
-        # check if it contains section 'Files:'
+        name_version = '_'.join([module_name], [module_version])
+        changes = '_'.join([name_version], [arch]) + '.changes'
+
+        # open control file to discover package names:
         controlf = open(module+'/debian/control')
         lines = controlf.readlines()
         controlf.close()
@@ -193,7 +200,7 @@ def build_packages(config):
                     package_arch = arch
                 else:
                     package_arch = 'all'
-                deb_file = '_'.join([package, result.group(2), package_arch])+'.deb'
+                deb_file = '_'.join([package, module_version, package_arch])+'.deb'
                 if os.path.exists(deb_file):
                     deb_files += deb_file+' '
 
@@ -202,11 +209,12 @@ def build_packages(config):
 
         # move files to deb_packages directory
         files = deb_files.strip().split()
-        files.append(name_version+'.dsc')
+        files.append(name_version + '.dsc')
         files.append(changes)
-
-        if os.path.exists(module.replace('-','_')+'.orig.tar.gz'):
-            shutil.copy(module.replace('-','_')+'.orig.tar.gz', targetdir)
+        
+        orig_file = '_'.join([module_name], [module_version.split('-')[0]])+'.orig.tar.gz'
+        if os.path.exists(orig_file):
+            shutil.copy(orig_file, targetdir)
             files.append(name_version+'.diff.gz')
         else:
             files.append(name_version+'.tar.gz')
