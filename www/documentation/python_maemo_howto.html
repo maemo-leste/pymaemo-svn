@@ -69,7 +69,7 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <a href="../my_work/index.html" title="Documents produced so far">Index</a>
 </div>
 <div class="menupage">
-<div class="menupagetitle">Python Maemo How-To</div>
+<div class="menupagetitle">Python Maemo How-to</div>
 </div>
 <div class="menuitem">
 <a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
@@ -101,7 +101,7 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <a href="#Getting+a+grasp+of+what+Maemo+is">Getting a grasp of what Maemo is</a>
 </li>
 <li>
-<a href="#Setting+up+your+maemo+development+environment.">Setting up your maemo development environment.</a>
+<a href="#Setting+up+your+maemo+development+environment.">Setting up your maemo development environment</a>
 </li>
 </ul>
 </li>
@@ -129,24 +129,16 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <a href="#gPodder+Code+Overview">gPodder Code Overview</a>
 </li>
 <li>
-<a href="#and">HildonProgram and HildonWindow</a>
+<a href="#and">Changing to HildonProgram and HildonWindow</a>
 </li>
 <li>
-<a href="#Menu">Menu</a>
+<a href="#Menu">Changing to HildonWindow menu bar</a>
 </li>
 <li>
 <a href="#Using+Hildon+Widgets">Using Hildon Widgets</a>
 </li>
 <li>
 <a href="#Adjusting+the+interface+to+fit+into+the+small+screen">Adjusting the interface to fit into the small screen</a>
-<ul class="minitoc">
-<li>
-<a href="#Main+window+%28">Main window (gPodder)</a>
-</li>
-<li>
-<a href="#gPodder+Channel+Editor+Dialog+%28">gPodder Channel Editor Dialog (gPodderChannel)</a>
-</li>
-</ul>
 </li>
 <li>
 <a href="#Using+Hardware+Keys">Using Hardware Keys</a>
@@ -205,15 +197,15 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h3 class="boxed">Getting a grasp of what Maemo is</h3>
 <p>Get acquainted to the maemo platform. Read the section "Overview of maemo platform" from "Maemo SDK Tutorial"<a href="#references_maemo_sdk_tutorial"><sup>1</sup></a>.</p>
 <a name="N10039"></a><a name="Setting+up+your+maemo+development+environment."></a>
-<h3 class="boxed">Setting up your maemo development environment.</h3>
+<h3 class="boxed">Setting up your maemo development environment</h3>
 <p>Set up your Maemo development environment, from where you will run your maemo applications. Read the
            section "Setting up and testing development environment" from "Maemo SDK Tutorial". The entire tutorial considers that you will be
            developing from Scratchbox instead of directly using a Maemo device (e.g., a Nokia N800).</p>
-<p>As maemo rootstrap doesn't come with the necessary python packages, you will have to download them from maemo's repository. This tutorial uses python version 2.5 in our examples. To get started  you will have to add the following lines in <span class="codefrag">/etc/apt/sources.list</span> file:</p>
+<p>As maemo rootstrap doesn't come with the necessary python packages, you will have to download them from maemo's repository. This tutorial uses python version 2.5 in our examples. To get started, you will have to add the following lines in <span class="codefrag">/etc/apt/sources.list</span> file:</p>
 <pre class="code">
 deb http://repository.maemo.org/extras bora free non-free
 deb-src http://repository.maemo.org/extras bora free non-free</pre>
-<p>After that, you will need to install the following extra packages (using <span class="codefrag">apt-get</span>):</p>
+<p>After that, you will need to update the list package and install the following extra packages using <span class="codefrag">apt-get</span>:</p>
 <ul>
           
 <li>Python itself (<span class="codefrag">python2.5</span>) </li>
@@ -332,7 +324,7 @@ if __name__ == "__main__":
 <div class="section">
 <p>In this section, the usual proceedings and issues involved in porting an existing PyGTK application to Maemo are shown.</p>
 <p>Following the "learn by example" phylosophy, it's shown here, step by step, the port of a real application.
-         The application chosen was <em>gPodder</em><a href="#references_gpodder"><sup>2</sup></a> (version 0.8). gPodder fits
+         The application chosen was <em>gPodder</em><a href="#references_gpodder"><sup>2</sup></a> (version 0.8.0). gPodder fits
          well as an example because its reasonably simple, has a small, uncluttered, interface and also faces most of the important
          issues involved in porting PyGTK apps to Maemo.</p>
 <p>A good deal of the porting effort is spent making an application use and obey the Hildon UI style (like making
@@ -340,19 +332,19 @@ if __name__ == "__main__":
          <a href="#references_hildon_ui_guide"><sup>3</sup></a> before starting a port.</p>
 <a name="N100FF"></a><a name="Installing+and+Running+gPodder+in+Maemo"></a>
 <h3 class="boxed">Installing and Running gPodder in Maemo</h3>
-<p>After exploding <span class="codefrag">gpodder-0.8.tar.gz</span> (you can download it from <a href="gpodder-0.6.tar.gz">here</a>) and
-           entering into the created directory <span class="codefrag">gpodder-0.8</span>, run "<span class="codefrag">python2.5 setup.py install</span>" and then
+<p>After exploding <span class="codefrag">gpodder-0.8.0.tar.gz</span> (you can download it from <a href="gpodder-0.8.0.tar.gz">here</a>) and
+           entering into the created directory <span class="codefrag">gpodder-0.8.0</span>, run "<span class="codefrag">python2.5 setup.py install</span>" and then
            "<span class="codefrag">run-standalone.sh gpodder</span>" (considering that you are running from scratchbox).</p>
 <p>It may give some GLib warnings on scratchbox's console but you should see something like the following screen:</p>
 <div style="text-align: center;">
 <img class="figure" alt="gPodder running on Maemo without any modifications." src="gpodder_1_small.jpg"></div>
-<p>This means that gPodder 0.9.1 works right away on Maemo without any modifications. But it's not a Maemo application yet.
+<p>This means that gPodder 0.8.0 works right away on Maemo without any modifications. But it's not a Maemo application yet.
            There are quite a few steps to make it sit nicely on the Maemo environment. Those steps are covered in the next sections.</p>
 <a name="N10123"></a><a name="gPodder+Code+Overview"></a>
 <h3 class="boxed">gPodder Code Overview</h3>
 <p>In this section it's shown a brief overview on gPodder's source code. It's just enough to make the code
            changes in later sections make sense for the reader.</p>
-<p>Most of the code changes will be made in <span class="codefrag">gpodder-0.8/src/gpodder/gpodder.py</span>. This file has the following classes:</p>
+<p>Most of the code changes will be made in <span class="codefrag">gpodder-0.8.0/src/gpodder/gpodder.py</span>. This file has the following classes:</p>
 <pre class="code">	
 		class Gpodder(SimpleGladeApp):
 		class Gpodderchannel(SimpleGladeApp):
@@ -361,7 +353,7 @@ if __name__ == "__main__":
 		class Gpoddersync(SimpleGladeApp):
 		class Gpodderopmllister(SimpleGladeApp):
         </pre>
-<p>There's one class for each GtkWindow defined in <span class="codefrag">gpodder-0.8/data/gpodder.glade</span>, as you can see in the image below:</p>
+<p>There's one class for each GtkWindow defined in <span class="codefrag">gpodder-0.8.0/data/gpodder.glade</span>, as you can see in the image below:</p>
 <div style="text-align: center;">
 <img class="figure" alt="Windows defined in gPodder's glade file." src="gpodder_glade_2_small.jpg"></div>
 <p>Besides loading the window description from <span class="codefrag">gpodder.glade</span>, <span class="codefrag">SimpleGladeApp</span> also puts all window
@@ -411,7 +403,7 @@ self.treeAvailable
 <a name="N10168"></a><a name="and"></a>
 <h3 class="boxed">Changing to HildonProgram and HildonWindow</h3>
 <p>The first thing to be done is make gPodder use <span class="codefrag">HildonProgram</span> and <span class="codefrag">HildonWindow</span> instead of <span class="codefrag">GtkWindow</span>.</p>
-<p>Begin modifying <strong><span class="codefrag">gpodder.py</span></strong> (at <span class="codefrag">gpodder-0.8/src/gpodder</span>).
+<p>Begin modifying <strong><span class="codefrag">gpodder.py</span></strong> (at <span class="codefrag">gpodder-0.8.0/src/gpodder</span>).
            Since we will now use Hildon stuff we have to import its module:</p>
 <pre class="code">
 61 |from libipodsync import gPodder_iPodSync
@@ -424,7 +416,7 @@ self.treeAvailable
 66 |app_version = "unknown" # will be set in main() call         
 </pre>
 <p>Substitute the GtkWindow (<span class="codefrag">self.gPodder</span>) by a HildonApp (<span class="codefrag">self.app</span>) and a
-           HildonAppView (<span class="codefrag">self.appview</span>).</p>
+           HildonAppView (<span class="codefrag">self.appview</span>). To modification take effect, you must run the command <span class="codefrag">python2.5 setup.py install</span>. </p>
 <pre class="code">
 112 |    def new(self):
 113 |        if libgpodder.isDebugging():
@@ -447,7 +439,7 @@ self.treeAvailable
            from the original <span class="codefrag">gPodder</span> Gtk window. So, we have to remove this connection from <span class="codefrag">gPodder</span> and put it in
            our new Hildon window (<span class="codefrag">self.window</span>).</p>
 <p>To remove the signal connection from the original <span class="codefrag">gPodder</span> Gtk window we have to open the file
-           <strong><span class="codefrag">gpodder.glade</span></strong> (at <span class="codefrag">gpodder-0.8/data</span>) and remove it from there, as the next image shows:</p>
+           <strong><span class="codefrag">gpodder.glade</span></strong> (at <span class="codefrag">gpodder-0.8.0/data</span>) and remove it from there, as the next image shows:</p>
 <div style="text-align: center;">
 <img class="figure" alt="'destroy' signal for gPodder window." src="gpodder_glade_1_small.jpg"></div>
 <p>Now we connect <span class="codefrag">Gpodder.close_gpodder</span> to our new HildonApp (<span class="codefrag">self.app</span>):</p>
@@ -522,7 +514,7 @@ The following example illustrates the code changes needed in the <span class="co
 <div style="text-align: center;">
 <img class="figure" alt="gPodder using Hildon's file chooser dialog." src="gpodder_4_small.jpg"></div>
 <a name="N10234"></a><a name="Adjusting+the+interface+to+fit+into+the+small+screen"></a>
-<h3 class="boxed">Adjusting the Glade interface to fit into the small screen</h3>
+<h3 class="boxed">Adjusting the interface to fit into the small screen</h3>
 <p>The following
 changes to the interface layout are necessary to make the interface fit into
 the relatively small maemo screen:</p>
@@ -530,7 +522,7 @@ the relatively small maemo screen:</p>
 <li>Main window (<span class="codefrag">gPodder</span>)<p>Make
 the tab names shorter. Replace <em>Downloaded Podcasts</em> with <em>Downloaded</em> to
 make the tab names stay within the screen boundaries.</p>
-</li>
+</li><br>
 <li>gPodder
 Channel Editor Dialog (<span class="codefrag">gPodderChannel</span>)<p>In the <span class="codefrag">gPodderChannel</span>,
 increase the <em>Default Width</em> to 700 and <em>Default Height</em> to <em>350</em>.
@@ -540,6 +532,7 @@ the <em>V Policy</em> and <em>H Policy</em> to <em>Automatic</em>.</p>
 
 </li>
 </ul>
+<a name="N10261"></a><a name="Using+Hardware+Keys"></a>
 <h3 class="boxed">Using Hardware Keys</h3>
 <p>The maemo applications must use the available
 hardware keys to improve their usability.            All applications do not
@@ -609,13 +602,10 @@ key monitoring implementation (<span class="codefrag">on_key_press</span>):</p>
 
 </div>
 </pre>
-<p>Figure
-11 illustrates gPodder in the full screen mode.</p>
+<p>The figure below illustrates gPodder in the full screen mode.</p>
 <div style="text-align: center;">
 <img class="figure" alt="gPodder running in full screen." src="gpodder_5_small.jpg"></div>
-</div>
- <p>Figure 11. gPodder in
-the full screen mode</p>   
+</div>   
 <a name="N1029E"></a><a name="LibOSSO+Tutorial"></a>
 <h2 class="boxed">Introduction to LibOSSO</h2>
 <div class="section">
@@ -640,7 +630,7 @@ the full screen mode</p>
 <pre class="code"><span chatdir="2">#!/usr/bin/python2.5<br>import osso<br>import gtk<br><br>def callback_func(interface, method, arguments, user_data):<br>    print "RPC received"<br>    osso_c = user_data<br>    osso_sysnote = osso.SystemNote(osso_c)<br>    osso_sysnote.system_note_infoprint("osso_test_receiver: Received a RPC to %s." % method)<br><br>osso_c = osso.Context("osso_test_receiver", "0.0.1", False)<br>print "osso_test_receiver started"<br>osso_rpc = osso.Rpc(osso_c)<br>osso_rpc.set_rpc_callback("spam.eggs.osso_test_receiver",<br>    "/spam/eggs/osso_test_receiver",<br>    "spam.eggs.osso_test_receiver", callback_func, osso_c)<br>gtk.main()
 </span>
 </pre>
-<p>This file must be executable, to do that run the &quot;chmod +x ./<span class="codefrag">osso_test_receiver.py</span>&quot;. The receiver also  must register itself as a D-BUS service. Create a osso_test_receiver.service file  with the following content:</p>
+<p>Run the command <span class="codefrag">chmod +x ./osso_test_receiver.py</span> to make this file executable. The receiver also  must register itself as a D-BUS service. Create a osso_test_receiver.service file  with the following content:</p>
 <p>&nbsp;</p>
 <p>[D-BUS Service]</p>
 <p>Name=spam.eggs.osso_test_receiver  </p>
@@ -680,8 +670,8 @@ the full screen mode</p>
            <span class="codefrag">/var/lib/install/usr/bin</span>.</p>
 <p>This means that, for instance, all <span class="codefrag">*.py</span> executable files will have to suffer the following change:</p>
 <pre class="code">
-01 -- |#!/usr/bin/env python2.4
-   ++ |#!/var/lib/install/usr/bin/env python2.4
+01 -- |#!/usr/bin/env python2.5
+   ++ |#!/var/lib/install/usr/bin/env python2.5
         </pre>
 <a name="N10354"></a><a name="Extra+Packages"></a>
 <h3 class="boxed">Extra Packages</h3>
