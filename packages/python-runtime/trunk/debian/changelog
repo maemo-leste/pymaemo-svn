@@ -1,3 +1,15 @@
+python-runtime (0.4-10) unstable; urgency=low
+
+  * fixed #542, #560, #561, #564, #642, #711, #751 and #752 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 14:26:26 -0300
+
+python-runtime (0.4-9) unstable; urgency=low
+
+  * gdbm dependency included
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 19 Mar 2007 16:29:08 -0300
+
 python-runtime (0.4-8) unstable; urgency=low
 
   * bump release version 
