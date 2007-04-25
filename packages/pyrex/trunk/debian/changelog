@@ -1,3 +1,9 @@
+pyrex (0.9.4.1-1osso4) unstable; urgency=low
+
+  * applied patch that fixes #560 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 15:34:03 -0300
+
 pyrex (0.9.4.1-1osso3) unstable; urgency=low
 
   * remove Makefile when cleaning
