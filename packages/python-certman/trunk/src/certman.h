@@ -1,10 +1,12 @@
 /*
- * certman.h
  * Python bindings for X.509 Certificate Manager library.
  *
  * Copyright (C) 2007 INdT - Instituto Nokia de Tecnologia
  *
  * Author: Daniel d'Andrada T. de Carvalho <daniel.carvalho@indt.org.br>
+ *
+ * certman.h
+ * Project definitions
  *
  * This library is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -57,15 +59,12 @@ typedef struct {
     CST* cst;
 } CertMan;
 
-/* CertMan type main methods */
+/*** CertMan type main methods ***/
 int CertMan_init(CertMan *self, PyObject *args, PyObject *kwds);
 void CertMan_dealloc(CertMan *self);
 PyObject* CertMan_backup (CertMan *self, PyObject *args, PyObject *kwds);
 
-/*
-PyObject *Context_rpc_run(Context *self, PyObject *args, PyObject *kwds);
-PyObject *Context_rpc_run_with_defaults(Context *self, PyObject *args, PyObject *kwds);
-PyObject *Context_rpc_async_run(Context *self, PyObject *args, PyObject *kwds);
-*/
+/*** Import/export methods ***/
+PyObject* CertMan_import_PKCS12 (CertMan *self, PyObject *args, PyObject *kwds);
 
 #endif

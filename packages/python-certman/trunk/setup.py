@@ -17,8 +17,12 @@ include_dirs = ['/usr/include',
 
 libraries = ['cst']
 
+extension_sources = ['src/cm-main.c',
+                     'src/cm-imp-exp.c',
+                     'src/cm-util.c']
+
 #Modules to be built
-certman_modules = [ Extension('certman', sources = ['src/cst-main.c'],
+certman_modules = [ Extension('certman', sources = extension_sources,
                               libraries = libraries,
                               include_dirs = include_dirs,
                               extra_compile_args = compile_args)

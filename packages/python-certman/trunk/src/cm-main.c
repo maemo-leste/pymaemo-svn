@@ -1,10 +1,13 @@
 /*
- * cst-main.c
  * Python bindings for X.509 Certificate Manager library.
  *
  * Copyright (C) 2007 INdT - Instituto Nokia de Tecnologia
  *
  * Author: Daniel d'Andrada T. de Carvalho <daniel.carvalho@indt.org.br>
+ *
+ * cm-main.c
+ * Implementation of main functions, object definition
+ * and module initialization.
  *
  * This library is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,10 +25,8 @@
  */
 
 #include "certman.h"
+#include "cm-util.h"
 
-/* ----------------------------------------------- */
-/* CertMan type default methods                    */
-/* ----------------------------------------------- */
 
 int
 CertMan_init (CertMan *self, PyObject *args, PyObject *kwds)
@@ -49,7 +50,7 @@ CertMan_init (CertMan *self, PyObject *args, PyObject *kwds)
 
     if (self->cst == NULL)
     {
-        PyErr_SetString	(PyExc_RuntimeError, "Cannot open CST.");
+        certman_set_exception ();
         return -1;
     }
 
@@ -87,7 +88,7 @@ CertMan_backup (CertMan *self, PyObject *args, PyObject *kwds)
     ret = CST_backup(self->cst, filename, password);
     if (ret != CST_ERROR_OK)
     {
-        _set_exception(ret, NULL);
+        certman_set_exception ();
         return NULL;
     }
 
@@ -96,14 +97,20 @@ CertMan_backup (CertMan *self, PyObject *args, PyObject *kwds)
 
 
 static struct PyMethodDef CertMan_methods[] = {
+    /* main */
     {"backup", (PyCFunction)CertMan_backup, METH_VARARGS | METH_KEYWORDS,
-        "cst.backup(filename[, password]) -> object\n"
+        "cst.backup(filename[, password])\n"
         "\n"
         "Backup local (file) storage.\n"
         "\n"
         "Parameters:\n"
         "filename      Filename for backup\n"
         "password      Password (NOT USED)"},
+    /* import/export */
+    {"import_PKCS12", (PyCFunction)CertMan_import_PKCS12, METH_VARARGS | METH_KEYWORDS,
+        "cst.import_PKCS12()\n"
+        "\n"
+        "TODO"},
     {0, 0, 0, 0}
 };
 
