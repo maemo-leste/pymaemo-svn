@@ -13,6 +13,6 @@ Description: Python bindings for Hildon Framework.
 Package: python2.5-hildon-dev
 Section: libs
 Architecture: all
-Depends: python2.5-hildon (= ${Source-Version})
+Depends: python2.5-hildon (= ${Source-Version}), python2.5-gtk2-dev
 Description: Examples and development files Python Hildon.
 

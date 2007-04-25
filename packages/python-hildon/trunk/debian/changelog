@@ -1,3 +1,9 @@
+python-hildon (0.8.7-1osso2) unstable; urgency=low
+
+  * python2.5-gtk2-dev dependency added to the dev package (#775) 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 15:12:13 -0300
+
 python-hildon (0.8.7-1osso1) unstable; urgency=low
 
   * employed new build system based on distutils
