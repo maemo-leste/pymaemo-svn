@@ -2,7 +2,13 @@ Index: python/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python/debian/changelog	2007-03-06 17:09:22.000000000 -0300
-@@ -0,0 +1,185 @@
+@@ -0,0 +1,191 @@
++python2.5 (2.5.0-1osso11) unstable; urgency=low
++
++  * gdbm dependency added
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 19 Mar 2007 16:51:13 -0300
++
 +python2.5 (2.5.0-1osso10) unstable; urgency=low
 +
 +  * leaves pyexpat module inside python package 
