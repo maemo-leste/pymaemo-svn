@@ -490,7 +490,7 @@ self.treeAvailable
       Main window (<span class="codefrag">gPodder</span>)
       <p>
         Make the tab names shorter. Replace <em>Downloaded Podcasts</em> with <em>Downloaded</em> to
-        make the tab names stay within the screen boundaries.
+        make the tab names stay within screen boundaries.
       </p>
     </li>
     <li>
@@ -570,46 +570,49 @@ self.treeAvailable
 554 | #-- Gpodder.on_itemExportChannels_activate {
 555 |    def on_itemExportChannels_activate(self, widget, *args):
   </pre>
-<div class="frame note">
-<div class="label">Note</div>
-<div class="content">The <em>Full screen</em> hardware key maps to the F6 key on the GDK.</div>
+  <div class="frame note">
+    <div class="label">Note</div>
+    <div class="content">The <em>Full screen</em> hardware key maps to the F6 key on the GDK.</div>
+  </div>
+  <p>Figure 11 illustrates gPodder in the full screen mode.</p>
+  <div><img alt="gPodder in the full screen mode" src="images/gpodder_5_small.jpg"></div>
+  <p>Figure 11. gPodder in the full screen mode</p>
 </div>
-<p>Figure
-11 illustrates gPodder in the full screen mode.</p>
-<div>
-<img alt="gPodder in the full screen mode" src="images/gpodder_5_small.jpg"></div>
-<p>Figure 11. gPodder in
-the full screen mode</p>
-</div>     
 
 
 
 <h2>Introduction to LibOSSO</h2>
 <div class="section">
-<p>LibOSSO is the basic library
-containing required and helpful functions for maemo applications. One of LibOSSO's
-main features is RPC          (Remote Procedure Calls) services (as it "wraps"
-D-BUS<a href="#references_maemo_sdk_tutorial"><sup>3</sup></a>). In addition,
-LibOSSO provides access to low-level hardware functions, such as         
-turning on (or keeping on) the display, autosaving, state saving and system
-time.</p>
-<p>All maemo-compliant applications must use LibOSSO to respond
-coherently to system changes and signals, such as the battery low, pre-shutdown
-and state saving signals.</p>
-<p>This section describes how remote procedure
-calls are implemented using LibOSSO. The example is divided in two different
-sample applications:          <span class="codefrag">osso_test_sender.py</span> and <span class="codefrag">osso_test_receiver.py</span>.</p>
-<p>The sender sample application sends an RPC message when a button is
-clicked. D-BUS interprets the message and sends the RPC to          the receiver
-sample application, which displays a system notification stating that it has
-received the RPC.</p>
+  <p>
+    LibOSSO is the basic library containing required and helpful functions for maemo applications.
+    One of LibOSSO's main features is RPC (Remote Procedure Calls) services (as it "wraps" D-BUS
+    <a href="#references_maemo_sdk_tutorial"><sup>3</sup></a>). In addition, LibOSSO provides access
+    to low-level hardware functions, such as turning on (or keeping on) the display, autosaving,
+    state saving and system time.
+  </p>
+  <p>
+    All maemo-compliant applications must use LibOSSO to respond coherently to system changes and
+    signals, such as the battery low, pre-shutdown and state saving signals.
+  </p>
+  <p>
+    This section describes how remote procedure calls are implemented using LibOSSO. The example is
+    divided in two different sample applications: <span class="codefrag">osso_test_sender.py</span>
+    and <span class="codefrag">osso_test_receiver.py</span>.
+  </p>
+  <p>
+    The sender sample application sends an RPC message when a button is clicked. D-BUS interprets
+    the message and sends the RPC to the receiver sample application, which displays a system
+    notification stating that it has received the RPC.
+  </p>
 
-<h3>Sender sample application</h3>
-<p>The sender is simply a button occupying the whole window. When you
-click it, an RPC is sent to the receiver sample application.</p>
-<p>Create
-a <span class="codefrag">osso_test_sender.py</span> file with the following content.</p>
-<pre>#!/usr/bin/python2.5
+  <h3>Sender sample application</h3>
+  <p>
+    The sender is simply a button occupying the whole window. When you click it, an RPC is sent to
+    the receiver sample application.
+  </p>
+  <p>Create a <span class="codefrag">osso_test_sender.py</span> file with the following content.</p>
+  <pre>
+#!/usr/bin/python2.5
 import osso
 import hildon
 import gtk
@@ -628,18 +631,18 @@ send_button = gtk.Button("Send RPC")
 window.add(send_button)
 send_button.connect("clicked", send_rpc, osso_c)
 window.show_all()
-gtk.main()         
-</pre>
+gtk.main()
+  </pre>
 
-<h3>Receiver sample application</h3>
-<p>The
-receiver is an application that has no GUI (no window), it runs unseen in
-the background waiting for an RPC.            When it receives one, it uses
-LibOSSO to display an information banner notifying the user that an RPC has
-been received.</p>
-<p>Create a <span class="codefrag">osso_test_receiver.py</span> file
-with the following content.</p>
-<pre>#!/usr/bin/python2.5
+  <h3>Receiver sample application</h3>
+  <p>
+    The receiver is an application that has no GUI (no window), it runs unseen in the background
+    waiting for an RPC. When it receives one, it uses LibOSSO to display an information banner
+    notifying the user that an RPC has been received.
+  </p>
+  <p>Create a <span class="codefrag">osso_test_receiver.py</span> file with the following content.</p>
+  <pre>
+#!/usr/bin/python2.5
 import osso
 import gtk
 
@@ -656,332 +659,377 @@ osso_rpc.set_rpc_callback("spam.eggs.osso_test_receiver",
     "/spam/eggs/osso_test_receiver",
     "spam.eggs.osso_test_receiver", callback_func, osso_c)
 gtk.main()
-</pre>
-<p>The receiver also
-must register itself as a D-BUS service. Create a <span class="codefrag">osso_test_receiver.service</span> file
-with the following content.</p>
-<pre>[D-BUS Service]
+  </pre>
+  <p>
+    The receiver also must register itself as a D-BUS service. Create a
+    <span class="codefrag">osso_test_receiver.service</span> file with the following content.
+  </p>
+  <pre>
+[D-BUS Service]
 Name=spam.eggs.osso_test_receiver
 Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py  
-</pre>
-<div class="frame note">
-<div class="label">Note</div>
-<div class="content">Replace <span class="codefrag">{SOME_DIRECTORY_HIERARCHY}</span> with
-the directory where <span class="codefrag">osso_test_receiver.py</span>            is located.</div>
-</div>
-<p>Add the            <span class="codefrag">osso_test_receiver.service</span> file to <span class="codefrag">/usr/share/dbus-1/services</span>.</p>
+  </pre>
+  <p>
+    Replace <span class="codefrag">{SOME_DIRECTORY_HIERARCHY}</span> with the directory where
+    <span class="codefrag">osso_test_receiver.py</span> is located.</p>
+  <p>
+    Add the <span class="codefrag">osso_test_receiver.service</span> file to
+    <span class="codefrag">/usr/share/dbus-1/services</span>.
+  </p>
 
-<h3>Running applications</h3>
-<p>First make sure that D-BUS recognises the new D-BUS service (<span class="codefrag">spam.eggs.osso_test_receiver</span>).
-           To do this, restart your maemo environment by using the following
-command on the Scratchbox console:</p>
-<pre>[sbox-TARGET_NAME: ~] &gt; af-sb-init.sh restart
-</pre>
-<p>Then run <span class="codefrag">osso_test_sender.py</span> with
-the following command (assuming that it is in your home directory):</p>
-<pre>[sbox-TARGET_NAME: ~] &gt; run-standalone.sh ./osso_test_sender.py
-</pre>
-<p>Figure 12 illustrates what now happens every
-time you click the <em>Send RPC</em> button.</p>
-<div>
-<img alt="LibOSSO sample application" src="images/libosso_tutorial_small.jpg"></div>
-<p>Figure 12. LibOSSO
-sample application</p>
-<p>Note that you do not have to manually run <span class="codefrag">osso_test_receiver.py</span>,
-as D-BUS does it automatically. Due to its            extreme simplicity,
-the once instantiated <span class="codefrag">osso_test_receiver.py</span> continues running
-in background until you manually kill            it from the Scratchbox console.</p>
-</div>     
+  <h3>Running applications</h3>
+  <p>
+    First make sure that D-BUS recognises the new D-BUS service (
+    <span class="codefrag">spam.eggs.osso_test_receiver</span>). To do this, restart your maemo
+    environment by using the following command on the Scratchbox console:
+  </p>
+  <pre>
+[sbox-TARGET_NAME: ~] &gt; af-sb-init.sh restart
+  </pre>
+  <p>
+    Then run <span class="codefrag">osso_test_sender.py</span> with the following command (assuming
+    that it is in your home directory):
+  </p>
+  <pre>
+[sbox-TARGET_NAME: ~] &gt; run-standalone.sh ./osso_test_sender.py
+  </pre>
+  <p>Figure 12 illustrates what now happens every time you click the <em>Send RPC</em> button.</p>
+  <div><img alt="LibOSSO sample application" src="images/libosso_tutorial_small.jpg"></div>
+  <p>Figure 12. LibOSSO sample application</p>
+  <p>
+    Note that you do not have to manually run <span class="codefrag">osso_test_receiver.py</span>,
+    as D-BUS does it automatically. Due to its extreme simplicity, the once instantiated
+    <span class="codefrag">osso_test_receiver.py</span> continues running in background until you
+    manually kill it from the Scratchbox console.
+  </p>
+</div>
 
 
 
 <h2>Distributing the Python applications</h2>
 <div class="section">
-<p>To distribute applications, you must
-put it in a neat single file (such as a regular Debian package) so that  
-       the application installer can recognise and install it, put all files
-to their correct locations and create          an entry for the application
-in the menu.</p>
+  <p>
+    To distribute applications, you must put it in a neat single file (such as a regular Debian
+    package) so that the application installer can recognise and install it, put all files to their
+    correct locations and create an entry for the application in the menu.
+  </p>
 
-<h3>Requirements</h3>
-<p>As maemo devices are not delivered with Python by default, the maemo
-Python runtime package must also be            installed. You can download
-it from <a href="http://www.maemo.org/">http://www.maemo.org</a>.</p>
+  <h3>Requirements</h3>
+  <p>
+    As maemo devices are not delivered with Python by default, the maemo Python runtime package must
+    also be installed. You can download it from <a href="http://www.maemo.org/">http://www.maemo.org</a>.
+  </p>
 
-<h3>Distributing a "Hello PyMaemo!" application</h3>
-<p>This section describes the process of creating
-a maemo package by showing how to package a simple            "hello world"
-style application. Create a <span class="codefrag">hello-pymaemo</span> file (without the "<span class="codefrag">.py</span>"
-suffix) with the following content.</p>
-<pre>#!/usr/bin/env python2.5
+  <h3>Distributing a "Hello PyMaemo!" application</h3>
+  <p>
+    This section describes the process of creating a maemo package by showing how to package a
+    simple "hello world" style application. Create a <span class="codefrag">hello-pymaemo</span>
+    file (without the "<span class="codefrag">.py</span>" suffix) with the following content.
+  </p>
+  <pre>
+#!/usr/bin/env python2.5
 
 import gtk
 import hildon
-import osso  
+import osso
 
-osso_c = osso.Context("hello_pymaemo", "1.0.0", False)  
-window = hildon.Window () 
+osso_c = osso.Context("hello_pymaemo", "1.0.0", False)
+window = hildon.Window ()
 window.set_title ("Hello maemo!")
-window.connect("destroy", gtk.main_quit)  
+window.connect("destroy", gtk.main_quit)
 
-button = gtk.Button ("Hello Python for Maemo!") 
-window.add (button)  
+button = gtk.Button ("Hello Python for Maemo!")
+window.add (button)
 
 window.show_all ()
-gtk.main () 
-</pre>
-<p>Make the file executable by running the <span class="codefrag">chmod +x hello-pymaemo</span> command.
-This ensures that you can run the script in the same way as a          regular
-binary application.</p>
+gtk.main ()
+  </pre>
+  <p>
+    Make the file executable by running the <span class="codefrag">chmod +x hello-pymaemo</span>
+    command. This ensures that you can run the script in the same way as a regular binary
+    application.
+  </p>
 
-<h4>Desktop integration</h4>
-<p>You must have an icon for the application. The icon is shown in
-the menu entry and in the task navigator bar. The              icon must be
-a 26x26 pixels PNG image with a transparent background, such as the <a href="http://www.maemo.org/platform/docs/python-bora/images/pymaemo_bora/hello_icon_26x26.png">example
-icon</a> shown in Figure 13:</p>
-<div>
-<img alt="Hello PyMaemo icon" src="images/hello_icon_26x26.jpg"></div>
-<p>Figure 13. Hello PyMaemo
-icon</p>
-<p>Name the icon <span class="codefrag">hello_icon_26x26.png</span>.</p>
-<p>The menu entry is a <span class="codefrag">.desktop</span> file with the following
-content for the application:</p>
-<pre>[Desktop Entry]
+  <h4>Desktop integration</h4>
+  <p>
+    You must have an icon for the application. The icon is shown in the menu entry and in the task
+    navigator bar. The icon must be a 26x26 pixels PNG image with a transparent background, such as
+    the <a href="http://www.maemo.org/platform/docs/python-bora/images/pymaemo_bora/hello_icon_26x26.png">
+    example icon</a> shown in Figure 13:
+  </p>
+  <div><img alt="Hello PyMaemo icon" src="images/hello_icon_26x26.jpg"></div>
+  <p>Figure 13. Hello PyMaemo icon</p>
+  <p>Name the icon <span class="codefrag">hello_icon_26x26.png</span>.</p>
+  <p>
+    The menu entry is a <span class="codefrag">.desktop</span> file with the following content for
+    the application:
+  </p>
+  <pre>
+[Desktop Entry]
 Version=1.0.0
 Encoding=UTF-8
-Name=Hello PyMaemo! 
-Exec=/usr/bin/hello-pymaemo 
-Icon=hello_icon_26x26 
+Name=Hello PyMaemo!
+Exec=/usr/bin/hello-pymaemo
+Icon=hello_icon_26x26
 Type=Application
-X-Osso-Service=hello_pymaemo 
-X-Osso-Type=application/x-executable 
-</pre>
-<div class="frame note">
-<div class="label">Note</div>
-<div class="content">Be very careful when writing the desktop file, since the system
-is very sensitive to typographical errors in it and                    a faulty
-desktop file simply fails to show its menu entry without yielding any errors.</div>
-</div>
-<p>Table 1. <span class="codefrag">.desktop</span> file fields</p>
-<table class="ForrestTable" border="0" cellpadding="4" cellspacing="1">        
-                
-<tbody><tr>               
-<th colspan="1" rowspan="1">Field name</th>               <th colspan="1" rowspan="1">Description</th> 
-           
-</tr>             
-<tr>               
-<td colspan="1" rowspan="1"><span class="codefrag">Version</span></td> 
-             <td colspan="1" rowspan="1">Application version</td>             
-</tr>             
-<tr> 
-             
-<td colspan="1" rowspan="1"><span class="codefrag">Encoding</span></td>               <td colspan="1" rowspan="1">Character encoding.
-Must always be <span class="codefrag">UTF8</span>.</td>             
-</tr>             
-<tr> 
-             
-<td colspan="1" rowspan="1"><span class="codefrag">Name</span></td>               <td colspan="1" rowspan="1">Application's name</td> 
-           
-</tr>             
-<tr>               
-<td colspan="1" rowspan="1"><span class="codefrag">Exec</span></td> 
-             <td colspan="1" rowspan="1">File to be executed when the application is called</td> 
-           
-</tr>             
-<tr>               
-<td colspan="1" rowspan="1"><span class="codefrag">Icon</span></td> 
-             <td colspan="1" rowspan="1">Application's icon. Only the name of the file <strong>without</strong> its
-suffix (<span class="codefrag">.png</span>).</td>             
-</tr>             
-<tr>      
-        
-<td colspan="1" rowspan="1"><span class="codefrag">Type</span></td>               <td colspan="1" rowspan="1">"<span class="codefrag">Application</span>"
-since it is an entry for an application</td>             
-</tr>           
- 
-<tr>               
-<td colspan="1" rowspan="1"><span class="codefrag">X-Osso-Service</span></td>               <td colspan="1" rowspan="1">Name
-of the osso service that calls this application.                   For more
-information, see the paragraphs below the table.</td>             
-</tr>  
-          
-<tr>               
-<td colspan="1" rowspan="1"><span class="codefrag">X-Osso-Type</span></td>           
-   <td colspan="1" rowspan="1">Usually "<span class="codefrag">application/x-executable</span>"</td>             
-</tr> 
-         
-</tbody></table>
-<p>As you can see in the desktop file, the application
-also needs an osso (D-BUS) service. Otherwise, it does not appear in the 
-            task navigation bar. For the service, create a <span class="codefrag">hello_pymaemo.service</span> file
-with the following content.</p>
-<pre>[D-BUS Service]
+X-Osso-Service=hello_pymaemo
+X-Osso-Type=application/x-executable
+  </pre>
+  <div class="frame note">
+    <div class="label">Note</div>
+    <div class="content">
+      Be very careful when writing the desktop file, since the system is very sensitive to
+      typographical errors in it and a faulty desktop file simply fails to show its menu entry
+      without yielding any errors.
+    </div>
+  </div>
+  <p>Table 1. <span class="codefrag">.desktop</span> file fields</p>
+  <table border="0" cellpadding="4" cellspacing="1">
+    <tbody>
+      <tr>
+        <th colspan="1" rowspan="1">Field name</th>
+        <th colspan="1" rowspan="1">Description</th>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">Version</span></td>
+        <td colspan="1" rowspan="1">Application version</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">Encoding</span></td>
+        <td colspan="1" rowspan="1">Character encoding. Must always be <span class="codefrag">UTF8</span>.</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">Name</span></td>
+        <td colspan="1" rowspan="1">Application's name</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">Exec</span></td>
+        <td colspan="1" rowspan="1">File to be executed when the application is called</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">Icon</span></td>
+        <td colspan="1" rowspan="1">
+          Application's icon. Only the name of the file <strong>without</strong> its suffix
+          (<span class="codefrag">.png</span>).
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">Type</span></td>
+        <td colspan="1" rowspan="1">
+          "<span class="codefrag">Application</span>"since it is an entry for an application
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">X-Osso-Service</span></td>
+        <td colspan="1" rowspan="1">
+          Name of the osso service that calls this application. For more information, see the
+          paragraphs below the table.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1"><span class="codefrag">X-Osso-Type</span></td>
+        <td colspan="1" rowspan="1">Usually "<span class="codefrag">application/x-executable</span>"</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    As you can see in the desktop file, the application also needs an osso (D-BUS) service.
+    Otherwise, it does not appear in the task navigation bar. For the service, create a
+    <span class="codefrag">hello_pymaemo.service</span> file with the following content.
+  </p>
+  <pre>
+[D-BUS Service]
 Name=com.nokia.hello_pymaemo
 Exec=/usr/bin/hello-pymaemo 
-</pre>
-<p>Note that since "-" is
-not a valid character in a service name., <span class="codefrag">hello_pymaemo</span> is used
-instead of <span class="codefrag">hello-pymaemo</span>.</p>
+  </pre>
+  <p>
+    Note that since "-" is not a valid character in a service name.,
+    <span class="codefrag">hello_pymaemo</span> is used instead of
+    <span class="codefrag">hello-pymaemo</span>.
+  </p>
 
-<h4>Copying files to their locations</h4>
-<p>Use
-Python Distribution Utilities ("Distutils") to copy the files to their proper
-locations. Create a <span class="codefrag">setup.py</span> file with the following content.</p>
-<pre>from distutils.core import setup
+  <h4>Copying files to their locations</h4>
+  <p>
+    Use Python Distribution Utilities ("Distutils") to copy the files to their proper locations.
+    Create a <span class="codefrag">setup.py</span> file with the following content.
+  </p>
+  <pre>
+from distutils.core import setup
 
 setup(name='hello-pymaemo',
        version='1.0.0',
        scripts=['hello-pymaemo'],
        data_files = [
-                    ('share/pixmaps',             ['hello_icon_26x26.png']),                
-                    ('share/applications/hildon', ['hello-pymaemo.desktop']),           
-                    ('share/dbus-1/services',     ['hello_pymaemo.service']),      
+                    ('share/pixmaps',             ['hello_icon_26x26.png']),
+                    ('share/applications/hildon', ['hello-pymaemo.desktop']),
+                    ('share/dbus-1/services',     ['hello_pymaemo.service']),
                     ]
-      ) 
-</pre>
-<p>In the Scratchbox console, issue
-the <span class="codefrag">python2.5 setup.py install</span> command to achieve the following
-result:</p>
-<ul>             
-<li>
-<span class="codefrag">hello-pymaemo</span> is copied
-to <span class="codefrag">/usr/bin</span>
-</li>             
-<li>
-<span class="codefrag">hello_icon_26x26.png</span> is
-copied to <span class="codefrag">/usr/share/pixmaps</span>
-</li>             
-<li>
-<span class="codefrag">hello-pymaemo.desktop</span> is
-copied to <span class="codefrag">/usr/share/applications/hildon</span>
-</li>             
-<li>
-<span class="codefrag">hello_pymaemo.service</span> is
-copied to <span class="codefrag">/usr/share/dbus-1/services</span>
-</li>           
-</ul>
-<p>After you have run the command, the application is actually installed
-in your system (in Scratchbox, you have to ru the           <span class="codefrag">af-sb-init.sh
-restart</span> command before calling your application from the menu). You
-can access it from the <em>Extras</em> menu.</p>
-<p>The problem
-with this approach is that if you want to remove the application, you have
-to manually delete every file from its corresponding directory,          
-   which is not practical. It is also not practical to distribute an application
-this way, since every user has to manually              run the command (or
-a script that does it).</p>
-<p>Instead, you can let the Application
-Installer take care of all these issues. To do that, you have to group all
-the files in              a Debian package.</p>
-<p>For more information
-about Python Distribution Utilities, see              Distributing Python
-Modules<a href="#references_python_distutils"><sup>4</sup></a>.          
-   To get a basic knowledge of Distutils, reading Chapters 1 and 2 is strongly
-recommended.</p>
+      )
+  </pre>
+  <p>
+    In the Scratchbox console, issue the <span class="codefrag">python2.5 setup.py install</span>
+    command to achieve the following result:
+  </p>
+  <ul>
+    <li>
+      <span class="codefrag">hello-pymaemo</span> is copied to <span class="codefrag">/usr/bin</span>
+    </li>
+    <li>
+      <span class="codefrag">hello_icon_26x26.png</span> is
+      copied to <span class="codefrag">/usr/share/pixmaps</span>
+    </li>
+    <li>
+      <span class="codefrag">hello-pymaemo.desktop</span> is
+      copied to <span class="codefrag">/usr/share/applications/hildon</span>
+    </li>
+    <li>
+      <span class="codefrag">hello_pymaemo.service</span> is
+      copied to <span class="codefrag">/usr/share/dbus-1/services</span>
+    </li>
+  </ul>
+  <p>
+    After you have run the command, the application is actually installed in your system (in
+    Scratchbox, you have to ru the <span class="codefrag">af-sb-init.sh restart</span> command
+    before calling your application from the menu). You can access it from the <em>Extras</em> menu.
+  </p>
+  <p>
+    The problem with this approach is that if you want to remove the application, you have to
+    manually delete every file from its corresponding directory, which is not practical. It is also
+    not practical to distribute an application this way, since every user has to manually run the
+    command (or a script that does it).
+  </p>
+  <p>
+    Instead, you can let the Application Installer take care of all these issues. To do that, you
+    have to group all the files in a Debian package.
+  </p>
+  <p>
+    For more information about Python Distribution Utilities, see Distributing Python
+    Modules<a href="#references_python_distutils"><sup>4</sup></a>. To get a basic knowledge of
+    Distutils, reading Chapters 1 and 2 is strongly recommended.
+  </p>
 
-<h4>Creating a Debian package</h4>
-<p>When creating a Debian package, the
-first step is to put all the files (the hello-pymaemo script, and the png,
-desktop and service files) in an empty directory called <span class="codefrag">hello-pymaemo-1.0.0</span>.
-The directory name must follow the              <span class="codefrag">&lt;package-name&gt;-&lt;app-version&gt;</span> convention
-. This means that the package that you are creating for the hello world application
-             is called <span class="codefrag">hello-pymaemo</span>.</p>
-<p>As Debian
-packages use makefiles (<span class="codefrag">Makefile</span>) instead of Python Distutils
-(<span class="codefrag">setup.py</span>), you have to write a              <span class="codefrag">Makefile</span> to
-act as an interface between the Debian package system and the <span class="codefrag">setup.py</span>.
-The file is very simple; it merely issues commands to <span class="codefrag">setup.py</span> according
-to make's target. If you have no knowledge of make files, see Chapters 1 and
-2 in GNU Make Manual<a href="#references_make"><sup>5</sup></a>.</p>
-<p>Create a <span class="codefrag">Makefile</span> file with the following content.</p>
-<pre>all:
-	python2.5 setup.py build  
+  <h4>Creating a Debian package</h4>
+  <p>
+    When creating a Debian package, the first step is to put all the files (the hello-pymaemo script,
+    and the png, desktop and service files) in an empty directory called
+    <span class="codefrag">hello-pymaemo-1.0.0</span>. The directory name must follow the
+    <span class="codefrag">&lt;package-name&gt;-&lt;app-version&gt;</span> convention. This means
+    that the package that you are creating for the hello world application is called
+    <span class="codefrag">hello-pymaemo</span>.
+  </p>
+  <p>
+    As Debian packages use makefiles (<span class="codefrag">Makefile</span>) instead of Python
+    Distutils (<span class="codefrag">setup.py</span>), you have to write a
+    <span class="codefrag">Makefile</span> to act as an interface between the Debian package system
+    and the <span class="codefrag">setup.py</span>. The file is very simple; it merely issues
+    commands to <span class="codefrag">setup.py</span> according to make's target. If you have no
+    knowledge of make files, see Chapters 1 and 2 in GNU Make
+    Manual<a href="#references_make"><sup>5</sup></a>.
+  </p>
+  <p>Create a <span class="codefrag">Makefile</span> file with the following content.</p>
+  <pre>
+all:
+  python2.5 setup.py build
 clean: 
-	python2.5 setup.py clean --all
+  python2.5 setup.py clean --all
 install:
-	python2.5 setup.py install --root $(DESTDIR) 
-</pre>
-<p>In Scratchbox
-console (inside the <span class="codefrag">hello-pymaemo-1.0.0</span> directory), enter the
-following command:</p>
-<pre>[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dh_make -e your.email@somewhere.com
-</pre>
-<p>The system displays
-the following output:</p>
-<pre>Type of package: single binary, multiple binary, library, or kernel module?  [s/m/l/k] s
+  python2.5 setup.py install --root $(DESTDIR)
+  </pre>
+  <p>
+    In Scratchbox console (inside the <span class="codefrag">hello-pymaemo-1.0.0</span> directory),
+    enter the following command:
+  </p>
+  <pre>
+[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dh_make -e your.email@somewhere.com
+  </pre>
+  <p>The system displays the following output:</p>
+  <pre>
+Type of package: single binary, multiple binary, library, or kernel module?  [s/m/l/k] s
 Maintainer name : unknown
-Email-Address   : your.email@somewhere.com 
-Date            : Thu, 18 May 2006 13:58:04 -0300 
-Package Name    : hello-pymaemo 
-Version         : 1.0.0 
-Type of Package : Single 
-Hit &lt;enter&gt; to confirm: 
-Done. Please edit the files in the debian/ subdirectory now. 
-You should also check that the hello-pymaemo Makefiles install into $DESTDIR and not in / . 
-</pre>
-<p>Choose
-"single binary" as a package type. In case the              <span class="codefrag">"--root
-$(DESTDIR)"</span> part of the makefile is not clear to you, the last sentece
-in the output is meant to clarify the situation.</p>
-<p>The <span class="codefrag">dh_make</span> command
-creates a <span class="codefrag">debian</span> subdirectory containing multiple configuration
-text files,              most of which are templates that can be removed,
-since the application does not use them. In addition, the command makes a
-copy of the original directory, calling it <span class="codefrag">hello-pymaemo-1.0.0.orig</span>.</p>
-<p>Table 2 lists the files needed in <span class="codefrag">hello-pymaemo-1.0.0/debian</span> (others
-can be removed):</p>
-<p>Table 2. Needed files for the example application package</p>
-<table class="ForrestTable" border="0" cellpadding="4" cellspacing="1">             
-<tbody><tr>               
-<th colspan="1" rowspan="1">File in <span class="codefrag">./debian</span></th> 
-             <th colspan="1" rowspan="1">Description</th>             
-</tr>             
-<tr>     
-         
-<td colspan="1" rowspan="1">changelog</td>               <td colspan="1" rowspan="1">Application's change log</td> 
-           
-</tr>             
-<tr>               
-<td colspan="1" rowspan="1">compat</td>          
-    <td colspan="1" rowspan="1">Debian helper compatibily version. Leave it as it is.</td>       
-     
-</tr>             
-<tr>               
-<td colspan="1" rowspan="1">control</td>               <td colspan="1" rowspan="1">Describes
-the packages to be made. For more information, see the paragraphs below the
-table.</td>             
-</tr>             
-<tr>               
-<td colspan="1" rowspan="1">copyright</td> 
-             <td colspan="1" rowspan="1">Copyright text. Fill in the blanks.</td>             
-</tr> 
-           
-<tr>               
-<td colspan="1" rowspan="1">rules</td>               <td colspan="1" rowspan="1">A makefile
-containing the rules to build all kinds of packages (such as source and binary).
-For more information, see the paragraphs below the table.</td>           
- 
-</tr>           
-</tbody></table>
-<p>The key files in <span class="codefrag">./debian</span> are <span class="codefrag">control</span> and <span class="codefrag">rules</span>.
-They contain a generic              template showing what they must look like.
-In <span class="codefrag">control</span>, you must simply fill in the blanks and, in <span class="codefrag">rules</span>,
-             you essentially need to remove unwanted and unnecessary code.</p>
-<p>The following example illustrates what the <span class="codefrag">control</span> file
-for the example application must contain:</p>
-<pre>Source: hello-pymaemo
-Section: user/other 
-Priority: optional 
+Email-Address   : your.email@somewhere.com
+Date            : Thu, 18 May 2006 13:58:04 -0300
+Package Name    : hello-pymaemo
+Version         : 1.0.0
+Type of Package : Single
+Hit &lt;enter&gt; to confirm:
+Done. Please edit the files in the debian/ subdirectory now.
+You should also check that the hello-pymaemo Makefiles install into $DESTDIR and not in / .
+  </pre>
+  <p>
+    Choose "single binary" as a package type. In case the <span class="codefrag">"--root $(DESTDIR)"
+    </span> part of the makefile is not clear to you, the last sentece in the output is meant to
+    clarify the situation.
+  </p>
+  <p>
+    The <span class="codefrag">dh_make</span> command creates a <span class="codefrag">debian</span>
+    subdirectory containing multiple configuration text files, most of which are templates that can
+    be removed, since the application does not use them. In addition, the command makes a copy of
+    the original directory, calling it <span class="codefrag">hello-pymaemo-1.0.0.orig</span>.
+  </p>
+  <p>
+    Table 2 lists the files needed in <span class="codefrag">hello-pymaemo-1.0.0/debian</span>
+    (others can be removed):
+  </p>
+  <p>Table 2. Needed files for the example application package</p>
+  <table class="ForrestTable" border="0" cellpadding="4" cellspacing="1">
+    <tbody>
+      <tr>
+        <th colspan="1" rowspan="1">File in <span class="codefrag">./debian</span></th> 
+        <th colspan="1" rowspan="1">Description</th>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">changelog</td>
+        <td colspan="1" rowspan="1">Application's change log</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">compat</td>
+        <td colspan="1" rowspan="1">Debian helper compatibily version. Leave it as it is.</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">control</td>
+        <td colspan="1" rowspan="1">
+          Describes the packages to be made. For more information, see the paragraphs
+          below the table.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">copyright</td>
+        <td colspan="1" rowspan="1">Copyright text. Fill in the blanks.</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">rules</td>
+        <td colspan="1" rowspan="1">
+          A makefile containing the rules to build all kinds of packages (such as source and binary).
+          For more information, see the paragraphs below the table.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    The key files in <span class="codefrag">./debian</span> are <span class="codefrag">control</span>
+    and <span class="codefrag">rules</span>. They contain a generic template showing what they must
+    look like. In <span class="codefrag">control</span>, you must simply fill in the blanks and, in
+    <span class="codefrag">rules</span>, you essentially need to remove unwanted and unnecessary
+    code.
+  </p>
+  <p>
+    The following example illustrates what the <span class="codefrag">control</span> file for the
+    example application must contain:
+  </p>
+  <pre>
+Source: hello-pymaemo
+Section: user/other
+Priority: optional
 Maintainer: My Name &lt;your.email@somewhere.com&gt;
-Build-Depends: debhelper (&gt;= 4.0.0), python2.5-dev 
+Build-Depends: debhelper (&gt;= 4.0.0), python2.5-dev
 Standards-Version: 3.6.0
 
-Package: hello-pymaemo 
-Architecture: all 
-Depends: python2.5, python2.5-hildon, python2.5-gtk2 
+Package: hello-pymaemo
+Architecture: all
+Depends: python2.5, python2.5-hildon, python2.5-gtk2
 Description: A simple "Hello Python for Maemo!"
  A very simple application consisting of a single button, containing the
- text "Hello Python for Maemo!". 
+ text "Hello Python for Maemo!".
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+g
  vaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1gURDQoYya0JlwAAAU9J 
@@ -992,137 +1040,159 @@ XB-Maemo-Icon-26:
  ymeqRQAmZ3EcA5E/fgO6BULT8zhOcrwXoJdrXRa2Lgps2y2odAUcBUIXQdz78YyC
  SldAp8b7+bXrIv91qjZBietqCc2DjbAt4b2WxJkyZljVujlwp0U0cPxuLcAIuC+4 
  dKxFlsDJarvdAGP/b6hFnDImYs+uG3hbO2AB3Jbsur63tQM+fFx3bzZocEB8AdV2
- gJBZgKTwAAAAAElFTkSuQmCC 
-</pre>
-<p>The <span class="codefrag">XB-Maemo-Icon-26</span> field
-contains the application icon file (in this case,              <span class="codefrag">hello_icon_26x26.png</span>)
-encoded in base64. This is the icon that is shown in the Application     
-        Installer, next to the package name. To do this encoding in Linux,
-you can use either              <span class="codefrag">uuencode</span> or <span class="codefrag">openssl</span> (there
-can be more suitable applications).              Maemos's Scratchbox rootstrap
-is delivered with <span class="codefrag">uuencode</span>. Do not forget to put a white space
-             at the beginning of each line containing the icon-encoded text.
-The white space serves as indentation.              The same rule stands for
-the long package description (<span class="codefrag"> A very simple application[...]</span>).</p>
-<p>The Application Installer only shows packages in the <span class="codefrag">user</span> section.
-Thus, your <span class="codefrag">Section:</span>              field in the <span class="codefrag">control</span> file
-must has the <span class="codefrag">Section: user/&lt;SUBSECTION&gt;</span> syntax, where    
-         <span class="codefrag">&lt;SUBSECTION&gt;</span> is arbitrary.</p>
-<p>The following
-example illustrates the <span class="codefrag">rules</span> file for the example application:</p>
-<pre>#!/usr/bin/make -f
-# -*- makefile -*- 
-# Sample debian/rules that uses debhelper. 
-# GNU copyright
-1997 to 1999 by Joey Hess.  
+ gJBZgKTwAAAAAElFTkSuQmCC
+  </pre>
+  <p>
+    The <span class="codefrag">XB-Maemo-Icon-26</span> field contains the application icon file (in
+    this case, <span class="codefrag">hello_icon_26x26.png</span>) encoded in base64. This is the
+    icon that is shown in the Application Installer, next to the package name. To do this encoding
+    in Linux, you can use either <span class="codefrag">uuencode</span> or <span class="codefrag">
+    openssl</span> (there can be more suitable applications). Maemos's Scratchbox rootstrap is
+    delivered with <span class="codefrag">uuencode</span>. Do not forget to put a white space at the
+    beginning of each line containing the icon-encoded text. The white space serves as indentation.
+    The same rule stands for the long package description (<span class="codefrag"> A very simple
+    application[...]</span>).
+  </p>
+  <p>
+    The Application Installer only shows packages in the <span class="codefrag">user</span> section.
+    Thus, your <span class="codefrag">Section:</span> field in the <span class="codefrag">control
+    </span> file must has the <span class="codefrag">Section: user/&lt;SUBSECTION&gt;</span> syntax,
+    where <span class="codefrag">&lt;SUBSECTION&gt;</span> is arbitrary.
+  </p>
+  <p>
+    The following example illustrates the <span class="codefrag">rules</span> file for the example
+    application:
+  </p>
+  <pre>
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
 
-# Uncomment this to turn on verbose mode. 
-#export DH_VERBOSE=1    
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
- 	INSTALL_PROGRAM += -s 
+ 	INSTALL_PROGRAM += -s
 endif
 
-configure: configure-stamp 
+configure: configure-stamp
 
 configure-stamp:
 	dh_testdir
- 	# Add here commands to configure the package.  	
+ 	# Add here commands to configure the package.
 
-	touch configure-stamp   
+	touch configure-stamp
 build: build-stamp
 
 build-stamp: configure-stamp 
-	dh_testdir 
- 	# Add here commands to compile the package. 	
-	$(MAKE)  
+	dh_testdir
+ 	# Add here commands to compile the package.
+	$(MAKE)
 
-	touch build-stamp  
+	touch build-stamp
 
-clean: 	dh_testdir 
+clean: 	dh_testdir
 	dh_testroot
-	rm -f build-stamp configure-stamp  
+	rm -f build-stamp configure-stamp
 
-	# Add here commands to clean up after the build process. 
-	-$(MAKE) clean  
+	# Add here commands to clean up after the build process.
+	-$(MAKE) clean
 
-	dh_clean 
+	dh_clean
 
 install: build
 	dh_testdir
-	dh_testroot 
-	dh_clean -k 
- 	dh_installdirs  
+	dh_testroot
+	dh_clean -k
+ 	dh_installdirs
 
-	# Add here commands to install the package into debian/hello-pymaemo. 
+	# Add here commands to install the package into debian/hello-pymaemo.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/hello-pymaemo
 
-# Build architecture-independent files here. 
+# Build architecture-independent files here.
 
 binary-indep: build install
-	dh_testdir 
-	dh_testroot 
-	dh_installchangelogs 
- 	dh_fixperms 
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+ 	dh_fixperms
 	dh_installdeb
-	dh_gencontrol 
-	dh_md5sums 
-	dh_builddeb 
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
 
-binary-arch: build install  
+binary-arch: build install
 
-binary: binary-indep binary-arch 
-.PHONY: build clean binary-indep binary-arch binary install configure 
-</pre>
-<p>The main point is that the <span class="codefrag">binary-arch</span> target
-was emptied and the <span class="codefrag">binary-indep</span> filled,              since the
-application being 100% Python means that it is 100% architecture-independent.</p>
-<p>All the preliminary steps are now done, and you can build the
-Debian package itself with the following command:</p>
-<pre>[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dpkg-buildpackage -rfakeroot
-</pre>
-<p>The system displays some output, including a couple of warnings near the
-end of it (about XB-Maemo-Icon-26) but that is normal.              The parent
-directory now has a <span class="codefrag">hello-pymaemo_1.0.0-1_all.deb</span> file - your
-             Debian package. This is the file that is distributed to maemo
-devices and installed using the Application Installer.</p>
-<p>For
-more information about making Debian packages, see              Debian New
-Maintainers' Guide<a href="#references_debian"><sup>6</sup></a>.</p>
-</div>     
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
+  </pre>
+  <p>
+    The main point is that the <span class="codefrag">binary-arch</span> target was emptied and the
+    <span class="codefrag">binary-indep</span> filled, since the application being 100% Python means
+    that it is 100% architecture-independent.
+  </p>
+  <p>
+    All the preliminary steps are now done, and you can build the Debian package itself with the
+    following command:
+  </p>
+  <pre>
+[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dpkg-buildpackage -rfakeroot
+  </pre>
+  <p>
+    The system displays some output, including a couple of warnings near the end of it
+    (about XB-Maemo-Icon-26) but that is normal. The parent directory now has a <span class="codefrag">
+    hello-pymaemo_1.0.0-1_all.deb</span> file - your Debian package. This is the file that is
+    distributed to maemo devices and installed using the Application Installer.
+  </p>
+  <p>
+    For more information about making Debian packages, see Debian New Maintainers'
+    Guide<a href="#references_debian"><sup>6</sup></a>.
+  </p>
+</div>
 
 
 
 <h2>References</h2>
 <div class="section">
-<p>
-<a name="references_maemo_sdk_tutorial"></a> 
-       <strong>[1]</strong> Maemo 3.0 tutorial: 
-       <a href="http://www.maemo.org/platform/docs/howtos/Maemo_tutorial_bora.html">http://www.maemo.org/platform/docs/howtos/Maemo_tutorial_bora.html</a>
-     
-</p>
-<p>
-<a name="references_hildon_ui_guide"></a> <strong>[2]</strong> Hildon
-User Interface Style Guide (version 1.0): <a href="http://www.maemo.org/community/UI_Style_Guide_Summary_1.0.pdf">http://www.maemo.org/community/UI_Style_Guide_Summary_1.0.pdf</a>
-</p>
-<p>
-<a name="references_dbus"></a> <strong>[3]</strong> D-BUS: <a href="http://www.freedesktop.org/wiki/Software/dbus">http://www.freedesktop.org/wiki/Software/dbus</a>
-</p>
-<p>
-<a name="references_python_distutils"></a> <strong>[4]</strong> Distributing
-Python Modules: <a href="http://docs.python.org/dist/dist.html">http://docs.python.org/dist/dist.html</a>
-</p>
-<p>
-<a name="references_make"></a> <strong>[5]</strong> GNU Make Manual: <a href="http://www.gnu.org/software/make/manual/">http://www.gnu.org/software/make/manual/</a>
-</p>
-<p>
-<a name="references_debian"></a> <strong>[6]</strong> Debian New Maintainers'
-Guide: <a href="http://www.us.debian.org/doc/maint-guide/">http://www.us.debian.org/doc/maint-guide/</a>
-</p>
-</div>
+  <p>
+    <a name="references_maemo_sdk_tutorial"></a>
+    <strong>[1]</strong>
+    Maemo 3.0 tutorial:
+    <a href="http://www.maemo.org/platform/docs/howtos/Maemo_tutorial_bora.html">http://www.maemo.org/platform/docs/howtos/Maemo_tutorial_bora.html</a>
+  </p>
+  <p>
+    <a name="references_hildon_ui_guide"></a>
+    <strong>[2]</strong>
+    Hildon User Interface Style Guide (version 1.0):
+    <a href="http://www.maemo.org/community/UI_Style_Guide_Summary_1.0.pdf">http://www.maemo.org/community/UI_Style_Guide_Summary_1.0.pdf</a>
+  </p>
+  <p>
+    <a name="references_dbus"></a>
+    <strong>[3]</strong>
+    D-BUS:
+    <a href="http://www.freedesktop.org/wiki/Software/dbus">http://www.freedesktop.org/wiki/Software/dbus</a>
+  </p>
+  <p>
+    <a name="references_python_distutils"></a>
+    <strong>[4]</strong>
+    Distributing Python Modules:
+    <a href="http://docs.python.org/dist/dist.html">http://docs.python.org/dist/dist.html</a>
+  </p>
+  <p>
+    <a name="references_make"></a>
+    <strong>[5]</strong>
+    GNU Make Manual:
+    <a href="http://www.gnu.org/software/make/manual/">http://www.gnu.org/software/make/manual/</a>
+  </p>
+  <p>
+    <a name="references_debian"></a>
+    <strong>[6]</strong>
+    Debian New Maintainers' Guide:
+    <a href="http://www.us.debian.org/doc/maint-guide/">http://www.us.debian.org/doc/maint-guide/</a>
+  </p>
 </div>
 
-</div>
 
 </body>
 </html>
