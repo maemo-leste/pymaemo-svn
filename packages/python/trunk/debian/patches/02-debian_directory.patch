@@ -2,7 +2,13 @@ Index: python/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python/debian/changelog	2007-03-06 17:09:22.000000000 -0300
-@@ -0,0 +1,191 @@
+@@ -0,0 +1,197 @@
++python2.5 (2.5.0-1osso12) unstable; urgency=low
++
++  * closes #542 and #711
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 25 Apr 2007 15:26:00 -0300
++
 +python2.5 (2.5.0-1osso11) unstable; urgency=low
 +
 +  * gdbm dependency added
