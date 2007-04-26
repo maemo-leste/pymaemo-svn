@@ -85,3 +85,7 @@ pre {
 .minitoc-area {
   font-size: 90%;
 }
+
+.minitoc-area a {
+    color:#555;
+}
