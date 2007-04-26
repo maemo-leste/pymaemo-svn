@@ -59,7 +59,7 @@
   (return-type "ConIcConnection*")
 )
 
-(define-method request_connect
+(define-method request_connection
   (of-object "ConIcConnection")
   (c-name "con_ic_connection_connect")
   (return-type "gboolean")
