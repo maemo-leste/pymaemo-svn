@@ -1,3 +1,6 @@
+2007-04-26 Lauro Moura <lauro.neto@indt.org.br>
+	* conic.override: Missing Py_INCREF(Py_None)
+
 == 0.1 ==
 2007-04-26 Lauro Moura <lauro.neto@indt.org.br>
 

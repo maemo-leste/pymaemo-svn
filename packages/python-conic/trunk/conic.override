@@ -55,11 +55,15 @@ _wrap_con_ic_connection_get_proxy_ignore_hosts (PyGObject *self)
         list = con_ic_connection_get_proxy_ignore_hosts(connection);
         head = list;
         len = g_slist_length(list);
-    } else
+    } else {
+        Py_INCREF(Py_None);
         return Py_None;
+    }
     
-    if(!list)
+    if(!list){
+        Py_INCREF(Py_None);
         return Py_None;
+    }
 
     ret = PyList_New(len);
 
@@ -88,11 +92,15 @@ _wrap_con_ic_connection_get_all_iaps (PyGObject *self)
         list = con_ic_connection_get_all_iaps(connection);
         head = list;
         len = g_slist_length(list);
-    } else
+    } else {
+        Py_INCREF(Py_None);
         return Py_None;
+    }
     
-    if(!list)
+    if(!list){
+        Py_INCREF(Py_None);
         return Py_None;
+    }
 
     ret = PyList_New(len);
 
