@@ -1,0 +1,156 @@
+;; -*- scheme -*-
+; object definitions ...
+
+(define-object Connection
+  (in-module "Conic")
+  (parent "GObject")
+  (c-name "ConIcConnection")
+  (gtype-id "CON_IC_TYPE_CONNECTION")
+)
+
+;; Enumerations and flags ...
+
+(define-flags IcConnectFlags
+  (in-module "Con")
+  (c-name "ConIcConnectFlags")
+  (gtype-id "CON_IC_TYPE_CONNECT_FLAGS")
+  (values
+    '("none" "CON_IC_CONNECT_FLAG_NONE")
+    '("automatically-triggered" "CON_IC_CONNECT_FLAG_AUTOMATICALLY_TRIGGERED")
+    '("unmanaged" "CON_IC_CONNECT_FLAG_UNMANAGED")
+  )
+)
+
+(define-enum IcProxyMode
+  (in-module "Con")
+  (c-name "ConIcProxyMode")
+  (gtype-id "CON_IC_TYPE_PROXY_MODE")
+  (values
+    '("none" "CON_IC_PROXY_MODE_NONE")
+    '("manual" "CON_IC_PROXY_MODE_MANUAL")
+    '("auto" "CON_IC_PROXY_MODE_AUTO")
+  )
+)
+
+(define-enum IcProxyProtocol
+  (in-module "Con")
+  (c-name "ConIcProxyProtocol")
+  (gtype-id "CON_IC_TYPE_PROXY_PROTOCOL")
+  (values
+    '("http" "CON_IC_PROXY_PROTOCOL_HTTP")
+    '("https" "CON_IC_PROXY_PROTOCOL_HTTPS")
+    '("ftp" "CON_IC_PROXY_PROTOCOL_FTP")
+    '("socks" "CON_IC_PROXY_PROTOCOL_SOCKS")
+    '("rtsp" "CON_IC_PROXY_PROTOCOL_RTSP")
+  )
+)
+
+
+;; From conicconnection.h
+
+(define-function con_ic_connection_get_type
+  (c-name "con_ic_connection_get_type")
+  (return-type "GType")
+)
+
+(define-function con_ic_connection_new
+  (c-name "con_ic_connection_new")
+  (is-constructor-of "ConIcConnection")
+  (return-type "ConIcConnection*")
+)
+
+(define-method request_connect
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_connect")
+  (return-type "gboolean")
+  (parameters
+    '("ConIcConnectFlags" "flags")
+  )
+)
+
+(define-method request_connection_by_id
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_connect_by_id")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "id")
+    '("ConIcConnectFlags" "flags")
+  )
+)
+
+(define-method disconnect
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_disconnect")
+  (return-type "gboolean")
+)
+
+(define-method disconnect_by_id
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_disconnect_by_id")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "id")
+  )
+)
+
+(define-method statistics
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_statistics")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "id")
+  )
+)
+
+(define-method get_proxy_mode
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_proxy_mode")
+  (return-type "ConIcProxyMode")
+)
+
+(define-method get_proxy_ignore_hosts
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_proxy_ignore_hosts")
+  (return-type "GSList*")
+)
+
+(define-method get_proxy_autoconfig_url
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_proxy_autoconfig_url")
+  (return-type "const-gchar*")
+)
+
+(define-method get_proxy_host
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_proxy_host")
+  (return-type "const-gchar*")
+  (parameters
+    '("ConIcProxyProtocol" "protocol")
+  )
+)
+
+(define-method get_proxy_port
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_proxy_port")
+  (return-type "gint")
+  (parameters
+    '("ConIcProxyProtocol" "protocol")
+  )
+)
+
+(define-method get_all_iaps
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_all_iaps")
+  (return-type "GSList*")
+)
+
+(define-method get_iap
+  (of-object "ConIcConnection")
+  (c-name "con_ic_connection_get_iap")
+  (return-type "ConIcIap*")
+  (parameters
+    '("const-gchar*" "id")
+  )
+)
+
+
