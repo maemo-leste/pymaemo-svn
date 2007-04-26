@@ -1,19 +1,26 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <title>Using Python in maemo</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
 <h1>Using Python in maemo</h1>
+<div class="copyright">
+  <p>
+    Copyright &copy; 2006-2007 INdT - Instituto Nokia de Tecnologia
+    <br>
+    Copyright &copy; 2007 Nokia Corporation
+    <br>
+    Author: Daniel d'Andrada T. de Carvalho &lt;daniel.[last name] at indt.org.br&gt;
+  </p>
+</div>
+
 <div id="minitoc-area">
 <!-- Write/use a TOC generator and put the generated HTML code here. -->
 </div>
-
-<!--
-CSS classes:
-  "codefrag" - Source code fragments (between <span> tags)
--->
 
 
 
@@ -115,18 +122,17 @@ if __name__ == "__main__":
   label.show()
   window.show()
 
-  gtk.main()
-  </pre>
+  gtk.main()</pre>
   <p>
     In the Scratchbox console, first make the file executable by running the
     <span class="codefrag">chmode +x ./hello_world_1.py</span> command, and then run the file
     with the <span class="codefrag">run-standalone.sh ./hello_world_1.py</span> command. Figure 1
     illustrates the results of the run command:
   </p>
-  <div>
+  <div class="screenshot">
     <img alt="Plain PyGTK &quot;Hello World!&quot; application" src="images/hello_world_1_small.jpg">
+    <p>Figure 1. Plain PyGTK "Hello World!" application</p>
   </div>
-  <p>Figure 1. Plain PyGTK "Hello World!" application</p>
   <p>
     You can see that the plain PyGTK code already "works" on maemo. However, do not use plain
     PyGTK code or rely on the assumption that any PyGTK code "works" on maemo. In this tiny
@@ -138,10 +144,10 @@ if __name__ == "__main__":
     the application is that it adds the Hildon theming. Figure 2 illustrates how the application
     looks if run without the <span class="codefrag">run-standalone.sh</span> command:
   </p>
-  <div>
+  <div class="screenshot">
     <img alt="Application without the Hildon theme" src="images/hello_world_1_no_theme_small.jpg">
+    <p>Figure 2. Application without the Hildon theme</p>
   </div>
-  <p>Figure 2. Application without the Hildon theme</p>
   <div class="frame note">
     <div class="label">Note</div>
     <div class="content">
@@ -181,10 +187,11 @@ if __name__ == "__main__":
   label.show()
   window.show()
 
-  gtk.main()
-  </pre>
-  <div><img alt="Hildon-compliant &quot;Hello World!&quot; application" src="images/hello_world_3_small.jpg"></div>
-  <p>Figure 3. Hildon-compliant "Hello World!" application</p>
+  gtk.main()</pre>
+  <div class="screenshot">
+    <img alt="Hildon-compliant &quot;Hello World!&quot; application" src="images/hello_world_3_small.jpg">
+    <p>Figure 3. Hildon-compliant "Hello World!" application</p>
+  </div>
   <p>
     Note how the borders are now drawn in the right way, since the program is using the
     <span class="codefrag">HildonWindow</span> class.
@@ -226,8 +233,7 @@ class HelloWorldApp(hildon.Program):
 
 if __name__ == "__main__":
   app = HelloWorldApp()
-  app.run()
-  </pre>
+  app.run()</pre>
   <p>When running the application, the result is the same as shown in Figure 3.</p>
 </div>
 
@@ -268,8 +274,10 @@ if __name__ == "__main__":
     The Scratchbox console can display some GLib warnings, but you can ignore them. Figure 4
     illustrates the screen you see after running the commands:
   </p>
-  <div><img alt="gPodder running on maemo without any modifications" src="images/gpodder_1_small.jpg"></div>
-  <p>Figure 4. gPodder running on maemo without any modifications</p>
+  <div class="screenshot">
+    <img alt="gPodder running on maemo without any modifications" src="images/gpodder_1_small.jpg">
+    <p>Figure 4. gPodder running on maemo without any modifications</p>
+  </div>
   <p>
     This means that gPodder 0.6 works on maemo without any modifications. However, it is not a maemo
     application yet, and the steps in the following sections are required to make it fit cleanly in
@@ -291,14 +299,15 @@ class Gpodder(SimpleGladeApp)
 class Gpodderstatus(SimpleGladeApp):
 class Gpodderchannel(SimpleGladeApp):
 class Gpodderproperties(SimpleGladeApp):
-class Gpodderepisode(SimpleGladeApp):
-  </pre>
+class Gpodderepisode(SimpleGladeApp):</pre>
   <p>
     There is one class for each <span class="codefrag">GtkWindow</span> defined in the
     <span class="codefrag">gpodder-0.8/data/gpodder.glade</span> file, as shown in Figure 5:
   </p>
-  <div><img alt="Windows defined in gPodder's glade file" src="images/gpodder_glade_2_small.jpg"></div>
-  <p>Figure 5. Windows defined in gPodder's glade file</p>
+  <div class="screenshot">
+    <img alt="Windows defined in gPodder's glade file" src="images/gpodder_glade_2_small.jpg">
+    <p>Figure 5. Windows defined in gPodder's glade file</p>
+  </div>
   <p>
     In addition to loading the window description from <span class="codefrag">gpodder.glade</span>,
     the <span class="codefrag">SimpleGladeApp</span> class also makes all window elements directly
@@ -310,8 +319,10 @@ class Gpodderepisode(SimpleGladeApp):
     <tbody>
       <tr>
         <td colspan="1" rowspan="1">
-          <div><img alt="Widget tree for the gPodder window" src="images/gpodder_glade_3_small.jpg"></div>
-          <p>Figure 6. Widget tree for the gPodder window</p>
+          <div class="screenshot">
+            <img alt="Widget tree for the gPodder window" src="images/gpodder_glade_3_small.jpg">
+            <p>Figure 6. Widget tree for the gPodder window</p>
+          </div>
         </td>
         <td colspan="1" rowspan="1">
           <pre>
@@ -325,8 +336,7 @@ self.wNotebook
 self.vboxAvailablePodcasts
 self.hboxChannels
 self.scrollAbailable
-self.treeAvailable
-          </pre>
+self.treeAvailable</pre>
         </td>
       </tr>
     </tbody>
@@ -351,8 +361,7 @@ self.treeAvailable
 ++ |
 64 |# for isDebugging:
 65 |app_name = "gpodder"
-66 |app_version = "unknown" # will be set in main() call
-  </pre>
+66 |app_version = "unknown" # will be set in main() call</pre>
   <p>
     Second, add a <span class="codefrag">HildonProgram</span>
     (<span class="codefrag">self.app</span>) and a <span class="codefrag">HildonWindow</span>
@@ -374,8 +383,7 @@ self.treeAvailable
  ++ |        self.gPodder.destroy()
  ++ |
  ++ |        self.window.show_all()
- ++ |
-  </pre>
+ ++ |</pre>
   <p>
     The <span class="codefrag">gPodder</span> class (<span class="codefrag">self</span>) has its
     <span class="codefrag">close_gpodder</span> method connected to the
@@ -390,8 +398,10 @@ self.treeAvailable
     <span class="codefrag">gpodder-0.8/data</span> directory) and remove the connection, as shown in
     Figure 7.
   </p>
-  <div><img alt="destroy signal for gPodder window" src="images/gpodder_glade_1_small.jpg"></div>
-  <p>Figure 7. destroy signal for gPodder window</p>
+  <div class="screenshot">
+    <img alt="destroy signal for gPodder window" src="images/gpodder_glade_1_small.jpg">
+    <p>Figure 7. destroy signal for gPodder window</p>
+  </div>
   <p>
     The following example illustrates how you connect
     <span class="codefrag">Gpodder.close_gpodder</span> to the new
@@ -403,15 +413,16 @@ self.treeAvailable
  ++ |        self.window.connect("destroy", self.close_gpodder)
     |        self.app.add_window(self.window)
     |
-    |        self.vMain.reparent(self.window)
-  </pre>
+    |        self.vMain.reparent(self.window)</pre>
   <p>
     The change from <span class="codefrag">GtkWindow</span> to
     <span class="codefrag">HildonProgram</span>/<span class="codefrag">HildonWindow</span> is now
     complete. Figure 8 illustrates the results if you run gPodder again.
   </p>
-  <div><img alt="gPodder using HildonProgram and HildonWindow" src="images/gpodder_2_small.jpg"></div>
-  <p>Figure 8. gPodder using HildonProgram and HildonWindow</p>
+  <div class="screenshot">
+    <img alt="gPodder using HildonProgram and HildonWindow" src="images/gpodder_2_small.jpg">
+    <p>Figure 8. gPodder using HildonProgram and HildonWindow</p>
+  </div>
   <p>
     Note that the window fits in the screen without any broken borders, just as the "Hello World"
     application did.
@@ -445,11 +456,12 @@ self.treeAvailable
  ++ |
  ++ |        self.mainMenu.destroy()
     |
-    |        self.window.show_all()
-  </pre>
+    |        self.window.show_all()</pre>
   <p>Figure 9 illustrates the resulting menu:</p>
-  <div><img alt="gPodder using HildonWindow's menu bar" src="images/gpodder_3_small.jpg"></div>
-  <p>Figure 9. gPodder using HildonWindow's menu bar</p>
+  <div class="screenshot">
+    <img alt="gPodder using HildonWindow's menu bar" src="images/gpodder_3_small.jpg">
+    <p>Figure 9. gPodder using HildonWindow's menu bar</p>
+  </div>
 
   <h3>Using Hildon widgets</h3>
   <p>
@@ -474,11 +486,12 @@ self.treeAvailable
     ++ |        dlg = hildon.FileChooserDialog(self.window, gtk.FILE_CHOOSER_ACTION_SAVE);
     ++ |
 564    |        response = dlg.run()
-565    |        if response == gtk.RESPONSE_OK:
-  </pre>
+565    |        if response == gtk.RESPONSE_OK:</pre>
   <p>Figure 10 illustrates the results when you select <em>Menu &gt; Channels &gt; Export List</em>:</p>
-  <div><img alt="gPodder using Hildon's file chooser dialog" src="images/gpodder_4_small.jpg"></div>
-  <p>Figure 10. gPodder using Hildon's file chooser dialog</p>
+  <div class="screenshot">
+    <img alt="gPodder using Hildon's file chooser dialog" src="images/gpodder_4_small.jpg">
+    <p>Figure 10. gPodder using Hildon's file chooser dialog</p>
+  </div>
 
   <h3>Adjusting the Glade interface to fit into a small screen</h3>
   <p>
@@ -532,8 +545,7 @@ self.treeAvailable
  ++ |        self.window_in_fullscreen = False #The window isn't in full screen mode initially.
     |        self.app.add_window(self.window)
     |
-    |        self.vMain.reparent(self.window)
-  </pre>
+    |        self.vMain.reparent(self.window)</pre>
   <p>
     The following example illustrates the window state monitoring implementation
     <span class="codefrag">on_window_state_change</span>:
@@ -549,8 +561,7 @@ self.treeAvailable
  ++ |            self.window_in_fullscreen = False
  ++ |
 554 | #-- Gpodder.on_itemExportChannels_activate {
-555 |    def on_itemExportChannels_activate(self, widget, *args):
-  </pre>
+555 |    def on_itemExportChannels_activate(self, widget, *args):</pre>
   <p>
     The following example illustrates the hardware key monitoring implementation (
     <span class="codefrag">on_key_press</span>):
@@ -568,15 +579,16 @@ self.treeAvailable
  ++ |                self.window.fullscreen ()
     |
 554 | #-- Gpodder.on_itemExportChannels_activate {
-555 |    def on_itemExportChannels_activate(self, widget, *args):
-  </pre>
+555 |    def on_itemExportChannels_activate(self, widget, *args):</pre>
   <div class="frame note">
     <div class="label">Note</div>
     <div class="content">The <em>Full screen</em> hardware key maps to the F6 key on the GDK.</div>
   </div>
   <p>Figure 11 illustrates gPodder in the full screen mode.</p>
-  <div><img alt="gPodder in the full screen mode" src="images/gpodder_5_small.jpg"></div>
-  <p>Figure 11. gPodder in the full screen mode</p>
+  <div class="screenshot">
+    <img alt="gPodder in the full screen mode" src="images/gpodder_5_small.jpg">
+    <p>Figure 11. gPodder in the full screen mode</p>
+  </div>
 </div>
 
 
@@ -631,8 +643,7 @@ send_button = gtk.Button("Send RPC")
 window.add(send_button)
 send_button.connect("clicked", send_rpc, osso_c)
 window.show_all()
-gtk.main()
-  </pre>
+gtk.main()</pre>
 
   <h3>Receiver sample application</h3>
   <p>
@@ -658,8 +669,7 @@ osso_rpc = osso.Rpc(osso_c)
 osso_rpc.set_rpc_callback("spam.eggs.osso_test_receiver",
     "/spam/eggs/osso_test_receiver",
     "spam.eggs.osso_test_receiver", callback_func, osso_c)
-gtk.main()
-  </pre>
+gtk.main()</pre>
   <p>
     The receiver also must register itself as a D-BUS service. Create a
     <span class="codefrag">osso_test_receiver.service</span> file with the following content.
@@ -667,8 +677,7 @@ gtk.main()
   <pre>
 [D-BUS Service]
 Name=spam.eggs.osso_test_receiver
-Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py  
-  </pre>
+Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
   <p>
     Replace <span class="codefrag">{SOME_DIRECTORY_HIERARCHY}</span> with the directory where
     <span class="codefrag">osso_test_receiver.py</span> is located.</p>
@@ -683,19 +692,17 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py
     <span class="codefrag">spam.eggs.osso_test_receiver</span>). To do this, restart your maemo
     environment by using the following command on the Scratchbox console:
   </p>
-  <pre>
-[sbox-TARGET_NAME: ~] &gt; af-sb-init.sh restart
-  </pre>
+  <pre>[sbox-TARGET_NAME: ~] &gt; af-sb-init.sh restart</pre>
   <p>
     Then run <span class="codefrag">osso_test_sender.py</span> with the following command (assuming
     that it is in your home directory):
   </p>
-  <pre>
-[sbox-TARGET_NAME: ~] &gt; run-standalone.sh ./osso_test_sender.py
-  </pre>
+  <pre>[sbox-TARGET_NAME: ~] &gt; run-standalone.sh ./osso_test_sender.py</pre>
   <p>Figure 12 illustrates what now happens every time you click the <em>Send RPC</em> button.</p>
-  <div><img alt="LibOSSO sample application" src="images/libosso_tutorial_small.jpg"></div>
-  <p>Figure 12. LibOSSO sample application</p>
+  <div class="screenshot">
+    <img alt="LibOSSO sample application" src="images/libosso_tutorial_small.jpg">
+    <p>Figure 12. LibOSSO sample application</p>
+  </div>
   <p>
     Note that you do not have to manually run <span class="codefrag">osso_test_receiver.py</span>,
     as D-BUS does it automatically. Due to its extreme simplicity, the once instantiated
@@ -742,8 +749,7 @@ button = gtk.Button ("Hello Python for Maemo!")
 window.add (button)
 
 window.show_all ()
-gtk.main ()
-  </pre>
+gtk.main ()</pre>
   <p>
     Make the file executable by running the <span class="codefrag">chmod +x hello-pymaemo</span>
     command. This ensures that you can run the script in the same way as a regular binary
@@ -757,8 +763,10 @@ gtk.main ()
     the <a href="http://www.maemo.org/platform/docs/python-bora/images/pymaemo_bora/hello_icon_26x26.png">
     example icon</a> shown in Figure 13:
   </p>
-  <div><img alt="Hello PyMaemo icon" src="images/hello_icon_26x26.jpg"></div>
-  <p>Figure 13. Hello PyMaemo icon</p>
+  <div class="screenshot">
+    <img alt="Hello PyMaemo icon" src="images/hello_icon_26x26.jpg">
+    <p>Figure 13. Hello PyMaemo icon</p>
+  </div>
   <p>Name the icon <span class="codefrag">hello_icon_26x26.png</span>.</p>
   <p>
     The menu entry is a <span class="codefrag">.desktop</span> file with the following content for
@@ -773,8 +781,7 @@ Exec=/usr/bin/hello-pymaemo
 Icon=hello_icon_26x26
 Type=Application
 X-Osso-Service=hello_pymaemo
-X-Osso-Type=application/x-executable
-  </pre>
+X-Osso-Type=application/x-executable</pre>
   <div class="frame note">
     <div class="label">Note</div>
     <div class="content">
@@ -783,7 +790,6 @@ X-Osso-Type=application/x-executable
       without yielding any errors.
     </div>
   </div>
-  <p>Table 1. <span class="codefrag">.desktop</span> file fields</p>
   <table border="0" cellpadding="4" cellspacing="1">
     <tbody>
       <tr>
@@ -832,6 +838,7 @@ X-Osso-Type=application/x-executable
       </tr>
     </tbody>
   </table>
+  <p>Table 1. <span class="codefrag">.desktop</span> file fields</p>
   <p>
     As you can see in the desktop file, the application also needs an osso (D-BUS) service.
     Otherwise, it does not appear in the task navigation bar. For the service, create a
@@ -840,8 +847,7 @@ X-Osso-Type=application/x-executable
   <pre>
 [D-BUS Service]
 Name=com.nokia.hello_pymaemo
-Exec=/usr/bin/hello-pymaemo 
-  </pre>
+Exec=/usr/bin/hello-pymaemo</pre>
   <p>
     Note that since "-" is not a valid character in a service name.,
     <span class="codefrag">hello_pymaemo</span> is used instead of
@@ -864,8 +870,7 @@ setup(name='hello-pymaemo',
                     ('share/applications/hildon', ['hello-pymaemo.desktop']),
                     ('share/dbus-1/services',     ['hello_pymaemo.service']),
                     ]
-      )
-  </pre>
+      )</pre>
   <p>
     In the Scratchbox console, issue the <span class="codefrag">python2.5 setup.py install</span>
     command to achieve the following result:
@@ -933,15 +938,12 @@ all:
 clean: 
   python2.5 setup.py clean --all
 install:
-  python2.5 setup.py install --root $(DESTDIR)
-  </pre>
+  python2.5 setup.py install --root $(DESTDIR)</pre>
   <p>
     In Scratchbox console (inside the <span class="codefrag">hello-pymaemo-1.0.0</span> directory),
     enter the following command:
   </p>
-  <pre>
-[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dh_make -e your.email@somewhere.com
-  </pre>
+  <pre>[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dh_make -e your.email@somewhere.com</pre>
   <p>The system displays the following output:</p>
   <pre>
 Type of package: single binary, multiple binary, library, or kernel module?  [s/m/l/k] s
@@ -953,8 +955,7 @@ Version         : 1.0.0
 Type of Package : Single
 Hit &lt;enter&gt; to confirm:
 Done. Please edit the files in the debian/ subdirectory now.
-You should also check that the hello-pymaemo Makefiles install into $DESTDIR and not in / .
-  </pre>
+You should also check that the hello-pymaemo Makefiles install into $DESTDIR and not in / .</pre>
   <p>
     Choose "single binary" as a package type. In case the <span class="codefrag">"--root $(DESTDIR)"
     </span> part of the makefile is not clear to you, the last sentece in the output is meant to
@@ -1040,8 +1041,7 @@ XB-Maemo-Icon-26:
  ymeqRQAmZ3EcA5E/fgO6BULT8zhOcrwXoJdrXRa2Lgps2y2odAUcBUIXQdz78YyC
  SldAp8b7+bXrIv91qjZBietqCc2DjbAt4b2WxJkyZljVujlwp0U0cPxuLcAIuC+4 
  dKxFlsDJarvdAGP/b6hFnDImYs+uG3hbO2AB3Jbsur63tQM+fFx3bzZocEB8AdV2
- gJBZgKTwAAAAAElFTkSuQmCC
-  </pre>
+ gJBZgKTwAAAAAElFTkSuQmCC</pre>
   <p>
     The <span class="codefrag">XB-Maemo-Icon-26</span> field contains the application icon file (in
     this case, <span class="codefrag">hello_icon_26x26.png</span>) encoded in base64. This is the
@@ -1125,8 +1125,7 @@ binary-indep: build install
 binary-arch: build install
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
-  </pre>
+.PHONY: build clean binary-indep binary-arch binary install configure</pre>
   <p>
     The main point is that the <span class="codefrag">binary-arch</span> target was emptied and the
     <span class="codefrag">binary-indep</span> filled, since the application being 100% Python means
@@ -1136,9 +1135,7 @@ binary: binary-indep binary-arch
     All the preliminary steps are now done, and you can build the Debian package itself with the
     following command:
   </p>
-  <pre>
-[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dpkg-buildpackage -rfakeroot
-  </pre>
+  <pre>[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dpkg-buildpackage -rfakeroot</pre>
   <p>
     The system displays some output, including a couple of warnings near the end of it
     (about XB-Maemo-Icon-26) but that is normal. The parent directory now has a <span class="codefrag">
