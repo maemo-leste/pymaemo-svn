@@ -73,3 +73,15 @@ pre {
     line-height: 120%;
     font-size: 90%;
 }
+
+.toc_h3 {
+    margin-left:4em;
+}
+
+.toc_h4 {
+    margin-left:8em;
+}
+
+.minitoc-area {
+  font-size: 90%;
+}
