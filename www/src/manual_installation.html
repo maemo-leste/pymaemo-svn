@@ -1,0 +1,82 @@
+<h2>Manual Installation</h2>
+
+
+<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary
+to ensure that all python2.4 packages will be correctly removed.</p>
+
+<p>Follow these steps:</p>
+<ol>
+  <li><p>Open the <em>Application manager</em> (in <em>Tools</em> menu).</p></li>
+  <li><p>Open its <em>Application catalogue</em> (inside <em>Tools</em>, on the application's menu).</p></li>
+
+  <li>
+    <p>Add the following repositories:</p>
+    <table class="normal-box">
+    <tr>
+        <td><strong>Name:</strong></td>
+        <td>Maemo</td>
+    </tr>
+    <tr>
+        <td><strong>Web address:</strong></td>
+        <td>http://repository.maemo.org</td>
+    </tr>
+    <tr>
+        <td><strong>Distribution:</strong></td>
+        <td>bora</td>
+    </tr>
+    <tr>
+        <td><strong>Components:</strong></td>
+        <td>free non-free</td>
+    </tr>
+    </table>
+    <br>
+    <table class="normal-box">
+    <tr>
+        <td><strong>Name:</strong></td>
+        <td>Maemo Extras</td>
+    </tr>
+    <tr>
+        <td><strong>Web address:</strong></td>
+        <td>http://repository.maemo.org/extras</td>
+    </tr>
+    <tr>
+        <td><strong>Distribution:</strong></td>
+        <td>bora</td>
+    </tr>
+    <tr>
+        <td><strong>Components:</strong></td>
+        <td>free non-free</td>
+    </tr>
+    </table>
+  </li>
+
+  <li>
+    <p>Refresh package list.</p>
+  </li>
+
+  <li>
+    <p>
+      Install <var>python2.5-runtime</var> package, which will automatically pull all available
+      Python bindings, but not the development packages.
+    </p>
+  </li>
+
+</ol>
+
+<p>
+  Note that if you're using Maemo 2.x series you have to replace <em>bora</em> by the appropriate
+  distribution name. Either <em>scirocco</em> (2.1) or <em>gregale</em> (2.2).
+</p>
+
+
+<h3>Development Packages</h3>
+<p>
+  To be able to develop and applications using the device it's necessary to install
+  <var>python2.5-dev</var> package. The steps to do this are decribed below:
+</p>
+<p>Open a xterm session. Inside this session run:</p>
+<pre>sudo /usr/sbin/gainroot</pre>
+<p>Now install the package using apt-get utility:</p>
+<pre>apt-get install python2.5-dev</pre>
+<p>And finally exit from gainroot:</p>
+<pre>exit</pre>

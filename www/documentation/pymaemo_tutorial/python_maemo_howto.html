@@ -101,6 +101,37 @@
 
 
 
+<h2>Installing Python</h2>
+<div class="section">
+  <p>
+    Unfortunately, maemo SDK and maemo devices (Nokia 770 and N800, so far) doesn't come
+    Python-ready out of the box. But the good news is that it's pretty easy to install Python on them.
+  </p>
+
+  <h3>On maemo SDK (scratchbox)</h3>
+  <p>
+    The first thing is to add the maemo <em>extras</em> repository (where Python is located) to your
+    list of package sources. To do that you'll have to edit the file <span class="codefrag">
+    /etc/apt/sources.list</span>. It will probably look like this:
+  </p>
+  <pre>
+deb http://repository.maemo.org/ bora free non-free
+deb-src http://repository.maemo.org/ bora free
+deb file:/home/[username]/maemo-sdk-nokia-binaries_3.1 bora explicit</pre>
+  <p>Add the following line to it:</p>
+  <pre>
+deb http://repository.maemo.org/extras bora free non-free</pre>
+  <p>Now resynchronize your package index files with the following command:</p>
+<pre>[sbox-SDK_X86: ~] > apt-get update</pre>
+
+  <h3>On maemo devices</h3>
+  <p>
+    Bla bla
+  </p>
+</div>
+
+
+
 <h2>Example of a "Hello World!" application</h2>
 <div class="section">
   <p>

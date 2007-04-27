@@ -1,13 +1,18 @@
 import fileinput
 
-html_pages = ['index',
+html_pages = [
+              'manual_installation',
+              'installation',
+              'index',
               'pict1',
               'pict2',
               'pict3',
               'pict4',
               'pict5',
               'pict6',
-              'pymaemo25_releasenotes']
+              'pymaemo25_releasenotes',
+              'sdk_installation'
+             ]
 
 def inject_page (dest_file, page):
     src_file = open(page + '.html', 'r')
