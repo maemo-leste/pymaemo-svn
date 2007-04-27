@@ -202,13 +202,22 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <li>
 <a href="#set_duration_max">set_duration_max</a>
 </li>
+<li>
+<a href="#get_show_hours">get_show_hours</a>
+</li>
+<li>
+<a href="#set_show_hours">set_show_hours</a>
+</li>
 </ul>
 </li>
 </ul>
 </div> 
     
-<p>A simple widget with entries for hours and minutes and a pm/am indicator as well as a button
-       which pops up a <span class="codefrag">hildon.TimePicker</span> dialog window.</p>
+<div style="text-align: center;">
+<img class="figure" alt="hildon.CalendarPopup" src="hildon_timeeditor_small.jpg"></div>
+
+    
+<p>A simple widget with entries for hours and minutes and a pm/am</span>.</p>
     
 <a name="N10012"></a><a name="Description"></a>
 <h2 class="boxed">Description</h2>
@@ -590,7 +599,7 @@ TO DO
 <tr>
             
 <th colspan="2" rowspan="1">
-              <span class="codefrag">hildon.TimeEditor.get_duration_min(duration_min)</span>
+              <span class="codefrag">hildon.TimeEditor.set_duration_min(duration_min)</span>
             </th>
           
 </tr>
@@ -632,7 +641,7 @@ TO DO
 <tr>
             
 <th colspan="2" rowspan="1">
-              <span class="codefrag">hildon.TimeEditor.get_duration_max(duration_max)</span>
+              <span class="codefrag">hildon.TimeEditor.set_duration_max(duration_max)</span>
             </th>
           
 </tr>
@@ -645,6 +654,76 @@ TO DO
 </tr>
         
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="N10210"></a><a name="get_show_hours"></a>
+<h3 class="boxed">get_show_hours</h3>
+<p>Returns whether the hours field is being shown or not.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_show_hours()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> if hours field is being shown and <span class="codefrag">False</span> otherwise.</td>
+          
+</tr>
+
+
+       
+</table>
+<a name="N1028C"></a><a name="set_show_hours"></a>
+<h3 class="boxed">set_show_hours</h3>
+<p>This method shows or hides the hours field.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_show_hours(show_hours)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">show_hours</span></td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> to show or <span class="codefrag">False</span> to hide the hours field.</td>
+          
+</tr>
+        
+</table>
+
+
+
+
+
+
+
 </div>
   
 </div>
