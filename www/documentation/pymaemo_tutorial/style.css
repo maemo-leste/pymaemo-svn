@@ -41,9 +41,10 @@ font-size:1.1em;
     font-size: 85%;
 }
 
-.codefrag {
+var {
     font-family: "Courier New", Courier, monospace;
     font-size: 110%;
+    font-style: normal;
     color: #000;
 }
 
@@ -56,17 +57,21 @@ pre {
 
 
 
-.frame {
+.note {
     border: solid black 1px;
-    margin: 1em 3em;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    width: 60%;
 }
-.frame .label {
+.note .label {
     background: #444;
     color: white;
     font-weight: bold;
     padding: 5px 10px;
 }
-.frame .content {
+.note .content {
     padding: 5px 10px;
     background: #f3f3ff;
     color: black;
@@ -88,4 +93,8 @@ pre {
 
 .minitoc-area a {
     color:#555;
+}
+
+.widget-code {
+    margin: auto;
 }

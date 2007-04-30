@@ -92,9 +92,8 @@
     doctest, unittest, config, symtable, tabnanny, timeit, trace and hotshot.
   </p>
   <p>
-    The <span class="codefrag">import</span> command will import <span class="codefrag">.pyo</span>
-    files even if the interpreted is called without the <span class="codefrag">-O</span> or
-    <span class="codefrag">-OO</span> option. This is a difference from the standard Python
+    The <var>import</var> command will import <var>.pyo</var> files even if the interpreted is
+    called without the <var>-O</var> or <var>-OO</var> option. This is a difference from the standard Python
     behavior.
   </p>
 </div>
@@ -110,23 +109,15 @@
 
   <h3>On maemo SDK (scratchbox)</h3>
   <p>
-    The first thing is to add the maemo <em>extras</em> repository (where Python is located) to your
-    list of package sources. To do that you'll have to edit the file <span class="codefrag">
-    /etc/apt/sources.list</span>. It will probably look like this:
+    Follow the instructions on <var><a href="http://pymaemo.garage.maemo.org/sdk_installation.html">http://pymaemo.garage.maemo.org/sdk_installation.html</a></var>.
   </p>
-  <pre>
-deb http://repository.maemo.org/ bora free non-free
-deb-src http://repository.maemo.org/ bora free
-deb file:/home/[username]/maemo-sdk-nokia-binaries_3.1 bora explicit</pre>
-  <p>Add the following line to it:</p>
-  <pre>
-deb http://repository.maemo.org/extras bora free non-free</pre>
-  <p>Now resynchronize your package index files with the following command:</p>
-<pre>[sbox-SDK_X86: ~] > apt-get update</pre>
 
   <h3>On maemo devices</h3>
   <p>
-    Bla bla
+    The easiest way is to visit <var><a href="http://pymaemo.garage.maemo.org/installation.html">http://pymaemo.garage.maemo.org/installation.html</a></var>
+    using the maemo device itself and clicking on the installation buttons there. If for some reason
+    this is not possible or you like to install it by yourself there's also directions for manual
+    installation on <var><a href="http://pymaemo.garage.maemo.org/manual_installation.html">http://pymaemo.garage.maemo.org/manual_installation.html</a></var>.
   </p>
 </div>
 
@@ -136,30 +127,29 @@ deb http://repository.maemo.org/extras bora free non-free</pre>
 <div class="section">
   <p>
     To get started with Python, use the following sections to write a simple GTK+ application which
-    creates and shows a window with a "Hello World!" text. The application does not even quit when
-    the window is closed.
+    creates and shows a window with a "Hello World!" text.
   </p>
 
   <h3>Plain PyGTK</h3>
-  <p>Create a <span class="codefrag">hello_world_1.py</span> file with the following content.</p>
+  <p>Create a <var>hello_world_1.py</var> file with the following content.</p>
   <pre>
 #!/usr/bin/env python2.5
 import gtk
-if __name__ == "__main__":
-  window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 
-  label = gtk.Label("Hello World!")
-  window.add(label)
+window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 
-  label.show()
-  window.show()
+label = gtk.Label("Hello World!")
+window.add(label)
 
-  gtk.main()</pre>
+label.show()
+window.show()
+
+gtk.main()</pre>
   <p>
     In the Scratchbox console, first make the file executable by running the
-    <span class="codefrag">chmode +x ./hello_world_1.py</span> command, and then run the file
-    with the <span class="codefrag">run-standalone.sh ./hello_world_1.py</span> command. Figure 1
-    illustrates the results of the run command:
+    <var>chmode +x ./hello_world_1.py</var> command, and then run the file with the
+    <var>run-standalone.sh ./hello_world_1.py</var> command. Figure 1 illustrates the results of
+    the run command:
   </p>
   <div class="screenshot">
     <img alt="Plain PyGTK &quot;Hello World!&quot; application" src="images/hello_world_1_small.jpg">
@@ -172,37 +162,34 @@ if __name__ == "__main__":
     (skin graphic area) are broken (look at the top corners).
   </p>
   <p>
-    The reason for using the <span class="codefrag">run-standalone.sh</span> command to execute
+    The reason for using the <var>run-standalone.sh</var> command to execute
     the application is that it adds the Hildon theming. Figure 2 illustrates how the application
-    looks if run without the <span class="codefrag">run-standalone.sh</span> command:
+    looks if run without the <var>run-standalone.sh</var> command:
   </p>
   <div class="screenshot">
     <img alt="Application without the Hildon theme" src="images/hello_world_1_no_theme_small.jpg">
     <p>Figure 2. Application without the Hildon theme</p>
   </div>
-  <div class="frame note">
+  <div class="note">
     <div class="label">Note</div>
     <div class="content">
-      The <span class="codefrag">run-standalone.sh</span> command is only available if you run
+      The <var>run-standalone.sh</var> command is only available if you run
       applications from the Scratchbox console.
     </div>
   </div>
 
   <h3>HildonWindow Class</h3>
   <p>
-    The <span class="codefrag">HildonWindow</span> class overloads the
-    <span class="codefrag">GtkWindow</span> class, providing the Hildon theme (look and feel) for
-    the top level windows. In order to use the facilities provided by the Hildon framework (and to
-    integrate cleanly in it), the application must use a <span class="codefrag">HildonWindow</span>
-    instead of a <span class="codefrag">GtkWindow</span>. With a
-    <span class="codefrag">HildonWindow</span> class, the application has, for example, access to
-    the Hildon menus and toolbars.
+    The <var>HildonWindow</var> class overloads the <var>GtkWindow</var> class, providing the Hildon
+    theme (look and feel) for top level windows. In order to use the facilities provided by the
+    Hildon framework (and to integrate cleanly in it), the application must use a <var>HildonWindow</var>
+    instead of a <var>GtkWindow</var>. With a <var>HildonWindow</var> class the application has,
+    for example, access to Hildon menus and toolbars.
   </p>
   <p>
-    The requires code change is simple: replace the <span class="codefrag">GtkWindow</span> with
-    the <span class="codefrag">HildonWindow</span>, and import the
-    <span class="codefrag">hildon</span> module. The following example illustrates the required
-    changes.
+    The required code change is simple: replace the <var>GtkWindow</var> with <var>HildonWindow</var>
+    and import the <var>hildon</var> module. The following example illustrates the required
+    changes (also downloadable <a href="examples/hello_world_1.py">here</a>):
   </p>
   <pre>
 #!/usr/bin/env python2.5
@@ -210,41 +197,39 @@ if __name__ == "__main__":
 import gtk 
 import hildon
 
-if __name__ == "__main__":
-  window = hildon.Window()
-  window.connect("destroy", gtk.main_quit)
-  label = gtk.Label("Hello World!")
-  window.add(label)
+window = hildon.Window()
+window.connect("destroy", gtk.main_quit)
+label = gtk.Label("Hello World!")
+window.add(label)
 
-  label.show()
-  window.show()
+label.show()
+window.show()
 
-  gtk.main()</pre>
+gtk.main()</pre>
   <div class="screenshot">
     <img alt="Hildon-compliant &quot;Hello World!&quot; application" src="images/hello_world_3_small.jpg">
     <p>Figure 3. Hildon-compliant "Hello World!" application</p>
   </div>
   <p>
     Note how the borders are now drawn in the right way, since the program is using the
-    <span class="codefrag">HildonWindow</span> class.
+    <var>HildonWindow</var> class.
   </p>
 
   <h3>HildonProgram Class</h3>
   <p>
-    The <span class="codefrag">HildonProgram</span> class is a programmer commodity used to apply
-    program-wide settings to all Hildon windows used by the application (for example, this allows
-    you to have a common menu and toolbar in all windows). In addition, the
-    <span class="codefrag">HildonProgram</span> also manages other program-wide issues, such as
-    hibernating.
+    The <var>HildonProgram</var> class is a programmer commodity used to apply program-wide settings
+    to all Hildon windows used by the application (for example, this allows you to have a common
+    menu and toolbar on all windows). In addition, <var>HildonProgram</var> also manages other
+    program-wide issues, such as hibernating.
   </p>
   <p>
-    The example "Hello World" application has no use for a
-    <span class="codefrag">HildonProgram</span> object, but it is added to the following example,
+    The example "Hello World" application has no use for a <var>HildonProgram</var> object, but it
+    is added to the following example (also downloadable <a href="examples/hello_world_2.py">here</a>),
     simply to illustrate how a regular Hildon application is structured.
   </p>
   <pre>
 #!/usr/bin/env python2.5
-import gtk 
+import gtk
 import hildon
 
 class HelloWorldApp(hildon.Program):
@@ -263,9 +248,8 @@ class HelloWorldApp(hildon.Program):
     self.window.show_all()
     gtk.main()
 
-if __name__ == "__main__":
-  app = HelloWorldApp()
-  app.run()</pre>
+app = HelloWorldApp()
+app.run()</pre>
   <p>When running the application, the result is the same as shown in Figure 3.</p>
 </div>
 
@@ -278,12 +262,12 @@ if __name__ == "__main__":
     The porting of a real application is illustrated with step-by-step instructions.
   </p>
   <p>
-    The example application is gPodder (version 0.6). It was chosen because, it is reasonably
-    simple, has a small, uncluttered interface and contains most of the important issues involved
+    The example application is gPodder (version 0.8). It was chosen because it is reasonably
+    simple, has a small, uncluttered, interface and contains most of the important issues involved
     in porting PyGTK applications to maemo.
   </p>
   <p>
-    Most of the porting effort is spent making an application use and obey the Hildon UI style
+    A great part of the porting effort is spent making an application use and obey the Hildon UI style
     (such as making use of hardware keys and Hildon-specific widgets). As a result, make sure that
     you are familiar with the Hildon UI style before you start porting. For more information, see
     Hildon User Interface Style Guide<a href="#references_hildon_ui_guide"><sup>2</sup></a>.
@@ -293,13 +277,17 @@ if __name__ == "__main__":
   <p>To install and run gPodder:</p>
   <ol>
     <li>
-      Explode the <span class="codefrag">gpodder-0.8.tar.gz</span> file. The
-      <span class="codefrag">gpodder-0.8</span> directory is created.
+      Download the source package <a href="gpodder-0.8.0.tar.gz">here</a> or directly from the project's page,
+      <var><a href="http://gpodder.berlios.de/">http://gpodder.berlios.de/</a></var>.
     </li>
     <li>
-      In the <span class="codefrag">gpodder-0.8</span> directory, use the Scratchbox console to run
-      the following commands: <span class="codefrag">python2.5 setup.py install</span> and
-      <span class="codefrag">run-standalone.sh gpodder</span>
+      Explode the <var>gpodder-0.8.0.tar.gz</var> file. The <var>gpodder-0.8.0</var> directory
+      will be created.
+    </li>
+    <li>
+      In the <var>gpodder-0.8.0</var> directory, use the Scratchbox console to run
+      the following commands: <var>python2.5 setup.py install</var> and
+      <var>run-standalone.sh gpodder</var>
     </li>
   </ol>
   <p>
@@ -311,7 +299,7 @@ if __name__ == "__main__":
     <p>Figure 4. gPodder running on maemo without any modifications</p>
   </div>
   <p>
-    This means that gPodder 0.6 works on maemo without any modifications. However, it is not a maemo
+    This means that gPodder 0.8 works on maemo without any modifications. However, it is not a maemo
     application yet, and the steps in the following sections are required to make it fit cleanly in
     the Maemo environment.
   </p>
@@ -323,40 +311,43 @@ if __name__ == "__main__":
   </p>
   <p>
     Most of the code changes are made in the
-    <span class="codefrag">gpodder-0.8/src/gpodder/gpodder.py</span> file. It contains the following
+    <var>gpodder-0.8.0/src/gpodder/gpodder.py</var> file. It contains the following
     classes:
   </p>
   <pre>
 class Gpodder(SimpleGladeApp)
-class Gpodderstatus(SimpleGladeApp):
-class Gpodderchannel(SimpleGladeApp):
-class Gpodderproperties(SimpleGladeApp):
-class Gpodderepisode(SimpleGladeApp):</pre>
+class Gpodderchannel(SimpleGladeApp)
+class Gpodderproperties(SimpleGladeApp)
+class Gpodderepisode(SimpleGladeApp)
+class Gpoddersync(SimpleGladeApp)
+class Gpodderopmllister(SimpleGladeApp)</pre>
   <p>
-    There is one class for each <span class="codefrag">GtkWindow</span> defined in the
-    <span class="codefrag">gpodder-0.8/data/gpodder.glade</span> file, as shown in Figure 5:
+    Open the <var>gpodder-0.8.0/data/gpodder.glade</var> file using the
+    <em><a href="http://glade.gnome.org/">Glade User Interface Designer</a></em>
+    (another option is <em><a href="http://gazpacho.sicem.biz/">Gazpacho</a></em>). You can see that there is one class for each
+    <var>GtkWindow</var> defined in it, as shown in Figure 5:
   </p>
   <div class="screenshot">
-    <img alt="Windows defined in gPodder's glade file" src="images/gpodder_glade_2_small.jpg">
+    <img alt="Windows defined in gPodder's glade file" src="images/gpodder_glade_1.png">
     <p>Figure 5. Windows defined in gPodder's glade file</p>
   </div>
   <p>
-    In addition to loading the window description from <span class="codefrag">gpodder.glade</span>,
-    the <span class="codefrag">SimpleGladeApp</span> class also makes all window elements directly
-    accessible from <span class="codefrag">self</span>, ignoring the element's hierarchy. Figure 6
-    illustrates a part of the element's hierarchy for the gPodder window, and how to access the
-    elements from inside a <span class="codefrag">Gpodder</span> method.
+    In addition to loading the window description from <var>gpodder.glade</var>,
+    the <var>SimpleGladeApp</var> class also makes all window elements directly
+    accessible from <var>self</var>, ignoring the element's hierarchy. Figure 6
+    illustrates part of the element's hierarchy for the gPodder window, and how to access the
+    elements from inside a <var>Gpodder</var> method.
   </p>
-  <table border="0" cellpadding="4" cellspacing="1">
+  <table class="widget-code">
     <tbody>
       <tr>
-        <td colspan="1" rowspan="1">
+        <td>
           <div class="screenshot">
-            <img alt="Widget tree for the gPodder window" src="images/gpodder_glade_3_small.jpg">
+            <img alt="Widget tree for the gPodder window" src="images/gpodder_glade_2.png">
             <p>Figure 6. Widget tree for the gPodder window</p>
           </div>
         </td>
-        <td colspan="1" rowspan="1">
+        <td>
           <pre>
 self.vMain
 self.mainMenu
@@ -367,7 +358,7 @@ self.hboxContainer
 self.wNotebook
 self.vboxAvailablePodcasts
 self.hboxChannels
-self.scrollAbailable
+self.scrollAvailable
 self.treeAvailable</pre>
         </td>
       </tr>
@@ -376,35 +367,32 @@ self.treeAvailable</pre>
 
   <h3>Changing to HildonProgram and HildonWindow</h3>
   <p>
-    The first code change in the porting exercise is to make gPodder use
-    <span class="codefrag">HildonProgram</span> and <span class="codefrag">HildonWindow</span>
-    classes instead of the <span class="codefrag">GtkWindow</span> class.
+    The first code change in the porting exercise is to make gPodder use <var>HildonProgram</var>
+    and <var>HildonWindow</var> classes instead of the <var>GtkWindow</var> class.
   </p>
   <p>
-    Start by modifying the <span class="codefrag">gpodder.py</span> file (in the
-    <span class="codefrag">gpodder-0.8/src/gpodder</span> directory). Since you want to use Hildon
-    elements, you have to import its module. The following example illustrates the import:
+    Start by modifying the <var>gpodder.py</var> file (in the <var>gpodder-0.8.0/src/gpodder</var>
+    directory). Since you want to use Hildon elements, you have to import its module. The following
+    example illustrates the import:
   </p>
   <pre>
 61 |from libipodsync import gPodder_iPodSync
-62 |from libipodsync limport ipod_supported
+62 |from libipodsync import ipod_supported
 63 |
 ++ |import hildon
 ++ |
 64 |# for isDebugging:
-65 |app_name = "gpodder"
-66 |app_version = "unknown" # will be set in main() call</pre>
+65 |import libgpodder</pre>
   <p>
-    Second, add a <span class="codefrag">HildonProgram</span>
-    (<span class="codefrag">self.app</span>) and a <span class="codefrag">HildonWindow</span>
-    (<span class="codefrag">self.window</span>). The following example illustrates the added
+    Second, add a <var>HildonProgram</var>
+    (<var>self.app</var>) and a <var>HildonWindow</var>
+    (<var>self.window</var>). The following example illustrates the added
     objects:
   </p>
   <pre>
-112 |    def new(self):
-113 |        if libgpodder.isDebugging():
-114 |            print "A new %s has been created" % self.__class__.__name__
- ++ |
+115 |        if libgpodder.isDebugging():
+116 |            print "A new %s has been created" % self.__class__.__name__
+117 |
  ++ |        self.app = hildon.Program()
  ++ |
  ++ |        self.window = hildon.Window()
@@ -415,42 +403,53 @@ self.treeAvailable</pre>
  ++ |        self.gPodder.destroy()
  ++ |
  ++ |        self.window.show_all()
- ++ |</pre>
+ ++ |
+118 |        #self.gPodder.set_title( self.gPodder.get_title())
+119 |        #self.statusLabel.set_text( "Welcome to gPodder! Suggestions? Mail to: thp@perli.net")
+120 |        # set up the rendering of the comboAvailable combobox</pre>
   <p>
-    The <span class="codefrag">gPodder</span> class (<span class="codefrag">self</span>) has its
-    <span class="codefrag">close_gpodder</span> method connected to the
-    <span class="codefrag">destroy</span> signal from the original
-    <span class="codefrag">gPodder</span> Gtk window. This means that you have to remove the
-    connection from <span class="codefrag">gPodder</span> and put it in the new
-    <span class="codefrag">Hildonwindow</span> (<span class="codefrag">self.window</span>).
+    The <var>gPodder</var> class (<var>self</var>) has its
+    <var>close_gpodder</var> method connected to the
+    <var>destroy</var> signal from the original
+    <var>gPodder</var> Gtk window. This means that you have to remove the
+    connection from <var>gPodder</var> and put it in the new
+    <var>Hildonwindow</var> (<var>self.window</var>).
   </p>
   <p>
-    To remove the signal connection from the original <span class="codefrag">gPodder</span> Gtk
-    window, open the <span class="codefrag">gpodder.glade</span> file (in the
-    <span class="codefrag">gpodder-0.8/data</span> directory) and remove the connection, as shown in
+    To remove the signal connection from the original <var>gPodder</var> Gtk
+    window, open the <var>gpodder.glade</var> file (in the
+    <var>gpodder-0.8.0/data</var> directory) and remove the connection, as shown in
     Figure 7.
   </p>
   <div class="screenshot">
-    <img alt="destroy signal for gPodder window" src="images/gpodder_glade_1_small.jpg">
+    <img alt="destroy signal for gPodder window" src="images/gpodder_glade_3.png">
     <p>Figure 7. destroy signal for gPodder window</p>
   </div>
   <p>
     The following example illustrates how you connect
-    <span class="codefrag">Gpodder.close_gpodder</span> to the new
-    <span class="codefrag">HildonProgram</span> (<span class="codefrag">self.app</span>):
+    <var>Gpodder.close_gpodder</var> to the new
+    <var>HildonProgram</var> (<var>self.app</var>):
   </p>
   <pre>
-    |        self.window = hildon.Window()
-    |        self.window.set_title(self.gPodder.get_title())
+119 |
+120 |        self.window = hildon.Window()
+121 |        self.window.set_title(self.gPodder.get_title())
  ++ |        self.window.connect("destroy", self.close_gpodder)
-    |        self.app.add_window(self.window)
-    |
-    |        self.vMain.reparent(self.window)</pre>
+122 |        self.app.add_window(self.window)
+123 |
+124 |        self.vMain.reparent(self.window)</pre>
   <p>
-    The change from <span class="codefrag">GtkWindow</span> to
-    <span class="codefrag">HildonProgram</span>/<span class="codefrag">HildonWindow</span> is now
+    The change from <var>GtkWindow</var> to
+    <var>HildonProgram</var>/<var>HildonWindow</var> is now
     complete. Figure 8 illustrates the results if you run gPodder again.
   </p>
+  <div class="note">
+    <div class="label">Note</div>
+    <div class="content">
+      Don't forget to run <var>python2.5 setup.py install</var> before lauching gPodder again,
+      otherwise you will still be using the old, unmodified, version.
+    </div>
+  </div>
   <div class="screenshot">
     <img alt="gPodder using HildonProgram and HildonWindow" src="images/gpodder_2_small.jpg">
     <p>Figure 8. gPodder using HildonProgram and HildonWindow</p>
@@ -463,32 +462,34 @@ self.treeAvailable</pre>
   <h3>Changing to HildonWindow menu bar</h3>
   <p>
     This section describes how you make gPodder use Hildon's title area as its menu bar, instead of
-    using its own GTK+ menu (a <span class="codefrag">GTKMenuBar</span> object).
+    using its own GTK+ menu (a <var>GTKMenuBar</var> object).
   </p>
   <p>
-    In the <span class="codefrag">gpodder.glade</span> file, you can see that the
-    <span class="codefrag">gPodder</span> window has a menu bar (a
-    <span class="codefrag">GTKMenuBar</span> object) called <span class="codefrag">mainMenu</span>.
-    You must move all its children (<span class="codefrag">menuPodcasts</span>,
-    <span class="codefrag">menuChannels</span> and <span class="codefrag">menuHelp</span>) to the
-    <span class="codefrag">HildonWindow</span>'s menu and then destroy the empty
-    <span class="codefrag">mainMenu</span> menu.
+    In the <var>gpodder.glade</var> file, you can see that the
+    <var>gPodder</var> window has a menu bar (a
+    <var>GTKMenuBar</var> object) called <var>mainMenu</var>.
+    You must move all its children (<var>menuPodcasts</var>,
+    <var>menuChannels</var> and <var>menuHelp</var>) to the
+    <var>HildonWindow</var>'s menu and then destroy the empty
+    <var>mainMenu</var> menu.
   </p>
   <p>
-    To achieve this, add the following lines to the <span class="codefrag">gpodder.py</span> file:
+    To achieve this, add the following lines to the <var>gpodder.py</var> file:
   </p>
   <pre>
-    |        self.vMain.reparent(self.window)
-    |        self.gPodder.destroy()
- ++ |
+125 |        self.vMain.reparent(self.window)
+126 |        self.gPodder.destroy()
+127 |
  ++ |        menu = gtk.Menu()
  ++ |        for child in self.mainMenu.get_children():
  ++ |            child.reparent(menu)
  ++ |        self.window.set_menu(menu)
  ++ |
  ++ |        self.mainMenu.destroy()
-    |
-    |        self.window.show_all()</pre>
+ ++ |
+128 |        self.window.show_all()
+129 |
+130 |        #self.gPodder.set_title( self.gPodder.get_title())</pre>
   <p>Figure 9 illustrates the resulting menu:</p>
   <div class="screenshot">
     <img alt="gPodder using HildonWindow's menu bar" src="images/gpodder_3_small.jpg">
@@ -499,8 +500,8 @@ self.treeAvailable</pre>
   <p>
     Hildon has a set of widgets for common operations, such as a color selection dialog, file
     chooser dialog and a time picker. Most of them provide the same functionality (or extension) as
-    the existing GTK+ widgets. For example, <span class="codefrag">HildonFileChooserDialog</span>
-    has the same purpose as <span class="codefrag">GtkFileChooserDialog</span>.
+    the existing GTK+ widgets. For example, <var>HildonFileChooserDialog</var>
+    has the same purpose as <var>GtkFileChooserDialog</var>.
   </p>
   <p>
     Replace the GTK+ widgets with the Hildon ones whenever possible, since the Hildon widgets were
@@ -508,8 +509,8 @@ self.treeAvailable</pre>
   </p>
   <p>
     gPodder uses a GTK+ file chooser dialog when the users export their channel lists. Make it use
-    a <span class="codefrag">HildonFileChooserDialog</span> instead. The following example
-    illustrates the code changes needed in the <span class="codefrag">python.py</span> file:
+    a <var>HildonFileChooserDialog</var> instead. The following example
+    illustrates the code changes needed in the <var>python.py</var> file:
   </p>
   <pre>
 561 -- |        dlg = gtk.FileChooserDialog( title="Export to OPML...", parent = None, action = gtk.FILE_CHOOSER_ACTION_SAVE)
@@ -532,18 +533,18 @@ self.treeAvailable</pre>
   </p>
   <ul>
     <li>
-      Main window (<span class="codefrag">gPodder</span>)
+      Main window (<var>gPodder</var>)
       <p>
         Make the tab names shorter. Replace <em>Downloaded Podcasts</em> with <em>Downloaded</em> to
         make the tab names stay within screen boundaries.
       </p>
     </li>
     <li>
-      gPodder Channel Editor Dialog (<span class="codefrag">gPodderChannel</span>)
+      gPodder Channel Editor Dialog (<var>gPodderChannel</var>)
       <p>
-        In the <span class="codefrag">gPodderChannel</span>, increase the <em>Default Width</em> to
+        In the <var>gPodderChannel</var>, increase the <em>Default Width</em> to
         700 and <em>Default Height</em> to <em>350</em>. In the
-        <span class="codefrag">gPodderChannel-&gt;[...]-&gt;table1-&gt;scrolledWindow3</span>,
+        <var>gPodderChannel-&gt;[...]-&gt;table1-&gt;scrolledWindow3</var>,
         change the <em>V Policy</em> and <em>H Policy</em> to <em>Automatic</em>.
       </p>
     </li>
@@ -567,7 +568,7 @@ self.treeAvailable</pre>
   </ul>
   <p>
     The following example illustrates how these two signals are connected (in the
-    <span class="codefrag">gpodder.py</span> file):
+    <var>gpodder.py</var> file):
   </p>
   <pre>
     |        self.window.set_title(self.gPodder.get_title())
@@ -580,7 +581,7 @@ self.treeAvailable</pre>
     |        self.vMain.reparent(self.window)</pre>
   <p>
     The following example illustrates the window state monitoring implementation
-    <span class="codefrag">on_window_state_change</span>:
+    <var>on_window_state_change</var>:
   </p>
   <pre>
 551 |        self.showMessage( _("Could not delete channel.\nProbably no channel is selected."))
@@ -596,7 +597,7 @@ self.treeAvailable</pre>
 555 |    def on_itemExportChannels_activate(self, widget, *args):</pre>
   <p>
     The following example illustrates the hardware key monitoring implementation (
-    <span class="codefrag">on_key_press</span>):
+    <var>on_key_press</var>):
   </p>
   <pre>
     |        else:
@@ -640,8 +641,8 @@ self.treeAvailable</pre>
   </p>
   <p>
     This section describes how remote procedure calls are implemented using LibOSSO. The example is
-    divided in two different sample applications: <span class="codefrag">osso_test_sender.py</span>
-    and <span class="codefrag">osso_test_receiver.py</span>.
+    divided in two different sample applications: <var>osso_test_sender.py</var>
+    and <var>osso_test_receiver.py</var>.
   </p>
   <p>
     The sender sample application sends an RPC message when a button is clicked. D-BUS interprets
@@ -654,7 +655,7 @@ self.treeAvailable</pre>
     The sender is simply a button occupying the whole window. When you click it, an RPC is sent to
     the receiver sample application.
   </p>
-  <p>Create a <span class="codefrag">osso_test_sender.py</span> file with the following content.</p>
+  <p>Create a <var>osso_test_sender.py</var> file with the following content.</p>
   <pre>
 #!/usr/bin/python2.5
 import osso
@@ -683,7 +684,7 @@ gtk.main()</pre>
     waiting for an RPC. When it receives one, it uses LibOSSO to display an information banner
     notifying the user that an RPC has been received.
   </p>
-  <p>Create a <span class="codefrag">osso_test_receiver.py</span> file with the following content.</p>
+  <p>Create a <var>osso_test_receiver.py</var> file with the following content.</p>
   <pre>
 #!/usr/bin/python2.5
 import osso
@@ -704,29 +705,29 @@ osso_rpc.set_rpc_callback("spam.eggs.osso_test_receiver",
 gtk.main()</pre>
   <p>
     The receiver also must register itself as a D-BUS service. Create a
-    <span class="codefrag">osso_test_receiver.service</span> file with the following content.
+    <var>osso_test_receiver.service</var> file with the following content.
   </p>
   <pre>
 [D-BUS Service]
 Name=spam.eggs.osso_test_receiver
 Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
   <p>
-    Replace <span class="codefrag">{SOME_DIRECTORY_HIERARCHY}</span> with the directory where
-    <span class="codefrag">osso_test_receiver.py</span> is located.</p>
+    Replace <var>{SOME_DIRECTORY_HIERARCHY}</var> with the directory where
+    <var>osso_test_receiver.py</var> is located.</p>
   <p>
-    Add the <span class="codefrag">osso_test_receiver.service</span> file to
-    <span class="codefrag">/usr/share/dbus-1/services</span>.
+    Add the <var>osso_test_receiver.service</var> file to
+    <var>/usr/share/dbus-1/services</var>.
   </p>
 
   <h3>Running applications</h3>
   <p>
     First make sure that D-BUS recognises the new D-BUS service (
-    <span class="codefrag">spam.eggs.osso_test_receiver</span>). To do this, restart your maemo
+    <var>spam.eggs.osso_test_receiver</var>). To do this, restart your maemo
     environment by using the following command on the Scratchbox console:
   </p>
   <pre>[sbox-TARGET_NAME: ~] &gt; af-sb-init.sh restart</pre>
   <p>
-    Then run <span class="codefrag">osso_test_sender.py</span> with the following command (assuming
+    Then run <var>osso_test_sender.py</var> with the following command (assuming
     that it is in your home directory):
   </p>
   <pre>[sbox-TARGET_NAME: ~] &gt; run-standalone.sh ./osso_test_sender.py</pre>
@@ -736,9 +737,9 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
     <p>Figure 12. LibOSSO sample application</p>
   </div>
   <p>
-    Note that you do not have to manually run <span class="codefrag">osso_test_receiver.py</span>,
+    Note that you do not have to manually run <var>osso_test_receiver.py</var>,
     as D-BUS does it automatically. Due to its extreme simplicity, the once instantiated
-    <span class="codefrag">osso_test_receiver.py</span> continues running in background until you
+    <var>osso_test_receiver.py</var> continues running in background until you
     manually kill it from the Scratchbox console.
   </p>
 </div>
@@ -762,8 +763,8 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
   <h3>Distributing a "Hello PyMaemo!" application</h3>
   <p>
     This section describes the process of creating a maemo package by showing how to package a
-    simple "hello world" style application. Create a <span class="codefrag">hello-pymaemo</span>
-    file (without the "<span class="codefrag">.py</span>" suffix) with the following content.
+    simple "hello world" style application. Create a <var>hello-pymaemo</var>
+    file (without the "<var>.py</var>" suffix) with the following content.
   </p>
   <pre>
 #!/usr/bin/env python2.5
@@ -783,7 +784,7 @@ window.add (button)
 window.show_all ()
 gtk.main ()</pre>
   <p>
-    Make the file executable by running the <span class="codefrag">chmod +x hello-pymaemo</span>
+    Make the file executable by running the <var>chmod +x hello-pymaemo</var>
     command. This ensures that you can run the script in the same way as a regular binary
     application.
   </p>
@@ -799,9 +800,9 @@ gtk.main ()</pre>
     <img alt="Hello PyMaemo icon" src="images/hello_icon_26x26.jpg">
     <p>Figure 13. Hello PyMaemo icon</p>
   </div>
-  <p>Name the icon <span class="codefrag">hello_icon_26x26.png</span>.</p>
+  <p>Name the icon <var>hello_icon_26x26.png</var>.</p>
   <p>
-    The menu entry is a <span class="codefrag">.desktop</span> file with the following content for
+    The menu entry is a <var>.desktop</var> file with the following content for
     the application:
   </p>
   <pre>
@@ -829,52 +830,52 @@ X-Osso-Type=application/x-executable</pre>
         <th colspan="1" rowspan="1">Description</th>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">Version</span></td>
+        <td colspan="1" rowspan="1"><var>Version</var></td>
         <td colspan="1" rowspan="1">Application version</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">Encoding</span></td>
-        <td colspan="1" rowspan="1">Character encoding. Must always be <span class="codefrag">UTF8</span>.</td>
+        <td colspan="1" rowspan="1"><var>Encoding</var></td>
+        <td colspan="1" rowspan="1">Character encoding. Must always be <var>UTF8</var>.</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">Name</span></td>
+        <td colspan="1" rowspan="1"><var>Name</var></td>
         <td colspan="1" rowspan="1">Application's name</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">Exec</span></td>
+        <td colspan="1" rowspan="1"><var>Exec</var></td>
         <td colspan="1" rowspan="1">File to be executed when the application is called</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">Icon</span></td>
+        <td colspan="1" rowspan="1"><var>Icon</var></td>
         <td colspan="1" rowspan="1">
           Application's icon. Only the name of the file <strong>without</strong> its suffix
-          (<span class="codefrag">.png</span>).
+          (<var>.png</var>).
         </td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">Type</span></td>
+        <td colspan="1" rowspan="1"><var>Type</var></td>
         <td colspan="1" rowspan="1">
-          "<span class="codefrag">Application</span>"since it is an entry for an application
+          "<var>Application</var>"since it is an entry for an application
         </td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">X-Osso-Service</span></td>
+        <td colspan="1" rowspan="1"><var>X-Osso-Service</var></td>
         <td colspan="1" rowspan="1">
           Name of the osso service that calls this application. For more information, see the
           paragraphs below the table.
         </td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><span class="codefrag">X-Osso-Type</span></td>
-        <td colspan="1" rowspan="1">Usually "<span class="codefrag">application/x-executable</span>"</td>
+        <td colspan="1" rowspan="1"><var>X-Osso-Type</var></td>
+        <td colspan="1" rowspan="1">Usually "<var>application/x-executable</var>"</td>
       </tr>
     </tbody>
   </table>
-  <p>Table 1. <span class="codefrag">.desktop</span> file fields</p>
+  <p>Table 1. <var>.desktop</var> file fields</p>
   <p>
     As you can see in the desktop file, the application also needs an osso (D-BUS) service.
     Otherwise, it does not appear in the task navigation bar. For the service, create a
-    <span class="codefrag">hello_pymaemo.service</span> file with the following content.
+    <var>hello_pymaemo.service</var> file with the following content.
   </p>
   <pre>
 [D-BUS Service]
@@ -882,14 +883,14 @@ Name=com.nokia.hello_pymaemo
 Exec=/usr/bin/hello-pymaemo</pre>
   <p>
     Note that since "-" is not a valid character in a service name.,
-    <span class="codefrag">hello_pymaemo</span> is used instead of
-    <span class="codefrag">hello-pymaemo</span>.
+    <var>hello_pymaemo</var> is used instead of
+    <var>hello-pymaemo</var>.
   </p>
 
   <h4>Copying files to their locations</h4>
   <p>
     Use Python Distribution Utilities ("Distutils") to copy the files to their proper locations.
-    Create a <span class="codefrag">setup.py</span> file with the following content.
+    Create a <var>setup.py</var> file with the following content.
   </p>
   <pre>
 from distutils.core import setup
@@ -904,29 +905,29 @@ setup(name='hello-pymaemo',
                     ]
       )</pre>
   <p>
-    In the Scratchbox console, issue the <span class="codefrag">python2.5 setup.py install</span>
+    In the Scratchbox console, issue the <var>python2.5 setup.py install</var>
     command to achieve the following result:
   </p>
   <ul>
     <li>
-      <span class="codefrag">hello-pymaemo</span> is copied to <span class="codefrag">/usr/bin</span>
+      <var>hello-pymaemo</var> is copied to <var>/usr/bin</var>
     </li>
     <li>
-      <span class="codefrag">hello_icon_26x26.png</span> is
-      copied to <span class="codefrag">/usr/share/pixmaps</span>
+      <var>hello_icon_26x26.png</var> is
+      copied to <var>/usr/share/pixmaps</var>
     </li>
     <li>
-      <span class="codefrag">hello-pymaemo.desktop</span> is
-      copied to <span class="codefrag">/usr/share/applications/hildon</span>
+      <var>hello-pymaemo.desktop</var> is
+      copied to <var>/usr/share/applications/hildon</var>
     </li>
     <li>
-      <span class="codefrag">hello_pymaemo.service</span> is
-      copied to <span class="codefrag">/usr/share/dbus-1/services</span>
+      <var>hello_pymaemo.service</var> is
+      copied to <var>/usr/share/dbus-1/services</var>
     </li>
   </ul>
   <p>
     After you have run the command, the application is actually installed in your system (in
-    Scratchbox, you have to ru the <span class="codefrag">af-sb-init.sh restart</span> command
+    Scratchbox, you have to ru the <var>af-sb-init.sh restart</var> command
     before calling your application from the menu). You can access it from the <em>Extras</em> menu.
   </p>
   <p>
@@ -949,21 +950,21 @@ setup(name='hello-pymaemo',
   <p>
     When creating a Debian package, the first step is to put all the files (the hello-pymaemo script,
     and the png, desktop and service files) in an empty directory called
-    <span class="codefrag">hello-pymaemo-1.0.0</span>. The directory name must follow the
-    <span class="codefrag">&lt;package-name&gt;-&lt;app-version&gt;</span> convention. This means
+    <var>hello-pymaemo-1.0.0</var>. The directory name must follow the
+    <var>&lt;package-name&gt;-&lt;app-version&gt;</var> convention. This means
     that the package that you are creating for the hello world application is called
-    <span class="codefrag">hello-pymaemo</span>.
+    <var>hello-pymaemo</var>.
   </p>
   <p>
-    As Debian packages use makefiles (<span class="codefrag">Makefile</span>) instead of Python
-    Distutils (<span class="codefrag">setup.py</span>), you have to write a
-    <span class="codefrag">Makefile</span> to act as an interface between the Debian package system
-    and the <span class="codefrag">setup.py</span>. The file is very simple; it merely issues
-    commands to <span class="codefrag">setup.py</span> according to make's target. If you have no
+    As Debian packages use makefiles (<var>Makefile</var>) instead of Python
+    Distutils (<var>setup.py</var>), you have to write a
+    <var>Makefile</var> to act as an interface between the Debian package system
+    and the <var>setup.py</var>. The file is very simple; it merely issues
+    commands to <var>setup.py</var> according to make's target. If you have no
     knowledge of make files, see Chapters 1 and 2 in GNU Make
     Manual<a href="#references_make"><sup>5</sup></a>.
   </p>
-  <p>Create a <span class="codefrag">Makefile</span> file with the following content.</p>
+  <p>Create a <var>Makefile</var> file with the following content.</p>
   <pre>
 all:
   python2.5 setup.py build
@@ -972,7 +973,7 @@ clean:
 install:
   python2.5 setup.py install --root $(DESTDIR)</pre>
   <p>
-    In Scratchbox console (inside the <span class="codefrag">hello-pymaemo-1.0.0</span> directory),
+    In Scratchbox console (inside the <var>hello-pymaemo-1.0.0</var> directory),
     enter the following command:
   </p>
   <pre>[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dh_make -e your.email@somewhere.com</pre>
@@ -989,25 +990,25 @@ Hit &lt;enter&gt; to confirm:
 Done. Please edit the files in the debian/ subdirectory now.
 You should also check that the hello-pymaemo Makefiles install into $DESTDIR and not in / .</pre>
   <p>
-    Choose "single binary" as a package type. In case the <span class="codefrag">"--root $(DESTDIR)"
-    </span> part of the makefile is not clear to you, the last sentece in the output is meant to
+    Choose "single binary" as a package type. In case the <var>"--root $(DESTDIR)"
+    </var> part of the makefile is not clear to you, the last sentece in the output is meant to
     clarify the situation.
   </p>
   <p>
-    The <span class="codefrag">dh_make</span> command creates a <span class="codefrag">debian</span>
+    The <var>dh_make</var> command creates a <var>debian</var>
     subdirectory containing multiple configuration text files, most of which are templates that can
     be removed, since the application does not use them. In addition, the command makes a copy of
-    the original directory, calling it <span class="codefrag">hello-pymaemo-1.0.0.orig</span>.
+    the original directory, calling it <var>hello-pymaemo-1.0.0.orig</var>.
   </p>
   <p>
-    Table 2 lists the files needed in <span class="codefrag">hello-pymaemo-1.0.0/debian</span>
+    Table 2 lists the files needed in <var>hello-pymaemo-1.0.0/debian</var>
     (others can be removed):
   </p>
   <p>Table 2. Needed files for the example application package</p>
   <table class="ForrestTable" border="0" cellpadding="4" cellspacing="1">
     <tbody>
       <tr>
-        <th colspan="1" rowspan="1">File in <span class="codefrag">./debian</span></th> 
+        <th colspan="1" rowspan="1">File in <var>./debian</var></th>
         <th colspan="1" rowspan="1">Description</th>
       </tr>
       <tr>
@@ -1039,14 +1040,14 @@ You should also check that the hello-pymaemo Makefiles install into $DESTDIR and
     </tbody>
   </table>
   <p>
-    The key files in <span class="codefrag">./debian</span> are <span class="codefrag">control</span>
-    and <span class="codefrag">rules</span>. They contain a generic template showing what they must
-    look like. In <span class="codefrag">control</span>, you must simply fill in the blanks and, in
-    <span class="codefrag">rules</span>, you essentially need to remove unwanted and unnecessary
+    The key files in <var>./debian</var> are <var>control</var>
+    and <var>rules</var>. They contain a generic template showing what they must
+    look like. In <var>control</var>, you must simply fill in the blanks and, in
+    <var>rules</var>, you essentially need to remove unwanted and unnecessary
     code.
   </p>
   <p>
-    The following example illustrates what the <span class="codefrag">control</span> file for the
+    The following example illustrates what the <var>control</var> file for the
     example application must contain:
   </p>
   <pre>
@@ -1075,24 +1076,24 @@ XB-Maemo-Icon-26:
  dKxFlsDJarvdAGP/b6hFnDImYs+uG3hbO2AB3Jbsur63tQM+fFx3bzZocEB8AdV2
  gJBZgKTwAAAAAElFTkSuQmCC</pre>
   <p>
-    The <span class="codefrag">XB-Maemo-Icon-26</span> field contains the application icon file (in
-    this case, <span class="codefrag">hello_icon_26x26.png</span>) encoded in base64. This is the
+    The <var>XB-Maemo-Icon-26</var> field contains the application icon file (in
+    this case, <var>hello_icon_26x26.png</var>) encoded in base64. This is the
     icon that is shown in the Application Installer, next to the package name. To do this encoding
-    in Linux, you can use either <span class="codefrag">uuencode</span> or <span class="codefrag">
-    openssl</span> (there can be more suitable applications). Maemos's Scratchbox rootstrap is
-    delivered with <span class="codefrag">uuencode</span>. Do not forget to put a white space at the
+    in Linux, you can use either <var>uuencode</var> or <var>
+    openssl</var> (there can be more suitable applications). Maemos's Scratchbox rootstrap is
+    delivered with <var>uuencode</var>. Do not forget to put a white space at the
     beginning of each line containing the icon-encoded text. The white space serves as indentation.
-    The same rule stands for the long package description (<span class="codefrag"> A very simple
-    application[...]</span>).
+    The same rule stands for the long package description (<var> A very simple
+    application[...]</var>).
   </p>
   <p>
-    The Application Installer only shows packages in the <span class="codefrag">user</span> section.
-    Thus, your <span class="codefrag">Section:</span> field in the <span class="codefrag">control
-    </span> file must has the <span class="codefrag">Section: user/&lt;SUBSECTION&gt;</span> syntax,
-    where <span class="codefrag">&lt;SUBSECTION&gt;</span> is arbitrary.
+    The Application Installer only shows packages in the <var>user</var> section.
+    Thus, your <var>Section:</var> field in the <var>control
+    </var> file must has the <var>Section: user/&lt;SUBSECTION&gt;</var> syntax,
+    where <var>&lt;SUBSECTION&gt;</var> is arbitrary.
   </p>
   <p>
-    The following example illustrates the <span class="codefrag">rules</span> file for the example
+    The following example illustrates the <var>rules</var> file for the example
     application:
   </p>
   <pre>
@@ -1159,8 +1160,8 @@ binary-arch: build install
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install configure</pre>
   <p>
-    The main point is that the <span class="codefrag">binary-arch</span> target was emptied and the
-    <span class="codefrag">binary-indep</span> filled, since the application being 100% Python means
+    The main point is that the <var>binary-arch</var> target was emptied and the
+    <var>binary-indep</var> filled, since the application being 100% Python means
     that it is 100% architecture-independent.
   </p>
   <p>
@@ -1170,8 +1171,8 @@ binary: binary-indep binary-arch
   <pre>[sbox-TARGET_NAME: ~/hello-pymaemo-1.0.0] &gt; dpkg-buildpackage -rfakeroot</pre>
   <p>
     The system displays some output, including a couple of warnings near the end of it
-    (about XB-Maemo-Icon-26) but that is normal. The parent directory now has a <span class="codefrag">
-    hello-pymaemo_1.0.0-1_all.deb</span> file - your Debian package. This is the file that is
+    (about XB-Maemo-Icon-26) but that is normal. The parent directory now has a <var>
+    hello-pymaemo_1.0.0-1_all.deb</var> file - your Debian package. This is the file that is
     distributed to maemo devices and installed using the Application Installer.
   </p>
   <p>
