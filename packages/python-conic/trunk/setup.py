@@ -1,5 +1,6 @@
 from distutils.core import setup, Extension
 from distutils.command.build import build
+from distutils.cmd import Command
 import subprocess
 import os
 import sys
@@ -103,6 +104,47 @@ class PyConicBuild(build):
         build.run(self)
         
 
+class PyConicDocBuild(Command):
+    description = "Build Docbook HTML documentation"
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+
+    def finalize_options(self):
+        pass
+    
+    
+    def run(self):
+        print "Building documentation"
+
+        #FIXME: Hardcoded path
+        pygobj_data_dir = "/home/lmoura/python/dev/python-sdk/python-gobject-2.12-2"
+        html_style = "/home/lmoura/python/dev/python-sdk/python-gobject-2.12.2/docs/xsl/ref-html-style.xsl"
+
+        #html_style = pygobj_data_dir + "/docs/xsl/ref-html-style.xsl"
+
+        html_dir = "docs/html/"
+        refs_dir = "docs/reference/"
+
+        xslt_args = [
+            "--nonet",
+            "--xinclude",
+            "--output", html_dir,
+            "--path", refs_dir,
+            "--stringparam", "conic.bookname", "\"conic\"",
+            "--stringparam", "conic.version", "0.1",
+            html_style,
+            refs_dir + "conic-docs.xml"
+        ]
+        
+        print xslt_args
+        subprocess.call(['xsltproc'] + xslt_args)
+        return True
+
+
 compile_args = [
         '-Os',
         '-DXTHREADS',
@@ -147,6 +189,9 @@ setup(
     author_email = 'lauro.neto@indt.org.br',
     url = 'http://pymaemo.garage.maemo.org',
     ext_modules = [conic],
-    cmdclass={'build': PyConicBuild}
+    cmdclass={
+        'build': PyConicBuild,
+        'build_doc': PyConicDocBuild
+    }
 )
 # vim:ts=4:sw=4:et:

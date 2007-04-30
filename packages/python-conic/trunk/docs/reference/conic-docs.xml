@@ -1,0 +1,48 @@
+<?xml version='1.0' ?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY conicconnection SYSTEM "conic-conicconnection.xml" >
+  <!ENTITY conicconnectionevent SYSTEM "conic-conicconnectionevent.xml" >
+  <!ENTITY conicevent SYSTEM "conic-conicevent.xml" >
+  <!ENTITY coniciap SYSTEM "conic-coniciap.xml" >
+  <!ENTITY conicstatisticsevent SYSTEM "conic-conicstatisticsevent.xml" >
+]>
+
+<book id="python-conic-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <bookinfo>
+    <title>Python ConIC Docs</title>
+    <edition>Python ConIC Reference Manual for Python ConIC 0.1</edition>
+    <releaseinfo>For Python ConIC version 0.1</releaseinfo>
+    <abstract>
+      <para>This reference describes the class of Python ConIC module.</para>
+    </abstract>
+    <authorgroup>
+      <author>
+        <firstname>Lauro</firstname>
+        <surname>Moura</surname>
+      </author>
+    </authorgroup>
+  </bookinfo>
+
+  <toc>
+  </toc>
+
+  <xi:include href="conic-introduction.xml"/>
+
+  
+  <chapter id="class-hierarchy">
+    <title>Class Hierarchy</title>
+    <xi:include href="conic-hierarchy.xml" />     
+            <!-- <para>Not done yet</para> -->
+  </chapter>
+
+  <reference id="class-reference">
+    <title>Class Documentation</title>
+&conicconnection;
+&conicconnectionevent;
+&conicevent;
+&coniciap;
+&conicstatisticsevent;
+  </reference>
+</book>

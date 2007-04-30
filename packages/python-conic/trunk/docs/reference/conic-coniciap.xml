@@ -1,0 +1,87 @@
+<refentry id="class-coniciap">
+  <refmeta>
+    <refentrytitle>conic.Iap</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>conic.Iap</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>conic.Iap</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-coniciap--get-name">get_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-coniciap--get-id">get_id</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-coniciap--get-bearer-type">get_bearer_type</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-coniciap">conic.Iap</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-coniciap--get-name">
+    <title>conic.Iap.get_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-coniciap--get-id">
+    <title>conic.Iap.get_id</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_id</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-coniciap--get-bearer-type">
+    <title>conic.Iap.get_bearer_type</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_bearer_type</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

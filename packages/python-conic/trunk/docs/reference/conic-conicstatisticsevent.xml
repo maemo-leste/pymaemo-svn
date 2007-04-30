@@ -1,0 +1,142 @@
+<refentry id="class-conicstatisticsevent">
+  <refmeta>
+    <refentrytitle>gtk.StatisticsEvent</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>gtk.StatisticsEvent</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>gtk.StatisticsEvent</classname></ooclass>
+  <ooclass><classname><link linkend="class-conicevent">gtk.Event</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicstatisticsevent--get-time-active">get_time_active</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicstatisticsevent--get-signal-strength">get_signal_strength</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicstatisticsevent--get-rx-packets">get_rx_packets</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicstatisticsevent--get-tx-packets">get_tx_packets</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicstatisticsevent--get-rx-bytes">get_rx_bytes</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicstatisticsevent--get-tx-bytes">get_tx_bytes</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-conicevent">gtk.Event</link>
+    +-- <link linkend="class-conicstatisticsevent">gtk.StatisticsEvent</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-conicstatisticsevent--get-time-active">
+    <title>gtk.StatisticsEvent.get_time_active</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_time_active</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicstatisticsevent--get-signal-strength">
+    <title>gtk.StatisticsEvent.get_signal_strength</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_signal_strength</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicstatisticsevent--get-rx-packets">
+    <title>gtk.StatisticsEvent.get_rx_packets</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_rx_packets</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a guint64</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicstatisticsevent--get-tx-packets">
+    <title>gtk.StatisticsEvent.get_tx_packets</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_tx_packets</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a guint64</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicstatisticsevent--get-rx-bytes">
+    <title>gtk.StatisticsEvent.get_rx_bytes</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_rx_bytes</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a guint64</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicstatisticsevent--get-tx-bytes">
+    <title>gtk.StatisticsEvent.get_tx_bytes</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_tx_bytes</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a guint64</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

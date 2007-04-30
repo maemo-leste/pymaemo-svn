@@ -1,0 +1,69 @@
+<refentry id="class-conicevent">
+  <refmeta>
+    <refentrytitle>gtk.Event</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>gtk.Event</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>gtk.Event</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicevent--get-iap-id">get_iap_id</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicevent--get-bearer-type">get_bearer_type</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-conicevent">gtk.Event</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-conicevent--get-iap-id">
+    <title>gtk.Event.get_iap_id</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_iap_id</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicevent--get-bearer-type">
+    <title>gtk.Event.get_bearer_type</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_bearer_type</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

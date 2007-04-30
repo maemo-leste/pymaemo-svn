@@ -1,0 +1,408 @@
+<!-- <?xml encondig='UTF-8' version='1.0' standalone='no'?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"> -->
+   
+<refentry id="class-conicconnection">
+  <refnamediv>
+    <refname>conic.Connection</refname>
+    <refpurpose>The main class of the conic module. Use to manage internet connections.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>conic.Connection</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>conic.Connection</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--request-connection">request_connection</link></methodname>
+    <methodparam><parameter>flags</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--request-connection-by-id">request_connection_by_id</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--disconnect">disconnect</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--disconnect-by-id">disconnect_by_id</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--statistics">statistics</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-proxy-mode">get_proxy_mode</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-proxy-ignore-hosts">get_proxy_ignore_hosts</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-proxy-autoconfig-url">get_proxy_autoconfig_url</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-proxy-host">get_proxy_host</link></methodname>
+    <methodparam><parameter>protocol</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-proxy-port">get_proxy_port</link></methodname>
+    <methodparam><parameter>protocol</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-all-iaps">get_all_iaps</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnection--get-iap">get_iap</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>
++-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-conicconnection">conic.Connection</link>
+</synopsis>
+
+  </refsect1>
+  
+<refsect1 id="properties-conicconnection">
+    <title>conic.Connection Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="3.5in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"automatic-events"</entry>
+	      <entry>Read/Write</entry>
+	      <entry>If <literal>True</literal> the application will receive
+	      connection-events automatically as connections are established
+	      and tore down. Normally events are only sent when applications
+	      request for a connection, with this all events are received
+	      constantly. This makes it possible, for example, to create an
+	      application which executes something from the network every
+	      time a connection is established.</entry>
+       </row>
+	  </tbody>
+    </tgroup>
+    </informaltable>
+    </blockquote>
+
+  </refsect1>  
+
+ <refsect1 id="signal-prototypes-conicconnection">
+    <title>conic.Connection Signal Prototypes</title>
+    <variablelist>
+      <varlistentry>
+        <term>"<link
+linkend="signal-conicconnection--connection-event">connection-event</link>"</term>
+        <listitem>
+          <methodsynopsis
+	    language="python"><methodname>callback</methodname>
+            <methodparam><parameter>connection</parameter>
+            </methodparam>
+            <methodparam><parameter>event</parameter>
+            </methodparam>
+            <methodparam><parameter>...</parameter>
+            </methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link
+linkend="signal-conicconnection--statistics">statistics</link>"</term>
+        <listitem>
+          <methodsynopsis
+	    language="python"><methodname>callback</methodname>
+            <methodparam><parameter>connection</parameter>
+            </methodparam>
+            <methodparam><parameter>event</parameter>
+            </methodparam>
+            <methodparam><parameter>...</parameter>
+            </methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
+  
+  <refsect1>
+    <title>Description</title>
+
+    <para>The <link
+linkend="class-gtkbutton"><classname>conic.Connection</classname></link> is
+the main class of the conic module. It can be used to request Internet 
+connections, retrieve connection statistics, proxies and settings for IAPs.
+Connections generate signals that indicate:</para>
+    <itemizedlist>
+      <listitem>
+	<simpara>"connection-event" - Device's connection' state changed.</simpara>
+      </listitem>
+      <listitem>
+	<simpara>"statistics" - requested statistics data is ready</simpara>
+      </listitem>
+    </itemizedlist>
+
+<warning>Note: Due to problems with DBus, if you are using dbus.SystemBus
+inside your app together with ConIc make sure that dbus.SystemBus is created
+with private=True, otherwise the library won't be able to receive the
+callbacks and won't work as expected.
+</warning>
+  </refsect1>  
+  
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>conic.Connection</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>a conic.Connection instace</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  
+  <para>Creates a new connection instance.</para>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-conicconnection--request-connection">
+    <title>conic.Connection.request_connection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>request_connection</methodname>
+    <methodparam><parameter>flags</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>flags</parameter> :</term>
+      <listitem><simpara>Flags for the connection.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--request-connection-by-id">
+    <title>conic.Connection.request_connection_by_id</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>request_connection_by_id</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>flags</parameter> :</term>
+      <listitem><simpara>a ConIcConnectFlags</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--disconnect">
+    <title>conic.Connection.disconnect</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>disconnect</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--disconnect-by-id">
+    <title>conic.Connection.disconnect_by_id</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>disconnect_by_id</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--statistics">
+    <title>conic.Connection.statistics</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>statistics</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-proxy-mode">
+    <title>conic.Connection.get_proxy_mode</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_proxy_mode</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a ConIcProxyMode</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-proxy-ignore-hosts">
+    <title>conic.Connection.get_proxy_ignore_hosts</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_proxy_ignore_hosts</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a GSList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-proxy-autoconfig-url">
+    <title>conic.Connection.get_proxy_autoconfig_url</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_proxy_autoconfig_url</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-proxy-host">
+    <title>conic.Connection.get_proxy_host</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_proxy_host</methodname>
+    <methodparam><parameter>protocol</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>protocol</parameter> :</term>
+      <listitem><simpara>a ConIcProxyProtocol</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-proxy-port">
+    <title>conic.Connection.get_proxy_port</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_proxy_port</methodname>
+    <methodparam><parameter>protocol</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>protocol</parameter> :</term>
+      <listitem><simpara>a ConIcProxyProtocol</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-all-iaps">
+    <title>conic.Connection.get_all_iaps</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_all_iaps</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a GSList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-conicconnection--get-iap">
+    <title>conic.Connection.get_iap</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_iap</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter> :</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis> :</term>
+      <listitem><simpara>a ConIcIap*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>
