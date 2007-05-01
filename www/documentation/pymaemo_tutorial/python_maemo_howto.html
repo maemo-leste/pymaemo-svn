@@ -508,119 +508,132 @@ self.treeAvailable</pre>
     designed to obey maemo's restrictions and peculiarities.
   </p>
   <p>
-    gPodder uses a GTK+ file chooser dialog when the users export their channel lists. Make it use
-    a <var>HildonFileChooserDialog</var> instead. The following example
-    illustrates the code changes needed in the <var>python.py</var> file:
+    gPodder uses a GTK+ file chooser dialog when users export their channel lists. It doesn't fit
+    well into maemo's environment as you can see from Figure 10.
+  </p>
+  <div class="screenshot">
+    <img alt="gPodder using GTK's file chooser dialog" src="images/gpodder_4_small.jpg">
+    <p>Figure 10. gPodder using GTK's file chooser dialog</p>
+  </div>
+  <p>
+    Make it use a <var>HildonFileChooserDialog</var> instead. The following example illustrates the
+    code changes needed in <var>gpodder-0.8.0/src/gpodder/gpodder.py</var>:
   </p>
   <pre>
-561 -- |        dlg = gtk.FileChooserDialog( title="Export to OPML...", parent = None, action = gtk.FILE_CHOOSER_ACTION_SAVE)
-562 -- |        dlg.add_button( gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-563 -- |        dlg.add_button( gtk.STOCK_SAVE, gtk.RESPONSE_OK)
+579    |        if len( self.channels) == 0:
+580    |          self.showMessage( _("Your channel list is empty. Nothing to export."))
+581    |          return
+582 -- |        dlg = gtk.FileChooserDialog( title=_("Export to OPML"), parent = None,[...]
+583 -- |        dlg.add_button( gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+584 -- |        dlg.add_button( gtk.STOCK_SAVE, gtk.RESPONSE_OK)
     ++ |        dlg = hildon.FileChooserDialog(self.window, gtk.FILE_CHOOSER_ACTION_SAVE);
-    ++ |
-564    |        response = dlg.run()
-565    |        if response == gtk.RESPONSE_OK:</pre>
-  <p>Figure 10 illustrates the results when you select <em>Menu &gt; Channels &gt; Export List</em>:</p>
+585    |        response = dlg.run()
+586    |        if response == gtk.RESPONSE_OK:
+587    |            foutname = dlg.get_filename()</pre>
+  <p>Figure 11 illustrates the results when you select <em>Menu &gt; Channels &gt; Export List</em>:</p>
   <div class="screenshot">
-    <img alt="gPodder using Hildon's file chooser dialog" src="images/gpodder_4_small.jpg">
-    <p>Figure 10. gPodder using Hildon's file chooser dialog</p>
+    <img alt="gPodder using Hildon's file chooser dialog" src="images/gpodder_5_small.jpg">
+    <p>Figure 11. gPodder using Hildon's file chooser dialog</p>
   </div>
 
   <h3>Adjusting the Glade interface to fit into a small screen</h3>
   <p>
-    The following changes to the interface layout are necessary to make the interface fit into the
-    relatively small maemo screen:
+    The following change to the interface layout is necessary to make it fit into the relatively
+    small maemo screen:
   </p>
   <ul>
     <li>
       Main window (<var>gPodder</var>)
       <p>
-        Make the tab names shorter. Replace <em>Downloaded Podcasts</em> with <em>Downloaded</em> to
-        make the tab names stay within screen boundaries.
+        Make the tab names shorter. Replace &ldquo;<em>Downloaded Podcasts</em>&rdquo; with
+        &ldquo;<em>Downloaded</em>&rdquo; and &ldquo;<em>Available Podcasts</em>&rdquo; with
+        &ldquo;<em>Podcasts</em>&rdquo; to make the tab names stay within screen boundaries.
+        Figure 12 shows the tab names before (left) and after (right) that change.
       </p>
-    </li>
-    <li>
-      gPodder Channel Editor Dialog (<var>gPodderChannel</var>)
-      <p>
-        In the <var>gPodderChannel</var>, increase the <em>Default Width</em> to
-        700 and <em>Default Height</em> to <em>350</em>. In the
-        <var>gPodderChannel-&gt;[...]-&gt;table1-&gt;scrolledWindow3</var>,
-        change the <em>V Policy</em> and <em>H Policy</em> to <em>Automatic</em>.
-      </p>
+      <div class="twin-screenshot">
+          <img alt="gPodder with shortened tab names" src="images/gpodder_6_small.jpg">
+          <p>Figure 12. gPodder with its original (left) and shortened (right) tab names</p>
+      </div>
     </li>
   </ul>
 
   <h3>Using hardware keys</h3>
   <p>
-    The maemo applications must use the available hardware keys to improve their usability. All
-    applications do not have use for all hardware keys, of course, but try nonetheless to use those
-    keys that make sense in the application.
+    Maemo applications must use the available hardware keys to improve their usability. Most
+    applications don't have use for of them, of course, but try nonetheless to use those
+    that make sense in your program, giving it the usability expected from a proper maemo
+    application.
   </p>
   <p>
     The <em>Full screen</em> hardware key is particularly useful, since the screen size is one of
-    the key issues in maemo applications, especially in the desktop applications that are being
+    the key issues in maemo applications, especially in desktop applications that are being
     ported to maemo (such as gPodder).
   </p>
   <p>To implement the full screen functionality, you have to monitor two more window signals:</p>
   <ul>
     <li>Key presses, to know when the <em>Full screen</em> key is pressed.</li>
-    <li>Window state changes, to know whether the window is already in the full screen mode.</li>
+    <li>Window state changes, to know whether the window is already in full screen mode.</li>
   </ul>
   <p>
-    The following example illustrates how these two signals are connected (in the
-    <var>gpodder.py</var> file):
+    To make gPodder respond correctly when the user presses the <var>Full screen</var> hardware key
+    you have to make the following changes to <var>gpodder-0.8.0/src/gpodder/gpodder.py</var>:
+  </p>
+  <p>
+     1. Connect to the signals and set a variable to monitor whether the application is
+     in full screen mode.
   </p>
   <pre>
-    |        self.window.set_title(self.gPodder.get_title())
-    |        self.window.connect("destroy", self.close_gpodder)
+120 |        self.window = hildon.Window()
+121 |        self.window.set_title(self.gPodder.get_title())
+122 |        self.window.connect("destroy", self.close_gpodder)
  ++ |        self.window.connect("key-press-event", self.on_key_press)
  ++ |        self.window.connect("window-state-event", self.on_window_state_change)
  ++ |        self.window_in_fullscreen = False #The window isn't in full screen mode initially.
-    |        self.app.add_window(self.window)
-    |
-    |        self.vMain.reparent(self.window)</pre>
+123 |        self.app.add_window(self.window)
+124 |
+125 |        self.vMain.reparent(self.window)</pre>
   <p>
-    The following example illustrates the window state monitoring implementation
-    <var>on_window_state_change</var>:
+    2. Implement the callback to monitor window state changes.
   </p>
   <pre>
-551 |        self.showMessage( _("Could not delete channel.\nProbably no channel is selected."))
-552 | #-- Gpodder.on_itemRemoveChannel_activate }
- ++ |
+575 |            self.showMessage( _("Could not delete channel.\nProbably no channel is selected."))
+576 |    #-- Gpodder.on_itemRemoveChannel_activate }
+577 |
  ++ |    def on_window_state_change(self, widget, event, *args):
  ++ |        if event.new_window_state &amp; gtk.gdk.WINDOW_STATE_FULLSCREEN:
  ++ |            self.window_in_fullscreen = True
  ++ |        else:
  ++ |            self.window_in_fullscreen = False
  ++ |
-554 | #-- Gpodder.on_itemExportChannels_activate {
-555 |    def on_itemExportChannels_activate(self, widget, *args):</pre>
+578 |    #-- Gpodder.on_itemExportChannels_activate {
+579 |    def on_itemExportChannels_activate(self, widget, *args):
+580 |        if libgpodder.isDebugging():</pre>
   <p>
-    The following example illustrates the hardware key monitoring implementation (
-    <var>on_key_press</var>):
+    3. Implement the callback to monitor key presses.
   </p>
   <pre>
-    |        else:
-    |            self.window_in_fullscreen = False
- ++ |
+581 |        else:
+582 |            self.window_in_fullscreen = False
+583 |
  ++ |    def on_key_press(self, widget, event, *args):
  ++ |        if event.keyval == gtk.keysyms.F6:
  ++ |            # The "Full screen" hardware key has been pressed
- ++ |        if self.window_in_fullscreen:
+ ++ |            if self.window_in_fullscreen:
  ++ |                self.window.unfullscreen ()
  ++ |            else:
  ++ |                self.window.fullscreen ()
-    |
-554 | #-- Gpodder.on_itemExportChannels_activate {
-555 |    def on_itemExportChannels_activate(self, widget, *args):</pre>
+ ++ |
+584 |    #-- Gpodder.on_itemExportChannels_activate {
+585 |    def on_itemExportChannels_activate(self, widget, *args):
+586 |        if libgpodder.isDebugging():</pre>
   <div class="frame note">
     <div class="label">Note</div>
-    <div class="content">The <em>Full screen</em> hardware key maps to the F6 key on the GDK.</div>
+    <div class="content">The <em>Full screen</em> hardware key maps to the F6 key on the SDK.</div>
   </div>
-  <p>Figure 11 illustrates gPodder in the full screen mode.</p>
+  <p>Figure 13 illustrates gPodder in full screen mode.</p>
   <div class="screenshot">
-    <img alt="gPodder in the full screen mode" src="images/gpodder_5_small.jpg">
-    <p>Figure 11. gPodder in the full screen mode</p>
+    <img alt="gPodder in full screen mode" src="images/gpodder_7_small.jpg">
+    <p>Figure 13. gPodder in full screen mode</p>
   </div>
 </div>
 
@@ -630,7 +643,7 @@ self.treeAvailable</pre>
 <div class="section">
   <p>
     LibOSSO is the basic library containing required and helpful functions for maemo applications.
-    One of LibOSSO's main features is RPC (Remote Procedure Calls) services (as it "wraps" D-BUS
+    One of LibOSSO's main features is RPC (Remote Procedure Calls) services (as it "wraps" D-Bus
     <a href="#references_maemo_sdk_tutorial"><sup>3</sup></a>). In addition, LibOSSO provides access
     to low-level hardware functions, such as turning on (or keeping on) the display, autosaving,
     state saving and system time.
@@ -645,7 +658,7 @@ self.treeAvailable</pre>
     and <var>osso_test_receiver.py</var>.
   </p>
   <p>
-    The sender sample application sends an RPC message when a button is clicked. D-BUS interprets
+    The sender sample application sends an RPC message when a button is clicked. D-Bus interprets
     the message and sends the RPC to the receiver sample application, which displays a system
     notification stating that it has received the RPC.
   </p>
@@ -694,7 +707,7 @@ def callback_func(interface, method, arguments, user_data):
     print "RPC received"
     osso_c = user_data
     osso_sysnote = osso.SystemNote(osso_c)
-    osso_sysnote.system_note_infoprint("osso_test_receiver: Received a RPC to %s." % method)
+    osso_sysnote.system_note_infoprint("osso_test_receiver: Received an RPC to %s." % method)
 
 osso_c = osso.Context("osso_test_receiver", "0.0.1", False)
 print "osso_test_receiver started"
@@ -704,7 +717,7 @@ osso_rpc.set_rpc_callback("spam.eggs.osso_test_receiver",
     "spam.eggs.osso_test_receiver", callback_func, osso_c)
 gtk.main()</pre>
   <p>
-    The receiver also must register itself as a D-BUS service. Create a
+    The receiver also must register itself as a D-Bus service. Create a
     <var>osso_test_receiver.service</var> file with the following content.
   </p>
   <pre>
@@ -721,7 +734,7 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
 
   <h3>Running applications</h3>
   <p>
-    First make sure that D-BUS recognises the new D-BUS service (
+    First make sure that D-Bus recognises the new D-Bus service (
     <var>spam.eggs.osso_test_receiver</var>). To do this, restart your maemo
     environment by using the following command on the Scratchbox console:
   </p>
@@ -738,7 +751,7 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
   </div>
   <p>
     Note that you do not have to manually run <var>osso_test_receiver.py</var>,
-    as D-BUS does it automatically. Due to its extreme simplicity, the once instantiated
+    as D-Bus does it automatically. Due to its extreme simplicity, the once instantiated
     <var>osso_test_receiver.py</var> continues running in background until you
     manually kill it from the Scratchbox console.
   </p>
@@ -873,7 +886,7 @@ X-Osso-Type=application/x-executable</pre>
   </table>
   <p>Table 1. <var>.desktop</var> file fields</p>
   <p>
-    As you can see in the desktop file, the application also needs an osso (D-BUS) service.
+    As you can see in the desktop file, the application also needs an osso (D-Bus) service.
     Otherwise, it does not appear in the task navigation bar. For the service, create a
     <var>hello_pymaemo.service</var> file with the following content.
   </p>
@@ -1200,7 +1213,7 @@ binary: binary-indep binary-arch
   <p>
     <a name="references_dbus"></a>
     <strong>[3]</strong>
-    D-BUS:
+    D-Bus:
     <a href="http://www.freedesktop.org/wiki/Software/dbus">http://www.freedesktop.org/wiki/Software/dbus</a>
   </p>
   <p>

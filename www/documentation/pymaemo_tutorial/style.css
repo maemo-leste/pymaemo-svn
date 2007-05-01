@@ -29,12 +29,35 @@ font-size:1.1em;
 }
 
 .screenshot {
-    text-align: center;
+    /* to center the DIV */
+    margin-right: auto;
+    margin-left: auto;
+    width: 510px;
 }
 
 .screenshot img {
     border: #808080 solid 1px;
     padding: 2px;
+}
+
+.screenshot p {
+    margin: 0;
+}
+
+.twin-screenshot {
+    /* to center the DIV */
+    margin-right: auto;
+    margin-left: auto;
+    width: 707px;
+}
+
+.twin-screenshot img {
+    border: #808080 solid 1px;
+    padding: 2px;
+}
+
+.twin-screenshot p {
+    margin: 0;
 }
 
 .copyright {
