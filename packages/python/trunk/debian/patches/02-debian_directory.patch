@@ -2,10 +2,11 @@ Index: python/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python/debian/changelog	2007-03-06 17:09:22.000000000 -0300
-@@ -0,0 +1,203 @@
+@@ -0,0 +1,204 @@
 +python2.5 (2.5.1-1osso1) unstable; urgency=low
 +
 +  * Upgrade to python2.5.1
++  * Moving BaseHTTPServer, SimpleHTTPServer, SimpleXMLRPCServer, CGIHTTPServer, cgi, cgitb to the main package
 +
 + -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed,  2 May 2007 14:50:34 -0300
 +
