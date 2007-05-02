@@ -1,0 +1,223 @@
+<!--<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">-->
+
+<refentry id="conicconstants">
+  <refnamediv>
+    <refname>conic Constants</refname>
+    <refpurpose>the built-in constants of the conic module</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+    <programlisting>
+    <xref linkend="conic-bearer-type-constants" endterm="conic-bearer-type-constants-title"></xref>
+    <xref linkend="conic-connect-flags-constants" endterm="conic-connect-flags-constants-title"></xref>
+    <xref linkend="conic-connection-error-constants" endterm="conic-connection-error-constants-title"></xref>
+    <xref linkend="conic-connection-status-constants" endterm="conic-connection-status-constants-title"></xref>
+    <xref linkend="conic-proxy-mode-constants" endterm="conic-proxy-mode-constants-title"></xref>
+    <xref linkend="conic-proxy-protocol-constants" endterm="conic-proxy-protocol-constants-title"></xref>
+    </programlisting>
+  </refsect1>
+
+  <refsect1 id="conicconstants-description">
+    <title>Description</title>
+
+    <refsect2 id="conic-bearer-type-constants">
+      <title id="conic-bearer-type-constants-title">ConIC Bearer Type Constants</title>
+
+      <para>The Bearer Type constants specify the name of bearer types used.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>conic.BEARER_WLAN_INFRA</literal></term>
+	  <listitem>
+	    <simpara>WLAN Infrastructure mode.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.BEARER_WLAN_ADHOC</literal></term>
+	  <listitem>
+	    <simpara>WLAN Ad-Hoc mode.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.BEARER_DUN_GSM_CS</literal></term>
+	  <listitem>
+	    <simpara>Bluetooth Dial-up Networking profile using GSM circuit-switched.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.BEARER_DUN_GSM_PS</literal></term>
+	  <listitem>
+	    <simpara>Bluetooth Dial-up Networking profile using GSM packet-switched.</simpara>
+	  </listitem>
+	</varlistentry>
+	</variablelist>
+
+    </refsect2>
+    
+    <refsect2 id="conic-connect-flags-constants">
+      <title id="conic-connect-flags-constants-title">ConIC Connect Flags Constants</title>
+
+      <para>The Connection Flags are a set of flags that specify how the connection request was performed.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>conic.CONNECT_FLAG_NONE</literal></term>
+	  <listitem>
+	    <simpara>No flags set.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.CONNECT_FLAG_AUTOMATICALLY_TRIGGERED</literal></term>
+	  <listitem>
+	    <simpara>Connection establishment wasn't started by a user action. Instead
+	    it was triggered by a timer, event or something similar from the application.
+	    Using this flag means that if a connection isn't already established,
+	    the connection will fails.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.CONNECT_FLAG_UNMANAGED</literal></term>
+	  <listitem>
+	    <simpara>Process requesting the connection won't be monitored for killing.
+	    Normally if the process dies, it will be automatically detached from the connection.
+	    If this flag is set and the process dies, the connection won't close automatically.</simpara>
+	  </listitem>
+	</varlistentry>
+	</variablelist>
+
+    </refsect2>
+
+   <refsect2 id="conic-connection-error-constants">
+      <title id="conic-connection-error-constants-title">ConIC Connection Error Constants</title>
+
+      <para>The Connection Error constants are a set of flags that specify the reason
+      why a connection request wasn't completed successfully.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>conic.CONNECTION_ERROR_NONE</literal></term>
+	  <listitem>
+	    <simpara>No errors.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.CONNECTION_ERROR_INVALID_IAP</literal></term>
+	  <listitem>
+	    <simpara>Requested IAP was invalid (not found or incomplete settings).</simpara>
+	  </listitem>
+	</varlistentry>
+   <varlistentry>
+	  <term><literal>conic.CONNECTION_ERROR_CONNECTION_FAILED</literal></term>
+	  <listitem>
+	    <simpara>Failed for unknown reason.</simpara>
+	  </listitem>
+	</varlistentry>
+   <varlistentry>
+	  <term><literal>conic.CONNECTION_ERROR_USER_CANCELLED</literal></term>
+	  <listitem>
+	    <simpara>Failed because of user cancellation.</simpara>
+	  </listitem>
+	</varlistentry>
+	</variablelist>
+    </refsect2>
+
+   <refsect2 id="conic-connection-status-constants">
+      <title id="conic-connection-status-constants-title">ConIC Connection Status Constants</title>
+
+      <para>The Connection Status constants are a set of flags that specify the current
+      connection status.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>conic.STATUS_DISCONNECTED</literal></term>
+	  <listitem>
+	    <simpara></simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.STATUS_DISCONNECTING</literal></term>
+	  <listitem>
+	    <simpara></simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.STATUS_CONNECTED</literal></term>
+	  <listitem>
+	    <simpara></simpara>
+	  </listitem>
+	</varlistentry>
+	</variablelist>
+    </refsect2>
+    
+    <refsect2 id="conic-proxy-mode-constants">
+      <title id="conic-proxy-mode-constants-title">ConIC Proxy Mode Constants</title>
+
+      <para>The Proxy Mode constants are a set of flags that specify how the proxies are set.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>conic.PROXY_MODE_NONE</literal></term>
+	  <listitem>
+	    <simpara>No proxies set.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.PROXY_MODE_MANUAL</literal></term>
+	  <listitem>
+	    <simpara>Manual proxies set.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.PROXY_MODE_AUTO</literal></term>
+	  <listitem>
+	    <simpara>Automatic proxy URL set.</simpara>
+	  </listitem>
+	</varlistentry>
+	</variablelist>
+    </refsect2>
+    
+    <refsect2 id="conic-proxy-protocol-constants">
+      <title id="conic-proxy-protocol-constants-title">ConIC Proxy Mode Constants</title>
+
+      <para>The Proxy Mode constants are a set of flags that specify the proxy protocols.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>conic.PROXY_PROTOCOL_HTTP</literal></term>
+	  <listitem>
+	    <simpara>HTTP proxy protocol.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.PROXY_PROTOCOL_HTTPS</literal></term>
+	  <listitem>
+	    <simpara>HTTPS proxy protocol.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.PROXY_PROTOCOL_FTP</literal></term>
+	  <listitem>
+	    <simpara>FTP proxy protocol.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.PROXY_PROTOCOL_SOCKS</literal></term>
+	  <listitem>
+	    <simpara>SOCKS proxy protocol.</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>conic.PROXY_PROTOCOL_RTSP</literal></term>
+	  <listitem>
+	    <simpara>RTSP proxy protocol.</simpara>
+	  </listitem>
+	</varlistentry>
+	</variablelist>
+    </refsect2>
+  </refsect1>
+
+</refentry>

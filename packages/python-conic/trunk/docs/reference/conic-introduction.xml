@@ -1,0 +1,22 @@
+<!--<?xml version="1.0" standalone="no"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">-->
+
+  <chapter id="conic-introduction">
+  <title>Introduction</title>
+
+  <para>This document describes most of the <literal>Python ConIC</literal> version
+  0.1 classes and their methods and associated
+  functions. This document attempts to document as much of the
+  <literal>Python ConIC</literal> <literal>API</literal> as possible but there are
+  undoubtedly errors and omissions. If you discover any of these please file
+  a bug report at the <ulink
+  url="https://pymaemo.garage.maemo.org/">PyMaemo</ulink> bugzilla.</para>
+  
+  <sect1 id="conic-reference-format">
+    <title>Reference Page Format</title>
+
+    <para>This document follows <ulink url="http://www.pygtk.org/docs/pygtk/pygtk-reference-format.html">PyGTK documentation format</ulink>.</para>
+  </sect1>
+
+  </chapter>

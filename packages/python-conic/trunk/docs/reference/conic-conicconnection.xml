@@ -94,7 +94,11 @@
 	      request for a connection, with this all events are received
 	      constantly. This makes it possible, for example, to create an
 	      application which executes something from the network every
-	      time a connection is established.</entry>
+	      time a connection is established.
+	      <para>Note: The automatic events are stopped by Internet
+	      Connectivity system when <literal>Connection.connect()</literal>
+	      is called and started again after <literal>conic.STATUS_DISCONNECT</literal>
+	      event is received.</para></entry>
        </row>
 	  </tbody>
     </tgroup>
@@ -157,7 +161,7 @@ Connections generate signals that indicate:</para>
       </listitem>
     </itemizedlist>
 
-<warning>Note: Due to problems with DBus, if you are using dbus.SystemBus
+<warning>Due to problems with DBus, if you are using dbus.SystemBus
 inside your app together with ConIc make sure that dbus.SystemBus is created
 with private=True, otherwise the library won't be able to receive the
 callbacks and won't work as expected.
@@ -173,7 +177,7 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a conic.Connection instace</simpara></listitem>
+      <listitem><simpara>a conic.Connection instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   
@@ -192,14 +196,26 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>flags</parameter> :</term>
-      <listitem><simpara>Flags for the connection.</simpara></listitem>
+      <term><parameter>flags</parameter>&#x00A0;:</term>
+      <listitem><simpara>Flags for the connection request. See <xref linkend="conic-connect-flags-constants"
+      endterm="conic-connect-flags-constants-title"></xref>.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Request for a connection. The Internet Connectivity subsystem will
+  choose the best connection based on user settings and input provided by the user.</para>
+  <para>Answer is sent using the "<literal>connection-event</literal>" signal from a
+  <literal>conic.Connection</literal> object. If the connection establishment
+   succeeded, or there was already a connection
+  established, a <literal>conic.STATUS_CONNECTED</literal> inside
+  <literal>conic.ConnectionEvent</literal> is sent. If connection establishment
+  failed, a <literal>conic.STATUS_DISCONNECTED</literal> inside
+  <literal>conic.ConnectionEvent</literal> is sent and error is set accordingly.
+  </para>
+  <para>Normally this one should be used.</para>
   </refsect2>
 
 
@@ -213,19 +229,20 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>id</parameter> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><parameter>id</parameter>&#x00A0;:</term>
+      <listitem><simpara>the id of the requested IAP.</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>flags</parameter> :</term>
-      <listitem><simpara>a ConIcConnectFlags</simpara></listitem>
+      <term><parameter>flags</parameter>&#x00A0;:</term>
+      <listitem><simpara>Flags for the connection request. See <xref linkend="conic-connect-flags-constants"
+      endterm="conic-connect-flags-constants-title"></xref>.</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
-
+  <para>Works like <methodname>request_connection()</methodname>, but tries to connect to a specific IAP.</para>
   </refsect2>
 
 
@@ -237,12 +254,16 @@ callbacks and won't work as expected.
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
-
+  
+  <para>Disconnects all IAPs associated with the connection instance.
+  The physical connection will be kept alive while there are other
+  applications using it.</para>
+  <para>Normally this one should be used.</para>
 
   <refsect2 id="method-conicconnection--disconnect-by-id">
     <title>conic.Connection.disconnect_by_id</title>
@@ -253,15 +274,17 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>id</parameter> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><parameter>id</parameter>&#x00A0;:</term>
+      <listitem><simpara>the id of the requested IAP.</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
+  
+  <para>Works like <methodname>disconnect()</methodname>, but tries to disconnect a specific IAP.</para>
 
 
   <refsect2 id="method-conicconnection--statistics">
@@ -273,16 +296,17 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>id</parameter> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><parameter>id</parameter>&#x00A0;:</term>
+      <listitem><simpara>the id of the requested IAP.</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
-
+  <para>Requests statistics for a IAP. The answer is send as a
+  <literal>conic.Statistics</literal> instance in "<literal>statistics</literal>" signal.</para>
 
   <refsect2 id="method-conicconnection--get-proxy-mode">
     <title>conic.Connection.get_proxy_mode</title>
@@ -292,7 +316,7 @@ callbacks and won't work as expected.
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
       <listitem><simpara>a ConIcProxyMode</simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -307,7 +331,7 @@ callbacks and won't work as expected.
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
       <listitem><simpara>a GSList*</simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -322,7 +346,7 @@ callbacks and won't work as expected.
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
       <listitem><simpara>a const-gchar*</simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -338,11 +362,11 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>protocol</parameter> :</term>
+      <term><parameter>protocol</parameter>&#x00A0;:</term>
       <listitem><simpara>a ConIcProxyProtocol</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
       <listitem><simpara>a const-gchar*</simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -358,11 +382,11 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>protocol</parameter> :</term>
+      <term><parameter>protocol</parameter>&#x00A0;:</term>
       <listitem><simpara>a ConIcProxyProtocol</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
       <listitem><simpara>a gint</simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -377,7 +401,7 @@ callbacks and won't work as expected.
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
       <listitem><simpara>a GSList*</simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -393,7 +417,7 @@ callbacks and won't work as expected.
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>id</parameter> :</term>
+      <term><parameter>id</parameter>&#x00A0;:</term>
       <listitem><simpara>a const-gchar*</simpara></listitem>
     </varlistentry>
     <varlistentry>

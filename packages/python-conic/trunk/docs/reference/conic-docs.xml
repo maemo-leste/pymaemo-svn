@@ -6,6 +6,7 @@
   <!ENTITY conicevent SYSTEM "conic-conicevent.xml" >
   <!ENTITY coniciap SYSTEM "conic-coniciap.xml" >
   <!ENTITY conicstatisticsevent SYSTEM "conic-conicstatisticsevent.xml" >
+  <!ENTITY conicconstants SYSTEM "conic-conicconstants.xml" >
 ]>
 
 <book id="python-conic-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
@@ -15,14 +16,8 @@
     <edition>Python ConIC Reference Manual for Python ConIC 0.1</edition>
     <releaseinfo>For Python ConIC version 0.1</releaseinfo>
     <abstract>
-      <para>This reference describes the class of Python ConIC module.</para>
+      <para>This reference describes the classes of Python ConIC module.</para>
     </abstract>
-    <authorgroup>
-      <author>
-        <firstname>Lauro</firstname>
-        <surname>Moura</surname>
-      </author>
-    </authorgroup>
   </bookinfo>
 
   <toc>
@@ -44,5 +39,6 @@
 &conicevent;
 &coniciap;
 &conicstatisticsevent;
-  </reference>
+&conicconstants;
+</reference>
 </book>
