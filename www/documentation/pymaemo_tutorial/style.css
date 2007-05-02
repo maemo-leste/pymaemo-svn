@@ -121,3 +121,18 @@ pre {
 .widget-code {
     margin: auto;
 }
+
+.real-table {
+    border-collapse: collapse;
+    caption-side: bottom;
+}
+
+.real-table caption {
+    text-align: left;
+}
+
+.real-table td, th {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.3em;
+}

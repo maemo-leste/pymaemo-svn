@@ -10,6 +10,9 @@
 
 <h1>Using Python in maemo</h1>
 <div class="copyright">
+  <div style="float: right;">
+    <p>Last Updated: Wed, 02 May 2007</p>
+  </div>
   <p>
     Copyright &copy; 2006-2007 INdT - Instituto Nokia de Tecnologia
     <br>
@@ -18,6 +21,7 @@
     Author: Daniel d'Andrada T. de Carvalho &lt;daniel.[last name] at indt.org.br&gt;
   </p>
 </div>
+
 
 <div id="minitoc-area" class="minitoc-area">
 <!-- Write/use a TOC generator and put the generated HTML code here. -->
@@ -668,7 +672,10 @@ self.treeAvailable</pre>
     The sender is simply a button occupying the whole window. When you click it, an RPC is sent to
     the receiver sample application.
   </p>
-  <p>Create a <var>osso_test_sender.py</var> file with the following content.</p>
+  <p>
+    Create a <var>osso_test_sender.py</var> file with the following content (or download it
+    <a href="examples/osso_test_sender.py">here</a>).
+  </p>
   <pre>
 #!/usr/bin/python2.5
 import osso
@@ -697,7 +704,8 @@ gtk.main()</pre>
     waiting for an RPC. When it receives one, it uses LibOSSO to display an information banner
     notifying the user that an RPC has been received.
   </p>
-  <p>Create a <var>osso_test_receiver.py</var> file with the following content.</p>
+  <p>Create a <var>osso_test_receiver.py</var> file with the following content (or download it
+    <a href="examples/osso_test_receiver.py">here</a>).</p>
   <pre>
 #!/usr/bin/python2.5
 import osso
@@ -732,11 +740,11 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
     <var>/usr/share/dbus-1/services</var>.
   </p>
 
-  <h3>Running applications</h3>
+  <h3>Running the sample applications</h3>
   <p>
     First make sure that D-Bus recognises the new D-Bus service (
     <var>spam.eggs.osso_test_receiver</var>). To do this, restart your maemo
-    environment by using the following command on the Scratchbox console:
+    environment (which, in turn, will restart D-Bus) by using the following command on the Scratchbox console:
   </p>
   <pre>[sbox-TARGET_NAME: ~] &gt; af-sb-init.sh restart</pre>
   <p>
@@ -759,18 +767,12 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
 
 
 
-<h2>Distributing the Python applications</h2>
+<h2>Distributing Python applications</h2>
 <div class="section">
   <p>
-    To distribute applications, you must put it in a neat single file (such as a regular Debian
-    package) so that the application installer can recognise and install it, put all files to their
-    correct locations and create an entry for the application in the menu.
-  </p>
-
-  <h3>Requirements</h3>
-  <p>
-    As maemo devices are not delivered with Python by default, the maemo Python runtime package must
-    also be installed. You can download it from <a href="http://www.maemo.org/">http://www.maemo.org</a>.
+    To distribute applications, you must put it in a neat single file (a regular Debian package) so
+    that the application installer can recognise and install it, putiting all files into their
+    correct locations and creating an entry for the application on the menu.
   </p>
 
   <h3>Distributing a "Hello PyMaemo!" application</h3>
@@ -784,9 +786,7 @@ Exec={SOME_DIRECTORY_HIERARCHY}/osso_test_receiver.py</pre>
 
 import gtk
 import hildon
-import osso
 
-osso_c = osso.Context("hello_pymaemo", "1.0.0", False)
 window = hildon.Window ()
 window.set_title ("Hello maemo!")
 window.connect("destroy", gtk.main_quit)
@@ -825,80 +825,55 @@ Encoding=UTF-8
 Name=Hello PyMaemo!
 Exec=/usr/bin/hello-pymaemo
 Icon=hello_icon_26x26
-Type=Application
-X-Osso-Service=hello_pymaemo
-X-Osso-Type=application/x-executable</pre>
+Type=Application</pre>
   <div class="frame note">
     <div class="label">Note</div>
     <div class="content">
-      Be very careful when writing the desktop file, since the system is very sensitive to
-      typographical errors in it and a faulty desktop file simply fails to show its menu entry
-      without yielding any errors.
+      Be very careful when writing a desktop file, since the system is very sensitive to
+      typographical errors and misplaced whitespaces in it. A faulty desktop file will simply fail
+      to show its menu entry without yielding any errors.
     </div>
   </div>
-  <table border="0" cellpadding="4" cellspacing="1">
+  <table class="real-table">
+    <caption>Table 1. <var>.desktop</var> file fields</caption>
+    <thead>
+      <tr>
+        <th>Field name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
     <tbody>
       <tr>
-        <th colspan="1" rowspan="1">Field name</th>
-        <th colspan="1" rowspan="1">Description</th>
+        <td><var>Version</var></td>
+        <td>Application version</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><var>Version</var></td>
-        <td colspan="1" rowspan="1">Application version</td>
+        <td><var>Encoding</var></td>
+        <td>Character encoding. Must always be <var>UTF8</var>.</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><var>Encoding</var></td>
-        <td colspan="1" rowspan="1">Character encoding. Must always be <var>UTF8</var>.</td>
+        <td><var>Name</var></td>
+        <td>Application's name</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><var>Name</var></td>
-        <td colspan="1" rowspan="1">Application's name</td>
+        <td><var>Exec</var></td>
+        <td>File to be executed when the application is called</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><var>Exec</var></td>
-        <td colspan="1" rowspan="1">File to be executed when the application is called</td>
-      </tr>
-      <tr>
-        <td colspan="1" rowspan="1"><var>Icon</var></td>
-        <td colspan="1" rowspan="1">
+        <td><var>Icon</var></td>
+        <td>
           Application's icon. Only the name of the file <strong>without</strong> its suffix
           (<var>.png</var>).
         </td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1"><var>Type</var></td>
-        <td colspan="1" rowspan="1">
+        <td><var>Type</var></td>
+        <td>
           "<var>Application</var>"since it is an entry for an application
         </td>
       </tr>
-      <tr>
-        <td colspan="1" rowspan="1"><var>X-Osso-Service</var></td>
-        <td colspan="1" rowspan="1">
-          Name of the osso service that calls this application. For more information, see the
-          paragraphs below the table.
-        </td>
-      </tr>
-      <tr>
-        <td colspan="1" rowspan="1"><var>X-Osso-Type</var></td>
-        <td colspan="1" rowspan="1">Usually "<var>application/x-executable</var>"</td>
-      </tr>
     </tbody>
   </table>
-  <p>Table 1. <var>.desktop</var> file fields</p>
-  <p>
-    As you can see in the desktop file, the application also needs an osso (D-Bus) service.
-    Otherwise, it does not appear in the task navigation bar. For the service, create a
-    <var>hello_pymaemo.service</var> file with the following content.
-  </p>
-  <pre>
-[D-BUS Service]
-Name=com.nokia.hello_pymaemo
-Exec=/usr/bin/hello-pymaemo</pre>
-  <p>
-    Note that since "-" is not a valid character in a service name.,
-    <var>hello_pymaemo</var> is used instead of
-    <var>hello-pymaemo</var>.
-  </p>
 
   <h4>Copying files to their locations</h4>
   <p>
@@ -914,7 +889,6 @@ setup(name='hello-pymaemo',
        data_files = [
                     ('share/pixmaps',             ['hello_icon_26x26.png']),
                     ('share/applications/hildon', ['hello-pymaemo.desktop']),
-                    ('share/dbus-1/services',     ['hello_pymaemo.service']),
                     ]
       )</pre>
   <p>
@@ -933,39 +907,35 @@ setup(name='hello-pymaemo',
       <var>hello-pymaemo.desktop</var> is
       copied to <var>/usr/share/applications/hildon</var>
     </li>
-    <li>
-      <var>hello_pymaemo.service</var> is
-      copied to <var>/usr/share/dbus-1/services</var>
-    </li>
   </ul>
   <p>
     After you have run the command, the application is actually installed in your system (in
-    Scratchbox, you have to ru the <var>af-sb-init.sh restart</var> command
+    Scratchbox, you have to run <var>af-sb-init.sh restart</var>
     before calling your application from the menu). You can access it from the <em>Extras</em> menu.
   </p>
   <p>
     The problem with this approach is that if you want to remove the application, you have to
     manually delete every file from its corresponding directory, which is not practical. It is also
-    not practical to distribute an application this way, since every user has to manually run the
+    not practical to distribute an application that way, since every user has to manually run the
     command (or a script that does it).
   </p>
   <p>
     Instead, you can let the Application Installer take care of all these issues. To do that, you
-    have to group all the files in a Debian package.
+    have to group all files in a Debian package.
   </p>
   <p>
-    For more information about Python Distribution Utilities, see Distributing Python
-    Modules<a href="#references_python_distutils"><sup>4</sup></a>. To get a basic knowledge of
+    For more information about Python Distribution Utilities, see <em>Distributing Python
+    Modules</em><a href="#references_python_distutils"><sup>4</sup></a>. To get a basic knowledge of
     Distutils, reading Chapters 1 and 2 is strongly recommended.
   </p>
 
   <h4>Creating a Debian package</h4>
   <p>
-    When creating a Debian package, the first step is to put all the files (the hello-pymaemo script,
+    When creating a Debian package, the first step is to put all files (the hello-pymaemo script,
     and the png, desktop and service files) in an empty directory called
     <var>hello-pymaemo-1.0.0</var>. The directory name must follow the
     <var>&lt;package-name&gt;-&lt;app-version&gt;</var> convention. This means
-    that the package that you are creating for the hello world application is called
+    that the package you are creating for the hello world application is called
     <var>hello-pymaemo</var>.
   </p>
   <p>
@@ -974,17 +944,17 @@ setup(name='hello-pymaemo',
     <var>Makefile</var> to act as an interface between the Debian package system
     and the <var>setup.py</var>. The file is very simple; it merely issues
     commands to <var>setup.py</var> according to make's target. If you have no
-    knowledge of make files, see Chapters 1 and 2 in GNU Make
-    Manual<a href="#references_make"><sup>5</sup></a>.
+    knowledge of make files, see Chapters 1 and 2 in <em>GNU Make
+    Manual</em><a href="#references_make"><sup>5</sup></a>.
   </p>
-  <p>Create a <var>Makefile</var> file with the following content.</p>
+  <p>Create a <var>Makefile</var> file with the following content (indentation with tabulators):</p>
   <pre>
 all:
-  python2.5 setup.py build
-clean: 
-  python2.5 setup.py clean --all
+	python2.5 setup.py build
+clean:
+	python2.5 setup.py clean --all
 install:
-  python2.5 setup.py install --root $(DESTDIR)</pre>
+	python2.5 setup.py install --root $(DESTDIR)</pre>
   <p>
     In Scratchbox console (inside the <var>hello-pymaemo-1.0.0</var> directory),
     enter the following command:
@@ -1003,9 +973,8 @@ Hit &lt;enter&gt; to confirm:
 Done. Please edit the files in the debian/ subdirectory now.
 You should also check that the hello-pymaemo Makefiles install into $DESTDIR and not in / .</pre>
   <p>
-    Choose "single binary" as a package type. In case the <var>"--root $(DESTDIR)"
-    </var> part of the makefile is not clear to you, the last sentece in the output is meant to
-    clarify the situation.
+    Choose "single binary" as package type. In case the "<var>--root $(DESTDIR)</var>" part of the
+    makefile is not clear to you, the last sentece in the output is meant to clarify the situation.
   </p>
   <p>
     The <var>dh_make</var> command creates a <var>debian</var>
@@ -1017,35 +986,37 @@ You should also check that the hello-pymaemo Makefiles install into $DESTDIR and
     Table 2 lists the files needed in <var>hello-pymaemo-1.0.0/debian</var>
     (others can be removed):
   </p>
-  <p>Table 2. Needed files for the example application package</p>
-  <table class="ForrestTable" border="0" cellpadding="4" cellspacing="1">
+  <table class="real-table">
+    <caption>Table 2. Needed files for the example application package</caption>
+    <thead>
+      <tr>
+        <th>File in <var>./debian</var></th>
+        <th>Description</th>
+      </tr>
+    </thead>
     <tbody>
       <tr>
-        <th colspan="1" rowspan="1">File in <var>./debian</var></th>
-        <th colspan="1" rowspan="1">Description</th>
+        <td>changelog</td>
+        <td>Application's change log</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1">changelog</td>
-        <td colspan="1" rowspan="1">Application's change log</td>
+        <td>compat</td>
+        <td>Debian helper compatibily version. Leave it as it is.</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1">compat</td>
-        <td colspan="1" rowspan="1">Debian helper compatibily version. Leave it as it is.</td>
-      </tr>
-      <tr>
-        <td colspan="1" rowspan="1">control</td>
-        <td colspan="1" rowspan="1">
+        <td>control</td>
+        <td>
           Describes the packages to be made. For more information, see the paragraphs
           below the table.
         </td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1">copyright</td>
-        <td colspan="1" rowspan="1">Copyright text. Fill in the blanks.</td>
+        <td>copyright</td>
+        <td>Copyright text. Fill in the blanks.</td>
       </tr>
       <tr>
-        <td colspan="1" rowspan="1">rules</td>
-        <td colspan="1" rowspan="1">
+        <td>rules</td>
+        <td>
           A makefile containing the rules to build all kinds of packages (such as source and binary).
           For more information, see the paragraphs below the table.
         </td>
@@ -1079,15 +1050,16 @@ Description: A simple "Hello Python for Maemo!"
  text "Hello Python for Maemo!".
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+g
- vaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1gURDQoYya0JlwAAAU9J 
+ vaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1gURDQoYya0JlwAAAU9J
  REFUSMftlL1KA0EUhb/NZl/ggnHQxsJUxt5CUucVJCCkDfgyKdIGG5/A0s5HEBtJ
- EdDAQGBgmw0YJmMzgXXYza5CtNkDW9zZw5z7c+ZCgwb/Ai3i9sVl/Bq8RIs4LRK1 
+ EdDAQGBgmw0YJmMzgXXYza5CtNkDW9zZw5z7c+ZCgwb/Ai3i9sVl/Bq8RIs4LRK1
  gJDsKvJyNXmJMuYTsMoY1zpgozaABdYArQNPZQ1kfyGU7SpqVwxzAMwABWhgpIwp
- 4vWBB+AUWAI3ypjnfEXtPU4bLKx9vErTeCeiRSYF+fTn1j5dp2myE9EiU+DSi3wX 
+ 4vWBB+AUWAI3ypjnfEXtPU4bLKx9vErTeCeiRSYF+fTn1j5dp2myE9EiU+DSi3wX
  ymeqRQAmZ3EcA5E/fgO6BULT8zhOcrwXoJdrXRa2Lgps2y2odAUcBUIXQdz78YyC
- SldAp8b7+bXrIv91qjZBietqCc2DjbAt4b2WxJkyZljVujlwp0U0cPxuLcAIuC+4 
+ SldAp8b7+bXrIv91qjZBietqCc2DjbAt4b2WxJkyZljVujlwp0U0cPxuLcAIuC+4
  dKxFlsDJarvdAGP/b6hFnDImYs+uG3hbO2AB3Jbsur63tQM+fFx3bzZocEB8AdV2
- gJBZgKTwAAAAAElFTkSuQmCC</pre>
+ gJBZgKTwAAAAAElFTkSuQmCC
+</pre>
   <p>
     The <var>XB-Maemo-Icon-26</var> field contains the application icon file (in
     this case, <var>hello_icon_26x26.png</var>) encoded in base64. This is the
@@ -1102,7 +1074,7 @@ XB-Maemo-Icon-26:
   <p>
     The Application Installer only shows packages in the <var>user</var> section.
     Thus, your <var>Section:</var> field in the <var>control
-    </var> file must has the <var>Section: user/&lt;SUBSECTION&gt;</var> syntax,
+    </var> file must have the <var>Section: user/&lt;SUBSECTION&gt;</var> syntax,
     where <var>&lt;SUBSECTION&gt;</var> is arbitrary.
   </p>
   <p>
@@ -1138,7 +1110,8 @@ build-stamp: configure-stamp
 
 	touch build-stamp
 
-clean: 	dh_testdir
+clean:
+	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
 
@@ -1151,7 +1124,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k
- 	dh_installdirs
+	dh_installdirs
 
 	# Add here commands to install the package into debian/hello-pymaemo.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/hello-pymaemo
@@ -1162,7 +1135,7 @@ binary-indep: build install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
- 	dh_fixperms
+	dh_fixperms
 	dh_installdeb
 	dh_gencontrol
 	dh_md5sums
@@ -1171,7 +1144,8 @@ binary-indep: build install
 binary-arch: build install
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure</pre>
+.PHONY: build clean binary-indep binary-arch binary install configure
+</pre>
   <p>
     The main point is that the <var>binary-arch</var> target was emptied and the
     <var>binary-indep</var> filled, since the application being 100% Python means
@@ -1189,8 +1163,25 @@ binary: binary-indep binary-arch
     distributed to maemo devices and installed using the Application Installer.
   </p>
   <p>
-    For more information about making Debian packages, see Debian New Maintainers'
-    Guide<a href="#references_debian"><sup>6</sup></a>.
+    You can install your package in scratchbox using the following command:
+  </p>
+  <pre>[sbox-TARGET_NAME: ~] &gt; dpkg -i hello-pymaemo_1.0.0-1_all.deb</pre>
+  <p>To remove it, the command is:</p>
+  <pre>[sbox-TARGET_NAME: ~] &gt; dpkg -r hello-pymaemo</pre>
+  <p>
+    Figure 14 shows our hello-world application properly installed and running.
+  </p>
+  <div class="screenshot">
+    <img alt="The &quot;Hello World!&quot; properly installed." src="images/packaging_1_small.jpg">
+    <p>Figure 14. The "Hello World!" properly installed.</p>
+  </div>
+  <p>
+    All files shown in this section can be downloaded <a href="examples/hello-pymaemo_1.0.0-1.tar.gz">here</a>
+    and the resulting debian package <a href="examples/hello-pymaemo_1.0.0-1_all.deb">here</a>.
+  </p>
+  <p>
+    For more information about making Debian packages, see <em>Debian New Maintainers'
+    Guide</em><a href="#references_debian"><sup>6</sup></a>.
   </p>
 </div>
 
