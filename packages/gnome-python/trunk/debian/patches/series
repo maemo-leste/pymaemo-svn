@@ -6,3 +6,4 @@
 06-bonobo-removal-and-init-modification.patch
 07-update-setup-file.patch
 08-modify-vfs-examples.patch
+09-modify-gconf-examples.patch
