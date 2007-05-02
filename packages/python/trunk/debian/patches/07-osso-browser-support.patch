@@ -2,7 +2,7 @@ Index: python/Lib/webbrowser.py
 ===================================================================
 --- python.orig/Lib/webbrowser.py	2007-03-06 17:17:58.000000000 -0300
 +++ python/Lib/webbrowser.py	2007-03-06 17:18:13.000000000 -0300
-@@ -49,10 +49,10 @@
+@@ -54,10 +54,10 @@
  # It is recommended one does "import webbrowser" and uses webbrowser.open(url)
  # instead of "from webbrowser import *".
  
@@ -15,7 +15,7 @@ Index: python/Lib/webbrowser.py
              return True
      return False
  
-@@ -138,7 +138,7 @@
+@@ -143,7 +143,7 @@
          self.name = name
          self.basename = name
  
@@ -24,7 +24,7 @@ Index: python/Lib/webbrowser.py
          raise NotImplementedError
  
      def open_new(self, url):
-@@ -161,7 +161,7 @@
+@@ -166,7 +166,7 @@
              self.args = name[1:]
          self.basename = os.path.basename(self.name)
  
@@ -33,7 +33,7 @@ Index: python/Lib/webbrowser.py
          cmdline = [self.name] + [arg.replace("%s", url)
                                   for arg in self.args]
          try:
-@@ -175,7 +175,7 @@
+@@ -183,7 +183,7 @@
      """Class for all browsers which are to be started in the
         background."""
  
@@ -41,8 +41,8 @@ Index: python/Lib/webbrowser.py
 +    def open(self, url, new=0, autoraise=1, context=None):
          cmdline = [self.name] + [arg.replace("%s", url)
                                   for arg in self.args]
-         setsid = getattr(os, 'setsid', None)
-@@ -243,7 +243,7 @@
+         try:
+@@ -254,7 +254,7 @@
          else:
              return not p.wait()
  
@@ -51,7 +51,7 @@ Index: python/Lib/webbrowser.py
          if new == 0:
              action = self.remote_action
          elif new == 1:
-@@ -327,7 +327,7 @@
+@@ -338,7 +338,7 @@
      for more information on the Konqueror remote-control interface.
      """
  
@@ -60,7 +60,7 @@ Index: python/Lib/webbrowser.py
          # XXX Currently I know no way to prevent KFM from opening a new win.
          if new == 2:
              action = "newTab"
-@@ -376,6 +376,18 @@
+@@ -387,6 +387,18 @@
          else:
              return (p.poll() is None)
  
@@ -79,7 +79,7 @@ Index: python/Lib/webbrowser.py
  
  class Grail(BaseBrowser):
      # There should be a way to maintain a connection to Grail, but the
-@@ -415,7 +427,7 @@
+@@ -426,7 +426,7 @@
          s.close()
          return 1
  
@@ -88,7 +88,7 @@ Index: python/Lib/webbrowser.py
          if new:
              ok = self._remote("LOADNEW " + url)
          else:
-@@ -431,6 +443,8 @@
+@@ -442,6 +454,8 @@
  # a console terminal or an X display to run.
  
  def register_X_browsers():
@@ -97,7 +97,7 @@ Index: python/Lib/webbrowser.py
      # The default Gnome browser
      if _iscommand("gconftool-2"):
          # get the web browser string from gconftool
-@@ -477,6 +491,7 @@
+@@ -488,6 +502,7 @@
      if _iscommand("grail"):
          register("grail", Grail, None)
  
