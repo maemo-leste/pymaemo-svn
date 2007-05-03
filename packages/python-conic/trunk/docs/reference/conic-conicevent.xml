@@ -1,19 +1,20 @@
 <refentry id="class-conicevent">
   <refmeta>
-    <refentrytitle>gtk.Event</refentrytitle>
+    <refentrytitle>conic.Event</refentrytitle>
     <manvolnum>3</manvolnum>
-    <refmiscinfo>PyGTK Docs</refmiscinfo>
+    <refmiscinfo>Python ConIC Docs</refmiscinfo>
   </refmeta>
 
   <refnamediv>
-    <refname>gtk.Event</refname><refpurpose></refpurpose>
+    <refname>conic.Event</refname>
+    <refpurpose>Base class for other classes that contains event info.</refpurpose>
   </refnamediv>
 
   <refsect1>
     <title>Synopsis</title>
 
 <classsynopsis language="python">
-  <ooclass><classname>gtk.Event</classname></ooclass>
+  <ooclass><classname>conic.Event</classname></ooclass>
   <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
 <methodsynopsis language="python">
     <methodname><link linkend="method-conicevent--get-iap-id">get_iap_id</link></methodname>
@@ -28,41 +29,59 @@
     <title>Ancestry</title>
 
 <synopsis>+-- <link linkend="class-gobject">GObject</link>
-  +-- <link linkend="class-conicevent">gtk.Event</link>
+  +-- <link linkend="class-conicevent">conic.Event</link>
 </synopsis>
 
   </refsect1>
+  
+<refsect1>
+    <title>Description</title>
+
+    <para>The <link
+linkend="class-conicevent"><classname>conic.Event</classname></link> 
+class is the base class of <link linkend="class-conicconnectionevent">
+<classname>conic.ConnectionEvent</classname></link> and
+<link linkend="class-conicstatisticsevent"><classname>
+conic.StatisticsEvent</classname></link>.</para>
+</refsect1>   
+  
   <refsect1>
     <title>Methods</title>
 
   <refsect2 id="method-conicevent--get-iap-id">
-    <title>gtk.Event.get_iap_id</title>
+    <title>conic.Event.get_iap_id</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_iap_id</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>Id of the IAP.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Get the id of the IAP this event is associated with.</para>
   </refsect2>
+  
 
 
   <refsect2 id="method-conicevent--get-bearer-type">
-    <title>gtk.Event.get_bearer_type</title>
+    <title>conic.Event.get_bearer_type</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_bearer_type</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>Bearer of the IAP. See
+  <xref linkend="conic-bearer-type-constants"
+      endterm="conic-bearer-type-constants-title"></xref>.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Get bearer type of the IAP this event is associated with. </para>
   </refsect2>
+  
 
 
   </refsect1>

@@ -2,11 +2,12 @@
   <refmeta>
     <refentrytitle>conic.Iap</refentrytitle>
     <manvolnum>3</manvolnum>
-    <refmiscinfo>PyGTK Docs</refmiscinfo>
+    <refmiscinfo>Python ConIC Docs</refmiscinfo>
   </refmeta>
 
   <refnamediv>
-    <refname>conic.Iap</refname><refpurpose></refpurpose>
+    <refname>conic.Iap</refname>
+    <refpurpose>Use to access IAP info.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -46,10 +47,11 @@
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>Name of the IAP.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns the name of the IAP as string.</para>
   </refsect2>
 
 
@@ -61,12 +63,12 @@
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>ID of the IAP.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns the ID of the IAP as string.</para>
   </refsect2>
-
 
   <refsect2 id="method-coniciap--get-bearer-type">
     <title>conic.Iap.get_bearer_type</title>
@@ -76,10 +78,13 @@
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>Bearer type of the IAP. See
+  <xref linkend="conic-bearer-type-constants"
+      endterm="conic-bearer-type-constants-title"></xref>. </simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns the bearer type of the IAP as string.</para>
   </refsect2>
 
 

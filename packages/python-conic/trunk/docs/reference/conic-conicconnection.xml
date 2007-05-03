@@ -120,6 +120,8 @@ linkend="signal-conicconnection--connection-event">connection-event</link>"</ter
             </methodparam>
             <methodparam><parameter>event</parameter>
             </methodparam>
+            <methodparam><parameter>user_param1</parameter>
+            </methodparam>
             <methodparam><parameter>...</parameter>
             </methodparam>
           </methodsynopsis>
@@ -135,6 +137,8 @@ linkend="signal-conicconnection--statistics">statistics</link>"</term>
             </methodparam>
             <methodparam><parameter>event</parameter>
             </methodparam>
+            <methodparam><parameter>user_param1</parameter>
+            </methodparam>
             <methodparam><parameter>...</parameter>
             </methodparam>
           </methodsynopsis>
@@ -148,7 +152,7 @@ linkend="signal-conicconnection--statistics">statistics</link>"</term>
     <title>Description</title>
 
     <para>The <link
-linkend="class-gtkbutton"><classname>conic.Connection</classname></link> is
+linkend="class-conicconnection"><classname>conic.Connection</classname></link> is
 the main class of the conic module. It can be used to request Internet 
 connections, retrieve connection statistics, proxies and settings for IAPs.
 Connections generate signals that indicate:</para>
@@ -258,12 +262,12 @@ callbacks and won't work as expected.
       <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
-  </refsect2>
-  
-  <para>Disconnects all IAPs associated with the connection instance.
+    <para>Disconnects all IAPs associated with the connection instance.
   The physical connection will be kept alive while there are other
   applications using it.</para>
   <para>Normally this one should be used.</para>
+  </refsect2>
+  
 
   <refsect2 id="method-conicconnection--disconnect-by-id">
     <title>conic.Connection.disconnect_by_id</title>
@@ -282,11 +286,10 @@ callbacks and won't work as expected.
       <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
+    <para>Works like <link linkend="method-conicconnection--disconnect">
+    <methodname>disconnect()</methodname></link>, but tries to disconnect a specific IAP.</para>
   </refsect2>
   
-  <para>Works like <methodname>disconnect()</methodname>, but tries to disconnect a specific IAP.</para>
-
-
   <refsect2 id="method-conicconnection--statistics">
     <title>conic.Connection.statistics</title>
 
@@ -304,9 +307,10 @@ callbacks and won't work as expected.
       <listitem><simpara>True if the DBus message was sent without errors. False otherwise.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Requests statistics for an IAP. The answer is sent as a
+  <link linkend="class-conicstatisticsevent"><classname>conic.StatisticsEvent</classname></link>
+  instance in "<literal>statistics</literal>" signal.</para>
   </refsect2>
-  <para>Requests statistics for a IAP. The answer is send as a
-  <literal>conic.Statistics</literal> instance in "<literal>statistics</literal>" signal.</para>
 
   <refsect2 id="method-conicconnection--get-proxy-mode">
     <title>conic.Connection.get_proxy_mode</title>
@@ -317,9 +321,51 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a ConIcProxyMode</simpara></listitem>
+      <listitem><simpara>the proxy mode. See <xref
+      linkend="conic-proxy-mode-constants" endterm="conic-proxy-mode-constants-title">
+      </xref></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Get current proxy mode.</para>
+  <para>If the mode is <literal>conic.PROXY_MODE_NONE</literal>,
+  do note use proxies at all.</para>
+  <para>If the mode is <literal>conic.PROXY_MODE_MANUAL</literal>,
+  use proxies and only use these functions to get the proxy settings:</para>
+  <variablelist>
+    <varlistentry>
+    <listitem><simpara>
+        <link linkend="method-conicconnection--get-proxy-host">
+        <methodname>get_proxy_host</methodname>()</link>
+    </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+    <listitem><simpara>
+        <link linkend="method-conicconnection--get-proxy-port">
+        <methodname>get_proxy_port</methodname>()</link>
+    </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+    <listitem><simpara>
+        <link linkend="method-conicconnection--get-proxy-ignore-hosts">
+        <methodname>get_proxy_ignore_hosts</methodname>()</link>
+    </simpara></listitem>
+    </varlistentry>
+  </variablelist>
+ <para>If the mode is <literal>conic.PROXY_MODE_AUTO</literal>,
+  then only use Proxy Auto-config file specified in
+  <ulink url="http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html">
+  http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html</ulink>.
+  To get the URL for the file, use this function:</para>
+  <variablelist>
+    <varlistentry>
+    <listitem><simpara>
+        <link linkend="method-conicconnection--get-proxy-autoconfig-url">
+        <methodname>get_proxy_autoconfig_url</methodname>()</link>
+    </simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
   </refsect2>
 
 
@@ -332,11 +378,15 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a GSList*</simpara></listitem>
+      <listitem><simpara>A list of strings with the hosts or
+      <literal>None</literal> if no hosts specified.</simpara></listitem>
     </varlistentry>
   </variablelist>
+   <para>Get a list of hosts to be ignored. Connections to these hosts
+  shouldn't use proxies.</para>
+  <para> It is guaranteed that this function always
+  returns the current and up-to-date settings.</para>
   </refsect2>
-
 
   <refsect2 id="method-conicconnection--get-proxy-autoconfig-url">
     <title>conic.Connection.get_proxy_autoconfig_url</title>
@@ -347,11 +397,15 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <listitem><simpara>URL as a string. <literal>None</literal>,
+      if no URL specified.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Get the URL of Auto-Config Proxy.</para>
+  <para>It is guaranteed that this function always returns
+  the current and up-to-date settings.</para>
   </refsect2>
-
+  
 
   <refsect2 id="method-conicconnection--get-proxy-host">
     <title>conic.Connection.get_proxy_host</title>
@@ -363,14 +417,17 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><parameter>protocol</parameter>&#x00A0;:</term>
-      <listitem><simpara>a ConIcProxyProtocol</simpara></listitem>
+      <listitem><simpara>Protocol identifier. See <xref linkend="conic-proxy-protocol-constants"
+      endterm="conic-proxy-protocol-constants-title"></xref>.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <listitem><simpara>hostname of the proxy for the protocol.</simpara></listitem>
     </varlistentry>
   </variablelist>
+   <para>Get proxy host.</para>
   </refsect2>
+ 
 
 
   <refsect2 id="method-conicconnection--get-proxy-port">
@@ -383,14 +440,17 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><parameter>protocol</parameter>&#x00A0;:</term>
-      <listitem><simpara>a ConIcProxyProtocol</simpara></listitem>
+      <listitem><simpara>Protocol identifier. See <xref linkend="conic-proxy-protocol-constants"
+      endterm="conic-proxy-protocol-constants-title"></xref>.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>Port number of the proxy host for the protocol.</simpara></listitem>
     </varlistentry>
   </variablelist>
+<para>Get proxy port.</para>
   </refsect2>
+  
 
 
   <refsect2 id="method-conicconnection--get-all-iaps">
@@ -402,10 +462,14 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#x00A0;:</term>
-      <listitem><simpara>a GSList*</simpara></listitem>
+      <listitem><simpara>A list of <link linkend="class-coniciap">
+         <classname>conic.Iap</classname></link> objects or
+         <literal>None</literal> on error.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Get a list of all configured IAPs.</para>
   </refsect2>
+  
 
 
   <refsect2 id="method-conicconnection--get-iap">
@@ -418,15 +482,107 @@ callbacks and won't work as expected.
   <variablelist>
     <varlistentry>
       <term><parameter>id</parameter>&#x00A0;:</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <listitem><simpara>The id of the IAP.</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><emphasis>Returns</emphasis> :</term>
-      <listitem><simpara>a ConIcIap*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>A <link linkend="class-coniciap">
+         <classname>conic.Iap</classname></link> object.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieve an IAP by id.</para>
   </refsect2>
-
+  
 
   </refsect1>
+  
+  <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-conicconnection--connection-event">
+      <title>The "connection-event" conic.Connection Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>connection</parameter></methodparam>
+	  <methodparam><parameter>event</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>connection</parameter>&#x00A0;:</term>
+	  <listitem><simpara>the connection that received the
+signal</simpara></listitem>
+	</varlistentry>
+   <varlistentry>
+	  <term><parameter>event</parameter>&#x00A0;:</term>
+          <listitem><simpara>The <link linkend="class-conicconnectionevent">
+         <classname>conic.ConnectionEvent</classname></link> instance with
+         the event data.</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>&#x00A0;:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>&#x00A0;:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+      <para>The "connection-event" signal is emitted when there's a
+      new connection event (Connected, disconnecting or disconnected).</para>
+
+    </refsect2>
+    
+    <refsect2 id="signal-conicconnection--statistics">
+      <title>The "statistics" conic.Connection Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>connection</parameter></methodparam>
+	  <methodparam><parameter>event</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>connection</parameter>&#x00A0;:</term>
+	  <listitem><simpara>the connection that received the
+signal</simpara></listitem>
+	</varlistentry>
+   <varlistentry>
+	  <term><parameter>event</parameter>&#x00A0;:</term>
+          <listitem><simpara>The <link linkend="class-conicstatisticsevent">
+         <classname>conic.StatisticsEvent</classname></link> instance with
+         the event data.</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>&#x00A0;:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>&#x00A0;:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+      <para>The "statistics" signal is emitted when the data requested with
+      <link linkend="method-conicconnection--statistics"><methodname>statistics</methodname>()</link> is ready.</para>
+
+    </refsect2>
+    </refsect1>
+   
+  
 </refentry>

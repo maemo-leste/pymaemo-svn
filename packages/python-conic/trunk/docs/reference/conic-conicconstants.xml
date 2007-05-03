@@ -3,6 +3,11 @@
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">-->
 
 <refentry id="conicconstants">
+   <refmeta>
+    <refentrytitle>Python ConIC constants</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>Python ConIC Docs</refmiscinfo>
+  </refmeta>
   <refnamediv>
     <refname>conic Constants</refname>
     <refpurpose>the built-in constants of the conic module</refpurpose>
@@ -181,7 +186,7 @@
     </refsect2>
     
     <refsect2 id="conic-proxy-protocol-constants">
-      <title id="conic-proxy-protocol-constants-title">ConIC Proxy Mode Constants</title>
+      <title id="conic-proxy-protocol-constants-title">ConIC Proxy Protocol Constants</title>
 
       <para>The Proxy Mode constants are a set of flags that specify the proxy protocols.</para>
 

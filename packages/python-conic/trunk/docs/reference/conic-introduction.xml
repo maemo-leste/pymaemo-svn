@@ -3,7 +3,7 @@
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">-->
 
   <chapter id="conic-introduction">
-  <title>Introduction</title>
+  <title>Python ConIC Introduction</title>
 
   <para>This document describes most of the <literal>Python ConIC</literal> version
   0.1 classes and their methods and associated
