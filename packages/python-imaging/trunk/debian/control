@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 4.0.0), python2.5, python2.5-dev
 Standards-Version: 3.6.1
 
 Package: python2.5-imaging
-Architecture: armel
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends} python2.5
 Description: Python Imaging Library
  The Python Imaging Library (PIL) adds an image object to your Python
