@@ -2,10 +2,22 @@ Index: gnome-python-maemo/gconf/gconf.defs
 ===================================================================
 --- gnome-python-maemo.orig/gconf/gconf.defs	2007-03-28 09:32:29.000000000 -0300
 +++ gnome-python-maemo/gconf/gconf.defs	2007-03-28 09:33:10.000000000 -0300
-@@ -121,6 +121,7 @@
-   (gtype-id "GCONF_TYPE_UNSET_FLAGS")
+@@ -115,12 +115,14 @@
+   )
  )
- 
+
+-(define-flags UnsetFlags
+-  (in-module "GConf")
+-  (c-name "GConfUnsetFlags")
+-  (gtype-id "GCONF_TYPE_UNSET_FLAGS")
+-)
++;;;Unavailable in Maemo Platform
++;(define-flags UnsetFlags
++;  (in-module "GConf")
++;  (c-name "GConfUnsetFlags")
++;  (gtype-id "GCONF_TYPE_UNSET_FLAGS")
++;)
+
 +;;;Begin of GConfChangeSet
  (define-method commit_change_set
    (of-object "GConfEngine")
