@@ -172,11 +172,11 @@ def build_packages(config):
             continue
         if arch == 'armel':
             run_command(
-            'dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.pc -us -uc'\
+            'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc'\
             , module)
         else:
             run_command(
-            'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc'\
+            'dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.pc -us -uc'\
             , module)
 
 
