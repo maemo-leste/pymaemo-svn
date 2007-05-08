@@ -144,8 +144,10 @@ _wrap_hildon_wizard_dialog_new(PyGObject *self, PyObject *args, PyObject *kwargs
         return -1;
     if (parent == Py_None)
         self->obj = (GObject *)hildon_wizard_dialog_new(NULL, wizard_name, GTK_NOTEBOOK(notebook->obj));
-    else
+    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
         self->obj = (GObject *)hildon_wizard_dialog_new(GTK_WINDOW(parent->obj), wizard_name, GTK_NOTEBOOK(notebook->obj));
+    else
+        return -1;
 
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create HildonWizardDialog object");
