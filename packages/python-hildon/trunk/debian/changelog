@@ -1,3 +1,9 @@
+python-hildon (0.8.7-1osso3) unstable; urgency=low
+
+  * allow NULL parent window to HildonWizardDialog
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  8 May 2007 11:01:49 -0300
+
 python-hildon (0.8.7-1osso2) unstable; urgency=low
 
   * python2.5-gtk2-dev dependency added to the dev package (#775) 
