@@ -56,12 +56,12 @@ Index: python-gstreamer/debian/control
 +Section: python
 +Priority: optional
 +Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
-+Build-Depends: debhelper (>= 4.0.0), pkg-config, libglib2.0-dev, libgtk2.0-dev, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev, python2.5-dev, python2.5-gtk2-dev, libx11-dev
++Build-Depends: debhelper (>= 4.0.0), pkg-config, libglib2.0-dev, libgtk2.0-dev, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev, python2.5-dev (>= 2.5.1-1osso2), python2.5-gtk2-dev (>=2.10.3-1osso4), libx11-dev
 +Standards-Version: 3.6.2
 +
 +Package: python2.5-gstreamer
 +Architecture: any
-+Depends: python2.5, python2.5-gtk2, ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), ${shlibs:Depends}
 +Description: generic media-playing framework (Python bindings)
 + GStreamer is a media processing framework with support for a wide variety
 + of data sources, sinks, and formats through the use of dynamically loaded
