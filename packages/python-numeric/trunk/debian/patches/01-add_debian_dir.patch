@@ -123,11 +123,11 @@ Index: python-numeric/debian/control
 +Priority: optional
 +Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
 +Standards-Version: 3.6.1
-+Build-Depends: python2.5-dev, debhelper (>= 4.1.67)
++Build-Depends: python2.5-dev (>= 2.5.1-1osso2), debhelper (>= 4.1.67)
 +
 +Package: python2.5-numeric
 +Architecture: any
-+Depends: python2.5, ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
 +Description: Numerical (matrix-oriented) Mathematics for Python
 + The Numeric Extensions to Python (NumPy) add powerful
 + multi-dimensional array objects to the wonderful general purpose
