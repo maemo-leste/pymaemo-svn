@@ -108,12 +108,12 @@ Index: pybluez/debian/control
 +Section: python
 +Priority: optional
 +Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
-+Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5-0), python2.5-dev (>= 2.5-0), libbluetooth2-dev (>= 2.11-1) | libbluetooth1-dev (>= 2.25-cvs20060428)
++Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), libbluetooth2-dev (>= 2.11-1) | libbluetooth1-dev (>= 2.25-cvs20060428)
 +Standards-Version: 3.6.1
 +
 +Package: python2.5-bluez
 +Architecture: any
-+Depends: python2.5, ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
 +Description: Python wrappers around BlueZ
 + PyBlueZ is an effort to create python wrappers around bluez to allow python
 + developers to use system bluetooth resources. PyBluez works on machines
