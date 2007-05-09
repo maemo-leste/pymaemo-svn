@@ -81,12 +81,12 @@ Index: python-xml/debian/control
 +Section: python
 +Priority: optional
 +Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
-+Build-Depends: python2.5, python2.5-dev, debhelper (>= 4.2.5)
++Build-Depends: python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), debhelper (>= 4.2.5)
 +Standards-Version: 3.6.1
 +
 +Package: python2.5-xml
 +Architecture: any
-+Depends: python2.5, ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
 +Description: XML tools for Python
 + The Python/XML distribution contains the basic tools required for
 + processing XML data using the Python programming language, assembled
