@@ -8,3 +8,4 @@
 08-disable-tk_support.patch
 09-lib-site.patch
 10-gdbm-dependency.patch
+11-move-pydoc-and-pdb-to-main-package.patch
