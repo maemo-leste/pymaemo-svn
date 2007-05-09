@@ -2,12 +2,12 @@ Source: python2.5-imaging
 Section: python
 Priority: optional
 Maintainer: Matt Croydon <matt@ooiio.com>
-Build-Depends: debhelper (>= 4.0.0), python2.5, python2.5-dev
+Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2)
 Standards-Version: 3.6.1
 
 Package: python2.5-imaging
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends} python2.5
+Depends: ${shlibs:Depends}, ${misc:Depends} python2.5 (>= 2.5.1-1osso2)
 Description: Python Imaging Library
  The Python Imaging Library (PIL) adds an image object to your Python
  interpreter. You can load images from a variety of file formats, and
