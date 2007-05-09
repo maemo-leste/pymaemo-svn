@@ -90,12 +90,12 @@ Index: python-dbus/debian/control
 +Section: python
 +Priority: optional
 +Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
-+Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5-0), python2.5-dev (>= 2.5-0), libdbus-1-dev (>= 0.61), libdbus-glib-1-dev (>= 0.61), python2.5-pyrex, pkg-config
++Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), libdbus-1-dev (>= 0.61), libdbus-glib-1-dev (>= 0.61), python2.5-pyrex (>= 0.9.4.1-1osso4), pkg-config
 +Standards-Version: 3.6.1
 +
 +Package: python2.5-dbus
 +Architecture: any
-+Depends: python2.5, python2.5-xml, libdbus-1-2 (>= 0.61), libdbus-glib-1-2 (>= 0.61), ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), python2.5-xml (>= 0.8.4-1osso8), libdbus-1-2 (>= 0.61), libdbus-glib-1-2 (>= 0.61), ${shlibs:Depends}
 +Description: Python wrappers around D-Bus.
 +
 +Package: python2.5-dbus-dev
