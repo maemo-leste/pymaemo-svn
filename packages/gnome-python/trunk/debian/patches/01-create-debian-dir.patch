@@ -28,7 +28,7 @@ Index: gnome-python-maemo/debian/control
 +
 +Package: python2.5-gnome
 +Architecture: any
-+Depends: python2.5 (>= 2.5.1-osso2), libgconf2-6, libglib2.0-0, libosso-gnomevfs2-0, ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), libgconf2-6, libglib2.0-0, libosso-gnomevfs2-0, ${shlibs:Depends}
 +Description: Python bindings for GConf and GnomeVFS 
 +
 +Package: python2.5-gnome-dev
