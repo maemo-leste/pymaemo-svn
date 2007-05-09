@@ -2,12 +2,12 @@ Source: python-conic
 Section: python
 Priority: optional
 Maintainer: Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev, python2.5-dev, libconic0
+Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), libconic0-dev (>= 0.13)
 Standards-Version: 3.6.1
 
 Package: python2.5-conic
 Architecture: any
-Depends: python2.5, python2.5-gtk2, ${shlibs:Depends}
+Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), ${shlibs:Depends}
 Description: Python bindings for ConIc Framework.
 
 Package: python2.5-conic-dev

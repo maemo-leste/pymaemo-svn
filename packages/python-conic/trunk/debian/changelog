@@ -1,3 +1,9 @@
+python-conic (0.1-1osso1) unstable; urgency=low
+
+  * Using correct package name
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  8 May 2007 09:49:47 -0300
+
 python-conic (0.1-1indt1) unstable; urgency=low
 
   * Initial Release.
