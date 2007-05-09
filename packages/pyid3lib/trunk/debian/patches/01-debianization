@@ -29,12 +29,12 @@ Index: pyid3lib-0.5.1-orig/debian/control
 +Section: python
 +Priority: optional
 +Maintainer: Daniel d'Andrada T. de Carvalho <daniel.carvalho@indt.org.br>
-+Build-Depends: debhelper (>= 4.1.25), python2.5-dev, libid3-3.8.3-dev
++Build-Depends: debhelper (>= 4.1.25), python2.5-dev (>= 2.5.1-1osso2), libid3-3.8.3-dev
 +Standards-Version: 3.6.1
 +
 +Package: python2.5-id3lib
 +Architecture: any
-+Depends: python2.5, libid3-3.8.3, ${shlibs:Depends}
++Depends: python2.5 (>= 2.5.1-1osso2), libid3-3.8.3, ${shlibs:Depends}
 +Description: id3lib wrapper for Python - library
 + Python extension module that uses the "id3lib" library to read and
 + write the ID3v2 tag data in MP3 audio files.
