@@ -227,7 +227,7 @@ Index: python/debian/control
 +
 +Package: python2.5
 +Architecture: any
-+Depends: ${shlibs:Depends}, libsqlite3-0 (>= 3.3.5-0.2osso1), libffi4 (>= 4.10.0-1osso1)
++Depends: ${shlibs:Depends}, libsqlite3-0 (>= 3.3.5-0.2osso1), libffi4 (>= 4.1.0-1osso1)
 +Replaces: python2.4
 +Provides: python-termios
 +Description: An interactive high-level object-oriented language
