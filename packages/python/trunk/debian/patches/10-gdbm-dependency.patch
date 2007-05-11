@@ -5,7 +5,7 @@ Index: python2.5-2.5.0/debian/control
 @@ -2,7 +2,7 @@
  Section: python
  Priority: optional
- Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+ Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
 -Build-Depends: debhelper (>= 4.2), autoconf, zlib1g-dev, libssl-dev, libbz2-dev, libsqlite3-dev (>= 3.3.5-0.2osso1), dpatch, libffi4-dev (>= 4.1.0-1osso1)
 +Build-Depends: debhelper (>= 4.2), autoconf, zlib1g-dev, libssl-dev, libbz2-dev, libsqlite3-dev (>= 3.3.5-0.2osso1), dpatch, libffi4-dev (>= 4.1.0-1osso1), libgdbm-dev (>= 1.8.3-2)
  Standards-Version: 3.6.2
