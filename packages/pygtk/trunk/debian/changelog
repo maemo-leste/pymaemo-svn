@@ -1,3 +1,9 @@
+python-gtk2 (2.10.3-1osso5) unstable; urgency=low
+
+  * fixed dependency on correct pygobject rev number
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 11 May 2007 14:05:56 -0300
+
 python-gtk2 (2.10.3-1osso4) unstable; urgency=low
 
   * added g_set_application_name() and g_get_application_name() into the gtk
