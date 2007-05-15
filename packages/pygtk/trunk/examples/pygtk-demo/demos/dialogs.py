@@ -4,12 +4,13 @@
 Dialog widgets are used to pop up a transient window for user feedback."""
 
 import gtk
+import hildon
 
-class DialogAndMessageBoxesDemo(gtk.Window):
+class DialogAndMessageBoxesDemo(hildon.Window):
     counter = 1
     def __init__(self, parent=None):
         # Create the toplevel window
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:

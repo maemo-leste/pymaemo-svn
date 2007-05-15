@@ -6,6 +6,7 @@ in python for use with the new tree widget in gtk 2.0.'''
 
 import gtk
 import gobject
+import hildon
 
 # to create a new GtkTreeModel from python, you must derive from
 # TreeModel.
@@ -88,9 +89,9 @@ class MyTreeModel(gtk.GenericTreeModel):
         else:
             return node[:-1]
 
-class GenericTreeModelDemo(gtk.Window):
+class GenericTreeModelDemo(hildon.Window):
     def __init__(self, parent=None):
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:
@@ -104,6 +105,7 @@ class GenericTreeModelDemo(gtk.Window):
         model = MyTreeModel()
         model = model.filter_new()
         tree_view = gtk.TreeView(model)
+        tree_view.set_headers_visible(True)
         cell = gtk.CellRendererText()
         # the text in the column comes from column 0
         column = gtk.TreeViewColumn("tuples", cell, text=0)

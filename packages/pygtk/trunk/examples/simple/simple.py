@@ -3,8 +3,11 @@
 # translation of the simple.c test in the gtk+ distribution, using the
 # new() function from gobject (this is an example of creating objects
 # with the properties interface).
+#
+# Adapted to hildon (Use hildon.Window instead of gtk.Window)
 
 import gobject, gtk
+import hildon
 
 def hello(*args):
 	print "Hello World"
@@ -14,7 +17,7 @@ def destroy(*args):
 	window.hide()
 	gtk.main_quit()
 
-window = gobject.new(gtk.Window,
+window = gobject.new(hildon.Window,
 		     type=gtk.WINDOW_TOPLEVEL,
 		     title='Hello World',
 		     allow_grow=False,

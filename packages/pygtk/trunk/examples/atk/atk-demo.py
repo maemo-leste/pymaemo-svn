@@ -2,8 +2,9 @@
 
 import gtk
 import atk
+import hildon
 
-win = gtk.Window()
+win = hildon.Window()
 win.connect('destroy', lambda win: gtk.main_quit())
 
 button = gtk.Button(stock=gtk.STOCK_QUIT)

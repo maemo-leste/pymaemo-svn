@@ -2,12 +2,13 @@ import pygtk
 pygtk.require('2.0')
 
 import gtk
+import hildon
 
-dialog = gtk.FileChooserDialog("Open..",
-                               None,
-                               gtk.FILE_CHOOSER_ACTION_OPEN,
-                               (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+app = hildon.Program()
+win = hildon.Window()
+
+dialog = hildon.FileChooserDialog(win,
+                               gtk.FILE_CHOOSER_ACTION_OPEN)
 dialog.set_default_response(gtk.RESPONSE_OK)
 
 filter = gtk.FileFilter()

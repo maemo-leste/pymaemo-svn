@@ -8,6 +8,7 @@ from an array of actions and a description of the menu hierarchy.
 
 import gobject
 import gtk
+import hildon
 
 def activate_action(action):
     print 'Action "%s" activated' % action.get_name()
@@ -132,10 +133,10 @@ ui_info = \
   </toolbar>
 </ui>'''
 
-class UIManagerDemo(gtk.Window):
+class UIManagerDemo(hildon.Window):
 
     def __init__(self, parent=None):
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:
@@ -161,7 +162,17 @@ class UIManagerDemo(gtk.Window):
         box1 = gtk.VBox(False, 0)
         self.add(box1)
 
-        box1.pack_start(ui.get_widget("/MenuBar"), False, False, 0)
+        #Reparenting the menus from UIManager
+        menubar = ui.get_widget("/MenuBar");
+        menu = gtk.Menu()
+        for i in menubar.get_children():
+            i.reparent(menu)
+        
+        self.set_menu(menu)
+
+        #Setting up the toolbar
+        toolbar = ui.get_widget("/ToolBar");
+        self.add_toolbar(toolbar)
 
         label = gtk.Label("Type\n<alt>\nto start")
         label.set_size_request(200, 200)

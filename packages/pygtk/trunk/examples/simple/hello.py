@@ -3,6 +3,7 @@
 """ Simple Hello World example similar to the GTK+ Tutorials one """
 
 import gtk
+import hildon
 
 def hello(*args):
     """ Callback function that is attached to the button """
@@ -15,7 +16,7 @@ def destroy(*args):
     gtk.main_quit()
 
 # this block creates our main application window
-window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+window = hildon.Window()
 window.connect("destroy", destroy)
 window.set_border_width(10)
 

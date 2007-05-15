@@ -9,11 +9,12 @@ both a horizontal(HPaned) and a vertical(VPaned) widget, and allows you to
 adjust the options for each side of each widget."""
 
 import gtk
+import hildon
 
-class PanedWidgetsDemo(gtk.Window):
+class PanedWidgetsDemo(hildon.Window):
     def __init__(self, parent=None):
         # Create the toplevel window
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:

@@ -2,6 +2,7 @@
 
 import gobject
 import gtk
+import hildon
 
 from dndpixmap import drag_icon_xpm, trashcan_open_xpm, trashcan_closed_xpm
 
@@ -15,6 +16,7 @@ in_popup = False
 popup_timer = 0
 popdown_timer = 0
 popup_win = None
+
 
 
 TARGET_STRING = 0
@@ -140,7 +142,7 @@ def main():
     global trashcan_open
     global trashcan_closed
     global drag_icon
-    win = gtk.Window()
+    win = hildon.Window()
     win.realize()
     win.connect('destroy', lambda w: gtk.main_quit())
     table = gtk.Table(2,2)

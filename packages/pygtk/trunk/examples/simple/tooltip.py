@@ -4,6 +4,7 @@
     Also adds a tooltip. """
 
 import gtk 
+import hildon
 
 def hello_cb(widget, main_window):
     """ Callback function that prints a message and destroys the window """
@@ -19,7 +20,7 @@ def main():
     """ Sets up the application
 	Forms the widgets and connects callback functions to the signals """
 
-    window = gtk.Window( type=gtk.WINDOW_TOPLEVEL )
+    window = hildon.Window()
     window.set_title("Hello World")
     window.set_default_size(200, 200)
     window.set_border_width(10)

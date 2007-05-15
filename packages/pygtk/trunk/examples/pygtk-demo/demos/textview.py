@@ -5,12 +5,14 @@ The GtkTextView widget displays a GtkTextBuffer. One GtkTextBuffer can be displa
 by multiple GtkTextViews. This demo has two views displaying a single buffer, and
 shows off the widget's text formatting features."""
 # pygtk version: Maik Hertha <maik.hertha@berlin.de>
+# hildon version: Lauro Moura <lauromoura@gmail.com>
 
 import os
 import sys
 
 import gobject
 import gtk
+import hildon
 
 gray50_width  = 2
 gray50_height = 2
@@ -20,10 +22,10 @@ GTKLOGO_IMAGE = os.path.join(os.path.dirname(__file__),
 FLOPPYBUDDY_IMAGE = os.path.join(os.path.dirname(__file__),
                                  'images', 'floppybuddy.gif')
 
-class TextViewDemo(gtk.Window):
+class TextViewDemo(hildon.Window):
     def __init__(self, parent=None):
         # Create the toplevel window
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:
@@ -461,13 +463,12 @@ class TextViewDemo(gtk.Window):
 
         self.recursive_attach_view(0, view, anchor)
 
-        self.win = gtk.Window()
+        self.win = hildon.Window()
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         self.win.add(sw)
         sw.add(view)
-        self.win.set_default_size(300, 400)
         self.win.show_all()
         return
 

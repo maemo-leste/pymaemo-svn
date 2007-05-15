@@ -7,6 +7,7 @@ fairly straight forward port of the example distributed with gtk.
 
 import gtk
 import gobject
+import hildon
 
 from dndpixmap import drag_icon_xpm, trashcan_open_xpm, trashcan_closed_xpm
 
@@ -24,7 +25,7 @@ def create_pixmap(widget, xpm_data):
         gtk.gdk.pixmap_colormap_create_from_xpm_d(
             None, widget.get_colormap(), None, xpm_data)
 
-class DragAndDropDemo(gtk.Window):
+class DragAndDropDemo(hildon.Window):
     trashcan_open = None
     trashcan_open_mask = None
     trashcan_closed = None
@@ -39,7 +40,7 @@ class DragAndDropDemo(gtk.Window):
     popup_win = None
 
     def __init__(self, parent=None):
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:

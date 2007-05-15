@@ -3,6 +3,7 @@
 #this is a simple translation of the scribble example that comes with GTK+
 
 import gtk
+import hildon
 
 pixmap = None
 
@@ -43,7 +44,7 @@ def motion_notify_event(widget, event):
 	return True
 
 def main():
-	win = gtk.Window()
+	win = hildon.Window()
 	win.set_name("Test Input")
         win.connect("destroy", lambda w: gtk.main_quit())
 	win.set_border_width(5)
@@ -53,7 +54,7 @@ def main():
 	vbox.show()
 
 	drawing_area = gtk.DrawingArea()
-	drawing_area.set_size_request(200, 200)
+	#drawing_area.set_size_request(200, 200)
 	vbox.pack_start(drawing_area)
 	drawing_area.show()
 

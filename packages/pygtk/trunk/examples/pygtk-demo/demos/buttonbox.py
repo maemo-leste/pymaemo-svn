@@ -5,6 +5,7 @@ This demo shows various button box configurations available.  It also
 uses stock buttons, and use of mnemonics for navigation.'''
 
 import gtk
+import hildon
 
 def create_bbox(horizontal=True, title=None, spacing=0,
         layout=gtk.BUTTONBOX_SPREAD):
@@ -31,10 +32,10 @@ def create_bbox(horizontal=True, title=None, spacing=0,
 
     return frame
 
-class ButtonBoxDemo(gtk.Window):
+class ButtonBoxDemo(hildon.Window):
     def __init__(self, parent=None):
         # Create the toplevel window
-        gtk.Window.__init__(self)
+        hildon.Window.__init__(self)
         try:
             self.set_screen(parent.get_screen())
         except AttributeError:
@@ -44,7 +45,9 @@ class ButtonBoxDemo(gtk.Window):
         self.set_border_width(10)
 
         main_vbox = gtk.VBox()
-        self.add(main_vbox)
+        scrolled = gtk.ScrolledWindow()
+        scrolled.add_with_viewport(main_vbox)
+        self.add(scrolled)
 
         frame_horiz = gtk.Frame("Horizontal Button Boxes")
         main_vbox.pack_start(frame_horiz, padding=10)
@@ -53,6 +56,7 @@ class ButtonBoxDemo(gtk.Window):
         vbox.set_border_width(10)
         frame_horiz.add(vbox)
 
+        # HButtonBox layout not working on Maemo.
         vbox.pack_start(create_bbox(True, "Spread", 40, gtk.BUTTONBOX_SPREAD),
                 padding=0)
         vbox.pack_start(create_bbox(True, "Edge", 40, gtk.BUTTONBOX_EDGE),
