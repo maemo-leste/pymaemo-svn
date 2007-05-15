@@ -51,7 +51,7 @@ Index: python2.5-2.5.1/debian/rules
 @@ -165,10 +171,6 @@
  
  	ln -sf $(PYTHON).1 $(d_dev)/usr/share/man/man1/python.1
- 	(cd $(d_base)/usr/bin && ln -sf python$(PYVER) python)
+ 	#(cd $(d_base)/usr/bin && ln -sf python$(PYVER) python)
 -	ln -sf /usr/lib/python$(PYVER)/pdb.py $(d_dev)/usr/bin/pdb$(PYVER)
 -	ln -sf pdb$(PYVER) $(d_dev)/usr/bin/pdb
 -	ln -sf /usr/lib/python$(PYVER)/pydoc.py $(d_dev)/usr/bin/pydoc$(PYVER)
