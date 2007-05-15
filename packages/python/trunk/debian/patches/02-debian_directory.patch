@@ -251,8 +251,6 @@ Index: python/debian/onlysdk
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python/debian/onlysdk	2007-03-06 17:09:22.000000000 -0300
 @@ -0,0 +1,66 @@
-+pdb
-+pydoc
 +distutils
 +compile
 +encodings/cp
@@ -490,7 +488,7 @@ Index: python/debian/rules
 +	# ============== 
 +
 +	ln -sf $(PYTHON).1 $(d_dev)/usr/share/man/man1/python.1
-+	(cd $(d_base)/usr/bin && ln -sf python$(PYVER) python)
++	#(cd $(d_base)/usr/bin && ln -sf python$(PYVER) python)
 +	ln -sf /usr/lib/python$(PYVER)/pdb.py $(d_dev)/usr/bin/pdb$(PYVER)
 +	ln -sf pdb$(PYVER) $(d_dev)/usr/bin/pdb
 +	ln -sf /usr/lib/python$(PYVER)/pydoc.py $(d_dev)/usr/bin/pydoc$(PYVER)

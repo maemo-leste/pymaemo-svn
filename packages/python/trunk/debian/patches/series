@@ -9,3 +9,4 @@
 09-lib-site.patch
 10-gdbm-dependency.patch
 11-move-pydoc-and-pdb-to-main-package.patch
+12-postinst-postrm-scripts.patch
