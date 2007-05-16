@@ -1,0 +1,25 @@
+Index: gnome-python-maemo/gconf/gconf-types.c
+===================================================================
+--- gnome-python-maemo.orig/gconf/gconf-types.c	2007-03-28 09:35:40.000000000 -0300
++++ gnome-python-maemo/gconf/gconf-types.c	2007-03-28 09:37:07.000000000 -0300
+@@ -20,6 +20,8 @@
+  */
+ 
+ #include "gconf-types.h"
++#include "gconf-headers.h"
++#include "gconf-types.c.in"
+ #define NO_IMPORT_PYGOBJECT
+ #include <pygobject.h>
+ 
+Index: gnome-python-maemo/gconf/gconf.override
+===================================================================
+--- gnome-python-maemo.orig/gconf/gconf.override	2007-03-28 09:35:40.000000000 -0300
++++ gnome-python-maemo/gconf/gconf.override	2007-03-28 09:37:07.000000000 -0300
+@@ -5,6 +5,7 @@
+ 
+ #include "gconf-fixes.h"
+ #include "gconf-types.h"
++#include "gconf-headers.h"
+ 
+ #define NO_IMPORT_PYGOBJECT
+ #include "pygobject.h"
