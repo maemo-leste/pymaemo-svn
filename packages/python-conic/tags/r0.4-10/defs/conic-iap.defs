@@ -1,0 +1,40 @@
+;; -*- scheme -*-
+; object definitions ...
+
+(define-object Iap
+  (in-module "Conic")
+  (parent "GObject")
+  (c-name "ConIcIap")
+  (gtype-id "CON_IC_TYPE_IAP")
+)
+
+
+;; Enumerations and flags ...
+
+
+;; From coniciap.h
+
+(define-function con_ic_iap_get_type
+  (c-name "con_ic_iap_get_type")
+  (return-type "GType")
+)
+
+(define-method get_name
+  (of-object "ConIcIap")
+  (c-name "con_ic_iap_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_id
+  (of-object "ConIcIap")
+  (c-name "con_ic_iap_get_id")
+  (return-type "const-gchar*")
+)
+
+(define-method get_bearer_type
+  (of-object "ConIcIap")
+  (c-name "con_ic_iap_get_bearer_type")
+  (return-type "const-gchar*")
+)
+
+

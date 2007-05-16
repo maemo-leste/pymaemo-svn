@@ -1,0 +1,8 @@
+To build this package:
+
+	$ python2.5 setup.py build
+
+To install:
+
+	$ python2.5 setup.py install
+
