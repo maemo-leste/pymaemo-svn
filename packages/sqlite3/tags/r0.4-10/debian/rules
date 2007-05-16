@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/buildcore.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+so_version := 0
+
+# Make sure libsqlite0 is built before packages depending on it
+binary/sqlite3 binary/libsqlite3-dev:: binary/libsqlite3-$(so_version)
+
+common-install-arch::
+	install -d debian/tmp/usr/lib/sqlite3
+	install -d debian/tmp/usr/share/man/man1/
+	install -m 644 sqlite3.1 debian/tmp/usr/share/man/man1
+
+DEB_AUTO_UPDATE_LIBTOOL = pre
+DEB_AUTO_UPDATE_AUTOCONF = 2.50
+DEB_AUTO_UPDATE_AUTOMAKE = 1.8 # We don't use automake, but aclocal
+
+DEB_CONFIGURE_EXTRA_FLAGS = --disable-tcl --enable-threadsafe
+
+DEB_BUILD_MAKE_TARGET = all #doc
+#DEB_MAKE_CHECK_TARGET = test
+
+DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
+
+DEB_ALL_CHANGELOG = doc/changes.html
+
+DEB_DH_MAKESHLIBS_ARGS := -V
+
+DEB_SHLIBDEPS_LIBRARY_sqlite := libsqlite3-$(so_version)
+DEB_SHLIBDEPS_INCLUDE_sqlite := debian/libsqlite3-$(so_version)/usr/lib/
+
+DEB_OPT_FLAG := -O2 -fno-strict-aliasing

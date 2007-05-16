@@ -1,0 +1,131 @@
+sqlite3 (3.3.5-0.2osso1) unstable; urgency=medium
+
+  * imported to Maemo platform
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 19 Jan 2007 10:52:00 -0300
+
+sqlite3 (3.3.5-0.2) unstable; urgency=medium
+
+  * NMU to fix package problems:
+    - correct Tcl provides (closes: #361412);
+    - compile correctly on 64 bit archs, thanks to Matthias Klose
+      (closes: #364196).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.hu>  Mon,  1 May 2006 10:47:59 +0000
+
+sqlite3 (3.3.5-0.1) unstable; urgency=medium
+
+  * NMU for new upstream release; fixes thread segfault (in tests) on hppa
+    (closes: #339369).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.hu>  Thu,  6 Apr 2006 17:16:42 +0000
+
+sqlite3 (3.3.4-0.1) unstable; urgency=low
+
+  * NMU for new upstream release (closes: #352317).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.hu>  Wed,  5 Apr 2006 01:46:45 +0200
+
+sqlite3 (3.2.8-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Tomas Fasth <tomfa@debian.org>  Thu, 29 Dec 2005 03:09:18 +0000
+
+sqlite3 (3.2.7-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Tomas Fasth <tomfa@debian.org>  Sun, 25 Sep 2005 12:08:21 +0000
+
+sqlite3 (3.2.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed debian/patches/10-main-timeout.patch, fixed upstream.
+  * Removed debian/patches/01-configure.ac-version_number.patch, fixed
+    upstream.
+
+ -- Tomas Fasth <tomfa@debian.org>  Sun, 28 Aug 2005 21:23:03 +0000
+
+sqlite3 (3.2.2-3) unstable; urgency=low
+
+  * Closes: #321487: missing dependency on debconf
+    The file debian/libsqlite3-0.preinst has been removed. It was
+    originally part of the ancestor sqlite 2.x source package, which
+    still exist in parallel with sqlite3. It has now been removed
+    together with debian/libsqlite3-0.postinst that was created in a
+    first missguided attempt by me to correct this policy violation.
+
+ -- Tomas Fasth <tomfa@debian.org>  Sat,  6 Aug 2005 22:16:33 +0000
+
+sqlite3 (3.2.2-2) unstable; urgency=low
+
+  * Closes: #314856: Missing pre-dependency on debconf.
+  * Closes: #319897: /usr/include/sqlite3.h: SQLITE_VERSION_NUMBER is
+    3000000
+
+ -- Tomas Fasth <tomfa@debian.org>  Tue,  2 Aug 2005 00:48:25 +0000
+
+sqlite3 (3.2.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * New maintainer.
+  * Closes: #314856: Missing pre-dependency on debconf.
+    Moving upgrade notification from debian/libsqlite3-0.preinst to
+    debian/libsqlite3-0.postinst.
+  * Closes: #316348: Timeout does not expire on SQLLITE_BUSY.
+    Adding patch with correct type cast for timeout in src/main.c[283].
+  * Closes: #317594: sqlite3-3.2.1-1 SIGBUS on 64-bit machines (fixed
+    upstream)
+  * Closes: #318341: New upstream version 3.2.2
+
+ -- Tomas Fasth <tomfa@debian.org>  Mon,  1 Aug 2005 20:03:20 +0000
+
+sqlite3 (3.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Andreas Rottmann <rotty@debian.org>  Sat,  2 Apr 2005 02:41:15 +0200
+
+sqlite3 (3.1.6-1) unstable; urgency=high
+
+  * New upstream release.
+  * Fixes two database corruption bugs (in 3.1.4 and 3.1.6), hence urgency
+    high.
+
+ -- Andreas Rottmann <rotty@debian.org>  Thu, 17 Mar 2005 20:00:16 +0100
+
+sqlite3 (3.1.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Now building with automake1.9 and against libreadline5-dev.
+
+ -- Andreas Rottmann <rotty@debian.org>  Wed, 16 Feb 2005 17:04:19 +0100
+
+sqlite3 (3.0.8-3) unstable; urgency=medium
+
+  * Fix threadsafe enabling, now works through configure option (closes:
+    #285913).
+  * Medium urgency to get this fix into sarge.
+
+ -- Andreas Rottmann <rotty@debian.org>  Sat,  1 Jan 2005 13:12:10 +0100
+
+sqlite3 (3.0.8-2) unstable; urgency=low
+
+  * libsqlite3-dev: Suggest sqlite3-doc instead of sqlite-doc (closes:
+    #285771).
+  * libsqlite3-0: Don't Pre-Depend on debconf (closes: #284976).
+  * sqlite3-doc: Now comes with sqlite.gif and links to 
+    http://sqlite.org/contrib instead of locally (closes: #285769).
+  
+ -- Andreas Rottmann <rotty@debian.org>  Thu, 16 Dec 2004 12:24:02 +0100
+  
+sqlite3 (3.0.8-1) unstable; urgency=low
+
+  * Initial release of SQLite3 (closes: #272271, #282351).
+    - Now packaged as a new source package, since SQLite 3 
+      is incompatible (database- and API-wise) with SQLite 2.
+    - Remove debian/lemon.html, this is now shipped by upstream in doc/.
+    - Adapted manpage for 3.0 (thanks to Laszlo 'GCS' Boszormeny).
+  
+ -- Andreas Rottmann <rotty@debian.org>  Sun,  7 Nov 2004 13:49:52 +0100

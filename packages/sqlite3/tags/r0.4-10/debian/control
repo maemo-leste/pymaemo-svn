@@ -1,0 +1,49 @@
+Source: sqlite3
+Section: devel
+Priority: optional
+Maintainer: Tomas Fasth <tomfa@debian.org>
+Build-Depends: cdbs (>= 0.4.15), debhelper (>= 4.1.16), autoconf (>= 2.59), libtool (>= 1.5.2), automake1.8, autotools-dev, libreadline4-dev
+Standards-Version: 3.6.2
+
+Package: sqlite3
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: sqlite3-doc
+Description: A command line interface for SQLite 3
+ SQLite is a C library that implements an SQL database engine. 
+ Programs that link with the SQLite library can have SQL database 
+ access without running a separate RDBMS process.
+
+Package: sqlite3-doc
+Section: doc
+Architecture: all
+Recommends: sqlite3
+Description: SQLite 3 documentation
+ SQLite is a C library that implements an SQL database engine. 
+ Programs that link with the SQLite library can have SQL database 
+ access without running a separate RDBMS process.
+ .
+ This package contains the documentation that is also available on
+ the SQLite homepage.
+
+Package: libsqlite3-0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: SQLite 3 shared library
+ SQLite is a C library that implements an SQL database engine. 
+ Programs that link with the SQLite library can have SQL database 
+ access without running a separate RDBMS process.
+
+Package: libsqlite3-dev
+Suggests: sqlite3-doc
+Section: libdevel
+Architecture: any
+Depends: libsqlite3-0 (= ${Source-Version}), libc6-dev
+Description: SQLite 3 development files
+ SQLite is a C library that implements an SQL database engine. 
+ Programs that link with the SQLite library can have SQL database 
+ access without running a separate RDBMS process.
+ .
+ This package contains the development files (headers, static libraries)
