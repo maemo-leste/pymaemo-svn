@@ -200,18 +200,21 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
+#!/usr/bin/env python2.5
+
 import gtk
 import hildon
 
 def color_selected(widget, label, window):
     color_selector = hildon.ColorSelector(window)
-    
+    color_selector.set_color(gtk.gdk.Color(0,132,244))
     color_selector.run()
     color = color_selector.get_color()
     color_selector.destroy()
     
     label.set_text("Selected color is: (red=%s, green=%s, blue=%s, pixel=%s)" %
                    (color.red, color.green, color.blue, color.pixel))
+    
 
 window = hildon.Window()
 window.set_title("Test App")

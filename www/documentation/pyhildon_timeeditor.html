@@ -241,7 +241,21 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
-TO DO
+#!/usr/bin/env python2.5
+
+import gtk
+import hildon
+
+window = hildon.Window()
+window.set_title("Test App")
+
+time_editor = hildon.TimeEditor()
+
+window.add(time_editor)
+
+window.show_all()
+
+gtk.main()
       </pre>
 </div>
     

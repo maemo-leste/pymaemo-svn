@@ -200,6 +200,8 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
+#!/usr/bin/env python2.5
+
 import gtk
 import hildon
 
@@ -212,7 +214,7 @@ window = hildon.Window()
 window.set_title("Test App")
 
 label = gtk.Label()
-
+ 
 button = hildon.ColorButton()
 button.connect("clicked", color_changed, label)
 

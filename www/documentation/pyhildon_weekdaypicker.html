@@ -205,6 +205,30 @@ document.write("<text>Last Published:</text> " + document.lastModified);
       +-- hildon.WeekdayPicker
 </pre>
 </div>
+
+
+<a name="N10032"></a><a name="Usage+Example"></a>
+<h2 class="boxed">Usage Example</h2>
+<div class="section">
+<pre class="code">
+#!/usr/bin/env python2.5
+
+import gtk
+import hildon
+
+window = hildon.Window()
+window.set_title("Test App")
+
+weekday_picker = hildon.WeekdayPicker()
+
+window.add(weekday_picker)
+window.show_all()
+
+gtk.main()
+      </pre>
+</div>
+
+
     
 <a name="N1002E"></a><a name="Signals"></a>
 <h2 class="boxed">Signals</h2>

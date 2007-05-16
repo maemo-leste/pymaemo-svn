@@ -218,6 +218,8 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
+#!/usr/bin/env python2.5
+
 import gtk
 import hildon
 
@@ -230,7 +232,12 @@ window.set_title("Test App")
 
 label = gtk.Label()
 
-controlbar = hildon.Controlbar(0, 50, 15)
+controlbar = hildon.Controlbar()
+
+controlbar.set_property("max",100)
+controlbar.set_property("min",0)
+controlbar.set_property("value",50)
+
 controlbar.connect("value-changed", control_changed, label)
 
 control_changed(controlbar, label) #Init label text

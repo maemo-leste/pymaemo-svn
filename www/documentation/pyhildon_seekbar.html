@@ -211,12 +211,14 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
+#!/usr/bin/env python2.5
+
 import gobject
 import gtk
 import hildon
 
 def increase_fraction(seekbar):
-    if seekbar.get_fraction() + 1 &lt; seekbar.get_total_time():
+    if seekbar.get_fraction() + 1 < seekbar.get_total_time():
         seekbar.set_fraction(seekbar.get_fraction() + 1)
         result = True
     else:
@@ -239,8 +241,12 @@ window.set_title("Test App")
 
 label = gtk.Label()
 
-seekbar = hildon.Seekbar(total_time = 180, fraction = 10)
-seekbar.set_position(0)
+seekbar = hildon.Seekbar()
+
+seekbar.set_property("total_time",50)
+seekbar.set_property("fraction",10)
+seekbar.set_property("position",0)
+
 seekbar.connect("value-changed", control_changed, label)
 seekbar.connect("notify::fraction", fraction_changed, label)
 

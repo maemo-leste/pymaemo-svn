@@ -200,6 +200,8 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
+#!/usr/bin/env python2.5
+
 import gtk
 import hildon
 
@@ -210,9 +212,19 @@ grid = hildon.Grid()
 
 grid_item = hildon.GridItem("Calculator")
 grid.add(grid_item)
+grid_item.set_label("Calculator")
 
-grid_item = hildon.GridItem("Calendar", "A simple calendar")
+grid_item = hildon.GridItem("Calendar")
 grid.add(grid_item)
+grid_item.set_label("Calendar")
+
+grid_item = hildon.GridItem("Time")
+grid.add(grid_item)
+grid_item.set_label("Time")
+
+grid_item = hildon.GridItem("Date")
+grid.add(grid_item)
+grid_item.set_label("Date")
 
 window.add(grid)
 

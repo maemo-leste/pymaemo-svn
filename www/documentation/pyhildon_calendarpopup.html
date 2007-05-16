@@ -202,15 +202,16 @@ document.write("<text>Last Published:</text> " + document.lastModified);
 <h2 class="boxed">Usage Example</h2>
 <div class="section">
 <pre class="code">
+#!/usr/bin/env python2.5
+
 import gtk
 import hildon
 
 def on_gather_date(widget, window, button):
-    dialog = hildon.CalendarPopup (window, 2006, 04, 20)
+    dialog = hildon.CalendarPopup (window,2007,07,26)
     dialog.run()
     date_tuple = dialog.get_date()
     dialog.destroy()
-    
     button.set_label("The date is (yy/mm/dd): %s/%s/%s" % date_tuple)
 
 window = hildon.Window()
@@ -219,6 +220,7 @@ window.set_title("Test App")
 button = gtk.Button("Click to enter a date")
 window.add(button)
 button.connect("clicked", on_gather_date, window, button)
+
 
 window.show_all()
 
