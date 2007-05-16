@@ -1,0 +1,50 @@
+;; -*- scheme -*-
+; Waiting for corrections. Doesn't work.
+; object definitions ...
+;(define-object ColorButton
+;  (in-module "Hildon")
+;  (parent "GtkButton")
+;  (c-name "HildonColorButton")
+;  (gtype-id "HILDON_TYPE_COLOR_BUTTON")
+;)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/hildon-widgets/hildon-color-button.h
+
+(define-function hildon_color_button_get_type
+  (c-name "hildon_color_button_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_color_button_new
+  (c-name "hildon_color_button_new")
+  (is-constructor-of "HildonColorButton")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_color_button_new_with_color
+  (c-name "hildon_color_button_new_with_color")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-GdkColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "HildonColorButton")
+  (c-name "hildon_color_button_get_color")
+  (return-type "GdkColor*")
+)
+
+(define-method set_color
+  (of-object "HildonColorButton")
+  (c-name "hildon_color_button_set_color")
+  (return-type "none")
+  (parameters
+    '("GdkColor*" "color")
+  )
+)
+
+
