@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+d=debian/$(PYTHON)-runtime
+
+clean:
+	dh_testdir
+	dh_clean
+	
+build:
+
+binary: binary-indep binary-arch
+binary-indep:
+binary-arch:
+	dh_testdir
+	dh_testroot
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean binary binary-indep binary-arch
