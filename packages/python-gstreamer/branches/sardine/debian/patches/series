@@ -1,0 +1,4 @@
+01-create_debian_dir.patch
+02-disable_items_from_gstdefs.patch
+03-disable_items_from_gst-typesdefs.patch
+04-remove_gstversion-override.patch
