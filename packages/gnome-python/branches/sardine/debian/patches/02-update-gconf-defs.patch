@@ -1,0 +1,221 @@
+Index: gnome-python-maemo/gconf/gconf.defs
+===================================================================
+--- gnome-python-maemo.orig/gconf/gconf.defs	2007-03-28 09:32:29.000000000 -0300
++++ gnome-python-maemo/gconf/gconf.defs	2007-03-28 09:33:10.000000000 -0300
+@@ -115,12 +115,14 @@
+   )
+ )
+
+-(define-flags UnsetFlags
+-  (in-module "GConf")
+-  (c-name "GConfUnsetFlags")
+-  (gtype-id "GCONF_TYPE_UNSET_FLAGS")
+-)
++;;;Unavailable in Maemo Platform
++;(define-flags UnsetFlags
++;  (in-module "GConf")
++;  (c-name "GConfUnsetFlags")
++;  (gtype-id "GCONF_TYPE_UNSET_FLAGS")
++;)
+
++;;;Begin of GConfChangeSet
+ (define-method commit_change_set
+   (of-object "GConfEngine")
+   (c-name "gconf_engine_commit_change_set")
+@@ -346,7 +347,10 @@
+   (c-name "gconf_change_set_get_user_data")
+   (return-type "gpointer")
+ )
++;;;End of GConfChangeSet
++
+ 
++;;;Begin GConfClient
+ (define-function client_get_type
+   (c-name "gconf_client_get_type")
+   (return-type "GType")
+@@ -808,7 +813,9 @@
+   )
+   (varargs #t)
+ )
++;;;End of GConfClient
+ 
++;;;Begin GConfEngine
+ (define-function engine_get_default
+   (c-name "gconf_engine_get_default")
+   (return-type "GConfEngine*")
+@@ -860,7 +867,9 @@
+   (c-name "gconf_engine_get_user_data")
+   (return-type "gpointer")
+ )
++;;;End of GConfEngine
+ 
++;;;Begin GConfEnumTypes
+ (define-function value_type_get_type
+   (c-name "gconf_value_type_get_type")
+   (return-type "GType")
+@@ -880,12 +889,16 @@
+   (c-name "gconf_client_error_handling_mode_get_type")
+   (return-type "GType")
+ )
++;;;End of GConfEnumTypes
+ 
++;;;Begin GConfError
+ (define-function error_quark
+   (c-name "gconf_error_quark")
+   (return-type "GQuark")
+ )
++;;;End of GConfError
+ 
++;;;Begin GConfListeners
+ (define-function listeners_new
+   (is-constructor-of "GConfListeners")
+   (c-name "gconf_listeners_new")
+@@ -966,7 +979,9 @@
+     '("gpointer" "user_data")
+   )
+ )
++;;;End of GConfListeners
+ 
++;;;Begin GConfSchema
+ (define-function schema_new
+   (is-constructor-of "GConfSchema")
+   (c-name "gconf_schema_new")
+@@ -1129,7 +1144,9 @@
+   (c-name "gconf_schema_get_default_value")
+   (return-type "GConfValue*")
+ )
++;;;End of GConfSchema
+ 
++;;;Begin GConfValue
+ (define-method get_string
+   (of-object "GConfValue")
+   (c-name "gconf_value_get_string")
+@@ -1454,11 +1471,12 @@
+   (return-type "GConfEntry*")
+ )
+ 
+-(define-method free
+-  (of-object "GConfEntry")
+-  (c-name "gconf_entry_free")
+-  (return-type "none")
+-)
++;;;Deprecated
++;(define-method free
++;  (of-object "GConfEntry")
++;  (c-name "gconf_entry_free")
++;  (return-type "none")
++;)
+ 
+ (define-method ref
+   (of-object "GConfEntry")
+@@ -1522,7 +1540,9 @@
+     '("gboolean" "is_writable")
+   )
+ )
++;;;End of GConfValue
+ 
++;;;Begin GconfH
+ (define-method notify_add
+   (of-object "GConfEngine")
+   (c-name "gconf_engine_notify_add")
+@@ -1929,50 +1949,53 @@
+   (return-type "int")
+ )
+ 
+-(define-function init
+-  (c-name "gconf_init")
+-  (return-type "gboolean")
+-  (parameters
+-    '("int" "argc")
+-    '("char**" "argv")
+-    '("GError**" "err")
+-  )
+-)
+-
+-(define-function is_initialized
+-  (c-name "gconf_is_initialized")
+-  (return-type "gboolean")
+-)
+-
+-(define-function preinit
+-  (c-name "gconf_preinit")
+-  (return-type "none")
+-  (parameters
+-    '("gpointer" "app")
+-    '("gpointer" "mod_info")
+-  )
+-)
+-
+-(define-function postinit
+-  (c-name "gconf_postinit")
+-  (return-type "none")
+-  (parameters
+-    '("gpointer" "app")
+-    '("gpointer" "mod_info")
+-  )
+-)
+-
+-(define-method get_full
+-  (of-object "GConfEngine")
+-  (c-name "gconf_engine_get_full")
+-  (return-type "GConfValue*")
+-  (parameters
+-    '("const-gchar*" "key")
+-    '("const-gchar*" "locale")
+-    '("gboolean" "use_schema_default")
+-    '("gboolean*" "is_default_p")
+-    '("gboolean*" "is_writable_p")
+-    '("GError**" "err")
+-  )
+-)
+-
++;;;Deprecated
++;(define-function init
++;  (c-name "gconf_init")
++;  (return-type "gboolean")
++;  (parameters
++;    '("int" "argc")
++;    '("char**" "argv")
++;    '("GError**" "err")
++;  )
++;)
++
++;;;Internals - Don't use
++;(define-function is_initialized
++;  (c-name "gconf_is_initialized")
++;  (return-type "gboolean")
++;)
++
++;(define-function preinit
++;  (c-name "gconf_preinit")
++;  (return-type "none")
++;  (parameters
++;    '("gpointer" "app")
++;    '("gpointer" "mod_info")
++;  )
++;)
++
++;(define-function postinit
++;  (c-name "gconf_postinit")
++;  (return-type "none")
++;  (parameters
++;    '("gpointer" "app")
++;    '("gpointer" "mod_info")
++;  )
++;)
++
++;(define-method get_full
++;  (of-object "GConfEngine")
++;  (c-name "gconf_engine_get_full")
++;  (return-type "GConfValue*")
++;  (parameters
++;    '("const-gchar*" "key")
++;    '("const-gchar*" "locale")
++;    '("gboolean" "use_schema_default")
++;    '("gboolean*" "is_default_p")
++;    '("gboolean*" "is_writable_p")
++;    '("GError**" "err")
++;  )
++;)
++;;;End of Internals
++;;;End of GConfH
