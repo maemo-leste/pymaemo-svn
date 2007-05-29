@@ -1,0 +1,225 @@
+Index: pygobject/debian/changelog
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygobject/debian/changelog	2007-03-06 16:42:02.000000000 -0300
+@@ -0,0 +1,32 @@
++python-gobject (2.12.2-1osso3) unstable; urgency=low
++
++  * changing distribution to unstable 
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Sat,  5 May 2007 17:15:07 -0300
++
++python-gobject (2.12.2-1osso2) maemo; urgency=low
++
++  * fixed pygtk.pth file creation
++
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 5 Dec 2006 14:49:00 -0300
++
++python-gobject (2.12.2-1osso1) maemo; urgency=low
++
++  * Adopted by Maemo Platform
++
++ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 10 Oct 2006 16:03:00 -0300
++
++pygobject (2.10.1-0ubuntu1) dapper; urgency=low
++
++  * New upstream version:
++    - uint64 property bug fix
++    - Hard code path to 2.0 
++    - Allow only tuples and lists in strv to value 
++    - Include dsextras.py in the dist (Ubuntu: #37093)
++  * debian/control.in:
++    - Build-Depends on xvfb
++  * debian/rules:
++    - run "make check" on build (Ubuntu: #28787)
++
++ -- Sebastien Bacher <seb128@canonical.com>  Tue, 11 Apr 2006 19:04:20 +0200
++
+Index: pygobject/debian/compat
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygobject/debian/compat	2007-03-06 16:42:02.000000000 -0300
+@@ -0,0 +1 @@
++4
+Index: pygobject/debian/control
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygobject/debian/control	2007-03-06 16:42:02.000000000 -0300
+@@ -0,0 +1,23 @@
++Source: python-gobject
++Section: python
++Priority: optional
++Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
++Build-Depends: debhelper (>= 4.1.65), libgtk2.0-dev (>= 2.6.0), libglade2-dev, python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2)
++Standards-Version: 3.6.1.0
++
++Package: python2.5-gobject
++Architecture: any
++Depends: python2.5 (>= 2.5.1-1osso2), libgtk2.0-0, ${shlibs:Depends}
++Description: Python bindings for the GTK+ widget set
++ This archive contains modules that allow you to use GTK+ in Python
++ programs. This package contains the bindings for the new version 2.0
++ of that toolkit.
++
++Package: python2.5-gobject-dev
++Architecture: all
++Depends: python2.5-gobject (= ${Source-Version})
++Description: GTK+ bindings: devel files
++ This archive contains files that allow you to build wrappers for addon
++ that interoperate python-gtk2 (pygtk).
++
++
+Index: pygobject/debian/copyright
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygobject/debian/copyright	2007-03-06 16:42:02.000000000 -0300
+@@ -0,0 +1,27 @@
++This package was debianized by Torsten Landschoff <torsten@debian.org> on 
++Tue,  6 Aug 2002 21:50:17 +0200.
++
++It was downloaded from 
++
++	ftp://ftp.gnome.org/pub/GNOME/2.0.0/latest/sources/
++
++Upstream Author: James Henstridge <james@daa.com.au>
++
++Copyright:
++
++    This library is free software; you can redistribute it and/or
++    modify it under the terms of the GNU Library General Public
++    License as published by the Free Software Foundation; either
++    version 2 of the License, or (at your option) any later version.
++
++    This library is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++    Library General Public License for more details.
++
++    On Debian systems you should have a local copy of the GNU Library
++    General Public License in /usr/share/common-licenses/LGPL-2. If you
++    downloaded the source you will find it in the file COPYING; if not,
++    along with this program; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
++
+Index: pygobject/debian/rules
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygobject/debian/rules	2007-03-06 16:42:02.000000000 -0300
+@@ -0,0 +1,117 @@
++#!/usr/bin/make -f
++
++PYVER=2.5
++PYTHON=python$(PYVER)
++
++p_base=$(PYTHON)-gobject
++p_dev=$(p_base)-dev
++
++d_base=debian/$(p_base)
++d_dev=debian/$(p_dev)
++
++ifeq ($(DEB_BUILD_ARCH),armel)
++    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
++else
++    CFLAGS=-Os -Wall -Wstrict-prototypes
++endif
++
++clean:
++	dh_clean
++	rm -rf build
++	rm -rf $(CURDIR)/$(d_base)
++	rm -rf $(CURDIR)/$(d_dev)
++	find . -name "*.py[co]" | xargs rm -f
++	rm -f configure
++	rm -f *-stamp
++
++build: build-stamp
++build-stamp:
++	dh_testdir
++
++	mkdir -p build
++	automake
++	autoconf
++	cd build && \
++	CFLAGS="$(CFLAGS)" \
++	PYTHON=`which $(PYTHON)` \
++		../configure \
++			--prefix=/usr \
++			--enable-thread \
++			--disable-numpy \
++			--disable-docs
++	$(MAKE) -C build
++	touch build-stamp
++
++install: build
++	dh_testdir
++	dh_testroot
++	dh_clean -k
++
++	mkdir -p $(CURDIR)/$(d_base)
++	mkdir -p $(CURDIR)/$(d_dev)
++
++	$(MAKE) -C build install DESTDIR=$(CURDIR)/$(d_base)
++	$(PYTHON) -OO -m compileall -f $(d_base)
++	cp -a $(d_base)/* $(d_dev)
++
++	# base
++	find $(d_base)/usr/lib/$(PYTHON)/site-packages -type f -name "*.py"  | xargs rm -f
++	find $(d_base)/usr/lib/$(PYTHON)/site-packages -type f -name "*.pyc" | xargs rm -f
++	find $(d_base)/usr/lib/$(PYTHON)/site-packages -type f -name "*.la"  | xargs rm -f
++
++	rm -rf $(d_base)/usr/share \
++	       $(d_base)/usr/include \
++	       $(d_base)/usr/lib/pkgconfig
++
++	# dev
++	find  $(d_dev)/usr/lib/$(PYTHON)/site-packages -type f -name "*.pyo" | xargs rm -f
++	find  $(d_dev)/usr/lib/$(PYTHON)/site-packages -type f -name "*.so" | xargs rm -f
++	rm -rf $(d_dev)/usr/lib/$(PYTHON)/site-packages/pygtk.pth
++
++	# cleanup
++	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
++
++	# Replace all '#!' calls to python with $(PYTHON)
++	for i in `find $(d_base) $(d_dev) -type f`; do \
++	  sed "1s,#!.*python[^ ]*\(.*\),#!/usr/bin/$(PYTHON)," \
++		$$i > $$i.temp; \
++	  if cmp --quiet $$i $$i.temp; then \
++	    rm -f $$i.temp; \
++	  else \
++	    mv -f $$i.temp $$i; \
++	    chmod 755 $$i; \
++	    echo "fixed interpreter: $$i"; \
++	  fi; \
++	done
++
++binary: binary-arch binary-indep
++binary-indep: install
++	dh_testdir 
++	dh_testroot
++	dh_installchangelogs -p$(p_dev) ChangeLog 
++	dh_installdocs -p$(p_dev)
++	dh_installexamples -p$(p_dev)
++	dh_strip
++	dh_compress -p$(p_dev) -Xexamples -X.py
++	dh_fixperms
++	dh_shlibdeps
++	dh_installdeb
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++binary-arch: install
++	dh_testdir
++	dh_testroot
++	dh_installdirs
++	dh_strip
++	dh_fixperms
++	dh_makeshlibs
++	dh_installdeb
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++.PHONY: build clean binary-indep binary-arch binary install 
