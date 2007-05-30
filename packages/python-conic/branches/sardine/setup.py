@@ -37,20 +37,6 @@ def get_includes(package_name):
         
     return []
 
-def get_conic_version():
-    input = open('/usr/lib/pkgconfig/conic.pc','r')
-
-    for line in input:
-        result = line.split()
-        if result:
-            if result[0] == 'Version:':
-                raw_version = result[-1]
-
-    input.close()
-    conic_version = tuple([ int(x) for x in raw_version.split('.') ])
-    return conic_version
-conic_version = get_conic_version()
-
 def gen_auto_file(filename, subproc_args):
     proc = subprocess.Popen(
         subproc_args,
