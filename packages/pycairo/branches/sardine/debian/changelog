@@ -1,0 +1,5 @@
+pycairo (1.4.0-1osso1) unstable; urgency=low
+
+  * First pycairo release.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 30 May 2007 11:07:48 -0300
