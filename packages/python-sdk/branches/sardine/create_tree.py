@@ -73,7 +73,7 @@ def run_command(command, directory = None, force = False):
 
 def chksectlst(lst, sections):
     '''Check if list contains valid section names'''
-    
+
     unknown = [sect for sect in lst if sect not in sections]
     if unknown:
         raise BuildException('Unknown section name[s]: %s' % \
@@ -92,7 +92,7 @@ def read_cfg_file(conf_file, options):
         skiplist = [name.strip() for name in options.skip.split(',')]
         chksectlst(skiplist, config.sections())
         [config.remove_section(section) for section in skiplist]
-                
+
     if options.only:
         onlylist = [name.strip() for name in options.only.split(',')]
         chksectlst(onlylist, config.sections())
@@ -110,7 +110,7 @@ def read_name_and_version(module):
 
     module_name = result.group(1)
     module_version = result.group(2)
-    
+
     return module_name, module_version
 
 def download_from_svn(config, section):
@@ -170,7 +170,7 @@ def download_source_package(config, section):
 
 def apply_patches(package_name):
     '''reapply the patches'''
-    
+
     run_command('quilt pop -a --quiltrc ../'+quiltrc, package_name, force = True)
     run_command('quilt push -a --quiltrc ../'+quiltrc, package_name)
 
@@ -181,7 +181,7 @@ def get_debs(control, arch, version):
         controlf = open(control)
         control = controlf.readlines()
         controlf.close()
-    
+
     debs = []
     for line in control:
         if line.find('Package:') > -1:
@@ -219,7 +219,7 @@ def build_packages(config):
 
         if module not in config.sections():
             continue
-        
+
         print '\n===== Building module %s ======' % module
         if os.path.exists(module+'-'+arch+'-stamp'):
             print 'module is already built, skipping'
@@ -247,7 +247,7 @@ def build_packages(config):
         # add .dsc, and source tarball/diff.gz to the list
         files.append(name_version + '.dsc')
         files.append(changes)
-        
+
         orig_file = '_'.join([module_name, \
                             module_version.split('-')[0]])+'.orig.tar.gz'
         if os.path.exists(orig_file):
@@ -279,8 +279,10 @@ def create_tree(config):
 
             if config.has_option(section, 'svn_url'):
                 download_from_svn(config, section)
-    
-            if config.has_option(section, 'source_url'):
+
+            # don't try to use quilt if patches doesn't exist
+            if config.has_option(section, 'source_url') and \
+               os.path.exists(section+'/debian/patches'):
                 apply_patches(section)
 
 def parsecommandline(argv):
@@ -316,14 +318,14 @@ def main(argv = None):
 
         if not options.onlybuild:
             create_tree(config)
- 
+
         if not options.onlycreate:
             build_packages(config)
 
     except BuildException, exobj:
         print exobj
         return exobj.exitcode()
-    
+
     return OK
 
 if __name__ == '__main__':
