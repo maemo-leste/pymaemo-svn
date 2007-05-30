@@ -1,3 +1,9 @@
+python-hildon (0.8.8-1osso1) unstable; urgency=low
+
+  * added cairo and new gtk version
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 30 May 2007 15:38:03 -0300
+
 python-hildon (0.8.7-1osso3) unstable; urgency=low
 
   * allow NULL parent window to HildonWizardDialog

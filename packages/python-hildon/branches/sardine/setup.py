@@ -12,13 +12,14 @@ def get_hildon_version():
     input = open('/usr/lib/pkgconfig/hildon-libs.pc','r')
 
     for line in input:
-	result = line.split()
+        result = line.split()
         if result:
-	    if result[0] == 'Version:':
+            if result[0] == 'Version:':
                 raw_version = result[-1]
 
     input.close()
     hildon_version = tuple([ int(x) for x in raw_version.split('.') ])
+    print hildon_version
     return hildon_version
 hildon_version = get_hildon_version()
 
@@ -28,14 +29,16 @@ def gen_auto_file(filename, subproc_args):
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
-    cmdresult = proc.communicate()[0]  
-#   error = proc.stderr
+    tmp = proc.communicate()
+    cmdresult = tmp[0]
+    error = tmp[1]
+    print error
 #   Print disabled to avoid problems with scratchbox
-#   print >>sys.sdterr, error.read()
+#    print >>sys.sdterr, error.read()
     if cmdresult:
         new_file = open(filename, 'w')
         new_file.write(cmdresult)
-	new_file.close()
+        new_file.close()
 
 class PyHildonBuild(build):
     def run(self):
@@ -45,7 +48,7 @@ class PyHildonBuild(build):
         -hildon-types.c.in"""
         # Generate enum/flags run-time information
         HILDON_TYPE_FILES = [
-	    includedir+'/hildon-fm/hildon-widgets/hildon-file-system-model.h',
+            includedir+'/hildon-fm/hildon-widgets/hildon-file-system-model.h',
             includedir+'/hildon-fm/hildon-widgets/hildon-file-system-common.h',
             includedir+'/hildon-fm/hildon-widgets/hildon-file-selection.h',
             includedir+'/hildon-widgets/hildon-date-editor.h',
@@ -57,10 +60,10 @@ class PyHildonBuild(build):
             includedir+'/hildon-widgets/hildon-time-editor.h',
             includedir+'/hildon-base-lib/hildon-base-types.h',
             includedir+'/glib-2.0/glib/gdate.h',
-	]
-        
-	gen_auto_file('hildon-types.h.in', ['/bin/sh', './gen-enum-h']+HILDON_TYPE_FILES)
-	gen_auto_file('hildon-types.c.in', ['/bin/sh', './gen-enum-c']+HILDON_TYPE_FILES)
+        ]
+
+        gen_auto_file('hildon-types.h.in', ['/bin/sh', './gen-enum-h']+HILDON_TYPE_FILES)
+        gen_auto_file('hildon-types.c.in', ['/bin/sh', './gen-enum-c']+HILDON_TYPE_FILES)
 
         # Creation of ".c" files, using pygtk-codegen-2.0
         override_filename = 'hildon.override'
@@ -79,12 +82,12 @@ class PyHildonBuild(build):
             '--register', 'defs/hildon-grid-item.defs',
             '--override', 'hildon.override',
             '--prefix', 'pyhildon',
-	    defs_filename,
-	] 
-	gen_auto_file('hildon.c', ['/bin/sh', 'pygtk-codegen-2.0']+parameter)
+            defs_filename,
+        ]
+        gen_auto_file('hildon.c', ['/bin/sh', 'pygtk-codegen-2.0']+parameter)
 
         build.run(self)
-        
+
 
 compile_args = [
         '-Os',
@@ -113,32 +116,34 @@ hildon = Extension('hildon',
         'hildonwidgets',
         'hildonfm',
         'dbus-1',
-                'dbus-glib-1',
-                'glib-2.0',
-                'gobject-2.0',
-                'gmodule-2.0',
-                'atk-1.0',
-                'pangoxft-1.0',
-                'pangox-1.0',
-                'pango-1.0',
-                'gdk-x11-2.0',
-                'gdk_pixbuf-2.0',
+        'dbus-glib-1',
+        'glib-2.0',
+        'gobject-2.0',
+        'gmodule-2.0',
+        'atk-1.0',
+        'pangoxft-1.0',
+        'pangox-1.0',
+        'pango-1.0',
+        'gdk-x11-2.0',
+        'gdk_pixbuf-2.0',
+        'cairo',
     ],
     include_dirs=[
-                '/usr/include',
-                '/usr/include/freetype2',
-                '/usr/include/dbus-1.0',
-                '/usr/include/glib-2.0',
-                '/usr/include/atk-1.0',
-                '/usr/include/pango-1.0',
-                '/usr/include/gtk-2.0',
-                '/usr/include/pygtk-2.0',
-                '/usr/include/hildon-fm',
-        '/usr/include/hildon-widgets'
+        '/usr/include',
+        '/usr/include/freetype2',
+        '/usr/include/dbus-1.0',
+        '/usr/include/glib-2.0',
+        '/usr/include/atk-1.0',
+        '/usr/include/pango-1.0',
+        '/usr/include/gtk-2.0',
+        '/usr/include/pygtk-2.0',
+        '/usr/include/hildon-fm',
+        '/usr/include/hildon-widgets',
+        '/usr/include/cairo',
         '/usr/lib/dbus-1.0/include',
-                '/usr/lib/glib-2.0/include',
-                '/usr/lib/gtk-2.0/include',
-                '/usr/X11R6/include',
+        '/usr/lib/glib-2.0/include',
+        '/usr/lib/gtk-2.0/include',
+        '/usr/X11R6/include',
     ],
     extra_compile_args=compile_args,
 )
