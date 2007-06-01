@@ -32,6 +32,8 @@
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#include <coniciap.h>
+
 void pyconic_register_classes (PyObject *d);
 void pyconic_add_constants(PyObject *module, const gchar *strip_prefix);
 
@@ -41,26 +43,20 @@ static DBusConnection *connection;
 
 /* FIXME This can be automatized... */
 /* #defines not scanned by h2defs and codegen */
-static void add_bearer_constants(PyObject *d)
+static void add_bearer_constants(PyObject *module)
 {
         PyObject *v;
 
-        v = PyString_FromString("WLAN_INFRA");
-        PyDict_SetItemString(d, "BEARER_WLAN_INFRA", v);
-        Py_DECREF(v);
+        PyModule_AddStringConstant(module, "BEARER_WLAN_INFRA",
+                                            CON_IC_BEARER_WLAN_INFRA);
+        PyModule_AddStringConstant(module, "BEARER_WLAN_ADHOC",
+                                            CON_IC_BEARER_WLAN_ADHOC);
 
-        v = PyString_FromString("WLAN_ADHOC");
-        PyDict_SetItemString(d, "BEARER_WLAN_ADHOC", v);
-        Py_DECREF(v);
+        PyModule_AddStringConstant(module, "BEARER_DUN_GSM_CS",
+                                            CON_IC_BEARER_DUN_GSM_CS);
+        PyModule_AddStringConstant(module, "BEARER_DUN_GSM_PS",
+                                            CON_IC_BEARER_DUN_GSM_PS);
 
-        v = PyString_FromString("DUN_GSM_CS");
-        PyDict_SetItemString(d, "BEARER_DUN_GSM_CS", v);
-        Py_DECREF(v); 
-        
-        v = PyString_FromString("DUN_GSM_PS");
-        PyDict_SetItemString(d, "BEARER_DUN_GSM_PS", v);
-        Py_DECREF(v); 
-  
         return;
 }
 
@@ -80,6 +76,6 @@ initconic (void)
     pyconic_register_classes(d);
     pyconic_add_constants(m, "CON_IC_");
 
-    add_bearer_constants(d);
+    add_bearer_constants(m);
 
 }

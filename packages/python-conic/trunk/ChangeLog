@@ -1,3 +1,6 @@
+2007-06-01 Lauro Moura <lauro.neto@indt.org.br>
+	* conicmodule.c: Switching to PyModule_Add*Constant
+
 2007-04-26 Lauro Moura <lauro.neto@indt.org.br>
 	* conic.override: Missing Py_INCREF(Py_None)
 
