@@ -1,0 +1,1824 @@
+Index: python-gtk2-2.10.4/examples/atk/atk-demo.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/atk/atk-demo.py	2007-05-30 17:46:11.000000000 -0300
++++ python-gtk2-2.10.4/examples/atk/atk-demo.py	2007-05-31 11:25:27.000000000 -0300
+@@ -1,9 +1,10 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ 
+ import gtk
+ import atk
++import hildon
+ 
+-win = gtk.Window()
++win = hildon.Window()
+ win.connect('destroy', lambda win: gtk.main_quit())
+ 
+ button = gtk.Button(stock=gtk.STOCK_QUIT)
+Index: python-gtk2-2.10.4/examples/glade/autoconnect.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/glade/autoconnect.py	2007-05-30 17:46:34.000000000 -0300
++++ python-gtk2-2.10.4/examples/glade/autoconnect.py	2007-05-31 17:29:56.000000000 -0300
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ #
+ # Small test to demonstrate glade.XML.signal_autoconnect on an instance
+ #
+@@ -8,11 +8,20 @@
+ 
+ import gtk, gtk.glade
+ 
++import hildon
++
+ class SimpleTest:
+     def __init__(self):
+         xml = gtk.glade.XML('test2.glade')
+         xml.signal_autoconnect(self)
+ 
++        window = hildon.Window()
++        window.connect("destroy", gtk.main_quit)
++
++        xml.get_widget("button1").reparent(window)
++        xml.get_widget("window1").destroy()
++        window.show_all()
++
+     def on_button1_clicked(self, button):
+         print 'foo!'
+ 
+Index: python-gtk2-2.10.4/examples/glade/glade-demo.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/glade/glade-demo.py	2007-05-30 17:46:34.000000000 -0300
++++ python-gtk2-2.10.4/examples/glade/glade-demo.py	2007-05-31 11:26:03.000000000 -0300
+@@ -1,8 +1,10 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ import sys
+ import gtk
+ import gtk.glade
+ 
++import hildon
++
+ if len(sys.argv) > 1:
+     fname = sys.argv[1]
+ else:
+@@ -11,9 +13,19 @@
+ # create widget tree ...
+ xml = gtk.glade.XML(fname)
+ 
++
+ def gtk_main_quit(*args):
+     gtk.main_quit()
+ 
+ xml.signal_autoconnect(locals())
+ 
++window = hildon.Window()
++window.connect("destroy", gtk.main_quit)
++
++# Reparenting the widgets and destroying the original window
++xml.get_widget("vbox1").reparent(window)
++xml.get_widget("window1").destroy()
++
++window.show_all()
++
+ gtk.main()
+Index: python-gtk2-2.10.4/examples/gobject/editable-interface.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gobject/editable-interface.py	2007-05-30 17:46:34.000000000 -0300
++++ python-gtk2-2.10.4/examples/gobject/editable-interface.py	2007-05-31 10:57:47.000000000 -0300
+@@ -1,6 +1,6 @@
+ import gtk
+ import gobject
+-
++import hildon
+ 
+ class EditableLabel(gtk.Entry, gtk.Editable):
+ 
+@@ -15,7 +15,9 @@
+ gobject.type_register(EditableLabel)
+ 
+ if __name__ == '__main__':
+-    w = gtk.Window()
++    app = hildon.Program()
++    w = hildon.Window()
++    app.add_window(w)
+     vbox = gtk.VBox()
+     w.add(vbox)
+     label = EditableLabel("Foo Bar Zbr")
+Index: python-gtk2-2.10.4/examples/gobject/signal.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gobject/signal.py	2007-05-30 17:46:34.000000000 -0300
++++ python-gtk2-2.10.4/examples/gobject/signal.py	2007-05-31 10:57:47.000000000 -0300
+@@ -9,16 +9,16 @@
+     def __init__(self):
+         self.__gobject_init__() # default constructor using our new GType
+     def do_my_signal(self, arg):
+-        print "C: class closure for `my_signal' called with argument", arg
++	print "C: class closure for `my_signal' called with argument", arg
+ 
+ class D(C):
+     def do_my_signal(self, arg):
+-        print "D: class closure for `my_signal' called.  Chaining up to C"
+-        C.do_my_signal(self, arg)
++	print "D: class closure for `my_signal' called.  Chaining up to C"
++	C.do_my_signal(self, arg)
+ 
+ def my_signal_handler(object, arg, *extra):
+     print "handler for `my_signal' called with argument", arg, \
+-          "and extra args", extra
++	  "and extra args", extra
+ 
+ inst = C()
+ inst2 = D()
+Index: python-gtk2-2.10.4/examples/gtk/filechooser.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gtk/filechooser.py	2007-05-30 17:46:35.000000000 -0300
++++ python-gtk2-2.10.4/examples/gtk/filechooser.py	2007-05-31 11:44:44.000000000 -0300
+@@ -2,12 +2,12 @@
+ pygtk.require('2.0')
+ 
+ import gtk
++import hildon
+ 
+-dialog = gtk.FileChooserDialog("Open..",
+-                               None,
+-                               gtk.FILE_CHOOSER_ACTION_OPEN,
+-                               (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+-                                gtk.STOCK_OPEN, gtk.RESPONSE_OK))
++app = hildon.Program()
++win = hildon.Window()
++
++dialog = hildon.FileChooserDialog(win, gtk.FILE_CHOOSER_ACTION_OPEN)
+ dialog.set_default_response(gtk.RESPONSE_OK)
+ 
+ filter = gtk.FileFilter()
+Index: python-gtk2-2.10.4/examples/gtk/scrollable.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gtk/scrollable.py	2007-05-30 17:46:35.000000000 -0300
++++ python-gtk2-2.10.4/examples/gtk/scrollable.py	2007-05-31 17:43:40.000000000 -0300
+@@ -10,6 +10,8 @@
+ import gtk
+ from gtk import gdk
+ 
++import hildon
++
+ class Child:
+     widget = None
+     x = 0
+@@ -258,7 +260,7 @@
+ Layout.set_set_scroll_adjustments_signal('set-scroll-adjustments')
+ 
+ def main():
+-    window = gtk.Window()
++    window = hildon.Window()
+     window.set_size_request(300, 300)
+     window.connect('delete-event', gtk.main_quit)
+ 
+Index: python-gtk2-2.10.4/examples/gtk/sizegroup.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gtk/sizegroup.py	2007-05-30 17:46:35.000000000 -0300
++++ python-gtk2-2.10.4/examples/gtk/sizegroup.py	2007-05-31 10:57:47.000000000 -0300
+@@ -13,6 +13,7 @@
+ """
+ 
+ import gtk
++import hildon
+ 
+ def create_label(text):
+     hbox = gtk.HBox(spacing=6)
+@@ -23,7 +24,7 @@
+     return hbox, label
+ 
+ def main():
+-    win = gtk.Window()
++    win = hildon.Window()
+     win.connect('delete-event', gtk.main_quit)
+     win.set_border_width(6)
+     win.set_title('GtkSizeGroup example')
+Index: python-gtk2-2.10.4/examples/gtk/testprint.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gtk/testprint.py	2007-05-30 17:46:35.000000000 -0300
++++ python-gtk2-2.10.4/examples/gtk/testprint.py	2007-05-31 17:36:25.000000000 -0300
+@@ -6,20 +6,21 @@
+ import pango
+ import gtk
+ 
++import hildon
++
+ def request_page_setup(operation, context, page_nr, page_setup):
+   ## Make the second page landscape mode a5
+   if page_nr == 1:
+       page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)
+       page_setup.set_paper_size(gtk.PaperSize("iso_a5"))
+ 
+-
+ def draw_page (operation, context, page_nr):
+     cr = context.get_cairo()
+ 
+     ## Draw a red rectangle, as wide as the paper (inside the margins)
+     cr.set_source_rgb(1.0, 0, 0)
+     cr.rectangle(0, 0, context.get_width(), 50)
+-  
++
+     cr.fill()
+ 
+     ## Draw some lines
+@@ -27,12 +28,12 @@
+     cr.line_to(40, 20)
+     cr.arc(60, 60, 20, 0, math.pi)
+     cr.line_to(80, 20)
+-  
++
+     cr.set_source_rgb(0, 0, 0)
+     cr.set_line_width(5)
+     cr.set_line_cap(cairo.LINE_CAP_ROUND)
+     cr.set_line_join(cairo.LINE_JOIN_ROUND)
+-  
++
+     cr.stroke()
+ 
+     ## Draw some text
+@@ -51,18 +52,20 @@
+     ## Font Fill
+     cr.set_source_rgb(0, 0.0, 1.0)
+     cr.fill()
+-  
+ 
+ def main(argv):
+   ## Test some random drawing, with per-page paper settings
+-  print_ = gtk.PrintOperation()
+-  print_.set_nr_of_pages(2)
+-  print_.set_unit(gtk.UNIT_MM)
+-  print_.set_pdf_target("test.pdf")
+-  print_.connect("draw_page", draw_page)
+-  print_.connect("request_page_setup", request_page_setup)
+-  res = print_.run()
+-  return 0
++    app = hildon.Program()
++    win = hildon.Window()
++
++    print_ = hildon.PrintOperation()
++    print_.set_nr_of_pages(2)
++    print_.set_unit(gtk.UNIT_MM)
++    print_.set_pdf_target("test.pdf")
++    print_.connect("draw_page", draw_page)
++    print_.connect("request_page_setup", request_page_setup)
++    res = print_.run()
++    return 0
+ 
+ if __name__ == '__main__':
+     sys.exit(main(sys.argv))
+Index: python-gtk2-2.10.4/examples/gtk/uimanager.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/gtk/uimanager.py	2007-05-30 17:46:35.000000000 -0300
++++ python-gtk2-2.10.4/examples/gtk/uimanager.py	2007-05-31 17:39:25.000000000 -0300
+@@ -3,11 +3,15 @@
+ #
+ # Johan Dahlin <johan@gnome.org>, 2004
+ #
++# Port to Hildon:
++#
++# Lauro Moura <lauromoura@gmail.com>, 2007
+ 
+ import pygtk
+ pygtk.require('2.0')
+ 
+ import gtk
++import hildon
+ 
+ ui_string = """<ui>
+   <menubar name='Menubar'>
+@@ -30,9 +34,9 @@
+   </toolbar>
+ </ui>"""
+ 
+-class Window(gtk.Window):
++class Window(hildon.Window):
+     def __init__(self):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         self.set_position(gtk.WIN_POS_CENTER)
+         self.set_title('GtkUIManager test app')
+         self.connect('delete-event', self.delete_event_cb)
+@@ -41,8 +45,23 @@
+         self.add(vbox)
+ 
+         self.create_ui()
+-        vbox.pack_start(self.ui.get_widget('/Menubar'), expand=False)
+-        vbox.pack_start(self.ui.get_widget('/Toolbar'), expand=False)
++
++        # We don't need this inside hildon.
++        #vbox.pack_start(self.ui.get_widget('/Menubar'), expand=False)
++        #vbox.pack_start(self.ui.get_widget('/Toolbar'), expand=False)
++
++        #Setting up menus from UIManager menubar to hildon menu.
++        menu = gtk.Menu()
++        menubar = self.ui.get_widget("/Menubar")
++
++        for i in menubar.get_children():
++            i.reparent(menu)
++
++        self.set_menu(menu)
++
++        #Setting up toolbar
++        toolbar = self.ui.get_widget("/Toolbar")
++        self.add_toolbar(toolbar)
+ 
+         sw = gtk.ScrolledWindow()
+         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+@@ -52,8 +71,9 @@
+         self.buffer = textview.get_buffer()
+         sw.add(textview)
+ 
+-        status = gtk.Statusbar()
+-        vbox.pack_end(status, expand=False)
++        #No status bar
++        #status = gtk.Statusbar()
++        #vbox.pack_end(status, expand=False)
+ 
+     def create_ui(self):
+         ag = gtk.ActionGroup('WindowActions')
+@@ -83,10 +103,8 @@
+         gtk.main()
+ 
+     def file_open_cb(self, action):
+-        dialog = gtk.FileChooserDialog("Open..", self,
+-                                       gtk.FILE_CHOOSER_ACTION_OPEN,
+-                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+-                                        gtk.STOCK_OPEN, gtk.RESPONSE_OK))
++        dialog = hildon.FileChooserDialog(self,
++                                       gtk.FILE_CHOOSER_ACTION_OPEN)
+         dialog.set_default_response(gtk.RESPONSE_OK)
+ 
+         filter = gtk.FileFilter()
+Index: python-gtk2-2.10.4/examples/pango/utf8-demo.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pango/utf8-demo.py	2007-05-30 17:46:37.000000000 -0300
++++ python-gtk2-2.10.4/examples/pango/utf8-demo.py	2007-05-31 10:57:47.000000000 -0300
+@@ -1,10 +1,11 @@
+ # order is important here (for now)
+ import gtk
++import hildon
+ 
+ # string taken from pango examples directory and converted from utf8
+ # to python unicode string escapes
+ hellos = u'''\u03A0\u03B1\u03BD\u8A9E
+-This is a list of ways to say hello in various languages.
++This is a list of ways to say hello in various languages. 
+ The purpose of it is to illustrate a number of scripts.
+ 
+ (Converted into UTF-8)
+@@ -50,9 +51,9 @@
+  BIG5\t--\t\u5143\u6C23\t\u958B\u767C
+ 
+ '''
+-win = gtk.Window()
+-win.connect('destroy', gtk.mainquit)
+-win.set_default_size(600, 400)
++win = hildon.Window()
++win.connect('destroy', gtk.main_quit)
++#win.set_default_size(600, 400)
+ 
+ swin = gtk.ScrolledWindow()
+ swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/__init__.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/__init__.pyo	2007-05-30 17:46:59.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/__init__.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/appwindow.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/appwindow.py	2007-05-30 17:46:59.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/appwindow.py	2007-05-31 17:04:44.000000000 -0300
+@@ -3,10 +3,13 @@
+ 
+ Demonstrates a typical application window, with menubar, toolbar, statusbar.'''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import gobject
+ import gtk
+ 
++import hildon
++
+ (
+   COLOR_RED,
+   COLOR_GREEN,
+@@ -88,12 +91,12 @@
+     except gobject.GError, error:
+         print 'failed to load GTK logo for toolbar'
+ 
+-class ApplicationMainWindowDemo(gtk.Window):
++class ApplicationMainWindowDemo(hildon.Window):
+     def __init__(self, parent=None):
+         register_stock_icons()
+ 
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -112,25 +115,21 @@
+         except gobject.GError, msg:
+             print "building menus failed: %s" % msg
+         bar = merge.get_widget("/MenuBar")
+-        bar.show()
++        menu = gtk.Menu()
++
++        for i in bar.get_children():
++            i.reparent(menu)
++
++        self.set_menu(menu)
++        #bar.show()
+ 
+         table = gtk.Table(1, 4, False)
+         self.add(table)
+ 
+-        table.attach(bar,
+-            # X direction #          # Y direction
+-            0, 1,                      0, 1,
+-            gtk.EXPAND | gtk.FILL,     0,
+-            0,                         0);
+-
+         bar = merge.get_widget("/ToolBar")
+         bar.set_tooltips(True)
+         bar.show()
+-        table.attach(bar,
+-            # X direction #       # Y direction
+-            0, 1,                   1, 2,
+-            gtk.EXPAND | gtk.FILL,  0,
+-            0,                      0)
++        self.add_toolbar(bar)
+ 
+         # Create document
+         sw = gtk.ScrolledWindow()
+@@ -139,7 +138,7 @@
+ 
+         table.attach(sw,
+             # X direction           Y direction
+-            0, 1,                   2, 3,
++            0, 1,                   0, 1,
+             gtk.EXPAND | gtk.FILL,  gtk.EXPAND | gtk.FILL,
+             0,                      0)
+ 
+@@ -152,7 +151,7 @@
+         self.statusbar = gtk.Statusbar()
+         table.attach(self.statusbar,
+             # X direction           Y direction
+-            0, 1,                   3, 4,
++            0, 1,                   1, 2,
+             gtk.EXPAND | gtk.FILL,  0,
+             0,                      0)
+ 
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/appwindow.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/appwindow.pyo	2007-05-30 17:46:59.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/appwindow.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/buttonbox.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/buttonbox.py	2007-05-30 17:47:00.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/buttonbox.py	2007-05-31 10:57:47.000000000 -0300
+@@ -5,6 +5,7 @@
+ uses stock buttons, and use of mnemonics for navigation.'''
+ 
+ import gtk
++import hildon
+ 
+ def create_bbox(horizontal=True, title=None, spacing=0,
+         layout=gtk.BUTTONBOX_SPREAD):
+@@ -31,10 +32,10 @@
+ 
+     return frame
+ 
+-class ButtonBoxDemo(gtk.Window):
++class ButtonBoxDemo(hildon.Window):
+     def __init__(self, parent=None):
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -44,7 +45,9 @@
+         self.set_border_width(10)
+ 
+         main_vbox = gtk.VBox()
+-        self.add(main_vbox)
++        scrolled = gtk.ScrolledWindow()
++        scrolled.add_with_viewport(main_vbox)
++        self.add(scrolled)
+ 
+         frame_horiz = gtk.Frame("Horizontal Button Boxes")
+         main_vbox.pack_start(frame_horiz, padding=10)
+@@ -53,6 +56,7 @@
+         vbox.set_border_width(10)
+         frame_horiz.add(vbox)
+ 
++        # HButtonBox layout not working on Maemo.
+         vbox.pack_start(create_bbox(True, "Spread", 40, gtk.BUTTONBOX_SPREAD),
+                 padding=0)
+         vbox.pack_start(create_bbox(True, "Edge", 40, gtk.BUTTONBOX_EDGE),
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/buttonbox.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/buttonbox.pyo	2007-05-30 17:47:00.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/buttonbox.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/changedisplay.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/changedisplay.pyo	2007-05-30 17:47:00.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/changedisplay.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/colorsel.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/colorsel.py	2007-05-30 17:47:00.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/colorsel.py	2007-05-31 10:57:47.000000000 -0300
+@@ -1,17 +1,19 @@
+ #!/usr/bin/env python
+ """Color Selector
+ 
+-GtkColorSelection lets the user choose a color. GtkColorSelectionDialog is a
+-prebuilt dialog containing a GtkColorSelection."""
++HildonColorSelectior lets the user choose a color from a standard 16-color
++pallete or a pallete of 8 user-customizable colors, wich can be modified
++through HildonColorPopup."""
+ 
+ import gtk
++import hildon
+ 
+-class ColorSelectorDemo(gtk.Window):
++class ColorSelectorDemo(hildon.Window):
+     color = gtk.gdk.color_parse("blue")
+ 
+     def __init__(self, parent=None):
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -48,18 +50,14 @@
+ 
+     def on_change_color_clicked(self, button):
+ 
+-        dialog = gtk.ColorSelectionDialog("Changing color")
++        dialog = hildon.ColorSelector(self)
+         dialog.set_transient_for(self)
+-        colorsel = dialog.colorsel
+-
+-        colorsel.set_previous_color(self.color)
+-        colorsel.set_current_color(self.color)
+-        colorsel.set_has_palette(True)
++        dialog.set_color(self.color)
+ 
+         response = dialog.run()
+ 
+         if response == gtk.RESPONSE_OK:
+-            self.color = colorsel.get_current_color()
++            self.color = dialog.get_color()
+             self.d_area.modify_bg(gtk.STATE_NORMAL, self.color)
+ 
+         dialog.destroy()
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/colorsel.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/colorsel.pyo	2007-05-30 17:47:00.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/colorsel.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/dialogs.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/dialogs.py	2007-05-30 17:47:00.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/dialogs.py	2007-05-31 10:57:47.000000000 -0300
+@@ -4,12 +4,13 @@
+ Dialog widgets are used to pop up a transient window for user feedback."""
+ 
+ import gtk
++import hildon
+ 
+-class DialogAndMessageBoxesDemo(gtk.Window):
++class DialogAndMessageBoxesDemo(hildon.Window):
+     counter = 1
+     def __init__(self, parent=None):
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/dialogs.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/dialogs.pyo	2007-05-30 17:47:00.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/dialogs.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/dnd.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/dnd.py	2007-05-30 17:47:00.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/dnd.py	2007-05-31 10:57:47.000000000 -0300
+@@ -7,6 +7,7 @@
+ 
+ import gtk
+ import gobject
++import hildon
+ 
+ from dndpixmap import drag_icon_xpm, trashcan_open_xpm, trashcan_closed_xpm
+ 
+@@ -24,7 +25,7 @@
+         gtk.gdk.pixmap_colormap_create_from_xpm_d(
+             None, widget.get_colormap(), None, xpm_data)
+ 
+-class DragAndDropDemo(gtk.Window):
++class DragAndDropDemo(hildon.Window):
+     trashcan_open = None
+     trashcan_open_mask = None
+     trashcan_closed = None
+@@ -39,7 +40,7 @@
+     popup_win = None
+ 
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -192,7 +193,7 @@
+         if info == TARGET_ROOTWIN:
+             print 'I was dropped on the rootwin'
+         else:
+-            selection_data.set(selection_data.target, 8, "I'm Data!")
++            selection_data.set(selection_data.target, 8, "I'm Data!")	
+ 
+     def source_drag_data_delete(self, btn, context, data):
+         print 'Delete the data!'
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/dnd.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/dnd.pyo	2007-05-30 17:47:00.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/dnd.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/dndpixmap.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/dndpixmap.pyo	2007-05-30 17:47:01.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/dndpixmap.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/editable_cells.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/editable_cells.py	2007-05-30 17:47:01.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/editable_cells.py	2007-05-31 10:57:47.000000000 -0300
+@@ -5,9 +5,11 @@
+ If you're new to the GtkTreeView widgets and associates, look into the
+ GtkListStore example first.'''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import gobject
+ import gtk
++import hildon
+ 
+ #   columns
+ (
+@@ -25,9 +27,9 @@
+     [ 6, "eggs", True ]
+ ]
+ 
+-class EditableCellsDemo(gtk.Window):
++class EditableCellsDemo(hildon.Window):
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -54,6 +56,7 @@
+         treeview = gtk.TreeView(model)
+         treeview.set_rules_hint(True)
+         treeview.get_selection().set_mode(gtk.SELECTION_SINGLE)
++        treeview.set_headers_visible(True)
+ 
+         self.__add_columns(treeview)
+ 
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/editable_cells.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/editable_cells.pyo	2007-05-30 17:47:01.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/editable_cells.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/entry_completion.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/entry_completion.pyo	2007-05-30 17:47:01.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/entry_completion.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/expander.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/expander.pyo	2007-05-30 17:47:01.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/expander.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/hypertext.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/hypertext.py	2007-05-30 17:47:01.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/hypertext.py	2007-05-31 10:57:47.000000000 -0300
+@@ -6,17 +6,19 @@
+ They can also affect the behavior of mouse and key presses, as this demo
+ shows.'''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import gtk
+ import pango
++import hildon
+ 
+-class HypertextDemo(gtk.Window):
++class HypertextDemo(hildon.Window):
+     hovering_over_link = False
+     hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
+     regular_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
+ 
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/hypertext.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/hypertext.pyo	2007-05-30 17:47:01.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/hypertext.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/images.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/images.py	2007-05-30 17:47:02.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/images.py	2007-05-31 10:57:47.000000000 -0300
+@@ -9,10 +9,12 @@
+ make-inline-pixbuf program that comes with GTK+. This way you won't need to
+ depend on loading external files, your application binary can be self-contained.'''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import os
+ import gobject
+ import gtk
++import hildon
+ 
+ IMAGEDIR = os.path.join(os.path.dirname(__file__), 'images')
+ ALPHA_IMAGE = os.path.join(IMAGEDIR, 'alphatest.png')
+@@ -39,13 +41,13 @@
+     '''
+     image.queue_draw()
+ 
+-class ImagesDemo(gtk.Window):
++class ImagesDemo(hildon.Window):
+     pixbuf_loader = None
+     load_timeout = None
+     image_stream = None
+ 
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -54,9 +56,15 @@
+         self.set_title(self.__class__.__name__)
+         self.set_border_width(8)
+ 
++        scroll = gtk.ScrolledWindow()
++        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
++        self.add(scroll)
++
+         vbox = gtk.VBox(False, 8)
+         vbox.set_border_width(8)
+-        self.add(vbox)
++
++        scroll.add_with_viewport(vbox)
++
+ 
+         label = gtk.Label();
+         label.set_markup("<u>Image loaded from a file</u>")
+@@ -154,7 +162,7 @@
+ 
+     def cleanup_callback(self, win):
+         if self.load_timeout != 0:
+-            gtk.timeout_remove(self.load_timeout)
++            gobject.source_remove(self.load_timeout)
+             self.load_timeout = 0
+ 
+         if self.pixbuf_loader is not None:
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/images.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/images.pyo	2007-05-30 17:47:02.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/images.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/list_store.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/list_store.py	2007-05-30 17:47:02.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/list_store.py	2007-05-31 10:57:47.000000000 -0300
+@@ -8,6 +8,7 @@
+ 
+ import gobject
+ import gtk
++import hildon
+ 
+ (
+     COLUMN_FIXED,
+@@ -33,10 +34,10 @@
+  (False, 6112,  'Enhancement', 'netscape-like collapsable toolbars'),
+  (False, 1,     'Normal', 'First bug :=)'))
+ 
+-class ListStoreDemo(gtk.Window):
++class ListStoreDemo(hildon.Window):
+     def __init__(self, parent=None):
+         # create window, etc
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -55,7 +56,7 @@
+ 
+         sw = gtk.ScrolledWindow()
+         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+-        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
++        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+         vbox.pack_start(sw)
+ 
+         # create tree model
+@@ -65,6 +66,8 @@
+         treeview = gtk.TreeView(model)
+         treeview.set_rules_hint(True)
+         treeview.set_search_column(COLUMN_DESCRIPTION)
++        treeview.set_headers_visible(True)
++        treeview.set_property("allow-checkbox-mode", False)
+ 
+         sw.add(treeview)
+ 
+@@ -110,8 +113,8 @@
+         column = gtk.TreeViewColumn('Fixed', renderer, active=COLUMN_FIXED)
+ 
+         # set this column to a fixed sizing(of 50 pixels)
+-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+-        column.set_fixed_width(50)
++        #column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
++        #column.set_fixed_width(500)
+ 
+         treeview.append_column(column)
+ 
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/list_store.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/list_store.pyo	2007-05-30 17:47:02.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/list_store.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/menu.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/menu.py	2007-05-30 17:47:02.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/menu.py	2007-05-31 17:12:47.000000000 -0300
+@@ -6,6 +6,7 @@
+ gtk 2.0.'''
+ 
+ import gtk
++import hildon
+ 
+ def create_menu(depth, length=5):
+     if depth < 1:
+@@ -15,19 +16,20 @@
+     group= None
+ 
+     for i in range(length):
+-        menuitem = gtk.RadioMenuItem(group, 'item %2d - %d' % (depth, i))
+-        group = menuitem
+-        menu.add(menuitem)
+-        menuitem.show()
++        menuitem = gtk.RadioMenuItem(group, '%d-%d' % (depth, i))
+         if depth > 1:
+             submenu = create_menu(depth - 1)
+             menuitem.set_submenu(submenu)
++        group = menuitem
++        menu.append(menuitem)
++        menuitem.show()
++
+     return menu
+ 
+-class MenuDemo(gtk.Window):
++class MenuDemo(hildon.Window):
+     def __init__(self, parent=None):
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -38,30 +40,31 @@
+         vbox = gtk.VBox()
+         self.add(vbox)
+ 
+-        menubar = gtk.MenuBar()
+-        vbox.pack_start(menubar, expand=False)
++        menu = gtk.Menu()
+ 
+         menuitem = gtk.MenuItem('test\nline2')
+-        menuitem.set_submenu(create_menu(2, 50))
+-        menubar.add(menuitem)
++        menuitem.set_submenu(create_menu(4, 50))
++        menu.append(menuitem)
+ 
+         menuitem = gtk.MenuItem('foo')
+-        menuitem.set_submenu(create_menu(2))
+-        menubar.add(menuitem)
++        menuitem.set_submenu(create_menu(4))
++        menu.add(menuitem)
+ 
+         menuitem = gtk.MenuItem('bar')
+-        menuitem.set_submenu(create_menu(2))
++        menuitem.set_submenu(create_menu(4))
+         menuitem.set_right_justified(True)
+-        menubar.add(menuitem)
++        menu.add(menuitem)
++
++        self.set_menu(menu)
+ 
+         vbox2 = gtk.VBox(spacing=10)
+         vbox2.set_border_width(10)
+         vbox.pack_start(vbox2)
+ 
+         combo_box = gtk.combo_box_new_text()
+-        combo_box.set_wrap_width(2)
++        #combo_box.set_wrap_width(2)
+         for i in range(50):
+-            combo_box.append_text('item - %d' % i)
++            combo_box.append_text('%d' % i)
+         combo_box.set_active(0)
+         vbox2.pack_start(combo_box)
+ 
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/menu.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/menu.pyo	2007-05-30 17:47:02.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/menu.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/panes.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/panes.py	2007-05-30 17:47:02.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/panes.py	2007-05-31 10:57:47.000000000 -0300
+@@ -9,11 +9,12 @@
+ adjust the options for each side of each widget."""
+ 
+ import gtk
++import hildon
+ 
+-class PanedWidgetsDemo(gtk.Window):
++class PanedWidgetsDemo(hildon.Window):
+     def __init__(self, parent=None):
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/panes.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/panes.pyo	2007-05-30 17:47:02.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/panes.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/pixbufs.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/pixbufs.py	2007-05-30 17:47:02.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/pixbufs.py	2007-05-31 10:57:47.000000000 -0300
+@@ -8,16 +8,18 @@
+ GtkDrawingArea to do a simple animation.
+ Look at the Image demo for additional pixbuf usage examples.'''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import os
+ import math
+ import gobject
+ import gtk
++import hildon
+ 
+ FRAME_DELAY = 50
+ CYCLE_LEN = 60
+ IMAGE_DIR = os.path.join(os.path.dirname(__file__), 'images')
+-BACKGROUND_NAME = "background.jpg"
++BACKGROUND_NAME = "back.jpg"
+ 
+ image_names = [
+     "apple-red.png",
+@@ -30,7 +32,7 @@
+     "gnu-keys.png"
+ ]
+ 
+-class PixbufsDemo(gtk.Window):
++class PixbufsDemo(hildon.Window):
+     frame  = None      # frame of the background image
+     background = None  # background-pixbuf
+     images     = []    # list of pixbufs
+@@ -41,7 +43,7 @@
+     timeout_id = None
+ 
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -60,7 +62,7 @@
+             dialog.show()
+ 
+         else:
+-            self.set_size_request(self.back_width, self.back_height)
++            #self.set_size_request(self.back_width, self.back_height)
+ 
+             self.frame = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+                 self.back_width, self.back_height)
+@@ -69,7 +71,7 @@
+             da.connect("expose_event", self.expose_cb)
+             self.add(da)
+ 
+-            self.timeout_id = gtk.timeout_add(FRAME_DELAY, self.timeout)
++            self.timeout_id = gobject.timeout_add(FRAME_DELAY, self.timeout)
+ 
+             self.show_all()
+ 
+@@ -120,7 +122,7 @@
+ 
+     def cleanup_callback(self, win):
+         if self.timeout_id is not None:
+-            gtk.timeout_remove(self.timeout_id)
++            gobject.source_remove(self.timeout_id)
+             self.timeout_id = None
+ 
+     def timeout(self):
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/pixbufs.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/pixbufs.pyo	2007-05-30 17:47:03.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/pixbufs.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/print_editor.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/print_editor.py	2007-05-30 17:47:03.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/print_editor.py	2007-05-31 17:25:42.000000000 -0300
+@@ -171,14 +171,14 @@
+     page_height = 0
+ 
+     for line in xrange(num_lines):
+-      layout_line = print_data.layout.get_line(line)
+-      ink_rect, logical_rect = layout_line.get_extents()
+-      lx, ly, lwidth, lheight = logical_rect
+-      line_height = lheight / 1024.0
+-      if page_height + line_height > height:
+-	  page_breaks.append(line)
+-	  page_height = 0
+-      page_height += line_height
++        layout_line = print_data.layout.get_line(line)
++        ink_rect, logical_rect = layout_line.get_extents()
++        lx, ly, lwidth, lheight = logical_rect
++        line_height = lheight / 1024.0
++        if page_height + line_height > height:
++            page_breaks.append(line)
++            page_height = 0
++        page_height += line_height
+ 
+     operation.set_n_pages(len(page_breaks) + 1)
+     print_data.page_breaks = page_breaks
+@@ -195,11 +195,11 @@
+         end = print_data.page_breaks[page_nr]
+     except IndexError:
+         end = print_data.layout.get_line_count()
+-    
++
+     cr = context.get_cairo_context()
+ 
+     cr.set_source_rgb(0, 0, 0)
+-  
++
+     i = 0
+     start_pos = 0
+     iter = print_data.layout.get_iter()
+@@ -242,7 +242,7 @@
+ 
+     if page_setup is not None:
+         print_.set_default_page_setup(page_setup)
+-  
++
+     print_.connect("begin_print", begin_print, print_data)
+     print_.connect("draw_page", draw_page, print_data)
+ 
+@@ -263,7 +263,7 @@
+     if not print_.is_finished():
+         active_prints.remove(print_)
+         update_statusbar()
+-      
++
+         print_.connect("status_changed", status_changed_cb)
+ 
+ 
+@@ -290,11 +290,11 @@
+   ( "New", gtk.STOCK_NEW,                      # name, stock id
+     "_New", "<control>N",                      # label, accelerator
+     "Create a new file",                       # tooltip
+-    do_new ),      
++    do_new ),
+   ( "Open", gtk.STOCK_OPEN,                    # name, stock id
+     "_Open","<control>O",                      # label, accelerator
+     "Open a file",                             # tooltip
+-    do_open ), 
++    do_open ),
+   ( "Save", gtk.STOCK_SAVE,                    # name, stock id
+     "_Save","<control>S",                      # label, accelerator
+     "Save current file",                       # tooltip
+@@ -366,7 +366,7 @@
+         main_window.connect("delete-event", gtk.main_quit)
+     actions = gtk.ActionGroup("Actions")
+     actions.add_actions(entries)
+-  
++
+     ui = gtk.UIManager()
+     ui.insert_action_group(actions, 0)
+     main_window.add_accel_group(ui.get_accel_group())
+@@ -390,42 +390,42 @@
+     sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+     sw.set_shadow_type(gtk.SHADOW_IN)
+     table.attach(sw,
+-		 # /* X direction */       /* Y direction */
++                #/* X direction */       /* Y direction */
+                  0, 1,                   1, 2,
+                  gtk.EXPAND | gtk.FILL,  gtk.EXPAND | gtk.FILL,
+                  0,                      0)
+-  
++
+     contents = gtk.TextView()
+     contents.grab_focus()
+     sw.add(contents)
+ 
+     ## Create statusbar
+-  
++
+     statusbar = gtk.Statusbar()
+     table.attach(statusbar,
+-		 #/* X direction */       /* Y direction */
++                #/* X direction */       /* Y direction */
+                  0, 1,                   2, 3,
+                  gtk.EXPAND | gtk.FILL,  0,
+                  0,                      0);
+-    
++
+     ## Show text widget info in the statusbar */
+     buffer = contents.get_buffer()
+-  
++
+     buffer.connect_object("changed",
+-			  buffer_changed_callback,
++                          buffer_changed_callback,
+                           None)
+-  
++
+     buffer.connect_object("mark_set", # cursor moved
+                           mark_set_callback,
+                           None)
+-  
+-    main_window.connect_object("window_state_event", 
++
++    main_window.connect_object("window_state_event",
+                                update_resize_grip,
+                                statusbar,
+                                0)
+-  
++
+     update_ui()
+-  
++
+     main_window.show_all()
+ 
+ 
+@@ -438,7 +438,7 @@
+         pass
+     else:
+         load_file(fname)
+-  
++
+     gtk.main()
+ 
+ def PrintEditorDemo(win):
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/print_editor.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/print_editor.pyo	2007-05-30 17:47:03.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/print_editor.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/sizegroup.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/sizegroup.pyo	2007-05-30 17:47:03.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/sizegroup.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/statusicon.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/statusicon.pyo	2007-05-30 17:47:03.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/statusicon.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/stock_browser.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/stock_browser.py	2007-05-30 17:47:03.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/stock_browser.py	2007-05-31 17:26:15.000000000 -0300
+@@ -6,10 +6,12 @@
+ handy place to browse the available stock icons and stock items.
+ '''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import gobject
+ import gtk
+ import re
++import hildon
+ 
+ def id_to_macro(stock_id):
+     if stock_id == '':
+@@ -85,28 +87,28 @@
+     cell.set_property("text", info.stock_item[1])
+ 
+ 
+-class StockItemAndIconBrowserDemo(gtk.Window):
++class StockItemAndIconBrowserDemo(hildon.Window):
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+             self.connect('destroy', lambda *w: gtk.main_quit())
+ 
+         self.set_title(self.__class__.__name__)
+-        self.set_default_size(-1, 500)
+-        self.set_border_width(8)
+ 
+         hbox = gtk.HBox(False, 8)
++
+         self.add(hbox)
+ 
+         sw = gtk.ScrolledWindow()
+         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+-        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+-        hbox.pack_start(sw, False, False, 0)
++        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
++        hbox.pack_start(sw, True, True, 0)
+ 
+         model = self.__create_model()
+         treeview = gtk.TreeView(model)
++        treeview.set_headers_visible(True)
+         sw.add(treeview)
+ 
+         column = gtk.TreeViewColumn()
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/stock_browser.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/stock_browser.pyo	2007-05-30 17:47:03.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/stock_browser.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/textview.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/textview.py	2007-05-30 17:47:04.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/textview.py	2007-05-31 17:27:08.000000000 -0300
+@@ -5,12 +5,14 @@
+ by multiple GtkTextViews. This demo has two views displaying a single buffer, and
+ shows off the widget's text formatting features."""
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import os
+ import sys
+ 
+ import gobject
+ import gtk
++import hildon
+ 
+ gray50_width  = 2
+ gray50_height = 2
+@@ -20,10 +22,10 @@
+ FLOPPYBUDDY_IMAGE = os.path.join(os.path.dirname(__file__),
+                                  'images', 'floppybuddy.gif')
+ 
+-class TextViewDemo(gtk.Window):
++class TextViewDemo(hildon.Window):
+     def __init__(self, parent=None):
+         # Create the toplevel window
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -150,12 +152,12 @@
+                     underline=pango.UNDERLINE_DOUBLE)
+ 
+         text_buffer.create_tag("superscript",
+-                    rise=10 * pango.SCALE,      # 10 pixels
+-                    size=8 * pango.SCALE)       #  8 points
++                    rise=10 * pango.SCALE,  # 10 pixels
++                    size=8 * pango.SCALE)   #  8 points
+ 
+         text_buffer.create_tag("subscript",
+-                    rise=-10 * pango.SCALE,     # 10 pixels
+-                    size=8 * pango.SCALE)       #  8 points
++                    rise=-10 * pango.SCALE, # 10 pixels
++                    size=8 * pango.SCALE)   #  8 points
+ 
+         text_buffer.create_tag("rtl_quote",
+                     wrap_mode=gtk.WRAP_WORD, direction=gtk.TEXT_DIR_RTL,
+@@ -338,7 +340,7 @@
+             "German(Deutsch S\303\274d) Gr\303\274\303\237 Gott\nGreek"
+             "(\316\225\316\273\316\273\316\267\316\275\316\271\316\272"
+             "\316\254) \316\223\316\265\316\271\316\254 \317\203\316\261"
+-            "\317\202\nHebrew   \327\251\327\234\327\225\327\235\n"
++            "\317\202\nHebrew	\327\251\327\234\327\225\327\235\n"
+             "Japanese(\346\227\245\346\234\254\350\252\236)\n\nThe "
+             "widget properly handles bidirectional text, word wrapping, "
+             "DOS/UNIX/Unicode paragraph separators, grapheme boundaries, "
+@@ -461,13 +463,12 @@
+ 
+         self.recursive_attach_view(0, view, anchor)
+ 
+-        self.win = gtk.Window()
++        self.win = hildon.Window()
+         sw = gtk.ScrolledWindow()
+         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+ 
+         self.win.add(sw)
+         sw.add(view)
+-        self.win.set_default_size(300, 400)
+         self.win.show_all()
+         return
+ 
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/textview.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/textview.pyo	2007-05-30 17:47:04.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/textview.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/tree_store.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/tree_store.py	2007-05-30 17:47:04.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/tree_store.py	2007-05-31 17:27:19.000000000 -0300
+@@ -6,9 +6,11 @@
+ GtkTreeStore and displays it. If you're new to the GtkTreeView widgets
+ and associates, look into the GtkListStore example first.'''
+ # pygtk version: Maik Hertha <maik.hertha@berlin.de>
++# hildon version: Lauro Moura <lauromoura@gmail.com>
+ 
+ import gobject
+ import gtk
++import hildon
+ 
+ #   columns
+ (
+@@ -129,9 +131,9 @@
+   ["December", False, False, False, False, False, False, december]
+ ]
+ 
+-class TreeStoreDemo(gtk.Window):
++class TreeStoreDemo(hildon.Window):
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -156,6 +158,8 @@
+ 
+         # create treeview
+         treeview = gtk.TreeView(model)
++        treeview.set_headers_visible(True)
++        treeview.set_property("allow-checkbox-mode", False)
+         treeview.set_rules_hint(True)
+ 
+         self.__add_columns(treeview)
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/tree_store.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/tree_store.pyo	2007-05-30 17:47:04.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/tree_store.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/treemodel.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/treemodel.py	2007-05-30 17:47:04.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/treemodel.py	2007-05-31 17:27:27.000000000 -0300
+@@ -6,6 +6,7 @@
+ 
+ import gtk
+ import gobject
++import hildon
+ 
+ # to create a new GtkTreeModel from python, you must derive from
+ # TreeModel.
+@@ -88,9 +89,9 @@
+         else:
+             return node[:-1]
+ 
+-class GenericTreeModelDemo(gtk.Window):
++class GenericTreeModelDemo(hildon.Window):
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -104,6 +105,7 @@
+         model = MyTreeModel()
+         model = model.filter_new()
+         tree_view = gtk.TreeView(model)
++        tree_view.set_headers_visible(True)
+         cell = gtk.CellRendererText()
+         # the text in the column comes from column 0
+         column = gtk.TreeViewColumn("tuples", cell, text=0)
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/treemodel.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/treemodel.pyo	2007-05-30 17:47:04.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/treemodel.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/ui_manager.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/ui_manager.py	2007-05-30 17:47:04.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/demos/ui_manager.py	2007-05-31 17:27:41.000000000 -0300
+@@ -8,6 +8,7 @@
+ 
+ import gobject
+ import gtk
++import hildon
+ 
+ def activate_action(action):
+     print 'Action "%s" activated' % action.get_name()
+@@ -132,10 +133,10 @@
+   </toolbar>
+ </ui>'''
+ 
+-class UIManagerDemo(gtk.Window):
++class UIManagerDemo(hildon.Window):
+ 
+     def __init__(self, parent=None):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
+         try:
+             self.set_screen(parent.get_screen())
+         except AttributeError:
+@@ -161,7 +162,17 @@
+         box1 = gtk.VBox(False, 0)
+         self.add(box1)
+ 
+-        box1.pack_start(ui.get_widget("/MenuBar"), False, False, 0)
++        #Reparenting the menus from UIManager
++        menubar = ui.get_widget("/MenuBar");
++        menu = gtk.Menu()
++        for i in menubar.get_children():
++            i.reparent(menu)
++
++        self.set_menu(menu)
++
++        #Setting up the toolbar
++        toolbar = ui.get_widget("/ToolBar");
++        self.add_toolbar(toolbar)
+ 
+         label = gtk.Label("Type\n<alt>\nto start")
+         label.set_size_request(200, 200)
+Index: python-gtk2-2.10.4/examples/pygtk-demo/demos/ui_manager.pyo
+===================================================================
+Binary files python-gtk2-2.10.4.orig/examples/pygtk-demo/demos/ui_manager.pyo	2007-05-30 17:47:04.000000000 -0300 and python-gtk2-2.10.4/examples/pygtk-demo/demos/ui_manager.pyo	2007-05-31 10:59:55.000000000 -0300 differ
+Index: python-gtk2-2.10.4/examples/pygtk-demo/pygtk-demo.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/pygtk-demo/pygtk-demo.py	2007-05-30 17:46:54.000000000 -0300
++++ python-gtk2-2.10.4/examples/pygtk-demo/pygtk-demo.py	2007-05-31 16:53:09.000000000 -0300
+@@ -1,6 +1,6 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ '''
+-  $Id: pygtk-demo.py 1828 2004-10-01 23:35:38Z finlay $
++  $Id: pygtk-demo.py,v 1.8 2004/10/01 23:35:38 finlay Exp $
+ 
+   pygtk-demo.py
+   2004-07-18: Some enhancements for building the demolist like in gtk-demos of the
+@@ -19,6 +19,8 @@
+ import gtk
+ import pango
+ 
++import hildon
++
+ # use for simple syntax highlighting ;-)
+ import tokenize
+ import keyword
+@@ -83,22 +85,30 @@
+         return line
+ 
+ 
+-class PyGtkDemo(gtk.Window):
++class PyGtkDemo(hildon.Window):
+     info_buffer = None
+     source_buffer = None
+     module_cache  = {}
+ 
+     def __init__(self):
+-        gtk.Window.__init__(self)
++        hildon.Window.__init__(self)
++        
++        self.app = hildon.Program()
++        self.app.add_window(self)
++        
+         self.set_title("PyGTK+ Code Demos")
+         self.connect('destroy', lambda w: gtk.main_quit())
+-        self.set_default_size(800, 400)
++        #self.set_default_size(800, 400)
+ 
+         hbox = gtk.HBox(False, 3)
+         self.add(hbox)
+ 
+         treeview = self.__create_treeview()
+-        hbox.pack_start(treeview, False, False)
++        scroll = gtk.ScrolledWindow()
++        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
++        scroll.add(treeview)
++        
++        hbox.pack_start(scroll, False, False)
+ 
+         self.notebook = gtk.Notebook()
+         hbox.pack_start(self.notebook, expand=True)
+@@ -120,6 +130,9 @@
+         tag = self.source_buffer.create_tag('comment', foreground='#007F00',
+             style=pango.STYLE_ITALIC)
+ 
++        self.path = None
++        self.connect("key-press-event", self.key_press_cb, treeview)
++
+         self.show_all()
+ 
+     def run(self):
+@@ -193,10 +206,45 @@
+         text_view.set_editable(False)
+         text_view.set_cursor_visible(False)
+ 
+-        text_view.set_wrap_mode(not is_source)
++        if is_source:
++            text_view.set_wrap_mode(gtk.WRAP_NONE)
++        else:
++            text_view.set_wrap_mode(gtk.WRAP_WORD)
++
+ 
+         return scrolled_window, buffer
+ 
++    def key_press_cb(self, window, event, treeview):
++    
++        if event.keyval != gtk.keysyms.Return:
++            return
++    
++        if self.path == None:
++            return
++    
++        path = self.path
++    
++        model = treeview.get_model()
++        iter  = model.get_iter(path)
++        module_name  = model.get_value(iter, MODULE_COLUMN)
++        func_name    = model.get_value(iter, FUNC_COLUMN)
++        italic_value = model.get_value(iter, ITALIC_COLUMN)
++        try:
++            self.module_cache[module_name].present()
++        except KeyError:
++            module = getattr(demos, module_name)
++            model.set(iter, ITALIC_COLUMN, not italic_value)
++            cmd = 'demos.%s.%s' % (module_name, func_name)
++            #print cmd
++            window = eval(cmd)(self)
++            if window:
++                window.connect('destroy', self.window_closed_cb, model, path)
++                self.module_cache[module_name] = window
++
++            if hildon.Window in window.__class__.__bases__:
++                self.app.add_window(window)
++
++#    def row_activated_cb(self, treeview, path, column):
+     def row_activated_cb(self, treeview, path, column):
+         model = treeview.get_model()
+         iter  = model.get_iter(path)
+@@ -214,9 +262,11 @@
+             if window:
+                 window.connect('destroy', self.window_closed_cb, model, path)
+                 self.module_cache[module_name] = window
++#        pass
+ 
+     def selection_changed_cb(self, selection):
+         model, iter = selection.get_selected()
++        self.path = model.get_path(iter)
+         if not iter:
+             return False
+ 
+@@ -231,10 +281,13 @@
+         if italic_value:
+             model.set(iter, ITALIC_COLUMN, not italic_value)
+ 
++        if hildon.Window in window.__class__.__bases__:
++            self.app.remove_window(window)
++
+ 
+     def read_module(self, module):
+         filename = module.__file__
+-        if filename[-4:] == '.pyc':
++        if filename[-4:] == '.pyo':
+             filename = filename[:-1]
+         fd = open(filename)
+         return fd.read()
+Index: python-gtk2-2.10.4/examples/simple/dnd.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/simple/dnd.py	2007-05-30 17:46:42.000000000 -0300
++++ python-gtk2-2.10.4/examples/simple/dnd.py	2007-05-31 10:57:47.000000000 -0300
+@@ -2,6 +2,7 @@
+ 
+ import gobject
+ import gtk
++import hildon
+ 
+ from dndpixmap import drag_icon_xpm, trashcan_open_xpm, trashcan_closed_xpm
+ 
+@@ -140,7 +141,7 @@
+     global trashcan_open
+     global trashcan_closed
+     global drag_icon
+-    win = gtk.Window()
++    win = hildon.Window()
+     win.realize()
+     win.connect('destroy', lambda w: gtk.main_quit())
+     table = gtk.Table(2,2)
+Index: python-gtk2-2.10.4/examples/simple/hello.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/simple/hello.py	2007-05-30 17:46:43.000000000 -0300
++++ python-gtk2-2.10.4/examples/simple/hello.py	2007-05-31 10:57:47.000000000 -0300
+@@ -3,6 +3,7 @@
+ """ Simple Hello World example similar to the GTK+ Tutorials one """
+ 
+ import gtk
++import hildon
+ 
+ def hello(*args):
+     """ Callback function that is attached to the button """
+@@ -15,7 +16,7 @@
+     gtk.main_quit()
+ 
+ # this block creates our main application window
+-window = gtk.Window(gtk.WINDOW_TOPLEVEL)
++window = hildon.Window()
+ window.connect("destroy", destroy)
+ window.set_border_width(10)
+ 
+@@ -26,6 +27,6 @@
+ window.add(button)
+ button.show()
+ 
+-# as the button is within the window this also shows the window
++# as the button is within the window this also shows the window 
+ window.show_all()
+ gtk.main()
+Index: python-gtk2-2.10.4/examples/simple/scribble.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/simple/scribble.py	2007-05-30 17:46:43.000000000 -0300
++++ python-gtk2-2.10.4/examples/simple/scribble.py	2007-05-31 17:28:25.000000000 -0300
+@@ -1,78 +1,79 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ 
+ #this is a simple translation of the scribble example that comes with GTK+
+ 
+ import gtk
++import hildon
+ 
+ pixmap = None
+ 
+ def configure_event(widget, event):
+-    global pixmap
+-    win = widget.window
+-    width, height = win.get_size()
+-    pixmap = gtk.gdk.Pixmap(win, width, height)
+-    pixmap.draw_rectangle(widget.get_style().white_gc, True,
+-                          0, 0, width, height)
+-    return True
++	global pixmap
++	win = widget.window
++	width, height = win.get_size()
++	pixmap = gtk.gdk.Pixmap(win, width, height)
++	pixmap.draw_rectangle(widget.get_style().white_gc, True,
++			      0, 0, width, height)
++	return True
+ 
+ def expose_event(widget, event):
+-    x, y, width, height = event.area
+-    gc = widget.get_style().fg_gc[gtk.STATE_NORMAL]
+-    widget.window.draw_drawable(gc, pixmap, x, y, x, y, width, height)
+-    return False
++	x, y, width, height = event.area
++	gc = widget.get_style().fg_gc[gtk.STATE_NORMAL]
++	widget.window.draw_drawable(gc, pixmap, x, y, x, y, width, height)
++	return False
+ 
+ def draw_brush(widget, x, y):
+-    x, y = int(x), int(y)
+-    pixmap.draw_rectangle(widget.get_style().black_gc, True,
+-                          x-5, y-5, 10, 10)
+-    widget.queue_draw()
++        x, y = int(x), int(y)
++	pixmap.draw_rectangle(widget.get_style().black_gc, True,
++			      x-5, y-5, 10, 10)
++	widget.queue_draw()
+ 
+ def button_press_event(widget, event):
+-    if event.button == 1 and pixmap != None:
+-        draw_brush(widget, event.x, event.y)
+-    return True
++	if event.button == 1 and pixmap != None:
++		draw_brush(widget, event.x, event.y)
++	return True
+ 
+ def motion_notify_event(widget, event):
+-    if event.is_hint:
+-        x, y, state = event.window.get_pointer()
+-    else:
+-        x = event.x; y = event.y
+-        state = event.state
+-    if state & gtk.gdk.BUTTON1_MASK and pixmap != None:
+-        draw_brush(widget, x, y)
+-    return True
++	if event.is_hint:
++		x, y, state = event.window.get_pointer()
++	else:
++		x = event.x; y = event.y
++		state = event.state
++	if state & gtk.gdk.BUTTON1_MASK and pixmap != None:
++		draw_brush(widget, x, y)
++	return True
+ 
+ def main():
+-    win = gtk.Window()
+-    win.set_name("Test Input")
+-    win.connect("destroy", lambda w: gtk.main_quit())
+-    win.set_border_width(5)
+-
+-    vbox = gtk.VBox(spacing=3)
+-    win.add(vbox)
+-    vbox.show()
+-
+-    drawing_area = gtk.DrawingArea()
+-    drawing_area.set_size_request(200, 200)
+-    vbox.pack_start(drawing_area)
+-    drawing_area.show()
+-
+-    drawing_area.connect("expose_event", expose_event)
+-    drawing_area.connect("configure_event", configure_event)
+-    drawing_area.connect("motion_notify_event", motion_notify_event)
+-    drawing_area.connect("button_press_event", button_press_event)
+-    drawing_area.set_events(gtk.gdk.EXPOSURE_MASK |
+-                            gtk.gdk.LEAVE_NOTIFY_MASK |
+-                            gtk.gdk.BUTTON_PRESS_MASK |
+-                            gtk.gdk.POINTER_MOTION_MASK |
+-                            gtk.gdk.POINTER_MOTION_HINT_MASK)
+-
+-    button = gtk.Button(stock=gtk.STOCK_QUIT)
+-    vbox.pack_start(button, expand=False, fill=False)
+-    button.connect("clicked", lambda widget, win=win: win.destroy())
+-    button.show()
+-    win.show()
+-    gtk.main()
++	win = hildon.Window()
++	win.set_name("Test Input")
++        win.connect("destroy", lambda w: gtk.main_quit())
++	win.set_border_width(5)
++
++	vbox = gtk.VBox(spacing=3)
++	win.add(vbox)
++	vbox.show()
++
++	drawing_area = gtk.DrawingArea()
++	#drawing_area.set_size_request(200, 200)
++	vbox.pack_start(drawing_area)
++	drawing_area.show()
++
++	drawing_area.connect("expose_event", expose_event)
++	drawing_area.connect("configure_event", configure_event)
++	drawing_area.connect("motion_notify_event", motion_notify_event)
++	drawing_area.connect("button_press_event", button_press_event)
++	drawing_area.set_events(gtk.gdk.EXPOSURE_MASK |
++				gtk.gdk.LEAVE_NOTIFY_MASK |
++				gtk.gdk.BUTTON_PRESS_MASK |
++				gtk.gdk.POINTER_MOTION_MASK |
++				gtk.gdk.POINTER_MOTION_HINT_MASK)
++
++	button = gtk.Button(stock=gtk.STOCK_QUIT)
++	vbox.pack_start(button, expand=False, fill=False)
++	button.connect("clicked", lambda widget, win=win: win.destroy())
++	button.show()
++	win.show()
++	gtk.main()
+ 
+ if __name__ == '__main__':
+-    main()
++	main()
+Index: python-gtk2-2.10.4/examples/simple/simple.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/simple/simple.py	2007-05-30 17:46:43.000000000 -0300
++++ python-gtk2-2.10.4/examples/simple/simple.py	2007-05-31 17:28:58.000000000 -0300
+@@ -1,10 +1,13 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ 
+ # translation of the simple.c test in the gtk+ distribution, using the
+ # new() function from gobject (this is an example of creating objects
+ # with the properties interface).
++#
++# Adapted to hildon (Use hildon.Window instead of gtk.Window)
+ 
+ import gobject, gtk
++import hildon
+ 
+ def hello(*args):
+     print "Hello World"
+@@ -14,12 +17,12 @@
+     window.hide()
+     gtk.main_quit()
+ 
+-window = gobject.new(gtk.Window,
+-                     type=gtk.WINDOW_TOPLEVEL,
+-                     title='Hello World',
+-                     allow_grow=False,
+-                     allow_shrink=False,
+-                     border_width=10)
++window = gobject.new(hildon.Window,
++             type=gtk.WINDOW_TOPLEVEL,
++             title='Hello World',
++             allow_grow=False,
++             allow_shrink=False,
++             border_width=10)
+ window.connect("destroy", destroy)
+ 
+ button = gobject.new(gtk.Button, label="Hello World", parent=window)
+Index: python-gtk2-2.10.4/examples/simple/tooltip.py
+===================================================================
+--- python-gtk2-2.10.4.orig/examples/simple/tooltip.py	2007-05-30 17:46:43.000000000 -0300
++++ python-gtk2-2.10.4/examples/simple/tooltip.py	2007-05-31 17:29:19.000000000 -0300
+@@ -1,9 +1,10 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.5
+ 
+-""" Simple example of creating a basic window and button.
++""" Simple example of creating a basic window and button.  
+     Also adds a tooltip. """
+ 
+ import gtk
++import hildon
+ 
+ def hello_cb(widget, main_window):
+     """ Callback function that prints a message and destroys the window """
+@@ -17,9 +18,9 @@
+ 
+ def main():
+     """ Sets up the application
+-        Forms the widgets and connects callback functions to the signals """
++    Forms the widgets and connects callback functions to the signals """
+ 
+-    window = gtk.Window( type=gtk.WINDOW_TOPLEVEL )
++    window = hildon.Window()
+     window.set_title("Hello World")
+     window.set_default_size(200, 200)
+     window.set_border_width(10)
