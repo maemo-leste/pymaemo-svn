@@ -1,7 +1,7 @@
 Index: gtk/Makefile.am
 ===================================================================
---- gtk.orig/Makefile.am	2007-05-30 16:28:47.000000000 -0300
-+++ gtk/Makefile.am	2007-05-30 16:28:53.000000000 -0300
+--- python-gtk2-2.10.4.orig/gtk/Makefile.am	2007-05-30 16:28:47.000000000 -0300
++++ python-gtk2-2.10.4/gtk/Makefile.am	2007-05-30 16:28:53.000000000 -0300
 @@ -130,7 +130,7 @@
  if BUILD_GTK
  pygtkexec_LTLIBRARIES += _gtk.la
