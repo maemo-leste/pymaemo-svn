@@ -80,12 +80,13 @@
 #include <hildon-widgets/hildon-window-private.h>
 #include <hildon-widgets/hildon-wizard-dialog.h>
 
-#include <hildon-fm/hildon-widgets/hildon-file-chooser-dialog.h>
-#include <hildon-fm/hildon-widgets/hildon-file-details-dialog.h>
-#include <hildon-fm/hildon-widgets/hildon-file-selection.h>
-#include <hildon-fm/hildon-widgets/hildon-file-system-common.h>
-#include <hildon-fm/hildon-widgets/hildon-file-system-info.h>
-#include <hildon-fm/hildon-widgets/hildon-file-system-model.h>
+#include <hildon-fm-2/hildon/hildon-file-chooser-dialog.h>
+#include <hildon-fm-2/hildon/hildon-file-details-dialog.h>
+#include <hildon-fm-2/hildon/hildon-file-selection.h>
+#include <hildon-fm-2/hildon/hildon-file-system-common.h>
+#include <hildon-fm-2/hildon/hildon-file-system-info.h>
+#include <hildon-fm-2/hildon/hildon-file-system-model.h>
+#include <hildon-fm-2/hildon/hildon-fm1-compat.h>
 
 #ifndef HILDON_DISABLE_DEPRECATED
 #include <hildon-widgets/hildon-search.h>
