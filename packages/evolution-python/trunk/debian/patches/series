@@ -1,0 +1,3 @@
+01-create-debian-dir.patch
+02-strip-ecal-components.patch
+#03-add-setup-py.patch
