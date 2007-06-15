@@ -1,0 +1,98 @@
+#!/usr/bin/make -f
+# Copyright © 2002,2003 Colin Walters <walters@verbum.org>
+# Copyright © 2003 Daniel Stone <daniels@debian.org>
+# Copyright © 2006 Sjoerd Simons <sjoerd@debian.org>
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+        CFLAGS += -g
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+        INSTALL_PROGRAM += -s
+endif
+
+.PRECIOUS: build-%/configure-stamp
+
+build-%/configure-stamp:
+	dh_testdir
+	mkdir -p build-$*
+	cd build-$* && PYTHON=/usr/bin/python$* \
+		../configure --host=$(DEB_HOST_GNU_TYPE) \
+			--build=$(DEB_BUILD_GNU_TYPE) \
+			--prefix=/usr --docdir=/usr/share/doc/python-dbus \
+			--enable-html-docs
+	touch $@
+
+build-%/build-stamp: build-%/configure-stamp
+	dh_testdir
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$*
+	touch $@
+
+build: $(PYVERS:%=build-%/build-stamp)
+
+install-clean:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+install-%: build-%/build-stamp
+	dh_testdir
+	dh_testroot
+	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-dbus
+	# keep a copy of /usr/include/debian-python.h and
+	# /usr/lib/pkgconfig/debian-python.pc to verify they match later
+	cp debian/python-dbus/usr/include/dbus-1.0/dbus/dbus-python.h debian/tmp-$*.h
+	cp debian/python-dbus/usr/lib/pkgconfig/dbus-python.pc debian/tmp-$*.pc
+
+install: build install-clean $(PYVERS:%=install-%)
+	rm -f debian/python-dbus/usr/lib/python*/site-packages/*.la
+	# compare installed .pc and .h, asserting that the ones all versions
+	# wanted are the same as what we ended up with
+	for v in $(PYVERS); do \
+		diff --brief debian/python-dbus/usr/include/dbus-1.0/dbus/dbus-python.h \
+			debian/tmp-$$v.h || exit 1; \
+		diff --brief debian/python-dbus/usr/lib/pkgconfig/dbus-python.pc \
+			debian/tmp-$$v.pc || exit 1; \
+	done
+	rm -f debian/tmp-*.pc debian/tmp-*.h
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -Rf debian/tmp-*
+	rm -Rf build-*
+	-test -f config.sub && \
+		test -r /usr/share/misc/config.sub && \
+		cp -f /usr/share/misc/config.sub config.sub
+	-test -f config.guess && \
+		test -r /usr/share/misc/config.guess && \
+		cp -f /usr/share/misc/config.guess config.guess
+	dh_clean
+
+# We have no arch-indep packages
+binary-indep: build install
+	:
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installexamples -a
+	dh_installchangelogs ChangeLog -a
+	dh_link -a
+	dh_compress -a -X.py
+	dh_fixperms -a
+#	dh_pysupport -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install 
