@@ -529,4 +529,74 @@ _wrap_hildon_caption_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
+
+%%
+override gtk_infoprint kwargs
+static PyObject *
+_wrap_gtk_infoprint(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "parent", "text", NULL };
+    PyGObject *parent;
+    char *text;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Os:gtk_infoprint", kwlist, &parent, &text))
+        return NULL;
+
+    if (parent == Py_None)
+        gtk_infoprint(NULL, text);
+    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
+        gtk_infoprint(GTK_WINDOW(parent->obj), text);
+    else
+        return NULL;
+    printf("Rodou!\n");
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override gtk_infoprint_with_icon_stock kwargs
+static PyObject *
+_wrap_gtk_infoprint_with_icon_stock(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "parent", "text", "stock_id", NULL };
+    PyGObject *parent;
+    char *text, *stock_id;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Oss:gtk_infoprint_with_icon_stock", kwlist, &parent, &text, &stock_id))
+        return NULL;
+
+    if (parent == Py_None)
+        gtk_infoprint_with_icon_stock(NULL, text, stock_id);
+    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
+        gtk_infoprint_with_icon_stock(GTK_WINDOW(parent->obj), text, stock_id);
+    else
+        return NULL;
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override gtk_infoprint_with_icon_name kwargs
+static PyObject *
+_wrap_gtk_infoprint_with_icon_name(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "parent", "text", "icon_name", NULL };
+    PyGObject *parent;
+    char *text, *icon_name;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Oss:gtk_infoprint_with_icon_name", kwlist, &parent, &text, &icon_name))
+        return NULL;
+
+    if (parent == Py_None)
+        gtk_infoprint_with_icon_name(NULL, text, icon_name);
+    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
+        gtk_infoprint_with_icon_name(GTK_WINDOW(parent->obj), text, icon_name);
+    else
+        return NULL;
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
 /* End of fix */

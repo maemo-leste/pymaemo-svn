@@ -12,9 +12,9 @@ def get_hildon_version():
     input = open('/usr/lib/pkgconfig/hildon-libs.pc','r')
 
     for line in input:
-	result = line.split()
+        result = line.split()
         if result:
-	    if result[0] == 'Version:':
+            if result[0] == 'Version:':
                 raw_version = result[-1]
 
     input.close()
@@ -35,7 +35,7 @@ def gen_auto_file(filename, subproc_args):
     if cmdresult:
         new_file = open(filename, 'w')
         new_file.write(cmdresult)
-	new_file.close()
+    new_file.close()
 
 class PyHildonBuild(build):
     def run(self):
@@ -45,7 +45,7 @@ class PyHildonBuild(build):
         -hildon-types.c.in"""
         # Generate enum/flags run-time information
         HILDON_TYPE_FILES = [
-	    includedir+'/hildon-fm/hildon-widgets/hildon-file-system-model.h',
+            includedir+'/hildon-fm/hildon-widgets/hildon-file-system-model.h',
             includedir+'/hildon-fm/hildon-widgets/hildon-file-system-common.h',
             includedir+'/hildon-fm/hildon-widgets/hildon-file-selection.h',
             includedir+'/hildon-widgets/hildon-date-editor.h',
@@ -57,10 +57,10 @@ class PyHildonBuild(build):
             includedir+'/hildon-widgets/hildon-time-editor.h',
             includedir+'/hildon-base-lib/hildon-base-types.h',
             includedir+'/glib-2.0/glib/gdate.h',
-	]
-        
-	gen_auto_file('hildon-types.h.in', ['/bin/sh', './gen-enum-h']+HILDON_TYPE_FILES)
-	gen_auto_file('hildon-types.c.in', ['/bin/sh', './gen-enum-c']+HILDON_TYPE_FILES)
+        ]
+
+        gen_auto_file('hildon-types.h.in', ['/bin/sh', './gen-enum-h']+HILDON_TYPE_FILES)
+        gen_auto_file('hildon-types.c.in', ['/bin/sh', './gen-enum-c']+HILDON_TYPE_FILES)
 
         # Creation of ".c" files, using pygtk-codegen-2.0
         override_filename = 'hildon.override'
@@ -79,12 +79,12 @@ class PyHildonBuild(build):
             '--register', 'defs/hildon-grid-item.defs',
             '--override', 'hildon.override',
             '--prefix', 'pyhildon',
-	    defs_filename,
-	] 
-	gen_auto_file('hildon.c', ['/bin/sh', 'pygtk-codegen-2.0']+parameter)
+            defs_filename,
+        ]
+        gen_auto_file('hildon.c', ['/bin/sh', 'pygtk-codegen-2.0']+parameter)
 
         build.run(self)
-        
+
 
 compile_args = [
         '-Os',
