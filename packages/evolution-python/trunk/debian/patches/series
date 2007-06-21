@@ -2,3 +2,4 @@
 02-strip-ecal-components.patch
 #03-add-setup-py.patch
 03-export-defs.patch
+04-add-bookview-support.patch
