@@ -1,3 +1,10 @@
+python-gtk2 (2.10.3-1osso6) unstable; urgency=low
+
+  * fixed object parsing on h2def.py (#947)
+  * examples ported to hildon
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>  Mon, 25 Jun 2007 17:15:28 -0300
+
 python-gtk2 (2.10.3-1osso5) unstable; urgency=low
 
   * fixed dependency on correct pygobject rev number
