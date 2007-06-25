@@ -4,3 +4,5 @@
 03-export-defs.patch
 04-add-bookview-support.patch
 05-add-book-get-book-view.patch
+07-econtactfield-enumeration.patch
+08-ebookquerytest-enumeration.patch
