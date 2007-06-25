@@ -2,7 +2,13 @@ Index: pygame/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ pygame/debian/changelog	2007-03-06 16:30:03.000000000 -0300
-@@ -0,0 +1,86 @@
+@@ -0,0 +1,92 @@
++pygame (1.7.1-1osso2) unstable; urgency=low
++
++  * fix #905
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 25 Jun 2007 16:21:34 -0300
++
 +pygame (1.7.1-1osso1) unstable; urgency=low
 +
 +  * upgraded to pygame v1.7.1
