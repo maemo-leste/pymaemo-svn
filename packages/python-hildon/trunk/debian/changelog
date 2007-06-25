@@ -1,3 +1,9 @@
+python-hildon (0.8.7-1osso4) unstable; urgency=low
+
+  * fix #898
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 25 Jun 2007 16:30:44 -0300
+
 python-hildon (0.8.7-1osso3) unstable; urgency=low
 
   * allow NULL parent window to HildonWizardDialog
