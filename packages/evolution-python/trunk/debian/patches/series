@@ -3,3 +3,4 @@
 #03-add-setup-py.patch
 03-export-defs.patch
 04-add-bookview-support.patch
+05-add-book-get-book-view.patch
