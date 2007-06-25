@@ -1,3 +1,12 @@
+python-runtime (0.4-11) unstable; urgency=low
+
+  * fix #898, #904, #905, #919, #924, #928, #929, #938, #942 and #947
+  * osso-help support included
+  * osso-ic support included
+  * new osso examples included
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 25 Jun 2007 16:22:23 -0300
+
 python-runtime (0.4-10) unstable; urgency=low
 
   * fixed #542, #560, #561, #564, #642, #711, #751 and #752 
