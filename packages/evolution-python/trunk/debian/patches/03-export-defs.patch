@@ -1,7 +1,7 @@
 Index: evolution-python-0.0.1/src/Makefile.am
 ===================================================================
---- evolution-python-0.0.1.orig/src/Makefile.am	2007-06-20 16:11:19.000000000 -0300
-+++ evolution-python-0.0.1/src/Makefile.am	2007-06-20 16:11:50.000000000 -0300
+--- evolution-python-0.0.1.orig/src/Makefile.am	2007-06-26 15:34:14.000000000 -0300
++++ evolution-python-0.0.1/src/Makefile.am	2007-06-26 15:38:37.000000000 -0300
 @@ -19,6 +19,9 @@
  
  nodist_evolution_la_SOURCES = evolution.c
