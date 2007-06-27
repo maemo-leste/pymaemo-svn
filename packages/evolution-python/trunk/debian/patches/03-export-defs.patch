@@ -1,7 +1,7 @@
 Index: evolution-python-0.0.1/src/Makefile.am
 ===================================================================
---- evolution-python-0.0.1.orig/src/Makefile.am	2007-06-26 15:34:14.000000000 -0300
-+++ evolution-python-0.0.1/src/Makefile.am	2007-06-26 15:38:37.000000000 -0300
+--- evolution-python-0.0.1.orig/src/Makefile.am	2007-06-27 14:57:35.000000000 -0300
++++ evolution-python-0.0.1/src/Makefile.am	2007-06-27 14:57:36.000000000 -0300
 @@ -19,6 +19,9 @@
  
  nodist_evolution_la_SOURCES = evolution.c
@@ -12,3 +12,245 @@ Index: evolution-python-0.0.1/src/Makefile.am
  CLEANFILES = evolution.c
  EXTRA_DIST = \
  	evolution.defs \
+Index: evolution-python-0.0.1/src/Makefile.in
+===================================================================
+--- evolution-python-0.0.1.orig/src/Makefile.in	2007-06-27 14:57:50.000000000 -0300
++++ evolution-python-0.0.1/src/Makefile.in	2007-06-27 15:22:45.000000000 -0300
+@@ -14,6 +14,7 @@
+ 
+ @SET_MAKE@
+ 
++
+ SOURCES = $(evolution_la_SOURCES) $(nodist_evolution_la_SOURCES)
+ 
+ srcdir = @srcdir@
+@@ -48,7 +49,7 @@
+ mkinstalldirs = $(mkdir_p)
+ CONFIG_HEADER = config.h
+ CONFIG_CLEAN_FILES =
+-am__installdirs = "$(DESTDIR)$(pkgpyexecdir)"
++am__installdirs = "$(DESTDIR)$(pkgpyexecdir)" "$(DESTDIR)$(defsdir)"
+ pkgpyexecLTLIBRARIES_INSTALL = $(INSTALL)
+ LTLIBRARIES = $(pkgpyexec_LTLIBRARIES)
+ am__DEPENDENCIES_1 =
+@@ -77,6 +78,8 @@
+ 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+ SOURCES = $(evolution_la_SOURCES) $(nodist_evolution_la_SOURCES)
+ DIST_SOURCES = $(evolution_la_SOURCES)
++defsDATA_INSTALL = $(INSTALL_DATA)
++DATA = $(defs_DATA)
+ ETAGS = etags
+ CTAGS = ctags
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+@@ -208,6 +211,8 @@
+ 	evo-addressbook.h
+ 
+ nodist_evolution_la_SOURCES = evolution.c
++defsdir = $(pkgdatadir)/defs
++defs_DATA = evolution.defs
+ CLEANFILES = evolution.c
+ EXTRA_DIST = \
+ 	evolution.defs \
+@@ -341,6 +346,23 @@
+ distclean-libtool:
+ 	-rm -f libtool
+ uninstall-info-am:
++install-defsDATA: $(defs_DATA)
++	@$(NORMAL_INSTALL)
++	test -z "$(defsdir)" || $(mkdir_p) "$(DESTDIR)$(defsdir)"
++	@list='$(defs_DATA)'; for p in $$list; do \
++	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
++	  f="`echo $$p | sed -e 's|^.*/||'`"; \
++	  echo " $(defsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(defsdir)/$$f'"; \
++	  $(defsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(defsdir)/$$f"; \
++	done
++
++uninstall-defsDATA:
++	@$(NORMAL_UNINSTALL)
++	@list='$(defs_DATA)'; for p in $$list; do \
++	  f="`echo $$p | sed -e 's|^.*/||'`"; \
++	  echo " rm -f '$(DESTDIR)$(defsdir)/$$f'"; \
++	  rm -f "$(DESTDIR)$(defsdir)/$$f"; \
++	done
+ 
+ ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+ 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+@@ -419,9 +441,9 @@
+ 	done
+ check-am: all-am
+ check: check-am
+-all-am: Makefile $(LTLIBRARIES) config.h
++all-am: Makefile $(LTLIBRARIES) $(DATA) config.h
+ installdirs:
+-	for dir in "$(DESTDIR)$(pkgpyexecdir)"; do \
++	for dir in "$(DESTDIR)$(pkgpyexecdir)" "$(DESTDIR)$(defsdir)"; do \
+ 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+ 	done
+ install: install-am
+@@ -470,7 +492,7 @@
+ 
+ info-am:
+ 
+-install-data-am:
++install-data-am: install-defsDATA
+ 
+ install-exec-am: install-pkgpyexecLTLIBRARIES
+ 
+@@ -498,19 +520,21 @@
+ 
+ ps-am:
+ 
+-uninstall-am: uninstall-info-am uninstall-pkgpyexecLTLIBRARIES
++uninstall-am: uninstall-defsDATA uninstall-info-am \
++	uninstall-pkgpyexecLTLIBRARIES
+ 
+ .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
+ 	clean-libtool clean-pkgpyexecLTLIBRARIES ctags distclean \
+ 	distclean-compile distclean-generic distclean-hdr \
+ 	distclean-libtool distclean-tags distdir dvi dvi-am html \
+ 	html-am info info-am install install-am install-data \
+-	install-data-am install-exec install-exec-am install-info \
+-	install-info-am install-man install-pkgpyexecLTLIBRARIES \
+-	install-strip installcheck installcheck-am installdirs \
+-	maintainer-clean maintainer-clean-generic mostlyclean \
+-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
++	install-data-am install-defsDATA install-exec install-exec-am \
++	install-info install-info-am install-man \
++	install-pkgpyexecLTLIBRARIES install-strip installcheck \
++	installcheck-am installdirs maintainer-clean \
++	maintainer-clean-generic mostlyclean mostlyclean-compile \
++	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
++	tags uninstall uninstall-am uninstall-defsDATA \
+ 	uninstall-info-am uninstall-pkgpyexecLTLIBRARIES
+ 
+ 
+Index: evolution-python-0.0.1/Makefile.am
+===================================================================
+--- evolution-python-0.0.1.orig/Makefile.am	2007-06-27 14:59:25.000000000 -0300
++++ evolution-python-0.0.1/Makefile.am	2007-06-27 15:00:54.000000000 -0300
+@@ -3,6 +3,9 @@
+ pcdatadir = $(libdir)/pkgconfig
+ pcdata_DATA = evolution-python.pc
+ 
++defsdir = $(pkgdatadir)/defs
++defs_DATA =
++
+ EXTRA_DIST = \
+ 	AUTHORS NEWS INSTALL COPYING README \
+ 	ChangeLog \
+Index: evolution-python-0.0.1/Makefile.in
+===================================================================
+--- evolution-python-0.0.1.orig/Makefile.in	2007-06-27 14:57:43.000000000 -0300
++++ evolution-python-0.0.1/Makefile.in	2007-06-27 15:22:45.000000000 -0300
+@@ -58,9 +58,10 @@
+ 	install-recursive installcheck-recursive installdirs-recursive \
+ 	pdf-recursive ps-recursive uninstall-info-recursive \
+ 	uninstall-recursive
+-am__installdirs = "$(DESTDIR)$(pcdatadir)"
++am__installdirs = "$(DESTDIR)$(defsdir)" "$(DESTDIR)$(pcdatadir)"
++defsDATA_INSTALL = $(INSTALL_DATA)
+ pcdataDATA_INSTALL = $(INSTALL_DATA)
+-DATA = $(pcdata_DATA)
++DATA = $(defs_DATA) $(pcdata_DATA)
+ ETAGS = etags
+ CTAGS = ctags
+ DIST_SUBDIRS = $(SUBDIRS)
+@@ -190,6 +191,8 @@
+ SUBDIRS = src test
+ pcdatadir = $(libdir)/pkgconfig
+ pcdata_DATA = evolution-python.pc
++defsdir = $(pkgdatadir)/defs
++defs_DATA = 
+ EXTRA_DIST = \
+ 	AUTHORS NEWS INSTALL COPYING README \
+ 	ChangeLog \
+@@ -246,6 +249,23 @@
+ distclean-libtool:
+ 	-rm -f libtool
+ uninstall-info-am:
++install-defsDATA: $(defs_DATA)
++	@$(NORMAL_INSTALL)
++	test -z "$(defsdir)" || $(mkdir_p) "$(DESTDIR)$(defsdir)"
++	@list='$(defs_DATA)'; for p in $$list; do \
++	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
++	  f="`echo $$p | sed -e 's|^.*/||'`"; \
++	  echo " $(defsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(defsdir)/$$f'"; \
++	  $(defsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(defsdir)/$$f"; \
++	done
++
++uninstall-defsDATA:
++	@$(NORMAL_UNINSTALL)
++	@list='$(defs_DATA)'; for p in $$list; do \
++	  f="`echo $$p | sed -e 's|^.*/||'`"; \
++	  echo " rm -f '$(DESTDIR)$(defsdir)/$$f'"; \
++	  rm -f "$(DESTDIR)$(defsdir)/$$f"; \
++	done
+ install-pcdataDATA: $(pcdata_DATA)
+ 	@$(NORMAL_INSTALL)
+ 	test -z "$(pcdatadir)" || $(mkdir_p) "$(DESTDIR)$(pcdatadir)"
+@@ -529,7 +549,7 @@
+ all-am: Makefile $(DATA)
+ installdirs: installdirs-recursive
+ installdirs-am:
+-	for dir in "$(DESTDIR)$(pcdatadir)"; do \
++	for dir in "$(DESTDIR)$(defsdir)" "$(DESTDIR)$(pcdatadir)"; do \
+ 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+ 	done
+ install: install-recursive
+@@ -576,7 +596,7 @@
+ 
+ info-am:
+ 
+-install-data-am: install-pcdataDATA
++install-data-am: install-defsDATA install-pcdataDATA
+ 
+ install-exec-am:
+ 
+@@ -604,7 +624,8 @@
+ 
+ ps-am:
+ 
+-uninstall-am: uninstall-info-am uninstall-pcdataDATA
++uninstall-am: uninstall-defsDATA uninstall-info-am \
++	uninstall-pcdataDATA
+ 
+ uninstall-info: uninstall-info-recursive
+ 
+@@ -615,13 +636,14 @@
+ 	distclean-generic distclean-libtool distclean-recursive \
+ 	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+ 	dvi-am html html-am info info-am install install-am \
+-	install-data install-data-am install-exec install-exec-am \
+-	install-info install-info-am install-man install-pcdataDATA \
+-	install-strip installcheck installcheck-am installdirs \
+-	installdirs-am maintainer-clean maintainer-clean-generic \
+-	maintainer-clean-recursive mostlyclean mostlyclean-generic \
+-	mostlyclean-libtool mostlyclean-recursive pdf pdf-am ps ps-am \
+-	tags tags-recursive uninstall uninstall-am uninstall-info-am \
++	install-data install-data-am install-defsDATA install-exec \
++	install-exec-am install-info install-info-am install-man \
++	install-pcdataDATA install-strip installcheck installcheck-am \
++	installdirs installdirs-am maintainer-clean \
++	maintainer-clean-generic maintainer-clean-recursive \
++	mostlyclean mostlyclean-generic mostlyclean-libtool \
++	mostlyclean-recursive pdf pdf-am ps ps-am tags tags-recursive \
++	uninstall uninstall-am uninstall-defsDATA uninstall-info-am \
+ 	uninstall-pcdataDATA
+ 
+ release: dist
+Index: evolution-python-0.0.1/evolution-python.pc.in
+===================================================================
+--- evolution-python-0.0.1.orig/evolution-python.pc.in	2007-06-27 15:09:10.000000000 -0300
++++ evolution-python-0.0.1/evolution-python.pc.in	2007-06-27 15:16:21.000000000 -0300
+@@ -2,8 +2,9 @@
+ exec_prefix=@exec_prefix@
+ includedir=@includedir@
+ datadir=@datadir@
++pkgdatadir=@datadir@/evolution-python
+ 
+-defsdir=${datadir}/pygtk/2.0/defs
++defsdir=${pkgdatadir}/defs
+ argtypesdir=${datadir}/pygtk/2.0/argtypes
+ 
+ Name: evolution-python
