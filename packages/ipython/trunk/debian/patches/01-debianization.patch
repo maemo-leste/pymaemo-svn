@@ -365,7 +365,7 @@ Index: ipython-0.8.1/debian/control
 +
 +Package: ipython
 +Architecture: all
-+Depends: python2.5-dev (>= 2.5.0-1osso10), libreadline4
++Depends: python2.5 (>= 2.5.0-1osso10), libreadline4
 +Recommends: python-numeric, python-numeric-ext, python-pexpect
 +Conflicts: python2.3-ipython, python2.4-ipython, ipython-common
 +Replaces: python2.3-ipython, python2.4-ipython, ipython-common
