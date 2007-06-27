@@ -1,17 +1,3 @@
-Index: python2.5-2.5.1/debian/changelog
-===================================================================
---- python2.5-2.5.1.orig/debian/changelog	2007-05-09 10:59:46.000000000 -0300
-+++ python2.5-2.5.1/debian/changelog	2007-05-09 11:00:39.000000000 -0300
-@@ -1,3 +1,9 @@
-+python2.5 (2.5.1-1osso2) unstable; urgency=low
-+
-+  * Move pydoc and pdb from dev package to python2.5 
-+
-+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed,  9 May 2007 11:00:04 -0300
-+
- python2.5 (2.5.1-1osso1) unstable; urgency=low
- 
-   * Upgrade to python2.5.1
 Index: python2.5-2.5.1/debian/onlysdk
 ===================================================================
 --- python2.5-2.5.1.orig/debian/onlysdk	2007-05-09 10:59:14.000000000 -0300
