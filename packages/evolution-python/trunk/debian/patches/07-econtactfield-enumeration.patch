@@ -1,14 +1,14 @@
 Index: evolution-python-0.0.1/src/evolution.defs
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolution.defs	2007-06-25 16:57:08.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.defs	2007-06-25 17:07:16.000000000 -0300
+--- evolution-python-0.0.1.orig/src/evolution.defs	2007-06-27 15:26:50.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.defs	2007-06-28 16:14:55.000000000 -0300
 @@ -86,6 +86,138 @@
    )
  )
  
 +; Contact enums
-+(define-enum Field
-+  (in-module "EContact")
++(define-enum EContactField
++  (in-module "evolution")
 +  (c-name "EContactField")
 +  (gtype-id "E_TYPE_CONTACT_FIELD")
 +  (values
@@ -143,8 +143,8 @@ Index: evolution-python-0.0.1/src/evolution.defs
  ;;------------------------------------------------------------------------------
 Index: evolution-python-0.0.1/src/Makefile.am
 ===================================================================
---- evolution-python-0.0.1.orig/src/Makefile.am	2007-06-25 17:13:00.000000000 -0300
-+++ evolution-python-0.0.1/src/Makefile.am	2007-06-25 17:14:31.000000000 -0300
+--- evolution-python-0.0.1.orig/src/Makefile.am	2007-06-27 14:57:36.000000000 -0300
++++ evolution-python-0.0.1/src/Makefile.am	2007-06-27 17:01:44.000000000 -0300
 @@ -12,10 +12,12 @@
  	evo-environment.c \
  	evo-contact.c \
@@ -161,8 +161,8 @@ Index: evolution-python-0.0.1/src/Makefile.am
  
 Index: evolution-python-0.0.1/src/Makefile.in
 ===================================================================
---- evolution-python-0.0.1.orig/src/Makefile.in	2007-06-25 17:13:07.000000000 -0300
-+++ evolution-python-0.0.1/src/Makefile.in	2007-06-25 17:18:32.000000000 -0300
+--- evolution-python-0.0.1.orig/src/Makefile.in	2007-06-27 15:22:45.000000000 -0300
++++ evolution-python-0.0.1/src/Makefile.in	2007-06-27 17:01:46.000000000 -0300
 @@ -55,7 +55,8 @@
  am__DEPENDENCIES_1 =
  evolution_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -206,7 +206,7 @@ Index: evolution-python-0.0.1/src/Makefile.in
 Index: evolution-python-0.0.1/src/evo-enums.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/src/evo-enums.c	2007-06-25 17:38:38.000000000 -0300
++++ evolution-python-0.0.1/src/evo-enums.c	2007-06-28 16:13:36.000000000 -0300
 @@ -0,0 +1,157 @@
 +#include <evo-enums.h>
 +
@@ -368,7 +368,7 @@ Index: evolution-python-0.0.1/src/evo-enums.c
 Index: evolution-python-0.0.1/src/evo-enums.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/src/evo-enums.h	2007-06-25 17:38:38.000000000 -0300
++++ evolution-python-0.0.1/src/evo-enums.h	2007-06-28 16:13:36.000000000 -0300
 @@ -0,0 +1,32 @@
 +/*
 + *  This program is free software; you can redistribute it and/or modify
@@ -404,8 +404,8 @@ Index: evolution-python-0.0.1/src/evo-enums.h
 +#endif
 Index: evolution-python-0.0.1/src/evolution.override
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolution.override	2007-06-25 17:23:32.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.override	2007-06-25 17:24:04.000000000 -0300
+--- evolution-python-0.0.1.orig/src/evolution.override	2007-06-27 15:26:50.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.override	2007-06-28 16:13:35.000000000 -0300
 @@ -11,6 +11,7 @@
  #include "evo-environment.h"
  #include "evo-contact.h"
@@ -416,8 +416,8 @@ Index: evolution-python-0.0.1/src/evolution.override
  _helper_wrap_glist_of_evo_locations(GList *locations)
 Index: evolution-python-0.0.1/src/evolutionmodule.c
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolutionmodule.c	2007-06-25 17:28:59.000000000 -0300
-+++ evolution-python-0.0.1/src/evolutionmodule.c	2007-06-25 17:29:49.000000000 -0300
+--- evolution-python-0.0.1.orig/src/evolutionmodule.c	2007-06-27 14:57:35.000000000 -0300
++++ evolution-python-0.0.1/src/evolutionmodule.c	2007-06-28 16:13:35.000000000 -0300
 @@ -24,7 +24,8 @@
      
      pyevolution_register_classes(d);
