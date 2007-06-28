@@ -1,0 +1,129 @@
+Index: evolution-python-0.0.1/src/evolution.override
+===================================================================
+--- evolution-python-0.0.1.orig/src/evolution.override	2007-06-27 16:51:50.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.override	2007-06-28 15:16:02.000000000 -0300
+@@ -46,6 +46,103 @@
+ 	return result;
+ }
+ 
++/* EBookQuery */
++
++typedef struct {
++	PyObject_HEAD
++	EBookQuery *query;
++} PyEBookQuery;
++
++/* Forward function declarations */
++static PyObject *pyebook_query_new(EBookQuery *query);
++static void pyebook_query_dealloc(PyEBookQuery *self);
++
++PyTypeObject PyEBookQuery_Type = {
++	PyObject_HEAD_INIT(NULL)
++	0,                  /* ob_size */
++	"evolution.EBookQuery",          /* tp_name */
++	sizeof(PyEBookQuery),       /* tp_basicsize */
++	0,                  /* tp_itemsize */
++	/* methods */
++	(destructor)pyebook_query_dealloc,   /* tp_dealloc */
++	(printfunc)0,           /* tp_print */
++	(getattrfunc)0,   /* tp_getattr */
++	(setattrfunc)0,         /* tp_setattr */
++	(cmpfunc)0,  /* tp_compare */
++	(reprfunc)0,            /* tp_repr */
++	0,                  /* tp_as_number */
++	0,                  /* tp_as_sequence */
++	0,                  /* tp_as_mapping */
++	(hashfunc)0,    /* tp_hash */
++	(ternaryfunc)0,         /* tp_call */
++	(reprfunc)0,            /* tp_str */
++	(getattrofunc)0,            /* tp_getattro */
++	(setattrofunc)0,            /* tp_setattro */
++	0,                  /* tp_as_buffer */
++	Py_TPFLAGS_DEFAULT,         /* tp_flags */
++	NULL, /* Documentation string */
++	(traverseproc)0,            /* tp_traverse */
++	(inquiry)0,             /* tp_clear */
++	(richcmpfunc)0,         /* tp_richcompare */
++	0,                  /* tp_weaklistoffset */
++	(getiterfunc)0,         /* tp_iter */
++	(iternextfunc)0,            /* tp_iternext */
++	0,       /* tp_methods */
++	0,                  /* tp_members */
++	0,       /* tp_getset */
++	(PyTypeObject *)0,          /* tp_base */
++	(PyObject *)0,          /* tp_dict */
++	0,                  /* tp_descr_get */
++	0,                  /* tp_descr_set */
++	0,                  /* tp_dictoffset */
++	(initproc)0,            /* tp_init */
++	(allocfunc)0,           /* tp_alloc */
++	(newfunc)0,             /* tp_new */
++	0,                  /* tp_free */
++	(inquiry)0,             /* tp_is_gc */
++	(PyObject *)0,          /* tp_bases */
++};
++
++static PyObject *
++pyebook_query_new(EBookQuery *query)
++{
++	PyEBookQuery *self;
++
++	self = (PyEBookQuery *)PyObject_NEW(PyEBookQuery, &PyEBookQuery_Type);
++
++	if (self == NULL)
++		return NULL;
++
++	self->query = query;
++
++	return (PyObject *)self;
++}
++
++static void
++pyebook_query_dealloc(PyEBookQuery *self)
++{
++	if (self == NULL)
++		return;
++
++    if (self->query != NULL)
++    	e_book_query_unref(self->query);
++    PyObject_DEL(self);
++}
++
++static PyObject *
++pyebook_query_copy(PyEBookQuery *self)
++{
++	return pyebook_query_new(e_book_query_copy(self->query));
++}
++
++
++%%
++init
++	PyEBookQuery_Type.tp_alloc = PyType_GenericAlloc;
++	PyEBookQuery_Type.tp_new = PyType_GenericNew;
++	if (PyType_Ready(&PyEBookQuery_Type) < 0)
++		return;
++
+ %%
+ modulename evolution
+ %%
+Index: evolution-python-0.0.1/src/evolutionmodule.c
+===================================================================
+--- evolution-python-0.0.1.orig/src/evolutionmodule.c	2007-06-27 18:10:27.000000000 -0300
++++ evolution-python-0.0.1/src/evolutionmodule.c	2007-06-27 18:15:06.000000000 -0300
+@@ -9,6 +9,7 @@
+ void pyevolution_add_constants(PyObject *m, const gchar *strip_prefix);
+ 
+ extern PyMethodDef pyevolution_functions[];
++extern PyObject PyEBookQuery_Type;
+ 
+ DL_EXPORT(void)
+ initevolution(void)
+@@ -33,6 +34,8 @@
+                                      EVOLUTION_MINOR_VERSION,
+                                      EVOLUTION_PATCH_VERSION));
+     
++    PyModule_AddObject(m, "EBookQuery", (PyObject *)&PyEBookQuery_Type);
++
+     if (PyErr_Occurred())
+         Py_FatalError("could not initialise module _evolution");
+ }
