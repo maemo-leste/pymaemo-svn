@@ -3,16 +3,25 @@
 # Copyright © 2003 Daniel Stone <daniels@debian.org>
 # Copyright © 2006 Sjoerd Simons <sjoerd@debian.org>
 
+#DEB_PYTHON_SYSTEM=pysupport
+
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
+PYVER=2.5
+
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
-ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-        CFLAGS += -g
-endif
-ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-        INSTALL_PROGRAM += -s
+d=debian/tmp
+d_base=debian/python$(PYVER)-hildon
+d_dev=debian/python$(PYVER)-hildon-dev
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+   CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+   CFLAGS=-Os -Wall -Wstrict-prototypes
 endif
 
 .PRECIOUS: build-%/configure-stamp
@@ -23,8 +32,7 @@ build-%/configure-stamp:
 	cd build-$* && PYTHON=/usr/bin/python$* \
 		../configure --host=$(DEB_HOST_GNU_TYPE) \
 			--build=$(DEB_BUILD_GNU_TYPE) \
-			--prefix=/usr --docdir=/usr/share/doc/python-dbus \
-			--enable-html-docs
+			--prefix=/usr --docdir=/usr/share/doc/python-dbus
 	touch $@
 
 build-%/build-stamp: build-%/configure-stamp
@@ -32,7 +40,7 @@ build-%/build-stamp: build-%/configure-stamp
 	PYTHON=/usr/bin/python$* $(MAKE) -C build-$*
 	touch $@
 
-build: $(PYVERS:%=build-%/build-stamp)
+build: $(PYVER:%=build-%/build-stamp)
 
 install-clean:
 	dh_testdir
@@ -42,20 +50,20 @@ install-clean:
 install-%: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-dbus
+	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python2.5-dbus
 	# keep a copy of /usr/include/debian-python.h and
 	# /usr/lib/pkgconfig/debian-python.pc to verify they match later
-	cp debian/python-dbus/usr/include/dbus-1.0/dbus/dbus-python.h debian/tmp-$*.h
-	cp debian/python-dbus/usr/lib/pkgconfig/dbus-python.pc debian/tmp-$*.pc
+	cp debian/python2.5-dbus/usr/include/dbus-1.0/dbus/dbus-python.h debian/tmp-$*.h
+	cp debian/python2.5-dbus/usr/lib/pkgconfig/dbus-python.pc debian/tmp-$*.pc
 
-install: build install-clean $(PYVERS:%=install-%)
-	rm -f debian/python-dbus/usr/lib/python*/site-packages/*.la
+install: build install-clean $(PYVER:%=install-%)
+	rm -f debian/python2.5-dbus/usr/lib/python*/site-packages/*.la
 	# compare installed .pc and .h, asserting that the ones all versions
 	# wanted are the same as what we ended up with
-	for v in $(PYVERS); do \
-		diff --brief debian/python-dbus/usr/include/dbus-1.0/dbus/dbus-python.h \
+	for v in $(PYVER); do \
+		diff --brief debian/python2.5-dbus/usr/include/dbus-1.0/dbus/dbus-python.h \
 			debian/tmp-$$v.h || exit 1; \
-		diff --brief debian/python-dbus/usr/lib/pkgconfig/dbus-python.pc \
+		diff --brief debian/python2.5-dbus/usr/lib/pkgconfig/dbus-python.pc \
 			debian/tmp-$$v.pc || exit 1; \
 	done
 	rm -f debian/tmp-*.pc debian/tmp-*.h
@@ -87,7 +95,6 @@ binary-arch: build install
 	dh_link -a
 	dh_compress -a -X.py
 	dh_fixperms -a
-#	dh_pysupport -a
 	dh_installdeb -a
 	dh_shlibdeps -a
 	dh_gencontrol -a
