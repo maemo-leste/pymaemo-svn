@@ -1,8 +1,8 @@
 Index: evolution-python-0.0.1/src/evolution.override
 ===================================================================
 --- evolution-python-0.0.1.orig/src/evolution.override	2007-06-28 16:19:30.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.override	2007-06-28 18:48:49.000000000 -0300
-@@ -46,6 +46,280 @@
++++ evolution-python-0.0.1/src/evolution.override	2007-06-29 18:17:13.000000000 -0300
+@@ -46,6 +46,395 @@
  	return result;
  }
  
@@ -18,6 +18,9 @@ Index: evolution-python-0.0.1/src/evolution.override
 +static void pyebook_query_dealloc(PyEBookQuery *self);
 +static PyObject *pyebook_query_str(PyEBookQuery *self);
 +
++static PyObject *pyebook_query_from_string(PyEBookQuery *self,
++                                           PyObject *args,
++                                           PyObject *kwargs);
 +static PyObject *pyebook_query_field_exists(PyEBookQuery *self,
 +                                            PyObject *args,
 +                                            PyObject *kwargs);
@@ -33,9 +36,18 @@ Index: evolution-python-0.0.1/src/evolution.override
 +static PyObject *pyebook_query_and(PyEBookQuery *self,
 +                                   PyObject *args,
 +                                   PyObject *kwargs);
-+
++static PyObject *pyebook_query_or(PyEBookQuery *self,
++                                   PyObject *args,
++                                   PyObject *kwargs);
++static PyObject *pyebook_query_not(PyEBookQuery *self,
++                                   PyObject *args);
++static PyObject *pyebook_query_copy(PyEBookQuery *self,
++                                    PyObject *args);
 +
 +static PyMethodDef PyEBookQuery_methods[] = {
++    {"from_string", (PyCFunctionWithKeywords)pyebook_query_from_string,
++        METH_KEYWORDS | METH_VARARGS | METH_CLASS,
++        "Creates a new query from a string."},
 +    {"field_exists", (PyCFunctionWithKeywords)pyebook_query_field_exists,
 +        METH_KEYWORDS | METH_VARARGS | METH_CLASS,
 +        "Replaces this query with a new query to check if the given \
@@ -52,12 +64,25 @@ Index: evolution-python-0.0.1/src/evolution.override
 +        (PyCFunctionWithKeywords)pyebook_query_any_field_contains,
 +        METH_KEYWORDS | METH_VARARGS | METH_CLASS,
 +        "Replaces this query with a new 'generic' query."},
-+    {"andQuery",
++    {"_and",
 +        (PyCFunctionWithKeywords)pyebook_query_and,
-+        METH_KEYWORDS | METH_VARARGS | METH_CLASS,
-+        "Modifies this query with a 'and' operation with the given \
-+        query."},
-+    {NULL}
++        METH_KEYWORDS | METH_VARARGS,
++        "Creates a new query with a 'and' operation with the given \
++        query list and this query."},
++     {"_or",
++        (PyCFunctionWithKeywords)pyebook_query_or,
++        METH_KEYWORDS | METH_VARARGS,
++        "Creates a new querywith a 'or' operation with the given \
++        query list and this query."},
++     {"_not",
++     (PyCFunction)pyebook_query_not,
++        METH_NOARGS,
++        "Creates a new query with a 'not' operation with this query."},
++     {"copy",
++     (PyCFunction)pyebook_query_copy,
++        METH_NOARGS,
++        "Copies this query."},
++   {NULL}
 +};
 +
 +PyTypeObject PyEBookQuery_Type = {
@@ -132,7 +157,8 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    PyObject_DEL(self);
 +}
 +
-+static PyObject *pyebook_query_str(PyEBookQuery *self){
++static PyObject *
++pyebook_query_str(PyEBookQuery *self){
 +
 +    char *repr = NULL;
 +    PyObject *ret;
@@ -148,9 +174,27 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    return ret;
 +}
 +
-+static PyObject *pyebook_query_field_exists(PyEBookQuery *self,
-+                                            PyObject *args,
-+                                            PyObject *kwargs)
++static PyObject *
++pyebook_query_from_string(PyEBookQuery *self,
++                          PyObject *args,
++                          PyObject *kwargs)
++{
++    static char *kwlist[] = { "query", NULL };
++    char *query;
++    EBookQuery *new_query;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s", kwlist, &query))
++        return NULL;
++
++    new_query = e_book_query_from_string(query);
++
++    return pyebook_query_new(new_query);
++}
++
++static PyObject *
++pyebook_query_field_exists(PyEBookQuery *self,
++                           PyObject *args,
++                           PyObject *kwargs)
 +{
 +    static char *kwlist[] = { "field", NULL };
 +    PyObject *py_type;
@@ -168,9 +212,10 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    return pyebook_query_new(new_query);
 +}
 +
-+static PyObject *pyebook_query_vcard_field_exists(PyEBookQuery *self,
-+                                                  PyObject *args,
-+                                                  PyObject *kwargs)
++static PyObject *
++pyebook_query_vcard_field_exists(PyEBookQuery *self,
++                                 PyObject *args,
++                                 PyObject *kwargs)
 +{
 +    static char *kwlist[] = { "field", NULL };
 +    char *field;
@@ -185,9 +230,10 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    return pyebook_query_new(new_query);
 +}
 +
-+static PyObject *pyebook_query_field_test(PyEBookQuery *self,
-+                                          PyObject *args,
-+                                          PyObject *kwargs)
++static PyObject *
++pyebook_query_field_test(PyEBookQuery *self,
++                         PyObject *args,
++                         PyObject *kwargs)
 +{
 +    static char *kwlist[] = { "field", "test", "value", NULL };
 +    PyObject *py_field;
@@ -212,9 +258,10 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    return pyebook_query_new(new_query);
 +}
 +
-+static PyObject *pyebook_query_any_field_contains(PyEBookQuery *self,
-+                                                  PyObject *args,
-+                                                  PyObject *kwargs)
++static PyObject *
++pyebook_query_any_field_contains(PyEBookQuery *self,
++                                 PyObject *args,
++                                 PyObject *kwargs)
 +{
 +    static char *kwlist[] = { "field", NULL };
 +    char *field;
@@ -228,14 +275,16 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    return pyebook_query_new(new_query);
 +}
 +
-+static PyObject *pyebook_query_and(PyEBookQuery *self,
-+                                   PyObject *args,
-+                                   PyObject *kwargs)
++static PyObject *
++pyebook_query_and(PyEBookQuery *self,
++                  PyObject *args,
++                  PyObject *kwargs)
 +{
-+    static char *kwlist[] = { "query", NULL };
++    static char *kwlist[] = { "queries", NULL };
 +    PyObject *list;
 +    int size;
 +    int i;
++    int has_self = 0;
 +    EBookQuery **queries = NULL;
 +    EBookQuery *new_query = NULL;
 +
@@ -250,7 +299,13 @@ Index: evolution-python-0.0.1/src/evolution.override
 +        return Py_None;
 +    }
 +
-+    queries = (EBookQuery **)malloc(sizeof(EBookQuery *)*size);
++    if (self->query != NULL) {
++        queries = (EBookQuery **)malloc(sizeof(EBookQuery *)*(size+1));
++        queries[0] = self->query;
++        has_self = 1;
++    } else {
++        queries = (EBookQuery **)malloc(sizeof(EBookQuery *)*(size));
++    }
 +
 +    for (i = 0; i < size; i++){
 +        PyEBookQuery *query;
@@ -258,16 +313,76 @@ Index: evolution-python-0.0.1/src/evolution.override
 +        /* FIXME Check for EBookQuery type */
 +        query = (PyEBookQuery *) PyList_GetItem(list, i);
 +
-+        queries[i] = query->query;
++        queries[i+has_self] = query->query;
 +    }
 +
-+    new_query = e_book_query_and(size, queries, FALSE);
++    new_query = e_book_query_and(size+has_self, queries, FALSE);
 +
 +    return pyebook_query_new(new_query);
 +}
 +
 +static PyObject *
-+pyebook_query_copy(PyEBookQuery *self)
++pyebook_query_or(PyEBookQuery *self,
++                 PyObject *args,
++                 PyObject *kwargs)
++{
++    static char *kwlist[] = { "queries", NULL };
++    PyObject *list;
++    int size;
++    int i;
++    int has_self = 0;
++    EBookQuery **queries = NULL;
++    EBookQuery *new_query = NULL;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!", kwlist,
++                                     &PyList_Type, &list))
++        return NULL;
++
++    size = PyList_Size(list);
++
++    if (size == 0){
++        Py_INCREF(Py_None);
++        return Py_None;
++    }
++
++    if (self->query != NULL) {
++        queries = (EBookQuery **)malloc(sizeof(EBookQuery *)*(size+1));
++        queries[0] = self->query;
++        has_self = 1;
++    } else {
++        queries = (EBookQuery **)malloc(sizeof(EBookQuery *)*(size));
++    }
++
++    for (i = 0; i < size; i++){
++        PyEBookQuery *query;
++
++        /* FIXME Check for EBookQuery type */
++        query = (PyEBookQuery *) PyList_GetItem(list, i);
++
++        queries[i+has_self] = query->query;
++    }
++
++    new_query = e_book_query_or(size+has_self, queries, FALSE);
++
++    return pyebook_query_new(new_query);
++}
++
++static PyObject *
++pyebook_query_not(PyEBookQuery *self,
++                  PyObject *args)
++{
++    EBookQuery *new_query = NULL;
++
++    if (self->query != NULL)
++        new_query = e_book_query_not(self->query, FALSE);
++
++    return pyebook_query_new(new_query);
++}
++
++
++static PyObject *
++pyebook_query_copy(PyEBookQuery *self,
++                   PyObject *args)
 +{
 +	return pyebook_query_new(e_book_query_copy(self->query));
 +}
