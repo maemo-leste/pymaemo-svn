@@ -1,0 +1,112 @@
+Index: evolution-python-0.0.1/src/evolution.defs
+===================================================================
+--- evolution-python-0.0.1.orig/src/evolution.defs	2007-07-02 14:22:02.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.defs	2007-07-02 14:22:44.000000000 -0300
+@@ -326,6 +326,19 @@
+   )
+ )
+ 
++; New get_book_view
++(define-method get_book_view
++  (of-object "EBook")
++  (c-name "e_book_get_book_view")
++  (return-type "gboolean")
++  (parameters
++    '("EBookQuery*" "query")
++    '("GList*" "requested_fields")
++    '("int" "max_results")
++    '("EBookView**" "book_view")
++    '("GError**" "error")
++  )
++)
+ 
+ ;;------------------------------------------------------------------------------
+ ;; evo-environment
+Index: evolution-python-0.0.1/src/evolution.override
+===================================================================
+--- evolution-python-0.0.1.orig/src/evolution.override	2007-07-02 14:22:02.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.override	2007-07-02 14:28:08.000000000 -0300
+@@ -5,6 +5,7 @@
+ #include <Python.h>
+ #include "pygobject.h"
+ 
++
+ #include "override_common.h"
+ 
+ #include "evo-environment.h"
+@@ -501,6 +502,60 @@
+     
+ }
+ %%
++override e_book_get_book_view kwargs
++static PyObject *
++_wrap_e_book_get_book_view(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] = {"query", "fields", "max", NULL};
++    int results = 0;
++    PyObject *pyfields = NULL;
++    GList *fields = NULL;
++    PyObject *query = NULL;
++    PyObject *ret = NULL;
++    int cret;
++    EBookView *view = NULL;
++    EBookQuery *equery = NULL;
++    GError *err = NULL;
++
++    if(!PyArg_ParseTupleAndKeywords(args, kwargs, "O!|O!i:EBook.get_book_view",
++                                    kwlist, &PyEBookQuery_Type, &query, &PyList_Type, &pyfields,
++                                    &results))
++        return NULL;
++
++    if (pyfields != NULL) {
++        /* Translating to glist */
++        int len;
++        int i;
++
++        len = PyList_Size(pyfields);
++
++        for(i = 0; i < len; i++){
++            PyObject *item;
++            item = PyList_GetItem(pyfields, i);
++
++            if(!PyString_Check(item)){
++                if(fields != NULL)
++                    g_list_free(fields);
++            }
++
++            fields = g_list_append(fields, PyString_AsString(item));
++        }
++    }
++
++    equery = ((PyEBookQuery *)query)->query;
++    cret = e_book_get_book_view(E_BOOK(self->obj), equery, fields, results, &view, &err);
++
++    /* Create the bookview object */
++    ret = pygobject_new(G_OBJECT(view));
++
++    /* e_book_query_unref(equery); The book view gets the ownership of the ref */
++    if (fields != NULL)
++        g_list_free(fields);
++
++    Py_XINCREF(ret);
++    return ret;
++}
++%%
+ override e_contact_new kwargs
+ static int
+ _wrap_e_contact_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+Index: evolution-python-0.0.1/test/bookview.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ evolution-python-0.0.1/test/bookview.py	2007-07-02 16:28:17.000000000 -0300
+@@ -0,0 +1,10 @@
++import evolution as e
++import unittest
++
++class TestBookQuery(unittest.TestCase):
++
++    def setUp(self):
++        self.book = e.open_addressbook("default")
++
++if __name__ == "__main__":
++    unittest.main()
