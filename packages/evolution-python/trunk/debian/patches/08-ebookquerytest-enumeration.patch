@@ -1,7 +1,7 @@
 Index: evolution-python-0.0.1/src/evo-enums.c
 ===================================================================
---- evolution-python-0.0.1.orig/src/evo-enums.c	2007-06-28 16:18:07.000000000 -0300
-+++ evolution-python-0.0.1/src/evo-enums.c	2007-06-28 16:18:51.000000000 -0300
+--- evolution-python-0.0.1.orig/src/evo-enums.c	2007-07-02 14:16:42.000000000 -0300
++++ evolution-python-0.0.1/src/evo-enums.c	2007-07-02 14:16:44.000000000 -0300
 @@ -155,3 +155,27 @@
  
  /* Generated data ends here */
@@ -32,8 +32,8 @@ Index: evolution-python-0.0.1/src/evo-enums.c
 +
 Index: evolution-python-0.0.1/src/evo-enums.h
 ===================================================================
---- evolution-python-0.0.1.orig/src/evo-enums.h	2007-06-28 16:18:07.000000000 -0300
-+++ evolution-python-0.0.1/src/evo-enums.h	2007-06-28 16:18:51.000000000 -0300
+--- evolution-python-0.0.1.orig/src/evo-enums.h	2007-07-02 14:16:42.000000000 -0300
++++ evolution-python-0.0.1/src/evo-enums.h	2007-07-02 14:16:44.000000000 -0300
 @@ -18,6 +18,7 @@
  #define EVO_ENUMS_H
  
@@ -58,11 +58,11 @@ Index: evolution-python-0.0.1/src/evo-enums.h
  #endif
 Index: evolution-python-0.0.1/src/evolution.defs
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolution.defs	2007-06-28 16:18:07.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.defs	2007-06-28 16:19:53.000000000 -0300
-@@ -326,6 +326,20 @@
-   )
+--- evolution-python-0.0.1.orig/src/evolution.defs	2007-07-02 14:16:42.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.defs	2007-07-02 14:16:44.000000000 -0300
+@@ -313,6 +313,20 @@
  )
+ 
  
 +;; EBookQuery enumerations
 +(define-enum EBookQueryTest

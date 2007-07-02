@@ -1,8 +1,8 @@
 Index: evolution-python-0.0.1/src/evolution.override
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolution.override	2007-06-28 16:19:30.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.override	2007-06-29 18:17:13.000000000 -0300
-@@ -46,6 +46,395 @@
+--- evolution-python-0.0.1.orig/src/evolution.override	2007-07-02 14:18:09.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.override	2007-07-02 14:20:43.000000000 -0300
+@@ -45,6 +45,394 @@
  	return result;
  }
  
@@ -220,7 +220,6 @@ Index: evolution-python-0.0.1/src/evolution.override
 +    static char *kwlist[] = { "field", NULL };
 +    char *field;
 +    EBookQuery *new_query;
-+    PyObject *ret;
 +
 +    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s", kwlist, &field))
 +        return NULL;
@@ -400,8 +399,8 @@ Index: evolution-python-0.0.1/src/evolution.override
  %%
 Index: evolution-python-0.0.1/src/evolutionmodule.c
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolutionmodule.c	2007-06-28 16:19:30.000000000 -0300
-+++ evolution-python-0.0.1/src/evolutionmodule.c	2007-06-28 16:25:17.000000000 -0300
+--- evolution-python-0.0.1.orig/src/evolutionmodule.c	2007-07-02 14:18:09.000000000 -0300
++++ evolution-python-0.0.1/src/evolutionmodule.c	2007-07-02 14:18:11.000000000 -0300
 @@ -9,6 +9,7 @@
  void pyevolution_add_constants(PyObject *m, const gchar *strip_prefix);
  
@@ -422,7 +421,7 @@ Index: evolution-python-0.0.1/src/evolutionmodule.c
 Index: evolution-python-0.0.1/test/bookquery.py
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/test/bookquery.py	2007-06-29 18:17:14.000000000 -0300
++++ evolution-python-0.0.1/test/bookquery.py	2007-07-02 14:18:11.000000000 -0300
 @@ -0,0 +1,101 @@
 +import evolution as e
 +import unittest
