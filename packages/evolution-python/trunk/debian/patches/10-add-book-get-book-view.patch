@@ -1,7 +1,7 @@
 Index: evolution-python-0.0.1/src/evolution.defs
 ===================================================================
 --- evolution-python-0.0.1.orig/src/evolution.defs	2007-07-02 14:22:02.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.defs	2007-07-02 14:22:44.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.defs	2007-07-06 17:26:30.000000000 -0300
 @@ -326,6 +326,19 @@
    )
  )
@@ -22,10 +22,60 @@ Index: evolution-python-0.0.1/src/evolution.defs
  
  ;;------------------------------------------------------------------------------
  ;; evo-environment
+@@ -388,4 +401,49 @@
+   (return-type "none")
+ )
+ 
++(define-method set_contacts_added_cb
++  (of-object "EBookView")
++  (c-name "e_book_view_set_contacts_added_cb")
++  (return-type "int")
++)
++
++(define-method remove_contacts_added_cb
++  (of-object "EBookView")
++  (c-name "e_book_view_remove_contacts_added_cb")
++  (parameters
++    '("int", "handler_id")
++  )
++  (return-type "none")
++)
++
++(define-method set_contacts_changed_cb
++  (of-object "EBookView")
++  (c-name "e_book_view_set_contacts_changed_cb")
++  (return-type "int")
++)
++
++(define-method remove_contacts_changed_cb
++  (of-object "EBookView")
++  (c-name "e_book_view_remove_contacts_changed_cb")
++  (parameters
++    '("int", "handler_id")
++  )
++  (return-type "none")
++)
++
++(define-method set_contacts_removed_cb
++  (of-object "EBookView")
++  (c-name "e_book_view_set_contacts_removed_cb")
++  (return-type "int")
++)
++
++(define-method remove_contacts_removed_cb
++  (of-object "EBookView")
++  (c-name "e_book_view_remove_contacts_removed_cb")
++  (parameters
++    '("int", "handler_id")
++  )
++  (return-type "none")
++)
++
+ 
 Index: evolution-python-0.0.1/src/evolution.override
 ===================================================================
 --- evolution-python-0.0.1.orig/src/evolution.override	2007-07-02 14:22:02.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.override	2007-07-02 14:28:08.000000000 -0300
++++ evolution-python-0.0.1/src/evolution.override	2007-07-06 17:51:45.000000000 -0300
 @@ -5,6 +5,7 @@
  #include <Python.h>
  #include "pygobject.h"
@@ -34,7 +84,112 @@ Index: evolution-python-0.0.1/src/evolution.override
  #include "override_common.h"
  
  #include "evo-environment.h"
-@@ -501,6 +502,60 @@
+@@ -12,6 +13,13 @@
+ #include "evo-addressbook.h"
+ #include "evo-enums.h"
+ 
++/* Struct used to pack data passed to EBookView signals */
++struct bookview_cb_t{
++    PyObject *(*converter)(gpointer);
++    PyObject *callback;
++    PyObject *extra_data;
++};
++
+ static PyObject *
+ _helper_wrap_glist_of_evo_locations(GList *locations)
+ {
+@@ -425,6 +433,90 @@
+ 	return pyebook_query_new(e_book_query_copy(self->query));
+ }
+ 
++static PyObject *
++glist_to_pylist(GList *list, PyObject *(*converter)(gpointer))
++{
++    PyObject *pylist;
++    GList *node;
++    int size;
++    int i;
++
++    size = g_list_length(list);
++    pylist = PyList_New(size);
++    node = list;
++
++    for (i=0; i < size; i++){
++        PyObject *pyobj;
++
++        pyobj = converter(node->data);
++        PyList_SetItem(pylist, i, pyobj);
++
++        node = node->next;
++    }
++
++    return pylist;
++}
++
++PyObject *econtact_to_pycontact(EContact *contact)
++{
++    return pygobject_new(G_OBJECT(contact));
++}
++
++/* wrapper for callbacks that receive a GList as parameter */
++static void
++contacts_list_cb(EBookView *ebookview, GList *contacts, gpointer user_data)
++{
++    PyObject *list;
++    PyObject *pybookview;
++    PyObject *extra_args;
++    PyObject *callback;
++    PyObject *arguments;
++    PyObject *result;
++    struct bookview_cb_t *data;
++    int i;
++    int extra_size;
++
++    pybookview = pygobject_new(ebookview);
++    if (pybookview == NULL){
++    }
++
++    data = (struct bookview_cb_t*)user_data;
++
++    callback = data->callback;
++    extra_args = data->extra_data;
++
++    list = glist_to_pylist(contacts, data->converter);
++
++    if (extra_args != NULL){
++        extra_size = PyTuple_Size(extra_args);
++    } else {
++        extra_size = 0;
++    }
++
++    arguments = PyTuple_New(extra_size+2);
++
++    Py_INCREF(pybookview);
++    PyTuple_SetItem(arguments, 0, pybookview);
++    Py_INCREF(list);
++    PyTuple_SetItem(arguments, 1, list);
++
++    for (i = 2; i < extra_size+2; i++) {
++        PyObject *obj;
++
++        obj = PyTuple_GetItem(extra_args, i-2);
++        Py_INCREF(obj);
++        PyTuple_SetItem(arguments, i, obj);
++    }
++
++    result = PyObject_CallObject(callback, arguments);
++
++    Py_XDECREF(result);
++    Py_XDECREF(arguments);
++    Py_XDECREF(pybookview);
++    Py_XDECREF(list); /* Will decref its childs too? */
++
++    return;
++}
+ 
+ %%
+ init
+@@ -501,6 +593,60 @@
      
  }
  %%
@@ -95,18 +250,271 @@ Index: evolution-python-0.0.1/src/evolution.override
  override e_contact_new kwargs
  static int
  _wrap_e_contact_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+@@ -559,4 +705,193 @@
+ 
+     return PyLong_FromLong((long) seconds);
+ }
++%%
++override e_book_view_set_contacts_added_cb kwargs
++static PyObject *
++_wrap_e_book_view_set_contacts_added_cb(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    PyObject *callback;
++    PyObject *extra_args;
++    struct bookview_cb_t *data;
++    int len;
++    guint result;
++
++    len = PyTuple_Size(args);
++    if (len < 1){
++        PyErr_SetString(PyExc_TypeError,
++                        "EBookView.set_contacts_added_cb requires at least one argument");
++        return NULL;
++    }
++
++    data = g_new(struct bookview_cb_t, 1);
++
++    callback = PyTuple_GetItem(args, 0);
++
++    if(!PyCallable_Check(callback)){
++        PyErr_SetString(PyExc_TypeError, "callback must be callable");
++        return NULL;
++    }
++
++    Py_XINCREF(callback);
++    data->callback = callback;
++
++    if (len > 1){
++        extra_args = PySequence_GetSlice(args, 1, len);
++    } else {
++        extra_args = NULL;
++    }
++
++    data->extra_data = extra_args;
++    data->converter = econtact_to_pycontact;
++
++    g_debug("structure passed: %p{%p,%p,%p}", data, data->converter,
++                                              data->callback, data->extra_data);
++
++    /*Py_XINCREF(args);*/
++    result = g_signal_connect(self->obj, "contacts-added", contacts_list_cb, data);
++
++    return PyInt_FromLong(result);
++}
++%%
++override e_book_view_remove_contacts_added_cb kwargs
++static PyObject *
++_wrap_e_book_view_remove_contacts_added_cb(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] ={"handler_id", NULL};
++    int handler;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i", kwlist, &handler)) {
++        return NULL;
++    }
++
++    g_signal_handler_disconnect(self->obj, handler);
++
++    Py_INCREF(Py_None);
++    return Py_None;
++}
++%%
++override e_book_view_set_contacts_changed_cb kwargs
++static PyObject *
++_wrap_e_book_view_set_contacts_changed_cb(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    PyObject *callback;
++    PyObject *extra_args;
++    struct bookview_cb_t *data;
++    int len;
++    guint result;
++
++    len = PyTuple_Size(args);
++    if (len < 1){
++        PyErr_SetString(PyExc_TypeError,
++                        "EBookView.set_contacts_added_cb requires at least one argument");
++        return NULL;
++    }
++
++    data = g_new(struct bookview_cb_t, 1);
++
++    callback = PyTuple_GetItem(args, 0);
++
++    if(!PyCallable_Check(callback)){
++        PyErr_SetString(PyExc_TypeError, "callback must be callable");
++        return NULL;
++    }
++
++    Py_XINCREF(callback);
++    data->callback = callback;
++
++    if (len > 1){
++        extra_args = PySequence_GetSlice(args, 1, len);
++    } else {
++        extra_args = NULL;
++    }
++
++    data->extra_data = extra_args;
++    data->converter = econtact_to_pycontact;
++
++    /*
++    g_debug("structure passed: %p{%p,%p,%p}", data, data->converter,
++                                              data->callback, data->extra_data);*/
++
++    /*Py_XINCREF(args);*/
++    result = g_signal_connect(self->obj, "contacts-changed", contacts_list_cb, data);
++
++    return PyInt_FromLong(result);
++}
++%%
++override e_book_view_remove_contacts_changed_cb kwargs
++static PyObject *
++_wrap_e_book_view_remove_contacts_changed_cb(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] ={"handler_id", NULL};
++    int handler;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i", kwlist, &handler)) {
++        return NULL;
++    }
++
++    g_signal_handler_disconnect(self->obj, handler);
++
++    Py_INCREF(Py_None);
++    return Py_None;
++}
++%%
++override e_book_view_set_contacts_removed_cb kwargs
++static PyObject *
++_wrap_e_book_view_set_contacts_removed_cb(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    PyObject *callback;
++    PyObject *extra_args;
++    struct bookview_cb_t *data;
++    int len;
++    guint result;
++
++    len = PyTuple_Size(args);
++    if (len < 1){
++        PyErr_SetString(PyExc_TypeError,
++                        "EBookView.set_contacts_removed_cb requires at least one argument");
++        return NULL;
++    }
++
++    data = g_new(struct bookview_cb_t, 1);
++
++    callback = PyTuple_GetItem(args, 0);
++
++    if(!PyCallable_Check(callback)){
++        PyErr_SetString(PyExc_TypeError, "callback must be callable");
++        return NULL;
++    }
++
++    Py_XINCREF(callback);
++    data->callback = callback;
++
++    if (len > 1){
++        extra_args = PySequence_GetSlice(args, 1, len);
++    } else {
++        extra_args = NULL;
++    }
++
++    data->extra_data = extra_args;
++    data->converter = PyString_FromString;
++
++    result = g_signal_connect(self->obj, "contacts-removed", contacts_list_cb, data);
++
++    return PyInt_FromLong(result);
++}
++%%
++override e_book_view_remove_contacts_removed_cb kwargs
++static PyObject *
++_wrap_e_book_view_remove_contacts_removed_cb(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] ={"handler_id", NULL};
++    int handler;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i", kwlist, &handler)) {
++        return NULL;
++    }
++
++    g_signal_handler_disconnect(self->obj, handler);
++
++    Py_INCREF(Py_None);
++    return Py_None;
++}
+ 
 Index: evolution-python-0.0.1/test/bookview.py
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/test/bookview.py	2007-07-02 16:28:17.000000000 -0300
-@@ -0,0 +1,10 @@
++++ evolution-python-0.0.1/test/bookview.py	2007-07-06 18:04:44.000000000 -0300
+@@ -0,0 +1,69 @@
++#!/usr/bin/python2.5
++
 +import evolution as e
++import gobject
 +import unittest
 +
-+class TestBookQuery(unittest.TestCase):
++class TestBookViewCallbacks(unittest.TestCase):
 +
 +    def setUp(self):
++        self.loop = gobject.MainLoop()
 +        self.book = e.open_addressbook("default")
++        self.contact_id = None
++        self.contacts = None
++
++    def testContactsAddedCb_NoArgs(self):
++        c1 = e.EContact()
++        c1.props.full_name = "Dummy Contact"
++        query = e.EBookQuery.field_test(e.CONTACT_FULL_NAME, e.BOOK_QUERY_CONTAINS, "Dummy")
++        view = self.book.get_book_view(query)
++
++        h1 = view.set_contacts_added_cb(self.added_cb )
++        view.start()
++
++        self.book.add_contact(c1)
++        print "contact_added"
++        self.contact_id = c1.props.id
++        self.loop.run()
++
++        self.assertEqual(self.contacts[0], c1)
++
++    def added_cb(self, view, contacts, contact):
++        print "callback"
++        self.contacts = contact
++        self.loop.quit()
++
++    def tearDown(self):
++        if self.contact_id:
++            self.book.remove_contact_by_id(self.contact_id)
++
++        del(self.loop)
++        del(self.book)
++
++
++def added_cb(view, contacts, *user_data):
++    print view
++    print contacts
++    print user_data
++
++def main():
++    book = e.open_addressbook("default")
++
++    query = e.EBookQuery.field_exists(e.CONTACT_FULL_NAME)
++
++    view = book.get_book_view(query)
++    handler = view.set_contacts_added_cb(added_cb)
++    h2 = view.set_contacts_added_cb(added_cb, "one")
++    h3 = view.set_contacts_removed_cb(added_cb, "removed", "extra_args")
++    h4 = view.set_contacts_changed_cb(added_cb, "changed")
++    #print view.set_contacts_added_cb(added_cb, None)
++
++    view.remove_contacts_added_cb(handler)
++
++    view.start()
++
++    gtk.main()
++
 +
 +if __name__ == "__main__":
 +    unittest.main()
