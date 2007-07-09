@@ -1,23 +1,21 @@
 ;; -*- scheme -*-
 ; object definitions ...
+(define-object ColorChooserDialog
+  (in-module "Hildon")
+  (parent "GtkDialog")
+  (c-name "HildonColorChooserDialog")
+  (gtype-id "HILDON_TYPE_COLOR_CHOOSER_DIALOG")
+)
+
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-color-chooser-dialog.h
-
-(define-function hildon_color_chooser_dialog_get_type
-  (c-name "hildon_color_chooser_dialog_get_type")
-  (return-type "GtkType")
-  (parameters
-  )
-)
+;; From hildon-color-chooser-dialog.h
 
 (define-function hildon_color_chooser_dialog_new
   (c-name "hildon_color_chooser_dialog_new")
   (is-constructor-of "HildonColorChooserDialog")
   (return-type "GtkWidget*")
-  (parameters
-  )
 )
 
 (define-method set_color
@@ -36,12 +34,6 @@
   (parameters
     '("GdkColor*" "color")
   )
-)
-
-(define-method emit_color_changed
-  (of-object "HildonColorChooserDialog")
-  (c-name "hildon_color_chooser_dialog_emit_color_changed")
-  (return-type "none")
 )
 
 

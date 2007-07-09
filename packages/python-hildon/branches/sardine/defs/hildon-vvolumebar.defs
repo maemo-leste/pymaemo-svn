@@ -10,12 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-vvolumebar.h
-
-(define-function hildon_vvolumebar_get_type
-  (c-name "hildon_vvolumebar_get_type")
-  (return-type "GType")
-)
+;; From hildon-vvolumebar.h
 
 (define-function hildon_vvolumebar_new
   (c-name "hildon_vvolumebar_new")

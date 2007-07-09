@@ -10,12 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hidon-widgets/hildon-volumebar.h
-
-(define-function hildon_volumebar_get_type
-  (c-name "hildon_volumebar_get_type")
-  (return-type "GType")
-)
+;; From hildon-volumebar.h
 
 (define-method get_level
   (of-object "HildonVolumebar")
@@ -45,12 +40,6 @@
   (parameters
     '("gboolean" "mute")
   )
-)
-
-(define-method level_change
-  (of-object "HildonVolumebar")
-  (c-name "hildon_volumebar_level_change")
-  (return-type "none")
 )
 
 (define-method get_adjustment

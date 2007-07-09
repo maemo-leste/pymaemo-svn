@@ -1,19 +1,4 @@
 (include "hildon.defs")
-(include "defs/hildon-color-chooser-button.defs")
-(include "defs/hildon-color-chooser-dialog.defs")
-(include "defs/hildon-color-chooser.defs")
-(include "defs/hildon-plugin-widget.defs")
-
-
-; hildon-file-chooser-dialog.defs
-(define-method set_show_upnp
-  (of-object "HildonFileChooserDialog")
-  (c-name "hildon_file_chooser_dialog_set_show_upnp")
-  (return-type "none")
-  (parameters
-    '("gboolean" "value")
-  )
-)
 
 (define-method get_show_upnp
   (of-object "HildonFileChooserDialog")

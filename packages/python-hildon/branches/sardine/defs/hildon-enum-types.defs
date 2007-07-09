@@ -1,0 +1,48 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-enum-types.h
+
+(define-function hildon_caption_status_get_type
+  (c-name "hildon_caption_status_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_caption_icon_position_get_type
+  (c-name "hildon_caption_icon_position_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_note_type_get_type
+  (c-name "hildon_note_type_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_number_editor_error_type_get_type
+  (c-name "hildon_number_editor_error_type_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_date_time_error_get_type
+  (c-name "hildon_date_time_error_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_window_clipboard_operation_get_type
+  (c-name "hildon_window_clipboard_operation_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_wizard_dialog_response_get_type
+  (c-name "hildon_wizard_dialog_response_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_calendar_display_options_get_type
+  (c-name "hildon_calendar_display_options_get_type")
+  (return-type "GType")
+)
+
+

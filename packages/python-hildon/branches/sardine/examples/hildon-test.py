@@ -174,6 +174,7 @@ class PyGtkDemo(hildon.Program):
             try:
                 os.mkdir("%s/MyDocs" % os.environ['HOME'])
             except Exception, e:
+                print "%s/MyDocs" % os.environ['HOME']
                 pass
             try:
                 f = open("%s/MyDocs/foobar.txt" % os.environ['HOME'], "w")
@@ -182,8 +183,9 @@ class PyGtkDemo(hildon.Program):
             except Exception, e:
                 print "Xerror: %s" % e,
 
-            dialog = hildon.FileDetailsDialog(self.window, 
-                    "%s/MyDocs/foobar.txt" % os.environ['HOME'])
+            #TODO: change this to use HildonFileSystemModel
+            file_to_open = "%s/MyDocs/foobar.txt" % os.environ['HOME']
+            dialog = hildon.FileDetailsDialog(self.window, file_sys_model)
             print "run: %s" % dialog.run(),
             dialog.destroy()
         elif test == "Font Selection":
@@ -191,10 +193,6 @@ class PyGtkDemo(hildon.Program):
             print "run: %s" % dialog.run(),
             print "size: %d" % dialog.get_property("size")
             # TODO: verify how can i obtain the font selected...
-            dialog.destroy()
-        elif test == "Insert Object":
-            dialog = hildon.InsertObjectDialog(self.window)
-            print "run: %s" % dialog.run(),
             dialog.destroy()
         elif test == "Note":
             self.window.hide()
@@ -269,10 +267,6 @@ class PyGtkDemo(hildon.Program):
         self.vboxTests[0].pack_start(hildon.HVolumebar())
         
         self.vboxTests[1].pack_start(hildon.VVolumebar())
-        
-        obj = gtk.Button ("Insert Object")
-        obj.connect("clicked", self.onTest)
-        self.vboxTests[2].pack_start(obj)
         
         obj = gtk.Button ("Note")
         obj.connect("clicked", self.onTest)

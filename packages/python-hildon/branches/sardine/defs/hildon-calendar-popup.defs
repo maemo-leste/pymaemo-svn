@@ -12,11 +12,6 @@
 
 ;; From hildon-calendar-popup.h
 
-(define-function hildon_calendar_popup_get_type
-  (c-name "hildon_calendar_popup_get_type")
-  (return-type "GType")
-)
-
 (define-function hildon_calendar_popup_new
   (c-name "hildon_calendar_popup_new")
   (is-constructor-of "HildonCalendarPopup")

@@ -9,7 +9,7 @@ defsdir = datadir+'/pygtk/2.0/defs'
 includedir = '/usr/include'
 
 def get_hildon_version():
-    input = open('/usr/lib/pkgconfig/hildon-libs.pc','r')
+    input = open('/usr/lib/pkgconfig/hildon-1.pc','r')
 
     for line in input:
         result = line.split()
@@ -55,14 +55,10 @@ class PyHildonBuild(build):
             includedir+'/hildon-fm-2/hildon/hildon-file-system-info.h',
             includedir+'/hildon-fm-2/hildon/hildon-file-system-model.h',
             includedir+'/hildon-fm-2/hildon/hildon-fm1-compat.h',
-            includedir+'/hildon-widgets/hildon-date-editor.h',
-            includedir+'/hildon-widgets/hildon-font-selection-dialog.h',
-            includedir+'/hildon-widgets/hildon-grid-item.h',
-            includedir+'/hildon-widgets/hildon-input-mode-hint.h',
-            includedir+'/hildon-widgets/hildon-number-editor.h',
-            includedir+'/hildon-widgets/hildon-telephone-editor.h',
-            includedir+'/hildon-widgets/hildon-time-editor.h',
-            includedir+'/hildon-base-lib/hildon-base-types.h',
+            includedir+'/hildon-1/hildon/hildon-date-editor.h',
+            includedir+'/hildon-1/hildon/hildon-font-selection-dialog.h',
+            includedir+'/hildon-1/hildon/hildon-number-editor.h',
+            includedir+'/hildon-1/hildon/hildon-time-editor.h',
             includedir+'/glib-2.0/glib/gdate.h',
         ]
 
@@ -83,7 +79,6 @@ class PyHildonBuild(build):
             '--register', defsdir+'/gtk-base.defs',
             '--register', defsdir+'/pango-types.defs',
             '--register', 'defs/missing-types.defs',
-            '--register', 'defs/hildon-grid-item.defs',
             '--override', 'hildon.override',
             '--prefix', 'pyhildon',
             defs_filename,
@@ -98,6 +93,8 @@ compile_args = [
         '-DXTHREADS',
         '-DXUSE_MTSAFE_API',
         '-DHILDON_DISABLE_DEPRECATED',
+        '-DMAEMO_CHANGES',
+        '-DHILDON_ENABLE_UNSTABLE_API',
 #        '-ansi',
 #        '-pedantic',
 #        '-Wno-long-long',
@@ -116,8 +113,7 @@ hildon = Extension('hildon',
         'hildon-types.c',
     ],
     libraries = [
-        'hildonbase',
-        'hildonwidgets',
+        'hildon-1',
         'hildonfm',
         'dbus-1',
         'dbus-glib-1',

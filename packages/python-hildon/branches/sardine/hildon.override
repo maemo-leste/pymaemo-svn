@@ -54,6 +54,8 @@ import gtk.Toolbar as PyGtkToolbar_Type
 import gtk.UIManager as PyGtkUIManager_Type
 import gtk.Window as PyGtkWindow_Type
 import gtk.Widget as PyGtkWidget_Type
+import gtk.ScrolledWindow as PyGtkScrolledWindow_Type
+import gtk.Label as PyGtkLabel_Type
 import pango.FontDescription as PyPangoFontDescription_Type
 
 %%
@@ -203,20 +205,6 @@ _wrap_hildon_file_chooser_dialog_new(PyGObject *self, PyObject *args, PyObject *
 
     pygobject_register_wrapper((PyObject *)self);
     return 0;
-}
-
-%%
-override hildon_appview_get_vbox noargs
-static PyObject *
-_wrap_hildon_appview_get_vbox (PyGObject *self)
-{
-    GtkWidget *ret;
-    HildonAppView *appview;
-
-    appview = HILDON_APPVIEW(self->obj);
-    ret = appview->vbox;
-
-    return pygobject_new((GObject *)ret);
 }
 
 %%
@@ -443,32 +431,6 @@ _wrap_hildon_weekday_picker_isset_day(PyGObject *self, PyObject *args, PyObject 
     ret = hildon_weekday_picker_isset_day(HILDON_WEEKDAY_PICKER(self->obj), day);
     return PyBool_FromLong(ret);
 
-}
-
-%%
-override hildon_grid_item_new_with_label kwargs
-static int
-_wrap_hildon_grid_item_new_with_label(PyGObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "icon_basename", "label", NULL };
-    char *icon_basename;
-    char *label = NULL;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s|s:HildonGridItem.__init__", kwlist, &icon_basename, &label))
-        return -1;
-        
-    if (label != NULL) {
-        self->obj = (GObject *)hildon_grid_item_new_with_label(icon_basename, label);
-    } else {
-        self->obj = (GObject *)hildon_grid_item_new(icon_basename);
-    }
-
-    if (!self->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create HildonGridItem object");
-        return -1;
-    }
-    pygobject_register_wrapper((PyObject *)self);
-    return 0;
 }
 
 %%

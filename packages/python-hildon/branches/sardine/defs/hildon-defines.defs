@@ -3,30 +3,13 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-defines.h
+;; From hildon-defines.h
 
-(define-function hildon_icon_sizes_init
-  (c-name "hildon_icon_sizes_init")
-  (return-type "none")
-)
-
-(define-function hildon_gtk_widget_set_logical_font
-  (c-name "hildon_gtk_widget_set_logical_font")
-  (return-type "gulong")
+(define-function hildon_get_icon_pixel_size
+  (c-name "hildon_get_icon_pixel_size")
+  (return-type "gint")
   (parameters
-    '("GtkWidget*" "widget")
-    '("const-gchar*" "logicalfontname")
-  )
-)
-
-(define-function hildon_gtk_widget_set_logical_color
-  (c-name "hildon_gtk_widget_set_logical_color")
-  (return-type "gulong")
-  (parameters
-    '("GtkWidget*" "widget")
-    '("GtkRcFlags" "rcflags")
-    '("GtkStateType" "state")
-    '("const-gchar*" "logicalcolorname")
+    '("GtkIconSize" "size")
   )
 )
 

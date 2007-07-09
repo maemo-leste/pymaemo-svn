@@ -9,26 +9,24 @@
 
 ;; Enumerations and flags ...
 
-;(define-enum NoteType
-;  (in-module "Hildon")
-;  (c-name "HildonNoteType")
-;  (gtype-id "HILDON_TYPE_NOTE_TYPE")
-;  (values
-;    '("confirmation-type" "HILDON_NOTE_CONFIRMATION_TYPE")
-;    '("confirmation-button-type" "HILDON_NOTE_CONFIRMATION_BUTTON_TYPE")
-;    '("information-type" "HILDON_NOTE_INFORMATION_TYPE")
-;    '("information-theme-type" "HILDON_NOTE_INFORMATION_THEME_TYPE")
-;    '("progressbar-type" "HILDON_NOTE_PROGRESSBAR_TYPE")
-;  )
-;)
+(define-enum NoteType
+  (in-module "Hildon")
+  (c-name "HildonNoteType")
+  (gtype-id "HILDON_TYPE_NOTE_TYPE")
+  (values
+    '("confirmation" "HILDON_NOTE_TYPE_CONFIRMATION")
+    '("confirmation-button" "HILDON_NOTE_TYPE_CONFIRMATION_BUTTON")
+    '("information" "HILDON_NOTE_TYPE_INFORMATION")
+    '("information-theme" "HILDON_NOTE_TYPE_INFORMATION_THEME")
+    '("progressbar" "HILDON_NOTE_TYPE_PROGRESSBAR")
+  )
+)
 
 
-;; From /usr/include/hildon-widgets/hildon-note.h
+;; From hildon-note.h
 
-; There is no "hildon_note_new" function. That declaration is here just to be overrided.
-(define-function hildon_note_new
-  (c-name "hildon_note_new")
-  (is-constructor-of "HildonNote")
+(define-function hildon_note_new_confirmation
+  (c-name "hildon_note_new_confirmation")
   (return-type "GtkWidget*")
   (parameters
     '("GtkWindow*" "parent")
@@ -36,102 +34,54 @@
   )
 )
 
-;override
-;(define-function hildon_note_new_confirmation
-;  (c-name "hildon_note_new_confirmation")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;  )
-;)
+(define-function hildon_note_new_confirmation_add_buttons
+  (c-name "hildon_note_new_confirmation_add_buttons")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+  (varargs #t)
+)
 
-;override
-;(define-function hildon_note_new_confirmation_add_buttons
-;  (c-name "hildon_note_new_confirmation_add_buttons")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;  )
-;  (varargs #t)
-;)
+(define-function hildon_note_new_confirmation_with_icon_name
+  (c-name "hildon_note_new_confirmation_with_icon_name")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+    '("const-gchar*" "icon_name")
+  )
+)
 
-;override
-;(define-function hildon_note_new_confirmation_with_icon_stock
-;  (c-name "hildon_note_new_confirmation_with_icon_stock")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;    '("const-gchar*" "stock_id")
-;  )
-;)
+(define-function hildon_note_new_cancel_with_progress_bar
+  (c-name "hildon_note_new_cancel_with_progress_bar")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+    '("GtkProgressBar*" "progressbar")
+  )
+)
 
-;override
-;(define-function hildon_note_new_confirmation_with_icon_name
-;  (c-name "hildon_note_new_confirmation_with_icon_name")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;    '("const-gchar*" "icon_name")
-;  )
-;)
+(define-function hildon_note_new_information
+  (c-name "hildon_note_new_information")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
 
-;override
-;(define-function hildon_note_new_cancel_with_progress_bar
-;  (c-name "hildon_note_new_cancel_with_progress_bar")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;    '("GtkProgressBar*" "progressbar")
-;  )
-;)
-
-;override
-;(define-function hildon_note_new_information
-;  (c-name "hildon_note_new_information")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;  )
-;)
-
-;override
-;(define-function hildon_note_new_information_with_icon_name
-;  (c-name "hildon_note_new_information_with_icon_name")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;    '("const-gchar*" "icon_name")
-;  )
-;)
-
-;override
-;(define-function hildon_note_new_information_with_icon_stock
-;  (c-name "hildon_note_new_information_with_icon_stock")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;    '("const-gchar*" "stock_id")
-;  )
-;)
-
-;override
-;(define-function hildon_note_new_information_with_icon_theme
-;  (c-name "hildon_note_new_information_with_icon_theme")
-;  (return-type "GtkWidget*")
-;  (parameters
-;    '("GtkWindow*" "parent")
-;    '("const-gchar*" "description")
-;    '("const-gchar*" "icon")
-;  )
-;)
+(define-function hildon_note_new_information_with_icon_name
+  (c-name "hildon_note_new_information_with_icon_name")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+    '("const-gchar*" "icon_name")
+  )
+)
 
 (define-method set_button_text
   (of-object "HildonNote")
@@ -147,19 +97,9 @@
   (c-name "hildon_note_set_button_texts")
   (return-type "none")
   (parameters
-    '("const-gchar*" "textOk")
-    '("const-gchar*" "textCancel")
+    '("const-gchar*" "text_ok")
+    '("const-gchar*" "text_cancel")
   )
-)
-
-(define-function hildon_note_get_type
-  (c-name "hildon_note_get_type")
-  (return-type "GType")
-)
-
-(define-function hildon_note_type_get_type
-  (c-name "hildon_note_type_get_type")
-  (return-type "GType")
 )
 
 

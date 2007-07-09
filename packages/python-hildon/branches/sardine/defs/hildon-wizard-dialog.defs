@@ -9,13 +9,20 @@
 
 ;; Enumerations and flags ...
 
-
-;; From /usr/include/hildon-widgets/hildon-wizard-dialog.h
-
-(define-function hildon_wizard_dialog_get_type
-  (c-name "hildon_wizard_dialog_get_type")
-  (return-type "GType")
+(define-enum WizardDialogResponse
+  (in-module "Hildon")
+  (c-name "HildonWizardDialogResponse")
+  (gtype-id "HILDON_TYPE_WIZARD_DIALOG_RESPONSE")
+  (values
+    '("cancel" "HILDON_WIZARD_DIALOG_CANCEL")
+    '("previous" "HILDON_WIZARD_DIALOG_PREVIOUS")
+    '("next" "HILDON_WIZARD_DIALOG_NEXT")
+    '("finish" "HILDON_WIZARD_DIALOG_FINISH")
+  )
 )
+
+
+;; From hildon-wizard-dialog.h
 
 (define-function hildon_wizard_dialog_new
   (c-name "hildon_wizard_dialog_new")

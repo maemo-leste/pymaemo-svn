@@ -10,28 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-font-selection-dialog.h
-
-; Deprecated
-;(define-method get_font
-;  (of-object "HildonFontSelectionDialog")
-;  (c-name "hildon_font_selection_dialog_get_font")
-;  (return-type "PangoAttrList*")
-;)
-
-;(define-method set_font
-;  (of-object "HildonFontSelectionDialog")
-;  (c-name "hildon_font_selection_dialog_set_font")
-;  (return-type "none")
-;  (parameters
-;    '("PangoAttrList*" "list")
-;  )
-;)
-
-(define-function hildon_font_selection_dialog_get_type
-  (c-name "hildon_font_selection_dialog_get_type")
-  (return-type "GType")
-)
+;; From hildon-font-selection-dialog.h
 
 (define-function hildon_font_selection_dialog_new
   (c-name "hildon_font_selection_dialog_new")
@@ -42,21 +21,6 @@
     '("const-gchar*" "title")
   )
 )
-
-;(define-method set_buffer
-;  (of-object "HildonFontSelectionDialog")
-;  (c-name "hildon_font_selection_dialog_set_buffer")
-;  (return-type "none")
-;  (parameters
-;    '("GtkTextBuffer*" "buffer")
-;  )
-;)
-
-;(define-method get_text_tag
-;  (of-object "HildonFontSelectionDialog")
-;  (c-name "hildon_font_selection_dialog_get_text_tag")
-;  (return-type "GtkTextTag*")
-;)
 
 (define-method get_preview_text
   (of-object "HildonFontSelectionDialog")

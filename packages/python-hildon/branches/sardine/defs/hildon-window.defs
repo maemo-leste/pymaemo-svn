@@ -9,13 +9,19 @@
 
 ;; Enumerations and flags ...
 
-
-;; From /usr/include/hildon-widgets/hildon-window.h
-
-(define-function hildon_window_get_type
-  (c-name "hildon_window_get_type")
-  (return-type "GType")
+(define-enum WindowClipboardOperation
+  (in-module "Hildon")
+  (c-name "HildonWindowClipboardOperation")
+  (gtype-id "HILDON_TYPE_WINDOW_CLIPBOARD_OPERATION")
+  (values
+    '("copy" "HILDON_WINDOW_CO_COPY")
+    '("cut" "HILDON_WINDOW_CO_CUT")
+    '("paste" "HILDON_WINDOW_CO_PASTE")
+  )
 )
+
+
+;; From hildon-window.h
 
 (define-function hildon_window_new
   (c-name "hildon_window_new")
