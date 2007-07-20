@@ -1,7 +1,7 @@
-Index: evolution-python-0.0.1/debian/changelog
+Index: evolution-python/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/debian/changelog	2007-06-11 16:31:30.000000000 -0300
++++ evolution-python/debian/changelog	2007-07-18 17:57:36.000000000 -0300
 @@ -0,0 +1,6 @@
 +evolution-python (0.0.1-1osso1) unstable; urgency=low
 +
@@ -9,16 +9,16 @@ Index: evolution-python-0.0.1/debian/changelog
 +
 + -- Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>  Mon, 04 Jun 2007 17:05:00 -0300
 +
-Index: evolution-python-0.0.1/debian/compat
+Index: evolution-python/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/debian/compat	2007-06-11 16:11:42.000000000 -0300
++++ evolution-python/debian/compat	2007-07-18 17:57:36.000000000 -0300
 @@ -0,0 +1 @@
 +4
-Index: evolution-python-0.0.1/debian/control
+Index: evolution-python/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/debian/control	2007-06-11 16:30:23.000000000 -0300
++++ evolution-python/debian/control	2007-07-18 17:57:36.000000000 -0300
 @@ -0,0 +1,17 @@
 +Source: evolution-python
 +Priority: optional
@@ -37,10 +37,10 @@ Index: evolution-python-0.0.1/debian/control
 +Depends: python2.5-evolution (= ${Source-Version})
 +Description: Examples and header files for Python bindings for Libosso library
 +
-Index: evolution-python-0.0.1/debian/copyright
+Index: evolution-python/debian/copyright
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/debian/copyright	2007-06-11 16:11:42.000000000 -0300
++++ evolution-python/debian/copyright	2007-07-18 17:57:36.000000000 -0300
 @@ -0,0 +1,12 @@
 +This package was debianized by Lauro Moura Maranhao Neto <lauro.neto@indt.org.br> on
 +Thu, 04 Jun 2007 17:06:17 -0300.
@@ -54,11 +54,11 @@ Index: evolution-python-0.0.1/debian/copyright
 +License:
 +
 +See COPYING file.
-Index: evolution-python-0.0.1/debian/rules
+Index: evolution-python/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/debian/rules	2007-06-11 16:11:42.000000000 -0300
-@@ -0,0 +1,83 @@
++++ evolution-python/debian/rules	2007-07-18 17:58:18.000000000 -0300
+@@ -0,0 +1,84 @@
 +#!/usr/bin/make -f
 +
 +PYVER=2.5
@@ -78,7 +78,8 @@ Index: evolution-python-0.0.1/debian/rules
 +
 +config.status: configure
 +	dh_testdir
-+	CFLAGS="$(CFLAGS)" PYTHON="$(PYTHON)" ./configure \
++	CFLAGS="$(CFLAGS)" PYTHON="$(PYTHON)" ./autogen.sh \
++		   --enable-ecal=no \
 +		   --prefix=/usr \
 +		   --mandir=\$${prefix}/share/man \
 +		   --infodir=\$${prefix}/share/info
