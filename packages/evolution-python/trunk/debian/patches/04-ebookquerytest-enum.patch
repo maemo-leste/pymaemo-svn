@@ -1,0 +1,79 @@
+Index: evolution-python/src/ebook-enums.c
+===================================================================
+--- evolution-python.orig/src/ebook-enums.c	2007-07-20 17:35:09.000000000 -0300
++++ evolution-python/src/ebook-enums.c	2007-07-20 17:35:50.000000000 -0300
+@@ -155,3 +155,26 @@
+ 
+ /* Generated data ends here */
+ 
++/* Generated data (by glib-mkenums) */
++
++
++/* enumerations from "/usr/include/evolution-data-server-1.4/libebook/e-book-query.h" */
++GType
++e_book_query_test_get_type (void)
++{
++  static GType etype = 0;
++  if (etype == 0) {
++    static const GEnumValue values[] = {
++      { E_BOOK_QUERY_IS, "E_BOOK_QUERY_IS", "is" },
++      { E_BOOK_QUERY_CONTAINS, "E_BOOK_QUERY_CONTAINS", "contains" },
++      { E_BOOK_QUERY_BEGINS_WITH, "E_BOOK_QUERY_BEGINS_WITH", "begins-with" },
++      { E_BOOK_QUERY_ENDS_WITH, "E_BOOK_QUERY_ENDS_WITH", "ends-with" },
++      { 0, NULL, NULL }
++    };
++    etype = g_enum_register_static ("EBookQueryTest", values);
++  }
++  return etype;
++}
++
++/* Generated data ends here */
++
+Index: evolution-python/src/ebook-enums.h
+===================================================================
+--- evolution-python.orig/src/ebook-enums.h	2007-07-20 17:35:10.000000000 -0300
++++ evolution-python/src/ebook-enums.h	2007-07-20 17:36:45.000000000 -0300
+@@ -18,6 +18,7 @@
+ #define EVO_ENUMS_H
+ 
+ #include <libebook/e-contact.h>
++#include <libebook/e-book-query.h>
+ 
+ /* Generated data (by glib-mkenums) */
+ 
+@@ -29,4 +30,12 @@
+ 
+ /* Generated data ends here */
+ 
++/* Generated data (by glib-mkenums) */
++
++/* enumerations from "/usr/include/evolution-data-server-1.4/libebook/e-book-query.h" */
++GType e_book_query_test_get_type (void) G_GNUC_CONST;
++#define E_TYPE_BOOK_QUERY_TEST (e_book_query_test_get_type())
++
++/* Generated data ends here */
++
+ #endif
+Index: evolution-python/src/ebook.defs
+===================================================================
+--- evolution-python.orig/src/ebook.defs	2007-07-20 17:33:14.000000000 -0300
++++ evolution-python/src/ebook.defs	2007-07-20 17:37:53.000000000 -0300
+@@ -308,6 +308,18 @@
+   )
+ )
+ 
++;; EBookQuery enumerations
++(define-enum EBookQueryTest
++  (in-module "evolution")
++  (c-name "EBookQueryTest")
++  (gtype-id "E_TYPE_BOOK_QUERY_TEST")
++  (values
++    '("is" "E_BOOK_QUERY_IS")
++    '("contains" "E_BOOK_QUERY_CONTAINS")
++    '("begins-with" "E_BOOK_QUERY_BEGINS_WITH")
++    '("ends-with" "E_BOOK_QUERY_ENDS_WITH")
++  )
++)
+ 
+ ;;------------------------------------------------------------------------------
+ ;; evo-environment
