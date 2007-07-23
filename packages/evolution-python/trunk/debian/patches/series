@@ -12,3 +12,4 @@
 #10-add-book-get-book-view.patch
 #11-commit-contact.patch
 06-bookview-defs.patch
+07-getbookview.patch
