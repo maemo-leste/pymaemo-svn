@@ -8,6 +8,7 @@
 #04-add-bookview-support.patch
 #07-econtactfield-enumeration.patch
 #08-ebookquerytest-enumeration.patch
-09-ebookquery-object.patch
+05-ebookquery-object.patch
 #10-add-book-get-book-view.patch
 #11-commit-contact.patch
+06-bookview-defs.patch
