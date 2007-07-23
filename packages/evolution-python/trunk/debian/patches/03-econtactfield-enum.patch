@@ -1,7 +1,7 @@
 Index: evolution-python/src/ebook.defs
 ===================================================================
 --- evolution-python.orig/src/ebook.defs	2007-07-20 15:30:22.000000000 -0300
-+++ evolution-python/src/ebook.defs	2007-07-20 15:35:23.000000000 -0300
++++ evolution-python/src/ebook.defs	2007-07-23 14:32:00.000000000 -0300
 @@ -73,6 +73,138 @@
    )
  )
@@ -162,7 +162,7 @@ Index: evolution-python/src/Makefile.am
 Index: evolution-python/src/ebook-enums.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python/src/ebook-enums.c	2007-07-20 15:53:26.000000000 -0300
++++ evolution-python/src/ebook-enums.c	2007-07-23 14:32:00.000000000 -0300
 @@ -0,0 +1,157 @@
 +#include <ebook-enums.h>
 +
@@ -324,7 +324,7 @@ Index: evolution-python/src/ebook-enums.c
 Index: evolution-python/src/ebook-enums.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python/src/ebook-enums.h	2007-07-20 15:41:10.000000000 -0300
++++ evolution-python/src/ebook-enums.h	2007-07-23 14:32:00.000000000 -0300
 @@ -0,0 +1,32 @@
 +/*
 + *  This program is free software; you can redistribute it and/or modify
@@ -392,80 +392,3 @@ Index: evolution-python/src/ebookmodule.c
  
      PyModule_AddObject(m, "__version__",
                         Py_BuildValue("iii",
-Index: evolution-python/src/Makefile.in
-===================================================================
---- evolution-python.orig/src/Makefile.in	2007-07-20 15:31:52.000000000 -0300
-+++ evolution-python/src/Makefile.in	2007-07-20 15:51:56.000000000 -0300
-@@ -57,7 +57,8 @@
- ebook_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
- am_ebook_la_OBJECTS = ebook_la-ebookmodule.lo \
- 	ebook_la-override_common.lo ebook_la-evo-ebook-environment.lo \
--	ebook_la-evo-contact.lo ebook_la-evo-addressbook.lo
-+	ebook_la-evo-contact.lo ebook_la-evo-addressbook.lo \
-+	ebook_la-ebook-enums.lo
- nodist_ebook_la_OBJECTS = ebook_la-ebook.lo
- ebook_la_OBJECTS = $(am_ebook_la_OBJECTS) $(nodist_ebook_la_OBJECTS)
- ecal_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@@ -68,7 +69,8 @@
- DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
- depcomp = $(SHELL) $(top_srcdir)/depcomp
- am__depfiles_maybe = depfiles
--@AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/ebook_la-ebook.Plo \
-+@AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/ebook_la-ebook-enums.Plo \
-+@AMDEP_TRUE@	./$(DEPDIR)/ebook_la-ebook.Plo \
- @AMDEP_TRUE@	./$(DEPDIR)/ebook_la-ebookmodule.Plo \
- @AMDEP_TRUE@	./$(DEPDIR)/ebook_la-evo-addressbook.Plo \
- @AMDEP_TRUE@	./$(DEPDIR)/ebook_la-evo-contact.Plo \
-@@ -236,10 +238,12 @@
- 	evo-ebook-environment.c \
- 	evo-contact.c \
- 	evo-addressbook.c \
-+	ebook-enums.c \
- 	override_common.h \
- 	evo-ebook-environment.h \
- 	evo-contact.h \
--	evo-addressbook.h
-+	evo-addressbook.h \
-+	ebook-enums.h
- 
- nodist_ecal_la_SOURCES = ecal.c
- nodist_ebook_la_SOURCES = ebook.c
-@@ -342,6 +346,7 @@
- distclean-compile:
- 	-rm -f *.tab.c
- 
-+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ebook_la-ebook-enums.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ebook_la-ebook.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ebook_la-ebookmodule.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ebook_la-evo-addressbook.Plo@am__quote@
-@@ -498,6 +503,30 @@
- @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
- @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -c -o ebook_la-evo-addressbook.lo `test -f 'evo-addressbook.c' || echo '$(srcdir)/'`evo-addressbook.c
- 
-+ebook_la-ebook-enums.o: ebook-enums.c
-+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -MT ebook_la-ebook-enums.o -MD -MP -MF "$(DEPDIR)/ebook_la-ebook-enums.Tpo" -c -o ebook_la-ebook-enums.o `test -f 'ebook-enums.c' || echo '$(srcdir)/'`ebook-enums.c; \
-+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ebook_la-ebook-enums.Tpo" "$(DEPDIR)/ebook_la-ebook-enums.Po"; else rm -f "$(DEPDIR)/ebook_la-ebook-enums.Tpo"; exit 1; fi
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ebook-enums.c' object='ebook_la-ebook-enums.o' libtool=no @AMDEPBACKSLASH@
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/ebook_la-ebook-enums.Po' tmpdepfile='$(DEPDIR)/ebook_la-ebook-enums.TPo' @AMDEPBACKSLASH@
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -c -o ebook_la-ebook-enums.o `test -f 'ebook-enums.c' || echo '$(srcdir)/'`ebook-enums.c
-+
-+ebook_la-ebook-enums.obj: ebook-enums.c
-+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -MT ebook_la-ebook-enums.obj -MD -MP -MF "$(DEPDIR)/ebook_la-ebook-enums.Tpo" -c -o ebook_la-ebook-enums.obj `if test -f 'ebook-enums.c'; then $(CYGPATH_W) 'ebook-enums.c'; else $(CYGPATH_W) '$(srcdir)/ebook-enums.c'; fi`; \
-+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ebook_la-ebook-enums.Tpo" "$(DEPDIR)/ebook_la-ebook-enums.Po"; else rm -f "$(DEPDIR)/ebook_la-ebook-enums.Tpo"; exit 1; fi
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ebook-enums.c' object='ebook_la-ebook-enums.obj' libtool=no @AMDEPBACKSLASH@
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/ebook_la-ebook-enums.Po' tmpdepfile='$(DEPDIR)/ebook_la-ebook-enums.TPo' @AMDEPBACKSLASH@
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -c -o ebook_la-ebook-enums.obj `if test -f 'ebook-enums.c'; then $(CYGPATH_W) 'ebook-enums.c'; else $(CYGPATH_W) '$(srcdir)/ebook-enums.c'; fi`
-+
-+ebook_la-ebook-enums.lo: ebook-enums.c
-+@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -MT ebook_la-ebook-enums.lo -MD -MP -MF "$(DEPDIR)/ebook_la-ebook-enums.Tpo" -c -o ebook_la-ebook-enums.lo `test -f 'ebook-enums.c' || echo '$(srcdir)/'`ebook-enums.c; \
-+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ebook_la-ebook-enums.Tpo" "$(DEPDIR)/ebook_la-ebook-enums.Plo"; else rm -f "$(DEPDIR)/ebook_la-ebook-enums.Tpo"; exit 1; fi
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ebook-enums.c' object='ebook_la-ebook-enums.lo' libtool=yes @AMDEPBACKSLASH@
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/ebook_la-ebook-enums.Plo' tmpdepfile='$(DEPDIR)/ebook_la-ebook-enums.TPlo' @AMDEPBACKSLASH@
-+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -c -o ebook_la-ebook-enums.lo `test -f 'ebook-enums.c' || echo '$(srcdir)/'`ebook-enums.c
-+
- ebook_la-ebook.o: ebook.c
- @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ebook_la_CFLAGS) $(CFLAGS) -MT ebook_la-ebook.o -MD -MP -MF "$(DEPDIR)/ebook_la-ebook.Tpo" -c -o ebook_la-ebook.o `test -f 'ebook.c' || echo '$(srcdir)/'`ebook.c; \
- @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ebook_la-ebook.Tpo" "$(DEPDIR)/ebook_la-ebook.Po"; else rm -f "$(DEPDIR)/ebook_la-ebook.Tpo"; exit 1; fi
