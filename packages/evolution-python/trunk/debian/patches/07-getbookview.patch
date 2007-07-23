@@ -1,7 +1,7 @@
 Index: evolution-python/src/ebook.defs
 ===================================================================
---- evolution-python.orig/src/ebook.defs	2007-07-23 16:23:03.000000000 -0300
-+++ evolution-python/src/ebook.defs	2007-07-23 16:26:51.000000000 -0300
+--- evolution-python.orig/src/ebook.defs	2007-07-23 16:52:45.000000000 -0300
++++ evolution-python/src/ebook.defs	2007-07-23 16:52:46.000000000 -0300
 @@ -315,6 +315,20 @@
    )
  )
@@ -77,8 +77,8 @@ Index: evolution-python/src/ebook.defs
  ;;------------------------------------------------------------------------------
 Index: evolution-python/src/ebook.override
 ===================================================================
---- evolution-python.orig/src/ebook.override	2007-07-23 16:23:05.000000000 -0300
-+++ evolution-python/src/ebook.override	2007-07-23 16:43:24.000000000 -0300
+--- evolution-python.orig/src/ebook.override	2007-07-23 16:52:45.000000000 -0300
++++ evolution-python/src/ebook.override	2007-07-23 18:08:35.000000000 -0300
 @@ -425,6 +425,99 @@
  	return pyebook_query_new(e_book_query_copy(self->query));
  }
@@ -179,7 +179,7 @@ Index: evolution-python/src/ebook.override
  
  %%
  init
-@@ -590,4 +683,238 @@
+@@ -590,4 +683,239 @@
      Py_XINCREF(pyret);
      return pyret;
  }
@@ -213,14 +213,15 @@ Index: evolution-python/src/ebook.override
 +
 +        for(i = 0; i < len; i++){
 +            PyObject *item;
++            EContactField field;
++            char *name;
++            int size;
++
 +            item = PyList_GetItem(pyfields, i);
 +
-+            if(!PyString_Check(item)){
-+                if(fields != NULL)
-+                    g_list_free(fields);
-+            }
-+
-+            fields = g_list_append(fields, PyString_AsString(item));
++            pyg_enum_get_value(E_TYPE_CONTACT_FIELD, item, (gint *)&field);
++            name = e_contact_field_name(field);
++            fields = g_list_append(fields, name);
 +        }
 +    }
 +
@@ -421,8 +422,8 @@ Index: evolution-python/src/ebook.override
 Index: evolution-python/test/bookview.py
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python/test/bookview.py	2007-07-23 16:42:52.000000000 -0300
-@@ -0,0 +1,202 @@
++++ evolution-python/test/bookview.py	2007-07-23 18:03:54.000000000 -0300
+@@ -0,0 +1,215 @@
 +#!/usr/bin/python2.5
 +
 +import time
@@ -573,6 +574,19 @@ Index: evolution-python/test/bookview.py
 +            raise TypeError("Contacts not updated")
 +
 +        view.remove_contacts_changed_cb(h1)
++
++    def testGetBookViewWithFields(self):
++        query = e.EBookQuery.field_test(e.CONTACT_FULL_NAME,
++                                        e.BOOK_QUERY_CONTAINS,
++                                        "Dummy")
++
++        print query
++
++        view = self.book.get_book_view(query, [e.CONTACT_NICKNAME])
++        view.start()
++
++        print view
++        self.refresh_gui()
 +
 +    def added_cb(self, view, contacts, extra_data=None):
 +        self.contacts = contacts
