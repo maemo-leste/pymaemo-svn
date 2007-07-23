@@ -5,9 +5,9 @@
 02-commit-contact.patch
 03-econtactfield-enum.patch
 04-ebookquerytest-enum.patch
-04-add-bookview-support.patch
-07-econtactfield-enumeration.patch
-08-ebookquerytest-enumeration.patch
+#04-add-bookview-support.patch
+#07-econtactfield-enumeration.patch
+#08-ebookquerytest-enumeration.patch
 09-ebookquery-object.patch
-10-add-book-get-book-view.patch
-11-commit-contact.patch
+#10-add-book-get-book-view.patch
+#11-commit-contact.patch

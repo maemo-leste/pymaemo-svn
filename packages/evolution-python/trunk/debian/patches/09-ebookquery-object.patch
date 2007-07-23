@@ -1,7 +1,7 @@
-Index: evolution-python-0.0.1/src/evolution.override
+Index: evolution-python/src/ebook.override
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolution.override	2007-07-02 14:18:09.000000000 -0300
-+++ evolution-python-0.0.1/src/evolution.override	2007-07-02 14:20:43.000000000 -0300
+--- evolution-python.orig/src/ebook.override	2007-07-23 15:00:08.000000000 -0300
++++ evolution-python/src/ebook.override	2007-07-23 15:00:18.000000000 -0300
 @@ -45,6 +45,394 @@
  	return result;
  }
@@ -88,7 +88,7 @@ Index: evolution-python-0.0.1/src/evolution.override
 +PyTypeObject PyEBookQuery_Type = {
 +	PyObject_HEAD_INIT(NULL)
 +	0,                  /* ob_size */
-+	"evolution.EBookQuery",          /* tp_name */
++	"ebook.EBookQuery",          /* tp_name */
 +	sizeof(PyEBookQuery),       /* tp_basicsize */
 +	0,                  /* tp_itemsize */
 +	/* methods */
@@ -395,35 +395,35 @@ Index: evolution-python-0.0.1/src/evolution.override
 +		return;
 +
  %%
- modulename evolution
+ modulename ebook
  %%
-Index: evolution-python-0.0.1/src/evolutionmodule.c
+Index: evolution-python/src/ebookmodule.c
 ===================================================================
---- evolution-python-0.0.1.orig/src/evolutionmodule.c	2007-07-02 14:18:09.000000000 -0300
-+++ evolution-python-0.0.1/src/evolutionmodule.c	2007-07-02 14:18:11.000000000 -0300
-@@ -9,6 +9,7 @@
- void pyevolution_add_constants(PyObject *m, const gchar *strip_prefix);
+--- evolution-python.orig/src/ebookmodule.c	2007-07-23 15:00:08.000000000 -0300
++++ evolution-python/src/ebookmodule.c	2007-07-23 15:00:18.000000000 -0300
+@@ -26,6 +26,7 @@
+ void pyebook_add_constants(PyObject *m, const gchar *strip_prefix);
  
- extern PyMethodDef pyevolution_functions[];
+ extern PyMethodDef pyebook_functions[];
 +extern PyObject PyEBookQuery_Type;
  
  DL_EXPORT(void)
- initevolution(void)
-@@ -33,6 +34,8 @@
+ initebook(void)
+@@ -49,6 +50,8 @@
                                       EVOLUTION_MINOR_VERSION,
                                       EVOLUTION_PATCH_VERSION));
      
 +    PyModule_AddObject(m, "EBookQuery", (PyObject *)&PyEBookQuery_Type);
 +
      if (PyErr_Occurred())
-         Py_FatalError("could not initialise module _evolution");
+         Py_FatalError("could not initialise module _ebook");
  }
-Index: evolution-python-0.0.1/test/bookquery.py
+Index: evolution-python/test/bookquery.py
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.1/test/bookquery.py	2007-07-02 14:18:11.000000000 -0300
++++ evolution-python/test/bookquery.py	2007-07-23 15:00:18.000000000 -0300
 @@ -0,0 +1,101 @@
-+import evolution as e
++import evolution.ebook as e
 +import unittest
 +
 +class TestBookQuery(unittest.TestCase):
