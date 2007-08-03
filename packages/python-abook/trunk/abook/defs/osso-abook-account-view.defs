@@ -1,0 +1,71 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AccountView
+  (in-module "ABook")
+  (parent "OssoABookTreeView")
+  (c-name "OssoABookAccountView")
+  (gtype-id "OSSO_ABOOK_TYPE_ACCOUNT_VIEW")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-account-view.h
+
+(define-function account_view_get_type
+  (c-name "osso_abook_account_view_get_type")
+  (return-type "GType")
+)
+
+(define-function account_view_new
+  (c-name "osso_abook_account_view_new")
+  (is-constructor-of "OssoABookAccountView")
+  (return-type "GtkWidget*")
+  (properties
+    '("model", (argname "model"))
+    '("filter_model", (argname "filter"))
+  )
+;  (parameters
+;    '("OssoABookAccountModel*" "model")
+;    '("OssoABookFilterModel*" "filter_model")
+;  )
+)
+
+(define-function account_view_new_basic
+  (c-name "osso_abook_account_view_new_basic")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookAccountModel*" "model")
+  )
+)
+
+(define-function account_view_new_no_contact_names
+  (c-name "osso_abook_account_view_new_no_contact_names")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookAccountModel*" "model")
+    '("OssoABookFilterModel*" "filter_model")
+  )
+)
+
+(define-function account_view_new_no_contact_names_basic
+  (c-name "osso_abook_account_view_new_no_contact_names_basic")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookAccountModel*" "model")
+  )
+)
+
+(define-method get_selection
+  (of-object "OssoABookAccountView")
+  (c-name "osso_abook_account_view_get_selection")
+  (return-type "GList*")
+)
+
+(define-method get_focus
+  (of-object "OssoABookAccountView")
+  (c-name "osso_abook_account_view_get_focus")
+  (return-type "OssoABookAccountModelTuple*")
+)
+
+

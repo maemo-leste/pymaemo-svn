@@ -1,0 +1,35 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object BlockManager
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookBlockManager")
+  (gtype-id "OSSO_ABOOK_TYPE_BLOCK_MANAGER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-block-manager.h
+
+(define-function block_manager_get_type
+  (c-name "osso_abook_block_manager_get_type")
+  (return-type "GType")
+)
+
+(define-function block_manager_new
+  (c-name "osso_abook_block_manager_new")
+  (is-constructor-of "OssoABookBlockManager")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookContactModel*" "contact_model")
+  )
+)
+
+(define-method get_model
+  (of-object "OssoABookBlockManager")
+  (c-name "osso_abook_block_manager_get_model")
+  (return-type "OssoABookContactModel*")
+)
+
+

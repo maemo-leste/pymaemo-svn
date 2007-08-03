@@ -1,0 +1,60 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ContactView
+  (in-module "ABook")
+  (parent "OssoABookTreeView")
+  (c-name "OssoABookContactView")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_VIEW")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-contact-view.h
+
+(define-function contact_view_get_type
+  (c-name "osso_abook_contact_view_get_type")
+  (return-type "GType")
+)
+
+(define-function contact_view_new
+  (c-name "osso_abook_contact_view_new")
+  (is-constructor-of "OssoABookContactView")
+  (return-type "GtkWidget*")
+  (properties
+    '("model", (argname "model"))
+    '("filter_model", (argname "filter"))
+  )
+;  (parameters
+;    '("OssoABookContactModel*" "model")
+;    '("OssoABookFilterModel*" "filter_model")
+;  )
+)
+
+(define-function contact_view_new_basic
+  (c-name "osso_abook_contact_view_new_basic")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookContactModel*" "model")
+  )
+)
+
+(define-method get_selection
+  (of-object "OssoABookContactView")
+  (c-name "osso_abook_contact_view_get_selection")
+  (return-type "GList*")
+)
+
+(define-method get_focus
+  (of-object "OssoABookContactView")
+  (c-name "osso_abook_contact_view_get_focus")
+  (return-type "EContact*")
+)
+
+(define-method enable_drag_source
+  (of-object "OssoABookContactView")
+  (c-name "osso_abook_contact_view_enable_drag_source")
+  (return-type "none")
+)
+
+

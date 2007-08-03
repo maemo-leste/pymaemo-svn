@@ -1,0 +1,32 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AccountPresence
+  (in-module "ABook")
+  (parent "OssoABookPresence")
+  (c-name "OssoABookAccountPresence")
+  (gtype-id "OSSO_ABOOK_TYPE_ACCOUNT_PRESENCE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-account-presence.h
+
+(define-function account_presence_get_type
+  (c-name "osso_abook_account_presence_get_type")
+  (return-type "GType")
+)
+
+(define-method presence_new
+  (of-object "OssoABookAccount")
+  (c-name "osso_abook_account_presence_new")
+  (return-type "OssoABookAccountPresence*")
+)
+
+(define-method get_account
+  (of-object "OssoABookAccountPresence")
+  (c-name "osso_abook_account_presence_get_account")
+  (return-type "OssoABookAccount*")
+)
+
+

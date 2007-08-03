@@ -1,0 +1,17 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From osso-abook-merge.h
+
+(define-function merge_contacts
+  (c-name "osso_abook_merge_contacts")
+  (return-type "EContact*")
+  (parameters
+    '("GList*" "contacts")
+    '("GtkWindow*" "parent")
+  )
+)
+
+

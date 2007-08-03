@@ -1,0 +1,25 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object OnlineGroup
+  (in-module "ABook")
+  (parent "OssoABookGroup")
+  (c-name "OssoABookOnlineGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_ONLINE_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-online-group.h
+
+(define-function online_group_get_type
+  (c-name "osso_abook_online_group_get_type")
+  (return-type "GType")
+)
+
+(define-function online_group_get
+  (c-name "osso_abook_online_group_get")
+  (return-type "OssoABookGroup*")
+)
+
+

@@ -1,0 +1,97 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ContactEditor
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookContactEditor")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_EDITOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-contact-editor.h
+
+(define-function contact_editor_get_type
+  (c-name "osso_abook_contact_editor_get_type")
+  (return-type "GType")
+)
+
+(define-function contact_editor_new
+  (c-name "osso_abook_contact_editor_new")
+  (is-constructor-of "OssoABookContactEditor")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_book_view
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+(define-method get_book_view
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_get_book_view")
+  (return-type "EBookView*")
+)
+
+(define-method set_contact
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_set_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method get_contact
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_get_contact")
+  (return-type "EContact*")
+)
+
+(define-method set_editable
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_set_editable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "editable")
+  )
+)
+
+(define-method get_editable
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_get_editable")
+  (return-type "gboolean")
+)
+
+(define-method set_new
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_set_new")
+  (return-type "none")
+  (parameters
+    '("gboolean" "new")
+  )
+)
+
+(define-method get_new
+  (of-object "OssoABookContactEditor")
+  (c-name "osso_abook_contact_editor_get_new")
+  (return-type "gboolean")
+)
+
+;Use ebook.EBookView signals instead (Same function, more portable, etc..)
+;(define-method set_added_cb
+;  (of-object "OssoABookContactEditor")
+;  (c-name "osso_abook_contact_editor_set_added_cb")
+;  (return-type "none")
+;  (parameters
+;    '("contact_added_cb" "cb")
+;    '("gpointer" "userdata")
+;  )
+;)
+
+

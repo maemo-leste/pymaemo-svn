@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ManualGroup
+  (in-module "ABook")
+  (parent "OssoABookGroup")
+  (c-name "OssoABookManualGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_MANUAL_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-manual-group.h
+
+(define-function manual_group_get_type
+  (c-name "osso_abook_manual_group_get_type")
+  (return-type "GType")
+)
+
+

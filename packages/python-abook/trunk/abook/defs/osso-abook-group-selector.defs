@@ -1,0 +1,65 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object GroupSelector
+  (in-module "ABook")
+  (parent "OssoABookGroupView")
+  (c-name "OssoABookGroupSelector")
+  (gtype-id "OSSO_ABOOK_TYPE_GROUP_SELECTOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-group-selector.h
+
+(define-function group_selector_get_type
+  (c-name "osso_abook_group_selector_get_type")
+  (return-type "GType")
+)
+
+(define-function group_selector_new
+  (c-name "osso_abook_group_selector_new")
+  (is-constructor-of "OssoABookGroupSelector")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookGroupModel*" "model")
+  )
+)
+
+(define-method get_extended_selection
+  (of-object "OssoABookGroupSelector")
+  (c-name "osso_abook_group_selector_get_extended_selection")
+  (return-type "GList*")
+)
+
+(define-method select_all
+  (of-object "OssoABookGroupSelector")
+  (c-name "osso_abook_group_selector_select_all")
+  (return-type "none")
+)
+
+(define-method deselect_all
+  (of-object "OssoABookGroupSelector")
+  (c-name "osso_abook_group_selector_deselect_all")
+  (return-type "none")
+)
+
+(define-method select_group
+  (of-object "OssoABookGroupSelector")
+  (c-name "osso_abook_group_selector_select_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookGroup*" "group")
+  )
+)
+
+(define-method deselect_group
+  (of-object "OssoABookGroupSelector")
+  (c-name "osso_abook_group_selector_deselect_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookGroup*" "group")
+  )
+)
+
+

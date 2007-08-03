@@ -1,0 +1,105 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Group
+  (in-module "ABook")
+  (parent "GObject")
+  (c-name "OssoABookGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-group.h
+
+(define-function group_get_type
+  (c-name "osso_abook_group_get_type")
+  (return-type "GType")
+)
+
+(define-method get_name
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_get_name")
+  (return-type "const-char*")
+)
+
+(define-method get_display_name
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_get_display_name")
+  (return-type "const-char*")
+)
+
+(define-method get_icon_name
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_get_icon_name")
+  (return-type "const-char*")
+)
+
+(define-method get_empty_widget
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_get_empty_widget")
+  (return-type "GtkWidget*")
+)
+
+(define-method is_visible
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_is_visible")
+  (return-type "gboolean")
+)
+
+(define-method includes_contact
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_includes_contact")
+  (return-type "gboolean")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookPresence*" "presence")
+  )
+)
+
+(define-method emit_refilter_contact
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_emit_refilter_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method emit_refilter_presence
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_emit_refilter_presence")
+  (return-type "none")
+  (parameters
+    '("OssoABookPresence*" "presence")
+  )
+)
+
+(define-method emit_refilter_group
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_emit_refilter_group")
+  (return-type "none")
+)
+
+(define-method get_sort_weight
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_get_sort_weight")
+  (return-type "int")
+)
+
+(define-method get_sensitive
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_get_sensitive")
+  (return-type "gboolean")
+)
+
+(define-method compare
+  (of-object "OssoABookGroup")
+  (c-name "osso_abook_group_compare")
+  (return-type "int")
+  (parameters
+    '("OssoABookGroup*" "b")
+  )
+)
+
+

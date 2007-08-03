@@ -1,0 +1,3 @@
+(include "defs/chat-voip-service-dialog.defs")
+(include "defs/chat-voip-utils.defs")
+

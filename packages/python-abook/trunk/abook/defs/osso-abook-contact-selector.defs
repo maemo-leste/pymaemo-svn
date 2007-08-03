@@ -1,0 +1,119 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ContactSelector
+  (in-module "ABook")
+  (parent "OssoABookContactView")
+  (c-name "OssoABookContactSelector")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_SELECTOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-contact-selector.h
+
+(define-function contact_selector_get_type
+  (c-name "osso_abook_contact_selector_get_type")
+  (return-type "GType")
+)
+
+(define-function contact_selector_new
+  (c-name "osso_abook_contact_selector_new")
+  (is-constructor-of "OssoABookContactSelector")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookContactModel*" "model")
+    '("OssoABookFilterModel*" "filter_model")
+  )
+)
+
+(define-function contact_selector_new_basic
+  (c-name "osso_abook_contact_selector_new_basic")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookContactModel*" "model")
+  )
+)
+
+(define-method get_extended_selection
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_get_extended_selection")
+  (return-type "GList*")
+)
+
+(define-method select_all
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_select_all")
+  (return-type "none")
+)
+
+(define-method deselect_all
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_deselect_all")
+  (return-type "none")
+)
+
+(define-method select_contact
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_select_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method deselect_contact
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_deselect_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method set_minimum_selection
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_set_minimum_selection")
+  (return-type "none")
+  (parameters
+    '("guint" "minimum")
+  )
+)
+
+(define-method get_minimum_selection
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_get_minimum_selection")
+  (return-type "guint")
+)
+
+(define-method set_maximum_selection
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_set_maximum_selection")
+  (return-type "none")
+  (parameters
+    '("guint" "maximum")
+  )
+)
+
+(define-method get_maximum_selection
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_get_maximum_selection")
+  (return-type "guint")
+)
+
+(define-method set_checkbox_selection_only
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_set_checkbox_selection_only")
+  (return-type "none")
+  (parameters
+    '("gboolean" "checkbox_selection_only")
+  )
+)
+
+(define-method get_checkbox_selection_only
+  (of-object "OssoABookContactSelector")
+  (c-name "osso_abook_contact_selector_get_checkbox_selection_only")
+  (return-type "gboolean")
+)
+
+

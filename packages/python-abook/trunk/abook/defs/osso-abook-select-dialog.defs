@@ -1,0 +1,60 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object SelectDialog
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookSelectDialog")
+  (gtype-id "OSSO_ABOOK_TYPE_SELECT_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-select-dialog.h
+
+(define-function select_dialog_get_type
+  (c-name "osso_abook_select_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function select_dialog_new
+  (c-name "osso_abook_select_dialog_new")
+  (is-constructor-of "OssoABookSelectDialog")
+  (return-type "GtkWidget*")
+  (properties
+    '("tree_view" (argname "tree_view"))
+    '("want-alpha-bar" (argname "alpha_bar") (optional))
+    '("want-new-contact" (argname "new_contact") (optional))
+  )
+)
+
+(define-function select_dialog_new_no_alpha
+  (c-name "osso_abook_select_dialog_new_no_alpha")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookTreeView*" "tree_view")
+  )
+)
+
+(define-method get_tree_view
+  (of-object "OssoABookSelectDialog")
+  (c-name "osso_abook_select_dialog_get_tree_view")
+  (return-type "OssoABookTreeView*")
+)
+
+(define-method get_new_contact
+  (of-object "OssoABookSelectDialog")
+  (c-name "osso_abook_select_dialog_get_new_contact")
+  (return-type "gboolean")
+)
+
+(define-method set_new_contact
+  (of-object "OssoABookSelectDialog")
+  (c-name "osso_abook_select_dialog_set_new_contact")
+  (return-type "none")
+  (parameters
+    '("gboolean" "show_new_contact")
+  )
+)
+
+

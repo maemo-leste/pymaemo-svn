@@ -1,0 +1,80 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TreeModel
+  (in-module "ABook")
+  (parent "GtkListStore")
+  (c-name "OssoABookTreeModel")
+  (gtype-id "OSSO_ABOOK_TYPE_TREE_MODEL")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-tree-model.h
+
+(define-function tree_model_get_type
+  (c-name "osso_abook_tree_model_get_type")
+  (return-type "GType")
+)
+
+(define-method get_contact_column
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_get_contact_column")
+  (return-type "guint")
+)
+
+(define-method get_presence_column
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_get_presence_column")
+  (return-type "guint")
+)
+
+(define-method set_book_view
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+(define-method get_book_view
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_get_book_view")
+  (return-type "EBookView*")
+)
+
+(define-method is_done_loading
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_is_done_loading")
+  (return-type "gboolean")
+)
+
+(define-method set_done_loading
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_set_done_loading")
+  (return-type "none")
+  (parameters
+    '("gboolean" "done")
+  )
+)
+
+(define-method contact_changed
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_contact_changed")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method presence_changed
+  (of-object "OssoABookTreeModel")
+  (c-name "osso_abook_tree_model_presence_changed")
+  (return-type "none")
+  (parameters
+    '("OssoABookPresence*" "presence")
+  )
+)
+
+

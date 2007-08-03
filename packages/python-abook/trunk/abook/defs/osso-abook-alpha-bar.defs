@@ -1,0 +1,59 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AlphaBar
+  (in-module "ABook")
+  (parent "GObject")
+  (c-name "OssoABookAlphaBar")
+  (gtype-id "OSSO_ABOOK_TYPE_ALPHA_BAR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-alpha-bar.h
+
+(define-function alpha_bar_get_type
+  (c-name "osso_abook_alpha_bar_get_type")
+  (return-type "GType")
+)
+
+(define-function alpha_bar_new
+  (c-name "osso_abook_alpha_bar_new")
+  (is-constructor-of "OssoABookAlphaBar")
+  (return-type "OssoABookAlphaBar*")
+  (properties
+    '("view", (argname "view"))
+  )
+)
+
+(define-method get_view
+  (of-object "OssoABookAlphaBar")
+  (c-name "osso_abook_alpha_bar_get_view")
+  (return-type "OssoABookTreeView*")
+)
+
+(define-method get_action_group
+  (of-object "OssoABookAlphaBar")
+  (c-name "osso_abook_alpha_bar_get_action_group")
+  (return-type "GtkActionGroup*")
+)
+
+(define-method merge
+  (of-object "OssoABookAlphaBar")
+  (c-name "osso_abook_alpha_bar_merge")
+  (return-type "none")
+  (parameters
+    '("GtkUIManager*" "ui_manager")
+    '("guint" "merge_id")
+    '("const-char*" "path")
+    '("gboolean" "add_separators")
+  )
+)
+
+(define-method create_button_row
+  (of-object "OssoABookAlphaBar")
+  (c-name "osso_abook_alpha_bar_create_button_row")
+  (return-type "GtkWidget*")
+)
+
+

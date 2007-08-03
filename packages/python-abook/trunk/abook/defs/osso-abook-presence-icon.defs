@@ -1,0 +1,44 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object PresenceIcon
+  (in-module "ABook")
+  (parent "GtkImage")
+  (c-name "OssoABookPresenceIcon")
+  (gtype-id "OSSO_ABOOK_TYPE_PRESENCE_ICON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-presence-icon.h
+
+(define-function presence_icon_get_type
+  (c-name "osso_abook_presence_icon_get_type")
+  (return-type "GType")
+)
+
+(define-function presence_icon_new
+  (c-name "osso_abook_presence_icon_new")
+  (is-constructor-of "OssoABookPresenceIcon")
+  (return-type "GtkWidget*")
+  (properties
+    '("presence" (argname "presence"))
+  )
+)
+
+(define-method set_presence
+  (of-object "OssoABookPresenceIcon")
+  (c-name "osso_abook_presence_icon_set_presence")
+  (return-type "none")
+  (parameters
+    '("OssoABookPresence*" "presence")
+  )
+)
+
+(define-method get_presence
+  (of-object "OssoABookPresenceIcon")
+  (c-name "osso_abook_presence_icon_get_presence")
+  (return-type "OssoABookPresence*")
+)
+
+

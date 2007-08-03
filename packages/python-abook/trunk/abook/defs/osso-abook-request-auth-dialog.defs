@@ -1,0 +1,56 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object RequestAuthDialog
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookRequestAuthDialog")
+  (gtype-id "OSSO_ABOOK_TYPE_REQUEST_AUTH_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-request-auth-dialog.h
+
+(define-function request_auth_dialog_get_type
+  (c-name "osso_abook_request_auth_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function request_auth_dialog_new
+  (c-name "osso_abook_request_auth_dialog_new")
+  (is-constructor-of "OssoABookRequestAuthDialog")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_book_view
+  (of-object "OssoABookRequestAuthDialog")
+  (c-name "osso_abook_request_auth_dialog_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+(define-method get_book_view
+  (of-object "OssoABookRequestAuthDialog")
+  (c-name "osso_abook_request_auth_dialog_get_book_view")
+  (return-type "EBookView*")
+)
+
+(define-method set_contact
+  (of-object "OssoABookRequestAuthDialog")
+  (c-name "osso_abook_request_auth_dialog_set_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method get_contact
+  (of-object "OssoABookRequestAuthDialog")
+  (c-name "osso_abook_request_auth_dialog_get_contact")
+  (return-type "EContact*")
+)
+
+

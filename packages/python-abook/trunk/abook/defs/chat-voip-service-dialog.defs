@@ -1,0 +1,44 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object VoipServiceDialog
+  (in-module "Chat")
+  (parent "GtkDialog")
+  (c-name "ChatVoipServiceDialog")
+  (gtype-id "CHAT_TYPE_VOIP_SERVICE_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From chat-voip-service-dialog.h
+
+(define-function chat_voip_service_dialog_get_type
+  (c-name "chat_voip_service_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function chat_voip_service_dialog_new
+  (c-name "chat_voip_service_dialog_new")
+  (is-constructor-of "ChatVoipServiceDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+  )
+)
+
+(define-method set_accounts
+  (of-object "ChatVoipServiceDialog")
+  (c-name "chat_voip_service_dialog_set_accounts")
+  (return-type "none")
+  (parameters
+    '("GList*" "accounts")
+  )
+)
+
+(define-method get_account
+  (of-object "ChatVoipServiceDialog")
+  (c-name "chat_voip_service_dialog_get_account")
+  (return-type "McAccount*")
+)
+
+

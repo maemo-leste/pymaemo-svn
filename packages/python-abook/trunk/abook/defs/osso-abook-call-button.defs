@@ -1,0 +1,32 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object CallButton
+  (in-module "ABook")
+  (parent "GtkButton")
+  (c-name "OssoABookCallButton")
+  (gtype-id "OSSO_ABOOK_TYPE_CALL_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-call-button.h
+
+(define-function call_button_get_type
+  (c-name "osso_abook_call_button_get_type")
+  (return-type "GType")
+)
+
+(define-method get_low_memory
+  (of-object "OssoABookCallButton")
+  (c-name "osso_abook_call_button_get_low_memory")
+  (return-type "gboolean")
+)
+
+(define-method update_sensitivity
+  (of-object "OssoABookCallButton")
+  (c-name "osso_abook_call_button_update_sensitivity")
+  (return-type "none")
+)
+
+

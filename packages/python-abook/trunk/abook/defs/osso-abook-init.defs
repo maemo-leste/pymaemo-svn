@@ -1,0 +1,54 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From osso-abook-init.h
+
+;(define-function init
+;  (c-name "osso_abook_init")
+;  (return-type "gboolean")
+;  (parameters
+;    '("int*" "argc")
+;    '("char***" "argv")
+;    '("osso_context_t*" "osso_context")
+;  )
+;)
+
+; Use init in python, as we'll never use the original init
+(define-function init
+  (c-name "osso_abook_init_with_name")
+  (return-type "gboolean")
+  (parameters
+    '("const-char*" "name")
+    '("osso_context_t*" "osso_context")
+  )
+)
+
+(define-function get_osso_context
+  (c-name "osso_abook_get_osso_context")
+  (return-type "osso_context_t*")
+)
+
+(define-function set_osso_context
+  (c-name "osso_abook_set_osso_context")
+  (return-type "none")
+  (parameters
+    '("osso_context_t*" "osso_context")
+  )
+)
+
+;(define-function is_abook
+;  (c-name "osso_abook_is_abook")
+;  (return-type "gboolean")
+;)
+
+;(define-function set_is_abook
+;  (c-name "osso_abook_set_is_abook")
+;  (return-type "none")
+;  (parameters
+;    '("gboolean" "abook")
+;  )
+;)
+
+

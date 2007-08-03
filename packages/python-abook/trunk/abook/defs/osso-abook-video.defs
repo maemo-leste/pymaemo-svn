@@ -1,0 +1,18 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From osso-abook-video.h
+
+(define-function video_merge_ui
+  (c-name "osso_abook_video_merge_ui")
+  (return-type "none")
+  (parameters
+    '("GtkUIManager*" "ui_manager")
+    '("OssoABookContactView*" "contact_view")
+    '("GtkWindow*" "parent")
+  )
+)
+
+

@@ -1,0 +1,103 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From osso-abook-dialogs.h
+
+(define-function delete_contact_dialog_run
+  (c-name "osso_abook_delete_contact_dialog_run")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EBookView*" "book_view")
+    '("EContact*" "contact")
+  )
+)
+
+(define-function delete_contacts_dialog_run
+  (c-name "osso_abook_delete_contacts_dialog_run")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EBookView*" "book_view")
+    '("GList*" "contacts")
+  )
+)
+
+(define-function block_contact_dialog_run
+  (c-name "osso_abook_block_contact_dialog_run")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EBookView*" "book_view")
+    '("EContact*" "contact")
+  )
+)
+
+(define-function new_group_dialog_run
+  (c-name "osso_abook_new_group_dialog_run")
+  (return-type "OssoABookGroup*")
+  (parameters
+    '("GtkWindow*" "parent")
+  )
+)
+
+(define-function rename_group_dialog_run
+  (c-name "osso_abook_rename_group_dialog_run")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("OssoABookContactModel*" "model")
+    '("OssoABookManualGroup*" "group")
+  )
+)
+
+(define-function delete_group_dialog_run
+  (c-name "osso_abook_delete_group_dialog_run")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("OssoABookContactModel*" "model")
+    '("OssoABookManualGroup*" "group")
+  )
+)
+
+(define-function choose_im_dialog_run
+  (c-name "osso_abook_choose_im_dialog_run")
+  (return-type "OssoABookAccount*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EContact*" "contact")
+    '("OssoABookAccountTypeFlags" "type")
+  )
+)
+
+(define-function choose_email_dialog_run
+  (c-name "osso_abook_choose_email_dialog_run")
+  (return-type "GList*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EContact*" "contact")
+  )
+)
+
+(define-function choose_url_dialog_run
+  (c-name "osso_abook_choose_url_dialog_run")
+  (return-type "char*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EContact*" "contact")
+  )
+)
+
+(define-function add_contact_dialog_run
+  (c-name "osso_abook_add_contact_dialog_run")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("EBookView*" "book_view")
+  )
+)
+
+

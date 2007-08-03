@@ -1,0 +1,25 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AllGroup
+  (in-module "ABook")
+  (parent "OssoABookGroup")
+  (c-name "OssoABookAllGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_ALL_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-all-group.h
+
+(define-function all_group_get_type
+  (c-name "osso_abook_all_group_get_type")
+  (return-type "GType")
+)
+
+(define-function all_group_get
+  (c-name "osso_abook_all_group_get")
+  (return-type "OssoABookGroup*")
+)
+
+

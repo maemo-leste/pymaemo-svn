@@ -1,0 +1,57 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AddUsernameDialog
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookAddUsernameDialog")
+  (gtype-id "OSSO_ABOOK_TYPE_ADD_USERNAME_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+(define-enum ABookAddUsernameDialogMode
+  (in-module "ABook")
+  (c-name "OssoABookAddUsernameDialogMode")
+  (gtype-id "OSSO_ABOOK_TYPE_ADD_USERNAME_DIALOG_MODE")
+  (values
+    '("username" "TYPE_USERNAME")
+    '("email" "TYPE_EMAIL")
+  )
+)
+
+
+;; From osso-abook-add-username-dialog.h
+
+(define-function add_username_dialog_get_type
+  (c-name "osso_abook_add_username_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function add_username_dialog_new
+  (c-name "osso_abook_add_username_dialog_new")
+  (is-constructor-of "OssoABookAddUsernameDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookAddUsernameDialogMode" "mode")
+  )
+)
+
+(define-method set_contact
+  (of-object "OssoABookAddUsernameDialog")
+  (c-name "osso_abook_add_username_dialog_set_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method set_book_view
+  (of-object "OssoABookAddUsernameDialog")
+  (c-name "osso_abook_add_username_dialog_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+

@@ -1,0 +1,29 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object VOIPCallButton
+  (in-module "ABook")
+  (parent "OssoABookCallButton")
+  (c-name "OssoABookVOIPCallButton")
+  (gtype-id "OSSO_ABOOK_TYPE_VOIP_CALL_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-voip-call-button.h
+
+(define-function voip_call_button_get_type
+  (c-name "osso_abook_voip_call_button_get_type")
+  (return-type "GType")
+)
+
+(define-function voip_call_button_new
+  (c-name "osso_abook_voip_call_button_new")
+  (is-constructor-of "OssoABookVoipCallButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent_window")
+  )
+)
+
+

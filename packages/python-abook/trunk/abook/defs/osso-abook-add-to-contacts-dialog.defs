@@ -1,0 +1,42 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AddToContactsDialog
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookAddToContactsDialog")
+  (gtype-id "OSSO_ABOOK_TYPE_ADD_TO_CONTACTS_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-add-to-contacts-dialog.h
+
+(define-function add_to_contacts_dialog_get_type
+  (c-name "osso_abook_add_to_contacts_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function add_to_contacts_dialog_new
+  (c-name "osso_abook_add_to_contacts_dialog_new")
+  (is-constructor-of "OssoABookAddToContactsDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookContactModel*" "model")
+    '("OssoABookAccount*" "account")
+  )
+)
+
+(define-method get_model
+  (of-object "OssoABookAddToContactsDialog")
+  (c-name "osso_abook_add_to_contacts_dialog_get_model")
+  (return-type "OssoABookContactModel*")
+)
+
+(define-method get_account
+  (of-object "OssoABookAddToContactsDialog")
+  (c-name "osso_abook_add_to_contacts_dialog_get_account")
+  (return-type "OssoABookAccount*")
+)
+
+

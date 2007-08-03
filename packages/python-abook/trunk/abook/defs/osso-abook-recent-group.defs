@@ -1,0 +1,40 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object RecentGroup
+  (in-module "ABook")
+  (parent "OssoABookGroup")
+  (c-name "OssoABookRecentGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_RECENT_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-recent-group.h
+
+(define-function recent_group_get_type
+  (c-name "osso_abook_recent_group_get_type")
+  (return-type "GType")
+)
+
+(define-function recent_group_get
+  (c-name "osso_abook_recent_group_get")
+  (return-type "OssoABookGroup*")
+)
+
+(define-method set_book_view
+  (of-object "OssoABookRecentGroup")
+  (c-name "osso_abook_recent_group_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+(define-method get_book_view
+  (of-object "OssoABookRecentGroup")
+  (c-name "osso_abook_recent_group_get_book_view")
+  (return-type "EBookView*")
+)
+
+

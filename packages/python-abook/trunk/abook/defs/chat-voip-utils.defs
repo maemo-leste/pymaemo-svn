@@ -1,0 +1,21 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From chat-voip-utils.h
+
+(define-function chat_voip_utils_account_from_address
+  (c-name "chat_voip_utils_account_from_address")
+  (return-type "McAccount*")
+  (parameters
+    '("const-char*" "remote_address")
+    '("const-char*" "local_address")
+    '("const-char*" "vcard_field")
+    '("const-char*" "protocol_scheme")
+    '("McAccountFilter" "filter")
+    '("GtkWindow*" "window")
+  )
+)
+
+

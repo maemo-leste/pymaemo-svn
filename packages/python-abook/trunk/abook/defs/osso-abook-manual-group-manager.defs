@@ -1,0 +1,70 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ManualGroupManager
+  (in-module "ABook")
+  (parent "GObject")
+  (c-name "OssoABookManualGroupManager")
+  (gtype-id "OSSO_ABOOK_TYPE_MANUAL_GROUP_MANAGER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-manual-group-manager.h
+
+(define-function manual_group_manager_get_type
+  (c-name "osso_abook_manual_group_manager_get_type")
+  (return-type "GType")
+)
+
+(define-function manual_group_manager_get
+  (c-name "osso_abook_manual_group_manager_get")
+  (return-type "OssoABookManualGroupManager*")
+)
+
+(define-method get_groups
+  (of-object "OssoABookManualGroupManager")
+  (c-name "osso_abook_manual_group_manager_get_groups")
+  (return-type "const-GList*")
+)
+
+(define-method get_group
+  (of-object "OssoABookManualGroupManager")
+  (c-name "osso_abook_manual_group_manager_get_group")
+  (return-type "OssoABookManualGroup*")
+  (parameters
+    '("const-char*" "name")
+  )
+)
+
+(define-method create_group
+  (of-object "OssoABookManualGroupManager")
+  (c-name "osso_abook_manual_group_manager_create_group")
+  (return-type "none")
+  (parameters
+    '("const-char*" "name")
+  )
+)
+
+(define-method delete_group
+  (of-object "OssoABookManualGroupManager")
+  (c-name "osso_abook_manual_group_manager_delete_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookManualGroup*" "group")
+    '("OssoABookContactModel*" "model")
+  )
+)
+
+(define-method rename_group
+  (of-object "OssoABookManualGroupManager")
+  (c-name "osso_abook_manual_group_manager_rename_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookManualGroup*" "group")
+    '("const-char*" "new_name")
+    '("OssoABookContactModel*" "model")
+  )
+)
+
+

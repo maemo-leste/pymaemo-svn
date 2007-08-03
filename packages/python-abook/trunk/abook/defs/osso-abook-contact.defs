@@ -1,0 +1,250 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From osso-abook-contact.h
+
+(define-function contact_commit
+  (c-name "osso_abook_contact_commit")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("gboolean" "new")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_delete
+  (c-name "osso_abook_contact_delete")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_get_photo
+  (c-name "osso_abook_contact_get_photo")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_set_pixbuf
+  (c-name "osso_abook_contact_set_pixbuf")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("GdkPixbuf*" "pixbuf")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_set_photo
+  (c-name "osso_abook_contact_set_photo")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("const-char*" "filename")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_get_accounts
+  (c-name "osso_abook_contact_get_accounts")
+  (return-type "GList*")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookAccountTypeFlags" "flags")
+  )
+)
+
+(define-function contact_get_accounts_async_full
+  (c-name "osso_abook_contact_get_accounts_async_full")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookAccountTypeFlags" "flags")
+    '("OssoABookAccountAvailableCb" "cb")
+    '("gpointer" "user_data")
+    '("OssoABookCbDataRef" "ref_data")
+    '("OssoABookCbDataUnref" "unref_data")
+  )
+)
+
+(define-function contact_get_accounts_async
+  (c-name "osso_abook_contact_get_accounts_async")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookAccountTypeFlags" "flags")
+    '("OssoABookAccountAvailableCb" "cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-function contact_get_groups
+  (c-name "osso_abook_contact_get_groups")
+  (return-type "GList*")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_add_group
+  (c-name "osso_abook_contact_add_group")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookManualGroup*" "group")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_remove_group
+  (c-name "osso_abook_contact_remove_group")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookManualGroup*" "group")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_rename_group
+  (c-name "osso_abook_contact_rename_group")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("const-char*" "old_name")
+    '("const-char*" "new_name")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_replace_group
+  (c-name "osso_abook_contact_replace_group")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookManualGroup*" "old_group")
+    '("OssoABookManualGroup*" "new_group")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_get_last_used
+  (c-name "osso_abook_contact_get_last_used")
+  (return-type "time_t")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_set_blocked
+  (c-name "osso_abook_contact_set_blocked")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("gboolean" "blocked")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_get_blocked
+  (c-name "osso_abook_contact_get_blocked")
+  (return-type "gboolean")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_get_deleted
+  (c-name "osso_abook_contact_get_deleted")
+  (return-type "gboolean")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_can_block
+  (c-name "osso_abook_contact_can_block")
+  (return-type "gboolean")
+  (parameters
+    '("EContact*" "contact")
+    '("const-char**" "infoprint")
+  )
+)
+
+(define-function contact_can_request_auth
+  (c-name "osso_abook_contact_can_request_auth")
+  (return-type "gboolean")
+  (parameters
+    '("EContact*" "contact")
+    '("const-char**" "infoprint")
+  )
+)
+
+(define-function contact_get_name
+  (c-name "osso_abook_contact_get_name")
+  (return-type "const-char*")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_get_display_name
+  (c-name "osso_abook_contact_get_display_name")
+  (return-type "const-char*")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_initiate_chat
+  (c-name "osso_abook_contact_initiate_chat")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_initiate_call
+  (c-name "osso_abook_contact_initiate_call")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+    '("EBook*" "book")
+  )
+)
+
+(define-function contact_send_email
+  (c-name "osso_abook_contact_send_email")
+  (return-type "gboolean")
+  (parameters
+    '("EContact*" "contact")
+    '("EBook*" "book")
+    '("GtkWindow*" "window")
+  )
+)
+
+(define-function contact_goto_url
+  (c-name "osso_abook_contact_goto_url")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-function contact_clean
+  (c-name "osso_abook_contact_clean")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+

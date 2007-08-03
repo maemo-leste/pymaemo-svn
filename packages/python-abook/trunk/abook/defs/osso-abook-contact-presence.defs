@@ -1,0 +1,59 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ContactPresence
+  (in-module "ABook")
+  (parent "OssoABookPresence")
+  (c-name "OssoABookContactPresence")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_PRESENCE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-contact-presence.h
+
+(define-function contact_presence_get_type
+  (c-name "osso_abook_contact_presence_get_type")
+  (return-type "GType")
+)
+
+(define-function contact_presence_new
+  (c-name "osso_abook_contact_presence_new")
+  (is-constructor-of "OssoABookContactPresence")
+  (return-type "OssoABookContactPresence*")
+  (properties
+    '("contact" (argname "contact"))
+  )
+)
+
+(define-method set_contact
+  (of-object "OssoABookContactPresence")
+  (c-name "osso_abook_contact_presence_set_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method get_contact
+  (of-object "OssoABookContactPresence")
+  (c-name "osso_abook_contact_presence_get_contact")
+  (return-type "EContact*")
+)
+
+(define-method set_book_view
+  (of-object "OssoABookContactPresence")
+  (c-name "osso_abook_contact_presence_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+(define-method get_book_view
+  (of-object "OssoABookContactPresence")
+  (c-name "osso_abook_contact_presence_get_book_view")
+  (return-type "EBookView*")
+)
+
+

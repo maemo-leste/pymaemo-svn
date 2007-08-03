@@ -1,0 +1,49 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ContactModel
+  (in-module "ABook")
+  (parent "OssoABookTreeModel")
+  (c-name "OssoABookContactModel")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_MODEL")
+)
+
+;; Enumerations and flags ...
+
+(define-enum ABookContactModelColumn
+  (in-module "ABook")
+  (c-name "OssoABookContactModelColumn")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_MODEL_COLUMN")
+  (values
+    '("contact" "OSSO_ABOOK_CONTACT_MODEL_COL_CONTACT")
+    '("presence" "OSSO_ABOOK_CONTACT_MODEL_COL_PRESENCE")
+  )
+)
+
+
+;; From osso-abook-contact-model.h
+
+(define-function contact_model_get_type
+  (c-name "osso_abook_contact_model_get_type")
+  (return-type "GType")
+)
+
+(define-function contact_model_new
+  (c-name "osso_abook_contact_model_new")
+  (is-constructor-of "OssoABookContactModel")
+  (return-type "OssoABookContactModel*")
+  (properties
+    '("book_view", (argname "book_view") (optional))
+  )
+)
+
+(define-method get_iter
+  (of-object "OssoABookContactModel")
+  (c-name "osso_abook_contact_model_get_iter")
+  (return-type "gboolean")
+  (parameters
+    '("const-char*" "contact_uid")
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+

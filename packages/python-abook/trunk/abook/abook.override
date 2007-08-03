@@ -1,0 +1,969 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ * python-abook - Python bindings for the OSSO AddressBook library.
+ *
+ *   abook.override: overrides for the abook module.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+%%
+headers
+
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#include <libintl.h>
+#include <glib-object.h>
+
+#include "abook-types.h"
+
+PyObject *current_context = NULL;
+
+/*staticforward PyTypeObject PyOssoABookContactModel_Type;
+staticforward PyTypeObject PyOssoABookFilterModel_Type;*/
+%%
+modulename abook
+
+%%
+import gobject.GObject as PyGObject_Type
+import osso.Context as PyContext_Type
+import evolution.ebook.EBook as PyEBook_Type
+import evolution.ebook.EBookView as PyEBookView_Type
+import evolution.ebook.EBookView as PyEBookView_Type
+import evolution.ebook.EContact as PyEContact_Type
+import gtk.Window as PyGtkWindow_Type
+import gtk.Dialog as PyGtkDialog_Type
+import gtk.Button as PyGtkButton_Type
+import gtk.Image as PyGtkImage_Type
+import gtk.ListStore as PyGtkListStore_Type
+import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
+import gtk.ScrolledWindow as PyGtkScrolledWindow_Type
+import gtk.TreeModelFilter as PyGtkTreeModelFilter_Type
+import gtk.UIManager as PyGtkUIManager_Type
+import gtk.Widget as PyGtkWidget_Type
+import pango.AttrList as PyPangoAttrList_Type
+
+%%
+ignore-glob *_get_type
+
+%%
+override osso_abook_init_with_name kwargs
+static PyObject *
+_wrap_osso_abook_init_with_name(PyObject *self,
+								PyObject *args,
+								PyObject *kwargs)
+{
+	static char *kwlist[] = {"name", "context", NULL};
+	PyObject *pycontext = NULL;
+	osso_context_t *context = NULL;
+	char *name;
+	PyObject *pyret;
+	gboolean ret;
+	
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "sO!:AddressBook.init", kwlist,
+									 &name, &PyContext_Type, &pycontext))
+		return NULL;
+
+	context = ((Context *)pycontext)->context;
+
+	ret = osso_abook_init_with_name(name, context);
+
+	if (ret == TRUE) {
+
+		Py_XDECREF(current_context);
+		current_context = pycontext;
+		Py_XINCREF(current_context);
+
+		pyret = Py_True;
+
+	} else {
+		pyret = Py_False;
+	}
+
+	Py_INCREF(pyret);
+	return pyret;
+}
+
+%%
+override osso_abook_get_osso_context noargs
+static PyObject *
+_wrap_osso_abook_get_osso_context(PyObject *self)
+{
+	PyObject *ret = NULL;
+
+	if (current_context != NULL)
+		ret = current_context;
+	else
+		ret = Py_None;
+
+	g_debug("Returning from get_osso_context");
+
+	Py_INCREF(ret);
+	return ret;
+}
+
+%%
+override osso_abook_set_osso_context kwargs
+static PyObject *
+_wrap_osso_abook_set_osso_context(PyObject *self,
+								PyObject *args,
+								PyObject *kwargs)
+{
+	static char *kwlist[] = { "context", NULL };
+	PyObject *pycontext = NULL;
+	osso_context_t *context;
+
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:AddressBook.set_osso_context", kwlist,
+									&PyContext_Type, &pycontext))
+		return NULL;
+
+	context = ((Context *)pycontext)->context;
+
+	osso_abook_set_osso_context(context);
+
+	Py_XDECREF(current_context);
+	current_context = pycontext;
+	Py_XINCREF(current_context);
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_CONTACT_VIEW
+%%
+override osso_abook_contact_view_new kwargs
+static int
+_wrap_osso_abook_contact_view_new(PyGObject *self,
+								  PyObject *args,
+								  PyObject *kwargs)
+{
+	static char *kwlist[] = {"model", "filter", NULL};
+	PyObject *pymodel = NULL;
+	PyObject *pyfilter = NULL;
+	GtkTreeModel *model;
+	GtkTreeModel *base_model;
+	GtkTreeModel *filter = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "O!|O!:abook.ContactView.new",
+									 kwlist,
+									 &PyOssoABookContactModel_Type, &pymodel,
+									 &PyOssoABookFilterModel_Type, &pyfilter))
+		return -1;
+
+	base_model = (GtkTreeModel *) ((PyGObject *)pymodel)->obj;
+
+	if (pyfilter) {
+		filter = (GtkTreeModel *) ((PyGObject *)pyfilter)->obj;
+		model = filter;
+	} else {
+		model = base_model;
+	}
+
+	pygobject_construct(self, "model", model, "base-model", base_model,
+						"filter-model", filter, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create ContactView object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_CONTACT_SELECTOR
+%%
+override osso_abook_contact_selector_new kwargs
+static int
+_wrap_osso_abook_contact_selector_new(PyGObject *self,
+									  PyObject *args,
+									  PyObject *kwargs)
+{
+	static char *kwlist[] = {"model", "filter", NULL};
+	PyObject *pymodel = NULL;
+	PyObject *pyfilter = NULL;
+	GtkTreeModel *model;
+	GtkTreeModel *base_model;
+	GtkTreeModel *filter = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "O!|O!:abook.ContactView.new",
+									 kwlist,
+									 &PyOssoABookContactModel_Type, &pymodel,
+									 &PyOssoABookFilterModel_Type, &pyfilter))
+		return -1;
+
+	base_model = (GtkTreeModel *) ((PyGObject *)pymodel)->obj;
+
+	if (pyfilter) {
+		filter = (GtkTreeModel *) ((PyGObject *)pyfilter)->obj;
+		model = filter;
+	} else {
+		model = base_model;
+	}
+
+	pygobject_construct(self, "model", model, "base-model", base_model,
+						"filter-model", filter, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create ContactSelector object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_CONTACT_MODEL
+%%
+override osso_abook_contact_model_new kwargs
+static int
+_wrap_osso_abook_contact_model_new(PyGObject *self,
+								   PyObject *args,
+								   PyObject *kwargs)
+{
+	static char *kwlist[] = {"book_view",NULL};
+	PyObject *pyview = NULL;
+	EBookView *view = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "|O!:abook.ContactModel.new",
+									 kwlist,
+									 &PyEBookView_Type, &pyview))
+		return -1;
+
+	if (pyview != NULL)
+		view = (EBookView *)((PyGObject *)pyview)->obj;
+
+
+	pygobject_construct(self, "presence_column",
+						OSSO_ABOOK_CONTACT_MODEL_COL_PRESENCE,
+						"contact_column",
+						OSSO_ABOOK_CONTACT_MODEL_COL_CONTACT,
+						"book_view", view, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create ContactModel object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_ACCOUNT_VIEW
+%%
+override osso_abook_account_view_new kwargs
+static int
+_wrap_osso_abook_account_view_new(PyGObject *self,
+								  PyObject *args,
+								  PyObject *kwargs)
+{
+	static char *kwlist[] = {"model", "filter", NULL};
+	PyObject *pymodel = NULL;
+	PyObject *pyfilter = NULL;
+	GtkTreeModel *model;
+	GtkTreeModel *base_model;
+	GtkTreeModel *filter = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "O!|O!:abook.AccountView.new",
+									 kwlist,
+									 &PyOssoABookAccountModel_Type, &pymodel,
+									 &PyOssoABookFilterModel_Type, &pyfilter))
+		return -1;
+
+	base_model = (GtkTreeModel *) ((PyGObject *)pymodel)->obj;
+
+	if (pyfilter) {
+		filter = (GtkTreeModel *) ((PyGObject *)pyfilter)->obj;
+		model = filter;
+	} else {
+		model = base_model;
+	}
+
+	pygobject_construct(self, "model", model, "base-model", base_model,
+						"filter-model", filter, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create AccountView object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_ACCOUNT_SELECTOR
+%%
+override osso_abook_account_selector_new kwargs
+static int
+_wrap_osso_abook_account_selector_new(PyGObject *self,
+								  PyObject *args,
+								  PyObject *kwargs)
+{
+	static char *kwlist[] = {"model", "filter", NULL};
+	PyObject *pymodel = NULL;
+	PyObject *pyfilter = NULL;
+	GtkTreeModel *model;
+	GtkTreeModel *base_model;
+	GtkTreeModel *filter = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "O!|O!:abook.AccountSelector.new",
+									 kwlist,
+									 &PyOssoABookAccountModel_Type, &pymodel,
+									 &PyOssoABookFilterModel_Type, &pyfilter))
+		return -1;
+
+	base_model = (GtkTreeModel *) ((PyGObject *)pymodel)->obj;
+
+	if (pyfilter) {
+		filter = (GtkTreeModel *) ((PyGObject *)pyfilter)->obj;
+		model = filter;
+	} else {
+		model = base_model;
+	}
+
+	pygobject_construct(self, "model", model, "base-model", base_model,
+						"filter-model", filter, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create AccountSelector object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_ACCOUNT_MODEL
+%%
+override osso_abook_account_model_new kwargs
+static int
+_wrap_osso_abook_account_model_new(PyGObject *self,
+								   PyObject *args,
+								   PyObject *kwargs)
+{
+	static char *kwlist[] = {"flags",NULL};
+	PyObject *py_acc_type = NULL;
+	gint acc_type = OSSO_ABOOK_ACCOUNT_TYPE_ALL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "|O:abook.AccountModel.new",
+									 kwlist, &py_acc_type))
+		return -1;
+
+	if (py_acc_type != NULL)
+		if (pyg_enum_get_value(OSSO_ABOOK_TYPE_ACCOUNT_TYPE_FLAGS,
+							  py_acc_type, &acc_type))
+			return -1;
+
+	pygobject_construct(self, "presence_column",
+						OSSO_ABOOK_ACCOUNT_MODEL_COL_PRESENCE,
+						"contact_column",
+						OSSO_ABOOK_ACCOUNT_MODEL_COL_CONTACT,
+						"flags", acc_type, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create AccountModel object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+override osso_abook_contact_get_accounts kwargs
+static PyObject *
+_wrap_osso_abook_contact_get_accounts(PyObject *self, PyObject *args,
+									  PyObject *kwargs)
+{
+	static char *kwlist[] = {"contact", "flags", NULL};
+	PyObject *pycontact;
+	PyObject *pyflags = NULL;
+	PyObject *pyaccounts;
+	EContact *contact;
+	GList *accounts;
+	GList *tmp;
+	gint flags = OSSO_ABOOK_ACCOUNT_TYPE_ALL;
+	gint len;
+	gint i;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!|O:abook.contact_get_accounts",
+									kwlist, &PyEContact_Type, &pycontact,
+									&pyflags))
+		return NULL;
+
+	if (pyflags != NULL)
+		if (pyg_enum_get_value(OSSO_ABOOK_TYPE_ACCOUNT_TYPE_FLAGS,
+							  pyflags, &flags))
+			return NULL; /* Should call PyExc_SetString? */
+
+	contact = (EContact *) ((PyGObject *)pycontact)->obj;
+
+	accounts = osso_abook_contact_get_accounts(contact, flags);
+
+	len = g_list_length(accounts);
+	pyaccounts =  PyList_New(len);
+	tmp = accounts;
+
+	for (i = 0; i < len; i++){
+		PyObject *pyaccount;
+
+		/* FIXME Check reference counting. We already own the reference
+		 * but pygobject_new increases it. */
+		pyaccount = pygobject_new((GObject *)tmp->data);
+		PyList_SetItem(pyaccounts, i, pyaccount);
+		tmp = tmp->next;
+	}
+
+	g_list_free(accounts); /* Do not free the individual accounts. */
+
+	return pyaccounts;
+}
+%%
+override osso_abook_contact_view_get_selection noargs
+static PyObject *
+_wrap_osso_abook_contact_view_get_selection(PyObject *self)
+{
+	PyObject *pycontacts;
+	GList *contacts;
+	GList *tmp;
+	gint i;
+	gint size;
+
+	contacts = osso_abook_contact_view_get_selection(
+				(OssoABookContactView *) ((PyGObject *)self)->obj);
+	size = g_list_length(contacts);
+
+	pycontacts = PyList_New(size);
+	tmp = contacts;
+
+	for (i = 0; i < size; i++){
+		PyObject *pycontact;
+
+		pycontact = pygobject_new(tmp->data);
+		PyList_SetItem(pycontacts, i, pycontact);
+		tmp = tmp->next;
+	}
+
+	g_list_free(contacts);
+
+	return pycontacts;
+}
+%%
+override osso_abook_account_view_get_selection noargs
+static PyObject *
+_wrap_osso_abook_account_view_get_selection(PyObject *self)
+{
+	PyObject *pyaccounts;
+	GList *accounts;
+	GList *tmp;
+	gint i;
+	gint size;
+
+	accounts = osso_abook_account_view_get_selection(
+				(OssoABookAccountView *) ((PyGObject *)self)->obj);
+	size = g_list_length(accounts);
+
+	pyaccounts = PyList_New(size);
+	tmp = accounts;
+
+	for (i = 0; i < size; i++){
+		PyObject *pyaccount;
+
+		pyaccount = pygobject_new(tmp->data);
+		PyList_SetItem(pyaccount, i, pyaccount);
+		tmp = tmp->next;
+	}
+
+	g_list_free(accounts);
+
+	return pyaccounts;
+}
+%%
+override osso_abook_delete_contacts_dialog_run kwargs
+static PyObject *
+_wrap_osso_abook_delete_contacts_dialog_run(PyObject *self,
+											PyObject *args,
+											PyObject *kwargs)
+{
+	static char *kwlist[] = {"parent", "book_view", "contact", NULL};
+	PyObject *pyparent;
+	PyObject *pybookview;
+	PyObject *pycontacts;
+	GtkWindow *parent;
+	EBookView *bookview;
+	GList *contacts = NULL;
+	int size;
+	int i;
+
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+							"O!O!O!:abook.delete_contacts_dialog_run",
+							kwlist,
+							&PyGtkWindow_Type, &pyparent,
+							&PyEBookView_Type, &pybookview,
+							&PyList_Type, &pycontacts
+									))
+		return NULL;
+
+	parent = (GtkWindow *)((PyGObject *)pyparent)->obj;
+	bookview = (EBookView *)((PyGObject *)pybookview)->obj;
+
+	size = PyList_Size(pycontacts);
+
+	for (i = 0; i < size; i++) {
+		PyObject *pycontact;
+		EContact *contact;
+
+		pycontact = PyList_GetItem(pycontacts, i);
+		contact = (EContact *) ((PyGObject *)pycontact)->obj;
+		contacts = g_list_prepend(contacts, contact);
+	}
+
+	if (contacts)
+		contacts = g_list_reverse(contacts);
+
+	osso_abook_delete_contacts_dialog_run(parent, bookview, contacts);
+
+	g_list_free(contacts);
+
+	Py_XINCREF(Py_None);
+	return Py_None;
+}
+%%
+override osso_abook_choose_email_dialog_run kwargs
+static PyObject *
+_wrap_osso_abook_choose_email_dialog_run(PyObject *self,
+										 PyObject *args,
+										 PyObject *kwargs)
+{
+	static char *kwlist[] = {"parent", "contact", NULL};
+	PyObject *pyparent;
+	PyObject *pycontact;
+	GtkWindow *parent;
+	EContact *contact;
+	GList *emails;
+	GList *tmp;
+	PyObject *pyemails;
+	gint size;
+	gint i;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!O!:abook.choose_email_dialog_run",
+									kwlist,
+									&PyGtkWindow_Type, &pyparent,
+									&PyEContact_Type, &pycontact))
+		return NULL;
+
+	parent = (GtkWindow *)((PyGObject *)pyparent)->obj;
+	contact = (EContact *)((PyGObject *)pycontact)->obj;
+
+	emails = osso_abook_choose_email_dialog_run(parent, contact);
+
+	if (emails != NULL)
+		size = g_list_length(emails);
+	else
+		size = 0;
+
+	pyemails = PyList_New(size);
+
+	tmp = emails;
+
+	for (i = 0; i < size; i++) {
+		PyObject *pyemail;
+
+		pyemail = PyString_FromString((char *)tmp->data);
+		PyList_SetItem(pyemails, i, pyemail);
+		tmp = tmp->next;
+	}
+
+	g_list_foreach(emails, (GFunc)g_free, NULL);
+	g_list_free(emails);
+
+	return pyemails;
+}
+%%
+override osso_abook_contact_selector_get_extended_selection noargs
+static PyObject *
+_wrap_osso_abook_contact_selector_get_extended_selection(PyObject *self)
+{
+	PyObject *pycontacts;
+	GList *contacts;
+	GList *tmp;
+	gint i;
+	gint size;
+
+	contacts = osso_abook_contact_selector_get_extended_selection(
+				(OssoABookContactSelector *) ((PyGObject *)self)->obj);
+	size = g_list_length(contacts);
+
+	pycontacts = PyList_New(size);
+	tmp = contacts;
+
+	for (i = 0; i < size; i++){
+		PyObject *pycontact;
+
+		pycontact = pygobject_new(tmp->data);
+		PyList_SetItem(pycontacts, i, pycontact);
+		tmp = tmp->next;
+	}
+
+	g_list_free(contacts);
+
+	return pycontacts;
+}
+%%
+override osso_abook_account_selector_get_extended_selection noargs
+static PyObject *
+_wrap_osso_abook_account_selector_get_extended_selection(PyGObject *self)
+{
+	PyObject *pyaccounts;
+	GList *accounts;
+	GList *tmp;
+	gint i;
+	gint size;
+
+	accounts = osso_abook_account_selector_get_extended_selection(
+							OSSO_ABOOK_ACCOUNT_SELECTOR(self->obj));
+	size = g_list_length(accounts);
+
+	pyaccounts = PyList_New(size);
+	tmp = accounts;
+
+	for (i = 0; i < size; i++){
+		PyObject *pyaccount;
+
+		pyaccount = pygobject_new(tmp->data);
+		PyList_SetItem(pyaccounts, i, pyaccount);
+		tmp = tmp->next;
+	}
+
+	g_list_free(accounts);
+
+	return pyaccounts;
+}
+%%
+override osso_abook_group_selector_get_extended_selection noargs
+static PyObject *
+_wrap_osso_abook_group_selector_get_extended_selection(PyGObject *self)
+{
+	PyObject *pygroups;
+	GList *groups;
+	GList *tmp;
+	gint i;
+	gint size;
+
+	groups = osso_abook_group_selector_get_extended_selection(
+							OSSO_ABOOK_GROUP_SELECTOR(self->obj));
+	size = g_list_length(groups);
+
+	pygroups = PyList_New(size);
+	tmp = groups;
+
+	for (i = 0; i < size; i++){
+		PyObject *pygroup;
+
+		pygroup = pygobject_new(tmp->data);
+		PyList_SetItem(pygroups, i, pygroup);
+		tmp = tmp->next;
+	}
+
+	g_list_free(groups);
+
+	return pygroups;
+}
+%%
+new-constructor OSSO_ABOOK_TYPE_FILTER_MODEL
+%%
+override osso_abook_filter_model_new kwargs
+static int
+_wrap_osso_abook_filter_model_new(PyGObject *self,
+								  PyObject *args,
+								  PyObject *kwargs)
+{
+	static char *kwlist[] = {"model", NULL};
+	PyObject *pymodel = NULL;
+	OssoABookTreeModel *model;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									 "O!:abook.FilterModel.new",
+									 kwlist,
+									 &PyOssoABookTreeModel_Type,
+									 &pymodel))
+		return -1;
+
+	model =  OSSO_ABOOK_TREE_MODEL(((PyGObject *)pymodel)->obj);
+
+	pygobject_construct(self, "child-model", model, "base-model", model, NULL);
+
+	if (!self->obj) {
+		PyErr_SetString(PyExc_RuntimeError,
+						"could not create FilterModel object");
+		return -1;
+	}
+
+	return 0;
+}
+%%
+override osso_abook_manual_group_manager_get_groups noargs
+static PyObject *
+_wrap_osso_abook_manual_group_manager_get_groups(PyGObject *self)
+{
+	PyObject *pygroups;
+	const GList *groups;
+	GList *tmp;
+	gint size;
+	gint i;
+
+	groups = osso_abook_manual_group_manager_get_groups(
+					OSSO_ABOOK_MANUAL_GROUP_MANAGER(self->obj));
+
+	size = g_list_length((GList *)groups);
+	
+	pygroups = PyList_New(size);
+	tmp = (GList *) groups;
+	
+	for (i = 0; i < size; i++) {
+		PyObject *pygroup;
+
+		pygroup = pygobject_new(tmp->data);
+		PyList_SetItem(pygroups, i, pygroup);
+		tmp = tmp->next;
+	}
+
+	return pygroups;
+}
+%%
+override osso_abook_contact_get_groups kwargs
+static PyObject *
+_wrap_osso_abook_contact_get_groups(PyObject *self,
+									PyObject *args,
+									PyObject *kwargs)
+{
+	static char *kwlist[] = { "contact", NULL};
+	PyObject *pycontact;
+	PyObject *pygroups;
+	GList *groups = NULL;
+	GList *tmp;
+	gint size;
+	gint i;
+
+	if  (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									  "O!:abook.contact_get_groups",
+									  kwlist,
+									  &PyEContact_Type, &pycontact))
+		return NULL;
+
+	groups = osso_abook_contact_get_groups(
+					E_CONTACT(((PyGObject *)pycontact)->obj));
+
+	size = g_list_length(groups);
+	
+	pygroups = PyList_New(size);
+	tmp = groups;
+	
+	for (i = 0; i < size; i++) {
+		PyObject *pygroup;
+
+		pygroup = pygobject_new(tmp->data);
+		PyList_SetItem(pygroups, i, pygroup);
+		tmp = tmp->next;
+	}
+
+	g_list_free(groups);
+
+	return pygroups;
+}
+%%
+override osso_abook_merge_contacts kwargs
+static PyObject *
+_wrap_osso_abook_merge_contacts(PyObject *self,
+								PyObject *args,
+								PyObject *kwargs)
+{
+	static char *kwlist[] = {"contacts", "window", NULL};
+	PyObject *pycontacts;
+	PyObject *pywindow = NULL;
+	PyObject *new_pycontact;
+	GList *contacts = NULL;
+	EContact *new_contact;
+	GtkWindow *window = NULL;
+	gint size;
+	gint i;
+
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!|O!:abook.merge_contacts",
+									kwlist,
+									&PyList_Type,
+									&pycontacts,
+									&PyGtkWindow_Type,
+									&pywindow))
+		return NULL;
+
+	if (pywindow != NULL)
+		window = GTK_WINDOW(((PyGObject *)pywindow)->obj);
+
+	size = PyList_Size(pycontacts);
+
+	for (i = 0; i < size; i++) {
+		PyGObject *pycontact;
+		GObject *obj;
+
+		pycontact = (PyGObject *)PyList_GetItem(pycontacts, i);
+
+		obj = pycontact->obj;
+		g_object_ref(obj); /* merge_contacts will try to decref it */
+		contacts = g_list_prepend(contacts, E_CONTACT(obj));
+	}
+
+	contacts = g_list_reverse(contacts);
+	new_contact = osso_abook_merge_contacts(contacts, window);
+	new_pycontact = pygobject_new((GObject *)new_contact);
+
+	return new_pycontact;
+}
+%%
+override osso_abook_contact_can_block kwargs
+static PyObject *
+_wrap_osso_abook_contact_can_block(PyObject *self,
+								   PyObject *args,
+								   PyObject *kwargs)
+{
+	static char *kwlist[] = {"contact", NULL};
+	PyObject *pycontact;
+	PyObject *pyret;
+	EContact *contact;
+	gboolean ret;
+	
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:abook.contact_can_block",
+									kwlist,
+									&PyEContact_Type,
+									&pycontact))
+		return NULL;
+
+	contact = E_CONTACT(((PyGObject *)pycontact)->obj);
+
+	/* FIXME Add support to infoprint string */
+	ret = osso_abook_contact_can_block(contact, NULL);
+
+	if (ret){
+		pyret = (PyObject *)Py_True;
+	} else {
+		pyret = (PyObject *)Py_False;
+	}
+
+	Py_XINCREF(pyret);
+	return pyret;
+}
+%%
+override osso_abook_contact_can_request_auth kwargs
+static PyObject *
+_wrap_osso_abook_contact_can_request_auth(PyObject *self,
+										  PyObject *args,
+										  PyObject *kwargs)
+{
+	static char *kwlist[] = {"contact", NULL};
+	PyObject *pycontact;
+	PyObject *pyret;
+	EContact *contact;
+	gboolean ret;
+	
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:abook.contact_can_block",
+									kwlist,
+									&PyEContact_Type,
+									&pycontact))
+		return NULL;
+
+	contact = E_CONTACT(((PyGObject *)pycontact)->obj);
+
+	/* FIXME Add support to infoprint string */
+	ret = osso_abook_contact_can_request_auth(contact, NULL);
+
+	if (ret){
+		pyret = (PyObject *)Py_True;
+	} else {
+		pyret = (PyObject *)Py_False;
+	}
+
+	Py_XINCREF(pyret);
+	return pyret;
+}
+%%
+override osso_abook_tree_view_enable_drag_source kwargs
+static PyObject *
+_wrap_osso_abook_tree_view_enable_drag_source(PyGObject *self,
+											  PyObject *args,
+											  PyObject *kwargs)
+{
+	static char *kwlist[] = {"targets", NULL};
+	PyObject *pytargets;
+	GtkTargetEntry *targets;
+	gint n_targets;
+	gint i;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O:abook.TreeView.enable_drag_source",
+									kwlist,
+									&pytargets))
+		return NULL;
+
+	if (!PySequence_Check(pytargets)) {
+		PyErr_SetString(PyExc_TypeError, "targets must be a sequence");
+		return NULL;
+	}
+
+	n_targets = PySequence_Length(pytargets);
+	targets = g_new(GtkTargetEntry, n_targets);
+
+	for (i = 0; i < n_targets; i++) {
+		PyObject *item;
+
+		item = PySequence_GetItem(pytargets, i);
+		Py_XDECREF(item);
+
+		if (!PyArg_ParseTuple(item, "zii",
+							  &targets[i].target,
+							  &targets[i].flags,
+							  &targets[i].info)){
+			PyErr_SetString(PyExc_TypeError,
+							"list items must be of form (string, int, int)");
+			g_free(targets);
+			return NULL;
+		}
+	}
+
+	osso_abook_tree_view_enable_drag_source(OSSO_ABOOK_TREE_VIEW(self->obj),
+											targets, n_targets);
+
+	g_free(targets);
+	Py_XINCREF(Py_None);
+	return Py_None;
+}
+/* vim:ts=4:noet:sw=4:sws=4:si:ai:showmatch:foldmethod=indent
+ */

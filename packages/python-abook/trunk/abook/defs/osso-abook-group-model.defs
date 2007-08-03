@@ -1,0 +1,63 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object GroupModel
+  (in-module "ABook")
+  (parent "GtkListStore")
+  (c-name "OssoABookGroupModel")
+  (gtype-id "OSSO_ABOOK_TYPE_GROUP_MODEL")
+)
+
+;; Enumerations and flags ...
+
+(define-enum ABookGroupModelColumn
+  (in-module "ABook")
+  (c-name "OssoABookGroupModelColumn")
+  (gtype-id "OSSO_ABOOK_TYPE_GROUP_MODEL_COLUMN")
+  (values
+    '("p" "OSSO_ABOOK_GROUP_MODEL_COL_GROUP")
+  )
+)
+
+
+;; From osso-abook-group-model.h
+
+(define-function group_model_get_type
+  (c-name "osso_abook_group_model_get_type")
+  (return-type "GType")
+)
+
+(define-function group_model_new
+  (c-name "osso_abook_group_model_new")
+  (is-constructor-of "OssoABookGroupModel")
+  (return-type "OssoABookGroupModel*")
+)
+
+(define-method add_group
+  (of-object "OssoABookGroupModel")
+  (c-name "osso_abook_group_model_add_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookGroup*" "group")
+  )
+)
+
+(define-method remove_group
+  (of-object "OssoABookGroupModel")
+  (c-name "osso_abook_group_model_remove_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookGroup*" "group")
+  )
+)
+
+(define-method get_iter
+  (of-object "OssoABookGroupModel")
+  (c-name "osso_abook_group_model_get_iter")
+  (return-type "gboolean")
+  (parameters
+    '("OssoABookGroup*" "group")
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+

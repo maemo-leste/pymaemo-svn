@@ -1,0 +1,89 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FilterModel
+  (in-module "ABook")
+  (parent "GtkTreeModelFilter")
+  (c-name "OssoABookFilterModel")
+  (gtype-id "OSSO_ABOOK_TYPE_FILTER_MODEL")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-filter-model.h
+
+(define-function filter_model_get_type
+  (c-name "osso_abook_filter_model_get_type")
+  (return-type "GType")
+)
+
+(define-function filter_model_new
+  (c-name "osso_abook_filter_model_new")
+  (is-constructor-of "OssoABookFilterModel")
+  (return-type "OssoABookFilterModel*")
+  (properties
+    '("child_model", (argname "child_model") (optional))
+  )
+)
+
+(define-method set_group
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_set_group")
+  (return-type "none")
+  (parameters
+    '("OssoABookGroup*" "group")
+  )
+)
+
+(define-method get_group
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_get_group")
+  (return-type "OssoABookGroup*")
+)
+
+(define-method set_text
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_set_text")
+  (return-type "none")
+  (parameters
+    '("const-char*" "text")
+  )
+)
+
+(define-method get_text
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_get_text")
+  (return-type "const-char*")
+)
+
+(define-method freeze_refilter
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_freeze_refilter")
+  (return-type "none")
+)
+
+(define-method thaw_refilter
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_thaw_refilter")
+  (return-type "none")
+)
+
+(define-method get_markup
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_get_markup")
+  (return-type "PangoAttrList*")
+  (parameters
+    '("const-char*" "text")
+  )
+)
+
+(define-method is_row_visible
+  (of-object "OssoABookFilterModel")
+  (c-name "osso_abook_filter_model_is_row_visible")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+

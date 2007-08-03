@@ -1,0 +1,113 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AccountModel
+  (in-module "ABook")
+  (parent "OssoABookTreeModel")
+  (c-name "OssoABookAccountModel")
+  (gtype-id "OSSO_ABOOK_TYPE_ACCOUNT_MODEL")
+)
+
+;; Enumerations and flags ...
+
+(define-enum ABookAccountModelColumn
+  (in-module "ABook")
+  (c-name "OssoABookAccountModelColumn")
+  (gtype-id "OSSO_ABOOK_TYPE_ACCOUNT_MODEL_COLUMN")
+  (values
+    '("contact" "OSSO_ABOOK_ACCOUNT_MODEL_COL_CONTACT")
+    '("presence" "OSSO_ABOOK_ACCOUNT_MODEL_COL_PRESENCE")
+    '("tuple" "OSSO_ABOOK_ACCOUNT_MODEL_COL_TUPLE")
+  )
+)
+
+
+;; From osso-abook-account-model.h
+
+(define-function account_model_tuple_get_type
+  (c-name "osso_abook_account_model_tuple_get_type")
+  (return-type "GType")
+)
+
+(define-function account_model_tuple_new
+  (c-name "osso_abook_account_model_tuple_new")
+  (is-constructor-of "OssoABookAccountModelTuple")
+  (return-type "OssoABookAccountModelTuple*")
+  (parameters
+    '("EContact*" "contact")
+    '("OssoABookAccount*" "account")
+  )
+)
+
+(define-method ref
+  (of-object "OssoABookAccountModelTuple")
+  (c-name "osso_abook_account_model_tuple_ref")
+  (return-type "OssoABookAccountModelTuple*")
+)
+
+(define-method unref
+  (of-object "OssoABookAccountModelTuple")
+  (c-name "osso_abook_account_model_tuple_unref")
+  (return-type "none")
+)
+
+(define-method hash
+  (of-object "OssoABookAccountModelTuple")
+  (c-name "osso_abook_account_model_tuple_hash")
+  (return-type "guint")
+)
+
+(define-method equal
+  (of-object "OssoABookAccountModelTuple")
+  (c-name "osso_abook_account_model_tuple_equal")
+  (return-type "gboolean")
+  (parameters
+    '("OssoABookAccountModelTuple*" "b")
+  )
+)
+
+(define-function account_model_get_type
+  (c-name "osso_abook_account_model_get_type")
+  (return-type "GType")
+)
+
+(define-function account_model_new
+  (c-name "osso_abook_account_model_new")
+  (is-constructor-of "OssoABookAccountModel")
+  (return-type "OssoABookAccountModel*")
+  (properties
+    '("flags" (argname "flags") (optional))
+  )
+)
+
+(define-method get_flags
+  (of-object "OssoABookAccountModel")
+  (c-name "osso_abook_account_model_get_flags")
+  (return-type "OssoABookAccountTypeFlags")
+)
+
+(define-method set_single_contact
+  (of-object "OssoABookAccountModel")
+  (c-name "osso_abook_account_model_set_single_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method get_single_contact
+  (of-object "OssoABookAccountModel")
+  (c-name "osso_abook_account_model_get_single_contact")
+  (return-type "EContact*")
+)
+
+(define-method get_iter
+  (of-object "OssoABookAccountModel")
+  (c-name "osso_abook_account_model_get_iter")
+  (return-type "gboolean")
+  (parameters
+    '("OssoABookAccountModelTuple*" "tuple")
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+

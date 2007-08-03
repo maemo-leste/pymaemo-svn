@@ -1,0 +1,53 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object GroupView
+  (in-module "ABook")
+  (parent "GtkScrolledWindow")
+  (c-name "OssoABookGroupView")
+  (gtype-id "OSSO_ABOOK_TYPE_GROUP_VIEW")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-group-view.h
+
+(define-function group_view_get_type
+  (c-name "osso_abook_group_view_get_type")
+  (return-type "GType")
+)
+
+(define-function group_view_new
+  (c-name "osso_abook_group_view_new")
+  (is-constructor-of "OssoABookGroupView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("OssoABookGroupModel*" "model")
+  )
+)
+
+(define-method get_model
+  (of-object "OssoABookGroupView")
+  (c-name "osso_abook_group_view_get_model")
+  (return-type "OssoABookGroupModel*")
+)
+
+(define-method get_focus
+  (of-object "OssoABookGroupView")
+  (c-name "osso_abook_group_view_get_focus")
+  (return-type "OssoABookGroup*")
+)
+
+(define-method get_tree_view
+  (of-object "OssoABookGroupView")
+  (c-name "osso_abook_group_view_get_tree_view")
+  (return-type "GtkTreeView*")
+)
+
+(define-method enable_drag_dest
+  (of-object "OssoABookGroupView")
+  (c-name "osso_abook_group_view_enable_drag_dest")
+  (return-type "none")
+)
+
+

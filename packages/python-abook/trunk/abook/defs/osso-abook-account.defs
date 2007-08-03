@@ -1,0 +1,86 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Account
+  (in-module "ABook")
+  (parent "GObject")
+  (c-name "OssoABookAccount")
+  (gtype-id "OSSO_ABOOK_TYPE_ACCOUNT")
+)
+
+;; Enumerations and flags ...
+
+(define-flags ABookAccountTypeFlags
+  (in-module "ABook")
+  (c-name "OssoABookAccountTypeFlags")
+  (gtype-id "OSSO_ABOOK_TYPE_ACCOUNT_TYPE_FLAGS")
+  (values
+    '("chat" "OSSO_ABOOK_ACCOUNT_TYPE_CHAT")
+    '("voip" "OSSO_ABOOK_ACCOUNT_TYPE_VOIP")
+    '("email" "OSSO_ABOOK_ACCOUNT_TYPE_EMAIL")
+    '("all" "OSSO_ABOOK_ACCOUNT_TYPE_ALL")
+  )
+)
+
+
+;; From osso-abook-account.h
+
+(define-function account_get_type
+  (c-name "osso_abook_account_get_type")
+  (return-type "GType")
+)
+
+(define-function account_get
+  (c-name "osso_abook_account_get")
+  (return-type "OssoABookAccount*")
+  (parameters
+    '("const-char*" "vcard_field")
+    '("const-char*" "bound")
+    '("const-char*" "user_name")
+  )
+)
+
+(define-function account_get_async
+  (c-name "osso_abook_account_get_async")
+  (return-type "none")
+  (parameters
+    '("const-char*" "vcard_field")
+    '("const-char*" "bound")
+    '("const-char*" "user_name")
+    '("OssoABookAccountAvailableCb" "cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-function account_get_from_vcard
+  (c-name "osso_abook_account_get_from_vcard")
+  (return-type "OssoABookAccount*")
+  (parameters
+    '("EVCardAttribute*" "attr")
+  )
+)
+
+(define-method get_vcard_field
+  (of-object "OssoABookAccount")
+  (c-name "osso_abook_account_get_vcard_field")
+  (return-type "const-char*")
+)
+
+(define-method get_bound
+  (of-object "OssoABookAccount")
+  (c-name "osso_abook_account_get_bound")
+  (return-type "const-char*")
+)
+
+(define-method get_username
+  (of-object "OssoABookAccount")
+  (c-name "osso_abook_account_get_username")
+  (return-type "const-char*")
+)
+
+(define-method get_galago_account
+  (of-object "OssoABookAccount")
+  (c-name "osso_abook_account_get_galago_account")
+  (return-type "GalagoAccount*")
+)
+
+

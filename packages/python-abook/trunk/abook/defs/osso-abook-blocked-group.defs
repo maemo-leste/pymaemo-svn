@@ -1,0 +1,25 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object BlockedGroup
+  (in-module "ABook")
+  (parent "OssoABookGroup")
+  (c-name "OssoABookBlockedGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_BLOCKED_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-blocked-group.h
+
+(define-function blocked_group_get_type
+  (c-name "osso_abook_blocked_group_get_type")
+  (return-type "GType")
+)
+
+(define-function blocked_group_get
+  (c-name "osso_abook_blocked_group_get")
+  (return-type "OssoABookGroup*")
+)
+
+

@@ -1,0 +1,36 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ServiceGroup
+  (in-module "ABook")
+  (parent "OssoABookGroup")
+  (c-name "OssoABookServiceGroup")
+  (gtype-id "OSSO_ABOOK_TYPE_SERVICE_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-service-group.h
+
+(define-function service_group_get_type
+  (c-name "osso_abook_service_group_get_type")
+  (return-type "GType")
+)
+
+(define-function service_group_get
+  (c-name "osso_abook_service_group_get")
+  (return-type "OssoABookGroup*")
+  (parameters
+    '("McAccount*" "account")
+  )
+)
+
+(define-function service_group_lookup_by_name
+  (c-name "osso_abook_service_group_lookup_by_name")
+  (return-type "OssoABookGroup*")
+  (parameters
+    '("const-char*" "unique_name")
+  )
+)
+
+

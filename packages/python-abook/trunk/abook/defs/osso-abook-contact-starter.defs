@@ -1,0 +1,56 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ContactStarter
+  (in-module "ABook")
+  (parent "GtkDialog")
+  (c-name "OssoABookContactStarter")
+  (gtype-id "OSSO_ABOOK_TYPE_CONTACT_STARTER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From osso-abook-contact-starter.h
+
+(define-function contact_starter_get_type
+  (c-name "osso_abook_contact_starter_get_type")
+  (return-type "GType")
+)
+
+(define-function contact_starter_new
+  (c-name "osso_abook_contact_starter_new")
+  (is-constructor-of "OssoABookContactStarter")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_book_view
+  (of-object "OssoABookContactStarter")
+  (c-name "osso_abook_contact_starter_set_book_view")
+  (return-type "none")
+  (parameters
+    '("EBookView*" "book_view")
+  )
+)
+
+(define-method get_book_view
+  (of-object "OssoABookContactStarter")
+  (c-name "osso_abook_contact_starter_get_book_view")
+  (return-type "EBookView*")
+)
+
+(define-method set_contact
+  (of-object "OssoABookContactStarter")
+  (c-name "osso_abook_contact_starter_set_contact")
+  (return-type "none")
+  (parameters
+    '("EContact*" "contact")
+  )
+)
+
+(define-method get_contact
+  (of-object "OssoABookContactStarter")
+  (c-name "osso_abook_contact_starter_get_contact")
+  (return-type "EContact*")
+)
+
+
