@@ -1,0 +1,18 @@
+Source: python-xdg
+Section: python
+Priority: optional
+Maintainer: Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>
+Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2)
+Standards-Version: 3.6.1
+
+Package: python2.5-xdg
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
+Description: Python library for XDG standards
+
+Package: python2.5-xdg-dev
+Section: libs
+Architecture: all
+Depends: python2.5-xdg (= ${Source-Version})
+Description: Examples and development files for Python Xdg.
+
