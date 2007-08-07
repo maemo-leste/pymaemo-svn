@@ -23,6 +23,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 '''
+
 cdef extern from 'glib.h':
     void g_type_init()
 
@@ -54,12 +55,18 @@ cdef extern from 'position.h':
     GEOCLUE_POSITION_RETURNCODE geoclue_position_service_provider(char** name)
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_position (double* OUT_latitude, double* OUT_longitude )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_set_position_callback(GEOCLUE_POSITION_CALLBACK callback, void* userdata )
-    GEOCLUE_POSITION_RETURNCODE geoclue_position_current_position_error (double* OUT_latitude_error, double* OUT_longitude_error, GEOCLUE_POSITION_FIX* OUT_fix_type )
+    GEOCLUE_POSITION_RETURNCODE geoclue_position_current_position_error (double* OUT_latitude_error, 
+                                                                         double* OUT_longitude_error, 
+                                                                         GEOCLUE_POSITION_FIX* OUT_fix_type )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_altitude (double* OUT_altitude )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_velocity (double* OUT_north_velocity, double* OUT_east_velocity )
 #   Need to handle GArray
 #    GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_in_view (GArray** OUT_prn_numbers )
-    GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_data (int IN_prn_number, double* OUT_elevation, double* OUT_azimuth, double* OUT_signal_noise_ratio, unsigned int* OUT_differential, unsigned int* OUT_ephemeris )
+    GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_data (int IN_prn_number, double* OUT_elevation, 
+                                                                  double* OUT_azimuth, double* OUT_signal_noise_ratio, 
+                                                                  unsigned int* OUT_differential, unsigned int* OUT_ephemeris )
+
+#############################################################
 
 def version():
     cdef int major, minor, micro
@@ -126,7 +133,12 @@ def current_position():
 
     return ret_value
 
-#def set_position_callback(GEOCLUE_POSITION_CALLBACK callback, void* userdata ):
+def set_position_callback(callback, userdata):
+    geoclue_position_set_position_callback(callback, <void*>userdata)
+
+cdef void callback(double lat, double lon,  void *userdata):
+    (<object>userdata)(lon)(lat)
+
 #def current_position_error (double* OUT_latitude_error, double* OUT_longitude_error, GEOCLUE_POSITION_FIX* OUT_fix_type ):
 #def current_altitude (double* OUT_altitude ):
 #def current_velocity (double* OUT_north_velocity, double* OUT_east_velocity ):
