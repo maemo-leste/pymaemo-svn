@@ -1,21 +1,27 @@
-''' Geoclue - A DBus api and wrapper for geography information
- * Copyright (C) 2006 Garmin
- * 
- * 
+'''Geoclue - A DBus api and wrapper for geography information
+'''
+
+'''
+ * gps.position.pyx
+ * Python bindings for libgeoclue components.
+ *
+ * Copyright (C) 2005-2007 INdT - Instituto Nokia de Tecnologia
+ *
+ * Contact: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
- * License version 2 as published by the Free Software Foundation; 
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
- */
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 '''
 cdef extern from 'glib.h':
     void g_type_init()
@@ -51,19 +57,26 @@ cdef extern from 'position.h':
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_position_error (double* OUT_latitude_error, double* OUT_longitude_error, GEOCLUE_POSITION_FIX* OUT_fix_type )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_altitude (double* OUT_altitude )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_velocity (double* OUT_north_velocity, double* OUT_east_velocity )
+#   Need to handle GArray
 #    GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_in_view (GArray** OUT_prn_numbers )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_data (int IN_prn_number, double* OUT_elevation, double* OUT_azimuth, double* OUT_signal_noise_ratio, unsigned int* OUT_differential, unsigned int* OUT_ephemeris )
 
 def version():
-    print 'version'
+    cdef int major, minor, micro
+
+    status = geoclue_position_version(&major, &minor, &micro)
+
+    if (status == GEOCLUE_POSITION_SUCCESS):
+        ret_value = major, minor, micro
+    else:
+        return status
+
+    return ret_value
 
 def init():
     g_type_init()
 
     status = geoclue_position_init()
-
-    if (status != GEOCLUE_POSITION_SUCCESS):
-        print 'Init Retorno: %d'%status
 
     return status
 
@@ -80,11 +93,14 @@ def get_all_providers():
     if (status == GEOCLUE_POSITION_SUCCESS):
         ret_data = service[0], path[0], desc[0]
     else:
-        ret_data = status
+        return status
 
     return ret_data
 
-#def close():
+def close():
+    status = geoclue_position_close()
+
+    return status
 
 def service_provider():
     cdef char *name
@@ -92,9 +108,9 @@ def service_provider():
     status = geoclue_position_service_provider(&name)
 
     if (status == GEOCLUE_POSITION_SUCCESS):
-        ret_data = name[0]
+        ret_data = name
     else:
-        ret_data = status
+        return status
 
     return ret_data
 
@@ -106,7 +122,7 @@ def current_position():
     if (status == GEOCLUE_POSITION_SUCCESS):
         ret_value = latitude, longitude
     else:
-        ret_value = status
+        return status
 
     return ret_value
 
