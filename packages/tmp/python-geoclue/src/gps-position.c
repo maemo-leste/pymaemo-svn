@@ -35,9 +35,6 @@ Position_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 	PyObject *self;
 
 	self = (PyObject *)type->tp_alloc(type, 0);
-/*	if (self != NULL) {
-		self->context = NULL;
-	}*/
 
 	return (PyObject *)self;
 }
@@ -46,20 +43,6 @@ Position_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 int
 Position_init(PyObject *self, PyObject *args, PyObject *kwds)
 {
-/*	PyObject *ossocontext = NULL;
-	PyObject *fullcontext = NULL;
-	
-	if (!PyArg_ParseTuple(args, "O", &ossocontext))
-		return -1;
-
-	fullcontext = (PyObject *)ossocontext;
-	self->context = fullcontext->context;
-	
-	if (self->context == NULL) {
-		PyErr_SetString(OssoException, "PyObject not initialize yet.");
-		return -1;
-	}
-*/
 	return 0;
 }
 
@@ -67,8 +50,6 @@ Position_init(PyObject *self, PyObject *args, PyObject *kwds)
 PyObject *
 Position_close(PyObject *self)
 {
-/*	if (!_check_context(self->context)) return 0;
-	self->context = NULL;*/
 	Py_RETURN_NONE;
 }
 
@@ -76,10 +57,6 @@ Position_close(PyObject *self)
 void
 Position_dealloc(PyObject *self)
 {
-/*	if (self->context == NULL)
-		return;
-
-	self->context = NULL;*/
 	return;
 }
 
@@ -203,7 +180,11 @@ Gps_position_version(PyObject *self, PyObject *args, PyObject *kwds)
 PyObject *
 Gps_position_init(PyObject *self)
 {
-	Py_RETURN_NONE;
+	gint init_ok = 0;
+
+	init_ok = geoclue_position_init();
+
+	return PyInt_FromLong(init_ok);
 }
 
 PyObject *
@@ -221,6 +202,7 @@ Gps_position_get_all_providers(PyObject *self, PyObject *args, PyObject *kwds)
 PyObject *
 Gps_position_close(PyObject *self)
 {
+/*	geoclue_position_close();*/
 	Py_RETURN_NONE;
 }
 
