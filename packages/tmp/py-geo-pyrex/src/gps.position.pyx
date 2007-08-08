@@ -24,6 +24,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 '''
 
+#TODO:
+# -trhow exceptions
+# -use GArray
+
 cdef extern from 'glib.h':
     void g_type_init()
 
@@ -60,7 +64,7 @@ cdef extern from 'position.h':
                                                                          GEOCLUE_POSITION_FIX* OUT_fix_type )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_altitude (double* OUT_altitude )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_current_velocity (double* OUT_north_velocity, double* OUT_east_velocity )
-#   Need to handle GArray
+#   Needs to handle GArray
 #    GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_in_view (GArray** OUT_prn_numbers )
     GEOCLUE_POSITION_RETURNCODE geoclue_position_satellites_data (int IN_prn_number, double* OUT_elevation, 
                                                                   double* OUT_azimuth, double* OUT_signal_noise_ratio, 
@@ -133,14 +137,58 @@ def current_position():
 
     return ret_value
 
-def set_position_callback(callback, userdata):
-    geoclue_position_set_position_callback(callback, <void*>userdata)
+def set_position_callback(cb_func, user_data=None):
+    data = cb_func, user_data
+    geoclue_position_set_position_callback(callback, <void*>data)
 
-cdef void callback(double lat, double lon,  void *userdata):
-    (<object>userdata)(lon)(lat)
+    if (status == GEOCLUE_POSITION_SUCCESS):
+        ret_value = latitude, longitude
+    else:
+        return status
 
-#def current_position_error (double* OUT_latitude_error, double* OUT_longitude_error, GEOCLUE_POSITION_FIX* OUT_fix_type ):
-#def current_altitude (double* OUT_altitude ):
-#def current_velocity (double* OUT_north_velocity, double* OUT_east_velocity ):
-##def _satellites_in_view (GArray** OUT_prn_numbers ):
-#def satellites_data (int IN_prn_number, double* OUT_elevation, double* OUT_azimuth, double* OUT_signal_noise_ratio, unsigned int* OUT_differential, unsigned int* OUT_ephemeris ):
+    return ret_value
+
+cdef void callback(double lat, double lon, void *data):
+    function = (<object>data)[0]
+    user_data = (<object>data)[1]
+    cb_func(lat, lon, user_data)
+
+def current_position_error():
+    cdef double lat_error, lon_error
+    cdef GEOCLUE_POSITION_FIX fix_type
+
+    status = geoclue_position_current_position_error(&lat_error, &lon_error, &fix_type)
+
+    if (status == GEOCLUE_POSITION_SUCCESS):
+        ret_value = lat_error, lon_error, fix_type
+    else:
+        return status
+
+    return ret_value
+
+def current_altitude():
+    cdef double altitude
+
+    status = geoclue_position_current_altitude(&altitude)
+
+    if (status == GEOCLUE_POSITION_SUCCESS):
+        ret_value = altitude
+    else:
+        return status
+
+    return ret_value
+
+def current_velocity():
+    cdef double north_vel, east_vel
+
+    status = geoclue_position_current_velocity(&north_vel, &east_vel)
+
+    if (status == GEOCLUE_POSITION_SUCCESS):
+        ret_value = north_vel, east_vel
+    else:
+        return status
+
+    return ret_value
+
+##def _satellites_in_view(GArray** OUT_prn_numbers):
+#def satellites_data(int IN_prn_number, double* OUT_elevation, double* OUT_azimuth, double* OUT_signal_noise_ratio, unsigned int* OUT_differential, unsigned int* OUT_ephemeris):
