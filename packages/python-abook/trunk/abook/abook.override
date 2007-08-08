@@ -34,8 +34,8 @@ headers
 
 PyObject *current_context = NULL;
 
-/*staticforward PyTypeObject PyOssoABookContactModel_Type;
-staticforward PyTypeObject PyOssoABookFilterModel_Type;*/
+staticforward PyTypeObject PyABookAccount_Type;
+
 %%
 modulename abook
 
@@ -477,30 +477,45 @@ override osso_abook_account_view_get_selection noargs
 static PyObject *
 _wrap_osso_abook_account_view_get_selection(PyObject *self)
 {
-	PyObject *pyaccounts;
-	GList *accounts;
+	PyObject *pylist;
+	GList *tuples;
 	GList *tmp;
 	gint i;
 	gint size;
 
-	accounts = osso_abook_account_view_get_selection(
-				(OssoABookAccountView *) ((PyGObject *)self)->obj);
-	size = g_list_length(accounts);
+	tuples = osso_abook_account_view_get_selection(
+				OSSO_ABOOK_ACCOUNT_VIEW (((PyGObject *)self)->obj));
+	size = g_list_length(tuples);
 
-	pyaccounts = PyList_New(size);
-	tmp = accounts;
+	pylist = PyList_New(size);
+	tmp = tuples;
 
 	for (i = 0; i < size; i++){
-		PyObject *pyaccount;
+		PyObject *pytuple;
+		OssoABookAccountModelTuple *tuple;
 
-		pyaccount = pygobject_new(tmp->data);
-		PyList_SetItem(pyaccount, i, pyaccount);
+		tuple = (OssoABookAccountModelTuple *) tmp->data;
+		if (tuple == NULL) {
+			Py_XINCREF(Py_None);
+			PyList_SetItem(pylist, i, Py_None);
+			tmp = tmp->next;
+			continue;
+		}
+
+		pytuple = PyTuple_New(2);
+		PyTuple_SetItem(pytuple, 0,
+		pygobject_new(G_OBJECT(tuple->contact)));
+		PyTuple_SetItem(pytuple, 1,
+		pygobject_new(G_OBJECT(tuple->account)));
+
+		PyList_SetItem(pylist, i, pytuple);
+
 		tmp = tmp->next;
 	}
 
-	g_list_free(accounts);
+	g_list_free(tuples);
 
-	return pyaccounts;
+	return pylist;
 }
 %%
 override osso_abook_delete_contacts_dialog_run kwargs
@@ -640,30 +655,45 @@ override osso_abook_account_selector_get_extended_selection noargs
 static PyObject *
 _wrap_osso_abook_account_selector_get_extended_selection(PyGObject *self)
 {
-	PyObject *pyaccounts;
-	GList *accounts;
+	PyObject *pylist;
+	GList *tuples;
 	GList *tmp;
 	gint i;
 	gint size;
 
-	accounts = osso_abook_account_selector_get_extended_selection(
-							OSSO_ABOOK_ACCOUNT_SELECTOR(self->obj));
-	size = g_list_length(accounts);
+	tuples = osso_abook_account_selector_get_extended_selection(
+				OSSO_ABOOK_ACCOUNT_SELECTOR (((PyGObject *)self)->obj));
+	size = g_list_length(tuples);
 
-	pyaccounts = PyList_New(size);
-	tmp = accounts;
+	pylist = PyList_New(size);
+	tmp = tuples;
 
 	for (i = 0; i < size; i++){
-		PyObject *pyaccount;
+		PyObject *pytuple;
+		OssoABookAccountModelTuple *tuple;
 
-		pyaccount = pygobject_new(tmp->data);
-		PyList_SetItem(pyaccounts, i, pyaccount);
+		tuple = (OssoABookAccountModelTuple *) tmp->data;
+		if (tuple == NULL) {
+			Py_XINCREF(Py_None);
+			PyList_SetItem(pylist, i, Py_None);
+			tmp = tmp->next;
+			continue;
+		}
+
+		pytuple = PyTuple_New(2);
+		PyTuple_SetItem(pytuple, 0,
+						pygobject_new(G_OBJECT(tuple->contact)));
+		PyTuple_SetItem(pytuple, 1,
+						pygobject_new(G_OBJECT(tuple->account)));
+
+		PyList_SetItem(pylist, i, pytuple);
+
 		tmp = tmp->next;
 	}
 
-	g_list_free(accounts);
+	g_list_free(tuples);
 
-	return pyaccounts;
+	return pylist;
 }
 %%
 override osso_abook_group_selector_get_extended_selection noargs
@@ -965,5 +995,183 @@ _wrap_osso_abook_tree_view_enable_drag_source(PyGObject *self,
 	Py_XINCREF(Py_None);
 	return Py_None;
 }
+%%
+override osso_abook_account_model_get_iter kwargs
+static PyObject *
+_wrap_osso_abook_account_model_get_iter(PyGObject *self,
+										PyObject *args,
+										PyObject *kwargs)
+{
+	static char *kwlist[] = {"tuple", NULL};
+	PyGObject *pycontact;
+	PyGObject *pyaccount;
+	PyObject *pytuple;
+	PyObject *pyiter = NULL;
+	EContact *contact;
+	OssoABookAccount *account;
+	OssoABookAccountModelTuple *tuple;
+	GtkTreeIter iter;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:abook.AccountModel.get_iter",
+									kwlist,
+									&PyTuple_Type, &pytuple))
+		return NULL;
+
+	if (!PyArg_ParseTuple(pytuple, "O!O!",
+						&PyEContact_Type, &pycontact,
+						&PyABookAccount_Type, &pyaccount)) {
+		PyErr_SetString(PyExc_TypeError, "Tuple must be (contact, account)");
+		return NULL;
+	}
+	
+	contact = E_CONTACT(pycontact->obj);
+	account = OSSO_ABOOK_ACCOUNT(pyaccount->obj);
+
+	tuple = osso_abook_account_model_tuple_new(contact, account);
+
+	if(osso_abook_account_model_get_iter((OssoABookAccountModel*)self->obj,
+										tuple,
+										&iter))
+		pyiter = pyg_boxed_new(GTK_TYPE_TREE_ITER, &iter, TRUE, TRUE);
+	else {
+		g_free(tuple);
+		PyErr_SetString(PyExc_ValueError, "invalid tuple");
+		return NULL;
+	}
+
+	g_free(tuple); /* Don't call *tuple_unref. It would free the tuple args */
+
+	return pyiter;
+}
+%%
+override osso_abook_account_selector_select_tuple kwargs
+static PyObject *
+_wrap_osso_abook_account_selector_select_tuple(PyGObject *self,
+												PyObject *args,
+												PyObject *kwargs)
+{
+	static char *kwlist[] = {"tuple", NULL};
+	PyObject *pytuple;
+	PyGObject *pycontact;
+	PyGObject *pyaccount;
+	OssoABookAccountModelTuple *tuple;
+	EContact *contact;
+	OssoABookAccount *account;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:abook.AccountSelector.select_tuple",
+									kwlist,
+									&PyTuple_Type, &pytuple))
+		return NULL;
+
+	if (!PyArg_ParseTuple(pytuple, "O!O!",
+						&PyEContact_Type, &pycontact,
+						&PyABookAccount_Type, &pyaccount)) {
+		PyErr_SetString(PyExc_TypeError, "Tuple must be (contact, account)");
+		return NULL;
+	}
+
+	contact = E_CONTACT(pycontact->obj);
+	account = OSSO_ABOOK_ACCOUNT(pyaccount->obj);
+
+	tuple = osso_abook_account_model_tuple_new(contact, account);
+	if (tuple == NULL) {
+		PyErr_SetString(PyExc_ValueError, "Could not create tuple");
+		return NULL;
+	}
+
+	osso_abook_account_selector_select_tuple(
+					OSSO_ABOOK_ACCOUNT_SELECTOR(self->obj),
+					tuple);
+
+	g_free(tuple);
+
+	Py_XINCREF(Py_None);
+	return Py_None;
+}
+%%
+override osso_abook_account_selector_deselect_tuple kwargs
+static PyObject *
+_wrap_osso_abook_account_selector_deselect_tuple(PyGObject *self,
+												PyObject *args,
+												PyObject *kwargs)
+{
+	static char *kwlist[] = {"tuple", NULL};
+	PyObject *pytuple;
+	PyGObject *pycontact;
+	PyGObject *pyaccount;
+	OssoABookAccountModelTuple *tuple;
+	EContact *contact;
+	OssoABookAccount *account;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:abook.AccountSelector.deselect_tuple",
+									kwlist,
+									&PyTuple_Type, &pytuple))
+		return NULL;
+
+	if (!PyArg_ParseTuple(pytuple, "O!O!",
+						&PyEContact_Type, &pycontact,
+						&PyABookAccount_Type, &pyaccount)) {
+		PyErr_SetString(PyExc_TypeError, "Tuple must be (contact, account)");
+		return NULL;
+	}
+
+	contact = E_CONTACT(pycontact->obj);
+	account = OSSO_ABOOK_ACCOUNT(pyaccount->obj);
+
+	tuple = osso_abook_account_model_tuple_new(contact, account);
+	if (tuple == NULL) {
+		PyErr_SetString(PyExc_ValueError, "Could not create tuple");
+		return NULL;
+	}
+
+	osso_abook_account_selector_deselect_tuple(
+					OSSO_ABOOK_ACCOUNT_SELECTOR(self->obj),
+					tuple);
+
+	g_free(tuple);
+
+	Py_XINCREF(Py_None);
+	return Py_None;
+}
+%%
+override osso_abook_account_view_get_focus noargs
+static PyObject *
+_wrap_osso_abook_account_view_get_focus(PyGObject *self)
+{
+	PyObject *pytuple;
+	PyObject *pycontact;
+	PyObject *pyaccount;
+	OssoABookAccountModelTuple *tuple;
+
+	tuple = osso_abook_account_view_get_focus(
+					OSSO_ABOOK_ACCOUNT_VIEW(self->obj));
+
+	if (tuple == NULL) {
+		Py_XINCREF(Py_None);
+		return Py_None;
+	}
+
+	pycontact = pygobject_new(G_OBJECT(tuple->contact));
+	pyaccount = pygobject_new(G_OBJECT(tuple->account));
+
+	pytuple = PyTuple_New(2);
+	if (pytuple == NULL) {
+		Py_XDECREF(pycontact);
+		Py_XDECREF(pyaccount);
+		PyErr_SetString(PyExc_RuntimeError, "Could not allocate tuple");
+		return NULL;
+	}
+
+	PyTuple_SetItem(pytuple, 0, pycontact);
+	PyTuple_SetItem(pytuple, 1, pyaccount);
+
+	g_free(tuple);
+
+	return pytuple;
+}
+
 /* vim:ts=4:noet:sw=4:sws=4:si:ai:showmatch:foldmethod=indent
  */

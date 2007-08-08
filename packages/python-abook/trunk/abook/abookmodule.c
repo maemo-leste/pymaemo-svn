@@ -37,6 +37,7 @@ void pyabook_register_classes (PyObject *d);
 void pyabook_add_constants(PyObject *module, const gchar *strip_prefix);
 
 extern PyMethodDef pyabook_functions[];
+extern PyTypeObject PyABookAccount_Type;
 
 /* FIXME This can be automatized... */
 /* #defines not scanned by h2defs and codegen */
@@ -60,5 +61,10 @@ initabook (void)
     pyabook_add_constants(m, "OSSO_ABOOK_");
 
     add_constants(m);
+
+   // PyModule_AddObject(m, "AccountModelTuple", 
+
+    if (PyErr_Ocurred())
+        Py_FatalError("could not initialize module abook");
 
 }
