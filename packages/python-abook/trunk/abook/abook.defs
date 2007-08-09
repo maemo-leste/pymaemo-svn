@@ -41,6 +41,6 @@
 (include "defs/osso-abook-service-group.defs")
 (include "defs/osso-abook-tree-model.defs")
 (include "defs/osso-abook-tree-view.defs")
-(include "defs/osso-abook-video.defs")
+;(include "defs/osso-abook-video.defs") 
 ;(include "defs/osso-abook-voip-call-button.defs")
 (include "defs/osso-abook.defs")
