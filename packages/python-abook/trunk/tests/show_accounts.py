@@ -17,9 +17,17 @@ class ShowAccounts(hildon.Program):
         self.window.connect("destroy", gtk.main_quit)
         self.add_window(self.window)
 
-        self.model = abook.AccountModel(abook.ACCOUNT_TYPE_ALL)
+        self.book = evo.open_addressbook("default")
+        query = evo.EBookQuery.field_exists(evo.CONTACT_FULL_NAME)
 
-        self.view = abook.AccountView(self.model)
+        self.bookview = self.book.get_book_view(query)
+        self.bookview.start()
+
+        # Needs to set the bookview after creating the model
+        self.model = abook.AccountModel(abook.ACCOUNT_TYPE_ALL)
+        self.model.set_book_view(self.bookview)
+
+        self.view = abook.AccountSelector(self.model)
         self.window.add(self.view)
 
         self.window.show_all()
