@@ -62,9 +62,7 @@ initabook (void)
 
     add_constants(m);
 
-   // PyModule_AddObject(m, "AccountModelTuple", 
-
-    if (PyErr_Ocurred())
+    if (PyErr_Occurred())
         Py_FatalError("could not initialize module abook");
 
 }
