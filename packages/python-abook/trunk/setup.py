@@ -73,6 +73,7 @@ class PyABookBuild(build):
             '--register', defsdir+'/gtk-types.defs',
             '--register', '/usr/share/evolution-python/defs/ebook.defs',
             '--register', defsdir+'/pango-types.defs',
+            '--register', defsdir+'/galago.defs',
             '--override', override_filename,
             '--prefix', 'pyabook',
             defs_filename,
