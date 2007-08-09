@@ -37,17 +37,17 @@ cdef extern from 'gpsbt.h':
 
 #############################################################
 cdef class Context:
-    cdef gpsbt_t *_context_stored
+    cdef gpsbt_t _context_stored
 
     cdef void set_value(self, gpsbt_t *cont):
-        self._context_stored = cont
+        self._context_stored = cont[0]
 
-    cdef gpsbt_t *get_value(self):
+    cdef gpsbt_t get_value(self):
         return self._context_stored
 
 def start(char *bda=NULL, int dbg_lvl=0, int gpsd_dbg_lvl=0, short port=0, char * error_buf=NULL,
           int error_buf_max_len=0, int timeout_ms=0):
-    cdef gpsbt_t ctx_out, *tmp
+    cdef gpsbt_t ctx_out, tmp
     cdef Context ctx_container, bla
 
     status = gpsbt_start(bda, dbg_lvl, gpsd_dbg_lvl, port, error_buf, error_buf_max_len,
@@ -58,16 +58,16 @@ def start(char *bda=NULL, int dbg_lvl=0, int gpsd_dbg_lvl=0, short port=0, char 
 # Testing method get_value
 #    if (status==0):
 #        tmp = ctx_container.get_value()
-#        gpsbt_stop(tmp)
+#        gpsbt_stop(&tmp)
 
     return status, ctx_container
 
-def stop(ctx):
-    cdef gpsbt_t *ctx_in
+def stop(object ctx):
+    cdef gpsbt_t ctx_in
     cdef Context ctx_container
 
     ctx_container = ctx
     ctx_in = ctx_container.get_value()
-    status = gpsbt_stop(ctx_in)
+    status = gpsbt_stop(&ctx_in)
 
     return status
