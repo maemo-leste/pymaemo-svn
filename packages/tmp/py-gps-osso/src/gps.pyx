@@ -25,7 +25,6 @@
 '''
 
 cdef extern from 'gpsbt.h':
-
     ctypedef struct gpsbt_t:
         pass
 
@@ -39,7 +38,7 @@ cdef extern from 'gpsbt.h':
 cdef class Context:
     cdef gpsbt_t _context_stored
 
-    cdef void set_value(self, gpsbt_t *cont):
+    cdef set_value(self, gpsbt_t *cont):
         self._context_stored = cont[0]
 
     cdef gpsbt_t get_value(self):
@@ -47,22 +46,17 @@ cdef class Context:
 
 def start(char *bda=NULL, int dbg_lvl=0, int gpsd_dbg_lvl=0, short port=0, char * error_buf=NULL,
           int error_buf_max_len=0, int timeout_ms=0):
-    cdef gpsbt_t ctx_out, tmp
-    cdef Context ctx_container, bla
+    cdef gpsbt_t ctx_out
+    cdef Context ctx_container
 
     status = gpsbt_start(bda, dbg_lvl, gpsd_dbg_lvl, port, error_buf, error_buf_max_len,
                          timeout_ms, &ctx_out)
     ctx_container = Context()
     ctx_container.set_value(&ctx_out)
 
-# Testing method get_value
-#    if (status==0):
-#        tmp = ctx_container.get_value()
-#        gpsbt_stop(&tmp)
-
     return status, ctx_container
 
-def stop(object ctx):
+def stop(ctx):
     cdef gpsbt_t ctx_in
     cdef Context ctx_container
 
