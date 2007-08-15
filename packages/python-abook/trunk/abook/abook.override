@@ -57,6 +57,7 @@ import gtk.TreeModelFilter as PyGtkTreeModelFilter_Type
 import gtk.UIManager as PyGtkUIManager_Type
 import gtk.Widget as PyGtkWidget_Type
 import pango.AttrList as PyPangoAttrList_Type
+import mc.Account as PyMcAccount_Type
 
 %%
 ignore-glob *_get_type

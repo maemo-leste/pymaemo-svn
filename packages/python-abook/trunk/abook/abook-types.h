@@ -30,6 +30,7 @@
 /* TODO Fill in osso-abook headers */
 
 
+#include <libmissioncontrol/mc.h>
 #include <libosso-abook/osso-abook.h>
 #include <libosso-abook/osso-abook-account-model.h>
 #include <libosso-abook/osso-abook-account.h>
@@ -37,8 +38,6 @@
 #include <libosso-abook/osso-abook-account-group.h>
 #include <libosso-abook/osso-abook-voip-call-button.h>
 #include <python-osso/osso.h>
-
-/* FIXME Nasty hack - Remaining macros from TreeModel */
 
 #include <libosso.h>
 
