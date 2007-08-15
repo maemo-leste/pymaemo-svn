@@ -1,0 +1,477 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ * python-mc - Python bindings for the MissionControl library.
+ *
+ *   mc.override: overrides for the mc module.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+%%
+headers
+
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#include <libintl.h>
+#include <glib-object.h>
+
+
+#include "mc-types.h"
+
+
+/**
+ * pygobject_list_from_glist:
+ * @objects: A GList of GObjects
+ *
+ * Converts a GList of GObjects to a Python list.
+ * Does not free the GList.
+ *
+ * Returns: A new Python List.
+ */
+static PyObject *
+pygobject_list_from_glist(GList *objects)
+{
+	gint size;
+	gint i;
+	GList *tmp;
+	PyObject *pylist;
+
+	size = g_list_length(objects);
+	pylist = PyList_New(size);
+
+	tmp = objects;
+	
+	for (i = 0; i < size; i++) {
+		PyObject *pyobj;
+		GObject *obj;
+
+		obj = G_OBJECT(tmp->data);
+		pyobj = pygobject_new(obj);
+
+		PyList_SetItem(pylist, i, pyobj);
+		tmp = tmp->next;
+	}
+
+	return pylist;
+}
+
+static void
+_add_account_param(PyObject *dict, McAccount *account, McProtocolParam *param)
+{
+	McAccountSettingState ret = MC_ACCOUNT_SETTING_ABSENT;
+	PyObject *data;
+
+	g_return_if_fail(account != NULL);
+	g_return_if_fail(param != NULL);
+	g_return_if_fail(param->name != NULL);
+	g_return_if_fail(param->signature != NULL);
+
+	switch (param->signature[0]) {
+		case DBUS_TYPE_STRING:
+			{
+				char *tmp;
+				ret = mc_account_get_param_string(account, param->name, &tmp);
+				if (ret != MC_ACCOUNT_SETTING_ABSENT) {
+					data = PyString_FromString(tmp);
+					g_free(tmp);
+					PyDict_SetItemString(dict, param->name, data);
+				}
+				break;
+			}
+		case DBUS_TYPE_INT16:
+		case DBUS_TYPE_INT32:
+		case DBUS_TYPE_UINT16:
+		case DBUS_TYPE_UINT32:
+			{
+				gint tmp;
+				ret = mc_account_get_param_int(account, param->name, &tmp);
+				if (ret != MC_ACCOUNT_SETTING_ABSENT) {
+					data = PyInt_FromLong(tmp);
+					PyDict_SetItemString(dict, param->name, data);
+				}
+				break;
+			}
+		case DBUS_TYPE_BOOLEAN:
+			{
+				gboolean tmp;
+				ret = mc_account_get_param_boolean(account, param->name, &tmp);
+				if (ret != MC_ACCOUNT_SETTING_ABSENT) {
+					data = PyBool_FromLong(tmp);
+					PyDict_SetItemString(dict, param->name, data);
+				}
+				break;
+			}
+		default:
+			g_warning("%s: skipping parameter %s, unknown type %s",
+					G_STRFUNC, param->name, param->signature);
+	}
+	return;
+}
+%%
+modulename mc
+
+%%
+import gobject.GObject as PyGObject_Type
+import osso.Context as PyContext_Type
+import evolution.ebook.EBook as PyEBook_Type
+import evolution.ebook.EBookView as PyEBookView_Type
+import evolution.ebook.EBookView as PyEBookView_Type
+import evolution.ebook.EContact as PyEContact_Type
+import gtk.Button as PyGtkButton_Type
+import gtk.Image as PyGtkImage_Type
+import gtk.Widget as PyGtkWidget_Type
+import pango.AttrList as PyPangoAttrList_Type
+import telepathy.client.Connection as PyTelepathyClientConnection_Type
+import dbus.ProxyObject as PyDBusProxyObject_Type
+
+%%
+ignore-glob *_get_type
+%%
+override mc_accounts_list kwargs
+static PyObject *
+_wrap_mc_accounts_list (PyObject *self,
+						PyObject *args,
+						PyObject *kwargs)
+{
+	static char *kwlist[] = {"profile", "vcard_field", "enabled", NULL};
+	PyObject *pyaccounts;
+	GList *accounts = NULL;
+	PyObject *pyprofile = NULL;
+	McProfile *profile = NULL;
+	char *vcard_field = NULL;
+	gboolean enabled = -1; /* Something different from TRUE and FALSE */
+
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"|O!sb:mc.accounts_list",
+									kwlist,
+									&PyMcProfile_Type, &pyprofile,
+									&vcard_field,
+									&enabled))
+		return NULL;
+
+	if (pyprofile != NULL) {
+		profile = MC_PROFILE(((PyGObject *)pyprofile)->obj);
+		accounts = mc_accounts_list_by_profile(profile);
+	} else if (vcard_field != NULL) {
+		accounts = mc_accounts_list_by_vcard_field(vcard_field);
+	} else if (enabled != -1) {
+		accounts = mc_accounts_list_by_enabled(enabled);
+	} else {
+		accounts = mc_accounts_list();
+	}
+
+	pyaccounts = pygobject_list_from_glist(accounts);
+
+	if (accounts)
+		mc_accounts_list_free(accounts);
+
+	return pyaccounts;
+}
+
+%%
+override mc_profiles_list kwargs
+static PyObject *
+_wrap_mc_profiles_list (PyObject *self,
+						PyObject *args,
+						PyObject *kwargs)
+{
+	static char *kwlist[] = {"vcard_field", NULL};
+	PyObject *pyprofiles;
+	GList *profiles;
+	char *vcard_field = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"|s:mc.profiles_list",
+									kwlist,
+									&vcard_field))
+		return NULL;
+
+	if (vcard_field != NULL)
+		profiles = mc_profiles_list_by_vcard_field(vcard_field);
+	else
+		profiles = mc_profiles_list();
+
+	pyprofiles = pygobject_list_from_glist(profiles);
+
+	mc_profiles_free_list(profiles);
+
+	return pyprofiles;
+}
+
+%%
+override mc_managers_list noargs
+static PyObject *
+_wrap_mc_managers_list(PyObject *self)
+{
+	PyObject *pymanagers;
+	GList *managers;
+
+	managers = mc_managers_list();
+
+	pymanagers = pygobject_list_from_glist(managers);
+
+	mc_managers_free_list(managers);
+
+	return pymanagers;
+}
+
+%%
+override mc_protocols_list kwargs
+static PyObject *
+_wrap_mc_protocols_list(PyObject *self,
+						PyObject *args,
+						PyObject *kwargs)
+{
+	static char *kwlist[] = {"manager", NULL};
+	PyObject *pyprotocols;
+	GList *protocols;
+	PyObject *pymanager = NULL;
+	McManager *manager = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"|O!:mc.protocols_list",
+									kwlist,
+									&PyMcManager_Type, &pymanager))
+		return NULL;
+
+	if(pymanager != NULL) {
+		manager = MC_MANAGER(((PyGObject *)pymanager)->obj);
+		protocols = mc_protocols_list_by_manager(manager);
+	} else {
+		protocols = mc_protocols_list();
+	}
+
+	pyprotocols = pygobject_list_from_glist(protocols);
+
+	mc_protocols_free_list(protocols);
+
+	return pyprotocols;
+}
+
+%%
+override mc_account_get_param kwargs
+static PyObject *
+_wrap_mc_account_get_param(PyGObject *self,
+							PyObject *args,
+							PyObject *kwargs)
+{
+	static char *kwlist[] = {"param", NULL};
+	McAccount *self_acc;
+	gchar *param;
+	gint x;
+	gboolean y;
+	gchar *z;
+
+	gint state;
+	PyObject *pyvalue = NULL;
+	PyObject *pystate;
+	PyObject *pytuple;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"s:mc.Account.get_param",
+									kwlist,
+									&param))
+		return NULL;
+
+	self_acc = MC_ACCOUNT(self->obj);
+
+	/* Int Params */
+	state = mc_account_get_param_int(self_acc, param, &x);
+	if (state != MC_ACCOUNT_SETTING_ABSENT) {
+		
+		pyvalue = PyInt_FromLong(x);
+
+	} else if ((state = mc_account_get_param_boolean(self_acc, param, &y)) !=
+						MC_ACCOUNT_SETTING_ABSENT) {
+		/* Bool params */
+		if (y == TRUE)
+			pyvalue = Py_True;
+		else
+			pyvalue = Py_False;
+
+		Py_INCREF(pyvalue);
+
+	} else if ((state = mc_account_get_param_string(self_acc, param, &z)) !=
+						MC_ACCOUNT_SETTING_ABSENT) {
+		/* String Params */
+		pyvalue = PyString_FromString(z);
+		g_free(z);
+	}
+
+	pystate = PyInt_FromLong(state);
+	
+	pytuple = PyTuple_New(2);
+	PyTuple_SetItem(pytuple, 0, pyvalue);
+	PyTuple_SetItem(pytuple, 1, pystate);
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+
+%%
+override mc_account_get_params noargs
+static PyObject *
+_wrap_mc_account_get_params(PyGObject *self)
+{
+	PyObject *pydict;
+	//GHashTable *params;
+	McAccount *account;
+	McProfile *profile = NULL;
+	McProtocol *protocol = NULL;
+	GSList *params;
+	GSList *tmp;
+	gint size;
+	gint i;
+
+	pydict = PyDict_New();
+
+	account = MC_ACCOUNT(self->obj);
+
+	profile = mc_account_get_profile(account);
+	if (profile == NULL)
+		goto OUT;
+
+	protocol = mc_profile_get_protocol(profile);
+	if (protocol == NULL)
+		goto OUT;
+
+	params = mc_protocol_get_params(protocol);
+
+	size = g_slist_length(params);
+	tmp = params;
+
+	for (i = 0; i < size; i++) {
+		_add_account_param(pydict, account, tmp->data);
+		tmp = tmp->next;
+	}
+
+	mc_protocol_free_params_list(params);
+
+OUT:
+	if (protocol)
+		g_object_unref(protocol);
+	
+	if (profile)
+		g_object_unref(profile);
+
+	return pydict;
+}
+
+%%
+override mc_protocol_get_params noargs
+static PyObject *
+_wrap_mc_protocol_get_params(PyGObject *self)
+{
+	GSList *params;
+	GSList *tmp;
+	PyObject *pyparams;
+	gint size;
+	gint i;
+
+	params = mc_protocol_get_params(MC_PROTOCOL(self->obj));
+
+	size = g_slist_length(params);
+	pyparams = PyList_New(size);
+	tmp = params;
+
+	for (i = 0; i < size; i++) {
+		McProtocolParam *param;
+		PyObject *tuple;
+		param = (McProtocolParam*) tmp->data;
+
+		tuple = PyTuple_New(4);
+
+		if (param->name != NULL)
+			PyTuple_SetItem(tuple, 0, PyString_FromString(param->name));
+		else {
+			Py_INCREF(Py_None);
+			PyTuple_SetItem(tuple, 0, Py_None);
+		}
+
+		if (param->signature != NULL)
+			PyTuple_SetItem(tuple, 1, PyString_FromString(param->signature));
+		else {
+			Py_INCREF(Py_None);
+			PyTuple_SetItem(tuple, 1, Py_None);
+		}
+		if (param->def != NULL)
+			PyTuple_SetItem(tuple, 2, PyString_FromString(param->def));
+		else {
+			Py_INCREF(Py_None);
+			PyTuple_SetItem(tuple, 2, Py_None);
+		}
+
+		PyTuple_SetItem(tuple, 3, PyInt_FromLong(param->flags));
+
+		PyList_SetItem(pyparams, i, tuple);
+
+		tmp = tmp->next;
+	}
+
+	mc_protocol_free_params_list(params);
+
+	return pyparams;
+}
+
+%%
+new-constructor MC_TYPE_MISSION_CONTROL
+%%
+override mission_control_new noargs
+static int
+_wrap_mission_control_new(PyGObject *self)
+{
+	/* FIXME This class inherits from DBusGProxy and the constructor
+	 * receives a DBusGConnection, both unavailable in dbus-python
+	 * as of 0.71.
+	 *
+	 * To make it work, we'll take the following steps, based on 
+	 * MissionControl version 4.26 source code:
+	 *
+	 * 1 - make it inherit directly from GObject,
+	 * 		assuming that the DBusGProxy functions aren't needed (!)
+	 * 2 - set a new connection using dbus_g_bus_get()
+	 * 3 - Pass the DBusGProxy properties (still present in the underlying
+	 *		MissionControl instance) through pygobject_construct
+	 */
+
+	DBusGConnection *conn = NULL;
+
+	g_debug("Creating bus");
+	conn = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
+	g_debug("Got bus");
+	if (conn == NULL)
+		return -1;		
+
+	g_debug("Creating gobject");
+	pygobject_construct(self,
+						"name", MISSION_CONTROL_SERVICE,
+						"path", MISSION_CONTROL_PATH,
+						"interface", MISSION_CONTROL_IFACE,
+						"connection", conn, NULL);
+	g_debug("object created");
+
+	if (self->obj == NULL)
+		return -1;
+
+	g_debug("safe return");
+
+	return 0;
+}
+/* vim:ts=4:noet:sw=4:sws=4:si:ai:showmatch:foldmethod=indent
+ */

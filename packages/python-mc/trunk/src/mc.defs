@@ -1,0 +1,863 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Account
+  (in-module "Mc")
+  (parent "GObject")
+  (c-name "McAccount")
+  (gtype-id "MC_TYPE_ACCOUNT")
+)
+
+(define-object AccountMonitor
+  (in-module "Mc")
+  (parent "GObject")
+  (c-name "McAccountMonitor")
+  (gtype-id "MC_TYPE_ACCOUNT_MONITOR")
+)
+
+(define-object Manager
+  (in-module "Mc")
+  (parent "GObject")
+  (c-name "McManager")
+  (gtype-id "MC_TYPE_MANAGER")
+)
+
+(define-object Profile
+  (in-module "Mc")
+  (parent "GObject")
+  (c-name "McProfile")
+  (gtype-id "MC_TYPE_PROFILE")
+)
+
+(define-object Protocol
+  (in-module "Mc")
+  (parent "GObject")
+  (c-name "McProtocol")
+  (gtype-id "MC_TYPE_PROTOCOL")
+)
+
+;; Enumerations and flags ...
+
+(define-enum AccountSettingState
+  (in-module "Mc")
+  (c-name "McAccountSettingState")
+  (gtype-id "MC_TYPE_ACCOUNT_SETTING_STATE")
+  (values
+    '("absent" "MC_ACCOUNT_SETTING_ABSENT")
+    '("from-account" "MC_ACCOUNT_SETTING_FROM_ACCOUNT")
+    '("from-profile" "MC_ACCOUNT_SETTING_FROM_PROFILE")
+    '("from-proxy" "MC_ACCOUNT_SETTING_FROM_PROXY")
+  )
+)
+
+(define-flags ProfileCapabilityFlags
+  (in-module "Mc")
+  (c-name "McProfileCapabilityFlags")
+  (gtype-id "MC_TYPE_PROFILE_CAPABILITY_FLAGS")
+  (values
+    '("none" "MC_PROFILE_CAPABILITY_NONE")
+    '("chat-p2p" "MC_PROFILE_CAPABILITY_CHAT_P2P")
+    '("chat-room" "MC_PROFILE_CAPABILITY_CHAT_ROOM")
+    '("chat-room-list" "MC_PROFILE_CAPABILITY_CHAT_ROOM_LIST")
+    '("voice-p2p" "MC_PROFILE_CAPABILITY_VOICE_P2P")
+    '("contact-search" "MC_PROFILE_CAPABILITY_CONTACT_SEARCH")
+    '("split-account" "MC_PROFILE_CAPABILITY_SPLIT_ACCOUNT")
+    '("registration-ui" "MC_PROFILE_CAPABILITY_REGISTRATION_UI")
+  )
+)
+
+(define-enum Error
+  (in-module "Mc")
+  (c-name "MCError")
+  (gtype-id "MC_TYPE_ERROR")
+  (values
+    '("disconnected-error" "MC_DISCONNECTED_ERROR")
+    '("invalid-handle-error" "MC_INVALID_HANDLE_ERROR")
+    '("no-matching-connection-error" "MC_NO_MATCHING_CONNECTION_ERROR")
+    '("invalid-account-error" "MC_INVALID_ACCOUNT_ERROR")
+    '("presence-failure-error" "MC_PRESENCE_FAILURE_ERROR")
+    '("no-accounts-error" "MC_NO_ACCOUNTS_ERROR")
+    '("network-error" "MC_NETWORK_ERROR")
+    '("contact-does-not-support-voice-error" "MC_CONTACT_DOES_NOT_SUPPORT_VOICE_ERROR")
+    '("lowmem-error" "MC_LOWMEM_ERROR")
+    '("channel-request-generic-error" "MC_CHANNEL_REQUEST_GENERIC_ERROR")
+    '("channel-banned-error" "MC_CHANNEL_BANNED_ERROR")
+    '("channel-full-error" "MC_CHANNEL_FULL_ERROR")
+    '("channel-invite-only-error" "MC_CHANNEL_INVITE_ONLY_ERROR")
+    '("last-error" "MC_LAST_ERROR")
+  )
+)
+
+(define-enum RtcomPresence
+  (in-module "Osso")
+  (c-name "OssoRtcomPresence")
+  (gtype-id "MC_TYPE_RTCOM_PRESENCE")
+  (values
+    '("osso-rtcom-presence-unset" "OSSO_RTCOM_PRESENCE_UNSET")
+    '("osso-rtcom-presence-offline" "OSSO_RTCOM_PRESENCE_OFFLINE")
+    '("osso-rtcom-presence-available" "OSSO_RTCOM_PRESENCE_AVAILABLE")
+    '("osso-rtcom-presence-away" "OSSO_RTCOM_PRESENCE_AWAY")
+    '("osso-rtcom-presence-extended-away" "OSSO_RTCOM_PRESENCE_EXTENDED_AWAY")
+    '("osso-rtcom-presence-hidden" "OSSO_RTCOM_PRESENCE_HIDDEN")
+    '("osso-rtcom-presence-do-not-disturb" "OSSO_RTCOM_PRESENCE_DO_NOT_DISTURB")
+    '("last-osso-rtcom-presence" "LAST_OSSO_RTCOM_PRESENCE")
+    '("mc-presence-unset" "MC_PRESENCE_UNSET")
+    '("mc-presence-offline" "MC_PRESENCE_OFFLINE")
+    '("mc-presence-available" "MC_PRESENCE_AVAILABLE")
+    '("mc-presence-away" "MC_PRESENCE_AWAY")
+    '("mc-presence-extended-away" "MC_PRESENCE_EXTENDED_AWAY")
+    '("mc-presence-hidden" "MC_PRESENCE_HIDDEN")
+    '("mc-presence-do-not-disturb" "MC_PRESENCE_DO_NOT_DISTURB")
+    '("last-mc-presence" "LAST_MC_PRESENCE")
+  )
+)
+
+(define-enum Presence
+  (in-module "Mc")
+  (c-name "McPresence")
+  (gtype-id "MC_TYPE_PRESENCE")
+  (values
+    '("mc-presence-unset" "MC_PRESENCE_UNSET")
+    '("mc-presence-offline" "MC_PRESENCE_OFFLINE")
+    '("mc-presence-available" "MC_PRESENCE_AVAILABLE")
+    '("mc-presence-away" "MC_PRESENCE_AWAY")
+    '("mc-presence-extended-away" "MC_PRESENCE_EXTENDED_AWAY")
+    '("mc-presence-hidden" "MC_PRESENCE_HIDDEN")
+    '("mc-presence-do-not-disturb" "MC_PRESENCE_DO_NOT_DISTURB")
+    '("last-mc-presence" "LAST_MC_PRESENCE")
+  )
+)
+
+(define-enum Status
+  (in-module "Mc")
+  (c-name "McStatus")
+  (gtype-id "MC_TYPE_STATUS")
+  (values
+    '("disconnected" "MC_STATUS_DISCONNECTED")
+    '("connecting" "MC_STATUS_CONNECTING")
+    '("connected" "MC_STATUS_CONNECTED")
+  )
+)
+
+
+;; From mc-account-monitor.h
+
+(define-function account_monitor_get_type
+  (c-name "mc_account_monitor_get_type")
+  (return-type "GType")
+)
+
+(define-function account_monitor_new
+  (c-name "mc_account_monitor_new")
+  (is-constructor-of "McAccountMonitor")
+  (return-type "McAccountMonitor*")
+)
+
+
+
+;; From mc-account.h
+
+(define-function account_get_type
+  (c-name "mc_account_get_type")
+  (return-type "GType")
+)
+
+(define-function account_new
+  (c-name "mc_account_new")
+  (is-constructor-of "McAccount")
+  (return-type "McAccount*")
+)
+
+(define-function account_lookup
+  (c-name "mc_account_lookup")
+  (return-type "McAccount*")
+  (parameters
+    '("const-gchar*" "unique_name")
+  )
+)
+
+(define-function account_lookup_with_profile
+  (c-name "mc_account_lookup_with_profile")
+  (return-type "McAccount*")
+  (parameters
+    '("McProfile*" "profile")
+    '("const-gchar*" "account")
+  )
+)
+
+(define-function account_lookup_with_vcard_field
+  (c-name "mc_account_lookup_with_vcard_field")
+  (return-type "McAccount*")
+  (parameters
+    '("const-gchar*" "vcard_field")
+    '("const-gchar*" "account")
+  )
+)
+
+;(define-method free
+;  (of-object "McAccount")
+;  (c-name "mc_account_free")
+;  (return-type "none")
+;)
+
+(define-function account_clear_cache
+  (c-name "mc_account_clear_cache")
+  (return-type "none")
+)
+
+(define-function account_create
+  (c-name "mc_account_create")
+  (return-type "McAccount*")
+  (parameters
+    '("McProfile*" "profile")
+  )
+)
+
+(define-method delete
+  (of-object "McAccount")
+  (c-name "mc_account_delete")
+  (return-type "gboolean")
+)
+
+; This function's override can replace the other list_by_* functions by
+; receiving their arguments and calling the right function
+; Precedence: Profile > vcard_field > enabled > simple (this one)
+(define-function accounts_list
+  (c-name "mc_accounts_list")
+  (return-type "GList*")
+)
+
+;(define-function accounts_list_by_enabled
+;  (c-name "mc_accounts_list_by_enabled")
+;  (return-type "GList*")
+;  (parameters
+;    '("gboolean" "enabled")
+;  )
+;)
+
+;(define-function accounts_list_by_profile
+;  (c-name "mc_accounts_list_by_profile")
+;  (return-type "GList*")
+;  (parameters
+;    '("McProfile*" "profile")
+;  )
+;)
+
+;(define-function accounts_list_by_vcard_field
+;  (c-name "mc_accounts_list_by_vcard_field")
+;  (return-type "GList*")
+;  (parameters
+;    '("const-gchar*" "vcard_field")
+;  )
+;)
+
+;(define-function accounts_list_free
+;  (c-name "mc_accounts_list_free")
+;  (return-type "none")
+;  (parameters
+;    '("GList*" "list")
+;  )
+;)
+
+(define-function accounts_filter
+  (c-name "mc_accounts_filter")
+  (return-type "GList*")
+  (parameters
+    '("GList*" "accounts")
+    '("McAccountFilter" "filter")
+    '("gpointer" "data")
+  )
+)
+
+(define-method get_unique_name
+  (of-object "McAccount")
+  (c-name "mc_account_get_unique_name")
+  (return-type "gchar*")
+)
+
+(define-method get_profile
+  (of-object "McAccount")
+  (c-name "mc_account_get_profile")
+  (return-type "McProfile*")
+)
+
+(define-method get_display_name
+  (of-object "McAccount")
+  (c-name "mc_account_get_display_name")
+  (return-type "gchar*")
+)
+
+(define-method set_display_name
+  (of-object "McAccount")
+  (c-name "mc_account_set_display_name")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_normalized_name
+  (of-object "McAccount")
+  (c-name "mc_account_get_normalized_name")
+  (return-type "gchar*")
+)
+
+(define-method set_normalized_name
+  (of-object "McAccount")
+  (c-name "mc_account_set_normalized_name")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method is_enabled
+  (of-object "McAccount")
+  (c-name "mc_account_is_enabled")
+  (return-type "gboolean")
+)
+
+(define-method set_enabled
+  (of-object "McAccount")
+  (c-name "mc_account_set_enabled")
+  (return-type "gboolean")
+  (parameters
+    '("gboolean" "enabled") ;Was const-gboolean
+  )
+)
+
+;(define-method get_param_boolean
+;  (of-object "McAccount")
+;  (c-name "mc_account_get_param_boolean")
+;  (return-type "McAccountSettingState")
+;  (parameters
+;    '("const-gchar*" "name")
+;    '("gboolean*" "value")
+;  )
+;)
+
+;(define-method get_param_int
+;  (of-object "McAccount")
+;  (c-name "mc_account_get_param_int")
+;  (return-type "McAccountSettingState")
+;  (parameters
+;    '("const-gchar*" "name")
+;    '("gint*" "value")
+;  )
+;)
+
+;(define-method get_param_string
+;  (of-object "McAccount")
+;  (c-name "mc_account_get_param_string")
+;  (return-type "McAccountSettingState")
+;  (parameters
+;    '("const-gchar*" "name")
+;    '("gchar**" "value")
+;  )
+;)
+
+; Added to replace the other get_param_*
+(define-method get_param
+  (of-object "McAccount")
+  (c-name "mc_account_get_param")
+  (return-type "McAccountSettingState")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_params
+  (of-object "McAccount")
+  (c-name "mc_account_get_params")
+  (return-type "GHashTable*")
+)
+
+(define-method set_param_boolean
+  (of-object "McAccount")
+  (c-name "mc_account_set_param_boolean")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gboolean" "value")
+  )
+)
+
+(define-method set_param_int
+  (of-object "McAccount")
+  (c-name "mc_account_set_param_int")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gint" "value")
+  )
+)
+
+(define-method set_param_string
+  (of-object "McAccount")
+  (c-name "mc_account_set_param_string")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method unset_param
+  (of-object "McAccount")
+  (c-name "mc_account_unset_param")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method is_complete
+  (of-object "McAccount")
+  (c-name "mc_account_is_complete")
+  (return-type "gboolean")
+)
+
+(define-function account_exists_supporting_invisible
+  (c-name "mc_account_exists_supporting_invisible")
+  (return-type "gboolean")
+  (parameters
+  )
+)
+
+;; From mc-manager.h
+
+(define-function manager_get_type
+  (c-name "mc_manager_get_type")
+  (return-type "GType")
+)
+
+(define-function manager_lookup
+  (c-name "mc_manager_lookup")
+  (return-type "McManager*")
+  (parameters
+    '("const-gchar*" "unique_name")
+  )
+)
+
+;(define-method free
+;  (of-object "McManager")
+;  (c-name "mc_manager_free")
+;  (return-type "none")
+;)
+
+(define-function manager_clear_cache
+  (c-name "mc_manager_clear_cache")
+  (return-type "none")
+)
+
+(define-function managers_list
+  (c-name "mc_managers_list")
+  (return-type "GList*")
+)
+
+;(define-function managers_free_list
+;  (c-name "mc_managers_free_list")
+;  (return-type "none")
+;  (parameters
+;    '("GList*" "list")
+;  )
+;)
+
+(define-method get_unique_name
+  (of-object "McManager")
+  (c-name "mc_manager_get_unique_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_bus_name
+  (of-object "McManager")
+  (c-name "mc_manager_get_bus_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_object_path
+  (of-object "McManager")
+  (c-name "mc_manager_get_object_path")
+  (return-type "const-gchar*")
+)
+
+
+
+;; From mc-profile.h
+
+(define-function profile_get_type
+  (c-name "mc_profile_get_type")
+  (return-type "GType")
+)
+
+; Switched mc_profile_lookup from mc_profile_new
+;(define-function profile_new
+;  (c-name "mc_profile_new")
+;  (is-constructor-of "McProfile")
+;  (return-type "McProfile*")
+;  (parameters
+;    '("const-gchar*" "unique_name")
+;  )
+;)
+
+(define-function profile_lookup
+  (c-name "mc_profile_lookup")
+  (return-type "McProfile*")
+  (parameters
+    '("const-gchar*" "unique_name")
+  )
+)
+
+(define-function profile_lookup_default_for_vcard_field
+  (c-name "mc_profile_lookup_default_for_vcard_field")
+  (return-type "McProfile*")
+  (parameters
+    '("const-gchar*" "vcard_field")
+  )
+)
+
+;(define-method free
+;  (of-object "McProfile")
+;  (c-name "mc_profile_free")
+;  (return-type "none")
+;)
+
+(define-function profile_clear_cache
+  (c-name "mc_profile_clear_cache")
+  (return-type "none")
+)
+
+(define-function profiles_list
+  (c-name "mc_profiles_list")
+  (return-type "GList*")
+)
+
+;(define-function profiles_list_by_vcard_field
+;  (c-name "mc_profiles_list_by_vcard_field")
+;  (return-type "GList*")
+;  (parameters
+;    '("const-gchar*" "vcard_field")
+;  )
+;)
+
+;(define-function profiles_free_list
+;  (c-name "mc_profiles_free_list")
+;  (return-type "none")
+;  (parameters
+;    '("GList*" "list")
+;  )
+;)
+
+(define-method get_unique_name
+  (of-object "McProfile")
+  (c-name "mc_profile_get_unique_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_configuration_ui
+  (of-object "McProfile")
+  (c-name "mc_profile_get_configuration_ui")
+  (return-type "const-gchar*")
+)
+
+(define-method get_display_name
+  (of-object "McProfile")
+  (c-name "mc_profile_get_display_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_icon_name
+  (of-object "McProfile")
+  (c-name "mc_profile_get_icon_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_branding_icon_name
+  (of-object "McProfile")
+  (c-name "mc_profile_get_branding_icon_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_vcard_field
+  (of-object "McProfile")
+  (c-name "mc_profile_get_vcard_field")
+  (return-type "const-gchar*")
+)
+
+(define-method get_default_account_domain
+  (of-object "McProfile")
+  (c-name "mc_profile_get_default_account_domain")
+  (return-type "const-gchar*")
+)
+
+(define-method get_supports_invisible
+  (of-object "McProfile")
+  (c-name "mc_profile_get_supports_invisible")
+  (return-type "gboolean")
+)
+
+(define-method get_protocol
+  (of-object "McProfile")
+  (c-name "mc_profile_get_protocol")
+  (return-type "McProtocol*")
+)
+
+(define-method get_protocol_name
+  (of-object "McProfile")
+  (c-name "mc_profile_get_protocol_name")
+  (return-type "const-gchar*")
+)
+
+(define-method is_default_for_vcard_field
+  (of-object "McProfile")
+  (c-name "mc_profile_is_default_for_vcard_field")
+  (return-type "gboolean")
+)
+
+(define-method get_capabilities
+  (of-object "McProfile")
+  (c-name "mc_profile_get_capabilities")
+  (return-type "McProfileCapabilityFlags")
+)
+
+(define-method get_default_setting
+  (of-object "McProfile")
+  (c-name "mc_profile_get_default_setting")
+  (return-type "const-gchar*")
+  (parameters
+    '("const-gchar*" "setting")
+  )
+)
+
+
+
+;; From mc-protocol.h
+
+(define-function protocol_get_type
+  (c-name "mc_protocol_get_type")
+  (return-type "GType")
+)
+
+(define-function protocol_lookup
+  (c-name "mc_protocol_lookup")
+  (return-type "McProtocol*")
+  (parameters
+    '("McManager*" "id")
+    '("const-gchar*" "protocol")
+  )
+)
+
+;(define-method free
+;  (of-object "McProtocol")
+;  (c-name "mc_protocol_free")
+;  (return-type "none")
+;)
+
+(define-function protocols_list
+  (c-name "mc_protocols_list")
+  (return-type "GList*")
+)
+
+;(define-function protocols_list_by_manager
+;  (c-name "mc_protocols_list_by_manager")
+;  (return-type "GList*")
+;  (parameters
+;    '("McManager*" "id")
+;  )
+;)
+
+;(define-function protocols_free_list
+;  (c-name "mc_protocols_free_list")
+;  (return-type "none")
+;  (parameters
+;    '("GList*" "list")
+;  )
+;)
+
+(define-method get_manager
+  (of-object "McProtocol")
+  (c-name "mc_protocol_get_manager")
+  (return-type "McManager*")
+)
+
+(define-method get_name
+  (of-object "McProtocol")
+  (c-name "mc_protocol_get_name")
+  (return-type "const-gchar*")
+)
+
+; Returns a list of tuples of (name, signature, def, flags)
+(define-method get_params
+  (of-object "McProtocol")
+  (c-name "mc_protocol_get_params")
+  (return-type "GSList*")
+)
+
+;(define-function protocol_free_params_list
+;  (c-name "mc_protocol_free_params_list")
+;  (return-type "none")
+;  (parameters
+;    '("GSList*" "list")
+;  )
+;)
+
+(define-method print
+  (of-object "McProtocol")
+  (c-name "mc_protocol_print")
+  (return-type "none")
+)
+
+
+
+;; From mc.h
+
+(define-function make_resident
+  (c-name "mc_make_resident")
+  (return-type "none")
+)
+
+
+
+;; From mission-control-signals-marshal.h
+
+
+
+;; From mission-control.h
+
+;Handmade MissionControl object definition
+(define-object MissionControl
+  (in-module "Mc")
+  (parent "GObject")
+  (c-name "MissionControl")
+  (gtype-id "MC_TYPE_MISSION_CONTROL")
+)
+
+
+(define-function mission_control_error_quark
+  (c-name "mission_control_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function mission_control_get_type
+  (c-name "mission_control_get_type")
+  (return-type "GType")
+)
+
+(define-function mission_control_new
+  (c-name "mission_control_new")
+  (is-constructor-of "MissionControl")
+  (return-type "MissionControl*")
+  (parameters
+    '("DBusGConnection*" "connection")
+  )
+)
+
+(define-method set_presence
+  (of-object "MissionControl")
+  (c-name "mission_control_set_presence")
+  (return-type "none")
+  (parameters
+    '("McPresence" "presence")
+    '("const-gchar*" "message")
+  )
+)
+
+(define-method get_presence
+  (of-object "MissionControl")
+  (c-name "mission_control_get_presence")
+  (return-type "McPresence")
+)
+
+(define-method get_presence_actual
+  (of-object "MissionControl")
+  (c-name "mission_control_get_presence_actual")
+  (return-type "McPresence")
+)
+
+(define-method request_channel
+  (of-object "MissionControl")
+  (c-name "mission_control_request_channel")
+  (return-type "none")
+  (parameters
+    '("McAccount*" "account")
+    '("const-gchar*" "type")
+    '("guint" "handle")
+    '("TelepathyConnectionHandleType" "handle_type")
+  )
+)
+
+(define-method request_channel_with_string_handle
+  (of-object "MissionControl")
+  (c-name "mission_control_request_channel_with_string_handle")
+  (return-type "guint")
+  (parameters
+    '("McAccount*" "account")
+    '("const-gchar*" "type")
+    '("const-gchar*" "handle")
+    '("TelepathyConnectionHandleType" "Handle_type")
+  )
+)
+
+(define-method cancel_channel_request
+  (of-object "MissionControl")
+  (c-name "mission_control_cancel_channel_request")
+  (return-type "none")
+  (parameters
+    '("guint" "operation_id")
+  )
+)
+
+(define-method connect_all_with_default_presence
+  (of-object "MissionControl")
+  (c-name "mission_control_connect_all_with_default_presence")
+  (return-type "none")
+)
+
+(define-method get_connection_status
+  (of-object "MissionControl")
+  (c-name "mission_control_get_connection_status")
+  (return-type "guint")
+  (parameters
+    '("McAccount*" "account")
+  )
+)
+
+(define-method get_online_connections
+  (of-object "MissionControl")
+  (c-name "mission_control_get_online_connections")
+  (return-type "GSList*")
+)
+
+(define-method get_connection
+  (of-object "MissionControl")
+  (c-name "mission_control_get_connection")
+  (return-type "TpConn*")
+  (parameters
+    '("McAccount*" "account")
+  )
+)
+
+(define-method cancel_last_request
+  (of-object "MissionControl")
+  (c-name "mission_control_cancel_last_request")
+  (return-type "none")
+)
+
+(define-method get_account_for_connection
+  (of-object "MissionControl")
+  (c-name "mission_control_get_account_for_connection")
+  (return-type "McAccount*")
+  (parameters
+    '("TpConn*" "connection")
+  )
+)
+
+(define-method get_used_channels_count
+  (of-object "MissionControl")
+  (c-name "mission_control_get_used_channels_count")
+  (return-type "gint")
+  (parameters
+    '("GQuark" "type")
+  )
+)
+
+
