@@ -136,7 +136,7 @@ import gtk.Button as PyGtkButton_Type
 import gtk.Image as PyGtkImage_Type
 import gtk.Widget as PyGtkWidget_Type
 import pango.AttrList as PyPangoAttrList_Type
-import telepathy.client.Connection as PyTelepathyClientConnection_Type
+//import telepathy.client.Connection as PyTelepathyClientConnection_Type
 import dbus.ProxyObject as PyDBusProxyObject_Type
 
 %%
@@ -428,14 +428,14 @@ _wrap_mc_protocol_get_params(PyGObject *self)
 
 	return pyparams;
 }
-
-%%
+/*
+%
 new-constructor MC_TYPE_MISSION_CONTROL
-%%
+%
 override mission_control_new noargs
 static int
 _wrap_mission_control_new(PyGObject *self)
-{
+{*/
 	/* FIXME This class inherits from DBusGProxy and the constructor
 	 * receives a DBusGConnection, both unavailable in dbus-python
 	 * as of 0.71.
@@ -450,7 +450,7 @@ _wrap_mission_control_new(PyGObject *self)
 	 *		MissionControl instance) through pygobject_construct
 	 */
 
-	DBusGConnection *conn = NULL;
+/*	DBusGConnection *conn = NULL;
 
 	g_debug("Creating bus");
 	conn = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
@@ -472,6 +472,6 @@ _wrap_mission_control_new(PyGObject *self)
 	g_debug("safe return");
 
 	return 0;
-}
+}*/
 /* vim:ts=4:noet:sw=4:sws=4:si:ai:showmatch:foldmethod=indent
  */
