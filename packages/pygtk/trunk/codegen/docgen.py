@@ -32,7 +32,11 @@ def build_object_tree(parser):
     root = Node(None)
     nodes = { None: root }
     for obj_def in objects:
-        parent_node = nodes[obj_def.parent]
+        try:
+            parent_node = nodes[obj_def.parent]
+        except KeyError:
+            parent_node = root
+
         node = Node(obj_def.c_name, obj_def.implements)
         parent_node.add_child(node)
         nodes[node.name] = node

@@ -38,6 +38,10 @@ class Property(object):
         self.optional = optional
         self.argname = argname
 
+    def __len__(self): return 4
+    def __getitem__(self, i):
+        return (self.pname+" property", self.argname, None, self.optional)[i]
+
     def merge(self, old):
         if old.optional is not None:
             self.optional = old.optional
