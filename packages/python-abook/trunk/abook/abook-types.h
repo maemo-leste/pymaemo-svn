@@ -27,10 +27,6 @@
 #include <glib.h>
 #include <glib/gtypes.h>
 
-/* TODO Fill in osso-abook headers */
-
-
-#include <libmissioncontrol/mc.h>
 #include <libosso-abook/osso-abook.h>
 #include <libosso-abook/osso-abook-account-model.h>
 #include <libosso-abook/osso-abook-account.h>
