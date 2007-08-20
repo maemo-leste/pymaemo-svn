@@ -1,7 +1,2 @@
 01-create-debian-dir.patch
-02-commit-contact.patch
-03-econtactfield-enum.patch
-04-ebookquerytest-enum.patch
-05-ebookquery-object.patch
-06-bookview-defs.patch
-07-getbookview.patch
+02-additional-enums.patch

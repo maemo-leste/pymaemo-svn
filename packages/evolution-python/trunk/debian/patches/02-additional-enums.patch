@@ -1,0 +1,26 @@
+Index: evolution-python-0.0.3/src/ebook-enums.c
+===================================================================
+--- evolution-python-0.0.3.orig/src/ebook-enums.c	2007-08-20 16:03:30.000000000 -0300
++++ evolution-python-0.0.3/src/ebook-enums.c	2007-08-20 16:04:16.000000000 -0300
+@@ -119,6 +119,8 @@
+       { E_CONTACT_BIRTH_DATE, "E_CONTACT_BIRTH_DATE", "birth-date" },
+       { E_CONTACT_ANNIVERSARY, "E_CONTACT_ANNIVERSARY", "anniversary" },
+       { E_CONTACT_X509_CERT, "E_CONTACT_X509_CERT", "x509-cert" },
++      { E_CONTACT_PHONE_TELEPHONE, "E_CONTACT_PHONE_TELEPHONE", "phone-telephone" },
++      { E_CONTACT_OSSO_CONTACT_STATE, "E_CONTACT_OSSO_CONTACT_STATE", "osso-contact-state" },
+       { E_CONTACT_FIELD_LAST, "E_CONTACT_FIELD_LAST", "field-last" },
+       { E_CONTACT_FIELD_FIRST, "E_CONTACT_FIELD_FIRST", "field-first" },
+       { E_CONTACT_LAST_SIMPLE_STRING, "E_CONTACT_LAST_SIMPLE_STRING", "last-simple-string" },
+Index: evolution-python-0.0.3/src/ebook.defs
+===================================================================
+--- evolution-python-0.0.3.orig/src/ebook.defs	2007-08-20 16:02:57.000000000 -0300
++++ evolution-python-0.0.3/src/ebook.defs	2007-08-20 16:04:43.000000000 -0300
+@@ -195,6 +195,8 @@
+     '("birth-date" "E_CONTACT_BIRTH_DATE")
+     '("anniversary" "E_CONTACT_ANNIVERSARY")
+     '("x509-cert" "E_CONTACT_X509_CERT")
++    '("phone-telephone" "E_CONTACT_PHONE_TELEPHONE")
++    '("osso-contact-state" "E_CONTACT_OSSO_CONTACT_STATE")
+     '("field-last" "E_CONTACT_FIELD_LAST")
+     '("field-first" "E_CONTACT_FIELD_FIRST")
+     '("last-simple-string" "E_CONTACT_LAST_SIMPLE_STRING")
