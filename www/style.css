@@ -12,6 +12,17 @@ background-color:#fff;
 border-left:1px solid #eee;
 padding:20px;
 font-size:1.2em;margin-right:5px;
+text-decoration:none;
+}
+
+.content h2 a{
+color:#888;
+text-decoration:none;
+}
+
+.content h4 a{
+color:#888;
+text-decoration:none;
 }
 
 p {
@@ -37,14 +48,15 @@ position:relative;
 margin:0px 0px 0px 0px;
 padding-top:1em;
 padding-right:1em;
-height:150px;
-font-size:3.5em;
+height:100px;
+font-size:3.0em;
 text-align:right;
-background:url(top_img.jpg) no-repeat black;
+background:url(images/top_img.jpg) no-repeat black;
 }
 
 .logo a{
 color:#b0b0b0;
+text-decoration:none;
 }
 
 .header{
@@ -83,13 +95,15 @@ color:#eee;
 }
 .side{
 float:left;
-margin:0px 20px 50px 10px;
+margin:0px 20px 0px 10px;
 font-size:1.05em;
 background-color:#fff;
 }
 .side a{
 color:#555;
+margin:15px;
 font-size:1.05em;
+line-height:20px;
 }
 
 h2{
@@ -112,7 +126,6 @@ img {
 }
 
 .screenshot {
-    width: 645px;
     text-align: center;
 }
 .screenshot img {
@@ -121,14 +134,26 @@ img {
 }
 
 .navi {
-    width: 645px;
+    text-align: center;
 }
 
 .back {
-    float: left;
+    margin-right: 100px;
 }
 .next {
-    float: right;
+#    float: right;
+}
+
+table {
+    border-spacing: 10px;
+}
+
+table th {
+    text-align: left;
+}
+
+table td {
+    text-align: left;
 }
 
 var {

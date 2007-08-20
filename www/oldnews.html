@@ -42,37 +42,12 @@
     </div>
 
     <div class="content">
-        <h2><a name="overview">Overview</a></h2>
-        <p> Python for Maemo (PyMaemo for short) was brought to the public at end of 2005 
-        by <a href="http://www.indt.org">INdT</a>. It is the result of an effort to 
-        provide <a href="http://www.python.org" title="Python Programming Language Official site">
-        Python</a> programming language support on <a href="http://www.maemo.org" title="Maemo Official site">
-        Maemo</a> Platform. PyMaemo is designed to have a smaller size and has some 
-        optimizations to be more responsive in Maemo based devices. Among this, there is a 
-        constant effort to increase the number of <a href="documentation.html#components">modules</a> 
-        available on the platform. Putting all together, it provides a better alternative for 
-        fast prototyping and programming in Maemo environment besides the C programming language.
-        </p>
-        <p>More information can be found in our <a href="faq.html">FAQ</a>. So 
-        <a href="installation.html">get PyMaemo now!</a></p>
 
-        <h2><a name="news">News</a></h2>
-
-        <h4>2007/08/20</h4>
-        <ul>
-            <li><b>Webpage reorganization.</b></li>
-            <p>After a long time without any layout modification it was time to better organize 
-            all the information available. Highlights:</p>
-            <ul>
-                <li>New menu entries, with easy access to key information</li>
-                <li>Cleanup and reorganization of all pages</li>
-                <li>A <a href="faq.html">FAQ</a> was included</li>
-            </ul>
-        </ul>
+        <h2>Old News</h2>
 
         <h4>2007/07/19</h4>
         <ul>
-            <li><b>Package containing bugfixes and pyrex upgrade - Python 2.5.1 for Maemo.</b></li>
+            <li><b>Package containing bugfixes and upgrade to Python 2.5.1 for Maemo.</b></li>
             <li>Distributions: Hacker Edition and OS2007.</li>
             <li>SDK: Maemo3.x (Bora).</li>
             <li>Release notes:</li>
@@ -97,7 +72,66 @@
             </ul>
         </ul>
 
-        <h4><a href="oldnews.html">Old News</a></h4>
+        <h4>2007/06/01</h4>
+        <ul>
+            <li><b>Python 2.5.1 for <a href="http://sardine.garage.maemo.org/" title="Sardine website">
+            Sardine</a> under development. This one is meant to be used only by developers.</b></li>
+            <li>SDK: Sardine</li>
+            <li>Release notes:</li>
+            <ul>
+                <li>GTK2.10.12 support</li>
+                <li>PyCairo</li>
+                <li>DBus 1.0.2 support *[PyDbus to be commited]</li>
+                <li>DBus Glib 0.73 support</li>
+                <li>FileDialog modifications inside PyHildon</li>
+            </ul>
+            <li>Download using svn:</li>
+            <ul>
+                <li>svn co https://garage.maemo.org/svn/pymaemo/packages/python-sdk/branches/sardine/ 
+                pymaemo.sardine</li>
+            </ul>
+        </ul>
+
+        <h4>2007/05/15</h4>
+        <ul>
+            <li><b>Python 2.5.1 for Maemo released. Information on how to proceed to 
+            download and install can be found <a href="installation.html">here</a>.</b></li>
+            <li>Distributions: OS2006 / Hacker Edition and OS2007.</li>
+            <li>SDK: Maemo2.2 (Gregale) and Maemo3.1 (Bora).
+            <li>Release notes:</li>
+            <ul>
+                <li>New modules (gconf/gnomevfs, libconic, libid3tag, osso-mime, libjpeg -thanks to Matt Croydon).</li>
+                <li>Bugfixes.</li>
+                <li>Ipython (thanks to Ed Bartosh).</li>
+                <li>Python2.5.1.</li>
+            </ul>
+        </ul>
+
+        <h4>2007/02/23</h4>
+        <ul>
+            <li><b>Package containing bugfixes to Python 2.5 for Maemo.</b></li>
+            <li>Distributions: OS2006 and OS2007.</li>
+            <li>SDK: Maemo2.1 (Scirocco) and Maemo3.0 (Bora).</li>
+            <li>Release notes:</li>
+            <ul>
+                <li>Patch for race condition with signals, inside python.</li>
+                <li>Inclusion of pyexpat module. It was removed accidentally during
+                the build process. This one enables the cElementTree usage.</li>
+                <li>Closes #388 and #389 (Pierre Amadio, thanks for bug report!). Now
+                its possible to use rpc_run and rpc_async_run correctly. Some
+                modifications inside online documentation must be done, regarding
+                callback function used by rpc_async_run. Actually it will receive 4
+                parameters, like C code does. (eg. def callback_func (interface,
+                method, retval, user_data) ).</li>
+            </ul>
+        </ul>
+
+        <h4>2007/01/12</h4>
+        <ul>
+            <li><b>Python 2.5 for Maemo released.</b></li>
+            <li>Distributions: OS2006 and OS2007.</li>
+            <li>SDK: Maemo2.1 (Scirocco) and Maemo3.0 (Bora).</li>
+        </ul>
     </div>
 
     <div class="footer">
