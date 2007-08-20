@@ -23,3 +23,21 @@
 #include "hildon-types.h"
 
 #include "hildon-types.c.in"
+
+GType
+hildon_note_type_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { HILDON_NOTE_CONFIRMATION_TYPE, "HILDON_NOTE_CONFIRMATION_TYPE", "confirmation-type" },
+      { HILDON_NOTE_CONFIRMATION_BUTTON_TYPE, "HILDON_NOTE_CONFIRMATION_BUTTON_TYPE", "confirmation-button-type" },
+      { HILDON_NOTE_INFORMATION_TYPE, "HILDON_NOTE_INFORMATION_TYPE", "information-type" },
+      { HILDON_NOTE_INFORMATION_THEME_TYPE, "HILDON_NOTE_INFORMATION_THEME_TYPE", "information-theme-type" },
+      { HILDON_NOTE_PROGRESSBAR_TYPE, "HILDON_NOTE_PROGRESSBAR_TYPE", "progressbar-type" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("HildonNoteType", values);
+  }
+  return etype;
+}

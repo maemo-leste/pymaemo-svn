@@ -9,6 +9,7 @@
 
 ;; Enumerations and flags ...
 
+; Deprecated
 ;(define-enum ZoomLevel
 ;  (in-module "Hildon")
 ;  (c-name "HildonZoomLevel")

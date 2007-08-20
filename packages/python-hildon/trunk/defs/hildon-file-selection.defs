@@ -9,49 +9,49 @@
 
 ;; Enumerations and flags ...
 
-;(define-enum FileSelectionMode
-;  (in-module "Hildon")
-;  (c-name "HildonFileSelectionMode")
-;  (gtype-id "HILDON_TYPE_FILE_SELECTION_MODE")
-;  (values
-;    '("list" "HILDON_FILE_SELECTION_MODE_LIST")
-;    '("thumbnails" "HILDON_FILE_SELECTION_MODE_THUMBNAILS")
-;  )
-;)
+(define-enum FileSelectionMode
+  (in-module "Hildon")
+  (c-name "HildonFileSelectionMode")
+  (gtype-id "HILDON_TYPE_FILE_SELECTION_MODE")
+  (values
+    '("list" "HILDON_FILE_SELECTION_MODE_LIST")
+    '("thumbnails" "HILDON_FILE_SELECTION_MODE_THUMBNAILS")
+  )
+)
 
-;(define-enum FileSelectionSortKey
-;  (in-module "Hildon")
-;  (c-name "HildonFileSelectionSortKey")
-;  (gtype-id "HILDON_TYPE_FILE_SELECTION_SORT_KEY")
-;  (values
-;    '("name" "HILDON_FILE_SELECTION_SORT_NAME")
-;    '("type" "HILDON_FILE_SELECTION_SORT_TYPE")
-;    '("modified" "HILDON_FILE_SELECTION_SORT_MODIFIED")
-;    '("size" "HILDON_FILE_SELECTION_SORT_SIZE")
-;  )
-;)
+(define-enum FileSelectionSortKey
+  (in-module "Hildon")
+  (c-name "HildonFileSelectionSortKey")
+  (gtype-id "HILDON_TYPE_FILE_SELECTION_SORT_KEY")
+  (values
+    '("name" "HILDON_FILE_SELECTION_SORT_NAME")
+    '("type" "HILDON_FILE_SELECTION_SORT_TYPE")
+    '("modified" "HILDON_FILE_SELECTION_SORT_MODIFIED")
+    '("size" "HILDON_FILE_SELECTION_SORT_SIZE")
+  )
+)
 
-;(define-enum FileSelectionPane
-;  (in-module "Hildon")
-;  (c-name "HildonFileSelectionPane")
-;  (gtype-id "HILDON_TYPE_FILE_SELECTION_PANE")
-;  (values
-;    '("navigation" "HILDON_FILE_SELECTION_PANE_NAVIGATION")
-;    '("content" "HILDON_FILE_SELECTION_PANE_CONTENT")
-;  )
-;)
+(define-enum FileSelectionPane
+  (in-module "Hildon")
+  (c-name "HildonFileSelectionPane")
+  (gtype-id "HILDON_TYPE_FILE_SELECTION_PANE")
+  (values
+    '("navigation" "HILDON_FILE_SELECTION_PANE_NAVIGATION")
+    '("content" "HILDON_FILE_SELECTION_PANE_CONTENT")
+  )
+)
 
-;(define-enum FileSelectionVisibleColumns
-;  (in-module "Hildon")
-;  (c-name "HildonFileSelectionVisibleColumns")
-;  (gtype-id "HILDON_TYPE_FILE_SELECTION_VISIBLE_COLUMNS")
-;  (values
-;    '("name" "HILDON_FILE_SELECTION_SHOW_NAME")
-;    '("modified" "HILDON_FILE_SELECTION_SHOW_MODIFIED")
-;    '("size" "HILDON_FILE_SELECTION_SHOW_SIZE")
-;    '("all" "HILDON_FILE_SELECTION_SHOW_ALL")
-;  )
-;)
+(define-enum FileSelectionVisibleColumns
+  (in-module "Hildon")
+  (c-name "HildonFileSelectionVisibleColumns")
+  (gtype-id "HILDON_TYPE_FILE_SELECTION_VISIBLE_COLUMNS")
+  (values
+    '("name" "HILDON_FILE_SELECTION_SHOW_NAME")
+    '("modified" "HILDON_FILE_SELECTION_SHOW_MODIFIED")
+    '("size" "HILDON_FILE_SELECTION_SHOW_SIZE")
+    '("all" "HILDON_FILE_SELECTION_SHOW_ALL")
+  )
+)
 
 
 ;; From /usr/include/hildon-widgets/hildon-file-selection.h

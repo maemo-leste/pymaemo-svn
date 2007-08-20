@@ -9,26 +9,26 @@
 
 ;; Enumerations and flags ...
 
-;(define-enum TimeEditorErrorType
-;  (in-module "Hildon")
-;  (c-name "HildonTimeEditorErrorType")
-;  (gtype-id "HILDON_TYPE_TIME_EDITOR_ERROR_TYPE")
-;  (values
-;    '("no-time-error" "NO_TIME_ERROR")
-;    '("max-hours" "MAX_HOURS")
-;    '("max-mins" "MAX_MINS")
-;    '("max-secs" "MAX_SECS")
-;    '("min-hours" "MIN_HOURS")
-;    '("min-mins" "MIN_MINS")
-;    '("min-secs" "MIN_SECS")
-;    '("empty-hours" "EMPTY_HOURS")
-;    '("empty-mins" "EMPTY_MINS")
-;    '("empty-secs" "EMPTY_SECS")
-;    '("min-dur" "MIN_DUR")
-;    '("max-dur" "MAX_DUR")
-;    '("invalid-time" "INVALID_TIME")
-;  )
-;)
+(define-enum TimeEditorErrorType
+  (in-module "Hildon")
+  (c-name "HildonTimeEditorErrorType")
+  (gtype-id "HILDON_TYPE_TIME_EDITOR_ERROR_TYPE")
+  (values
+    '("no-time-error" "NO_TIME_ERROR")
+    '("max-hours" "MAX_HOURS")
+    '("max-mins" "MAX_MINS")
+    '("max-secs" "MAX_SECS")
+    '("min-hours" "MIN_HOURS")
+    '("min-mins" "MIN_MINS")
+    '("min-secs" "MIN_SECS")
+    '("empty-hours" "EMPTY_HOURS")
+    '("empty-mins" "EMPTY_MINS")
+    '("empty-secs" "EMPTY_SECS")
+    '("min-dur" "MIN_DUR")
+    '("max-dur" "MAX_DUR")
+    '("invalid-time" "INVALID_TIME")
+  )
+)
 
 
 ;; From /usr/include/hildon-widgets/hildon-time-editor.h

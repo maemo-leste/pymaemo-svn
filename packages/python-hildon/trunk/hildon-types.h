@@ -95,4 +95,7 @@
 
 #include "hildon-types.h.in"
 
+GType hildon_note_type_get_type (void);
+#define HILDON_TYPE_NOTE_TYPE (hildon_note_type_get_type())
+
 #endif /* !HILDON_TYPES_H */

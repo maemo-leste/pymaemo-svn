@@ -9,18 +9,18 @@
 
 ;; Enumerations and flags ...
 
-;(define-enum NoteType
-;  (in-module "Hildon")
-;  (c-name "HildonNoteType")
-;  (gtype-id "HILDON_TYPE_NOTE_TYPE")
-;  (values
-;    '("confirmation-type" "HILDON_NOTE_CONFIRMATION_TYPE")
-;    '("confirmation-button-type" "HILDON_NOTE_CONFIRMATION_BUTTON_TYPE")
-;    '("information-type" "HILDON_NOTE_INFORMATION_TYPE")
-;    '("information-theme-type" "HILDON_NOTE_INFORMATION_THEME_TYPE")
-;    '("progressbar-type" "HILDON_NOTE_PROGRESSBAR_TYPE")
-;  )
-;)
+(define-enum NoteType
+  (in-module "Hildon")
+  (c-name "HildonNoteType")
+  (gtype-id "HILDON_TYPE_NOTE_TYPE")
+  (values
+    '("confirmation-type" "HILDON_NOTE_CONFIRMATION_TYPE")
+    '("confirmation-button-type" "HILDON_NOTE_CONFIRMATION_BUTTON_TYPE")
+    '("information-type" "HILDON_NOTE_INFORMATION_TYPE")
+    '("information-theme-type" "HILDON_NOTE_INFORMATION_THEME_TYPE")
+    '("progressbar-type" "HILDON_NOTE_PROGRESSBAR_TYPE")
+  )
+)
 
 
 ;; From /usr/include/hildon-widgets/hildon-note.h

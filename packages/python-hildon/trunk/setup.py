@@ -28,7 +28,8 @@ def gen_auto_file(filename, subproc_args):
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
-    cmdresult = proc.communicate()[0]  
+    cmdresult, error = proc.communicate() 
+    print error
 #   error = proc.stderr
 #   Print disabled to avoid problems with scratchbox
 #   print >>sys.sdterr, error.read()
