@@ -23,6 +23,8 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 '''
+# GPS utilities (from osso-gpsd package)
+include 'gps.pxi'
 
 cdef extern from 'gpsbt.h':
     ctypedef struct gpsbt_t:
@@ -54,7 +56,10 @@ def start(char *bda=NULL, int dbg_lvl=0, int gpsd_dbg_lvl=0, short port=0, char 
     ctx_container = Context()
     ctx_container.set_value(&ctx_out)
 
-    return status, ctx_container
+    if status==0:
+        return ctx_container
+    else:
+        return None
 
 def stop(ctx):
     cdef gpsbt_t ctx_in
