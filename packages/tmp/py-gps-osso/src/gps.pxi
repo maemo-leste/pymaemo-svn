@@ -1,7 +1,6 @@
 # Source code from gps.py (osso-gpsd package)
 
 import time, calendar, socket, sys, thread
-#from math import *
 NaN = 1e10
 
 ONLINE_SET      = 0x00000001
@@ -94,11 +93,11 @@ class gpsfix:
         self.ept = NaN
         self.latitude = self.longitude = 0.0
         self.eph = NaN
-        self.altitude = NaN         # Meters
+        self.altitude = NaN # Meters
         self.epv = NaN
-        self.track = NaN            # Degrees from true north
-        self.speed = NaN            # Knots
-        self.climb = NaN            # Meters per second
+        self.track = NaN    # Degrees from true north
+        self.speed = NaN    # Knots
+        self.climb = NaN    # Meters per second
         self.epd = NaN
         self.eps = NaN
         self.epc = NaN
@@ -111,7 +110,7 @@ class satellite:
         self.ss = ss
         self.used = used
     def __repr__(self):
-        return "PRN: %3d  E: %3d  Az: %3d  Ss: %d Used: %s" % (self.PRN,self.elevation,self.azimuth,self.ss,"ny"[self.used])
+        return "PRN: %3d  E: %3d  Az: %3d  Ss: %d Used: %c" % (self.PRN,self.elevation,self.azimuth,self.ss,"ny"[self.used])
 
 class gpsdata:
     "Position, track, velocity and status information returned by a GPS."
@@ -349,7 +348,7 @@ class gps(gpsdata):
                 elif cmd in ('Q', 'q'):
                     parts = data.split()
                     self.satellites_used = int(parts[0])
-                    (self.pdop, self.hdop, self.vdop) = map(float, parts[1:])
+                    (self.pdop, self.hdop, self.vdop) = map(float, parts[1:4])
                     self.valid = self.valid | HDOP_SET | VDOP_SET | PDOP_SET
                 elif cmd in ('S', 's'):
                     self.status = int(data)
@@ -372,17 +371,16 @@ class gps(gpsdata):
                         self.valid = self.valid | ONLINE_SET
                 elif cmd in ('Y', 'y'):
                     satellites = data.split(":")
-                    print satellites
                     prefix = satellites.pop(0).split()
                     self.timings.sentence_tag = prefix.pop(0)
                     self.timings.sentence_time = prefix.pop(0)
                     if self.timings.sentence_time != "?":
                         self.timings.sentence_time = float(self.timings.sentence_time)
-                        d1 = int(prefix.pop(0))
-                        newsats = []
-                        for i in range(d1):
-                            newsats.append(satellite(*map(int, satellites[i].split())))
-                        self.satellites = newsats
+                    d1 = int(prefix.pop(0))
+                    newsats = []
+                    for i in range(d1):
+                        newsats.append(satellite(*map(int, satellites[i].split())))
+                    self.satellites = newsats
                     self.valid = self.valid | SATELLITE_SET
                 elif cmd in ('Z', 'z'):
                     self.profiling = (data[0] == '1')
@@ -413,16 +411,18 @@ class gps(gpsdata):
 
     def query(self, commands):
     #"Send a command, get back a response."
+        if commands[-2:] != '\n':
+            commands = commands + '\n'
         self.sockfile.write(commands)
         self.sockfile.flush()
         return self.poll()
 
-    def getposition(self):
+    def get_position(self):
         self.query('p'+'\n')
         return (self.fix.latitude, self.fix.longitude)
 
-    def updatefix(self):
-        return self.query('o'+'\n')
+    def get_fix(self):
+        return self.query('oyq'+'\n')
 
 def isotime(s):
     "Convert timestamps in ISO8661 format to and from Unix time."
