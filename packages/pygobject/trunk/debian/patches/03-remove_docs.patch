@@ -1,15 +1,7 @@
-Index: pygobject/Makefile.am
+Index: pygobject-2.12.2/Makefile.am
 ===================================================================
---- pygobject.orig/Makefile.am	2007-03-06 16:48:13.000000000 -0300
-+++ pygobject/Makefile.am	2007-03-06 16:48:38.000000000 -0300
-@@ -1,6 +1,6 @@
- AUTOMAKE_OPTIONS = 1.7
- 
--SUBDIRS = docs gobject examples tests
-+SUBDIRS = gobject examples tests
- 
- PLATFORM_VERSION = 2.0
- 
+--- pygobject-2.12.2.orig/Makefile.am	2007-08-21 11:00:02.000000000 -0300
++++ pygobject-2.12.2/Makefile.am	2007-08-21 11:16:18.000000000 -0300
 @@ -47,7 +47,7 @@
  	rm -f $(DESTDIR)$(pythondir)/pygtk.pth $(DESTDIR)$(pyexecdir)/pygtk.pth
  
@@ -19,19 +11,18 @@ Index: pygobject/Makefile.am
  
  egg: $(top_srcdir)/gobject/gobject.la PKG-INFO
  	rm -fr $(TMPDIR)
-Index: pygobject/Makefile.in
+@@ -67,7 +67,6 @@
+ 
+ doc-dist:
+ 	mkdir pygobject
+-	cp -r docs/html/*.html pygobject
+ 	cp -r docs/html/*.sgml pygobject
+ 	cp -r docs/html/*.devhelp pygobject
+ 	cp -r docs/style.css pygobject
+Index: pygobject-2.12.2/Makefile.in
 ===================================================================
---- pygobject.orig/Makefile.in	2007-03-06 16:48:14.000000000 -0300
-+++ pygobject/Makefile.in	2007-03-06 16:48:38.000000000 -0300
-@@ -214,7 +214,7 @@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
- AUTOMAKE_OPTIONS = 1.7
--SUBDIRS = docs gobject examples tests
-+SUBDIRS = gobject examples tests
- PLATFORM_VERSION = 2.0
- CLEANFILES = 
- EXTRA_DIST = \
+--- pygobject-2.12.2.orig/Makefile.in	2007-08-21 11:00:02.000000000 -0300
++++ pygobject-2.12.2/Makefile.in	2007-08-21 11:24:38.000000000 -0300
 @@ -242,7 +242,7 @@
  # linker flags
  common_ldflags = -module -avoid-version $(am__append_1)
@@ -41,9 +32,17 @@ Index: pygobject/Makefile.in
  all: config.h
  	$(MAKE) $(AM_MAKEFLAGS) all-recursive
  
-Index: pygobject/docs/html/class-gobject.html
+@@ -836,7 +836,6 @@
+ 
+ doc-dist:
+ 	mkdir pygobject
+-	cp -r docs/html/*.html pygobject
+ 	cp -r docs/html/*.sgml pygobject
+ 	cp -r docs/html/*.devhelp pygobject
+ 	cp -r docs/style.css pygobject
+Index: pygobject-2.12.2/docs/html/class-gobject.html
 ===================================================================
---- pygobject.orig/docs/html/class-gobject.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/class-gobject.html	2007-08-21 11:00:02.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,146 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject.GObject</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="next" href="class-gobjectgboxed.html" title="gobject.GBoxed"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject.GObject</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gobject-class-reference.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="class-gobjectgboxed.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="class-gobject"></a><div class="titlepage"></div><div class="refnamediv"><h2><span class="refentrytitle">gobject.GObject</span></h2><p>gobject.GObject — the base class</p></div><div class="refsect1" lang="en"><a name="id2583347"></a><h2>Synopsis</h2><table bgcolor="#D0E0F0" width="100%"><tr><td><pre class="classsynopsis">class <span class="ooclass"><span class="classname">gobject.GObject</span></span>:
@@ -192,9 +191,9 @@ Index: pygobject/docs/html/class-gobject.html
 -connect to the "notify" signal similar to:</p><pre class="programlisting">
 -  window.connect("notify::title", callback)
 -</pre></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gobject-class-reference.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="class-gobjectgboxed.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The gobject Class Reference </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject.GBoxed</td></tr></table></div></body></html>
-Index: pygobject/docs/html/class-gobjectgboxed.html
+Index: pygobject-2.12.2/docs/html/class-gobjectgboxed.html
 ===================================================================
---- pygobject.orig/docs/html/class-gobjectgboxed.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/class-gobjectgboxed.html	2007-08-21 11:00:02.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,9 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject.GBoxed</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="class-gobject.html" title="gobject.GObject"><link rel="next" href="class-gobjectgpointer.html" title="gobject.GPointer"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject.GBoxed</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-gobject.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="class-gobjectgpointer.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="class-gobjectgboxed"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject.GBoxed</h2><p>gobject.GBoxed — an object containing an opaque chunk of data</p></div><div class="refsect1" lang="en"><a name="id2571093"></a><h2>Synopsis</h2><table bgcolor="#D0E0F0" width="100%"><tr><td><pre class="classsynopsis">class <span class="ooclass"><span class="classname">gobject.GBoxed</span></span>:
@@ -206,18 +205,18 @@ Index: pygobject/docs/html/class-gobjectgboxed.html
 -functions that provide for the copying and freeing of the underlying data
 -structure - this allows PyGTK to encapsulate these as Python objects.</p></div><div class="refsect1" lang="en"><a name="id2591368"></a><h2>Methods</h2><div class="refsect2" lang="en"><a name="method-gobjectgboxed--copy"></a><h3>gobject.GBoxed.copy</h3><pre class="programlisting"><code class="methodsynopsis">    def <span class="methodname">copy</span>()</code></pre><table border="0" width="100%" bgcolor="#FFECCE"><col align="left" valign="top" width="0*"><tbody><tr><td><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></td><td>a copy of the <a href="class-gobjectgboxed.html" title="gobject.GBoxed"><code class="classname">gobject.GBoxed</code></a>
 -	  object</td></tr></tbody></table><p>The <code class="methodname">copy</code>() method makes and returns a copy of the boxed object.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-gobject.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="class-gobjectgpointer.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">gobject.GObject </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject.GPointer</td></tr></table></div></body></html>
-Index: pygobject/docs/html/class-gobjectginterface.html
+Index: pygobject-2.12.2/docs/html/class-gobjectginterface.html
 ===================================================================
---- pygobject.orig/docs/html/class-gobjectginterface.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/class-gobjectginterface.html	2007-08-21 11:00:02.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,4 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject.GInterface</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="class-gobjectgpointer.html" title="gobject.GPointer"><link rel="next" href="class-gobjectmaincontext.html" title="gobject.MainContext"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject.GInterface</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-gobjectgpointer.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="class-gobjectmaincontext.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="class-gobjectginterface"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject.GInterface</h2><p>gobject.GInterface — an object representing a GInterface</p></div><div class="refsect1" lang="en"><a name="id2573444"></a><h2>Synopsis</h2><table bgcolor="#D0E0F0" width="100%"><tr><td><pre class="classsynopsis">class <span class="ooclass"><span class="classname">gobject.GInterface</span></span>:
 -</pre></td></tr></table></div><div class="refsect1" lang="en"><a name="id2583962"></a><h2>Ancestry</h2><pre class="synopsis">+-- <a href="class-gobjectginterface.html" title="gobject.GInterface">gobject.GInterface</a>
 -</pre></div><div class="refsect1" lang="en"><a name="id2593669"></a><h2>Description</h2><p><a href="class-gobjectginterface.html" title="gobject.GInterface"><code class="classname">gobject.GInterface</code></a>
 -is an abstract base class that encapsulates a GInterface.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-gobjectgpointer.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="class-gobjectmaincontext.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">gobject.GPointer </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject.MainContext</td></tr></table></div></body></html>
-Index: pygobject/docs/html/class-gobjectgpointer.html
+Index: pygobject-2.12.2/docs/html/class-gobjectgpointer.html
 ===================================================================
---- pygobject.orig/docs/html/class-gobjectgpointer.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/class-gobjectgpointer.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,8 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject.GPointer</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="class-gobjectgboxed.html" title="gobject.GBoxed"><link rel="next" href="class-gobjectginterface.html" title="gobject.GInterface"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject.GPointer</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-gobjectgboxed.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="class-gobjectginterface.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="class-gobjectgpointer"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject.GPointer</h2><p>gobject.GPointer — an object containing a completely opaque chunk of
@@ -228,9 +227,9 @@ Index: pygobject/docs/html/class-gobjectgpointer.html
 -registers it with the <code class="literal">GLIB</code> type system. A pointer type
 -has no methods and generic ways of copying and freeing the data. It
 -shouldn't be used in PyGTK.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-gobjectgboxed.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="class-gobjectginterface.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">gobject.GBoxed </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject.GInterface</td></tr></table></div></body></html>
-Index: pygobject/docs/html/class-gobjectmaincontext.html
+Index: pygobject-2.12.2/docs/html/class-gobjectmaincontext.html
 ===================================================================
---- pygobject.orig/docs/html/class-gobjectmaincontext.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/class-gobjectmaincontext.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,29 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject.MainContext</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="class-gobjectginterface.html" title="gobject.GInterface"><link rel="next" href="class-gobjectmainloop.html" title="gobject.MainLoop"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject.MainContext</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-gobjectginterface.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="class-gobjectmainloop.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="class-gobjectmaincontext"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject.MainContext</h2><p>gobject.MainContext — an object representing a set of event sources to be handled
@@ -262,9 +261,9 @@ Index: pygobject/docs/html/class-gobjectmaincontext.html
 -becoming ready.</p></div><div class="refsect2" lang="en"><a name="method-gobjectmaincontext--pending"></a><h3>gobject.MainContext.pending</h3><pre class="programlisting"><code class="methodsynopsis">    def <span class="methodname">pending</span>()</code></pre><table border="0" width="100%" bgcolor="#FFECCE"><col align="left" valign="top" width="0*"><tbody><tr><td><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></td><td><code class="literal">TRUE</code> if events are
 -	  pending.</td></tr></tbody></table><p>The <code class="methodname">pending</code>() method checks if any
 -associated sources have pending events.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-gobjectginterface.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="class-gobjectmainloop.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">gobject.GInterface </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject.MainLoop</td></tr></table></div></body></html>
-Index: pygobject/docs/html/class-gobjectmainloop.html
+Index: pygobject-2.12.2/docs/html/class-gobjectmainloop.html
 ===================================================================
---- pygobject.orig/docs/html/class-gobjectmainloop.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/class-gobjectmainloop.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,38 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject.MainLoop</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="class-gobjectmaincontext.html" title="gobject.MainContext"><link rel="next" href="gobject-functions.html" title="gobject Functions"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject.MainLoop</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-gobjectmaincontext.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="gobject-functions.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="class-gobjectmainloop"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject.MainLoop</h2><p>gobject.MainLoop — an object representing the main event loop of a PyGTK
@@ -305,18 +304,18 @@ Index: pygobject/docs/html/class-gobjectmainloop.html
 -the <a href="class-gobjectmainloop.html#method-gobjectmainloop--quit" title="gobject.MainLoop.quit"><code class="methodname">quit</code>()</a>
 -method is called. If this is called for the thread of the loop's <a href="class-gobjectmaincontext.html" title="gobject.MainContext"><code class="classname">gobject.MainContext</code></a>,
 -it will process events from the loop, otherwise it will simply wait.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-gobjectmaincontext.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gobject-functions.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">gobject.MainContext </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject Functions</td></tr></table></div></body></html>
-Index: pygobject/docs/html/gobject-class-reference.html
+Index: pygobject-2.12.2/docs/html/gobject-class-reference.html
 ===================================================================
---- pygobject.orig/docs/html/gobject-class-reference.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/gobject-class-reference.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,4 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>The gobject Class Reference</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="index.html" title="PyGObject Reference Manual"><link rel="prev" href="pygobject-reference-copyright.html" title="Copyright and License Notice"><link rel="next" href="class-gobject.html" title="gobject.GObject"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The gobject Class Reference</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pygobject-reference-copyright.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="class-gobject.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="gobject-class-reference"></a>The gobject Class Reference</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="refentrytitle"><a href="class-gobject.html">gobject.GObject</a></span><span class="refpurpose"> - the base class</span></dt><dt><span class="refentrytitle"><a href="class-gobjectgboxed.html">gobject.GBoxed</a></span><span class="refpurpose"> - an object containing an opaque chunk of data</span></dt><dt><span class="refentrytitle"><a href="class-gobjectgpointer.html">gobject.GPointer</a></span><span class="refpurpose"> - an object containing a completely opaque chunk of
 -    data</span></dt><dt><span class="refentrytitle"><a href="class-gobjectginterface.html">gobject.GInterface</a></span><span class="refpurpose"> - an object representing a GInterface</span></dt><dt><span class="refentrytitle"><a href="class-gobjectmaincontext.html">gobject.MainContext</a></span><span class="refpurpose"> - an object representing a set of event sources to be handled
 -in a gobject.MainLoop.</span></dt><dt><span class="refentrytitle"><a href="class-gobjectmainloop.html">gobject.MainLoop</a></span><span class="refpurpose"> - an object representing the main event loop of a PyGTK
 -    application.</span></dt><dt><span class="refentrytitle"><a href="gobject-functions.html">gobject Functions</a></span><span class="refpurpose"> - miscellaneous functions</span></dt><dt><span class="refentrytitle"><a href="gobject-constants.html">gobject Constants</a></span><span class="refpurpose"> - the built-in constants of the gobject module</span></dt></dl></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="pygobject-reference-copyright.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="class-gobject.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Copyright and License Notice </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject.GObject</td></tr></table></div></body></html>
-Index: pygobject/docs/html/gobject-constants.html
+Index: pygobject-2.12.2/docs/html/gobject-constants.html
 ===================================================================
---- pygobject.orig/docs/html/gobject-constants.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/gobject-constants.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,80 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject Constants</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="gobject-functions.html" title="gobject Functions"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject Constants</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gobject-functions.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> </td></tr></table><hr></div><div class="refentry" lang="en"><a name="gobject-constants"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject Constants</h2><p>gobject Constants — the built-in constants of the gobject module</p></div><div class="refsect1" lang="en"><a name="id2561720"></a><h2>Synopsis</h2><pre class="programlisting">
@@ -399,9 +398,9 @@ Index: pygobject/docs/html/gobject-constants.html
 -<code class="literal">GLIB</code> used by PyGTK as a 3-tuple containing the major,
 -minor and patch release numbers.</p><table border="0" width="100%" bgcolor="#FFECCE"><col align="left" valign="top" width="0*"><tbody><tr><td><span class="term"><code class="literal">gobject.glib_version</code></span></td><td>A 3-tuple containing (major, minor, patch) release
 -	    numbers.</td></tr></tbody></table></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gobject-functions.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> </td></tr><tr><td width="40%" align="left" valign="top">gobject Functions </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>
-Index: pygobject/docs/html/gobject-functions.html
+Index: pygobject-2.12.2/docs/html/gobject-functions.html
 ===================================================================
---- pygobject.orig/docs/html/gobject-functions.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/gobject-functions.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,348 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>gobject Functions</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="gobject-class-reference.html" title="The gobject Class Reference"><link rel="prev" href="class-gobjectmainloop.html" title="gobject.MainLoop"><link rel="next" href="gobject-constants.html" title="gobject Constants"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">gobject Functions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-gobjectmainloop.html">Prev</a> </td><th width="60%" align="center">The gobject Class Reference</th><td width="20%" align="right"> <a accesskey="n" href="gobject-constants.html">Next</a></td></tr></table><hr></div><div class="refentry" lang="en"><a name="gobject-functions"></a><div class="titlepage"></div><div class="refnamediv"><h2>gobject Functions</h2><p>gobject Functions — miscellaneous functions</p></div><div class="refsect1" lang="en"><a name="id2602712"></a><h2>Synopsis</h2><pre class="programlisting">
@@ -752,9 +751,9 @@ Index: pygobject/docs/html/gobject-functions.html
 -          encoding.</td></tr></tbody></table><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>This function is available in PyGTK 2.10 and above.</p></div><p>The <code class="function">filename_from_utf8</code>() function converts
 -      a string from UTF-8 to the encoding GLib uses for filenames. Note that
 -      on Windows GLib uses UTF-8 for filenames.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-gobjectmainloop.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gobject-class-reference.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gobject-constants.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">gobject.MainLoop </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> gobject Constants</td></tr></table></div></body></html>
-Index: pygobject/docs/html/index.html
+Index: pygobject-2.12.2/docs/html/index.html
 ===================================================================
---- pygobject.orig/docs/html/index.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/index.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,7 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>PyGObject Reference Manual</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><meta name="description" content="This reference describes the classes of the python gobject
@@ -764,9 +763,9 @@ Index: pygobject/docs/html/index.html
 -    data</span></dt><dt><span class="refentrytitle"><a href="class-gobjectginterface.html">gobject.GInterface</a></span><span class="refpurpose"> - an object representing a GInterface</span></dt><dt><span class="refentrytitle"><a href="class-gobjectmaincontext.html">gobject.MainContext</a></span><span class="refpurpose"> - an object representing a set of event sources to be handled
 -in a gobject.MainLoop.</span></dt><dt><span class="refentrytitle"><a href="class-gobjectmainloop.html">gobject.MainLoop</a></span><span class="refpurpose"> - an object representing the main event loop of a PyGTK
 -    application.</span></dt><dt><span class="refentrytitle"><a href="gobject-functions.html">gobject Functions</a></span><span class="refpurpose"> - miscellaneous functions</span></dt><dt><span class="refentrytitle"><a href="gobject-constants.html">gobject Constants</a></span><span class="refpurpose"> - the built-in constants of the gobject module</span></dt></dl></dd></dl></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="pygobject-introduction.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"> </td><td width="40%" align="right" valign="top"> Introduction</td></tr></table></div></body></html>
-Index: pygobject/docs/html/index.sgml
+Index: pygobject-2.12.2/docs/html/index.sgml
 ===================================================================
---- pygobject.orig/docs/html/index.sgml	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/index.sgml	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,83 +0,0 @@
 -<ANCHOR id="pygobject-reference" href="pygobject/index.html">
@@ -853,9 +852,9 @@ Index: pygobject/docs/html/index.sgml
 -        <ANCHOR id="gobject-version-constants" href="pygobject/gobject-constants.html#gobject-version-constants">
 -        
 \ No newline at end of file
-Index: pygobject/docs/html/pygobject-introduction.html
+Index: pygobject-2.12.2/docs/html/pygobject-introduction.html
 ===================================================================
---- pygobject.orig/docs/html/pygobject-introduction.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/pygobject-introduction.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,84 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Introduction</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="index.html" title="PyGObject Reference Manual"><link rel="prev" href="index.html" title="PyGObject Reference Manual"><link rel="next" href="pygobject-reference-copyright.html" title="Copyright and License Notice"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Introduction</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="index.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="pygobject-reference-copyright.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="pygobject-introduction"></a>Introduction</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="pygobject-introduction.html#pygobject-reference-format">Reference Page Format</a></span></dt><dt><span class="sect1"><a href="pygobject-reference-copyright.html">Copyright and License Notice</a></span></dt></dl></div><p>This document describes many of the <code class="literal">PyGObject</code>
@@ -942,9 +941,9 @@ Index: pygobject/docs/html/pygobject-introduction.html
 -</pre><p>Parameters that are not keyword parameters are displayed in
 -<span class="emphasis"><em>italic</em></span> and must be specified positionally but may also
 -be optional.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="index.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="pygobject-reference-copyright.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">PyGObject Reference Manual </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Copyright and License Notice</td></tr></table></div></body></html>
-Index: pygobject/docs/html/pygobject-reference-copyright.html
+Index: pygobject-2.12.2/docs/html/pygobject-reference-copyright.html
 ===================================================================
---- pygobject.orig/docs/html/pygobject-reference-copyright.html	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/pygobject-reference-copyright.html	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,6 +0,0 @@
 -<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Copyright and License Notice</title><link rel="stylesheet" href="style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="index.html" title="PyGObject Reference Manual"><link rel="up" href="pygobject-introduction.html" title="Introduction"><link rel="prev" href="pygobject-introduction.html" title="Introduction"><link rel="next" href="gobject-class-reference.html" title="The gobject Class Reference"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Copyright and License Notice</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pygobject-introduction.html">Prev</a> </td><th width="60%" align="center">Introduction</th><td width="20%" align="right"> <a accesskey="n" href="gobject-class-reference.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pygobject-reference-copyright"></a>Copyright and License Notice</h2></div></div></div><p>The PyGObject 2.0 Reference is Copyright (C) 2004-2006 John
@@ -953,9 +952,9 @@ Index: pygobject/docs/html/pygobject-reference-copyright.html
 -    <a href="http://creativecommons.org/licenses/by-sa/1.0/" target="_top">http://creativecommons.org/licenses/by-sa/1.0/</a>
 -    or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford,
 -    California 94305, USA.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="pygobject-introduction.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="pygobject-introduction.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gobject-class-reference.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Introduction </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The gobject Class Reference</td></tr></table></div></body></html>
-Index: pygobject/docs/html/pygobject.devhelp
+Index: pygobject-2.12.2/docs/html/pygobject.devhelp
 ===================================================================
---- pygobject.orig/docs/html/pygobject.devhelp	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/html/pygobject.devhelp	2007-08-21 11:00:03.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,92 +0,0 @@
 -<?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -1050,9 +1049,9 @@ Index: pygobject/docs/html/pygobject.devhelp
 -    <function name="GObject Version Constants" link="gobject-constants.html#gobject-version-constants"/>
 -  </functions>
 -</book>
-Index: pygobject/docs/xsl/fixxref.py
+Index: pygobject-2.12.2/docs/xsl/fixxref.py
 ===================================================================
---- pygobject.orig/docs/xsl/fixxref.py	2007-03-06 16:48:13.000000000 -0300
+--- pygobject-2.12.2.orig/docs/xsl/fixxref.py	2007-08-21 11:00:04.000000000 -0300
 +++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,71 +0,0 @@
 -#!/usr/bin/env python
@@ -1126,3 +1125,91 @@ Index: pygobject/docs/xsl/fixxref.py
 -
 -    html_dir = args[0]
 -    fix_xrefs(html_dir)
+Index: pygobject-2.12.2/docs/Makefile.am
+===================================================================
+--- pygobject-2.12.2.orig/docs/Makefile.am	2007-08-21 11:04:39.000000000 -0300
++++ pygobject-2.12.2/docs/Makefile.am	2007-08-21 11:28:18.000000000 -0300
+@@ -5,27 +5,11 @@
+ 
+ CSS_FILES = style.css
+ 
+-HTML_FILES =					\
+-	html/class-gobjectgboxed.html		\
+-	html/class-gobjectginterface.html	\
+-	html/class-gobjectgpointer.html		\
+-	html/class-gobject.html			\
+-	html/class-gobjectmaincontext.html	\
+-	html/class-gobjectmainloop.html		\
+-	html/gobject-class-reference.html	\
+-	html/gobject-constants.html		\
+-	html/gobject-functions.html		\
+-	html/index.html				\
+-	html/index.sgml				\
+-	html/pygobject.devhelp			\
+-	html/pygobject-introduction.html	\
+-	html/pygobject-reference-copyright.html
+-
+-if ENABLE_DOCS
+-BUILT_HTML_FILES = $(HTML_FILES)
+-else
+-BUILT_HTML_FILES =
+-endif
++#if ENABLE_DOCS
++#BUILT_HTML_FILES = $(HTML_FILES)
++#else
++#BUILT_HTML_FILES =
++#endif
+ 
+ XML_FILES = 					\
+ 	reference/pygobject.xml			\
+@@ -50,26 +34,22 @@
+ 
+ # fixxref cannot be included in XSL_FILES, because automake is touching it
+ # so the date is newer then the files in HTML_FILES
+-FIXXREF = xsl/fixxref.py
+ 
+ CSSdir = $(HTMLdir)
+ CSS_DATA = $(CSS_FILES)
+ 
+ HTMLdir = $(datadir)/gtk-doc/html/pygobject
+-HTML_DATA = $(HTML_FILES)
+ 
+ XSLdir = $(datadir)/pygobject/xsl
+-XSL_DATA = $(XSL_FILES) $(FIXXREF)
++XSL_DATA = $(XSL_FILES)
+ 
+-BUILT_SOURCES = reference/builddate.xml $(BUILT_HTML_FILES)
++BUILT_SOURCES = reference/builddate.xml
+ 
+-CLEANFILES = reference/builddate.xml $(BUILT_HTML_FILES)
++CLEANFILES = reference/builddate.xml
+ 
+ EXTRA_DIST = 		\
+-	$(HTML_FILES) 	\
+ 	$(XML_FILES) 	\
+ 	$(XSL_FILES) 	\
+-	$(FIXXREF) 	\
+ 	$(CSS_FILES)
+ 
+ reference/builddate.xml:
+@@ -79,13 +59,13 @@
+ # documentation will be included in the tarball so xsltproc is not needed to 
+ # install the documentation. Adding a builddate.xml dependency will force 
+ # the documentation to be rebuilt when it doesn't need to be.
+-$(HTML_FILES): $(XML_FILES) $(XSL_FILES)
+-	@xsltproc --nonet --xinclude -o $(BUILDDIR)/html/ \
+-		 --path $(BUILDDIR)/reference:$(srcdir)/reference \
+-                 --stringparam gtkdoc.bookname "pygobject" \
+-                 --stringparam gtkdoc.version ${REF_VERSION} \
+-                 $(srcdir)/xsl/ref-html-style.xsl \
+-                 $(srcdir)/reference/pygobject-ref.xml
++#$(HTML_FILES): $(XML_FILES) $(XSL_FILES)
++#	@xsltproc --nonet --xinclude -o $(BUILDDIR)/html/ \
++#		 --path $(BUILDDIR)/reference:$(srcdir)/reference \
++#                 --stringparam gtkdoc.bookname "pygobject" \
++#                 --stringparam gtkdoc.version ${REF_VERSION} \
++#                 $(srcdir)/xsl/ref-html-style.xsl \
++#                 $(srcdir)/reference/pygobject-ref.xml
+ 
+ # pdf: $(REFERENCE_DEPS) reference/builddate.xml
+ # 	xsltproc --nonet --xinclude -o pygobject-ref.fo xsl/pdf-style.xsl \
