@@ -1,7 +1,7 @@
 Source: pyrex
 Section: python
 Priority: optional
-Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
 Build-Depends-Indep: debhelper (>> 4.1.52), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2)
 Standards-Version: 3.6.2
 

@@ -282,3 +282,5 @@ Metaclasses for extension types?
 
 Make extension types use Py_TPFLAGS_HEAPTYPE so their __module__
 will get set dynamically?
+
+Recognise return type of calls to extension type constructors.

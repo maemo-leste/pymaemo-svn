@@ -259,14 +259,14 @@ class CType(PyrexType):
     from_py_function = None
 
 
-class CSimpleType(CType):
-    #
-    #  Base class for all unstructured C types.
-    #
-    pass
+#class CSimpleType(CType):
+#	#
+#	#  Base class for all unstructured C types.
+#	#
+#	pass
 
 
-class CVoidType(CSimpleType):
+class CVoidType(CType):
     is_void = 1
     
     def __repr__(self):
@@ -293,8 +293,8 @@ class CNumericType(CType):
     default_value = "0"
     
     parsetuple_formats = ( # rank -> format
-        "?HIkK????", # unsigned
-        "chilL?fd?", # signed
+        "?HIkK???", # unsigned
+        "chilLfd?", # signed
     )
     
     def __init__(self, rank, signed = 1, pymemberdef_typecode = None):
@@ -313,9 +313,6 @@ class CNumericType(CType):
             u = "unsigned "
         return "<CNumericType %s%s>" % (u, rank_to_type_name[self.rank])
     
-    def assignable_from_resolved_type(self, src_type):
-        return src_type.is_numeric or src_type is error_type
-    
     def declaration_code(self, entity_code, 
             for_display = 0, dll_linkage = None, pyrex = 0):
         if self.signed:
@@ -324,8 +321,6 @@ class CNumericType(CType):
             u = "unsigned "
         base = public_decl(u + rank_to_type_name[self.rank], dll_linkage)
         return "%s %s" % (base,  entity_code)
-
-#		return "%s%s %s" % (u, rank_to_type_name[self.rank], entity_code)
     
 
 class CIntType(CNumericType):
@@ -338,12 +333,9 @@ class CIntType(CNumericType):
     def __init__(self, rank, signed, pymemberdef_typecode = None, is_returncode = 0):
         CNumericType.__init__(self, rank, signed, pymemberdef_typecode)
         self.is_returncode = is_returncode
-
-
-class CPySSizeTType(CIntType):
-
-    to_py_function = "PyInt_FromSsize_t"
-    from_py_function = "PyInt_AsSsize_t"
+    
+    def assignable_from_resolved_type(self, src_type):
+        return src_type.is_int or src_type.is_enum or src_type is error_type
 
 
 class CUIntType(CIntType):
@@ -379,6 +371,9 @@ class CFloatType(CNumericType):
     def __init__(self, rank, pymemberdef_typecode = None):
         CNumericType.__init__(self, rank, 1, pymemberdef_typecode)
     
+    def assignable_from_resolved_type(self, src_type):
+        return src_type.is_numeric or src_type is error_type
+
 
 class CArrayType(CType):
     #  base_type     CType              Element type
@@ -453,6 +448,8 @@ class CPtrType(CType):
             return 1
         elif self.base_type.is_cfunction and other_type.is_cfunction:
             return self.base_type.same_as(other_type)
+        elif other_type.is_array:
+            return self.base_type.same_as(other_type.base_type)
         elif not other_type.is_ptr:
             return 0
         elif self.base_type.is_void:
@@ -614,14 +611,16 @@ class CStructOrUnionType(CType):
         return self.is_complete()
 
 
-class CEnumType(CIntType):
+class CEnumType(CType):
     #  name           string
     #  cname          string or None
     #  typedef_flag   boolean
     
     is_enum = 1
-    signed = 1
-    rank = 2
+    #signed = 1
+    #rank = 2
+    to_py_function = "PyInt_FromLong"
+    from_py_function = "PyInt_AsLong"
 
     def __init__(self, name, cname, typedef_flag):
         self.name = name
@@ -705,7 +704,6 @@ c_short_type =    CIntType(1, 1, "T_SHORT")
 c_int_type =      CIntType(2, 1, "T_INT")
 c_long_type =     CIntType(3, 1, "T_LONG")
 c_longlong_type = CLongLongType(4, 1, "T_LONGLONG")
-c_py_ssize_t_type = CPySSizeTType(5, 1)
 
 c_uchar_type =     CIntType(0, 0, "T_UBYTE")
 c_ushort_type =    CIntType(1, 0, "T_USHORT")
@@ -713,9 +711,9 @@ c_uint_type =      CUIntType(2, 0, "T_UINT")
 c_ulong_type =     CULongType(3, 0, "T_ULONG")
 c_ulonglong_type = CULongLongType(4, 0, "T_ULONGLONG")
 
-c_float_type =      CFloatType(6, "T_FLOAT")
-c_double_type =     CFloatType(7, "T_DOUBLE")
-c_longdouble_type = CFloatType(8)
+c_float_type =      CFloatType(5, "T_FLOAT")
+c_double_type =     CFloatType(6, "T_DOUBLE")
+c_longdouble_type = CFloatType(7)
 
 c_null_ptr_type =     CNullPtrType(c_void_type)
 c_char_array_type =   CCharArrayType(None)
@@ -727,7 +725,7 @@ c_returncode_type =   CIntType(2, 1, "T_INT", is_returncode = 1)
 
 error_type =    ErrorType()
 
-lowest_float_rank = 6
+lowest_float_rank = 5
 
 rank_to_type_name = (
     "char",         # 0
@@ -735,10 +733,9 @@ rank_to_type_name = (
     "int",          # 2
     "long",         # 3
     "PY_LONG_LONG", # 4
-    "Py_ssize_t",   # 5
-    "float",        # 6
-    "double",       # 7
-    "long double",  # 8
+    "float",        # 5
+    "double",       # 6
+    "long double",  # 7
 )
 
 sign_and_rank_to_type = {
@@ -753,10 +750,9 @@ sign_and_rank_to_type = {
     (1, 2): c_int_type, 
     (1, 3): c_long_type,
     (1, 4): c_longlong_type,
-    (1, 5): c_py_ssize_t_type,
-    (1, 6): c_float_type, 
-    (1, 7): c_double_type,
-    (1, 8): c_longdouble_type,
+    (1, 5): c_float_type, 
+    (1, 6): c_double_type,
+    (1, 7): c_longdouble_type,
 }
 
 modifiers_and_name_to_type = {
@@ -772,7 +768,6 @@ modifiers_and_name_to_type = {
     (1, 0, "int"): c_int_type, 
     (1, 1, "int"): c_long_type,
     (1, 2, "int"): c_longlong_type,
-    (1, 0, "Py_ssize_t"): c_py_ssize_t_type,
     (1, 0, "float"): c_float_type, 
     (1, 0, "double"): c_double_type,
     (1, 1, "double"): c_longdouble_type,

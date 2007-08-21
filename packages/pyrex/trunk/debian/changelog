@@ -1,3 +1,9 @@
+pyrex (0.9.5.1-1osso1) unstable; urgency=low
+
+  * upgraded to pyrex v0.9.5.1
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon,  9 Jul 2007 11:33:56 -0300
+
 pyrex (0.9.4.1-1osso4) unstable; urgency=low
 
   * applied patch that fixes #560 

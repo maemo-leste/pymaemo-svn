@@ -1,3 +1,139 @@
+0.9.5.1a
+--------
+
+Bug fixes:
+
+  - Package list now calculated dynamically in setup.py so that
+    it will work with or without the testing framework installed.
+
+
+0.9.5.1
+-------
+
+Bug fixes:
+
+  - Comparing two values of the same enum type incorrectly
+    produced an error. [Anders Gustafsson <andersg@0x63.nu>]
+  
+  - Compiler crash caused by assigning a Python value to
+    a variable of an enum type. [Peter Johnson <peter@tortall.net>]
+  
+  - Comparison between pointer and array incorrectly produced
+    a type mismatch error.
+    [Helmut Jarausch <jarausch@igpm.rwth-aachen.de>]
+  
+  - Unused local Python variable had spurious init/cleanup code
+    generated for it, causing C compilation errors.
+    [Helmut Jarausch <jarausch@igpm.rwth-aachen.de>]
+  
+  - Updated list of packages in setup.py.
+
+Modifications:
+
+  - NULL in Pyrex source now translated into NULL instead of 0
+    in C code, to allow for the possibility of calling something
+    not defined with a prototype in an external header.
+    [Adapted Cat <a.c.junker@gmail.com>]
+
+
+0.9.5
+-----
+
+Enhancements:
+
+  - Exception return values may now be specified by arbitrary
+    constant expressions of appropriate type, not just literals.
+    [Stefan Behnel <behnel_ml@gkec.informatik.tu-darmstadt.de>]
+  
+  - Redundant type check now omitted when passing a literal None
+    to a function expecting an extension type.
+    [Patch by Sam Rushing <sam-pyrex@rushing.nightmare.com>]
+    
+  - New-style classes now allowed as exceptions for compatibility
+    with Python 2.5 (inheritance from BaseException not currently
+    checked).
+    [Stefan Behnel <behnel_ml@gkec.informatik.tu-darmstadt.de>]
+  
+  - Sequence unpacking is now done using the iterator protocol
+    instead of indexing.
+  
+  - Allocation of an empty tuple is avoided when making a
+    Python call with no arguments.
+    [Stefan Behnel <behnel_ml@gkec.informatik.tu-darmstadt.de>]
+  
+  - Most warnings about unused variables and labels have been
+    eliminated.
+  
+  - Support for running the test suite on Linux added but not
+    yet fully tested. [Based in part on patch by Eric Wald
+    <eswald@gmail.com>].
+  
+  - Makefile included for compiling the patched Carbon File module
+    used by the MacOSX test code.
+
+Modifications:
+  
+  - Type rules for enums tightened for compatibility with C++.
+  
+  - Direct assignment from float to int disallowed to prevent
+    C++ compilation warnings.
+  
+  - Hex literals left as hex in C code to avoid warnings from
+    the C compiler about decimal constants becoming unsigned.
+  
+Bug fixes:
+
+  - Exception raised during argument conversion could cause crash
+    due to uninitialised local variables.
+    [Konrad Hinsen <konrad.hinsen@laposte.net>]
+  
+  - Assignment to a C attribute of an extension type from a
+    different type could generate C code with a pointer type
+    mismatch. [Atsuo Ishimoto <ishimoto@gembook.org>]
+  
+  - Backslash in a string literal before a non-special character
+    was not handled correctly. [Yuan Mang <mangyuan@gmail.com>]
+  
+  - Temporary vars used by del statement not being properly
+    released, sometimes leading to double decrefs.
+    [Jiba <jibalamy@free.fr>]
+  
+  - A return statement whose expression raises an exception
+    inside a try-except that catches the exception could cause
+    a crash. [Anders Gustafsson <andersg@0x63.nu>]
+  
+  - Fixed type compatibility checking problem between pointers
+    and arrays. [Lenard Lindstrom <len-l@telus.net>]
+
+  - Circular imports between modules defining extension types
+    caused unresolvable import order conflicts.
+    [Mike Wyatt <mwyatt@wi.rr.com>]
+  
+  - Cimporting multiple submodules from the same package caused
+    a redefined name error for the top level name.
+    [Martin Albrecht <malb@informatik.uni-bremen.de>]
+  
+  - Incorrect reference counting when assigning to an element of an
+    array that is a C attribute of an extension type.
+    [Igor Khavkine <igor.kh@gmail.com>]
+  
+  - Weak-referenceable extension types were not implemented
+    properly. [Chris Perkins <chrisperkins99@gmail.com>,
+    Peter Johnson <pete@cvs.tortall.net>]
+  
+  - Crash if C variable declared readonly outside an extension
+    type definition. [Eric Huss <e-huss@netmeridian.com>]
+
+Doc updates:
+
+  - Expanded discussion of the need for type declarations to enable
+    access to attributes of extension types.
+  
+  - Added a section "Source Files and Compilation" explaining the
+    rules for naming of source files of modules residing in packages,
+    and instructions for using the compiler and distutils extension.
+
+
 0.9.4.1
 -------
 
