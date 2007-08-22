@@ -723,16 +723,17 @@ class DocbookDocWriter(DocWriter):
 
 if __name__ == '__main__':
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "d:s:o:",
+            opts, args = getopt.getopt(sys.argv[1:], "d:s:o:m:",
                                    ["defs-file=", "override=", "source-dir=",
-                                    "output-prefix="])
+                                    "output-prefix=", "module-name="])
     except getopt.error, e:
         sys.stderr.write('docgen.py: %s\n' % e)
         sys.stderr.write(
-            'usage: docgen.py -d file.defs [-s /src/dir] [-o output-prefix]\n')
+            'usage: docgen.py -d file.defs [-s /src/dir] [-o output-prefix] [-m module-name]\n')
         sys.exit(1)
     defs_file = None
     overrides_file = None
+    module_name = None
     source_dirs = []
     output_prefix = 'docs'
     for opt, arg in opts:
@@ -744,12 +745,14 @@ if __name__ == '__main__':
             source_dirs.append(arg)
         elif opt in ('-o', '--output-prefix'):
             output_prefix = arg
+        elif opt in ('-m', '--module-name'):
+            module_name = arg
     if len(args) != 0 or not defs_file:
         sys.stderr.write(
-            'usage: docgen.py -d file.defs [-s /src/dir] [-o output-prefix]\n')
+            'usage: docgen.py -d file.defs [-s /src/dir] [-o output-prefix] [-m module-name]\n')
         sys.exit(1)
 
     d = DocbookDocWriter()
     d.add_sourcedirs(source_dirs)
-    d.add_docs(defs_file, overrides_file, 'gtk')
+    d.add_docs(defs_file, overrides_file, module_name)
     d.output_docs(output_prefix)
