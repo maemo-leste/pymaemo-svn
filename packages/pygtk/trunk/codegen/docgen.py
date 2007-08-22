@@ -83,7 +83,7 @@ class DocWriter:
     def add_tmpldirs(self, tmpl_dirs):
         self.docs = docextract.extract_tmpl(tmpl_dirs, self.docs)
 
-    def add_docs(self, defs_file, overrides_file, module_name):
+    def add_docs(self, defs_file, overrides_file, module_name='gtk'):
         '''parse information about a given defs file'''
         self.parser.filename = defs_file
         self.parser.startParsing(defs_file)
