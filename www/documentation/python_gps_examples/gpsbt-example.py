@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-import gps
+import gpsbt
 import time
 
 def main():
     print 'Connecting...' 
-    context = gps.start()
+    context = gpsbt.start()
     
     if context == None:
         print 'Problem while connecting!'
@@ -12,7 +12,7 @@ def main():
 
     # ensure that GPS device is ready to connect and to receive commands
     time.sleep(2)
-    gpsdevice = gps.gps()
+    gpsdevice = gpsbt.gps()
 
     # read 4 times and show information
     for a in range(4):
@@ -24,6 +24,6 @@ def main():
         time.sleep(2)
 
     # ends Bluetooth connection
-    gps.stop(context)
+    gpsbt.stop(context)
 
 main()
