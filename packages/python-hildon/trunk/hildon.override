@@ -548,7 +548,6 @@ _wrap_gtk_infoprint(PyObject *self, PyObject *args, PyObject *kwargs)
         gtk_infoprint(GTK_WINDOW(parent->obj), text);
     else
         return NULL;
-    printf("Rodou!\n");
 
     Py_INCREF(Py_None);
     return Py_None;

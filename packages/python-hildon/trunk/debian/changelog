@@ -1,6 +1,7 @@
 python-hildon (0.8.7-1osso5) unstable; urgency=low
 
   * fix #946 - Exporting enumerations
+  * fix #1070 - Unable to create a hildon_banner without an image
 
  -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 20 Aug 2007 14:50:33 -0300
 
