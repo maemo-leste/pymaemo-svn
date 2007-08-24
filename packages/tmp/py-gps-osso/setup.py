@@ -20,16 +20,16 @@ common_libraries = ['gpsbt',
                     'glib-2.0']
 
 #Modules to be built
-gps_modules = [ Extension('gps', sources = ['src/gps.pyx'],
+gps_modules = [ Extension('gpsbt', sources = ['src/gpsbt.pyx'],
                             libraries = common_libraries,
                             include_dirs = common_include_dirs,
                             extra_compile_args = common_compile_args),
               ]
 
 setup(
-        name = 'gps',
+        name = 'gpsbt',
         version = '0.1',
-        description = 'Python bindings for geoclue gps components.',
+        description = 'Python bindings for libgpsbt.',
         author = 'Luciano Miguel Wolf',
         author_email = 'luciano.wolf@indt.org.br',
         url = 'http://www.maemo.org',

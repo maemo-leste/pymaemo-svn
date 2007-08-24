@@ -24,7 +24,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 '''
 # GPS utilities (from osso-gpsd package)
-include 'gps.pxi'
+import os
+include 'gpsbt.pxi'
 
 cdef extern from 'gpsbt.h':
     ctypedef struct gpsbt_t:
@@ -51,6 +52,8 @@ def start(char *bda=NULL, int dbg_lvl=0, int gpsd_dbg_lvl=0, short port=0, char 
     cdef gpsbt_t ctx_out
     cdef Context ctx_container
 
+    # hack to bypass maemo bug
+    os.environ['GPSD_PROG']='/usr/sbin/gpsd'
     status = gpsbt_start(bda, dbg_lvl, gpsd_dbg_lvl, port, error_buf, error_buf_max_len,
                          timeout_ms, &ctx_out)
     ctx_container = Context()
@@ -67,6 +70,8 @@ def stop(ctx):
 
     ctx_container = ctx
     ctx_in = ctx_container.get_value()
+    # hack to bypass maemo bug
+    os.environ['GPSD_PROG']='/usr/sbin/gpsd'
     status = gpsbt_stop(&ctx_in)
 
     return status
