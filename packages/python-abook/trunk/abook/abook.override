@@ -1030,7 +1030,7 @@ _wrap_osso_abook_account_model_get_iter(PyGObject *self,
 
 	tuple = osso_abook_account_model_tuple_new(contact, account);
 
-	if(osso_abook_account_model_get_iter((OssoABookAccountModel*)self->obj,
+	if (osso_abook_account_model_get_iter((OssoABookAccountModel*)self->obj,
 										tuple,
 										&iter))
 		pyiter = pyg_boxed_new(GTK_TYPE_TREE_ITER, &iter, TRUE, TRUE);
@@ -1041,6 +1041,69 @@ _wrap_osso_abook_account_model_get_iter(PyGObject *self,
 	}
 
 	g_free(tuple); /* Don't call *tuple_unref. It would free the tuple args */
+
+	return pyiter;
+}
+%%
+override osso_abook_contact_model_get_iter kwargs
+static PyObject *
+_wrap_osso_abook_contact_model_get_iter(PyGObject *self,
+										PyObject *args,
+										PyObject *kwargs)
+{
+	static char *kwlist[] = {"uid", NULL};
+	char *uid = NULL;
+	GtkTreeIter iter;
+	PyObject *pyiter;
+	gboolean ret;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"s:abook.ContactModel.get_iter",
+									kwlist,
+									&uid))
+		return NULL;
+
+	if (osso_abook_contact_model_get_iter((OssoABookContactModel*)self->obj,
+											uid,
+											&iter)) {
+		pyiter = pyg_boxed_new(GTK_TYPE_TREE_ITER, &iter, TRUE, TRUE);
+	} else {
+		Py_INCREF(Py_None);
+		pyiter = Py_None;
+	}
+
+	return pyiter;
+}
+%%
+override osso_abook_group_model_get_iter kwargs
+static PyObject *
+_wrap_osso_abook_group_model_get_iter(PyGObject *self,
+										PyObject *args,
+										PyObject *kwargs)
+{
+	static char *kwlist[] = {"group", NULL};
+	PyGObject *pygroup;
+	OssoABookGroup *group;
+	GtkTreeIter iter;
+	PyObject *pyiter;
+	gboolean ret;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+									"O!:abook.GroupModel.get_iter",
+									kwlist,
+									&PyOssoABookGroupModel_Type, &pygroup))
+		return NULL;
+
+	group = (OssoABookGroup *)pygroup->obj;
+
+	if (osso_abook_group_model_get_iter((OssoABookGroupModel*)self->obj,
+											group,
+											&iter)) {
+		pyiter = pyg_boxed_new(GTK_TYPE_TREE_ITER, &iter, TRUE, TRUE);
+	} else {
+		Py_INCREF(Py_None);
+		pyiter = Py_None;
+	}
 
 	return pyiter;
 }
