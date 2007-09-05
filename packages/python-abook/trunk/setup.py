@@ -2,12 +2,14 @@ from distutils.core import setup, Extension
 from distutils.command.build import build
 from distutils.cmd import Command
 import subprocess
+import pkgconfig
 import os
 import sys
 
 datadir = '/usr/share'
 defsdir = datadir+'/pygtk/2.0/defs'
 includedir = '/usr/include'
+abook_version = 0.1
 
 def get_includes(package_name):
     """
@@ -82,6 +84,43 @@ class PyABookBuild(build):
 
         build.run(self)
         
+class PyABookDocBuild(Command):
+    description = "Build Docbook html documentation"
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        print "Building documentation"
+
+        pygobject_data_dir = pkgconfig.variable("pygobject-2.0",
+                                                "datadir")
+        html_style = pygobject_data_dir+"/pygobject/xsl/ref-html-style.xsl"
+
+        html_dir = "docs/html/"
+        build_dir = "docs/"
+        refs_dir = "docs/reference/"
+
+        xslt_args = [
+            "--nonet",
+            "--xinclude",
+            "--output", html_dir,
+            "--path", build_dir+"reference",
+            "--stringparam", "abookdoc.bookname", "\"abook\"",
+            "--stringparam", "abookdoc.version", str(abook_version),
+            html_style,
+            refs_dir + "abook-docs.xml"
+        ]
+
+        print xslt_args
+        subprocess.call(['xsltproc'] + xslt_args)
+        return True
+
 compile_args = [
         '-Os',
         '-DXTHREADS',
@@ -114,7 +153,7 @@ abook = Extension('abook',
 
 setup(
     name = 'abook',
-    version = '0.1',
+    version = str(abook_version),
     description = 'Python bindings for libosso-addressbook components.',
     author = 'Lauro Moura Maranhao Neto',
     author_email = 'lauro.neto@indt.org.br',
@@ -122,7 +161,7 @@ setup(
     ext_modules = [abook],
     cmdclass={
         'build': PyABookBuild,
-        #'build_doc': PyConicDocBuild
+        'build_doc': PyABookDocBuild
     }
 )
 # vim:ts=4:sw=4:et:
