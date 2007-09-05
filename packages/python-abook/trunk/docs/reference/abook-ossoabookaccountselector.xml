@@ -1,0 +1,253 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookaccountselector">
+  <refmeta>
+    <refentrytitle>abook.AccountSelector</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.AccountSelector</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.AccountSelector</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookaccountview">abook.AccountView</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter_model</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--get-extended-selection">get_extended_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--deselect-all">deselect_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--select-tuple">select_tuple</link></methodname>
+    <methodparam><parameter>tuple</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--deselect-tuple">deselect_tuple</link></methodname>
+    <methodparam><parameter>tuple</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--set-minimum-selection">set_minimum_selection</link></methodname>
+    <methodparam><parameter>minimum</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--get-minimum-selection">get_minimum_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--set-maximum-selection">set_maximum_selection</link></methodname>
+    <methodparam><parameter>maximum</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--get-maximum-selection">get_maximum_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--set-checkbox-selection-only">set_checkbox_selection_only</link></methodname>
+    <methodparam><parameter>checkbox_selection_only</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountselector--get-checkbox-selection-only">get_checkbox_selection_only</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-ossoabooktreeview">abook.TreeView</link>
+  +-- <link linkend="class-ossoabookaccountview">abook.AccountView</link>
+    +-- <link linkend="class-ossoabookaccountselector">abook.AccountSelector</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter_model</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookAccountModel*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>filter_model</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookFilterModel*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a GtkWidget*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookaccountselector--get-extended-selection">
+    <title>abook.AccountSelector.get_extended_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_extended_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a GList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--deselect-all">
+    <title>abook.AccountSelector.deselect_all</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>deselect_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--select-tuple">
+    <title>abook.AccountSelector.select_tuple</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>select_tuple</methodname>
+    <methodparam><parameter>tuple</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>tuple</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--deselect-tuple">
+    <title>abook.AccountSelector.deselect_tuple</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>deselect_tuple</methodname>
+    <methodparam><parameter>tuple</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>tuple</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--set-minimum-selection">
+    <title>abook.AccountSelector.set_minimum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_minimum_selection</methodname>
+    <methodparam><parameter>minimum</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>minimum</parameter>&#160;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--get-minimum-selection">
+    <title>abook.AccountSelector.get_minimum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_minimum_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--set-maximum-selection">
+    <title>abook.AccountSelector.set_maximum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_maximum_selection</methodname>
+    <methodparam><parameter>maximum</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>maximum</parameter>&#160;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--get-maximum-selection">
+    <title>abook.AccountSelector.get_maximum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_maximum_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--set-checkbox-selection-only">
+    <title>abook.AccountSelector.set_checkbox_selection_only</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_checkbox_selection_only</methodname>
+    <methodparam><parameter>checkbox_selection_only</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>checkbox_selection_only</parameter>&#160;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountselector--get-checkbox-selection-only">
+    <title>abook.AccountSelector.get_checkbox_selection_only</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_checkbox_selection_only</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

@@ -1,0 +1,128 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookaccount">
+  <refmeta>
+    <refentrytitle>abook.Account</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.Account</refname>
+    <refpurpose>Account</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.Account</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccount--presence-new">presence_new</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccount--get-vcard-field">get_vcard_field</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccount--get-bound">get_bound</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccount--get-username">get_username</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccount--get-galago-account">get_galago_account</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookaccount">abook.Account</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookaccount--presence-new">
+    <title>abook.Account.presence_new</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>presence_new</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookAccountPresence*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccount--get-vcard-field">
+    <title>abook.Account.get_vcard_field</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_vcard_field</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a const-char*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccount--get-bound">
+    <title>abook.Account.get_bound</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_bound</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a const-char*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccount--get-username">
+    <title>abook.Account.get_username</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_username</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a const-char*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccount--get-galago-account">
+    <title>abook.Account.get_galago_account</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_galago_account</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a GalagoAccount*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

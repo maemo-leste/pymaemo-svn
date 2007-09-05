@@ -1,0 +1,56 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookaccountpresence">
+  <refmeta>
+    <refentrytitle>abook.AccountPresence</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.AccountPresence</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.AccountPresence</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookpresence">abook.Presence</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountpresence--get-account">get_account</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookpresence">abook.Presence</link>
+    +-- <link linkend="class-ossoabookaccountpresence">abook.AccountPresence</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookaccountpresence--get-account">
+    <title>abook.AccountPresence.get_account</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_account</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookAccount*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

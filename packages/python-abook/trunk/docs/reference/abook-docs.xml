@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V4.1.2//EN" 
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY ossoabookaccount SYSTEM "abook-ossoabookaccount.xml" >
+  <!ENTITY ossoabookaccountgroup SYSTEM "abook-ossoabookaccountgroup.xml" >
+  <!ENTITY ossoabookaccountmodel SYSTEM "abook-ossoabookaccountmodel.xml" >
+  <!ENTITY ossoabookaccountpresence SYSTEM "abook-ossoabookaccountpresence.xml" >
+  <!ENTITY ossoabookaccountselector SYSTEM "abook-ossoabookaccountselector.xml" >
+  <!ENTITY ossoabookaccountview SYSTEM "abook-ossoabookaccountview.xml" >
+  <!ENTITY ossoabookaddtocontactsdialog SYSTEM "abook-ossoabookaddtocontactsdialog.xml" >
+  <!ENTITY ossoabookaddusernamedialog SYSTEM "abook-ossoabookaddusernamedialog.xml" >
+  <!ENTITY ossoabookallgroup SYSTEM "abook-ossoabookallgroup.xml" >
+  <!ENTITY ossoabookalphabar SYSTEM "abook-ossoabookalphabar.xml" >
+  <!ENTITY ossoabookblockmanager SYSTEM "abook-ossoabookblockmanager.xml" >
+  <!ENTITY ossoabookblockedgroup SYSTEM "abook-ossoabookblockedgroup.xml" >
+  <!ENTITY ossoabookcontacteditor SYSTEM "abook-ossoabookcontacteditor.xml" >
+  <!ENTITY ossoabookcontactgroupeditor SYSTEM "abook-ossoabookcontactgroupeditor.xml" >
+  <!ENTITY ossoabookcontactmodel SYSTEM "abook-ossoabookcontactmodel.xml" >
+  <!ENTITY ossoabookcontactpresence SYSTEM "abook-ossoabookcontactpresence.xml" >
+  <!ENTITY ossoabookcontactselector SYSTEM "abook-ossoabookcontactselector.xml" >
+  <!ENTITY ossoabookcontactstarter SYSTEM "abook-ossoabookcontactstarter.xml" >
+  <!ENTITY ossoabookcontactview SYSTEM "abook-ossoabookcontactview.xml" >
+  <!ENTITY ossoabookfiltermodel SYSTEM "abook-ossoabookfiltermodel.xml" >
+  <!ENTITY ossoabookgroup SYSTEM "abook-ossoabookgroup.xml" >
+  <!ENTITY ossoabookgroupmodel SYSTEM "abook-ossoabookgroupmodel.xml" >
+  <!ENTITY ossoabookgroupselector SYSTEM "abook-ossoabookgroupselector.xml" >
+  <!ENTITY ossoabookgroupview SYSTEM "abook-ossoabookgroupview.xml" >
+  <!ENTITY ossoabookmanualgroup SYSTEM "abook-ossoabookmanualgroup.xml" >
+  <!ENTITY ossoabookmanualgroupmanager SYSTEM "abook-ossoabookmanualgroupmanager.xml" >
+  <!ENTITY ossoabookonlinegroup SYSTEM "abook-ossoabookonlinegroup.xml" >
+  <!ENTITY ossoabookpresence SYSTEM "abook-ossoabookpresence.xml" >
+  <!ENTITY ossoabookpresenceicon SYSTEM "abook-ossoabookpresenceicon.xml" >
+  <!ENTITY ossoabookrecentgroup SYSTEM "abook-ossoabookrecentgroup.xml" >
+  <!ENTITY ossoabookrequestauthdialog SYSTEM "abook-ossoabookrequestauthdialog.xml" >
+  <!ENTITY ossoabookselectdialog SYSTEM "abook-ossoabookselectdialog.xml" >
+  <!ENTITY ossoabookservicegroup SYSTEM "abook-ossoabookservicegroup.xml" >
+  <!ENTITY ossoabooktreemodel SYSTEM "abook-ossoabooktreemodel.xml" >
+  <!ENTITY ossoabooktreeview SYSTEM "abook-ossoabooktreeview.xml" >
+]>
+
+<book id="index" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <bookinfo>
+    <title>Python OSSO-AddressBook documentation</title>
+    <authorgroup>
+      <author>
+        <firstname>Lauro</firstname>
+        <surname>Moura</surname>
+      </author>
+    </authorgroup>
+  </bookinfo>
+
+  <toc>
+  </toc>
+
+  <chapter id="class-hierarchy">
+    <title>Class Hierarchy</title>
+    <xi:include href="abook-hierarchy.xml"/>
+  </chapter>
+
+  <xi:include href="abook-classes.xml"/>
+</book>

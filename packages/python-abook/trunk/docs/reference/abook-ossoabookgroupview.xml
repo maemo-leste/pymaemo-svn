@@ -1,0 +1,123 @@
+<refentry id="class-ossoabookgroupview">
+  <refmeta>
+    <refentrytitle>abook.GroupView</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.GroupView</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.GroupView</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkscrolledwindow">GtkScrolledWindow</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupview--get-model">get_model</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupview--get-focus">get_focus</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupview--get-tree-view">get_tree_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupview--enable-drag-dest">enable_drag_dest</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-ossoabookgroupview">abook.GroupView</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookGroupModel*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a GtkWidget*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookgroupview--get-model">
+    <title>abook.GroupView.get_model</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_model</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookGroupModel*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroupview--get-focus">
+    <title>abook.GroupView.get_focus</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_focus</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookGroup*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroupview--get-tree-view">
+    <title>abook.GroupView.get_tree_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_tree_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a GtkTreeView*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroupview--enable-drag-dest">
+    <title>abook.GroupView.enable_drag_dest</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>enable_drag_dest</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

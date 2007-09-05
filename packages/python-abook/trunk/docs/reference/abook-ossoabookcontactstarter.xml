@@ -1,0 +1,161 @@
+<refentry id="class-ossoabookcontactstarter">
+  <refmeta>
+    <refentrytitle>abook.ContactStarter</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ContactStarter</refname>
+    <refpurpose>Dialog to initiate communication with a contact</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ContactStarter</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">gtk.Dialog</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactstarter--set-book-view">set_book_view</link></methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactstarter--get-book-view">get_book_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactstarter--set-contact">set_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactstarter--get-contact">get_contact</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkdialog">gtk.Dialog</link>
+   +-- <link linkend="class-ossoabookcontactstarter">abook.ContactStarter</link>
+</synopsis>
+  </refsect1>
+   <refsect1 id="properties-ossoabookcontactstarter">
+    <title>abook.ContactStarter Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"book-view"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EBookView</classname>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"contact"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EContact</classname>.</entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookcontactstarter--set-book-view">
+    <title>abook.ContactStarter.set_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_book_view</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>book_view</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EBookView</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Set the <classname>evolution.ebook.EBookView</classname> this contact starter dialog is associated with.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactstarter--get-book-view">
+    <title>abook.ContactStarter.get_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_book_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a EBookView*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Get the <classname>evolution.ebook.EBookView</classname> this contact starter dialog is associated with.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactstarter--set-contact">
+    <title>abook.ContactStarter.set_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Set the <classname>evolution.ebook.EContact</classname> this contact starter dialog is acting on.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactstarter--get-contact">
+    <title>abook.ContactStarter.get_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_contact</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Get the <classname>evolution.ebook.EContact</classname> this contact starter dialog is acting on.</para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

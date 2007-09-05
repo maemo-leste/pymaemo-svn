@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<chapter id="abook-class-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The abook Class Reference</title>
+
+<!-- ABOOK CLASSES - template from PyGTK-->
+
+  <xi:include href="abook-ossoabookaccount.xml"/>
+  <xi:include href="abook-ossoabookaccountgroup.xml"/>
+  <xi:include href="abook-ossoabookaccountmodel.xml"/>
+  <xi:include href="abook-ossoabookaccountpresence.xml"/>
+  <xi:include href="abook-ossoabookaccountselector.xml"/>
+  <xi:include href="abook-ossoabookaccountview.xml"/>
+  <xi:include href="abook-ossoabookaddtocontactsdialog.xml"/>
+  <xi:include href="abook-ossoabookaddusernamedialog.xml"/>
+  <xi:include href="abook-ossoabookallgroup.xml"/>
+  <xi:include href="abook-ossoabookalphabar.xml"/>
+  <xi:include href="abook-ossoabookblockmanager.xml"/>
+  <xi:include href="abook-ossoabookblockedgroup.xml"/>
+  <xi:include href="abook-ossoabookcontacteditor.xml"/>
+  <xi:include href="abook-ossoabookcontactgroupeditor.xml"/>
+  <xi:include href="abook-ossoabookcontactmodel.xml"/>
+  <xi:include href="abook-ossoabookcontactpresence.xml"/>
+  <xi:include href="abook-ossoabookcontactselector.xml"/>
+  <xi:include href="abook-ossoabookcontactstarter.xml"/>
+  <xi:include href="abook-ossoabookcontactview.xml"/>
+  <xi:include href="abook-ossoabookfiltermodel.xml"/>
+  <xi:include href="abook-ossoabookgroup.xml"/>
+  <xi:include href="abook-ossoabookgroupmodel.xml"/>
+  <xi:include href="abook-ossoabookgroupselector.xml"/>
+  <xi:include href="abook-ossoabookgroupview.xml"/>
+  <xi:include href="abook-ossoabookmanualgroup.xml"/>
+  <xi:include href="abook-ossoabookmanualgroupmanager.xml"/>
+  <xi:include href="abook-ossoabookonlinegroup.xml"/>
+  <xi:include href="abook-ossoabookpresence.xml"/>
+  <xi:include href="abook-ossoabookpresenceicon.xml"/>
+  <xi:include href="abook-ossoabookrecentgroup.xml"/>
+  <xi:include href="abook-ossoabookrequestauthdialog.xml"/>
+  <xi:include href="abook-ossoabookselectdialog.xml"/>
+  <!-- <xi:include href="abook-ossoabookservicegroup.xml"/> Not supported yet (MissionControl). -->
+  <xi:include href="abook-ossoabooktreemodel.xml"/>
+  <xi:include href="abook-ossoabooktreeview.xml"/>
+  <xi:include href="abook-ossoabook-constants.xml"/>
+
+</chapter>

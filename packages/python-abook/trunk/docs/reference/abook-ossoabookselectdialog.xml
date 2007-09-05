@@ -1,0 +1,224 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookselectdialog">
+  <refmeta>
+    <refentrytitle>abook.SelectDialog</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.SelectDialog</refname>
+    <refpurpose>Select a contact dialog.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.SelectDialog</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">gtk.Dialog</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>tree_view</parameter></methodparam>
+    <methodparam><parameter>alpha_bar</parameter></methodparam>
+    <methodparam><parameter>new_contact</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookselectdialog--get-tree-view">get_tree_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookselectdialog--get-new-contact">get_new_contact</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookselectdialog--set-new-contact">set_new_contact</link></methodname>
+    <methodparam><parameter>show_new_contact</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkdialog">gtk.Dialog</link>
+  +-- <link linkend="class-ossoabookselectdialog">abook.SelectDialog</link>
+</synopsis>
+
+  </refsect1>
+  
+   <refsect1 id="properties-ossoabookselectdialog">
+    <title>abook.SelectDialog Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"tree-view"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The exposed <link linkend="class-ossoabooktreeview"><classname>abook.TreeView</classname></link>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"want-alpha-bar"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry><literal>True</literal> if the dialog should contain an alpha bar. Default: <literal>True</literal>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"want-new-contact"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry><literal>True</literal> if the contact should contain a "New Contact" button. Default: <literal>False</literal></entry>
+	    </row>	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  
+   <refsect1 id="signal-prototypes-ossoabookselectdialog">
+    <title>abook.SelectDialog Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookselectdialog--ok-insensitive-press">ok-insensitive-press</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>dialog</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>  
+  
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>tree_view</parameter></methodparam>
+    <methodparam><parameter>alpha_bar</parameter></methodparam>
+    <methodparam><parameter>new_contact</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>tree_view</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ossoabooktreeview"><classname>abook.TreeView</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>alpha_bar</parameter>&#160;:</term>
+      <listitem><simpara>a boolean for the "want-alpha-bar" property</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>new_contact</parameter>&#160;:</term>
+      <listitem><simpara>a boolean for the "want-new-contact" property</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>the <link linkend="class-ossoabookselectdialog">
+         <classname>abook.SelectDialog</classname></link> instance.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookselectdialog--get-tree-view">
+    <title>abook.SelectDialog.get_tree_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_tree_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara> the contained <link linkend="class-ossoabooktreeview">
+         <classname>abook.TreeView</classname></link>.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookselectdialog--get-new-contact">
+    <title>abook.SelectDialog.get_new_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_new_contact</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <literal>boolean</literal></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives whether the "New Contact" button should be shown or not.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookselectdialog--set-new-contact">
+    <title>abook.SelectDialog.set_new_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_new_contact</methodname>
+    <methodparam><parameter>show_new_contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>show_new_contact</parameter>&#160;:</term>
+      <listitem><simpara>a <literal>boolean</literal></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets whether the dialog should show a "New Contact" button or not.</para>
+  </refsect2>
+  </refsect1>
+  
+ <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookselectdialog--ok-insensitive-press">
+      <title>The "ok-insensitive-press" abook.SelectDialog Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>dialog</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>dialog</parameter>:</term>
+	  <listitem><simpara>the dialog that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever OK is insensitive and was clicked.</para>
+
+    </refsect2>
+
+  </refsect1>  
+</refentry>

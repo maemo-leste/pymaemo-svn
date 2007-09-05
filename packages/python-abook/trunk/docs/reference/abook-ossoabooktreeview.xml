@@ -1,0 +1,200 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabooktreeview">
+  <refmeta>
+    <refentrytitle>abook.TreeView</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.TreeView</refname>
+    <refpurpose>Base class for displaying contacts and accounts in a list</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.TreeView</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkscrolledwindow">gtk.ScrolledWindow</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreeview--get-model">get_model</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreeview--get-base-model">get_base_model</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreeview--get-filter-model">get_filter_model</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreeview--get-tree-view">get_tree_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreeview--select-first">select_first</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreeview--enable-drag-source">enable_drag_source</link></methodname>
+    <methodparam><parameter>targets</parameter></methodparam>
+    <methodparam><parameter>n_targets</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkscrolledwindow">gtk.ScrolledWindow</link>
+  +-- <link linkend="class-ossoabooktreeview">abook.TreeView</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1 id="properties-ossoabooktreeview">
+    <title>abook.TreeView Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"base-model"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The contained <link
+linkend="class-ossoabooktreemodel"><classname>abook.TreeModel</classname></link>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"filter-model"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The contained <link
+linkend="class-ossoabookfiltermodel"><classname>abook.FilterModel</classname></link>, if any.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"model"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The top contained <classname>gtk.TreeModel</classname>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"show-contact-name"</entry>
+	      <entry>Read-Write</entry>
+	      <entry><literal>True</literal> if contact names should be show. Default value: <literal>True</literal>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"show-loading-banner"</entry>
+	      <entry>Read-Write</entry>
+	      <entry><literal>True</literal> if banner should be shown while loading. Default value: <literal>True</literal>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"tree-view"</entry>
+	      <entry>Read</entry>
+	      <entry>The contained <classname>gtk.TreeView</classname></entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabooktreeview--get-model">
+    <title>abook.TreeView.get_model</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_model</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>the top contained gtk.TreeModel. It can be a
+        <link linkend="class-ossoabooktreemodel">abook.TreeModel</link>
+        or a <link linkend="class-ossoabookfiltermodel">abook.FilterModel</link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreeview--get-base-model">
+    <title>abook.TreeView.get_base_model</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_base_model</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>the contained <link linkend="class-ossoabooktreemodel">abook.TreeModel</link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreeview--get-filter-model">
+    <title>abook.TreeView.get_filter_model</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_filter_model</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>the contained <link linkend="class-ossoabookfiltermodel">abook.FilterModel</link>, if any</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreeview--get-tree-view">
+    <title>abook.TreeView.get_tree_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_tree_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>the contained gtk.TreeView </simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreeview--select-first">
+    <title>abook.TreeView.select_first</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>select_first</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Selects the first row in view when the contained evolution.ebook.EBookView (inside the base model) is done loading.
+        It will not select if the view is empty, or if the user scrolls or selects a row before the EBookView is done loading.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreeview--enable-drag-source">
+    <title>abook.TreeView.enable_drag_source</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>enable_drag_source</methodname>
+    <methodparam><parameter>targets</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>targets</parameter>&#160;:</term>
+      <listitem><simpara>a list of targets in the form (string, int, int)</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+    Turns this instance into a drag source. This function is meant for use in subclasses.
+  </para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

@@ -1,0 +1,274 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookalphabar">
+  <refmeta>
+    <refentrytitle>abook.AlphaBar</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.AlphaBar</refname>
+    <refpurpose>A toolbar containing alphabetical shortcuts.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.AlphaBar</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobjectgobject">gobject.GObject</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>view</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookalphabar--get-view">get_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookalphabar--get-action-group">get_action_group</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookalphabar--merge">merge</link></methodname>
+    <methodparam><parameter>ui_manager</parameter></methodparam>
+    <methodparam><parameter>merge_id</parameter></methodparam>
+    <methodparam><parameter>path</parameter></methodparam>
+    <methodparam><parameter>add_separators</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookalphabar--create-button-row">create_button_row</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">gobject.GObject</link>
+  +-- <link linkend="class-ossoabookalphabar">abook.AlphaBar</link>
+</synopsis>
+
+  </refsect1>
+  
+  <refsect1 id="properties-ossoabookalphabar">
+    <title>abook.AlphaBar Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"action-group"</entry>
+	      <entry>Read</entry>
+	      <entry>The contained <link linkend="class-gtkactiongroup"><classname>gtk.ActionGroup</classname></link>.</entry>
+	    </row>
+	    
+       <row valign="top">
+	      <entry>"tree-view"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The associated <link linkend="class-ossoabooktreeview"><classname>abook.TreeView</classname></link>.</entry>
+	    </row>	    
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  
+   <refsect1 id="signal-prototypes-ossoabookalphabar">
+    <title>abook.AlphaBar Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookalphabar--insensitive-press">insensitive-press</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>alpha_bar</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
+  <refsect1>
+     <title>Description</title>
+     <para>The <link linkend="class-ossoabookalphabar">
+        <classname>abook.AlphaBar</classname></link>
+        is a bar of locale-specific shortcuts to ranges
+        of alphanumeric characters. When a shortcut is
+        activated, the cursor of the associated
+        <link linkend="class-ossoabooktreeview">
+        <classname>abook.TreeView</classname></link> will
+        be moved to the first row starting with one of the
+        characters from the range.</para>
+
+        <para>There are two ways to use an
+        <link linkend="class-ossoabookalphabar">
+        <classname>abook.AlphaBar</classname></link>. The first
+        one is to merge it into a
+        <link linkend="class-gtkuimanager">
+        <classname>gtk.UIManager</classname></link> using
+        <link linkend="method-ossoabookalphabar--merge">
+        <methodname>abook.AlphaBar.merge()</methodname></link>.
+        The second one is to create an independent array of buttons using
+        <link linkend="method-ossoabookalphabar--create-button-row">
+        <methodname>abook.AlphaBar.create_button_row()</methodname></link>. </para>
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>view</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>view</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ossoabooktreeview"><classname>abook.TreeView</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookalphabar--get-view">
+    <title>abook.AlphaBar.get_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabooktreeview"><classname>abook.TreeView</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the associated <link linkend="class-ossoabooktreeview"><classname>abook.TreeView</classname></link></para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookalphabar--get-action-group">
+    <title>abook.AlphaBar.get_action_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_action_group</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-gtkactiongroup"><classname>gtk.ActionGroup</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the contained <link linkend="class-gtkactiongroup"><classname>gtk.ActionGroup</classname></link>.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookalphabar--merge">
+    <title>abook.AlphaBar.merge</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>merge</methodname>
+    <methodparam><parameter>ui_manager</parameter></methodparam>
+    <methodparam><parameter>merge_id</parameter></methodparam>
+    <methodparam><parameter>path</parameter></methodparam>
+    <methodparam><parameter>add_separators</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>ui_manager</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-gtkuimanager"><classname>gtk.UIManager</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>merge_id</parameter>&#160;:</term>
+      <listitem><simpara>an int for the merge ID. See
+         <link linkend="method-gtkuimanager--new-merger-id"><methodname>gtk.UIManager.new_merge_id()</methodname></link>
+      </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>path</parameter>&#160;:</term>
+      <listitem><simpara>a string with the path</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>add_separators</parameter>&#160;:</term>
+      <listitem><simpara>a boolean. <literal>True</literal> if separators are wanted in between of the elements.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Inserts the shortcuts into <literal>ui_manager</literal> at <literal>path</literal>.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookalphabar--create-button-row">
+    <title>abook.AlphaBar.create_button_row</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>create_button_row</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a A newly created 
+         <link linkend="class-gtkhbox"><classname>gtk.HBox</classname></link> containing
+         <link linkend="class-gtkbutton"><classname>gtk.Button</classname></link>s for the
+         shortcuts of this instance.
+      </simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Creates a row of regular <link linkend="class-gtkbutton"><classname>gtk.Button</classname></link>
+  for the shortcuts of this instance. The returned widget holds a reference on this instance.</para>
+  </refsect2>
+
+   <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookalphabar--insensitive-press">
+      <title>The "insensitive-press" abook.AlphaBar Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>alpha_bar</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>alpha_bar</parameter>:</term>
+	  <listitem><simpara>the alpha_bar that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever a button is insensitive and was clicked.</para>
+
+    </refsect2>
+
+  </refsect1> 
+
+  </refsect1>
+</refentry>

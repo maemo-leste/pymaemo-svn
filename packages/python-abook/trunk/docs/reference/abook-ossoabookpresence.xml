@@ -1,0 +1,132 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookpresence">
+  <refmeta>
+    <refentrytitle>abook.Presence</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.Presence</refname>
+    <refpurpose>Base class for presence objects, that represents the online presence.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.Presence</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">gobject.GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookpresence--get-status">get_status</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookpresence--get-icon-name">get_icon_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookpresence--compare">compare</link></methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookpresence">abook.Presence</link>
+</synopsis>
+
+  </refsect1>
+  
+ <refsect1 id="properties-ossoabookcontactstarter">
+    <title>abook.TreeView Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+	    <row valign="top">
+	      <entry>"status"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The presence status. Default:
+	      <link linkend="abook-presence-status-constants"><literal>abook.PRESENCE_STATUS_UNKNOW</literal></link></entry>
+	    </row>	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>  
+  
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookpresence--get-status">
+    <title>abook.Presence.get_status</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_status</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="abook-presence-status-constants"><literal>Presence Status</literal></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the status of this instance. Note that the "status" property
+  can be monitored by connecting to the <classname>gobject.GObject</classname>
+  "notify" signal with "status" as detail, i.e. "notify::status".</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookpresence--get-icon-name">
+    <title>abook.Presence.get_icon_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_icon_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>The icon name currently associated with this instance.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the icon name associated with the current status of this instance.
+  The icon name can be used to look up the appropriate icon to represent this instance until
+  the "status" property changes.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookpresence--compare">
+    <title>abook.Presence.compare</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>compare</methodname>
+    <methodparam><parameter>b</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>presence</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkref="class-ossoabookpresence">abook.Presence</link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Compares the status of this presence to the status of <literal>presence</literal>.
+  See <link linkend="abook-presence-status-constants"><literal>Presence Status</literal></link>
+  for the weights assigned to different statuses.
+  </para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

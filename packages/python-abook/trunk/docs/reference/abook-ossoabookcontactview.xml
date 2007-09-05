@@ -1,0 +1,230 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookcontactview">
+  <refmeta>
+    <refentrytitle>abook.ContactView</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ContactView</refname>
+    <refpurpose>View of contacts</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ContactView</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabooktreeview">abook.TreeView</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactview--get-selection">get_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactview--get-focus">get_focus</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactview--enable-drag-source">enable_drag_source</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkscrolledwindow">gtk.ScrolledWindow</link>
+  +-- <link linkend="class-ossoabooktreeview">abook.TreeView</link>
+    +-- <link linkend="class-ossoabookcontactview">abook.ContactView</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1 id="signal-prototypes-ossoabookcontactview">
+
+    <title>abook.ContactView Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookcontactview--contact-activated">contact-activated</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookcontactview--selection-changed">selection-changed</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>rows</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>an
+         <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link>
+         whose contents are to be exposed.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>filter</parameter>&#160;:</term>
+      <listitem><simpara>an optional
+      <link linkend="class-ossoabookfiltermodel"><classname>abook.FilterModel</classname></link>
+      filtering model.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+    <para>Creates a new new instance object exposing the contents of
+    <literal>model</literal>, as filtered by <literal>filter</literal>
+    (if not <literal>None</literal>).</para>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookcontactview--get-selection">
+    <title>abook.ContactView.get_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a list of <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the set of selected rows as a list of <classname>evolution.ebook.EContact</classname> objects.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactview--get-focus">
+    <title>abook.ContactView.get_focus</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_focus</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the <classname>evolution.ebook.EContact</classname> whose row is focused, if any.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactview--enable-drag-source">
+    <title>abook.ContactView.enable_drag_source</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>enable_drag_source</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Turns this instance into a drag source for <classname>evolution.ebook.EContact</classname> UID drags.</para>
+  </refsect2>
+
+  </refsect1>
+  <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookcontactview--contact-activated">
+      <title>The "contact-activated" abook.ContactView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>model</parameter></methodparam>
+	  <methodparam><parameter>contact</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that received the signal</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>contact</parameter>:</term>
+	  <listitem><simpara>the <classname>evolution.ebook.EContact</classname> whose row was activated.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified with the
+          <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+    </refsect2>
+
+    <refsect2 id="signal-ossoabookcontactview--selection-changed">
+      <title>The "selection-changed" abook.ContactView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>model</parameter></methodparam>
+	  <methodparam><parameter>rows</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that received the signal</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>rows</parameter>:</term>
+	  <listitem><simpara>the number of selected rows</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified with the
+          <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+    </refsect2>
+
+  </refsect1>
+
+</refentry>

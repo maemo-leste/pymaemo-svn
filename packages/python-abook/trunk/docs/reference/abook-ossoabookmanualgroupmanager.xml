@@ -1,0 +1,153 @@
+<refentry id="class-ossoabookmanualgroupmanager">
+  <refmeta>
+    <refentrytitle>abook.ManualGroupManager</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ManualGroupManager</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ManualGroupManager</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookmanualgroupmanager--get-groups">get_groups</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookmanualgroupmanager--get-group">get_group</link></methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookmanualgroupmanager--create-group">create_group</link></methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookmanualgroupmanager--delete-group">delete_group</link></methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+    <methodparam><parameter>model</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookmanualgroupmanager--rename-group">rename_group</link></methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+    <methodparam><parameter>new_name</parameter></methodparam>
+    <methodparam><parameter>model</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookmanualgroupmanager">abook.ManualGroupManager</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookmanualgroupmanager--get-groups">
+    <title>abook.ManualGroupManager.get_groups</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_groups</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a const-GList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookmanualgroupmanager--get-group">
+    <title>abook.ManualGroupManager.get_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_group</methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>name</parameter>&#160;:</term>
+      <listitem><simpara>a const-char*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookManualGroup*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookmanualgroupmanager--create-group">
+    <title>abook.ManualGroupManager.create_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>create_group</methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>name</parameter>&#160;:</term>
+      <listitem><simpara>a const-char*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookmanualgroupmanager--delete-group">
+    <title>abook.ManualGroupManager.delete_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>delete_group</methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+    <methodparam><parameter>model</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>group</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookManualGroup*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookmanualgroupmanager--rename-group">
+    <title>abook.ManualGroupManager.rename_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>rename_group</methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+    <methodparam><parameter>new_name</parameter></methodparam>
+    <methodparam><parameter>model</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>group</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookManualGroup*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>new_name</parameter>&#160;:</term>
+      <listitem><simpara>a const-char*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

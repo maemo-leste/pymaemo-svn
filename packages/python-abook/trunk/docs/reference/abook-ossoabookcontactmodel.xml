@@ -1,0 +1,90 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookcontactmodel">
+  <refmeta>
+    <refentrytitle>abook.ContactModel</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ContactModel</refname>
+    <refpurpose>A <classname>gtk.TreeModel</classname> listing <classname>evolution.ebook.EContact</classname> objects.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ContactModel</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabooktreemodel">abook.TreeModel</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactmodel--get-iter">get_iter</link></methodname>
+    <methodparam><parameter>contact_uid</parameter></methodparam>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkliststore">gtk.ListStore</link>
+  +-- <link linkend="class-ossoabooktreemodel">abook.TreeModel</link>
+    +-- <link linkend="class-ossoabookcontactmodel">abook.ContactModel</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>book_view</parameter>&#160;:</term>
+      <listitem><simpara>The <classname>evolution.ebook.EBookView</classname> whose contents are to be exposed.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Creates a new instance with the "<literal>book-view</literal>" property set.</para>
+  </refsect1>
+  
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookcontactmodel--get-iter">
+    <title>abook.ContactModel.get_iter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_iter</methodname>
+    <methodparam><parameter>contact_uid</parameter></methodparam>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>uid</parameter>&#160;:</term>
+      <listitem><simpara>a string with an <classname>evolution.ebook.EContact</classname> UID</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-gtktreeiter"><classname>gtk.TreeIter</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the <link linkend="class-gtktreeiter"><classname>gtk.TreeIter</classname></link> associated with
+  the <classname>evolution.ebook.EContact</classname> with UID uid.</para>
+  </refsect2>
+
+  </refsect1>
+</refentry>

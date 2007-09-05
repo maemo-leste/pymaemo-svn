@@ -1,0 +1,280 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+    
+<refentry id="class-ossoabookcontacteditor">
+  <refmeta>
+    <refentrytitle>abook.ContactEditor</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ContactEditor</refname>
+    <refpurpose>Dialog exposing the fields of an EContact for editing.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ContactEditor</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">gtk.Dialog</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--set-book-view">set_book_view</link></methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--get-book-view">get_book_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--set-contact">set_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--get-contact">get_contact</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--set-editable">set_editable</link></methodname>
+    <methodparam><parameter>editable</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--get-editable">get_editable</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--set-new">set_new</link></methodname>
+    <methodparam><parameter>new</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontacteditor--get-new">get_new</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-ossoabookcontacteditor">abook.ContactEditor</link>
+</synopsis>
+
+  </refsect1>
+  
+   <refsect1 id="properties-ossoabookcontaceditor">
+    <title>abook.ContactEditor Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"book-view"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EBookView</classname>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"contact"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EContact</classname>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"editable"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>If the data in the dialog is editable or not. Default: <literal>False</literal></entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"new"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>If the contact should be newly created. Default: <literal>False</literal></entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  <refsect1>
+  <title>Description</title>
+  <para>An <link linkend="class-ossoabookcontacteditor">abook.ContactEditor</link> is a
+     <classname>gtk.Dialog</classname> which displays fields, allowing the user
+        to edit an <classname>evolution.ebook.EContact</classname>. If the <literal>book</literal>
+        property is set, then when the user presses "Done" the modified contact will be
+        committed back to the book. The dialog also doubles as a New Contact dialog, 
+        by setting <literal>contact</literal> to <literal>None</literal> and <literal>book</literal>
+        to the book the contact should be added to.
+  </para>
+  <para>If the <literal>editable</literal> property is set to <literal>False</literal>,
+     the dialog's fields are read-only. The dialog has an Edit button which will set the 
+     <literal>editable</literal> property to <literal>True</literal>, changing the interface.
+  </para>
+  </refsect1>
+  
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookcontacteditor--set-book-view">
+    <title>abook.ContactEditor.set_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_book_view</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>book_view</parameter>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EBookView</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Set the book view that the contact this editor is displaying is originally from.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--get-book-view">
+    <title>abook.ContactEditor.get_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_book_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EBookView</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Get the book view that the contact this editor is currently displaying is originally from.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--set-contact">
+    <title>abook.ContactEditor.set_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Set the contact to display in the dialog for editing.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--get-contact">
+    <title>abook.ContactEditor.get_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_contact</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Get the contact this editor is currently displaying.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--set-editable">
+    <title>abook.ContactEditor.set_editable</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_editable</methodname>
+    <methodparam><parameter>editable</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>editable</parameter>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets whether this instance is editable or not.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--get-editable">
+    <title>abook.ContactEditor.get_editable</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_editable</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Return <literal>True</literal> if this dialog is editable, otherwise <literal>False</literal>.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--set-new">
+    <title>abook.ContactEditor.set_new</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_new</methodname>
+    <methodparam><parameter>new</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>new</parameter>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+   <para>Set this to true if this dialog is editing an existing
+   <classname>evolution.ebook.EContact</classname>, but that contact
+   should be added to the <classname>evolution.ebook.EBook</classname> rather than modified.</para>
+
+   <para>This is useful if you want to pre-fill a New Contact dialog with data.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontacteditor--get-new">
+    <title>abook.ContactEditor.get_new</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_new</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Return <literal>True</literal> if this dialog is editing an 
+  existing <classname>evolution.ebook.EContact</classname> and yet it
+  will be added to the book, not modified.</para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

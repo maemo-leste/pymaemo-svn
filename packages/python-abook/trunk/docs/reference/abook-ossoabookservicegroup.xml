@@ -1,0 +1,30 @@
+<refentry id="class-ossoabookservicegroup">
+  <refmeta>
+    <refentrytitle>abook.ServiceGroup</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ServiceGroup</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ServiceGroup</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookgroup">abook.Group</link></classname></ooclass>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookgroup">abook.Group</link>
+    +-- <link linkend="class-ossoabookservicegroup">abook.ServiceGroup</link>
+</synopsis>
+
+  </refsect1>
+</refentry>

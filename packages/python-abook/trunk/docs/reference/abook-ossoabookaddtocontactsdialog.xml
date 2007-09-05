@@ -1,0 +1,103 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookaddtocontactsdialog">
+  <refmeta>
+    <refentrytitle>abook.AddToContactsDialog</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.AddToContactsDialog</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.AddToContactsDialog</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">GtkDialog</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>account</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaddtocontactsdialog--get-model">get_model</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaddtocontactsdialog--get-account">get_account</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-ossoabookaddtocontactsdialog">abook.AddToContactsDialog</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>account</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>account</parameter>&#160;:</term>
+      <listitem><simpara>a OssoABookAccount*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a GtkWidget*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookaddtocontactsdialog--get-model">
+    <title>abook.AddToContactsDialog.get_model</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_model</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaddtocontactsdialog--get-account">
+    <title>abook.AddToContactsDialog.get_account</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_account</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a OssoABookAccount*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

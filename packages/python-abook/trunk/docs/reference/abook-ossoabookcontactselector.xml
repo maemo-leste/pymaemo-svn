@@ -1,0 +1,382 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookcontactselector">
+  <refmeta>
+    <refentrytitle>abook.ContactSelector</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ContactSelector</refname>
+    <refpurpose>Select contacts from a list</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ContactSelector</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookcontactview">abook.ContactView</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--get-extended-selection">get_extended_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--select-all">select_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--deselect-all">deselect_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--select-contact">select_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--deselect-contact">deselect_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--set-minimum-selection">set_minimum_selection</link></methodname>
+    <methodparam><parameter>minimum</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--get-minimum-selection">get_minimum_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--set-maximum-selection">set_maximum_selection</link></methodname>
+    <methodparam><parameter>maximum</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--get-maximum-selection">get_maximum_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--set-checkbox-selection-only">set_checkbox_selection_only</link></methodname>
+    <methodparam><parameter>checkbox_selection_only</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactselector--get-checkbox-selection-only">get_checkbox_selection_only</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-ossoabooktreeview">abook.TreeView</link>
+  +-- <link linkend="class-ossoabookcontactview">abook.ContactView</link>
+    +-- <link linkend="class-ossoabookcontactselector">abook.ContactSelector</link>
+</synopsis>
+
+  </refsect1>  
+  <refsect1 id="properties-ossoabookcontactselector">
+    <title>abook.ContactSelector Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"checkbox-selection-only"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>Only use checkbox selection. Default value:<literal>True</literal>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"maximum-selection"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The maximum number of rows to be selected. Allowed values: >= 1. Default value: 4294967295.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"minimum-selection"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The minimum number of rows to be selected. Default value: 0.</entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  
+ <refsect1 id="signal-prototypes-ossoabookcontactselector">
+    <title>abook.ContactSelector Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookcontactselector--extended-selection-changed">extended-selection-changed</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>selector</parameter></methodparam>
+            <methodparam><parameter>rows</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
+  
+  
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter_model</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+   <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>an
+         <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link>
+         whose contents are to be exposed.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>filter</parameter>&#160;:</term>
+      <listitem><simpara>an optional
+      <link linkend="class-ossoabookfiltermodel"><classname>abook.FilterModel</classname></link>
+      filtering model.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+    <para>Creates a new new instance exposing the contents of
+    <literal>model</literal>, as filtered by <literal>filter</literal>
+    (if not <literal>None</literal>).</para>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookcontactselector--get-extended-selection">
+    <title>abook.ContactSelector.get_extended_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_extended_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a list of <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns a list of contacts from checked rows.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--select-all">
+    <title>abook.ContactSelector.select_all</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>select_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Selects all contacts.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--deselect-all">
+    <title>abook.ContactSelector.deselect_all</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>deselect_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Deselects all contacts.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--select-contact">
+    <title>abook.ContactSelector.select_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>select_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Selects a contact.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--deselect-contact">
+    <title>abook.ContactSelector.deselect_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>deselect_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Deselects a contact.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--set-minimum-selection">
+    <title>abook.ContactSelector.set_minimum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_minimum_selection</methodname>
+    <methodparam><parameter>minimum</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>minimum</parameter>&#160;:</term>
+      <listitem><simpara>an int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets the minimum number of rows that can be selected.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--get-minimum-selection">
+    <title>abook.ContactSelector.get_minimum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_minimum_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the minimum number of rows that can be selected.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--set-maximum-selection">
+    <title>abook.ContactSelector.set_maximum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_maximum_selection</methodname>
+    <methodparam><parameter>maximum</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>maximum</parameter>&#160;:</term>
+      <listitem><simpara>an int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets the maximum number of rows that can be selected.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--get-maximum-selection">
+    <title>abook.ContactSelector.get_maximum_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_maximum_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the maximum number of rows that can be selected.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--set-checkbox-selection-only">
+    <title>abook.ContactSelector.set_checkbox_selection_only</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_checkbox_selection_only</methodname>
+    <methodparam><parameter>checkbox_selection_only</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>checkbox_selection_only</parameter>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets if this selector should use checkbox selection.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactselector--get-checkbox-selection-only">
+    <title>abook.ContactSelector.get_checkbox_selection_only</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_checkbox_selection_only</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns <literal>True</literal> if the checkbox selection is enabled,
+  <literal>False</literal> otherwise.</para>
+  </refsect2>
+
+
+  </refsect1>
+  
+   <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookcontactselector--extended-selection-changed">
+      <title>The "extended-selection-changed" abook.ContactSelector Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>selector</parameter></methodparam>
+	  <methodparam><parameter>rows</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>selector</parameter>:</term>
+	  <listitem><simpara>the selector that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>rows</parameter>:</term>
+	  <listitem><simpara>the number of selected rows</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+    </refsect2>
+
+  </refsect1>
+</refentry>

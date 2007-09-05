@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+    
+<refentry id="class-ossoabookonlinegroup">
+  <refmeta>
+    <refentrytitle>abook.OnlineGroup</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.OnlineGroup</refname>
+    <refpurpose>Online contacts group.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.OnlineGroup</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookgroup">abook.Group</link></classname></ooclass>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookgroup">abook.Group</link>
+    +-- <link linkend="class-ossoabookonlinegroup">abook.OnlineGroup</link>
+</synopsis>
+
+  </refsect1>
+</refentry>

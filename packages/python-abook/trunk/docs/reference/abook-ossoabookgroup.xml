@@ -1,0 +1,557 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookgroup">
+  <refmeta>
+    <refentrytitle>abook.Group</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.Group</refname>
+    <refpurpose>Representation of a group.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.Group</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">gobject.GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--get-name">get_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--get-display-name">get_display_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--get-icon-name">get_icon_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--get-empty-widget">get_empty_widget</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--is-visible">is_visible</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--includes-contact">includes_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--emit-refilter-contact">emit_refilter_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--emit-refilter-presence">emit_refilter_presence</link></methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--emit-refilter-group">emit_refilter_group</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--get-sort-weight">get_sort_weight</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--get-sensitive">get_sensitive</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroup--compare">compare</link></methodname>
+    <methodparam><parameter>b</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookgroup">abook.Group</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1 id="properties-ossoabookgroup">
+    <title>abook.Group Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"icon-name"</entry>
+	      <entry>Read</entry>
+	      <entry>The icon name of the group. The icon name can be used to
+	      look up the appropiate icon to represent the group.
+	      Default value: <literal>None</literal>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"name"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The name of the group. Default value: <literal>None</literal>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"sensitive"</entry>
+	      <entry>Read</entry>
+	      <entry>Whether the group is sensitive. Default value: <literal>True</literal>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"sort-weight"</entry>
+	      <entry>Read</entry>
+	      <entry>Sort weight of the group. A lower value results in a higher sorting
+	      priority. Default value: <literal>0</literal>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"visible"</entry>
+	      <entry>Read</entry>
+	      <entry>Whether the group is visible. Default value: <literal>True</literal>.</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  
+<refsect1 id="signal-prototypes-ossoabookgroup">
+    <title>abook.Group Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroup--refilter-contact">refilter-contact</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroup--refilter-group">refilter-group</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroup--refilter-presence">refilter-presence</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>presence</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroup--visibility-changed">visibility-changed</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>visibility</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>  
+  
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookgroup--get-name">
+    <title>abook.Group.get_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the name of the group. Use
+  <link linkend="method-ossoabookgroup--get-display-name"><function>abook.Group.get_display_name()</function></link>
+  to get the translated name for display.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--get-display-name">
+    <title>abook.Group.get_display_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_display_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a string.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the name of the group, translated for the current locale.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--get-icon-name">
+    <title>abook.Group.get_icon_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_icon_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the icon name associated with this instance.
+  The icon name can be used to look up the appropiate icon.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--get-empty-widget">
+    <title>abook.Group.get_empty_widget</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_empty_widget</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <classname>gtk.Widget</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the widget to display when this group is empty.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--is-visible">
+    <title>abook.Group.is_visible</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_visible</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns a boolean indicating whether this group is requested to be shown or not.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--includes-contact">
+    <title>abook.Group.includes_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>includes_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ebookcontact"><classname>evolution.ebook.EContact</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>presence</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns a boolean indicating whether this combination of
+  <literal>contact</literal> and <literal>presence</literal> is
+  included in this group. Both objects need to be passed.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--emit-refilter-contact">
+    <title>abook.Group.emit_refilter_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>emit_refilter_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ebookcontact"><classname>evolution.ebook.EContact</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+     Emits the "refilter-contact" signal, requesting <literal>contact</literal> to
+     be refiltered by any containing filters.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--emit-refilter-presence">
+    <title>abook.Group.emit_refilter_presence</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>emit_refilter_presence</methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>presence</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+     Emits the "refilter-presence" signal, requesting <literal>presence</literal> to
+     be refiltered by any containing filters.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--emit-refilter-group">
+    <title>abook.Group.emit_refilter_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>emit_refilter_group</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>
+       Emits the "refilter-group" signal.
+    </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--get-sort-weight">
+    <title>abook.Group.get_sort_weight</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_sort_weight</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the sort weight of this group. Groups are sorted by
+     first comparing the sort weights, and then collating the names.
+     A lower sort weight indicates a higher sorting priority.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--get-sensitive">
+    <title>abook.Group.get_sensitive</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_sensitive</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns the sensitivity of group.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroup--compare">
+    <title>abook.Group.compare</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>compare</methodname>
+    <methodparam><parameter>b</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>b</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+     Compares this group to group another group <literal>b</literal>,
+     first comparing the sort weights, and then collating the names.
+     A lower sort weight indicates a higher sorting priority.
+  </para>
+  </refsect2>
+  </refsect1>
+  
+  <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookgroup--refilter-contact">
+      <title>The "refilter-contact" abook.Group Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>contact</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the group that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>contact</parameter>:</term>
+	  <listitem><simpara>the
+	     <link linkend="class-ebookecontact"><classname>evolution.ebook.EContact</classname></link>
+	     to be refiltered.</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The refilter-contact signal is emitted when
+         <literal>contact</literal> has to be refiltered
+         by any containing filters. This is used when
+         <literal>contact</literal>'s membership to the
+         group has changed, for example.
+      </para>
+
+    </refsect2>
+    
+    <refsect2 id="signal-ossoabookgroup--refilter-group">
+      <title>The "refilter-group" abook.Group Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the group that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+    </refsect2>
+
+   <refsect2 id="signal-ossoabookgroup--refilter-presence">
+      <title>The "refilter-presence" abook.Group Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>presence</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the group that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>presence</parameter>:</term>
+	  <listitem><simpara>the
+	     <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link>
+	     to be refiltered.</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The refilter-contact signal is emitted when
+         <literal>presence</literal> has to be refiltered
+         by any containing filters. This is used when
+         <literal>presence</literal>'s membership to the
+         group has changed, for example.
+      </para>
+
+    </refsect2>
+    
+    <refsect2 id="signal-ossoabookgroup--visibility-changed">
+      <title>The "visibility-changed" abook.Group Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>visibility</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the group that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>visibility</parameter>:</term>
+	  <listitem><simpara><literal>True</literal> if <literal>group</literal>
+	     is visible. <literal>False</literal> otherwise.</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The visibility-changed signal is emitted when the group's visibility has changed.
+         The containing widget should hide or show the group accordingly.
+      </para>
+
+    </refsect2>
+
+  </refsect1>
+</refentry>

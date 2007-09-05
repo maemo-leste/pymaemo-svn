@@ -1,0 +1,106 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookaccountview">
+  <refmeta>
+    <refentrytitle>abook.AccountView</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.AccountView</refname>
+    <refpurpose>View of an <link linkend="class-ossoabookaccountmodel">abook.AccountModel</link></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.AccountView</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabooktreeview">abook.TreeView</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountview--get-selection">get_selection</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookaccountview--get-focus">get_focus</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkscrolledwindow">gtk.ScrolledWindow</link>
+  +-- <link linkend="class-ossoabooktreeview">abook.TreeView</link>
+    +-- <link linkend="class-ossoabookaccountview">abook.AccountView</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>model</parameter></methodparam>
+    <methodparam><parameter>filter</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookaccountmodel">abook.AccountModel</link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>filter</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookfiltermodel">abook.FilterModel</link> - Optional</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new abook.AccountView instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookaccountview--get-selection">
+    <title>abook.AccountView.get_selection</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_selection</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a list of (evolution.ebook.EContact, <link linkend="class-ossoabookaccount">abook.Account</link>) tuples</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookaccountview--get-focus">
+    <title>abook.AccountView.get_focus</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_focus</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>the tuple (evolution.ebook.EContact, <link linkend="class-ossoabookaccount">abook.Account</link>) that is focused, if any.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

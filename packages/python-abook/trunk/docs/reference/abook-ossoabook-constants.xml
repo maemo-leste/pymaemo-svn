@@ -1,0 +1,84 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="abook-constants">
+  <refnamediv>
+    <refname>abook Constants</refname>
+    <refpurpose>the built-in constants of the abook module</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+    <programlisting>
+<xref linkend="abook-presence-status-constants" endterm="abook-presence-status-constants-title"></xref>
+</programlisting>
+
+  </refsect1>
+
+  <refsect1 id="abook-constants-description">
+    <title>Description</title>
+
+    <refsect2 id="abook-presence-status-constants">
+      <title id="abook-presence-status-constants-title">Presence Status Constants</title>
+
+      <para>The different statuses a presence can have.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>abook.PRENSENCE_ONLINE = 0</literal></term>
+	  <listitem>
+	    <simpara>Online</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>abook.PRENSENCE_AWAY = 1</literal></term>
+	  <listitem>
+	    <simpara>Away</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>abook.PRENSENCE_OFFLINE = 2</literal></term>
+	  <listitem>
+	    <simpara>Offline</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>abook.PRENSENCE_PENDING = 3</literal></term>
+	  <listitem>
+	    <simpara>Pending</simpara>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><literal>abook.PRENSENCE_UNKNOWN = 4</literal></term>
+	  <listitem>
+	    <simpara>Unknow</simpara>
+	  </listitem>
+	</varlistentry>
+	
+      </variablelist>
+
+    </refsect2>
+    
+    <refsect2 id="abook-group-model-constants">
+      <title id="abook-group-model-constants-title">Group Model Constants</title>
+
+      <para>The data columns of the model. Data cell data can be retreived using
+         <link linkend="method-gtktreemodel--get"><methodname>gtk.TreeModel.get()</methodname></link>
+      </para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>abook.GROUP_MODEL_COL_GROUP=0</literal></term>
+	  <listitem>
+	    <simpara>The column containing
+	       <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> objects.</simpara>
+	  </listitem>
+	</varlistentry>	
+      </variablelist>
+
+    </refsect2>
+  </refsect1>
+
+</refentry>

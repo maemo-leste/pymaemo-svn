@@ -1,0 +1,287 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabooktreemodel">
+  <refmeta>
+    <refentrytitle>abook.TreeModel</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.TreeModel</refname>
+    <refpurpose>Base class for contact and accounts models</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.TreeModel</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkliststore">gtk.ListStore</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--get-contact-column">get_contact_column</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--get-presence-column">get_presence_column</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--set-book-view">set_book_view</link></methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--get-book-view">get_book_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--is-done-loading">is_done_loading</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--set-done-loading">set_done_loading</link></methodname>
+    <methodparam><parameter>done</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--contact-changed">contact_changed</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabooktreemodel--presence-changed">presence_changed</link></methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkliststore">gtk.ListStore</link>
+  +-- <link linkend="class-ossoabooktreemodel">abook.TreeModel</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1 id="properties-ossoabooktreemodel">
+    <title>abook.TreeModel Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"book-view"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The <classname>evolution.ebook.EBookView</classname> whose contents are shown..</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"contact-column"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The column containing <classname>evolution.ebook.EContact</classname> objects.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"presence-column"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The column containing <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link> objects.</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+  <refsect1 id="signal-prototypes-ossoabooktreemodel">
+    <title>abook.TreeModel Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabooktreemodel--done-loading">done-loading</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>model</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabooktreemodel--get-contact-column">
+    <title>abook.TreeModel.get_contact_column</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_contact_column</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the column containing the <classname>evolution.ebook.EContact</classname> objects</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--get-presence-column">
+    <title>abook.TreeModel.get_presence_column</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_presence_column</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the column containing the <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link> objects</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--set-book-view">
+    <title>abook.TreeModel.set_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_book_view</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>book_view</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EBookView</classname>.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets the <classname>evolution.ebook.EBookView</classname> whose contents are to be exposed.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--get-book-view">
+    <title>abook.TreeModel.get_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_book_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EBookView</classname> object</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the <classname>evolution.ebook.EBookView</classname> whose contents are to be exposed.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--is-done-loading">
+    <title>abook.TreeModel.is_done_loading</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_done_loading</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Returns <literal>True</literal> if this instance has seen the <literal>"sequence-completed"</literal>
+  signal emitted by the contained <classname>evolution.ebook.EBookView</classname></para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--set-done-loading">
+    <title>abook.TreeModel.set_done_loading</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_done_loading</methodname>
+    <methodparam><parameter>done</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>done</parameter>&#160;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Manually set the <literal>done-loading</literal> flag to done. This is a internal function that should not be used by application code.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--contact-changed">
+    <title>abook.TreeModel.contact_changed</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>contact_changed</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>TODO</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabooktreemodel--presence-changed">
+    <title>abook.TreeModel.presence_changed</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>presence_changed</methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>presence</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link>.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>TODO</para>
+  </refsect2>
+
+
+  </refsect1>
+    <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabooktreemodel--done-loading">
+      <title>The "done-loading" abook.TreeModel Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>model</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>model</parameter>:</term>
+	  <listitem><simpara>the model that received the
+signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+
+    </refsect2>
+
+  </refsect1>
+
+</refentry>

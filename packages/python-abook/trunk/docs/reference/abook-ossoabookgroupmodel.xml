@@ -1,0 +1,141 @@
+<refentry id="class-ossoabookgroupmodel">
+  <refmeta>
+    <refentrytitle>abook.GroupModel</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.GroupModel</refname>
+    <refpurpose><link linkend="class-gtktreemodel"><classname>gtk.TreeModel</classname></link>
+    listing <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> objects.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.GroupModel</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkliststore">gtk.ListStore</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupmodel--add-group">add_group</link></methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupmodel--remove-group">remove_group</link></methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookgroupmodel--get-iter">get_iter</link></methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkliststore">gtk.ListStore</link>
+  +-- <link linkend="class-ossoabookgroupmodel">abook.GroupModel</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+     <title>Description</title>
+     <para>The <link linkend="class-ossoabookgroupmodel">
+     <classname>abook.GroupModel</classname></link>
+     is a model that lists user-defined groups (see
+     <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link>).
+     Additional groups can be added using the
+     <link linkend="method-ossoabookgroupmodel--add-group"><methodname>abook.GroupModel.add_group()</methodname></link>
+     method.</para>
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookgroupmodel--add-group">
+    <title>abook.GroupModel.add_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>add_group</methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>group</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Adds <literal>group</literal> to this model. This is used for special
+  groups only. Use
+  <link linkend="class-ossoabookmanualgroupmanager"><classname>abook.ManualGroupManager</classname></link>
+  to manage manual groups.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroupmodel--remove-group">
+    <title>abook.GroupModel.remove_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove_group</methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>group</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Removes group from model. Do not remove
+  <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link> instances from the model,
+  if they have been automatically added. Use 
+  <link linkend="class-ossoabookmanualgroupmanager"><classname>abook.ManualGroupManager</classname></link>
+  to manage manual groups.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookgroupmodel--get-iter">
+    <title>abook.GroupModel.get_iter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_iter</methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>group</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-gtktreeiter"><classname>gtk.TreeIter</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retreives the <link linkend="class-gtktreeiter"><classname>gtk.TreeIter</classname></link> associated with
+     <literal>group</literal>.</para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

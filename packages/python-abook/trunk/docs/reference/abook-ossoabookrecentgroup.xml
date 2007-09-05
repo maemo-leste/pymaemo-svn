@@ -1,0 +1,110 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookrecentgroup">
+  <refmeta>
+    <refentrytitle>abook.RecentGroup</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.RecentGroup</refname>
+    <refpurpose>Recently used contacts group.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.RecentGroup</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookgroup">abook.Group</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookrecentgroup--set-book-view">set_book_view</link></methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookrecentgroup--get-book-view">get_book_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookgroup">abook.Group</link>
+    +-- <link linkend="class-ossoabookrecentgroup">abook.RecentGroup</link>
+</synopsis>
+
+  </refsect1>
+  
+<refsect1 id="properties-ossoabookrecentgroup">
+    <title>abook.Group Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"book-view"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The monitored <link linkend="class-ebookebookview"><classname>evolution.ebook.EBookView</classname></link>.</entry>
+	    </row>
+	
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>  
+  
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookrecentgroup--set-book-view">
+    <title>abook.RecentGroup.set_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_book_view</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>book_view</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ebookebookview"><classname>evolution.ebook.EBookView</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+     On first call sets the
+     <link linkend="class-ebookebookview"><classname>evolution.ebook.EBookView</classname></link>
+     that is to be monitored for recently used contacts. Any subsequent calls are ignored.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookrecentgroup--get-book-view">
+    <title>abook.RecentGroup.get_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_book_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ebookebookview"><classname>evolution.ebook.EBookView</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+     Retrieves the monitored <link linkend="class-ebookebookview"><classname>evolution.ebook.EBookView</classname></link>.
+  </para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

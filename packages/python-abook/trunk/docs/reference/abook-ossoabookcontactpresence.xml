@@ -1,0 +1,178 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookcontactpresence">
+  <refmeta>
+    <refentrytitle>abook.ContactPresence</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.ContactPresence</refname>
+    <refpurpose><classname>evolution.ebook.EContact</classname> presence tracker.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.ContactPresence</classname></ooclass>
+  <ooclass><classname><link linkend="class-ossoabookpresence">abook.Presence</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactpresence--set-contact">set_contact</link></methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactpresence--get-contact">get_contact</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactpresence--set-book-view">set_book_view</link></methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookcontactpresence--get-book-view">get_book_view</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-ossoabookpresence">abook.Presence</link>
+    +-- <link linkend="class-ossoabookcontactpresence">abook.ContactPresence</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1 id="properties-ossoabookcontactpresence">
+    <title>abook.ContactPresence Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"book-view"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EBookView</classname>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"contact"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EContact</classname>.</entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname> to be tracked.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookcontactpresence--set-contact">
+    <title>abook.ContactPresence.set_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_contact</methodname>
+    <methodparam><parameter>contact</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>contact</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname> to be tracked.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets the <classname>evolution.ebook.EContact</classname> tracked by this instance.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactpresence--get-contact">
+    <title>abook.ContactPresence.get_contact</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_contact</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the <classname>evolution.ebook.EContact</classname> tracked by this instance.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactpresence--set-book-view">
+    <title>abook.ContactPresence.set_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_book_view</methodname>
+    <methodparam><parameter>book_view</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>book_view</parameter>&#160;:</term>
+      <listitem><simpara>an <classname>evolution.ebook.EBookView</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets the <classname>evolution.ebook.EBookView</classname> the tracked
+  <classname>evolution.ebook.EContact</classname> originates from. Note that it
+  is not necessary to set an <classname>EBookView</classname> if the 
+  <classname>EContact</classname> is re-set every time it has changed,
+  for example in a tree model where the <classname>EBookView</classname> is already monitored.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookcontactpresence--get-book-view">
+    <title>abook.ContactPresence.get_book_view</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_book_view</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <classname>evolution.ebook.EBookView</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the <classname>evolution.ebook.EBookView</classname> the tracked
+  <classname>evolution.ebook.EContact</classname> originates from.</para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

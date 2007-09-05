@@ -1,0 +1,273 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookfiltermodel">
+  <refmeta>
+    <refentrytitle>abook.FilterModel</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.FilterModel</refname>
+    <refpurpose>Filter certain contacts from a <link linkend="class-ossoabooktreemodel">abook.TreeModel</link>.
+    </refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.FilterModel</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtktreemodelfilter">GtkTreeModelFilter</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>child_model</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--set-group">set_group</link></methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--get-group">get_group</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--set-text">set_text</link></methodname>
+    <methodparam><parameter>text</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--get-text">get_text</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--freeze-refilter">freeze_refilter</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--thaw-refilter">thaw_refilter</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--get-markup">get_markup</link></methodname>
+    <methodparam><parameter>text</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookfiltermodel--is-row-visible">is_row_visible</link></methodname>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtktreemodelfilter">gtk.TreeModelFilter</link>
+  +-- <link linkend="class-ossoabookfiltermodel">abook.FilterModel</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1 id="properties-ossoabookfiltermodel">
+    <title>abook.TreeModel Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"base-model"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The contained <link linkend="class-ossoabooktreemodel"><classname>abook.TreeModel</classname></link>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"group"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The group to be filtered on.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"text"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The text to be filtered on.</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>child_model</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>model</parameter>&#160;:</term>
+      <listitem><simpara>the child <link linkend="class-ossoabooktreemodel">abook.TreeModel</link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new <link linkend="class-ossoabookfiltermodel"><classname>abook.FilterModel</classname></link> instance.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Creates a new object filtering the contents of model.</para>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookfiltermodel--set-group">
+    <title>abook.FilterModel.set_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_group</methodname>
+    <methodparam><parameter>group</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>group</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link>.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets model to filter on group, only letting through <classname>evolution.ebook.EContact</classname> -
+  <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link> combinations that satisfy group.
+  (And the text set by <link linkend="method-ossoabookfiltermodel--set-text"><literal>abook.FilterModel.set_text()</literal></link>, if any)</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--get-group">
+    <title>abook.FilterModel.get_group</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_group</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> that is being filtered on.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--set-text">
+    <title>abook.FilterModel.set_text</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_text</methodname>
+    <methodparam><parameter>text</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>text</parameter>&#160;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets model to filter on <literal>text</literal>, only letting through <classname>evolution.ebook.EContacts</classname>
+  whose names contain <literal>text</literal>. (And the group set by
+  <link linkend="method-ossoabookfiltermodel--set-group"><literal>osso.abook.FilterModel.set_group()</literal></link>, if any)</para>
+  <para>
+  <literal>text</literal> is split up into <literal>bits</literal>, using space as delimiter. The order in which the <literal>bits</literal> appear in the searched text is not of importance.
+  Case and accents are ignored. This means that for example "Elvis Presley" matches "Presley Elvis", and that "Björk" matches "bjork".</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--get-text">
+    <title>abook.FilterModel.get_text</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_text</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the text that is being filtered on.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--freeze-refilter">
+    <title>abook.FilterModel.freeze_refilter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>freeze_refilter</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>
+    Freezes the filter. This means that any calls to
+    <link linkend="method-ossoabookfiltermodel--set-group"><literal>abook.FilterModel.set_group()</literal></link>
+    or <link linkend="method-ossoabookfiltermodel--set-text"><literal>abook.FilterModel.set_text()</literal></link>
+    will not have any effect until <link linkend="method-ossoabookfiltermodel--thaw-refilter"><literal>abook.FilterModel.thaw_refilter()</literal></link>is called.</para>
+    <para>
+     Use this function if you need to change the group and the text at the same time. The rows will then be refiltered only once.
+    </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--thaw-refilter">
+    <title>abook.FilterModel.thaw_refilter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>thaw_refilter</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>
+    Thaws the filter. See <link linkend="method-ossoabookfiltermodel--freeze-refilter"><literal>abook.FilterModel.freeze_refilter()</literal></link>
+    for details.
+    </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--get-markup">
+    <title>abook.FilterModel.get_markup</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_markup</methodname>
+    <methodparam><parameter>text</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>text</parameter>&#160;:</term>
+      <listitem><simpara>a string with the text to retrieve the markup for</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new <classname>pango.AttrList</classname></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Generates a <classname>pango.AttrList</classname> containing markup information to highlight any found bits of the filter text in <literal>text</literal>.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookfiltermodel--is-row-visible">
+    <title>abook.FilterModel.is_row_visible</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_row_visible</methodname>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>iter</parameter>&#160;:</term>
+      <listitem><simpara>a <classname>gtk.TreeIter</classname> of the contained <link linkend="class-ossoabooktreemodel"><classname>abook.TreeModel</classname></link> </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara><literal>True</literal> if the row indicated by <literal>iter</literal> satisfies the filter requirements, <literal>False</literal> otherwise.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Determines whether the row indicated by <literal>iter</literal> is visible, i.e. satisfies the filter requirements.
+  </para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

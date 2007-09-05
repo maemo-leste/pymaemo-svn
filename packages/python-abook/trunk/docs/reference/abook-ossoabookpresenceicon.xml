@@ -1,0 +1,126 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-ossoabookpresenceicon">
+  <refmeta>
+    <refentrytitle>abook.PresenceIcon</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>abook.PresenceIcon</refname>
+    <refpurpose>Icon representing the presence state.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>abook.PresenceIcon</classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkimage">gtk.Image</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookpresenceicon--set-presence">set_presence</link></methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-ossoabookpresenceicon--get-presence">get_presence</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gtkimage">gtk.Image</link>
+  +-- <link linkend="class-ossoabookpresenceicon">abook.PresenceIcon</link>
+</synopsis>
+
+  </refsect1>
+   <refsect1 id="properties-ossoabookcontactpresence">
+    <title>abook.PresenceIcon Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"presence"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link>.</entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+         <term><parameter>presence</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link></simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a new instance</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-ossoabookpresenceicon--set-presence">
+    <title>abook.PresenceIcon.set_presence</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_presence</methodname>
+    <methodparam><parameter>presence</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>presence</parameter>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Set the presence to display.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-ossoabookpresenceicon--get-presence">
+    <title>abook.PresenceIcon.get_presence</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_presence</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#160;:</term>
+      <listitem><simpara>a <link linkend="class-ossoabookpresence"><classname>abook.Presence</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the displayed presence.</para>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>
