@@ -71,6 +71,61 @@
 </synopsis>
 
   </refsect1>
+  <refsect1 id="properties-ossoabookaccountselector">
+    <title>abook.AccountSelector Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"checkbox-selection-only"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>Only use checkbox selection. Default value:<literal>True</literal>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"maximum-selection"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The maximum number of rows to be selected. Allowed values: >= 1. Default value: 4294967295.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"minimum-selection"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The minimum number of rows to be selected. Default value: 0.</entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+ <refsect1 id="signal-prototypes-ossoabookaccountselector">
+    <title>abook.AccountSelector Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookaccountselector--extended-selection-changed">extended-selection-changed</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>selector</parameter></methodparam>
+            <methodparam><parameter>rows</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
+
   <refsect1>
     <title>Constructor</title>
 
@@ -82,16 +137,24 @@
   <variablelist>
     <varlistentry>
       <term><parameter>model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountModel*</simpara></listitem>
+      <listitem><simpara>an
+         <link linkend="class-ossoabookaccountmodel"><classname>abook.AccountModel</classname></link>
+         whose contents are to be exposed.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>filter_model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookFilterModel*</simpara></listitem>
+      <listitem><simpara>an optional
+      <link linkend="class-ossoabookfiltermodel"><classname>abook.FilterModel</classname></link>
+      filtering model.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkWidget*</simpara></listitem>
+      <listitem><simpara>a new instance</simpara></listitem>
     </varlistentry>
+    <para>Creates a new new instance exposing the contents of
+    <literal>model</literal>, as filtered by <literal>filter</literal>
+    (if not <literal>None</literal>).</para>
+
   </variablelist>
 
 
@@ -112,6 +175,7 @@
       <listitem><simpara>a GList*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -121,6 +185,7 @@
 <programlisting><methodsynopsis language="python">
     <methodname>deselect_all</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -137,6 +202,7 @@
       <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -153,6 +219,7 @@
       <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -169,6 +236,7 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -184,6 +252,7 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -200,6 +269,7 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -215,6 +285,7 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -231,6 +302,7 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
 
@@ -246,8 +318,50 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>TODO</para>
   </refsect2>
 
+  </refsect1>
+   <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookaccountselector--extended-selection-changed">
+      <title>The "extended-selection-changed" abook.AccountSelector Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>selector</parameter></methodparam>
+	  <methodparam><parameter>rows</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>selector</parameter>:</term>
+	  <listitem><simpara>the selector that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>rows</parameter>:</term>
+	  <listitem><simpara>the number of selected rows</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The extended-selection-changed signal is emitted when the set of checked rows has changed.</para>
+
+    </refsect2>
 
   </refsect1>
+
 </refentry>

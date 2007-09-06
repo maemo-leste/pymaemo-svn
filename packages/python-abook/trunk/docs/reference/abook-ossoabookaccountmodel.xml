@@ -51,6 +51,14 @@
 
   </refsect1>
   <refsect1>
+    <title>Description</title>
+    <para>The <link linkend="class-ossoabookaccountmodel"><classname>AccountModel</classname></link> is a model that lists the
+    <link linkend="class-galagoaccount"><classname>GalagoAccount</classname></link> objects of accounts from
+    <classname>evolution.ebook.EContact</classname> objects
+    exposed by an <classname>evolution.ebook.EBookView</classname>, and their associated
+    <link linkend="class-ossoabookaccountpresence"><classname>AccountPresence</classname></link> objects.</para>
+  </refsect1>
+  <refsect1>
     <title>Constructor</title>
 
 <programlisting><constructorsynopsis language="python">
@@ -64,13 +72,46 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountModel*</simpara></listitem>
+      <listitem><simpara>a new instance.</simpara></listitem>
     </varlistentry>
   </variablelist>
 
 
 
   </refsect1>
+
+   <refsect1 id="properties-ossoabookaccountmodel">
+    <title>abook.AccountModel Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"flags"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>Combination of <link linkend="abook-account-type-constants">account types</link>
+          specifying the types of accounts to be listed. Default: <literal>0</literal></entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"single-contact"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The <classname>evolution.ebook.EContact</classname> whose accounts are exclusively exposed.</entry>
+	    </row>
+	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+
   <refsect1>
     <title>Methods</title>
 
@@ -83,9 +124,11 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountTypeFlags</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns a combination of <link linkend="abook-account-type-constants">account types</link> 
+  specifying the types of accounts to be listed.</para>
   </refsect2>
 
 
@@ -99,9 +142,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>contact</parameter>&#160;:</term>
-      <listitem><simpara>a EContact*</simpara></listitem>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the <classname>evolution.ebook.EContact</classname> whose accounts are to be shown.</para>
   </refsect2>
 
 
@@ -114,9 +158,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a EContact*</simpara></listitem>
+      <listitem><simpara>an <classname>evolution.ebook.EContact</classname>.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns the <classname>evolution.ebook.EContact</classname> whose accounts are to be shown.</para>
   </refsect2>
 
 
@@ -131,17 +176,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>tuple</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>iter</parameter>&#160;:</term>
-      <listitem><simpara>a GtkTreeIter*</simpara></listitem>
+      <listitem><simpara>a <literal>tuple</literal> like
+        (<classname>evolution.ebook.EContact</classname>, 
+        <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>)</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-gtktreeiter"><classname>gtk.TreeIter</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retreives the <link linkend="class-gtktreeiter"><classname>gtk.TreeIter</classname></link> associated with <literal>tuple</literal>.</para>
   </refsect2>
 
 

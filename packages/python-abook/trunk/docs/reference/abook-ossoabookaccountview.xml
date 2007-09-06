@@ -43,6 +43,37 @@
 </synopsis>
 
   </refsect1>
+
+   <refsect1 id="signal-prototypes-ossoabookaccountview">
+    <title>abook.AccountView Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookaccountview--selection-changed">selection-changed</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>n_rows</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookaccountview--tuple-activated">tuple-activated</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>tuple</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>  
   <refsect1>
     <title>Constructor</title>
 
@@ -101,6 +132,88 @@
   </variablelist>
   </refsect2>
 
-
   </refsect1>
+
+   <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookaccountview--selection-changed">
+      <title>The "selection-changed" abook.AccountView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>view</parameter></methodparam>
+	  <methodparam><parameter>n_rows</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>n_rows</parameter>:</term>
+	  <listitem><simpara>the number of selected rows</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The selection-changed signal is emitted when the set of selected rows has changed.</para>
+
+    </refsect2>
+
+    <refsect2 id="signal-ossoabookaccountview--tuple-activated">
+      <title>The "tuple-activated" abook.AccountView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>view</parameter></methodparam>
+	  <methodparam><parameter>tuple</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>tuple</parameter>:</term>
+	  <listitem><simpara>The <literal>tuple</literal> like
+        (<classname>evolution.ebook.EContact</classname>, 
+        <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>)
+        that was activated.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The tuple-activated signal is emitted when a tuple's row has been activated.</para>
+
+    </refsect2>
+
+  </refsect1>  
+
 </refentry>

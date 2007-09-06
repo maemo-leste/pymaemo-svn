@@ -19,7 +19,7 @@
 
 <classsynopsis language="python">
   <ooclass><classname>abook.Account</classname></ooclass>
-  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">gobject.GObject</link></classname></ooclass>
 <methodsynopsis language="python">
     <methodname><link linkend="method-ossoabookaccount--presence-new">presence_new</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
@@ -46,23 +46,80 @@
 </synopsis>
 
   </refsect1>
+
+   <refsect1 id="properties-ossoabookaccount">
+    <title>abook.Account Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"bound"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>String with the bound account's user name. Default: <literal>None</literal></entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"user-name"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>String with the user name. Default: <literal>None</literal></entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"vcard-field"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>String with the vCard field ID. Default: <literal>None</literal></entry>
+	    </row>	    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+  
+   <refsect1 id="signal-prototypes-ossoabookaccount">
+    <title>abook.Account Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookaccount--galago-account-available">galago-account-available</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>account</parameter></methodparam>
+            <methodparam><parameter>galago_account</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookaccount--galago-account-unavailable">galago-account-unavailable</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>account</parameter></methodparam>
+            <methodparam><parameter>galago_account</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>  
+
+
+  <refsect1>
+    <title>Description</title>
+    <para><link linkend="class-ossoabookaccount"><classname>Account</classname></link> is an object that links username and services together.</para>
+  </refsect1>
   <refsect1>
     <title>Methods</title>
-
-  <refsect2 id="method-ossoabookaccount--presence-new">
-    <title>abook.Account.presence_new</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>presence_new</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountPresence*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
-
 
   <refsect2 id="method-ossoabookaccount--get-vcard-field">
     <title>abook.Account.get_vcard_field</title>
@@ -73,9 +130,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a const-char*</simpara></listitem>
+      <listitem><simpara>a string with the vCard ID.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the vCard field ID for this instance.</para>
   </refsect2>
 
 
@@ -88,9 +146,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a const-char*</simpara></listitem>
+      <listitem><simpara>The bound account's username as a string.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the bound account's username.</para>
   </refsect2>
 
 
@@ -103,9 +162,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a const-char*</simpara></listitem>
+      <listitem><simpara>the username as a string.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the user name for this instance.</para>
   </refsect2>
 
 
@@ -118,11 +178,87 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GalagoAccount*</simpara></listitem>
+      <listitem><simpara>an <link linkend="class-galagoaccount"><classname>galago.Account</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the equivalent <link linkend="class-galagoaccount"><classname>galago.Account</classname></link> of this instance, if any.</para>
   </refsect2>
 
 
   </refsect1>
+
+ <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookaccount--galago-account-available">
+      <title>The "galago-account-available" abook.Account Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>account</parameter></methodparam>
+	  <methodparam><parameter>galago_account</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>account</parameter>:</term>
+	  <listitem><simpara>the account that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>galago_account</parameter>:</term>
+	  <listitem><simpara>the <link linkend="class-galagoaccount"><classname>galago.Account</classname></link> that is available.</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Signal emitted whenever a Galago Service gets a new <link linkend="class-galagoaccount"><classname>galago.Account</classname></link>.</para>
+
+    </refsect2>
+
+    <refsect2 id="signal-ossoabookaccount--galago-account-unavailable">
+      <title>The "galago-account-unavailable" abook.Account Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>account</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>account</parameter>:</term>
+	  <listitem><simpara>the account that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Signal emitted whenever a Galago Service has an account removed.</para>
+
+    </refsect2>
+
+  </refsect1>  
+
 </refentry>

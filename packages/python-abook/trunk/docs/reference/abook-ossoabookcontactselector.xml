@@ -375,6 +375,7 @@ method</simpara></listitem>
 any)</simpara></listitem>
 	</varlistentry>
       </variablelist>
+      <para>The extended-selection-changed signal is emitted when the set of checked rows has changed.</para>
 
     </refsect2>
 
