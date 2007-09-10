@@ -10,7 +10,8 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.AddToContactsDialog</refname><refpurpose></refpurpose>
+    <refname>abook.AddToContactsDialog</refname>
+    <refpurpose>Add accounts to a contact.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -18,7 +19,7 @@
 
 <classsynopsis language="python">
   <ooclass><classname>abook.AddToContactsDialog</classname></ooclass>
-  <ooclass><classname><link linkend="class-gtkdialog">GtkDialog</link></classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">gtk.Dialog</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
     <methodparam><parameter>model</parameter></methodparam>
@@ -36,9 +37,48 @@
   <refsect1>
     <title>Ancestry</title>
 
-<synopsis>+-- <link linkend="class-ossoabookaddtocontactsdialog">abook.AddToContactsDialog</link>
+<synopsis>+-- <link linkend="class-gtkdialog">gtk.Dialog</link>
+  +-- <link linkend="class-ossoabookaddtocontactsdialog">abook.AddToContactsDialog</link>
 </synopsis>
 
+  </refsect1>
+
+   <refsect1 id="properties-ossoabookaddtocontactsdialog">
+    <title>abook.AddToContactsDialog Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"account"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The to-be-added <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>.</entry>
+	    </row>
+
+	    <row valign="top">
+	      <entry>"model"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The associated <link linkend="class-ossoabookContactModel"><classname>abook.ContactModel</classname></link>.</entry>
+	    </row>    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+
+  <refsect1>
+  <title>Description</title>
+  <para><link linkend="class-ossoabookaddtocontactsdialog"><classname>abook.AddToContactsDialog</classname></link>
+  is a dialog that allows the user to add an
+  <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>
+  to an <classname>evolution.ebook.EContact.</classname></para>
   </refsect1>
   <refsect1>
     <title>Constructor</title>
@@ -51,16 +91,18 @@
   <variablelist>
     <varlistentry>
       <term><parameter>model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookContactModel"><classname>abook.ContactModel</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>account</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookAccount*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkWidget*</simpara></listitem>
+      <listitem><simpara>a new instance</simpara></listitem>
     </varlistentry>
+    <para>Creates a new dialog, allowing the user to add <literal>account</literal> to a new or existing
+    <classname>evolution.ebook.EContact.</classname></para>
   </variablelist>
 
 
@@ -78,7 +120,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookContactModel"><classname>abook.ContactModel</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -93,7 +135,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookAccount*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

@@ -10,7 +10,7 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.BlockManager</refname><refpurpose></refpurpose>
+    <refname>abook.BlockManager</refname><refpurpose>Manage blocked contacts</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -18,7 +18,7 @@
 
 <classsynopsis language="python">
   <ooclass><classname>abook.BlockManager</classname></ooclass>
-  <ooclass><classname><link linkend="class-gtkdialog">GtkDialog</link></classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">gtk.Dialog</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
     <methodparam><parameter>contact_model</parameter></methodparam>
@@ -32,10 +32,40 @@
   <refsect1>
     <title>Ancestry</title>
 
-<synopsis>+-- <link linkend="class-ossoabookblockmanager">abook.BlockManager</link>
+<synopsis>+-- <link linkend="class-gtkdialog">gtk.Dialog</link>
+  +-- <link linkend="class-ossoabookblockmanager">abook.BlockManager</link>
 </synopsis>
 
   </refsect1>
+     <refsect1 id="properties-ossoabookblockmanager">
+    <title>abook.BlockManager Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"model"</entry>
+	      <entry>Read-Write-Construct</entry>
+	      <entry>The associated <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link>.</entry>
+	    </row>    
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+  <refsect1>
+  <title>Description</title>
+  <para><link linkend="class-ossoabookblockmanager"><classname>abook.BlockManager</classname></link>
+  is a dialog that allows the user to block and unblock contacts</para>
+  </refsect1>
+
   <refsect1>
     <title>Constructor</title>
 
@@ -46,17 +76,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>contact_model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkWidget*</simpara></listitem>
+      <listitem><simpara>a new instance.</simpara></listitem>
     </varlistentry>
   </variablelist>
-
-
-
+   <para>Creates a new dialog exposing the blocked <classname>evolution.ebook.EContact</classname> objects contained in contact_model.</para>
   </refsect1>
+
   <refsect1>
     <title>Methods</title>
 
@@ -69,7 +98,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

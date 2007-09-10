@@ -1,3 +1,6 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <refentry id="class-ossoabookmanualgroup">
   <refmeta>
     <refentrytitle>abook.ManualGroup</refentrytitle>
@@ -6,7 +9,7 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.ManualGroup</refname><refpurpose></refpurpose>
+    <refname>abook.ManualGroup</refname><refpurpose>Manually created groups.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -26,5 +29,10 @@
     +-- <link linkend="class-ossoabookmanualgroup">abook.ManualGroup</link>
 </synopsis>
 
+  </refsect1>
+  <refsect1>
+      <title>Description</title>
+      <para>A manually created group contents are specified by the user. The object however will only match regular (i.e. non-blocked) contacts.</para>
+      <para>Manual groups are managed by <link linkend="class--ossoabookmanualgroupmanager"><classname>abook.ManualGroupManager</classname></link></para>
   </refsect1>
 </refentry>

@@ -1,3 +1,7 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
 <refentry id="class-ossoabookgroupview">
   <refmeta>
     <refentrytitle>abook.GroupView</refentrytitle>
@@ -6,7 +10,7 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.GroupView</refname><refpurpose></refpurpose>
+    <refname>abook.GroupView</refname><refpurpose>Group view.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -14,7 +18,7 @@
 
 <classsynopsis language="python">
   <ooclass><classname>abook.GroupView</classname></ooclass>
-  <ooclass><classname><link linkend="class-gtkscrolledwindow">GtkScrolledWindow</link></classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkscrolledwindow">gtk.ScrolledWindow</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
     <methodparam><parameter>model</parameter></methodparam>
@@ -37,10 +41,80 @@
   <refsect1>
     <title>Ancestry</title>
 
-<synopsis>+-- <link linkend="class-ossoabookgroupview">abook.GroupView</link>
+<synopsis>+-- <link linkend="class-gtkscrolledwindow">gtk.ScrolledWindow</link>
+  +-- <link linkend="class-ossoabookgroupview">abook.GroupView</link>
 </synopsis>
 
   </refsect1>
+
+  <refsect1 id="properties-ossoabookgroupview">
+    <title>abook.GroupView Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"model"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The contained <classname>gtk.TreeModel</classname>.</entry>
+	    </row>
+	    <row valign="top">
+	      <entry>"tree-view"</entry>
+	      <entry>Read</entry>
+	      <entry>The contained <classname>gtk.TreeView</classname></entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+   <refsect1 id="signal-prototypes-ossoabookgroupview">
+    <title>abook.GroupView Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroupview--group-activated">group-activated</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroupview--group-selected">group-selected</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroupview--insensitive-group-selected">insensitive-group-selected</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>view</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>  
+
   <refsect1>
     <title>Constructor</title>
 
@@ -51,16 +125,13 @@
   <variablelist>
     <varlistentry>
       <term><parameter>model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookGroupModel*</simpara></listitem>
+      <listitem><simpara>an <link linkend="class-ossoabookgroupmodel"><classname>abook.GroupModel</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkWidget*</simpara></listitem>
+      <listitem><simpara>a new instance</simpara></listitem>
     </varlistentry>
   </variablelist>
-
-
-
   </refsect1>
   <refsect1>
     <title>Methods</title>
@@ -74,7 +145,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookGroupModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookgroupmodel"><classname>abook.GroupModel</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -89,9 +160,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookGroup*</simpara></listitem>
+      <listitem><simpara>an <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the group whose row is focused.</para>
   </refsect2>
 
 
@@ -104,7 +176,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkTreeView*</simpara></listitem>
+      <listitem><simpara>the contained <link linkend="class-gtktreeview"><classname>gtk.TreeView</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -116,8 +188,127 @@
 <programlisting><methodsynopsis language="python">
     <methodname>enable_drag_dest</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Turns this instance into a drop destination for
+    <classname>evolution.ebook.EContact</classname> UID drags. This enables
+    dropping of <classname>evolution.ebook.EContact</classname>
+    UIDs into
+    <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link> groups.</para>
   </refsect2>
 
 
   </refsect1>
+   <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookgroupview--group-activated">
+      <title>The "group-activated" abook.GroupView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>view</parameter></methodparam>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> whose row was activated.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever a group's row has been activated.</para>
+
+    </refsect2>
+    <refsect2 id="signal-ossoabookgroupview--group-selected">
+      <title>The "group-selected" abook.GroupView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>view</parameter></methodparam>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> whose row was selected.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever a group's row has been selected.</para>
+
+    </refsect2>
+    <refsect2 id="signal-ossoabookgroupview--insensitive-group-selected">
+      <title>The "insensitive-group-selected" abook.GroupView Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>view</parameter></methodparam>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>view</parameter>:</term>
+	  <listitem><simpara>the view that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> whose row was clicked.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever a group's row has been clicked and it was in a insensitive state.</para>
+
+    </refsect2>
+
+  </refsect1>  
+
 </refentry>

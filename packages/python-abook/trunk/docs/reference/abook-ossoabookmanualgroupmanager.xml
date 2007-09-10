@@ -1,3 +1,7 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
 <refentry id="class-ossoabookmanualgroupmanager">
   <refmeta>
     <refentrytitle>abook.ManualGroupManager</refentrytitle>
@@ -48,6 +52,41 @@
 </synopsis>
 
   </refsect1>
+     <refsect1 id="signal-prototypes-ossoabookmanualgroupmanager">
+    <title>abook.GroupView Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookmanualgroupmanager--group-created">group-created</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>manager</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>"<link linkend="signal-ossoabookmanualgroupmanager--group-deleted">group-deleted</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>manager</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+   </variablelist>
+
+  </refsect1>  
+
+  <refsect1>
+      <title>Description</title>
+      <para>An <link linkend="class-ossoabookmanualgroupmanager"><classname>abook.ManualGroupManager</classname></link>
+        keeps track of user-created groups, and has API for creating new and removing existing groups.</para>
+  </refsect1>
   <refsect1>
     <title>Methods</title>
 
@@ -60,11 +99,11 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a const-GList*</simpara></listitem>
+      <listitem><simpara>a list of <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns the list of manual groups.</para>
   </refsect2>
-
 
   <refsect2 id="method-ossoabookmanualgroupmanager--get-group">
     <title>abook.ManualGroupManager.get_group</title>
@@ -76,13 +115,14 @@
   <variablelist>
     <varlistentry>
       <term><parameter>name</parameter>&#160;:</term>
-      <listitem><simpara>a const-char*</simpara></listitem>
+      <listitem><simpara></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookManualGroup*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the manual group with name <literal>name</literal></para>
   </refsect2>
 
 
@@ -96,9 +136,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>name</parameter>&#160;:</term>
-      <listitem><simpara>a const-char*</simpara></listitem>
+      <listitem><simpara>a string with the new group's unique name</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Creates a new manual group with name <literal>name</literal>.</para>
   </refsect2>
 
 
@@ -113,13 +154,14 @@
   <variablelist>
     <varlistentry>
       <term><parameter>group</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookManualGroup*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Deletes <literal>group</literal>, updating <literal>model</literal></para>
   </refsect2>
 
 
@@ -135,19 +177,98 @@
   <variablelist>
     <varlistentry>
       <term><parameter>group</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookManualGroup*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>new_name</parameter>&#160;:</term>
-      <listitem><simpara>a const-char*</simpara></listitem>
+      <listitem><simpara>a string with the new name.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookContactModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookcontactmodel"><classname>abook.ContactModel</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Renames <literal>group</literal> with <literal>new_name</literal>, updating <literal>model</literal>.</para>
   </refsect2>
 
 
   </refsect1>
+   <refsect1>
+      <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookmanualgroupmanager--group-created">
+      <title>The "group-created" abook.ManualGroupManager Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>manager</parameter></methodparam>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>manager</parameter>:</term>
+	  <listitem><simpara>the manager that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link> that was created.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever a new manual group is created.</para>
+
+    </refsect2>
+    <refsect2 id="signal-ossoabookmanualgroupmanager--group-deleted">
+      <title>The "group-deleted" abook.ManualGroupManager Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>manager</parameter></methodparam>
+	  <methodparam><parameter>group</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>manager</parameter>:</term>
+	  <listitem><simpara>the manager that emitted the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>group</parameter>:</term>
+	  <listitem><simpara>the <link linkend="class-ossoabookmanualgroup"><classname>abook.ManualGroup</classname></link> that was deleted.</simpara></listitem>
+	</varlistentry>
+    <varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>Callback to occur whenever a new manual group is deleted.</para>
+
+    </refsect2>
+
+  </refsect1>  
+
 </refentry>
