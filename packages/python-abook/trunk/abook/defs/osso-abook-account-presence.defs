@@ -17,10 +17,13 @@
   (return-type "GType")
 )
 
-(define-method presence_new
-  (of-object "OssoABookAccount")
+(define-function account_presence_new
   (c-name "osso_abook_account_presence_new")
+  (is-constructor-of "OssoABookAccountPresence")
   (return-type "OssoABookAccountPresence*")
+  (parameters
+    '("OssoABookAccount*" "account")
+  )
 )
 
 (define-method get_account
