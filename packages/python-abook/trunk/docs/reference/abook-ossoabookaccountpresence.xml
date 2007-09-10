@@ -10,7 +10,7 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.AccountPresence</refname><refpurpose></refpurpose>
+    <refname>abook.AccountPresence</refname><refpurpose>Track account presence.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -19,6 +19,10 @@
 <classsynopsis language="python">
   <ooclass><classname>abook.AccountPresence</classname></ooclass>
   <ooclass><classname><link linkend="class-ossoabookpresence">abook.Presence</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>account</parameter></methodparam>
+  </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-ossoabookaccountpresence--get-account">get_account</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
@@ -35,6 +39,22 @@
 
   </refsect1>
   <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>account</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>account</parameter>&#160;:</term>
+      <listitem><simpara>an <link linkend="class-ossoabookAccount"><classname>abook.Account</classname></link></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Creates a new account presence object tracking the presence of <literal>account</literal>.</para>
+  </refsect1>
+
+  <refsect1>
     <title>Methods</title>
 
   <refsect2 id="method-ossoabookaccountpresence--get-account">
@@ -46,9 +66,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a OssoABookAccount*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookAccount"><classname>abook.Account</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link> tracked by this instance.</para>
   </refsect2>
 
 

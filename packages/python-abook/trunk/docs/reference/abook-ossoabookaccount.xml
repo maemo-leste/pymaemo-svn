@@ -21,9 +21,6 @@
   <ooclass><classname>abook.Account</classname></ooclass>
   <ooclass><classname><link linkend="class-gobject">gobject.GObject</link></classname></ooclass>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-ossoabookaccount--presence-new">presence_new</link></methodname>
-    <methodparam></methodparam>  </methodsynopsis>
-<methodsynopsis language="python">
     <methodname><link linkend="method-ossoabookaccount--get-vcard-field">get_vcard_field</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
