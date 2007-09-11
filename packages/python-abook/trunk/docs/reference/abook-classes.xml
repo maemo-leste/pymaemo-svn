@@ -41,6 +41,5 @@
   <!-- <xi:include href="abook-ossoabookservicegroup.xml"/> Not supported yet (MissionControl). -->
   <xi:include href="abook-ossoabooktreemodel.xml"/>
   <xi:include href="abook-ossoabooktreeview.xml"/>
-  <xi:include href="abook-ossoabook-constants.xml"/>
 
 </chapter>

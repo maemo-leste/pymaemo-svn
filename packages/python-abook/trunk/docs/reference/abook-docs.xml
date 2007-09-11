@@ -59,4 +59,6 @@
   </chapter>
 
   <xi:include href="abook-classes.xml"/>
+  <xi:include href="abook-ossoabook-constants.xml"/>
+  <xi:include href="abook-ossoabook-dialogs.xml"/>
 </book>

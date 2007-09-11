@@ -1,3 +1,7 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
 <refentry id="class-ossoabookrequestauthdialog">
   <refmeta>
     <refentrytitle>abook.RequestAuthDialog</refentrytitle>
@@ -6,7 +10,7 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.RequestAuthDialog</refname><refpurpose></refpurpose>
+    <refname>abook.RequestAuthDialog</refname><refpurpose>Request authentication dialog</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -14,7 +18,7 @@
 
 <classsynopsis language="python">
   <ooclass><classname>abook.RequestAuthDialog</classname></ooclass>
-  <ooclass><classname><link linkend="class-gtkdialog">GtkDialog</link></classname></ooclass>
+  <ooclass><classname><link linkend="class-gtkdialog">gtk.Dialog</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
     <methodparam></methodparam>  </constructorsynopsis>
@@ -38,9 +42,45 @@
   <refsect1>
     <title>Ancestry</title>
 
-<synopsis>+-- <link linkend="class-ossoabookrequestauthdialog">abook.RequestAuthDialog</link>
+<synopsis>+-- <link linkend="class-gtkdialog">gtk.Dialog</link>
+  +-- <link linkend="class-ossoabookrequestauthdialog">abook.RequestAuthDialog</link>
 </synopsis>
 
+  </refsect1>
+  <refsect1 id="properties-ossoabookrequestauthdialog">
+    <title>abook.RequestAuthDialog Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+	<tgroup cols="3">
+	  <colspec column="1" colwidth="1in"/>
+	  <colspec column="2" colwidth="1in"/>
+	  <colspec column="3" colwidth="4in"/>
+	  <tbody>
+
+	    <row valign="top">
+	      <entry>"book-view"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EBookView</classname>.</entry>
+	    </row>
+	    
+	    <row valign="top">
+	      <entry>"contact"</entry>
+	      <entry>Read-Write</entry>
+	      <entry>The associated <classname>evolution.ebook.EContact</classname>.</entry>
+	    </row>
+
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+    <para><link linkend="class-ossoabookrequestauthdialog"><classname>abook.RequestAuthDialog</classname></link>
+    is a dialog that asks the user to give permission for a remote contact to see the user's online presence.</para>
   </refsect1>
   <refsect1>
     <title>Constructor</title>
@@ -51,12 +91,9 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkWidget*</simpara></listitem>
+      <listitem><simpara>a new instance</simpara></listitem>
     </varlistentry>
   </variablelist>
-
-
-
   </refsect1>
   <refsect1>
     <title>Methods</title>
@@ -71,7 +108,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>book_view</parameter>&#160;:</term>
-      <listitem><simpara>a EBookView*</simpara></listitem>
+      <listitem><simpara>a <classname>evolution.ebook.EBookView</classname></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -86,7 +123,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a EBookView*</simpara></listitem>
+      <listitem><simpara>a <classname>evolution.ebook.EBookView</classname></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -102,7 +139,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>contact</parameter>&#160;:</term>
-      <listitem><simpara>a EContact*</simpara></listitem>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -117,7 +154,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a EContact*</simpara></listitem>
+      <listitem><simpara>a <classname>evolution.ebook.EContact</classname></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

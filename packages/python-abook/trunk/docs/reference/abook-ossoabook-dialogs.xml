@@ -1,0 +1,416 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="abook-dialogs">
+  <refnamediv>
+    <refname>abook Dialogs</refname>
+    <refpurpose>Collection of dialogs helper functions</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+    <programlisting><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--add-contact-dialog-run">abook.add_contact_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--delete-contact-dialog-run">abook.delete_contact_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--delete-contacts-dialog-run">abook.delete_contacts_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+            <methodparam><parameter>contacts</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--choose-email-dialog-run">abook.choose_email_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--choose-email-dialog-run">abook.choose_im_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+            <methodparam><parameter>type</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--block-contact-dialog-run">abook.block_contact_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--new-group-dialog-run">abook.new_group_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--rename-group-dialog-run">abook.rename_group_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>model</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+        </methodsynopsis><methodsynopsis language="python">
+            <methodname><link linkend="function-ossoabook--delete-group-dialog-run">abook.delete_group_dialog_run</link></methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>model</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+        </methodsynopsis></programlisting>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+    <para> Helper routines to display dialogs and hook them up to all
+    the necessary signals. Includes dialogs to delete and block contacts,
+    create, delete and rename groups, choose email address from a contact
+    and add a contact.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Functions</title>
+    <refsect2 id="function-ossoabook--add-contact-dialog-run">
+        <title>abook.add_contact_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.add_contact_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">book_view</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>An <classname>evolution.EBookView</classname>.</simpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Runs a dialog asking whether to create a new contact.</para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--delete-contact-dialog-run">
+        <title>abook.delete_contact_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.delete_contact_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">book_view</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <classname>evolution.EBookView</classname>
+                        from which <literal>contact</literal> originates.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">contact</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>An <classname>evolution.ebook.EContact</classname>
+                        to be deleted.</simpara>
+                </listitem>
+            </varlistentry>
+                <varlistentry>
+                    <term><emphasis>Returns</emphasis>&#160;:</term>
+                    <listitem>
+                        <simpara><literal>True</literal> if user response is positive,
+                            <literal>False</literal> otherwise.</simpara>
+                    </listitem>
+                </varlistentry>
+        </variablelist>
+        <para>Runs a dialog confirming whether <literal>contact</literal> should
+            be deleted, and deletes it if the user's response is positive.
+        </para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--delete-contacts-dialog-run">
+        <title>abook.delete_contacts_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.delete_contacts_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+            <methodparam><parameter>contacts</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">book_view</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <classname>evolution.EBookView</classname>
+                        from which <literal>contacts</literal> originates.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">contacts</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>A list of <classname>evolution.ebook.EContact</classname>
+                        to be deleted.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis>Returns</emphasis>&#160;:</term>
+                <listitem>
+                    <simpara><literal>True</literal> if user response is positive,
+                        <literal>False</literal> otherwise.</simpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Runs a dialog confirming whether the contacts in <literal>contacts</literal> should
+            be deleted, and deletes them if the user's response is positive.
+        </para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--choose-email-dialog-run">
+        <title>abook.choose_email_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.choose_email_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">contact</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>An <classname>evolution.ebook.EContact</classname>.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis>Returns</emphasis>&#160;:</term>
+                <listitem>
+                    <simpara>A list of strings with the mail addresses.</simpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Runs a dialog asking the user to choose email addresses from
+            the email addresses defined in <literal>contact</literal>.</para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--choose-im-dialog-run">
+        <title>abook.choose_im_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.choose_im_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+            <methodparam><parameter>type</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">contact</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>An <classname>evolution.ebook.EContact</classname>.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">type</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>An <link linkend="abook-account-type-constants"><classname>Account Type</classname></link> constant.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis>Returns</emphasis>&#160;:</term>
+                <listitem>
+                    <simpara>A list of strings with the mail addresses.</simpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Runs a dialog asking the user to choose an IM address from the
+            IM addresses defined in <literal>contact</literal>. type should be either
+            <literal>abook.ACCOUNT_TYPE_CHAT</literal> or
+            <literal>abook.ACCOUNT_TYPE_CALL</literal>.</para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--block-contact-dialog-run">
+        <title>abook.block_contact_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.block_contact_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>book_view</parameter></methodparam>
+            <methodparam><parameter>contact</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">book_view</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <classname>evolution.EBookView</classname>
+                        from which <literal>contact</literal> originates.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">contact</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>An <classname>evolution.ebook.EContact</classname>
+                        to be blocked.</simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis>Returns</emphasis>&#160;:</term>
+                <listitem>
+                    <simpara><literal>True</literal> if user response is positive,
+                        <literal>False</literal> otherwise.</simpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Runs a dialog confirming whether <literal>contact</literal> should
+            be blocked, and blocks it if the user's response is positive.
+        </para>
+    </refsect2>
+
+  <refsect2 id="function-ossoabook--new-group-dialog-run">
+        <title>abook.new_group_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.new_group_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><emphasis>Returns</emphasis>&#160;:</term>
+                <listitem>
+                    <simpara>The newly created
+                        <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link>.</simpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Runs a dialog asking a name for a new group, and creates a new group accordingly.</para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--rename-group-dialog-run">
+        <title>abook.rename_group_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.rename_group_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>model</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">model</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <link linkend="class-ossoabookcontactmodel">
+                        <classname>abook.ContactModel</classname></link>
+                        to update.</simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">group</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <link linkend="class-ossoabookmanualgroup">
+                        <classname>abook.ManualGroup</classname></link>
+                        to be renamed.</simpara>
+                </listitem>
+            </varlistentry>     </variablelist>
+        <para>Runs a dialog asking a new name for <literal>group</literal>,
+            and renames <literal>group</literal> accordingly.</para>
+    </refsect2>
+
+    <refsect2 id="function-ossoabook--delete-group-dialog-run">
+        <title>abook.delete_group_dialog_run</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.delete_group_dialog_run</methodname>
+            <methodparam><parameter>parent</parameter></methodparam>
+            <methodparam><parameter>model</parameter></methodparam>
+            <methodparam><parameter>group</parameter></methodparam>
+        </methodsynopsis></programlisting>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">parent</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The parent <link linkend="class-gtkwindow">
+                        <classname>gtk.Window</classname></link></simpara>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <parameter role="keyword">model</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <link linkend="class-ossoabookcontactmodel">
+                        <classname>abook.ContactModel</classname></link>
+                        to update.</simpara>
+                </listitem>
+            </varlistentry>
+             <varlistentry>
+                <term>
+                    <parameter role="keyword">group</parameter>&#160;:</term>
+                <listitem>
+                    <simpara>The <link linkend="class-ossoabookmanualgroup">
+                        <classname>abook.ManualGroup</classname></link>
+                        to be deleted.</simpara>
+                </listitem>
+            </varlistentry>     </variablelist>
+        <para>Runs a dialog confirming the deletion of <literal>group</literal>,
+        and deletes it if the user's response is positive.</para>
+    </refsect2> </refsect1>
+
+</refentry>
