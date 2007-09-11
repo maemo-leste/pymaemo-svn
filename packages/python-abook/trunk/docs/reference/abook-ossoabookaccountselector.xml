@@ -157,8 +157,6 @@
 
   </variablelist>
 
-
-
   </refsect1>
   <refsect1>
     <title>Methods</title>
@@ -172,10 +170,11 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GList*</simpara></listitem>
+      <listitem><simpara>a list of tuple like (<classname>evolution.ebook.EContact</classname>,
+        <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>).</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Returns the list of checked rows (The "extended-selection").</para>
   </refsect2>
 
 
@@ -185,7 +184,7 @@
 <programlisting><methodsynopsis language="python">
     <methodname>deselect_all</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
-  <para>TODO</para>
+  <para>Deselects all rows.</para>
   </refsect2>
 
 
@@ -199,10 +198,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>tuple</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
+      <listitem><simpara>a tuple like (<classname>evolution.ebook.EContact</classname>,
+        <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>).</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Selects the row associated with the given contact/account/pair.</para>
   </refsect2>
 
 
@@ -216,10 +216,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>tuple</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookAccountModelTuple*</simpara></listitem>
+      <listitem><simpara>a tuple like (<classname>evolution.ebook.EContact</classname>,
+        <link linkend="class-ossoabookaccount"><classname>abook.Account</classname></link>).</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Deselects the row associated with the given contact/account pair.</para>
   </refsect2>
 
 
@@ -236,7 +237,7 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Sets the minimum number of rows that can be selected.</para>
   </refsect2>
 
 
@@ -252,7 +253,7 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Returns the minimum number of rows to be selected.</para>
   </refsect2>
 
 
@@ -266,10 +267,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>maximum</parameter>&#160;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>a int</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Sets the maximum number of rows that can be selected.</para>
   </refsect2>
 
 
@@ -282,10 +283,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>a int</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Returns the maximum number of rows that can be selected.</para>
   </refsect2>
 
 
@@ -299,10 +300,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>checkbox_selection_only</parameter>&#160;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a boolean</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Sets whether this view should use the "checkbox-selection-only" mode.</para>
   </refsect2>
 
 
@@ -318,7 +319,7 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>TODO</para>
+  <para>Returns whether this view is using the "checkbox-selection-only" mode.</para>
   </refsect2>
 
   </refsect1>
