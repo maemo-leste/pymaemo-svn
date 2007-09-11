@@ -1,12 +1,16 @@
 <ANCHOR id="index" href="index.html">
         <ANCHOR id="class-ossoabookaccount" href="class-ossoabookaccount.html">
-        <ANCHOR id="method-ossoabookaccount--presence-new" href="class-ossoabookaccount.html#method-ossoabookaccount--presence-new">
+        <ANCHOR id="properties-ossoabookaccount" href="class-ossoabookaccount.html#properties-ossoabookaccount">
+        <ANCHOR id="signal-prototypes-ossoabookaccount" href="class-ossoabookaccount.html#signal-prototypes-ossoabookaccount">
         <ANCHOR id="method-ossoabookaccount--get-vcard-field" href="class-ossoabookaccount.html#method-ossoabookaccount--get-vcard-field">
         <ANCHOR id="method-ossoabookaccount--get-bound" href="class-ossoabookaccount.html#method-ossoabookaccount--get-bound">
         <ANCHOR id="method-ossoabookaccount--get-username" href="class-ossoabookaccount.html#method-ossoabookaccount--get-username">
         <ANCHOR id="method-ossoabookaccount--get-galago-account" href="class-ossoabookaccount.html#method-ossoabookaccount--get-galago-account">
+        <ANCHOR id="signal-ossoabookaccount--galago-account-available" href="class-ossoabookaccount.html#signal-ossoabookaccount--galago-account-available">
+        <ANCHOR id="signal-ossoabookaccount--galago-account-unavailable" href="class-ossoabookaccount.html#signal-ossoabookaccount--galago-account-unavailable">
         <ANCHOR id="class-ossoabookaccountgroup" href="class-ossoabookaccountgroup.html">
         <ANCHOR id="class-ossoabookaccountmodel" href="class-ossoabookaccountmodel.html">
+        <ANCHOR id="properties-ossoabookaccountmodel" href="class-ossoabookaccountmodel.html#properties-ossoabookaccountmodel">
         <ANCHOR id="method-ossoabookaccountmodel--get-flags" href="class-ossoabookaccountmodel.html#method-ossoabookaccountmodel--get-flags">
         <ANCHOR id="method-ossoabookaccountmodel--set-single-contact" href="class-ossoabookaccountmodel.html#method-ossoabookaccountmodel--set-single-contact">
         <ANCHOR id="method-ossoabookaccountmodel--get-single-contact" href="class-ossoabookaccountmodel.html#method-ossoabookaccountmodel--get-single-contact">
@@ -14,6 +18,8 @@
         <ANCHOR id="class-ossoabookaccountpresence" href="class-ossoabookaccountpresence.html">
         <ANCHOR id="method-ossoabookaccountpresence--get-account" href="class-ossoabookaccountpresence.html#method-ossoabookaccountpresence--get-account">
         <ANCHOR id="class-ossoabookaccountselector" href="class-ossoabookaccountselector.html">
+        <ANCHOR id="properties-ossoabookaccountselector" href="class-ossoabookaccountselector.html#properties-ossoabookaccountselector">
+        <ANCHOR id="signal-prototypes-ossoabookaccountselector" href="class-ossoabookaccountselector.html#signal-prototypes-ossoabookaccountselector">
         <ANCHOR id="method-ossoabookaccountselector--get-extended-selection" href="class-ossoabookaccountselector.html#method-ossoabookaccountselector--get-extended-selection">
         <ANCHOR id="method-ossoabookaccountselector--deselect-all" href="class-ossoabookaccountselector.html#method-ossoabookaccountselector--deselect-all">
         <ANCHOR id="method-ossoabookaccountselector--select-tuple" href="class-ossoabookaccountselector.html#method-ossoabookaccountselector--select-tuple">
@@ -24,10 +30,15 @@
         <ANCHOR id="method-ossoabookaccountselector--get-maximum-selection" href="class-ossoabookaccountselector.html#method-ossoabookaccountselector--get-maximum-selection">
         <ANCHOR id="method-ossoabookaccountselector--set-checkbox-selection-only" href="class-ossoabookaccountselector.html#method-ossoabookaccountselector--set-checkbox-selection-only">
         <ANCHOR id="method-ossoabookaccountselector--get-checkbox-selection-only" href="class-ossoabookaccountselector.html#method-ossoabookaccountselector--get-checkbox-selection-only">
+        <ANCHOR id="signal-ossoabookaccountselector--extended-selection-changed" href="class-ossoabookaccountselector.html#signal-ossoabookaccountselector--extended-selection-changed">
         <ANCHOR id="class-ossoabookaccountview" href="class-ossoabookaccountview.html">
+        <ANCHOR id="signal-prototypes-ossoabookaccountview" href="class-ossoabookaccountview.html#signal-prototypes-ossoabookaccountview">
         <ANCHOR id="method-ossoabookaccountview--get-selection" href="class-ossoabookaccountview.html#method-ossoabookaccountview--get-selection">
         <ANCHOR id="method-ossoabookaccountview--get-focus" href="class-ossoabookaccountview.html#method-ossoabookaccountview--get-focus">
+        <ANCHOR id="signal-ossoabookaccountview--selection-changed" href="class-ossoabookaccountview.html#signal-ossoabookaccountview--selection-changed">
+        <ANCHOR id="signal-ossoabookaccountview--tuple-activated" href="class-ossoabookaccountview.html#signal-ossoabookaccountview--tuple-activated">
         <ANCHOR id="class-ossoabookaddtocontactsdialog" href="class-ossoabookaddtocontactsdialog.html">
+        <ANCHOR id="properties-ossoabookaddtocontactsdialog" href="class-ossoabookaddtocontactsdialog.html#properties-ossoabookaddtocontactsdialog">
         <ANCHOR id="method-ossoabookaddtocontactsdialog--get-model" href="class-ossoabookaddtocontactsdialog.html#method-ossoabookaddtocontactsdialog--get-model">
         <ANCHOR id="method-ossoabookaddtocontactsdialog--get-account" href="class-ossoabookaddtocontactsdialog.html#method-ossoabookaddtocontactsdialog--get-account">
         <ANCHOR id="class-ossoabookaddusernamedialog" href="class-ossoabookaddusernamedialog.html">
@@ -43,10 +54,11 @@
         <ANCHOR id="method-ossoabookalphabar--create-button-row" href="class-ossoabookalphabar.html#method-ossoabookalphabar--create-button-row">
         <ANCHOR id="signal-ossoabookalphabar--insensitive-press" href="class-ossoabookalphabar.html#signal-ossoabookalphabar--insensitive-press">
         <ANCHOR id="class-ossoabookblockmanager" href="class-ossoabookblockmanager.html">
+        <ANCHOR id="properties-ossoabookblockmanager" href="class-ossoabookblockmanager.html#properties-ossoabookblockmanager">
         <ANCHOR id="method-ossoabookblockmanager--get-model" href="class-ossoabookblockmanager.html#method-ossoabookblockmanager--get-model">
         <ANCHOR id="class-ossoabookblockedgroup" href="class-ossoabookblockedgroup.html">
         <ANCHOR id="class-ossoabookcontacteditor" href="class-ossoabookcontacteditor.html">
-        <ANCHOR id="properties-ossoabookcontaceditor" href="class-ossoabookcontacteditor.html#properties-ossoabookcontaceditor">
+        <ANCHOR id="properties-ossoabookcontacteditor" href="class-ossoabookcontacteditor.html#properties-ossoabookcontacteditor">
         <ANCHOR id="method-ossoabookcontacteditor--set-book-view" href="class-ossoabookcontacteditor.html#method-ossoabookcontacteditor--set-book-view">
         <ANCHOR id="method-ossoabookcontacteditor--get-book-view" href="class-ossoabookcontacteditor.html#method-ossoabookcontacteditor--get-book-view">
         <ANCHOR id="method-ossoabookcontacteditor--set-contact" href="class-ossoabookcontacteditor.html#method-ossoabookcontacteditor--set-contact">
@@ -56,6 +68,7 @@
         <ANCHOR id="method-ossoabookcontacteditor--set-new" href="class-ossoabookcontacteditor.html#method-ossoabookcontacteditor--set-new">
         <ANCHOR id="method-ossoabookcontacteditor--get-new" href="class-ossoabookcontacteditor.html#method-ossoabookcontacteditor--get-new">
         <ANCHOR id="class-ossoabookcontactgroupeditor" href="class-ossoabookcontactgroupeditor.html">
+        <ANCHOR id="properties-ossoabookcontactgroupeditor" href="class-ossoabookcontactgroupeditor.html#properties-ossoabookcontactgroupeditor">
         <ANCHOR id="method-ossoabookcontactgroupeditor--set-book-view" href="class-ossoabookcontactgroupeditor.html#method-ossoabookcontactgroupeditor--set-book-view">
         <ANCHOR id="method-ossoabookcontactgroupeditor--get-book-view" href="class-ossoabookcontactgroupeditor.html#method-ossoabookcontactgroupeditor--get-book-view">
         <ANCHOR id="method-ossoabookcontactgroupeditor--set-contact" href="class-ossoabookcontactgroupeditor.html#method-ossoabookcontactgroupeditor--set-contact">
@@ -136,17 +149,25 @@
         <ANCHOR id="method-ossoabookgroupselector--select-group" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--select-group">
         <ANCHOR id="method-ossoabookgroupselector--deselect-group" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--deselect-group">
         <ANCHOR id="class-ossoabookgroupview" href="class-ossoabookgroupview.html">
+        <ANCHOR id="properties-ossoabookgroupview" href="class-ossoabookgroupview.html#properties-ossoabookgroupview">
+        <ANCHOR id="signal-prototypes-ossoabookgroupview" href="class-ossoabookgroupview.html#signal-prototypes-ossoabookgroupview">
         <ANCHOR id="method-ossoabookgroupview--get-model" href="class-ossoabookgroupview.html#method-ossoabookgroupview--get-model">
         <ANCHOR id="method-ossoabookgroupview--get-focus" href="class-ossoabookgroupview.html#method-ossoabookgroupview--get-focus">
         <ANCHOR id="method-ossoabookgroupview--get-tree-view" href="class-ossoabookgroupview.html#method-ossoabookgroupview--get-tree-view">
         <ANCHOR id="method-ossoabookgroupview--enable-drag-dest" href="class-ossoabookgroupview.html#method-ossoabookgroupview--enable-drag-dest">
+        <ANCHOR id="signal-ossoabookgroupview--group-activated" href="class-ossoabookgroupview.html#signal-ossoabookgroupview--group-activated">
+        <ANCHOR id="signal-ossoabookgroupview--group-selected" href="class-ossoabookgroupview.html#signal-ossoabookgroupview--group-selected">
+        <ANCHOR id="signal-ossoabookgroupview--insensitive-group-selected" href="class-ossoabookgroupview.html#signal-ossoabookgroupview--insensitive-group-selected">
         <ANCHOR id="class-ossoabookmanualgroup" href="class-ossoabookmanualgroup.html">
         <ANCHOR id="class-ossoabookmanualgroupmanager" href="class-ossoabookmanualgroupmanager.html">
+        <ANCHOR id="signal-prototypes-ossoabookmanualgroupmanager" href="class-ossoabookmanualgroupmanager.html#signal-prototypes-ossoabookmanualgroupmanager">
         <ANCHOR id="method-ossoabookmanualgroupmanager--get-groups" href="class-ossoabookmanualgroupmanager.html#method-ossoabookmanualgroupmanager--get-groups">
         <ANCHOR id="method-ossoabookmanualgroupmanager--get-group" href="class-ossoabookmanualgroupmanager.html#method-ossoabookmanualgroupmanager--get-group">
         <ANCHOR id="method-ossoabookmanualgroupmanager--create-group" href="class-ossoabookmanualgroupmanager.html#method-ossoabookmanualgroupmanager--create-group">
         <ANCHOR id="method-ossoabookmanualgroupmanager--delete-group" href="class-ossoabookmanualgroupmanager.html#method-ossoabookmanualgroupmanager--delete-group">
         <ANCHOR id="method-ossoabookmanualgroupmanager--rename-group" href="class-ossoabookmanualgroupmanager.html#method-ossoabookmanualgroupmanager--rename-group">
+        <ANCHOR id="signal-ossoabookmanualgroupmanager--group-created" href="class-ossoabookmanualgroupmanager.html#signal-ossoabookmanualgroupmanager--group-created">
+        <ANCHOR id="signal-ossoabookmanualgroupmanager--group-deleted" href="class-ossoabookmanualgroupmanager.html#signal-ossoabookmanualgroupmanager--group-deleted">
         <ANCHOR id="class-ossoabookonlinegroup" href="class-ossoabookonlinegroup.html">
         <ANCHOR id="class-ossoabookpresence" href="class-ossoabookpresence.html">
         <ANCHOR id="properties-ossoabookcontactstarter" href="class-ossoabookpresence.html#properties-ossoabookcontactstarter">
@@ -162,6 +183,7 @@
         <ANCHOR id="method-ossoabookrecentgroup--set-book-view" href="class-ossoabookrecentgroup.html#method-ossoabookrecentgroup--set-book-view">
         <ANCHOR id="method-ossoabookrecentgroup--get-book-view" href="class-ossoabookrecentgroup.html#method-ossoabookrecentgroup--get-book-view">
         <ANCHOR id="class-ossoabookrequestauthdialog" href="class-ossoabookrequestauthdialog.html">
+        <ANCHOR id="properties-ossoabookrequestauthdialog" href="class-ossoabookrequestauthdialog.html#properties-ossoabookrequestauthdialog">
         <ANCHOR id="method-ossoabookrequestauthdialog--set-book-view" href="class-ossoabookrequestauthdialog.html#method-ossoabookrequestauthdialog--set-book-view">
         <ANCHOR id="method-ossoabookrequestauthdialog--get-book-view" href="class-ossoabookrequestauthdialog.html#method-ossoabookrequestauthdialog--get-book-view">
         <ANCHOR id="method-ossoabookrequestauthdialog--set-contact" href="class-ossoabookrequestauthdialog.html#method-ossoabookrequestauthdialog--set-contact">
@@ -195,6 +217,17 @@
         <ANCHOR id="method-ossoabooktreeview--enable-drag-source" href="class-ossoabooktreeview.html#method-ossoabooktreeview--enable-drag-source">
         <ANCHOR id="abook-constants" href="abook-constants.html">
         <ANCHOR id="abook-constants-description" href="abook-constants.html#abook-constants-description">
+        <ANCHOR id="abook-account-type-constants" href="abook-constants.html#abook-account-type-constants">
         <ANCHOR id="abook-presence-status-constants" href="abook-constants.html#abook-presence-status-constants">
         <ANCHOR id="abook-group-model-constants" href="abook-constants.html#abook-group-model-constants">
+        <ANCHOR id="abook-dialogs" href="abook-dialogs.html">
+        <ANCHOR id="function-ossoabook--add-contact-dialog-run" href="abook-dialogs.html#function-ossoabook--add-contact-dialog-run">
+        <ANCHOR id="function-ossoabook--delete-contact-dialog-run" href="abook-dialogs.html#function-ossoabook--delete-contact-dialog-run">
+        <ANCHOR id="function-ossoabook--delete-contacts-dialog-run" href="abook-dialogs.html#function-ossoabook--delete-contacts-dialog-run">
+        <ANCHOR id="function-ossoabook--choose-email-dialog-run" href="abook-dialogs.html#function-ossoabook--choose-email-dialog-run">
+        <ANCHOR id="function-ossoabook--choose-im-dialog-run" href="abook-dialogs.html#function-ossoabook--choose-im-dialog-run">
+        <ANCHOR id="function-ossoabook--block-contact-dialog-run" href="abook-dialogs.html#function-ossoabook--block-contact-dialog-run">
+        <ANCHOR id="function-ossoabook--new-group-dialog-run" href="abook-dialogs.html#function-ossoabook--new-group-dialog-run">
+        <ANCHOR id="function-ossoabook--rename-group-dialog-run" href="abook-dialogs.html#function-ossoabook--rename-group-dialog-run">
+        <ANCHOR id="function-ossoabook--delete-group-dialog-run" href="abook-dialogs.html#function-ossoabook--delete-group-dialog-run">
         
