@@ -45,6 +45,7 @@
         <ANCHOR id="method-ossoabookaddusernamedialog--set-contact" href="class-ossoabookaddusernamedialog.html#method-ossoabookaddusernamedialog--set-contact">
         <ANCHOR id="method-ossoabookaddusernamedialog--set-book-view" href="class-ossoabookaddusernamedialog.html#method-ossoabookaddusernamedialog--set-book-view">
         <ANCHOR id="class-ossoabookallgroup" href="class-ossoabookallgroup.html">
+        <ANCHOR id="function-ossoabook--all_group_get" href="class-ossoabookallgroup.html#function-ossoabook--all_group_get">
         <ANCHOR id="class-ossoabookalphabar" href="class-ossoabookalphabar.html">
         <ANCHOR id="properties-ossoabookalphabar" href="class-ossoabookalphabar.html#properties-ossoabookalphabar">
         <ANCHOR id="signal-prototypes-ossoabookalphabar" href="class-ossoabookalphabar.html#signal-prototypes-ossoabookalphabar">
@@ -143,11 +144,13 @@
         <ANCHOR id="method-ossoabookgroupmodel--remove-group" href="class-ossoabookgroupmodel.html#method-ossoabookgroupmodel--remove-group">
         <ANCHOR id="method-ossoabookgroupmodel--get-iter" href="class-ossoabookgroupmodel.html#method-ossoabookgroupmodel--get-iter">
         <ANCHOR id="class-ossoabookgroupselector" href="class-ossoabookgroupselector.html">
+        <ANCHOR id="signal-prototypes-ossoabookgroupselector" href="class-ossoabookgroupselector.html#signal-prototypes-ossoabookgroupselector">
         <ANCHOR id="method-ossoabookgroupselector--get-extended-selection" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--get-extended-selection">
         <ANCHOR id="method-ossoabookgroupselector--select-all" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--select-all">
         <ANCHOR id="method-ossoabookgroupselector--deselect-all" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--deselect-all">
         <ANCHOR id="method-ossoabookgroupselector--select-group" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--select-group">
         <ANCHOR id="method-ossoabookgroupselector--deselect-group" href="class-ossoabookgroupselector.html#method-ossoabookgroupselector--deselect-group">
+        <ANCHOR id="signal-ossoabookgroupselector--extended-selection-changed" href="class-ossoabookgroupselector.html#signal-ossoabookgroupselector--extended-selection-changed">
         <ANCHOR id="class-ossoabookgroupview" href="class-ossoabookgroupview.html">
         <ANCHOR id="properties-ossoabookgroupview" href="class-ossoabookgroupview.html#properties-ossoabookgroupview">
         <ANCHOR id="signal-prototypes-ossoabookgroupview" href="class-ossoabookgroupview.html#signal-prototypes-ossoabookgroupview">

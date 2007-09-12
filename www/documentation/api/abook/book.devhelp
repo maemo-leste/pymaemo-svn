@@ -42,29 +42,29 @@
     <sub name="abook Dialogs" link="abook-dialogs.html"/>
   </chapters>
   <functions>
-    <function name="__init__" link="class-ossoabookaccountgroup.html#id2571692"/>
-    <function name="__init__" link="class-ossoabookaccountmodel.html#id2591086"/>
-    <function name="__init__" link="class-ossoabookaccountpresence.html#id2629428"/>
-    <function name="__init__" link="class-ossoabookaccountselector.html#id2595227"/>
-    <function name="__init__" link="class-ossoabookaccountview.html#id2606590"/>
-    <function name="__init__" link="class-ossoabookaddtocontactsdialog.html#id2611998"/>
-    <function name="__init__" link="class-ossoabookaddusernamedialog.html#id2612193"/>
-    <function name="__init__" link="class-ossoabookalphabar.html#id2600772"/>
-    <function name="__init__" link="class-ossoabookblockmanager.html#id2593891"/>
-    <function name="__init__" link="class-ossoabookcontacteditor.html#id2612991"/>
-    <function name="__init__" link="class-ossoabookcontactgroupeditor.html#id2573742"/>
-    <function name="__init__" link="class-ossoabookcontactmodel.html#id2613460"/>
-    <function name="__init__" link="class-ossoabookcontactpresence.html#id2583886"/>
-    <function name="__init__" link="class-ossoabookcontactselector.html#id2615626"/>
-    <function name="__init__" link="class-ossoabookcontactstarter.html#id2621146"/>
-    <function name="__init__" link="class-ossoabookcontactview.html#id2618055"/>
-    <function name="__init__" link="class-ossoabookfiltermodel.html#id2587480"/>
-    <function name="__init__" link="class-ossoabookgroupmodel.html#id2608967"/>
-    <function name="__init__" link="class-ossoabookgroupselector.html#id2578257"/>
-    <function name="__init__" link="class-ossoabookgroupview.html#id2612015"/>
-    <function name="__init__" link="class-ossoabookpresenceicon.html#id2620873"/>
-    <function name="__init__" link="class-ossoabookrequestauthdialog.html#id2606489"/>
-    <function name="__init__" link="class-ossoabookselectdialog.html#id2594739"/>
+    <function name="__init__" link="class-ossoabookaccountgroup.html#id2594224"/>
+    <function name="__init__" link="class-ossoabookaccountmodel.html#id2555474"/>
+    <function name="__init__" link="class-ossoabookaccountpresence.html#id2581802"/>
+    <function name="__init__" link="class-ossoabookaccountselector.html#id2594897"/>
+    <function name="__init__" link="class-ossoabookaccountview.html#id2601711"/>
+    <function name="__init__" link="class-ossoabookaddtocontactsdialog.html#id2641247"/>
+    <function name="__init__" link="class-ossoabookaddusernamedialog.html#id2616271"/>
+    <function name="__init__" link="class-ossoabookalphabar.html#id2600529"/>
+    <function name="__init__" link="class-ossoabookblockmanager.html#id2573816"/>
+    <function name="__init__" link="class-ossoabookcontacteditor.html#id2606754"/>
+    <function name="__init__" link="class-ossoabookcontactgroupeditor.html#id2584519"/>
+    <function name="__init__" link="class-ossoabookcontactmodel.html#id2587177"/>
+    <function name="__init__" link="class-ossoabookcontactpresence.html#id2617420"/>
+    <function name="__init__" link="class-ossoabookcontactselector.html#id2613038"/>
+    <function name="__init__" link="class-ossoabookcontactstarter.html#id2622071"/>
+    <function name="__init__" link="class-ossoabookcontactview.html#id2606278"/>
+    <function name="__init__" link="class-ossoabookfiltermodel.html#id2636671"/>
+    <function name="__init__" link="class-ossoabookgroupmodel.html#id2610726"/>
+    <function name="__init__" link="class-ossoabookgroupselector.html#id2583308"/>
+    <function name="__init__" link="class-ossoabookgroupview.html#id2607978"/>
+    <function name="__init__" link="class-ossoabookpresenceicon.html#id2618170"/>
+    <function name="__init__" link="class-ossoabookrequestauthdialog.html#id2627503"/>
+    <function name="__init__" link="class-ossoabookselectdialog.html#id2618748"/>
     <function name="abook.Account.get_vcard_field" link="class-ossoabookaccount.html#method-ossoabookaccount--get-vcard-field"/>
     <function name="abook.Account.get_bound" link="class-ossoabookaccount.html#method-ossoabookaccount--get-bound"/>
     <function name="abook.Account.get_username" link="class-ossoabookaccount.html#method-ossoabookaccount--get-username"/>
@@ -95,6 +95,7 @@
     <function name="abook.AddToContactsDialog.get_account" link="class-ossoabookaddtocontactsdialog.html#method-ossoabookaddtocontactsdialog--get-account"/>
     <function name="abook.AddUsernameDialog.set_contact" link="class-ossoabookaddusernamedialog.html#method-ossoabookaddusernamedialog--set-contact"/>
     <function name="abook.AddUsernameDialog.set_book_view" link="class-ossoabookaddusernamedialog.html#method-ossoabookaddusernamedialog--set-book-view"/>
+    <function name="abook.all_group_get" link="class-ossoabookallgroup.html#function-ossoabook--all_group_get"/>
     <function name="abook.AlphaBar.get_view" link="class-ossoabookalphabar.html#method-ossoabookalphabar--get-view"/>
     <function name="abook.AlphaBar.get_action_group" link="class-ossoabookalphabar.html#method-ossoabookalphabar--get-action-group"/>
     <function name="abook.AlphaBar.merge" link="class-ossoabookalphabar.html#method-ossoabookalphabar--merge"/>
@@ -171,6 +172,7 @@
     <function name="abook.GroupSelector.deselect_all" link="class-ossoabookgroupselector.html#method-ossoabookgroupselector--deselect-all"/>
     <function name="abook.GroupSelector.select_group" link="class-ossoabookgroupselector.html#method-ossoabookgroupselector--select-group"/>
     <function name="abook.GroupSelector.deselect_group" link="class-ossoabookgroupselector.html#method-ossoabookgroupselector--deselect-group"/>
+    <function name="The &quot;extended-selection-changed&quot; abook.GroupSelector Signal" link="class-ossoabookgroupselector.html#signal-ossoabookgroupselector--extended-selection-changed"/>
     <function name="abook.GroupView.get_model" link="class-ossoabookgroupview.html#method-ossoabookgroupview--get-model"/>
     <function name="abook.GroupView.get_focus" link="class-ossoabookgroupview.html#method-ossoabookgroupview--get-focus"/>
     <function name="abook.GroupView.get_tree_view" link="class-ossoabookgroupview.html#method-ossoabookgroupview--get-tree-view"/>
