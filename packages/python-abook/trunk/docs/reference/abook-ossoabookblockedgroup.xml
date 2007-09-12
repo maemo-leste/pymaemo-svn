@@ -21,6 +21,9 @@
   <ooclass><classname>abook.BlockedGroup</classname></ooclass>
   <ooclass><classname><link linkend="class-ossoabookgroup">abook.Group</link></classname></ooclass>
 </classsynopsis>
+<programlisting><methodsynopsis language="python">
+     <methodname><link linkend="function-ossoabook--blocked_group_get">abook.blocked_group_get</link></methodname>
+</methodsynopsis></programlisting>
 
   </refsect1>
   <refsect1>
@@ -30,6 +33,25 @@
   +-- <link linkend="class-ossoabookgroup">abook.Group</link>
     +-- <link linkend="class-ossoabookblockedgroup">abook.BlockedGroup</link>
 </synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Functions</title>
+      <refsect2 id="function-ossoabook--blocked_group_get">
+        <title>abook.blocked_group_get</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.blocked_group_get</methodname>
+        </methodsynopsis></programlisting>
+        <variablelist>
+                <varlistentry>
+                    <term><emphasis>Returns</emphasis>&#160;:</term>
+                    <listitem>
+                        <simpara>The <link linkend="class-ossoabookblockedgroup"><classname>abook.AllGroup</classname></link> instance.</simpara>
+                    </listitem>
+                </varlistentry>
+         </variablelist>
+        <para>Retrieves the blocked contacts group. Note that this function is not thread-safe.</para>
+    </refsect2>
 
   </refsect1>
 </refentry>

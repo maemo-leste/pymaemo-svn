@@ -28,6 +28,9 @@
     <methodname><link linkend="method-ossoabookrecentgroup--get-book-view">get_book_view</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 </classsynopsis>
+<programlisting><methodsynopsis language="python">
+     <methodname><link linkend="function-ossoabook--recent_group_get">abook.recent_group_get</link></methodname>
+</methodsynopsis></programlisting>
 
   </refsect1>
   <refsect1>
@@ -107,4 +110,24 @@
 
 
   </refsect1>
+  <refsect1>
+    <title>Functions</title>
+      <refsect2 id="function-ossoabook--recent_group_get">
+        <title>abook.recent_group_get</title>
+        <programlisting><methodsynopsis language="python">
+            <methodname>abook.recent_group_get</methodname>
+        </methodsynopsis></programlisting>
+        <variablelist>
+                <varlistentry>
+                    <term><emphasis>Returns</emphasis>&#160;:</term>
+                    <listitem>
+                        <simpara>The <link linkend="class-ossoabookrecentgroup"><classname>abook.AllGroup</classname></link> instance.</simpara>
+                    </listitem>
+                </varlistentry>
+         </variablelist>
+        <para>Retrieves the recent contacts group. Note that this function is not thread-safe.</para>
+    </refsect2>
+
+  </refsect1>
+
 </refentry>
