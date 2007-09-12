@@ -1,3 +1,7 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
 <refentry id="class-ossoabookgroupselector">
   <refmeta>
     <refentrytitle>abook.GroupSelector</refentrytitle>
@@ -6,7 +10,8 @@
   </refmeta>
 
   <refnamediv>
-    <refname>abook.GroupSelector</refname><refpurpose></refpurpose>
+    <refname>abook.GroupSelector</refname>
+    <refpurpose>Group selection widget.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -47,6 +52,25 @@
 </synopsis>
 
   </refsect1>
+
+ <refsect1 id="signal-prototypes-ossoabookgroupselector">
+    <title>abook.GroupSelector Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"<link linkend="signal-ossoabookgroupselector--extended-selection-changed">extended-selection-changed</link>"</term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>selector</parameter></methodparam>
+            <methodparam><parameter>rows</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
   <refsect1>
     <title>Constructor</title>
 
@@ -57,15 +81,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>model</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookGroupModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookgroupmodel"><classname>abook.GroupModel</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GtkWidget*</simpara></listitem>
+      <listitem><simpara>a new <link linkend="class-ossoabookgroupmodel"><classname>abook.GroupModel</classname></link> instance</simpara></listitem>
     </varlistentry>
   </variablelist>
-
-
+  <para>Creates a new <link linkend="class-ossoabookgroupmodel"><classname>abook.GroupModel</classname></link> instance
+      exposing the contents of <literal>model</literal>.</para>
 
   </refsect1>
   <refsect1>
@@ -80,9 +104,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&#160;:</term>
-      <listitem><simpara>a GList*</simpara></listitem>
+      <listitem><simpara>a list of <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link> instances.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Returns the list of checked rows (The "extended-selection").</para>
   </refsect2>
 
 
@@ -92,6 +117,7 @@
 <programlisting><methodsynopsis language="python">
     <methodname>select_all</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Selects all rows</para>
   </refsect2>
 
 
@@ -101,6 +127,7 @@
 <programlisting><methodsynopsis language="python">
     <methodname>deselect_all</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Deselects all rows.</para>
   </refsect2>
 
 
@@ -114,9 +141,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>group</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookGroup*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Marks the row associated with <literal>group</literal> as checked.</para>
   </refsect2>
 
 
@@ -130,11 +158,54 @@
   <variablelist>
     <varlistentry>
       <term><parameter>group</parameter>&#160;:</term>
-      <listitem><simpara>a OssoABookGroup*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-ossoabookgroup"><classname>abook.Group</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Deselects the row associated with <literal>row</literal>.</para>
   </refsect2>
 
 
   </refsect1>
+   <refsect1>
+    <title>Signals</title>
+
+    <refsect2 id="signal-ossoabookgroupselector--extended-selection-changed">
+      <title>The "extended-selection-changed" abook.GroupSelector Signal</title>
+
+      <programlisting><methodsynopsis language="python">
+	  <methodname>callback</methodname>
+	  <methodparam><parameter>selector</parameter></methodparam>
+	  <methodparam><parameter>rows</parameter></methodparam>
+	  <methodparam><parameter>user_param1</parameter></methodparam>
+	  <methodparam><parameter>...</parameter></methodparam>
+	</methodsynopsis></programlisting>
+
+      <variablelist>
+	<varlistentry>
+	  <term><parameter>selector</parameter>:</term>
+	  <listitem><simpara>the selector that received the signal</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>rows</parameter>:</term>
+	  <listitem><simpara>the number of selected rows</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>user_param1</parameter>:</term>
+          <listitem><simpara>the first user parameter (if any) specified
+with the <link
+linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+method</simpara></listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><parameter>...</parameter>:</term>
+	  <listitem><simpara>additional user parameters (if
+any)</simpara></listitem>
+	</varlistentry>
+      </variablelist>
+      <para>The extended-selection-changed signal is emitted when the set of checked rows has changed.</para>
+
+    </refsect2>
+
+  </refsect1>
+
 </refentry>
