@@ -7,8 +7,8 @@ DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 d=debian/tmp
-d_base=debian/python$(PYVER)-hildon
-d_dev=debian/python$(PYVER)-hildon-dev
+d_base=debian/easy
+d_dev=debian/easy-dev
 
 ifeq ($(DEB_BUILD_ARCH),armel)
    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
@@ -16,7 +16,7 @@ else
    CFLAGS=-Os -Wall -Wstrict-prototypes
 endif
 
-CLEANFILES = hildon.c *.pyo *.lo *.la *.in
+CLEANFILES = *.pyo *.lo *.la *.in
 
 build: build-stamp
 build-stamp:
@@ -42,20 +42,13 @@ install: build
 
 	# base
 	mkdir -p $(d_base)/usr/lib/python$(PYVER)/site-packages/
-	cp hildonglade.pyo $(d_base)/usr/lib/python$(PYVER)/site-packages
-	cp $(d)/usr/lib/python$(PYVER)/site-packages/hildon.so $(d_base)/usr/lib/python$(PYVER)/site-packages
+	cp $(d)/usr/lib/python$(PYVER)/site-packages/easy/*pyo   $(d_base)/usr/lib/python$(PYVER)/site-packages/easy/
 
 	# dev
-	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/wip/demos
-	mkdir -p $(d_dev)/usr/share/python-hildon/defs
+	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples
 	mkdir -p $(d_dev)/usr/lib/python$(PYVER)/site-packages/
 	cp examples/*py           $(d_dev)/usr/share/doc/$(p_dev)/examples
-	cp examples/wip/*py       $(d_dev)/usr/share/doc/$(p_dev)/examples/wip
-	cp examples/wip/demos/*py $(d_dev)/usr/share/doc/$(p_dev)/examples/wip/demos
-	cp hildonglade.py         $(d_dev)/usr/lib/python$(PYVER)/site-packages
-	cp hildon.defs $(d_dev)/usr/share/python-hildon
-	cp defs/*.defs $(d_dev)/usr/share/python-hildon/defs
-#	cp $(d)/usr/lib/python$(PYVER)/site-packages/hildon.la $(d_dev)/usr/lib/python$(PYVER)/site-packages
+	cp $(d)/usr/lib/python$(PYVER)/site-packages/easy/*py   $(d_dev)/usr/lib/python$(PYVER)/site-packages/easy/
 
 	# finish
 	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
