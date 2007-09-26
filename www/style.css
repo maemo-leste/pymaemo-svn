@@ -14,12 +14,16 @@ padding:20px;
 font-size:1.2em;margin-right:5px;
 text-decoration:none;
 }
-
-.content h2 a{
-color:#888;
+.content h1 a{
+color:#555;
+margin-left:30%;
+letter-spacing: 5px;
 text-decoration:none;
 }
-
+.content h2 a{
+color:#888
+text-decoration:none;
+}
 .content h4 a{
 color:#888;
 text-decoration:none;
@@ -42,6 +46,7 @@ width:100%;
 position:relative;
 background-color:#fff;
 }
+
 .logo{
 color:#111;
 position:relative;
@@ -53,7 +58,6 @@ font-size:3.0em;
 text-align:right;
 background:url(images/top_img.jpg) no-repeat black;
 }
-
 .logo a{
 color:#b0b0b0;
 text-decoration:none;
@@ -68,7 +72,6 @@ list-style-type:none;
 font-size:1.4em;
 background-color:#444;
 }
-
 .header li{
 display:inline;
 padding:0px 10px 0px 10px;
@@ -93,6 +96,7 @@ float:right;
 .footer a{
 color:#eee;
 }
+
 .side{
 float:left;
 margin:0px 20px 0px 10px;
