@@ -1,0 +1,21 @@
+Source: pycairo
+Priority: optional
+Section: python
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2), python2.5-numeric-dev (>= 24.2-1osso4), libcairo2-dev (>= 1.4.10-0osso1)
+Standards-Version: 3.6.1
+
+Package: python2.5-cairo
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), python2.5-numeric (>= 24.2-1osso4), ${shlibs:Depends}
+Description: Python bindings for the Cairo vector graphics library
+ This package contains modules that allow you to use the cairo vector
+ graphics library in Python programs.
+
+Package: python2.5-cairo-dev
+Architecture: any
+Depends: python2.5-cairo (= ${Source-Version})
+Description: Python cairo bindings: development files
+ This package contains files that allow you to compile wrappers
+ that interoperate with python-cairo (pycairo).
+
