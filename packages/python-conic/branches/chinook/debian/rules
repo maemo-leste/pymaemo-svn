@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYGTKVER=2.0
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+d=debian/tmp
+d_base=debian/python$(PYVER)-conic
+d_dev=debian/python$(PYVER)-conic-dev
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+   CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+   CFLAGS=-Os -Wall -Wstrict-prototypes
+endif
+
+CLEANFILES = conic.c *.pyo *.lo *.la *.in
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py build
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp 
+	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py clean -a
+	dh_clean $(CLEANFILES)
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	python$(PYVER) setup.py install --prefix=$(d)/usr --skip-build
+	python$(PYVER) -OO -m compileall -l .
+
+	# base
+	mkdir -p $(d_base)/usr/lib/python$(PYVER)/site-packages/
+	cp $(d)/usr/lib/python$(PYVER)/site-packages/conic.so $(d_base)/usr/lib/python$(PYVER)/site-packages
+
+	# dev
+	mkdir -p $(d_dev)/usr/share/python-conic/defs
+	mkdir -p $(d_dev)/usr/lib/python$(PYVER)/site-packages/
+	cp conic.defs $(d_dev)/usr/share/python-conic
+#	cp $(d)/usr/lib/python$(PYVER)/site-packages/hildon.la $(d_dev)/usr/lib/python$(PYVER)/site-packages
+
+	# finish
+	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
+	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
+
+binary-indep: build install
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installman
+	dh_link
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install 

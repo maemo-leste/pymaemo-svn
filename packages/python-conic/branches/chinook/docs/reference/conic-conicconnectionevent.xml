@@ -1,0 +1,77 @@
+<refentry id="class-conicconnectionevent">
+  <refmeta>
+    <refentrytitle>conic.ConnectionEvent</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>Python ConIC Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>conic.ConnectionEvent</refname>
+    <refpurpose>Container for connection events data.</refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>conic.ConnectionEvent</classname></ooclass>
+  <ooclass><classname><link linkend="class-conicevent">conic.Event</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnectionevent--get-status">get_status</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-conicconnectionevent--get-error">get_error</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-conicevent">conic.Event</link>
+    +-- <link linkend="class-conicconnectionevent">conic.ConnectionEvent</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-conicconnectionevent--get-status">
+    <title>conic.ConnectionEvent.get_status</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_status</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>Connection status.  See
+  <xref linkend="conic-connection-status-constants"
+      endterm="conic-connection-status-constants-title"></xref></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+<para>Get status from the event.</para>
+  </refsect2>
+  
+
+
+  <refsect2 id="method-conicconnectionevent--get-error">
+    <title>conic.ConnectionEvent.get_error</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_error</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&#x00A0;:</term>
+      <listitem><simpara>Error. See
+  <xref linkend="conic-connection-error-constants"
+      endterm="conic-connection-error-constants-title"></xref></simpara></listitem>
+    </varlistentry>
+  </variablelist>
+<para>Get status from the event.</para>
+  </refsect2>
+
+  </refsect1>
+</refentry>

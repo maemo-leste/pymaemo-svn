@@ -1,0 +1,56 @@
+;; -*- scheme -*-
+; object definitions ...
+
+(define-object ConnectionEvent
+  (in-module "Conic")
+  (parent "ConIcEvent")
+  (c-name "ConIcConnectionEvent")
+  (gtype-id "CON_IC_TYPE_CONNECTION_EVENT")
+)
+
+;; Enumerations and flags ...
+
+(define-enum IcConnectionStatus
+  (in-module "Con")
+  (c-name "ConIcConnectionStatus")
+  (gtype-id "CON_IC_TYPE_CONNECTION_STATUS")
+  (values
+    '("connected" "CON_IC_STATUS_CONNECTED")
+    '("disconnected" "CON_IC_STATUS_DISCONNECTED")
+    '("disconnecting" "CON_IC_STATUS_DISCONNECTING")
+  )
+)
+
+(define-enum IcConnectionError
+  (in-module "Con")
+  (c-name "ConIcConnectionError")
+  (gtype-id "CON_IC_TYPE_CONNECTION_ERROR")
+  (values
+    '("none" "CON_IC_CONNECTION_ERROR_NONE")
+    '("invalid-iap" "CON_IC_CONNECTION_ERROR_INVALID_IAP")
+    '("connection-failed" "CON_IC_CONNECTION_ERROR_CONNECTION_FAILED")
+    '("user-canceled" "CON_IC_CONNECTION_ERROR_USER_CANCELED")
+  )
+)
+
+
+;; From conicconnectionevent.h
+
+(define-function con_ic_connection_event_get_type
+  (c-name "con_ic_connection_event_get_type")
+  (return-type "GType")
+)
+
+(define-method get_status
+  (of-object "ConIcConnectionEvent")
+  (c-name "con_ic_connection_event_get_status")
+  (return-type "ConIcConnectionStatus")
+)
+
+(define-method get_error
+  (of-object "ConIcConnectionEvent")
+  (c-name "con_ic_connection_event_get_error")
+  (return-type "ConIcConnectionError")
+)
+
+
