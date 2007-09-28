@@ -1,0 +1,12 @@
+python2.5-imaging (1.1.6-1osso1) unstable; urgency=low
+
+  * Included inside Pymaemo source tree
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  3 May 2007 13:28:10 -0300
+
+python2.5-imaging (1.1.6-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Matt Croydon <matt@ooiio.com>  Sun, 11 Feb 2007 17:32:38 -0600
+
