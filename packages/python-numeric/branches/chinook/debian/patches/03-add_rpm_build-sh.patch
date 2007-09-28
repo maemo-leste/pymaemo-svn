@@ -1,0 +1,6 @@
+Index: python-numeric/rpm_build.sh
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/rpm_build.sh	2007-03-06 17:59:11.000000000 -0300
+@@ -0,0 +1 @@
++env CFLAGS="$RPM_OPT_FLAGS" /usr/bin/python2.5 setup.py build
