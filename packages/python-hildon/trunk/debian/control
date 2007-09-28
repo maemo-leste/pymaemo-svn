@@ -1,19 +1,18 @@
-Source: easy
+Source: python-hildon
 Section: python
 Priority: optional
-Maintainer: Mario Hozano Lucas de Souza <hozano@embedded.ufcg.edu.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2 (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), python2.5-abook (>= 0.1-1osso4), python2.5-bluez (>= 0.9.1-1osso3)
+Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), hildon-libs-dev, hildon-base-lib-dev, hildon-fm-dev
 Standards-Version: 3.6.1
 
-Package: easy
-Section: user/programming
-Architecture: all
+Package: python2.5-hildon
+Architecture: any
 Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), ${shlibs:Depends}
-Description: Python-based API to ease the development of applications that access MAEMO-specific services and devices.
+Description: Python bindings for Hildon Framework.
 
-Package: easy-dev
+Package: python2.5-hildon-dev
 Section: libs
 Architecture: all
-Depends: easy (= ${Source-Version})
-Description: Easy examples and development files.
+Depends: python2.5-hildon (= ${Source-Version}), python2.5-gtk2-dev
+Description: Examples and development files Python Hildon.
 
