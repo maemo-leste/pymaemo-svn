@@ -1,0 +1,17 @@
+Index: pycairo-1.4.0/setup.py
+===================================================================
+--- pycairo-1.4.0.orig/setup.py	2007-09-28 16:20:09.000000000 -0300
++++ pycairo-1.4.0/setup.py	2007-09-28 16:21:39.000000000 -0300
+@@ -62,9 +62,9 @@
+                'cairo/pycairo-pattern.c',
+                'cairo/pycairo-surface.c',
+                ],
+-    include_dirs = pkg_config_parse('--cflags-only-I', 'cairo'),
+-    library_dirs = pkg_config_parse('--libs-only-L', 'cairo'),
+-    libraries    = pkg_config_parse('--libs-only-l', 'cairo'),
++    include_dirs = ['/usr/include/cairo','/usr/include/freetype2','/usr/include/libpng12'],
++    library_dirs = [],
++    libraries    = ['cairo'],
+     runtime_library_dirs = runtime_library_dirs,
+     )
+ 
