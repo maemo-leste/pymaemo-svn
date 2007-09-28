@@ -1,0 +1,18 @@
+Source: python-hildon
+Section: python
+Priority: optional
+Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), libhildon1-dev, libhildonfm2-dev
+Standards-Version: 3.6.1
+
+Package: python2.5-hildon
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), ${shlibs:Depends}
+Description: Python bindings for Hildon Framework.
+
+Package: python2.5-hildon-dev
+Section: libs
+Architecture: all
+Depends: python2.5-hildon (= ${Source-Version}), python2.5-gtk2-dev
+Description: Examples and development files Python Hildon.
+
