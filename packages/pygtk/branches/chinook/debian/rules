@@ -1,0 +1,120 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base=$(PYTHON)-gtk2
+p_dev=$(p_base)-dev
+
+d_base=debian/$(p_base)
+d_dev=debian/$(p_dev)
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+    CFLAGS=-Os -Wall -Wstrict-prototypes
+endif
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	automake
+	autoconf
+	CFLAGS="$(CFLAGS)" \
+	PYTHON=`which $(PYTHON)` \
+		./configure \
+			--prefix=/usr \
+			--enable-thread \
+			--disable-docs \
+			--disable-numpy
+	$(MAKE)
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	-rm -rf $(d_base) $(d_dev)
+	-$(MAKE) distclean
+	-rm -rf docs/reference/builddate.xml
+	-rm -rf docs/Makefile
+	find -name "*.pyc" -exec rm -f {} \;
+	find -name "*.pyo" -exec rm -f {} \;
+	dh_clean codegen/*.pyc
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	mkdir -p $(CURDIR)/$(d_base)
+	mkdir -p $(CURDIR)/$(d_dev)
+
+	$(MAKE) install DESTDIR=$(CURDIR)/$(d_base)
+	$(PYTHON) -OO -m compileall -f $(d_base)
+	cp -a $(CURDIR)/$(d_base)/* $(CURDIR)/$(d_dev)
+
+	# base
+	rm -rf $(d_base)/usr/lib/pygtk
+	rm -rf $(d_base)/usr/lib/pkgconfig
+	rm -rf $(d_base)/usr/bin
+	rm -rf $(d_base)/usr/share
+	rm -rf $(d_base)/usr/include
+	find $(d_base) -name "*.py" -exec rm -f {} \;
+	find $(d_base) -name "*.pyc" -exec rm -f {} \;
+	find $(d_base) -name "*.la" -exec rm -f {} \;
+
+	# dev
+	find $(d_dev) -name "*.pyo" | grep -v codegen | xargs rm -f
+	find $(d_dev) -name "*.so" -exec rm -f {} \;
+
+	# cleanup
+	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
+
+	# Replace all '#!' calls to python with $(PYTHON)
+	for i in `find $(d_base) $(d_dev) -type f`; do \
+	  sed "1s,#!.*python[^ ]*\(.*\),#!/usr/bin/$(PYTHON)," \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+binary: binary-indep binary-arch
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_installchangelogs -p$(p_dev)
+	dh_installdocs -p$(p_dev)
+	dh_strip
+	dh_compress -p$(p_dev) -Xexamples -X.py
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean install binary-indep binary-arch binary
+
