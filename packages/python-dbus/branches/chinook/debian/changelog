@@ -1,0 +1,78 @@
+python-dbus (0.81-1osso2) unstable; urgency=low
+
+  * upgraded to python-dbus-0.81
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon,  4 Jun 2007 17:53:44 -0300
+
+python-dbus (0.81-1osso1) unstable; urgency=low
+
+  * added dependency to python2.5-xml (#751)
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 15:18:00 -0300
+
+python-dbus (0.71-1osso4) unstable; urgency=low
+
+  * added a "instrospect" parameter to the get_object() method to disable the
+    Introspectable call.
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 9 Jan 2007 14:38:00 -0300
+
+python-dbus (0.71-1osso3) unstable; urgency=low
+
+  * rebuild the package after fix a problem with subversion
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 5 Jan 2007 11:40:00 -0300
+
+python-dbus (0.71-1osso2) unstable; urgency=low
+
+  * applied the patch in https://bugs.freedesktop.org/show_bug.cgi?id=6943 to
+    remove the libxml2 dependency
+  * create a workaround to the missing libfakeroot bug in build process
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 26 Dec 2006 15:58:48 -0300
+
+python-dbus (0.71-1osso1) unstable; urgency=low
+
+  * upgraded to python-dbus-0.71 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 17 Nov 2006 18:27:00 -0300
+
+python-dbus (0.61-1osso6) unstable; urgency=low
+
+  * fixed a bug related conflicting module names with pygtk
+  * reorganizing dbus directories
+  * added pkg-config build dependency
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 17 Jul 2006 14:27:26 -0300
+
+python-dbus (0.61-1osso5) unstable; urgency=low
+
+  * minor cleanups in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri,  9 Jun 2006 16:30:57 -0300
+
+python-dbus (0.61-1osso4) unstable; urgency=low
+
+  * added shlibs dependencies
+  * enable "-mthumb" and "-msoft-abi=softfp" flags on gcc
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 6 Jun 2006 19:25:00 -0300
+
+python-dbus (0.61-1osso3) unstable; urgency=low
+
+  * added python2.4-pyrex in Build-Depends
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 1 Jun 2006 23:51:00 -0300
+
+python-dbus (0.61-1osso2) unstable; urgency=low
+
+  * remove extract.pyc file in debian/rules clean target
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 19 May 2006 13:48:00 -0300
+
+python-dbus (0.61-1osso1) unstable; urgency=low
+
+  * first version
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 16 May 2006 13:48:00 -0300
+
