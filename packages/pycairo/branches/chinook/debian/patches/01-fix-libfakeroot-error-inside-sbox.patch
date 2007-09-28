@@ -1,8 +1,58 @@
 Index: pycairo-1.4.0/setup.py
 ===================================================================
---- pycairo-1.4.0.orig/setup.py	2007-09-28 16:20:09.000000000 -0300
-+++ pycairo-1.4.0/setup.py	2007-09-28 16:21:39.000000000 -0300
-@@ -62,9 +62,9 @@
+--- pycairo-1.4.0.orig/setup.py	2007-09-28 16:27:30.000000000 -0300
++++ pycairo-1.4.0/setup.py	2007-09-28 16:44:46.000000000 -0300
+@@ -13,28 +13,32 @@
+ # on Fedora Core 5 module is compiled with 'gcc -g' - why -g?
+ # later: replace os.popen() with subprocess module, new in Python 2.4
+ 
+-def pkg_config (opt, pkg):
+-    fo = os.popen ('pkg-config %s %s' % (opt, pkg))
+-    return fo.read(), fo.close()
+-
+-def pkg_config_version_check (pkg, version):
+-    output, status = pkg_config ('--atleast-version=%s' % version, pkg)
+-    if status is None:
+-        print '%s version >= %s detected' % (pkg, version)
+-    else:
+-        raise SystemExit ('Error: %s version >= %s not found' % (pkg, version))
+-
+-def pkg_config_parse (opt, pkg):
+-    output, status = pkg_config (opt, pkg)
+-    opt = opt[-2:]
+-    return [x.lstrip(opt) for x in output.split()]
++def get_cairo_version():
++    input = open('/usr/lib/pkgconfig/cairo.pc','r')
+ 
++    for line in input:
++        result = line.split()
++        if result:
++            if result[0] == 'Version:':
++                raw_version = result[-1]
++
++    input.close()
++    cairo_version = raw_version
++    print cairo_version
++    return cairo_version
++
++def pkg_config_version_check (version):
++    status = get_cairo_version() 
++    if status >= cairo_version_required:
++        print '%s version >= %s detected' % (status, version)
++    else:
++        raise SystemExit ('Error: %s version >= %s not found' % (status, version))
+ 
+-pkg_config_version_check ('cairo', cairo_version_required)
++pkg_config_version_check (cairo_version_required)
+ if sys.platform == 'win32':
+     runtime_library_dirs = []
+ else:
+-    runtime_library_dirs = pkg_config_parse('--libs-only-L', 'cairo')
++    runtime_library_dirs = ['/usr/include/cairo','/usr/include/freetype2','/usr/include/libpng12']
+ 
+ pkgconfig_file='pycairo.pc'
+ print 'creating %s' % pkgconfig_file
+@@ -62,9 +66,9 @@
                 'cairo/pycairo-pattern.c',
                 'cairo/pycairo-surface.c',
                 ],
