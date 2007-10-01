@@ -37,3 +37,13 @@
 (include "defs/hildon-wizard-dialog.defs")
 (include "defs/hildon.defs")
 (include "defs/missing-types.defs")
+
+; File Chooser defs
+(include "defs/hildon-file-chooser-dialog.defs")
+(include "defs/hildon-file-details-dialog.defs")
+(include "defs/hildon-file-selection.defs")
+(include "defs/hildon-file-system-common.defs")
+(include "defs/hildon-file-system-info.defs")
+(include "defs/hildon-file-system-model.defs")
+(include "defs/hildon-file-system-storage-dialog.defs")
+(include "defs/hildon-fm1-compat.defs")

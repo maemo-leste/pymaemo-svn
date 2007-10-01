@@ -73,6 +73,7 @@
 #include <hildon-fm-2/hildon/hildon-file-system-common.h>
 #include <hildon-fm-2/hildon/hildon-file-system-info.h>
 #include <hildon-fm-2/hildon/hildon-file-system-model.h>
+#include <hildon-fm-2/hildon/hildon-file-system-storage-dialog.h>
 #include <hildon-fm-2/hildon/hildon-fm1-compat.h>
 
 #include "hildon-types.h.in"

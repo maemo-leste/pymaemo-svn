@@ -8,21 +8,6 @@ datadir = '/usr/share'
 defsdir = datadir+'/pygtk/2.0/defs'
 includedir = '/usr/include'
 
-def get_hildon_version():
-    input = open('/usr/lib/pkgconfig/hildon-1.pc','r')
-
-    for line in input:
-        result = line.split()
-        if result:
-            if result[0] == 'Version:':
-                raw_version = result[-1]
-
-    input.close()
-    hildon_version = tuple([ int(x) for x in raw_version.split('.') ])
-    print hildon_version
-    return hildon_version
-hildon_version = get_hildon_version()
-
 def gen_auto_file(filename, subproc_args):
     proc = subprocess.Popen(
         subproc_args,
@@ -67,10 +52,7 @@ class PyHildonBuild(build):
 
         # Creation of ".c" files, using pygtk-codegen-2.0
         override_filename = 'hildon.override'
-        if hildon_version > (0, 14, 0):
-            defs_filename = 'hildon-0.14.defs'
-        else:
-            defs_filename = 'hildon.defs'
+        defs_filename = 'hildon.defs'
 
         parameter = [
             '--register', defsdir+'/gdk.defs',
@@ -101,9 +83,6 @@ compile_args = [
 #        '-g',
 #        '-rdynamic',
 ]
-
-if hildon_version > (0, 14, 0):
-    compile_args.append("-DHILDON_0_14")
 
 hildon = Extension('hildon',
     sources = [
