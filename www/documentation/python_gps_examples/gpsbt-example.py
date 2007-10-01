@@ -17,7 +17,7 @@ def main():
     # read 4 times and show information
     for a in range(4):
         gpsdevice.get_fix()
-        # print information information stored under 'fix' variable
+        # print information stored under 'fix' variable
         print 'Altitude: %.3f'%gpsdevice.fix.altitude
         # dump all information available
         print gpsdevice
