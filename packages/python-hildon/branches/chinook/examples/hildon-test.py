@@ -185,6 +185,7 @@ class PyGtkDemo(hildon.Program):
 
             #TODO: change this to use HildonFileSystemModel
             file_to_open = "%s/MyDocs/foobar.txt" % os.environ['HOME']
+            file_sys_model = hildon.FileSystemModel()
             dialog = hildon.FileDetailsDialog(self.window, file_sys_model)
             print "run: %s" % dialog.run(),
             dialog.destroy()
