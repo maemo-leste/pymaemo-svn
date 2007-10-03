@@ -1,0 +1,23 @@
+Index: evolution-python-0.0.4/src/ebook.override
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook.override	2007-08-19 19:45:41.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.override	2007-10-03 16:44:19.000000000 -0300
+@@ -476,6 +476,9 @@
+     struct bookview_cb_t *data;
+     int i;
+     int extra_size;
++    PyGILState_STATE state;
++
++    state = pyg_gil_state_ensure();
+ 
+     pybookview = pygobject_new(ebookview);
+     if (pybookview == NULL){
+@@ -516,6 +519,8 @@
+     Py_XDECREF(pybookview);
+     Py_XDECREF(list); /* Will decref its childs too? */
+ 
++    pyg_gil_state_release(state);
++
+     return;
+ }
+ 
