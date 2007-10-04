@@ -1055,7 +1055,6 @@ _wrap_osso_abook_contact_model_get_iter(PyGObject *self,
 	char *uid = NULL;
 	GtkTreeIter iter;
 	PyObject *pyiter;
-	gboolean ret;
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
 									"s:abook.ContactModel.get_iter",
@@ -1086,7 +1085,6 @@ _wrap_osso_abook_group_model_get_iter(PyGObject *self,
 	OssoABookGroup *group;
 	GtkTreeIter iter;
 	PyObject *pyiter;
-	gboolean ret;
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
 									"O!:abook.GroupModel.get_iter",
