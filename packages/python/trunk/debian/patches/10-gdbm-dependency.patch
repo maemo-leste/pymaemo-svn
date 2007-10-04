@@ -15,7 +15,7 @@ Index: python2.5-2.5.0/debian/rules
 ===================================================================
 --- python2.5-2.5.0.orig/debian/rules	2007-03-19 16:50:22.000000000 -0300
 +++ python2.5-2.5.0/debian/rules	2007-03-19 16:50:40.000000000 -0300
-@@ -86,8 +86,6 @@
+@@ -84,8 +84,6 @@
  	    $(d_dev)/$(scriptdir)/bsddb \
  	    $(d_dev)/$(scriptdir)/xml/{dom,parsers,sax}
  
