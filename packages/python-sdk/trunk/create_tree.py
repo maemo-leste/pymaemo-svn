@@ -242,7 +242,7 @@ def build_packages(config):
         files = get_debs(module+'/debian/control', arch, module_version)
 
         # install them
-        run_command('fakeroot dpkg -i ' + ' '.join(files))
+        run_command('fakeroot dpkg -i -G ' + ' '.join(files))
 
         # add .dsc, and source tarball/diff.gz to the list
         files.append(name_version + '.dsc')
