@@ -38,11 +38,23 @@ class Prog(object):
         self.check_push = gtk.CheckButton(label="Push-In")
         vbox.pack_start(self.check_push)
 
+        self.button_box = gtk.HBox()
+
         self.button = gtk.Button("Tap test")
-        self.button.tap_and_hold_setup(menu=menu, callback=self.cb)
-        vbox.pack_start(self.button)
+        self.button.tap_and_hold_setup(menu=menu, callback=self.cb, data="Foo data")
+        self.button_box.pack_start(self.button)
+
+        but_del = gtk.Button("Delete Source")
+        but_del.connect("clicked", self.del_source)
+        self.button_box.pack_start(but_del)
+
+        vbox.pack_start(self.button_box)
     
         self.window.add(vbox)
+
+    def del_source(self, button, data=None):
+        print "Deleting source button"
+        self.button.destroy()
 
     def cb(self, menu, widget=None, data=None):
 
