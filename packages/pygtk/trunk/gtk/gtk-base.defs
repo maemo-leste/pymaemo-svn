@@ -6156,8 +6156,7 @@
 ;  (return-type "gboolean")
 ;)
 
-(define-method tap_and_hold_menu_position_top
-  (of-object "GtkWidget")
+(define-function tap_and_hold_menu_position_top
   (c-name "gtk_widget_tap_and_hold_menu_position_top")
   (return-type "none")
   (parameters
