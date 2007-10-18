@@ -1,3 +1,9 @@
+python-gtk2 (2.10.3-1osso7) unstable; urgency=low
+
+  * Adding Tap-and-Hold support, fixing #1520.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>  Thu, 18 Oct 2007 15:36:24 -0300
+
 python-gtk2 (2.10.3-1osso6) unstable; urgency=low
 
   * fixed object parsing on h2def.py (#947)
