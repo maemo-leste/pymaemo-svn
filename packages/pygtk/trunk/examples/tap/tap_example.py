@@ -3,8 +3,7 @@
 import gtk
 import hildon
 
-
-
+# Simple example about using tap-and-hold.
 
 class Prog(object):
 
@@ -25,13 +24,15 @@ class Prog(object):
 
         hboxX = gtk.HBox()
         hboxX.pack_start(gtk.Label("X coord"), False, False)
-        self.spin_x = gtk.SpinButton(gtk.Adjustment(lower=-100,upper=100, step_incr=5))
+        self.spin_x = gtk.SpinButton(gtk.Adjustment(lower=-100,upper=100,
+                                                    step_incr=5))
         hboxX.pack_start(self.spin_x, True, True)
         vbox.pack_start(hboxX)
 
         hboxY = gtk.HBox()
         hboxY.pack_start(gtk.Label("Y coord"), False, False)
-        self.spin_y = gtk.SpinButton(gtk.Adjustment(lower=-100,upper=100, step_incr=5))
+        self.spin_y = gtk.SpinButton(gtk.Adjustment(lower=-100,upper=100,
+                                                    step_incr=5))
         hboxY.pack_start(self.spin_y, True, True)
         vbox.pack_start(hboxY)
 
@@ -41,7 +42,10 @@ class Prog(object):
         self.button_box = gtk.HBox()
 
         self.button = gtk.Button("Tap test")
-        self.button.tap_and_hold_setup(menu=menu, callback=self.cb, data="Foo data")
+        #Registers this widget to listen to tap-and-hold signals.
+        #The callback is used to position the menu.
+        self.button.tap_and_hold_setup(menu=menu, callback=self.cb,
+                                       data="Foo data")
         self.button_box.pack_start(self.button)
 
         but_del = gtk.Button("Delete Source")
