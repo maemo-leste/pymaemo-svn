@@ -25,13 +25,15 @@ from ConfigParser import ConfigParser
 from optparse import OptionParser
 from commands import getstatusoutput
 from types import ListType
-import os, sys, re, urllib, urlparse, tarfile, shutil
+import os, sys, re, urllib, urlparse, tarfile, zipfile, shutil
+from cStringIO import StringIO
 
 #Some global definitions
 config_file = 'packages.ini'
 sources_dir = 'source_packages/'
 debs_dir = 'deb_packages'
 quiltrc = '.quiltrc'
+tmp_dir = sources_dir+'tmp_dir/'
 
 # return codes
 OK               =  0
@@ -140,6 +142,40 @@ def download_from_svn(config, section):
         print 'Running svn checkout of %s module' % (section)
         run_command('svn co %s %s' % (svn_url, target))
 
+def extract( filename, dir ):
+    '''Extracts zip file 'filename' to 'dir'. This function is a copy/paste from Python Cookbook: 
+       http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/465649'''
+    zf = zipfile.ZipFile( filename )
+    namelist = zf.namelist()
+    dirlist = filter( lambda x: x.endswith( '/' ), namelist )
+    filelist = filter( lambda x: not x.endswith( '/' ), namelist )
+    # make base
+    pushd = os.getcwd()
+    if not os.path.isdir( dir ):
+        os.mkdir( dir )
+    os.chdir( dir )
+    # create directory structure
+    dirlist.sort()
+    for dirs in dirlist:
+        dirs = dirs.split( '/' )
+        prefix = ''
+        for dir in dirs:
+            dirname = os.path.join( prefix, dir )
+            if dir and not os.path.isdir( dirname ):
+                os.mkdir( dirname )
+            prefix = dirname
+    # extract files
+    for fn in filelist:
+        out = open( fn, 'wb' )
+        buffer = StringIO( zf.read( fn ))
+        buflen = 2 ** 20
+        datum = buffer.read( buflen )
+        while datum:
+            out.write( datum )
+            datum = buffer.read( buflen )
+        out.close()
+    os.chdir( pushd )
+
 def download_source_package(config, section):
     '''Download tar.gz files from websites listed in config file 
        and put them into source_packages directory'''
@@ -147,6 +183,9 @@ def download_source_package(config, section):
     url = config.get(section, 'source_url')
     tarball = os.path.basename(urlparse.urlparse(url)[2])
     tarballpath = sources_dir + tarball
+
+    '''Verify if the source file is a .zip'''
+    extension = tarball[-4:]
 
     #replace the last '-' character with '_'
     origtarball = re.sub('(.*)-', '\\1_', section)+'.orig.tar.gz'
@@ -158,6 +197,22 @@ def download_source_package(config, section):
         print 'file %s already downloaded, skipping' % tarball
 
     if not os.path.exists(origtarball):
+        if (extension == '.zip'):
+            '''Extract the .zip and compact as .tar.gz'''
+            if os.path.isdir(tmp_dir):
+                shutil.rmtree(tmp_dir)
+            os.mkdir(tmp_dir)
+            extract(tarballpath, tmp_dir)
+            tarf = tarfile.open(tarballpath[:-5] + 'tar.gz', 'w:gz')
+            pushd = os.getcwd()
+            os.chdir(tmp_dir)
+            for member in os.listdir("."):
+                tarf.add(member)
+            tarf.close()
+            os.chdir(pushd)
+            shutil.rmtree(tmp_dir)
+            tarball = tarball[:-5] + 'tar.gz'
+            tarballpath = sources_dir + tarball
         shutil.copy(tarballpath, origtarball)
 
     # unpack only if not unpacked yet
