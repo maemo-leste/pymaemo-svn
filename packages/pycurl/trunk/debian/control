@@ -1,0 +1,13 @@
+Source: python-pycurl
+Section: python
+Priority: optional
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2), libcurl3-dev (>= 7.15.5-1osso1)
+Standards-Version: 3.6.1
+
+Package: python2.5-pycurl
+Section: user/programming
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), libcurl3 (>= 7.15.5-1osso1), ${shlibs:Depends}
+Description: Python bindings for libcurl.
+

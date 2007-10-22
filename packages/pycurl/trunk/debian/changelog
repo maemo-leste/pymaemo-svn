@@ -1,0 +1,5 @@
+python-pycurl (7.15.5-1osso1) unstable; urgency=low
+
+  * first release of pycurl for PyMaemo 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 19 Jul 2007 13:56:23 -0300
