@@ -1,3 +1,9 @@
+python-gtk2 (2.10.3-1osso8) unstable; urgency=low
+
+  * Adding dependency on python2.5-gobject-dev (python2.5-gtk2-dev package)
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 22 Oct 2007 14:25:09 -0300
+
 python-gtk2 (2.10.3-1osso7) unstable; urgency=low
 
   * Adding Tap-and-Hold support, fixing #1520.

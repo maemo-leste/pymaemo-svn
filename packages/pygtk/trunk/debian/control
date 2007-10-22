@@ -15,7 +15,7 @@ Description: Python bindings for the GTK+ widget set
 
 Package: python2.5-gtk2-dev
 Architecture: all
-Depends: python2.5-gtk2 (= ${Source-Version})
+Depends: python2.5-gtk2 (= ${Source-Version}), python2.5-gobject-dev (>=2.12.2-1osso3)
 Description: GTK+ bindings: devel files
  This archive contains files that allow you to build wrappers for addon
  that interoperate python-gtk2 (pygtk).
