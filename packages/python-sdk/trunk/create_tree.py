@@ -335,7 +335,8 @@ def create_tree(config):
             if config.has_option(section, 'svn_url'):
                 download_from_svn(config, section)
     
-            if config.has_option(section, 'source_url'):
+            if config.has_option(section, 'source_url') and \
+               os.path.isdir(section+'/debian/patches'):
                 apply_patches(section)
 
 def parsecommandline(argv):
