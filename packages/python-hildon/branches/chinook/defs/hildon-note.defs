@@ -23,6 +23,17 @@
 )
 
 
+; There is no "hildon_note_new" function. That declaration is here just to be overrided.
+(define-function hildon_note_new
+  (c-name "hildon_note_new")
+  (is-constructor-of "HildonNote")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+
 ;; From hildon-note.h
 
 (define-function hildon_note_new_confirmation
