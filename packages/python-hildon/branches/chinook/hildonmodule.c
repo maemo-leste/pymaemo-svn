@@ -28,6 +28,7 @@
 #include <pygtk/pygtk.h>
 
 void pyhildon_register_classes (PyObject *d);
+extern void pyhildon_add_constants(PyObject *module, const gchar *strip_prefix);
 extern PyMethodDef pyhildon_functions[];
 
 DL_EXPORT(void)
@@ -42,4 +43,5 @@ inithildon (void)
     init_pygtk();
     
     pyhildon_register_classes(d);
+    pyhildon_add_constants(m, "HILDON_");
 }

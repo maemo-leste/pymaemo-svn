@@ -1,3 +1,9 @@
+python-hildon (0.8.8-1osso2) unstable; urgency=low
+
+  * Exporting enumerations (constants).
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 22 Oct 2007 15:20:11 -0300
+
 python-hildon (0.8.8-1osso1) unstable; urgency=low
 
   * added cairo and new gtk version
