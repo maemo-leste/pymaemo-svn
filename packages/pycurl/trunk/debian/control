@@ -11,3 +11,8 @@ Architecture: any
 Depends: python2.5 (>= 2.5.1-1osso2), libcurl3 (>= 7.15.5-1osso1), ${shlibs:Depends}
 Description: Python bindings for libcurl.
 
+Package: python2.5-pycurl-dev
+Section: user/programming
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
+Description: Examples and docs for pycurl.

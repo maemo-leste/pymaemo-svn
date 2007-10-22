@@ -6,9 +6,11 @@ DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 p_base=python$(PYVER)-pycurl
+p_dev=python$(PYVER)-pycurl-dev
 
 d=debian/tmp
 d_base=debian/$(p_base)
+d_dev=debian/$(p_dev)
 
 ifeq ($(DEB_BUILD_ARCH),armel)
     CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
@@ -39,10 +41,17 @@ install: build
 
 	mkdir -p $(d)/usr
 	python$(PYVER) setup.py install --curl-config=/usr/bin/curl-config --prefix=$(d)/usr
+	python$(PYVER) -OO -m compileall -l $(d)/usr/lib/python$(PYVER)/site-packages/curl 
 
 	# base
 	mkdir -p $(d_base)/usr
+	rm $(d)/usr/lib/python$(PYVER)/site-packages/curl/*.py
+	rm $(d)/usr/lib/python$(PYVER)/site-packages/curl/*.pyc
 	mv $(d)/usr/lib $(d_base)/usr
+
+	# dev
+	mkdir -p $(d_dev)/usr
+	mv $(d)/usr/share $(d_dev)/usr
 
 	# finish
 	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
