@@ -1,0 +1,63 @@
+Index: pycurl-7.15.5/setup.py
+===================================================================
+--- pycurl-7.15.5.orig/setup.py	2007-10-23 11:40:52.000000000 -0300
++++ pycurl-7.15.5/setup.py	2007-10-23 11:41:33.000000000 -0300
+@@ -15,6 +15,7 @@
+ from distutils.extension import Extension
+ from distutils.util import split_quoted
+ from distutils.version import LooseVersion
++import subprocess
+ 
+ include_dirs = []
+ define_macros = []
+@@ -58,6 +59,17 @@
+             print "FATAL: bad directory %s in environment variable %s" % (dir, envvar)
+             sys.exit(1)
+ 
++def run_curlconf(subproc_args):
++    proc = subprocess.Popen(
++        subproc_args,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE
++    )
++    cmdresult, error = proc.communicate() 
++    if error:
++        print error
++
++    return cmdresult
+ 
+ if sys.platform == "win32":
+     # Windows users have to configure the CURL_DIR path parameter to match
+@@ -83,20 +95,20 @@
+         include_dirs.append(os.path.join(OPENSSL_DIR, "include"))
+     CURL_CONFIG = "curl-config"
+     CURL_CONFIG = scan_argv("--curl-config=", CURL_CONFIG)
+-    d = os.popen("'%s' --version" % CURL_CONFIG).read()
++    d = run_curlconf(["/bin/sh", CURL_CONFIG, "--version"])
+     if d:
+         d = string.strip(d)
+     if not d:
+         raise Exception, ("`%s' not found -- please install the libcurl development files" % CURL_CONFIG)
+     print "Using %s (%s)" % (CURL_CONFIG, d)
+-    for e in split_quoted(os.popen("'%s' --cflags" % CURL_CONFIG).read()):
++    for e in split_quoted(run_curlconf(["/bin/sh", CURL_CONFIG, "--cflags"])):
+         if e[:2] == "-I":
+             # do not add /usr/include
+             if not re.search(r"^\/+usr\/+include\/*$", e[2:]):
+                 include_dirs.append(e[2:])
+         else:
+             extra_compile_args.append(e)
+-    for e in split_quoted(os.popen("'%s' --libs" % CURL_CONFIG).read()):
++    for e in split_quoted(run_curlconf(["/bin/sh", CURL_CONFIG, "--libs"])):
+         if e[:2] == "-l":
+             libraries.append(e[2:])
+             if e[2:] == 'ssl':
+@@ -107,7 +119,7 @@
+             library_dirs.append(e[2:])
+         else:
+             extra_link_args.append(e)
+-    for e in split_quoted(os.popen("'%s' --features" % CURL_CONFIG).read()):
++    for e in split_quoted(run_curlconf(["/bin/sh", CURL_CONFIG, "--features"])):
+         if e == 'SSL':
+             define_macros.append(('HAVE_CURL_SSL', 1))
+     if not libraries:
