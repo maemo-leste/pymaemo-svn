@@ -2,7 +2,13 @@ Index: gnome-python-maemo/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ gnome-python-maemo/debian/changelog	2007-03-27 18:25:44.000000000 -0300
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,11 @@
++python-gnome (2.18.0-1osso2) unstable; urgency=low
++
++  * fix #972 and #988
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 24 Oct 2007 15:50:03 -0300
++
 +python-gnome (2.18.0-1osso1) unstable; urgency=low
 +
 +  * PythonGnome2.18 release for PyMaemo.
@@ -64,7 +70,7 @@ Index: gnome-python-maemo/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ gnome-python-maemo/debian/rules	2007-03-27 18:25:44.000000000 -0300
-@@ -0,0 +1,73 @@
+@@ -0,0 +1,75 @@
 +#!/usr/bin/make -f
 +
 +PYVER=2.5
@@ -104,10 +110,12 @@ Index: gnome-python-maemo/debian/rules
 +	dh_installdirs
 +
 +	python$(PYVER) setup.py install --prefix=$(d_base)/usr --skip-build
-+	python$(PYVER) -OO -m compileall -l .
 +
 +	# base
 +	touch $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
++	python$(PYVER) -OO -m compileall -d \ -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
++	rm $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
++	rm $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.pyc
 +
 +	# dev
 +	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/
