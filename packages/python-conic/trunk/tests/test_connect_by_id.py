@@ -45,7 +45,8 @@ def connect():
     iaps = connection.get_all_iaps()
     iap = None
     for i in iaps:
-        if i.get_name() == "OSMTCAPN01":
+        #Replace with your IAP name
+        if i.get_name() == "MYAPNAME":
              iap = i
 
     connection.connect("connection-event", connection_cb, magic)
