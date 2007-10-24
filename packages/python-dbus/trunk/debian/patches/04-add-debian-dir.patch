@@ -2,7 +2,13 @@ Index: python-dbus/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python-dbus/debian/changelog	2007-03-07 10:34:30.000000000 -0300
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,78 @@
++python-dbus (0.71-1osso6) unstable; urgency=low
++
++  * fixed #972
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 24 Oct 2007 15:34:13 -0300
++
 +python-dbus (0.71-1osso5) unstable; urgency=low
 +
 +  * added dependency to python2.5-xml (#751)
@@ -156,7 +162,7 @@ Index: python-dbus/debian/rules
 +	dh_installdirs
 +
 +	$(PYTHON) setup.py install --root=$(d_base) --no-compile
-+	$(PYTHON) -OO -m compileall -f $(d_base)
++	$(PYTHON) -OO -m compileall -d \ -f $(d_base)
 +	cp -a $(d_base)/* $(d_dev)
 +
 +	# base
