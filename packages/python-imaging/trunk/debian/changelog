@@ -1,3 +1,9 @@
+python2.5-imaging (1.1.6-1osso2) unstable; urgency=low
+
+  * fix #972 and #988
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 24 Oct 2007 16:09:08 -0300
+
 python2.5-imaging (1.1.6-1osso1) unstable; urgency=low
 
   * Included inside Pymaemo source tree
