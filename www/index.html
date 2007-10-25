@@ -59,6 +59,23 @@
 
         <h2><a name="news">News</a></h2>
 
+        <h4>2007/10/25</h4>
+        <ul>
+            <li><b>PyMaemo Beta for Chinook Beta</b></li>
+            <p>We have just released PyMaemo for Chinook Beta. To use it inside your scratchbox 
+            just add the following lines in your /etc/apt/sources.list (inside scratchbox, target 
+            SDK_BETA):</p>
+            <pre>
+            deb http://repository.maemo.org chinook free non-free 
+            deb http://repository.maemo.org/extras chinook free non-free
+            </pre>
+            <p>After this, install using:</p>
+            <pre>
+            apt-get update
+            apt-get install python2.5-runtime
+            </pre>
+        </ul>
+
         <h4>2007/10/24</h4>
         <ul>
             <li><b>Package containing bugfixes and new modules to Python 2.5.1 for Maemo (r0.4-13).</b></li>
