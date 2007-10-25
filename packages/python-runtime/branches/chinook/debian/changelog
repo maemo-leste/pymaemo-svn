@@ -1,3 +1,9 @@
+python-runtime (c1.0-1) unstable; urgency=low
+
+  * First release for Chinook  
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 25 Oct 2007 17:33:01 -0300
+
 python-runtime (0.4-11) unstable; urgency=low
 
   * added pycairo
