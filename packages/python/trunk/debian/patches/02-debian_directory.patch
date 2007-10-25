@@ -237,7 +237,7 @@ Index: python2.5-2.5.1/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python2.5-2.5.1/debian/control	2007-05-19 19:59:30.000000000 +0300
-@@ -0,0 +1,28 @@
+@@ -0,0 +1,27 @@
 +Source: python2.5
 +Section: python
 +Priority: optional
@@ -249,7 +249,6 @@ Index: python2.5-2.5.1/debian/control
 +Architecture: any
 +Depends: ${shlibs:Depends}, libsqlite3-0 (>= 3.3.5-0.2osso1), libffi4 (>= 4.1.0-1osso1)
 +Replaces: python2.4
-+Conflicts: python2.4
 +Provides: python-termios
 +Description: An interactive high-level object-oriented language
 + Version 2.5 of the high-level, interactive object oriented language,
