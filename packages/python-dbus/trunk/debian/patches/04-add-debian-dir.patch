@@ -162,7 +162,7 @@ Index: python-dbus/debian/rules
 +	dh_installdirs
 +
 +	$(PYTHON) setup.py install --root=$(d_base) --no-compile
-+	$(PYTHON) -OO -m compileall -d \ -f $(d_base)
++	$(PYTHON) -OO -m compileall -d / -f $(d_base)
 +	cp -a $(d_base)/* $(d_dev)
 +
 +	# base
