@@ -1,3 +1,9 @@
+python-hildon (0.8.8-1osso3) unstable; urgency=low
+
+  * Fixing #1195 - hildon.ColorButton.get_color() and adding example. 
+
+ -- Lauro Moura Neto <lauro.neto@openbossa.org>  Fri, 26 Oct 2007 17:38:41 -0300
+
 python-hildon (0.8.8-1osso2) unstable; urgency=low
 
   * Exporting enumerations (constants).
