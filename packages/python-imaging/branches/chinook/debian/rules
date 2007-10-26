@@ -61,6 +61,9 @@ install: build
 	# Add here commands to install the package into debian/python2.5-imaging.
 	# $(MAKE) install DESTDIR=$(CURDIR)/debian/python2.5-imaging
 	python2.5 setup.py install --root $(CURDIR)/debian/python2.5-imaging
+	python2.5 -OO -m compileall -d \ -l $(CURDIR)/debian/python2.5-imaging/usr/lib/python2.5/site-packages/PIL
+	rm $(CURDIR)/debian/python2.5-imaging/usr/lib/python2.5/site-packages/PIL/*.py
+	rm $(CURDIR)/debian/python2.5-imaging/usr/lib/python2.5/site-packages/PIL/*.pyc
 
 # Build architecture-independent files here.
 binary-indep: build install
