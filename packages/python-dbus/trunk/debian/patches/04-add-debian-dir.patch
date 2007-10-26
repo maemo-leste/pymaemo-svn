@@ -2,7 +2,13 @@ Index: python-dbus/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python-dbus/debian/changelog	2007-03-07 10:34:30.000000000 -0300
-@@ -0,0 +1,78 @@
+@@ -0,0 +1,84 @@
++python-dbus (0.71-1osso7) unstable; urgency=low
++
++  * fixed size mismatch problem at apt-get
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 25 Oct 2007 13:26:55 -0300
++
 +python-dbus (0.71-1osso6) unstable; urgency=low
 +
 +  * fixed #972
