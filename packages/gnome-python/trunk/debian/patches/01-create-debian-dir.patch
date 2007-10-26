@@ -2,7 +2,19 @@ Index: gnome-python-maemo/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ gnome-python-maemo/debian/changelog	2007-03-27 18:25:44.000000000 -0300
-@@ -0,0 +1,11 @@
+@@ -0,0 +1,23 @@
++python-gnome (2.18.0-1osso4) unstable; urgency=low
++
++  * pump version 
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 26 Oct 2007 09:53:27 -0300
++
++python-gnome (2.18.0-1osso3) unstable; urgency=low
++
++  * fix missing __init__.pyo problem
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 26 Oct 2007 09:25:55 -0300
++
 +python-gnome (2.18.0-1osso2) unstable; urgency=low
 +
 +  * fix #972 and #988
