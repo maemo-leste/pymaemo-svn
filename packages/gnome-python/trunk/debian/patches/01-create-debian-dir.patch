@@ -113,7 +113,7 @@ Index: gnome-python-maemo/debian/rules
 +
 +	# base
 +	touch $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
-+	python$(PYVER) -OO -m compileall -d / -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
++	python$(PYVER) -OO -m compileall -d / -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome
 +	rm $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
 +
 +	# dev
