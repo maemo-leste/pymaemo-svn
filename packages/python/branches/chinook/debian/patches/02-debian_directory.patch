@@ -4,7 +4,13 @@ Index: python2.5-2.5.1/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python2.5-2.5.1/debian/changelog	2007-05-19 20:01:10.000000000 +0300
-@@ -0,0 +1,216 @@
+@@ -0,0 +1,222 @@
++python2.5 (2.5.1-1osso4) unstable; urgency=low
++
++  * Fix #1040 - webbrowser.open() 
++
++ -- Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>  Tue,  7 Aug 2007 15:55:00 -0300
++
 +python2.5 (2.5.1-1osso3) unstable; urgency=low
 +
 +  * moving libreadline.so from -dev to the main package 
