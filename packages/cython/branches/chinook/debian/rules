@@ -1,0 +1,74 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base = python2.5-cython
+d_base = debian/$(p_base)
+
+filename=cython
+fullfilename=$(PYTHON)-$(filename)
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	find . -name .DS_Store -exec rm -rf {} \;
+	find [DPTCs]* -type f -exec chmod -x {} \;
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -rf $(d_base)
+	$(PYTHON) setup.py clean --all
+	find . -name "*.py[co]" -exec rm -rf {} \;
+	find . -name "Makefile" -exec rm -rf {} \;
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+
+	$(PYTHON) setup.py install --root=$(d_base)
+	$(PYTHON) -OO -m compileall -d / -f $(d_base)/usr/lib/python2.5/site-packages/Cython
+
+	find $(d_base) -name "*.py" | xargs rm -rf
+	find $(d_base) -name "*.pyc" | xargs rm -rf
+#	sed -i "s|#!/usr/bin/python.*|#!/usr/bin/python2.5|" $(d_base)/bin/$(filename)
+#	mv $(d_base)/usr/bin/$(filename) $(d_base)/usr/bin/$(fullfilename)
+
+
+#	install -d $(d_base)/usr/share/man/man1
+#	install -p -m644 debian/$(fullfilename).1 $(d_base)/usr/share/man/man1/$(fullfilename).1
+
+#	mkdir -p $(d_base)/usr/share/$(p_base)
+#	cp Doc/* $(d_base)/usr/share/$(p_base)
+#	cp -a Demos $(d_base)/usr/share/$(p_base)
+#	cp -a Tools $(d_base)/usr/share/$(p_base)
+
+#	dh_link -p$(p_base) usr/bin/$(fullfilename) usr/bin/$(filename)
+#	dh_link -p$(p_base) usr/share/man/man1/$(fullfilename).1.gz usr/share/man/man1/$(filename).1.gz
+
+	# cleanup
+	find $(d_base) -name ".svn" | xargs rm -rf
+
+
+binary: binary-indep binary-arch
+binary-indep: install
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+#	dh_installchangelogs CHANGES.txt
+	dh_installdocs
+	dh_installexamples
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean binary binary-arch binary-indep install configure
