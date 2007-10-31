@@ -7,26 +7,26 @@ Index: trunk/debian/changelog
 +
 +  * upgrade to v0.8.1
 +
-+ -- Ed Bartosh <eduard.bartosh@nokia.com>  Sun, 20 May 2007 00:17:22 +0300
++ -- Ed Bartosh <bartosh@gmail.com>  Sun, 20 May 2007 00:17:22 +0300
 +
 +ipython (0.7.3-2.maemo3) unstable; urgency=low
 +
 +  * join pymaemo: use quilt instead of dpatch
 +
-+ -- Ed Bartosh <eduard.bartosh@nokia.com>  Sun,  1 Apr 2007 17:01:02 +0300
++ -- Ed Bartosh <bartosh@gmail.com>  Sun,  1 Apr 2007 17:01:02 +0300
 +
 +ipython (0.7.3-2.maemo2) unstable; urgency=low
 +
 +  * libreadline4 added to dependency list 
 +
-+ -- Ed Bartosh <eduard.bartosh@nokia.com>  Sun, 18 Mar 2007 12:46:37 +0200
++ -- Ed Bartosh <bartosh@gmail.com>  Sun, 18 Mar 2007 12:46:37 +0200
 +
 +ipython (0.7.3-2.maemo1) unstable; urgency=low
 +
 +  * Maemo build
 +  * ipmaker.py: Add _Helper class (not present in site.py from python2.5) 
 +
-+ -- Ed Bartosh <eduard.bartosh@nokia.com>  Sun,  4 Mar 2007 00:39:39 +0200
++ -- Ed Bartosh <bartosh@gmail.com>  Sun,  4 Mar 2007 00:39:39 +0200
 +
 +ipython (0.7.3-2) unstable; urgency=low
 +
@@ -358,14 +358,14 @@ Index: ipython-0.8.1/debian/control
 +Source: ipython
 +Section: User/python
 +Priority: optional
-+Maintainer: Ed Bartosh <eduard.bartosh@nokia.com>
++Maintainer: Ed Bartosh <bartosh@gmail.com>
 +Section: user/programming
 +Build-Depends-Indep: debhelper (>= 4), quilt (>= 0.45), python2.5-dev (>= 2.5.0-1osso10)
 +Standards-Version: 3.7.2.1
 +
 +Package: ipython
 +Architecture: all
-+Depends: python2.5-dev (>= 2.5.0-1osso10), libreadline4
++Depends: python2.5 (>= 2.5.0-1osso10), libreadline4
 +Recommends: python-numeric, python-numeric-ext, python-pexpect
 +Conflicts: python2.3-ipython, python2.4-ipython, ipython-common
 +Replaces: python2.3-ipython, python2.4-ipython, ipython-common
