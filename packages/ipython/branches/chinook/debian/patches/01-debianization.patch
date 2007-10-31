@@ -2,7 +2,13 @@ Index: trunk/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ trunk/debian/changelog	2007-05-20 00:18:02.000000000 +0300
-@@ -0,0 +1,341 @@
+@@ -0,0 +1,346 @@
++ipython (0.8.1-1.maemo2) unstable; urgency=low
++
++  * bump revision
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 31 Oct 2007 11:02:52 -0300
++
 +ipython (0.8.1-1.maemo1) unstable; urgency=low
 +
 +  * upgrade to v0.8.1
