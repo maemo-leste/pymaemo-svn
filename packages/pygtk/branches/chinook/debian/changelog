@@ -1,3 +1,9 @@
+python-gtk2 (2.12.0-1osso3) unstable; urgency=low
+
+  * Updated -dev package with dependency on python2.5-gobject-dev 
+
+ -- Lauro Moura Neto <lauro.neto@openbossa.org>  Thu,  1 Nov 2007 15:29:35 -0300
+
 python-gtk2 (2.12.0-1osso2) unstable; urgency=low
 
   * Add support for tap and hold.
