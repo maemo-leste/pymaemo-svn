@@ -1,0 +1,21 @@
+Source: cython
+Section: python
+Priority: optional
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends-Indep: debhelper (>= 4.1.0), python2.5-dev (>= 2.5.1-1osso2)
+Standards-Version: 3.6.2
+
+Package: python2.5-cython
+Architecture: all
+Depends: python2.5 (>= 2.5.1-1osso2)
+Recommends: python2.5-dev (>= 2.5.1-1osso2)
+Description: Cython is a language that makes writing C extensions for the Python 
+ language as easy as Python itself. It is based on the well-known Pyrex, but 
+ supports more cutting edge functionality and optimizations. 
+ This package is built for Python 2.5.x.
+
+Package: python2.5-cython-dev
+Architecture: all
+Depends: python2.5-cython (= ${Source-Version})
+Recommends: python2.5-dev (>= 2.5.1-1osso2)
+Description: Cython development package.
