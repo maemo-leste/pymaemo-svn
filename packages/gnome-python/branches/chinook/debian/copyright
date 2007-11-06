@@ -3,9 +3,6 @@ Fri, 13 Apr 2007 09:30:00 -0300.
 
 It was downloaded from http://ftp.gnome.org/pub/GNOME/sources/gnome-python/
 
-Copyright: 
-(C) 2007 INdT - Instituto Nokia de Tecnologia
-
 Upstream Author(s): 
 James Henstridge  <james@daa.com.au>
 Johan Dahlin  <jdahlin@telia.com>
@@ -13,6 +10,8 @@ Matt Wilson  <msw@redhat.com>
 
 Maemo Maintainer(s):
 Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+
+Copyright: 
 
 License:
 See COPYING file.
