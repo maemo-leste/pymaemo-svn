@@ -1,6 +1,8 @@
 python-gnome (2.18.0-1osso3) unstable; urgency=low
 
-  * correct copyright file and put it inside /usr/share/doc 
+  * correct copyright file and put it inside /usr/share/doc
+  * fix doc install path
+  * fix missing __init__.py problem
 
  -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 16:44:35 -0300
 
