@@ -6,6 +6,7 @@ DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 d=debian/tmp
+p_base=python-gnome
 d_base=debian/python$(PYVER)-gnome
 d_dev=debian/python$(PYVER)-gnome-dev
 
@@ -40,16 +41,18 @@ install: build
 
 	# base
 	touch $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
-	python$(PYVER) -OO -m compileall -d / -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
+	python$(PYVER) -OO -m compileall -d / -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/
 	rm $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
+	mkdir -p $(d_base)/usr/share/doc/$(p_base)
+	cp debian/copyright $(d_base)/usr/share/doc/$(p_base)
 
 	# dev
-	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/
-	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/gnomevfs
-	mkdir -p $(d_dev)/usr/share/python-gnome/defs
-	cp examples/gconf/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples
-	cp gconf/gconf.defs $(d_dev)/usr/share/python-gnome/defs
-	cp examples/vfs/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples/gnomevfs
+	mkdir -p $(d_dev)/usr/share/doc/$(p_base)/examples/
+	mkdir -p $(d_dev)/usr/share/doc/$(p_base)/examples/gnomevfs
+	mkdir -p $(d_dev)/usr/share/$(p_base)/defs
+	cp examples/gconf/*py     $(d_dev)/usr/share/doc/$(p_base)/examples
+	cp gconf/gconf.defs $(d_dev)/usr/share/$(p_base)/defs
+	cp examples/vfs/*py     $(d_dev)/usr/share/doc/$(p_base)/examples/gnomevfs
 
 	# finish
 	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
