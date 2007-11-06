@@ -1,3 +1,10 @@
+pycairo (1.4.0-1osso2) unstable; urgency=low
+
+  * fix copyright and put it inside /doc
+  * put examples inside -dev package
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 17:59:26 -0300
+
 pycairo (1.4.0-1osso1) unstable; urgency=low
 
   * First pycairo release.
