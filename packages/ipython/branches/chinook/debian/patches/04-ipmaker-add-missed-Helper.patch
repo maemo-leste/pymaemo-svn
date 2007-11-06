@@ -2,7 +2,7 @@ Index: trunk/IPython/ipmaker.py
 ===================================================================
 --- trunk.orig/IPython/ipmaker.py	2007-04-01 16:24:07.000000000 +0300
 +++ trunk/IPython/ipmaker.py	2007-04-01 16:24:31.000000000 +0300
-@@ -53,6 +53,18 @@
+@@ -58,6 +58,18 @@
  from IPython.usage import cmd_line_usage,interactive_usage
  from IPython.genutils import *
  
@@ -21,7 +21,7 @@ Index: trunk/IPython/ipmaker.py
  #-----------------------------------------------------------------------------
  def make_IPython(argv=None,user_ns=None,user_global_ns=None,debug=1,
                   rc_override=None,shell_class=InteractiveShell,
-@@ -90,7 +102,6 @@
+@@ -95,7 +107,6 @@
                       embedded=embedded,**kw)
  
      # Put 'help' in the user namespace

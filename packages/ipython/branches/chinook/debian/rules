@@ -1,0 +1,116 @@
+#!/usr/bin/make -f
+# ipython debian/rules file
+#
+# Based on sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+PYDEF := 2.3
+PYVERS := 2.5
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+
+	set -e; \
+	for v in $(PYVERS); do \
+	  python$$(echo $$v | sed "s/$(PYDEF)//") setup.py config; \
+	done
+
+	touch configure-stamp
+
+
+build: configure build
+
+build-stamp:
+	dh_testdir
+
+	set -e; \
+	for v in $(PYVERS); do \
+	  python$$(echo $$v | sed "s/$(PYDEF)//") setup.py build; \
+	done
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+
+	set -e; \
+	for v in $(PYVERS); do \
+	  python$$v setup.py clean --all; \
+	done
+	rm -rf build
+	rm -f setupext/*.py?
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	set -e; \
+	for v in $(PYVERS); do \
+	  python$$(echo $$v | sed "s/$(PYDEF)//") setup.py install --prefix $(CURDIR)/debian/ipython/usr; \
+	done
+
+	# remove documentation
+	rm $(CURDIR)/debian/ipython/usr/share/doc/ipython/COPYING
+	rm $(CURDIR)/debian/ipython/usr/share/doc/ipython/ChangeLog
+	rm $(CURDIR)/debian/ipython/usr/share/doc/ipython/ipython.el
+	rm $(CURDIR)/debian/ipython/usr/share/doc/ipython/README_Windows.txt
+	rm $(CURDIR)/debian/ipython/usr/share/doc/ipython/pycon.ico
+
+	# change permission on scripts
+	chmod a-x $(CURDIR)/debian/ipython/usr/share/doc/ipython/examples/*
+
+ifeq (0,1)
+	# rename binaries
+	mv $(CURDIR)/debian/python2.5-ipython/usr/bin/ipython $(CURDIR)/debian/python2.5-ipython/usr/bin/python2.5-ipython
+	mv $(CURDIR)/debian/python2.5-ipython/usr/bin/pycolor $(CURDIR)/debian/python2.5-ipython/usr/bin/python2.5-pycolor
+	mv $(CURDIR)/debian/python2.5-ipython/usr/bin/irunner $(CURDIR)/debian/python2.5-ipython/usr/bin/python2.5-irunner
+
+	# rename manpages
+	mv $(CURDIR)/debian/python2.5-ipython/usr/share/man/man1/ipython.1.gz $(CURDIR)/debian/python2.5-ipython/usr/share/man/man1/python2.5-ipython.1.gz
+	mv $(CURDIR)/debian/python2.5-ipython/usr/share/man/man1/pycolor.1.gz $(CURDIR)/debian/python2.5-ipython/usr/share/man/man1/python2.5-pycolor.1.gz
+endif
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_link
+	dh_installchangelogs doc/ChangeLog
+	dh_installdocs
+#	dh_installexamples
+	dh_install
+#	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+#	dh_installman doc/ipython.1.gz doc/pycolor.1.gz
+	dh_compress -Xexamples
+	dh_fixperms
+	dh_python
+#	dh_makeshlibs
+	dh_installdeb
+#	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+# Build architecture-dependent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
