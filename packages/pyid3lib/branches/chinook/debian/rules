@@ -1,0 +1,78 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base=$(PYTHON)-id3lib
+
+d_base=debian/$(p_base)
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+    CFLAGS=-Os -Wall -Wstrict-prototypes
+endif
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py build
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	-rm -f build-stamp
+	-rm -rf build dist
+	-rm -rf $(d_base)
+	-$(PYTHON) setup.py clean
+	find . -name "*.py[co]" | xargs rm -f
+	-rm -f Setup
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	$(PYTHON) setup.py install --no-compile --root=$(d_base)
+	$(PYTHON) -OO -m compileall -d / -f $(d_base)
+
+	find $(d_base) -name "*.py" | xargs rm -f
+	rm -rf $(d_base)/usr/include
+
+	dh_installdocs
+
+
+binary: binary-indep binary-arch
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_installdocs
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_installdocs
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps 
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build build-stamp clean install binary-indep binary-arch binary
+

@@ -1,0 +1,17 @@
+This package was debianized for Maemo by Daniel d'Andrada T. de Carvalho <daniel.carvalho@indt.org.br> on
+Mon, 23 Apr 2007 11:06:28 -0300.
+
+Upstream source: http://pyid3lib.sourceforge.net/
+
+Upstream author: Doug Zongker <dougz@cs.washington.edu>
+
+Copyright and licensing info (found in pyid3lib.cc):
+
+    Copyright (c) 2002-3 Doug Zongker.  All rights reserved.
+
+License (found in README):
+
+    pyid3lib is free software.  Please see the file COPYING for details.
+
+The file COPYING contains the GNU Lesser General Public License, which
+on Debian GNU systems can be found at /usr/share/common-licenses.
