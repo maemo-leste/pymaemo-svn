@@ -1,4 +1,3 @@
-01-create-debian-dir.patch
 02-update-gconf-defs.patch
 03-create-headers-file.patch
 04-update-headers-inside-gconf-dir.patch
