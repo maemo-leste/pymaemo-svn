@@ -1,0 +1,15 @@
+Source: storm
+Section: universe/devel
+Priority: optional
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends: debhelper, python2.5
+Standards-Version: 3.6.1
+
+Package: python2.5-storm
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}
+Provides: ${python:Provides}
+Description: Storm is an object-relational mapper (ORM) for Python
+ developed at Canonical.  The project has been in development for more
+ than a year for use in Canonical projects such as Launchpad, and has
+ recently been released as an open-source product.
