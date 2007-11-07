@@ -34,11 +34,12 @@ install: build
 	dh_installdirs
 
 	$(PYTHON) setup.py install --root=$(d_base)
-	$(PYTHON) -OO -m compileall -d / -f $(d_base)/usr/lib/$(PYTHON)/site-packages/Cython
+	# There are some links to ".py" files inside the code
+	#$(PYTHON) -OO -m compileall -d / -f $(d_base)/usr/lib/$(PYTHON)/site-packages/Cython
 
 	#base
-	find $(d_base) -name "*.py" | xargs rm -rf
-	find $(d_base) -name "*.pyc" | xargs rm -rf
+	#find $(d_base) -name "*.py" | xargs rm -rf
+	#find $(d_base) -name "*.pyc" | xargs rm -rf
 
 	#dev
 	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)
