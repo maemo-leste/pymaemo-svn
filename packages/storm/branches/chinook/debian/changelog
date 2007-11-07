@@ -1,0 +1,59 @@
+storm (0.11.0-osso1) unstable; urgency=low
+
+  * First port to Maemo
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 11:27:59 -0300
+
+storm (0.11.0-gutsy1-jkakar7) gutsy; urgency=low
+
+  * Fixed incorrect package variable in rules file.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:11 +0000
+
+storm (0.11.0-feisty1-jkakar7) feisty; urgency=low
+
+  * Fixed incorrect package variable in rules file.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:08 +0000
+
+storm (0.11.0-edgy1-jkakar7) edgy; urgency=low
+
+  * Fixed incorrect package variable in rules file.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:05 +0000
+
+storm (0.11.0-dapper1-jkakar7) dapper; urgency=low
+
+  * Fixed incorrect package variable in rules file.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:01 +0000
+
+storm (0.11.0-gutsy1-jkakar6) gutsy; urgency=low
+
+  * Final test, I hope.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:37:09 +0000
+
+storm (0.11.0-feisty1-jkakar6) feisty; urgency=low
+
+  * Final test, I hope.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:37:06 +0000
+
+storm (0.11.0-edgy1-jkakar6) edgy; urgency=low
+
+  * Final test, I hope.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:37:04 +0000
+
+storm (0.11.0-dapper1-jkakar6) dapper; urgency=low
+
+  * Final test, I hope.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:36:59 +0000
+
+storm (0.10.0-feisty1-storm1) feisty; urgency=low
+
+  * New upstream release.
+
+ -- Jamshed Kakar <jamshed.kakar@canonical.com>  Thu, 27 Sep 2007 15:56:00 -0700
