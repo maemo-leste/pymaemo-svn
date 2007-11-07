@@ -25,6 +25,9 @@ install: build
 	$(PYTHON) setup.py install --root=$(root_dir)
 	$(PYTHON) -OO -m compileall -d / -f $(root_dir)/usr/lib/$(PYTHON)/site-packages/storm
 
+	mkdir -p $(root_dir)/usr/share/doc/python-storm
+	cp debian/copyright $(root_dir)/usr/share/doc/python-storm
+	
 	# cleanup
 	find $(root_dir) -name "*.py" | xargs rm -rf
 	find $(root_dir) -name "*.pyc" | xargs rm -rf
