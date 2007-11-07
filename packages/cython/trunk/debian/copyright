@@ -1,14 +1,16 @@
-This package was first debianized by Peter Harris <scav@blueyonder.co.uk> on
-Tue, 26 Nov 2002 11:08:39 +0000.
-
-Maintened by Paul Brossier <piem@debian.org> until May, 4 2006
-
-It is now maintained by Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+This package was debianized by Luciano Miguel Wolf <luciano.wolf@indt.org.br> on
+Mon, 29 Oct 2007 16:33:48 -0300.
 
 This version was downloaded from
-  http://www.cosc.canterbury.ac.nz/~greg/python/Pyrex/
+    http://www.cython.org/
 
-Upstream Author: Greg Ewing <greg@cosc.canterbury.ac.nz>
+Upstream Author(s): 
+Stefan Behnel
+Robert Bradshaw
+William Stein
+
+Maemo Maintainer(s):
+Luciano Miguel Wolf <luciano.wolf@indt.org.br>
 
 Copyright:
 

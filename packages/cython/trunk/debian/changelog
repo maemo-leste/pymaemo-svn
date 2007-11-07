@@ -1,3 +1,9 @@
+cython (0.9.6.8-1osso1) unstable; urgency=low
+
+  * updating to version 0.9.6.8
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed,  7 Nov 2007 09:46:40 -0300
+
 cython (0.9.6.7-1osso1) unstable; urgency=low
 
   * first port - Cython for Maemo
