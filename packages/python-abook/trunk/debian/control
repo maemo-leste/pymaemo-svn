@@ -6,6 +6,7 @@ Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), pyth
 Standards-Version: 3.6.1
 
 Package: python2.5-abook
+Section: user/programming
 Architecture: any
 Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), libosso-abook (>= 1.20070213), python2.5-galago (>= 0.5.0), python2.5-evolution (>= 0.0.3) ${shlibs:Depends}
 Description: Python bindings for OSSO AddressBook widgets.
