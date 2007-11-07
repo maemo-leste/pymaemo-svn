@@ -6,7 +6,6 @@ Build-Depends-Indep: debhelper (>= 4.1.0), python2.5-dev (>= 2.5.1-1osso2)
 Standards-Version: 3.6.2
 
 Package: python2.5-cython
-Section: user/programming
 Architecture: all
 Depends: python2.5 (>= 2.5.1-1osso2)
 Recommends: python2.5-dev (>= 2.5.1-1osso2)
