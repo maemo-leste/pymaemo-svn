@@ -1,12 +1,23 @@
-This package was debianized by Osvaldo Santana Neto <osvaldo.santana@indt.org.br> on
-Thu, 16 Jun 2005 15:58:17 -0300.
+This package was debianized by Domenico Andreoli <cavok@debian.org> on
+Mon, 10 Jun 2002 19:48:05 +0200.
 
-It was downloaded from http://pymaemo.sourceforge.net
+It was downloaded from http://pycurl.sourceforge.net
+
+Upstream Authors: Kjetil Jacobsen <kjetilja@cs.uit.no> 
+                  Markus F.X.J. Oberhumer <markus@oberhumer.com>
+
+Maemo Maintainer(s): Luciano Miguel Wolf <luciano.wolf@indt.org.br>
 
 Copyright:
 
-Upstream Author(s): Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+  Copyright (c) 2001-2002 by Kjetil Jacobsen <kjetilja@cs.uit.no>
+  Copyright (c) 2001-2002 by Markus F.X.J. Oberhumer <markus@oberhumer.com>
 
-License:
+  PycURL is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published
+  by the Free Software Foundation; either version 2.1 of the License,
+  or (at your option) any later version.
 
-See COPYING file.
+
+On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+Public License can be found in '/usr/share/common-licenses'.

@@ -45,9 +45,9 @@ install: build
 
 	# base
 	mkdir -p $(d_base)/usr
-	rm $(d)/usr/lib/python$(PYVER)/site-packages/curl/*.py
-	rm $(d)/usr/lib/python$(PYVER)/site-packages/curl/*.pyc
 	mv $(d)/usr/lib $(d_base)/usr
+	mkdir -p $(d_base)/usr/share/doc/pycurl
+	cp debian/copyright $(d_base)/usr/share/doc/pycurl
 
 	# dev
 	mkdir -p $(d_dev)/usr
@@ -55,6 +55,8 @@ install: build
 
 	# finish
 	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
+	find $(d_base) -name "*.py" | xargs rm -rf
+	find $(d_base) -name "*.pyo" | xargs rm -rf
 
 binary-indep: build install
 binary-arch: build install

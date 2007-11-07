@@ -1,3 +1,9 @@
+python-pycurl (7.15.5-1osso2) unstable; urgency=low
+
+  * fix copyright file and put under /doc
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 18:11:00 -0300
+
 python-pycurl (7.15.5-1osso1) unstable; urgency=low
 
   * first release of pycurl for PyMaemo 
