@@ -2,3 +2,4 @@
 02-hildonize-examples.patch
 03-remove-docs-broken-in-armel.patch
 04-tap-and-hold-support.patch
+05-glade-support.patch
