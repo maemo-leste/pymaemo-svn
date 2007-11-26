@@ -1,3 +1,6 @@
 01-create-debian-dir.patch
 02-additional-enums.patch
 03-book-view-gil.patch
+04-ebook-get-contacts.patch
+05-evcard-attribute.patch
+06-remove-warnings.patch

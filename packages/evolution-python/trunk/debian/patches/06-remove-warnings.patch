@@ -1,0 +1,359 @@
+Index: evolution-python-0.0.4/src/ebook.override
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook.override	2007-11-26 14:02:41.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.override	2007-11-26 15:11:24.000000000 -0300
+@@ -45,8 +45,10 @@
+ 	return result;
+ }
+ 
++typedef PyObject *(*ConverterFunction) (gpointer);
++
+ static PyObject *
+-glist_to_pylist(GList *list, PyObject *(*converter)(gpointer))
++glist_to_pylist(GList *list, ConverterFunction converter)
+ {
+     PyObject *pylist;
+     GList *node;
+@@ -108,32 +110,32 @@
+                                     PyObject *args);
+ 
+ static PyMethodDef PyEBookQuery_methods[] = {
+-    {"from_string", (PyCFunctionWithKeywords)pyebook_query_from_string,
++    {"from_string", (PyCFunction)pyebook_query_from_string,
+         METH_KEYWORDS | METH_VARARGS | METH_CLASS,
+         "Creates a new query from a string."},
+-    {"field_exists", (PyCFunctionWithKeywords)pyebook_query_field_exists,
++    {"field_exists", (PyCFunction)pyebook_query_field_exists,
+         METH_KEYWORDS | METH_VARARGS | METH_CLASS,
+         "Replaces this query with a new query to check if the given \
+         field exists"},
+     {"vcard_field_exists",
+-        (PyCFunctionWithKeywords)pyebook_query_vcard_field_exists,
++        (PyCFunction)pyebook_query_vcard_field_exists,
+         METH_KEYWORDS | METH_VARARGS | METH_CLASS,
+         "Replaces this query with a new query to check if the given \
+         vcard field exists"},
+-    {"field_test", (PyCFunctionWithKeywords)pyebook_query_field_test,
++    {"field_test", (PyCFunction)pyebook_query_field_test,
+         METH_KEYWORDS | METH_VARARGS | METH_CLASS,
+         "Replaces this query with a new query with a given test."},
+     {"any_field_contains",
+-        (PyCFunctionWithKeywords)pyebook_query_any_field_contains,
++        (PyCFunction)pyebook_query_any_field_contains,
+         METH_KEYWORDS | METH_VARARGS | METH_CLASS,
+         "Replaces this query with a new 'generic' query."},
+     {"_and",
+-        (PyCFunctionWithKeywords)pyebook_query_and,
++        (PyCFunction)pyebook_query_and,
+         METH_KEYWORDS | METH_VARARGS,
+         "Creates a new query with a 'and' operation with the given \
+         query list and this query."},
+      {"_or",
+-        (PyCFunctionWithKeywords)pyebook_query_or,
++        (PyCFunction)pyebook_query_or,
+         METH_KEYWORDS | METH_VARARGS,
+         "Creates a new querywith a 'or' operation with the given \
+         query list and this query."},
+@@ -166,7 +168,7 @@
+ 	0,                  /* tp_as_mapping */
+ 	(hashfunc)0,    /* tp_hash */
+ 	(ternaryfunc)0,         /* tp_call */
+-	pyebook_query_str,            /* tp_str */
++	(reprfunc)pyebook_query_str,            /* tp_str */
+ 	(getattrofunc)0,            /* tp_getattro */
+ 	(setattrofunc)0,            /* tp_setattro */
+ 	0,                  /* tp_as_buffer */
+@@ -487,11 +489,11 @@
+  * It can be optionally implemented as consecutive calls to add_value */
+ static PyMethodDef PyEVCardAttribute_methods[] = {
+     {"add_value",
+-        (PyCFunctionWithKeywords)pyevcard_attribute_add_value,
++        (PyCFunction)pyevcard_attribute_add_value,
+         METH_KEYWORDS | METH_VARARGS,
+         "Add value to the list of values."},
+     {"remove_value",
+-        (PyCFunctionWithKeywords)pyevcard_attribute_remove_value,
++        (PyCFunction)pyevcard_attribute_remove_value,
+         METH_KEYWORDS | METH_VARARGS,
+         "Remove value from the list of values."},
+     {"remove_values",
+@@ -561,7 +563,7 @@
+ 	0,                  /* tp_dictoffset */
+ 	(initproc)PyEVCardAttribute_init,            /* tp_init */
+ 	(allocfunc)0,           /* tp_alloc */
+-	(newfunc)0, /*PyEVCardAttribute_new, */            /* tp_new */
++	(newfunc)PyEVCardAttribute_new,             /* tp_new */
+ 	0,                  /* tp_free */
+ 	(inquiry)0,             /* tp_is_gc */
+ 	(PyObject *)0,          /* tp_bases */
+@@ -690,7 +692,7 @@
+ {
+     gchar *name;
+ 
+-    name = e_vcard_attribute_get_group(self->attribute);
++    name = (gchar *)e_vcard_attribute_get_group(self->attribute);
+ 
+     return PyString_FromString(name);
+ }
+@@ -699,7 +701,7 @@
+ {
+     gchar *name;
+ 
+-    name = e_vcard_attribute_get_name(self->attribute);
++    name = (gchar *)e_vcard_attribute_get_name(self->attribute);
+ 
+     return PyString_FromString(name);
+ }
+@@ -709,7 +711,7 @@
+ {
+     gchar *name;
+ 
+-    name = e_vcard_attribute_get_value(self->attribute);
++    name = (gchar *)e_vcard_attribute_get_value(self->attribute);
+ 
+     if (name)
+         return PyString_FromString(name);
+@@ -725,7 +727,7 @@
+ 
+     values = e_vcard_attribute_get_values(self->attribute);
+ 
+-    return glist_to_pylist(values, PyString_FromString);
++    return glist_to_pylist(values, (ConverterFunction) PyString_FromString);
+ }
+ 
+ static PyObject *
+@@ -744,9 +746,10 @@
+ 
+ /*** Types, helper functions and callbacks for EBookView ***/
+ 
++
+ /* Struct used to pack data passed to EBookView signals */
+ struct bookview_cb_t{
+-    PyObject *(*converter)(gpointer);
++    ConverterFunction converter;
+     PyObject *callback;
+     PyObject *extra_data;
+ };
+@@ -773,7 +776,7 @@
+ 
+     state = pyg_gil_state_ensure();
+ 
+-    pybookview = pygobject_new(ebookview);
++    pybookview = pygobject_new(G_OBJECT(ebookview));
+     if (pybookview == NULL){
+     }
+ 
+@@ -918,7 +921,7 @@
+         PyErr_SetString(PyExc_RuntimeError, "could not create EContact object");
+         return -1;
+     } else {
+-        self->obj = contact;
++        self->obj = G_OBJECT(contact);
+         return 0;
+     }
+ 
+@@ -961,31 +964,27 @@
+ _wrap_e_book_commit_contact(PyGObject *self, PyObject *args, PyObject *kwargs)
+ {
+     static char *kwlist[] = {"contact", NULL};
+-    PyGObject *pycontact;
+-    PyObject *pyret;
++    PyObject *pycontact;
+     EBook *book;
+     EContact *contact;
+     gboolean ret;
+ 
+     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:EBook.commit_contact",
+                                      kwlist, &PyEContact_Type,
+-                                     (PyObject **)&pycontact)){
++                                     &pycontact)){
+         return NULL;
+     }
+ 
+-    contact = (EContact *)pycontact->obj;
++    contact = (EContact *)((PyGObject *)pycontact)->obj;
+     book = (EBook *)self->obj;
+ 
+     ret = e_book_commit_contact(book, contact, NULL);
+ 
+     if (ret) {
+-        pyret = Py_True;
++        Py_RETURN_TRUE;
+     } else {
+-        pyret = Py_False;
++        Py_RETURN_FALSE;
+     }
+-
+-    Py_XINCREF(pyret);
+-    return pyret;
+ }
+ %%
+ override e_book_get_book_view kwargs
+@@ -1019,12 +1018,11 @@
+             PyObject *item;
+             EContactField field;
+             char *name;
+-            int size;
+ 
+             item = PyList_GetItem(pyfields, i);
+ 
+             pyg_enum_get_value(E_TYPE_CONTACT_FIELD, item, (gint *)&field);
+-            name = e_contact_field_name(field);
++            name = (char *)e_contact_field_name(field);
+             fields = g_list_append(fields, name);
+         }
+     }
+@@ -1079,9 +1077,9 @@
+     }
+ 
+     data->extra_data = extra_args;
+-    data->converter = econtact_to_pycontact;
++    data->converter = (ConverterFunction) econtact_to_pycontact;
+ 
+-    result = g_signal_connect(self->obj, "contacts-added", contacts_list_cb, data);
++    result = g_signal_connect(self->obj, "contacts-added", (GCallback)contacts_list_cb, data);
+ 
+     return PyInt_FromLong(result);
+ }
+@@ -1139,9 +1137,9 @@
+     }
+ 
+     data->extra_data = extra_args;
+-    data->converter = econtact_to_pycontact;
++    data->converter = (ConverterFunction) econtact_to_pycontact;
+ 
+-    result = g_signal_connect(self->obj, "contacts-changed", contacts_list_cb, data);
++    result = g_signal_connect(self->obj, "contacts-changed", (GCallback)contacts_list_cb, data);
+ 
+     return PyInt_FromLong(result);
+ }
+@@ -1199,9 +1197,9 @@
+     }
+ 
+     data->extra_data = extra_args;
+-    data->converter = PyString_FromString;
++    data->converter = (ConverterFunction) PyString_FromString;
+ 
+-    result = g_signal_connect(self->obj, "contacts-removed", contacts_list_cb, data);
++    result = g_signal_connect(self->obj, "contacts-removed", (GCallback)contacts_list_cb, data);
+ 
+     return PyInt_FromLong(result);
+ }
+@@ -1249,7 +1247,7 @@
+         return NULL;
+     }
+ 
+-    pycontacts = glist_to_pylist(contacts, econtact_to_pycontact);
++    pycontacts = glist_to_pylist(contacts, (ConverterFunction) econtact_to_pycontact);
+ 
+     g_list_free(contacts);
+ 
+@@ -1371,9 +1369,8 @@
+ _wrap_e_vcard_get_attributes(PyGObject *self)
+ {
+     GList *attrs;
+-    EVCardAttribute *attr;
+ 
+     attrs = e_vcard_get_attributes(E_VCARD(self->obj));
+ 
+-    return glist_to_pylist(attrs, pyevcard_attribute_new);
++    return glist_to_pylist(attrs, (ConverterFunction) pyevcard_attribute_new);
+ }
+Index: evolution-python-0.0.4/src/evo-addressbook.h
+===================================================================
+--- evolution-python-0.0.4.orig/src/evo-addressbook.h	2007-08-14 18:05:57.000000000 -0300
++++ evolution-python-0.0.4/src/evo-addressbook.h	2007-11-26 15:00:32.000000000 -0300
+@@ -29,6 +29,9 @@
+ gboolean evo_addressbook_get_changed_contacts(EBook *addressbook, GList **added, GList **modified, GList **deleted, char *change_id);
+ GList *evo_addressbook_free_text_search(EBook *book, const char *query);
+ EContact *evo_addressbook_get_contact(EBook *book, const char *uid);
++char * evo_addressbook_add_contact(EBook *book, EContact *contact);
++gboolean evo_addressbook_remove_contact(EBook *book, EContact *contact);
++gboolean evo_addressbook_contact_exists(EBook *book, EContact *contact);
+ 
+ G_END_DECLS
+ 
+Index: evolution-python-0.0.4/configure.ac
+===================================================================
+--- evolution-python-0.0.4.orig/configure.ac	2007-09-02 22:58:00.000000000 -0300
++++ evolution-python-0.0.4/configure.ac	2007-11-26 15:29:57.000000000 -0300
+@@ -58,6 +58,57 @@
+ AC_SUBST(PYGTK_H2DEFS)
+ AC_MSG_RESULT($PYGTK_H2DEFS)
+ 
++AC_SUBST(BASECFLAGS)
++case $GCC in
++yes)
++    # Python violates C99 rules, by casting between incompatible
++    # pointer types. GCC may generate bad code as a result of that,
++    # so use -fno-strict-aliasing if supported.
++    AC_MSG_CHECKING(whether $CC accepts -fno-strict-aliasing)
++     ac_save_cc="$CC"
++     CC="$CC -fno-strict-aliasing"
++     AC_TRY_RUN([int main() { return 0; }],
++     ac_cv_no_strict_aliasing_ok=yes,
++     ac_cv_no_strict_aliasing_ok=no,
++     ac_cv_no_strict_aliasing_ok=no)
++     CC="$ac_save_cc"
++    AC_MSG_RESULT($ac_cv_no_strict_aliasing_ok)
++    if test $ac_cv_no_strict_aliasing_ok = yes
++    then
++      BASECFLAGS="$BASECFLAGS -fno-strict-aliasing"
++    fi
++    case $ac_sys_system in
++	SCO_SV*)
++	    BASECFLAGS="$BASECFLAGS -m486 -DSCO5"
++	    ;;
++	# is there any other compiler on Darwin besides gcc?
++	Darwin*)
++	    BASECFLAGS="$BASECFLAGS -Wno-long-double -no-cpp-precomp -mno-fused-madd"
++	    if test "${enable_universalsdk}"; then
++		BASECFLAGS="-arch ppc -arch i386 -isysroot ${UNIVERSALSDK} ${BASECFLAGS}"
++	    fi
++
++	    ;;
++	OSF*)
++	    BASECFLAGS="$BASECFLAGS -mieee"
++	    ;;
++    esac
++    ;;
++
++*)
++    case $ac_sys_system in
++    OpenUNIX*|UnixWare*)
++	BASECFLAGS="$BASECFLAGS -K pentium,host,inline,loop_unroll,alloca "
++	;;
++    OSF*)
++	BASECFLAGS="$BASECFLAGS -ieee -std"
++    	;;
++    SCO_SV*)
++	BASECFLAGS="$BASECFLAGS -belf -Ki486 -DSCO5"
++	;;
++    esac
++    ;;
++esac
+ 
+ AC_CONFIG_FILES([
+ evolution-python.pc
+Index: evolution-python-0.0.4/src/Makefile.am
+===================================================================
+--- evolution-python-0.0.4.orig/src/Makefile.am	2007-11-26 15:14:04.000000000 -0300
++++ evolution-python-0.0.4/src/Makefile.am	2007-11-26 15:31:54.000000000 -0300
+@@ -12,7 +12,7 @@
+ pkgpyexec_DATA = __init__.py
+ 
+ ecal_la_LDFLAGS = -module -avoid-version -export-symbols-regex initecal
+-ecal_la_CFLAGS = $(INCLUDES) $(ECAL_CFLAGS)
++ecal_la_CFLAGS = $(INCLUDES) $(ECAL_CFLAGS) $(BASECFLAGS)
+ ecal_la_LIBADD = $(ECAL_LIBS)
+ ecal_la_SOURCES = \
+ 	ecalmodule.c \
+@@ -24,7 +24,7 @@
+ 	evo-calendar.h
+ 
+ ebook_la_LDFLAGS = -module -avoid-version -export-symbols-regex initebook
+-ebook_la_CFLAGS = $(INCLUDES) $(EBOOK_CFLAGS)
++ebook_la_CFLAGS = $(INCLUDES) $(EBOOK_CFLAGS) $(BASECFLAGS)
+ ebook_la_LIBADD = $(EBOOK_LIBS)
+ ebook_la_SOURCES = \
+ 	ebookmodule.c \

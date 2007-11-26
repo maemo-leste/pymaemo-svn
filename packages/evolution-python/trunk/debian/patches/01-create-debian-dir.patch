@@ -1,8 +1,17 @@
-Index: evolution-python-0.0.3/debian/changelog
+Index: evolution-python-0.0.4/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.3/debian/changelog	2007-08-21 09:29:23.000000000 -0300
-@@ -0,0 +1,18 @@
++++ evolution-python-0.0.4/debian/changelog	2007-11-26 15:42:52.000000000 -0300
+@@ -0,0 +1,27 @@
++evolution-python (0.0.4-1osso1) unstable; urgency=low
++
++  * Bump to 0.0.4-1osso1
++  * Added EBook.get_contacts
++  * Added EVCard and EVCardAttribute types (with most methods)
++  * Cleaned up warnings when building.
++
++ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 26 Nov 2007 15:42:26 -0300
++
 +evolution-python (0.0.3-1osso1) unstable; urgency=low
 +
 +  * Bump version to 0.0.3-1osso1. 
@@ -21,16 +30,16 @@ Index: evolution-python-0.0.3/debian/changelog
 +
 + -- Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>  Mon, 04 Jun 2007 17:05:00 -0300
 +
-Index: evolution-python-0.0.3/debian/compat
+Index: evolution-python-0.0.4/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.3/debian/compat	2007-08-20 16:16:40.000000000 -0300
++++ evolution-python-0.0.4/debian/compat	2007-11-26 15:42:25.000000000 -0300
 @@ -0,0 +1 @@
 +4
-Index: evolution-python-0.0.3/debian/control
+Index: evolution-python-0.0.4/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.3/debian/control	2007-08-20 16:16:40.000000000 -0300
++++ evolution-python-0.0.4/debian/control	2007-11-26 15:42:25.000000000 -0300
 @@ -0,0 +1,17 @@
 +Source: evolution-python
 +Priority: optional
@@ -49,10 +58,10 @@ Index: evolution-python-0.0.3/debian/control
 +Depends: python2.5-evolution (= ${Source-Version})
 +Description: Examples and header files for Python bindings for Libosso library
 +
-Index: evolution-python-0.0.3/debian/copyright
+Index: evolution-python-0.0.4/debian/copyright
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.3/debian/copyright	2007-08-20 16:16:40.000000000 -0300
++++ evolution-python-0.0.4/debian/copyright	2007-11-26 15:42:25.000000000 -0300
 @@ -0,0 +1,12 @@
 +This package was debianized by Lauro Moura Maranhao Neto <lauro.neto@indt.org.br> on
 +Thu, 04 Jun 2007 17:06:17 -0300.
@@ -66,10 +75,10 @@ Index: evolution-python-0.0.3/debian/copyright
 +License:
 +
 +See COPYING file.
-Index: evolution-python-0.0.3/debian/rules
+Index: evolution-python-0.0.4/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.3/debian/rules	2007-08-20 16:16:40.000000000 -0300
++++ evolution-python-0.0.4/debian/rules	2007-11-26 15:42:25.000000000 -0300
 @@ -0,0 +1,84 @@
 +#!/usr/bin/make -f
 +

@@ -1,0 +1,1023 @@
+Index: evolution-python-0.0.4/src/ebook.defs
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook.defs	2007-11-26 13:44:14.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.defs	2007-11-26 13:44:14.000000000 -0300
+@@ -442,4 +442,387 @@
+   )
+ )
+ 
++;;------------------------------------------------------------------------------
++;; EVCard
++;;------------------------------------------------------------------------------
++
++;; Enumerations and flags ...
++
++(define-enum EFormat
++  (in-module "EVCard")
++  (c-name "EVCardFormat")
++  (gtype-id "E_TYPE_VCARD_FORMAT")
++  (values
++    '("21" "EVC_FORMAT_VCARD_21")
++    '("30" "EVC_FORMAT_VCARD_30")
++  )
++)
++
++
++;; From e-vcard.h
++
++(define-function e_vcard_get_type
++  (c-name "e_vcard_get_type")
++  (return-type "GType")
++)
++
++(define-method construct
++  (of-object "EVCard")
++  (c-name "e_vcard_construct")
++  (return-type "none")
++  (parameters
++    '("const-char*" "str")
++  )
++)
++
++(define-function e_vcard_new
++  (c-name "e_vcard_new")
++  (is-constructor-of "EVcard")
++  (return-type "EVCard*")
++)
++
++(define-function e_vcard_new_from_string
++  (c-name "e_vcard_new_from_string")
++  (return-type "EVCard*")
++  (parameters
++    '("const-char*" "str")
++  )
++)
++
++(define-method to_string
++  (of-object "EVCard")
++  (c-name "e_vcard_to_string")
++  (return-type "char*")
++  (parameters
++    '("EVCardFormat" "format")
++  )
++)
++
++(define-method dump_structure
++  (of-object "EVCard")
++  (c-name "e_vcard_dump_structure")
++  (return-type "none")
++)
++
++(define-function e_vcard_attribute_new
++  (c-name "e_vcard_attribute_new")
++  (is-constructor-of "EVcardAttribute")
++  (return-type "EVCardAttribute*")
++  (parameters
++    '("const-char*" "attr_group")
++    '("const-char*" "attr_name")
++  )
++)
++
++(define-method free
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_free")
++  (return-type "none")
++)
++
++(define-method copy
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_copy")
++  (return-type "EVCardAttribute*")
++)
++
++(define-method remove_attributes
++  (of-object "EVCard")
++  (c-name "e_vcard_remove_attributes")
++  (return-type "none")
++  (parameters
++    '("const-char*" "attr_group")
++    '("const-char*" "attr_name")
++  )
++)
++
++(define-method remove_attribute
++  (of-object "EVCard")
++  (c-name "e_vcard_remove_attribute")
++  (return-type "none")
++  (parameters
++    '("EVCardAttribute*" "attr")
++  )
++)
++
++(define-method add_attribute
++  (of-object "EVCard")
++  (c-name "e_vcard_add_attribute")
++  (return-type "none")
++  (parameters
++    '("EVCardAttribute*" "attr")
++  )
++)
++
++; These add_attribute_with* will be handled by the add_attribute override
++;(define-method add_attribute_with_value
++;  (of-object "EVCard")
++;  (c-name "e_vcard_add_attribute_with_value")
++;  (return-type "none")
++;  (parameters
++;    '("EVCardAttribute*" "attr")
++;    '("const-char*" "value")
++;  )
++;)
++
++;(define-method add_attribute_with_values
++;  (of-object "EVCard")
++;  (c-name "e_vcard_add_attribute_with_values")
++;  (return-type "none")
++;  (parameters
++;    '("EVCardAttribute*" "attr")
++;  )
++;  (varargs #t)
++;)
++
++(define-method add_value
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_add_value")
++  (return-type "none")
++  (parameters
++    '("const-char*" "value")
++  )
++)
++
++(define-method add_value_decoded
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_add_value_decoded")
++  (return-type "none")
++  (parameters
++    '("const-char*" "value")
++    '("int" "len")
++  )
++)
++
++(define-method add_values
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_add_values")
++  (return-type "none")
++  (parameters
++  )
++  (varargs #t)
++)
++
++(define-method remove_value
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_remove_value")
++  (return-type "none")
++  (parameters
++    '("const-char*" "s")
++  )
++)
++
++(define-method remove_values
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_remove_values")
++  (return-type "none")
++)
++
++(define-method remove_params
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_remove_params")
++  (return-type "none")
++)
++
++(define-method remove_param
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_remove_param")
++  (return-type "none")
++  (parameters
++    '("const-char*" "param_name")
++  )
++)
++
++(define-method remove_param_value
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_remove_param_value")
++  (return-type "none")
++  (parameters
++    '("const-char*" "param_name")
++    '("const-char*" "s")
++  )
++)
++
++(define-function e_vcard_attribute_param_new
++  (c-name "e_vcard_attribute_param_new")
++  (is-constructor-of "EVcardAttributeParam")
++  (return-type "EVCardAttributeParam*")
++  (parameters
++    '("const-char*" "name")
++  )
++)
++
++(define-method free
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_free")
++  (return-type "none")
++)
++
++(define-method copy
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_copy")
++  (return-type "EVCardAttributeParam*")
++)
++
++(define-method add_param
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_add_param")
++  (return-type "none")
++  (parameters
++    '("EVCardAttributeParam*" "param")
++  )
++)
++
++(define-method add_param_with_value
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_add_param_with_value")
++  (return-type "none")
++  (parameters
++    '("EVCardAttributeParam*" "param")
++    '("const-char*" "value")
++  )
++)
++
++(define-method add_param_with_values
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_add_param_with_values")
++  (return-type "none")
++  (parameters
++    '("EVCardAttributeParam*" "param")
++  )
++  (varargs #t)
++)
++
++(define-method add_value
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_add_value")
++  (return-type "none")
++  (parameters
++    '("const-char*" "value")
++  )
++)
++
++(define-method add_values
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_add_values")
++  (return-type "none")
++  (parameters
++  )
++  (varargs #t)
++)
++
++(define-method remove_values
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_remove_values")
++  (return-type "none")
++)
++
++(define-method get_attribute
++  (of-object "EVCard")
++  (c-name "e_vcard_get_attribute")
++  (return-type "EVCardAttribute*")
++  (parameters
++    '("const-char*" "name")
++  )
++)
++
++(define-method get_attributes
++  (of-object "EVCard")
++  (c-name "e_vcard_get_attributes")
++  (return-type "GList*")
++)
++
++(define-method get_group
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_group")
++  (return-type "const-char*")
++)
++
++(define-method get_name
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_name")
++  (return-type "const-char*")
++)
++
++(define-method get_values
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_values")
++  (return-type "GList*")
++)
++
++(define-method get_values_decoded
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_values_decoded")
++  (return-type "GList*")
++)
++
++(define-method is_single_valued
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_is_single_valued")
++  (return-type "gboolean")
++)
++
++(define-method get_value
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_value")
++  (return-type "char*")
++)
++
++(define-method get_value_decoded
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_value_decoded")
++  (return-type "GString*")
++)
++
++(define-method get_params
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_params")
++  (return-type "GList*")
++)
++
++(define-method get_param
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_get_param")
++  (return-type "GList*")
++  (parameters
++    '("const-char*" "name")
++  )
++)
++
++(define-method get_name
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_get_name")
++  (return-type "const-char*")
++)
++
++(define-method get_values
++  (of-object "EVCardAttributeParam")
++  (c-name "e_vcard_attribute_param_get_values")
++  (return-type "GList*")
++)
++
++(define-method has_type
++  (of-object "EVCardAttribute")
++  (c-name "e_vcard_attribute_has_type")
++  (return-type "gboolean")
++  (parameters
++    '("const-char*" "typestr")
++  )
++)
++
++(define-function e_vcard_escape_string
++  (c-name "e_vcard_escape_string")
++  (return-type "char*")
++  (parameters
++    '("const-char*" "s")
++  )
++)
++
++(define-function e_vcard_unescape_string
++  (c-name "e_vcard_unescape_string")
++  (return-type "char*")
++  (parameters
++    '("const-char*" "s")
++  )
++)
+ 
+Index: evolution-python-0.0.4/src/ebook.override
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook.override	2007-11-26 13:44:14.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.override	2007-11-26 14:02:41.000000000 -0300
+@@ -45,6 +45,30 @@
+ 	return result;
+ }
+ 
++static PyObject *
++glist_to_pylist(GList *list, PyObject *(*converter)(gpointer))
++{
++    PyObject *pylist;
++    GList *node;
++    int size;
++    int i;
++
++    size = g_list_length(list);
++    pylist = PyList_New(size);
++    node = list;
++
++    for (i=0; i < size; i++){
++        PyObject *pyobj;
++
++        pyobj = converter(node->data);
++        PyList_SetItem(pylist, i, pyobj);
++
++        node = node->next;
++    }
++
++    return pylist;
++}
++
+ /* EBookQuery */
+ 
+ typedef struct {
+@@ -425,38 +449,307 @@
+ 	return pyebook_query_new(e_book_query_copy(self->query));
+ }
+ 
+-/*** Types, helper functions and callbacks for EBookView ***/
++/*** EVCard Attribute ***/
++typedef struct {
++    PyObject_HEAD
++    EVCardAttribute *attribute;
++} PyEVCardAttribute;
++
++static PyObject *pyevcard_attribute_new(EVCardAttribute *attr);
++
++static void PyEVCardAttribute_dealloc(PyEVCardAttribute *self);
++static PyObject *PyEVCardAttribute_new(PyTypeObject *type,
++                                       PyObject *args,
++                                       PyObject *kwargs);
++static int PyEVCardAttribute_init(PyEVCardAttribute *self,
++                                  PyObject *args,
++                                  PyObject *kwargs);
++
++/* Method declarations */
++
++static PyObject *pyevcard_attribute_add_value(PyEVCardAttribute *self,
++                                              PyObject *args,
++                                              PyObject *kwargs);
++static PyObject *pyevcard_attribute_remove_value(PyEVCardAttribute *self,
++                                                 PyObject *args,
++                                                 PyObject *kwargs);
++static PyObject *pyevcard_attribute_remove_values(PyEVCardAttribute *self);
++static PyObject *pyevcard_attribute_get_group(PyEVCardAttribute *self);
++static PyObject *pyevcard_attribute_get_name(PyEVCardAttribute *self);
++static PyObject *pyevcard_attribute_get_value(PyEVCardAttribute *self);
++static PyObject *pyevcard_attribute_get_values(PyEVCardAttribute *self);
++static PyObject *pyevcard_attribute_is_single_valued(PyEVCardAttribute *self);
++
++
++/* FIXME: The add_values method wasn't implemented directly as it takes
++ * a variable number of arguments.
++ *
++ * It can be optionally implemented as consecutive calls to add_value */
++static PyMethodDef PyEVCardAttribute_methods[] = {
++    {"add_value",
++        (PyCFunctionWithKeywords)pyevcard_attribute_add_value,
++        METH_KEYWORDS | METH_VARARGS,
++        "Add value to the list of values."},
++    {"remove_value",
++        (PyCFunctionWithKeywords)pyevcard_attribute_remove_value,
++        METH_KEYWORDS | METH_VARARGS,
++        "Remove value from the list of values."},
++    {"remove_values",
++        (PyCFunction)pyevcard_attribute_remove_values,
++        METH_NOARGS,
++        "Removes all values from this attribute."},
++    {"get_group",
++        (PyCFunction)pyevcard_attribute_get_group,
++        METH_NOARGS,
++        "Get the group name for this attribute."},
++    {"get_name",
++        (PyCFunction)pyevcard_attribute_get_name,
++        METH_NOARGS,
++        "Gets the name of this attr."},
++    {"get_value",
++        (PyCFunction)pyevcard_attribute_get_value,
++        METH_NOARGS,
++        "Gets the values of a single-valued attribute."},
++    {"get_values",
++        (PyCFunction)pyevcard_attribute_get_values,
++        METH_NOARGS,
++        "Gets the list of values from attribute."},
++    {"is_single_valued",
++        (PyCFunction)pyevcard_attribute_is_single_valued,
++        METH_NOARGS,
++        "Returns whether this attribute is single-valued or not."},
++    {NULL}
++};
+ 
+-/* Struct used to pack data passed to EBookView signals */
+-struct bookview_cb_t{
+-    PyObject *(*converter)(gpointer);
+-    PyObject *callback;
+-    PyObject *extra_data;
++PyTypeObject PyEVCardAttribute_Type = {
++	PyObject_HEAD_INIT(NULL)
++	0,                  /* ob_size */
++	"ebook.EVCardAttribute",          /* tp_name */
++	sizeof(PyEVCardAttribute),       /* tp_basicsize */
++	0,                  /* tp_itemsize */
++	/* methods */
++	(destructor)PyEVCardAttribute_dealloc,   /* tp_dealloc */
++	(printfunc)0,           /* tp_print */
++	(getattrfunc)0,   /* tp_getattr */
++	(setattrfunc)0,         /* tp_setattr */
++	(cmpfunc)0,  /* tp_compare */
++	(reprfunc)0,            /* tp_repr */
++	0,                  /* tp_as_number */
++	0,                  /* tp_as_sequence */
++	0,                  /* tp_as_mapping */
++	(hashfunc)0,    /* tp_hash */
++	(ternaryfunc)0,         /* tp_call */
++	0,            /* tp_str */
++	(getattrofunc)0,            /* tp_getattro */
++	(setattrofunc)0,            /* tp_setattro */
++	0,                  /* tp_as_buffer */
++	Py_TPFLAGS_DEFAULT,         /* tp_flags */
++	NULL, /* Documentation string */
++	(traverseproc)0,            /* tp_traverse */
++	(inquiry)0,             /* tp_clear */
++	(richcmpfunc)0,         /* tp_richcompare */
++	0,                  /* tp_weaklistoffset */
++	(getiterfunc)0,         /* tp_iter */
++	(iternextfunc)0,            /* tp_iternext */
++	PyEVCardAttribute_methods,       /* tp_methods */
++	0,                  /* tp_members */
++	0,       /* tp_getset */
++	(PyTypeObject *)0,          /* tp_base */
++	(PyObject *)0,          /* tp_dict */
++	0,                  /* tp_descr_get */
++	0,                  /* tp_descr_set */
++	0,                  /* tp_dictoffset */
++	(initproc)PyEVCardAttribute_init,            /* tp_init */
++	(allocfunc)0,           /* tp_alloc */
++	(newfunc)0, /*PyEVCardAttribute_new, */            /* tp_new */
++	0,                  /* tp_free */
++	(inquiry)0,             /* tp_is_gc */
++	(PyObject *)0,          /* tp_bases */
+ };
+ 
++/* Utility function to create a new Python object from a plain struct */
+ static PyObject *
+-glist_to_pylist(GList *list, PyObject *(*converter)(gpointer))
++pyevcard_attribute_new(EVCardAttribute *attr)
+ {
+-    PyObject *pylist;
+-    GList *node;
+-    int size;
+-    int i;
++    PyEVCardAttribute *self;
+ 
+-    size = g_list_length(list);
+-    pylist = PyList_New(size);
+-    node = list;
++    self = (PyEVCardAttribute *)PyObject_NEW(PyEVCardAttribute,
++                                             &PyEVCardAttribute_Type);
+ 
+-    for (i=0; i < size; i++){
+-        PyObject *pyobj;
++    if (self == NULL)
++        return NULL;
+ 
+-        pyobj = converter(node->data);
+-        PyList_SetItem(pylist, i, pyobj);
++    self->attribute = attr;
+ 
+-        node = node->next;
++    return (PyObject *)self;
++}
++
++static PyObject *
++PyEVCardAttribute_new(PyTypeObject *type, PyObject *args, PyObject *kwargs)
++{
++    PyEVCardAttribute *self;
++
++    self = (PyEVCardAttribute *)type->tp_alloc(type, 0);
++    if (self != NULL) {
++        self->attribute = e_vcard_attribute_new("", "");
++        if (self->attribute == NULL) {
++            Py_DECREF(self);
++            return NULL;
++        }
+     }
+ 
+-    return pylist;
++    return (PyObject *)self;
++}
++
++static int
++PyEVCardAttribute_init(PyEVCardAttribute *self,
++                       PyObject *args,
++                       PyObject *kwargs)
++{
++    static char *kwlist[] = { "group", "name", NULL };
++    char *group;
++    char *name;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "ss:EVCardAttribute.__init__",
++                                    kwlist,
++                                    &group, &name))
++        return -1;
++
++    if (self->attribute)
++        e_vcard_attribute_free(self->attribute);
++
++    self->attribute = e_vcard_attribute_new(group, name);
++
++    return 0;
++}
++
++
++static void
++PyEVCardAttribute_dealloc(PyEVCardAttribute *self)
++{
++    if (self == NULL)
++        return;
++
++    if (self->attribute != NULL)
++        e_vcard_attribute_free(self->attribute);
++
++    PyObject_DEL(self);
++}
++
++
++
++/* EVCardAttribute methods */
++
++static PyObject *
++pyevcard_attribute_add_value(PyEVCardAttribute *self,
++                             PyObject *args,
++                             PyObject *kwargs)
++{
++    static char *kwlist[] = { "value", NULL };
++    char *value;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "s:EVCardAttribute.add_value",
++                                    kwlist, &value))
++        return NULL;
++
++    e_vcard_attribute_add_value(self->attribute, value);
++
++    Py_RETURN_NONE;
++}
++
++static PyObject *
++pyevcard_attribute_remove_value(PyEVCardAttribute *self,
++                                                 PyObject *args,
++                                                 PyObject *kwargs)
++{
++    static char *kwlist[] = { "value", NULL };
++    char *value;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "s:EVCardAttribute.remove_value",
++                                    kwlist, &value))
++        return NULL;
++
++    e_vcard_attribute_remove_value(self->attribute, value);
++
++    Py_RETURN_NONE;
++}
++
++static PyObject *
++pyevcard_attribute_remove_values(PyEVCardAttribute *self)
++{
++    e_vcard_attribute_remove_values(self->attribute);
++
++    Py_RETURN_NONE;
++}
++
++static PyObject *
++pyevcard_attribute_get_group(PyEVCardAttribute *self)
++{
++    gchar *name;
++
++    name = e_vcard_attribute_get_group(self->attribute);
++
++    return PyString_FromString(name);
+ }
++static PyObject *
++pyevcard_attribute_get_name(PyEVCardAttribute *self)
++{
++    gchar *name;
++
++    name = e_vcard_attribute_get_name(self->attribute);
++
++    return PyString_FromString(name);
++}
++
++static PyObject *
++pyevcard_attribute_get_value(PyEVCardAttribute *self)
++{
++    gchar *name;
++
++    name = e_vcard_attribute_get_value(self->attribute);
++
++    if (name)
++        return PyString_FromString(name);
++    else {
++        Py_RETURN_NONE;
++    }
++}
++
++static PyObject *
++pyevcard_attribute_get_values(PyEVCardAttribute *self)
++{
++    GList *values;
++
++    values = e_vcard_attribute_get_values(self->attribute);
++
++    return glist_to_pylist(values, PyString_FromString);
++}
++
++static PyObject *
++pyevcard_attribute_is_single_valued(PyEVCardAttribute *self)
++{
++    gboolean single;
++
++    single = e_vcard_attribute_is_single_valued(self->attribute);
++
++    if (single) {
++        Py_RETURN_TRUE;
++    } else {
++        Py_RETURN_FALSE;
++    }
++}
++
++/*** Types, helper functions and callbacks for EBookView ***/
++
++/* Struct used to pack data passed to EBookView signals */
++struct bookview_cb_t{
++    PyObject *(*converter)(gpointer);
++    PyObject *callback;
++    PyObject *extra_data;
++};
+ 
+ PyObject *econtact_to_pycontact(EContact *contact)
+ {
+@@ -531,6 +824,12 @@
+ 	if (PyType_Ready(&PyEBookQuery_Type) < 0)
+ 		return;
+ 
++    PyEVCardAttribute_Type.tp_alloc = PyType_GenericAlloc;
++	PyEVCardAttribute_Type.tp_new = PyType_GenericNew;
++	if (PyType_Ready(&PyEVCardAttribute_Type) < 0)
++		return;
++
++
+ %%
+ modulename ebook
+ %%
+@@ -956,3 +1255,125 @@
+ 
+     return pycontacts;
+ }
++%%
++override e_vcard_add_attribute kwargs
++static PyObject *
++_wrap_e_vcard_add_attribute(PyGObject *self,
++                            PyObject *args,
++                            PyObject *kwargs)
++{
++    static char *kwlist[] = { "attr", "values", NULL };
++    PyEVCardAttribute *pyattr;
++    PyObject *pyvalues = NULL;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "O!O:EVCard.add_attribute",
++                                    kwlist,
++                                    &PyEVCardAttribute_Type, &pyattr,
++                                    &pyvalues))
++        return NULL;
++
++    if (pyvalues == NULL || pyvalues == Py_None)
++        e_vcard_add_attribute(E_VCARD(self->obj), pyattr->attribute);
++    else if (PyString_Check(pyvalues)) {
++        e_vcard_add_attribute_with_value(E_VCARD(self->obj),
++                                         pyattr->attribute,
++                                         PyString_AsString(pyvalues));
++    } else if (PyList_Check(pyvalues)){
++        /* values is a list. Add the attribute with the first value and
++         * iterate through the values adding then to the attribute.
++         */
++        PyObject *head;
++        int len;
++        int i;
++
++        head = PyList_GetItem(pyvalues, 0);
++
++        if (!PyString_Check(head)) {
++            PyErr_SetString(PyExc_TypeError,
++                            "values must be a string or list of strings.");
++            return NULL;
++        }
++
++        e_vcard_add_attribute_with_value(E_VCARD(self->obj),
++                                         pyattr->attribute,
++                                         PyString_AsString(head));
++
++        len = PyList_Size(pyvalues);
++
++        for (i = 1; i < len; i++) {
++            PyObject *obj;
++
++            obj = PyList_GetItem(pyvalues, i);
++
++            if (!PyString_Check(obj))
++                continue;
++
++            e_vcard_attribute_add_value(pyattr->attribute,
++                                        PyString_AsString(obj));
++        }
++
++    } else {
++        PyErr_SetString(PyExc_TypeError,
++                        "values must be None, a string or list of strings.");
++        return NULL;
++    }
++
++    Py_RETURN_NONE;
++}
++%%
++override e_vcard_remove_attribute kwargs
++static PyObject *
++_wrap_e_vcard_remove_attribute(PyGObject *self,
++                               PyObject *args,
++                               PyObject *kwargs)
++{
++    static char *kwlist[] = { "attr", NULL };
++    PyEVCardAttribute *pyattr;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "O!:EVCard.remove_attribute",
++                                    kwlist,
++                                    &PyEVCardAttribute_Type, &pyattr))
++        return NULL;
++
++    e_vcard_remove_attribute(E_VCARD(self->obj),
++                             pyattr->attribute);
++
++    Py_RETURN_NONE;
++}
++%%
++override e_vcard_get_attribute kwargs
++static PyObject *
++_wrap_e_vcard_get_attribute(PyGObject *self,
++                            PyObject *args,
++                            PyObject *kwargs)
++{
++    static char *kwlist[] = { "name", NULL };
++    gchar *name;
++    EVCardAttribute *attr;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "s:EVCard.get_attribute",
++                                    kwlist, &name))
++        return NULL;
++
++    attr = e_vcard_get_attribute(E_VCARD(self->obj), name);
++
++    if (attr == NULL)
++        Py_RETURN_NONE;
++
++    return pyevcard_attribute_new(attr);
++}
++%%
++override e_vcard_get_attributes noargs
++static PyObject *
++_wrap_e_vcard_get_attributes(PyGObject *self)
++{
++    GList *attrs;
++    EVCardAttribute *attr;
++
++    attrs = e_vcard_get_attributes(E_VCARD(self->obj));
++
++    return glist_to_pylist(attrs, pyevcard_attribute_new);
++}
+Index: evolution-python-0.0.4/src/ebookmodule.c
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebookmodule.c	2007-11-26 13:38:50.000000000 -0300
++++ evolution-python-0.0.4/src/ebookmodule.c	2007-11-26 13:44:14.000000000 -0300
+@@ -27,6 +27,7 @@
+ 
+ extern PyMethodDef pyebook_functions[];
+ extern PyObject PyEBookQuery_Type;
++extern PyObject PyEVCardAttribute_Type;
+ 
+ DL_EXPORT(void)
+ initebook(void)
+@@ -51,6 +52,7 @@
+                                      EVOLUTION_PATCH_VERSION));
+     
+     PyModule_AddObject(m, "EBookQuery", (PyObject *)&PyEBookQuery_Type);
++    PyModule_AddObject(m, "EVCardAttribute", (PyObject *)&PyEVCardAttribute_Type);
+ 
+     if (PyErr_Occurred())
+         Py_FatalError("could not initialise module _ebook");
+Index: evolution-python-0.0.4/src/ebook-enums.c
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook-enums.c	2007-11-26 13:44:14.000000000 -0300
++++ evolution-python-0.0.4/src/ebook-enums.c	2007-11-26 13:44:14.000000000 -0300
+@@ -178,3 +178,25 @@
+ 
+ /* Generated data ends here */
+ 
++
++/* Generated data (by glib-mkenums) */
++
++
++/* enumerations from "/usr/include/evolution-data-server-1.4/libebook/e-vcard.h" */
++GType
++e_vcard_format_get_type (void)
++{
++  static GType etype = 0;
++  if (etype == 0) {
++    static const GEnumValue values[] = {
++      { EVC_FORMAT_VCARD_21, "EVC_FORMAT_VCARD_21", "21" },
++      { EVC_FORMAT_VCARD_30, "EVC_FORMAT_VCARD_30", "30" },
++      { 0, NULL, NULL }
++    };
++    etype = g_enum_register_static ("EVCardFormat", values);
++  }
++  return etype;
++}
++
++/* Generated data ends here */
++
+Index: evolution-python-0.0.4/src/ebook-enums.h
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook-enums.h	2007-11-26 13:38:50.000000000 -0300
++++ evolution-python-0.0.4/src/ebook-enums.h	2007-11-26 13:44:14.000000000 -0300
+@@ -39,3 +39,12 @@
+ /* Generated data ends here */
+ 
+ #endif
++
++/* Generated data (by glib-mkenums) */
++
++/* enumerations from "/usr/include/evolution-data-server-1.4/libebook/e-vcard.h" */
++GType e_vcard_format_get_type (void) G_GNUC_CONST;
++#define E_TYPE_VCARD_FORMAT (e_vcard_format_get_type())
++
++/* Generated data ends here */
++
+Index: evolution-python-0.0.4/test/evcard_attr.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ evolution-python-0.0.4/test/evcard_attr.py	2007-11-26 13:44:14.000000000 -0300
+@@ -0,0 +1,57 @@
++#!/usr/bin/env python2.5
++
++import unittest
++
++from evolution import ebook
++
++class TestEVCardAttribute(unittest.TestCase):
++
++    def testConstructorSucces(self):
++        a = ebook.EVCardAttribute("foo", "bar")
++        self.assert_(a)
++
++    def testConstructorFails(self):
++        self.assertRaises(TypeError, ebook.EVCardAttribute, "group", 4)
++        self.assertRaises(TypeError, ebook.EVCardAttribute, 4, "group")
++
++        self.assertRaises(TypeError, ebook.EVCardAttribute, "group")
++
++    def testGroupAndName(self):
++        a = ebook.EVCardAttribute("group", "name")
++        self.assertEqual(a.get_group().lower(), "group")
++        self.assertEqual(a.get_name().lower(), "name")
++
++    def testSingleValued(self):
++        a = ebook.EVCardAttribute("group", "name")
++        a.add_value("test value")
++
++        self.assert_(a.is_single_valued())
++
++        val = a.get_value()
++        self.assertEqual(val.lower(), "test value")
++
++        a.remove_value("test value")
++
++        val = a.get_value()
++        self.assertEqual(val, None)
++
++    def testMultiValues(self):
++        a = ebook.EVCardAttribute("group", "name")
++        a.add_value("first")
++        a.add_value("second")
++        a.add_value("third")
++        a.add_value("fourth")
++
++        vals = a.get_values()
++        self.assertEqual(vals, ["first", "second", "third", "fourth"])
++
++        a.remove_value("third")
++        vals = a.get_values()
++        self.assertEqual(vals, ["first", "second", "fourth"])
++
++        a.remove_values()
++        vals = a.get_values()
++        self.assertEqual([], vals)
++
++if __name__ == "__main__":
++    unittest.main()

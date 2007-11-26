@@ -1,0 +1,87 @@
+Index: evolution-python-0.0.4/src/ebook.defs
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook.defs	2007-11-12 13:53:18.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.defs	2007-11-26 13:38:39.000000000 -0300
+@@ -242,6 +242,15 @@
+   )
+ )
+ 
++(define-method get_contacts
++  (of-object "EBook")
++  (c-name "e_book_get_contacts")
++  (return-type "GList*")
++  (parameters
++    '("EBookQuery*" "query")
++  )
++)
++
+ (define-method get_changed_contacts
+   (of-object "EBook")
+   (c-name "evo_addressbook_get_changed_contacts")
+Index: evolution-python-0.0.4/src/ebook.override
+===================================================================
+--- evolution-python-0.0.4.orig/src/ebook.override	2007-11-12 13:53:18.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.override	2007-11-26 13:38:39.000000000 -0300
+@@ -923,4 +923,36 @@
+     Py_INCREF(Py_None);
+     return Py_None;
+ }
++%%
++override e_book_get_contacts kwargs
++static PyObject *
++_wrap_e_book_get_contacts(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] = { "query", NULL };
++    PyEBookQuery *pyquery;
++    GList *contacts;
++    PyObject *pycontacts;
++    gboolean ret;
+ 
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                    "O!:EBook.get_contacts",
++                                    kwlist,
++                                    &PyEBookQuery_Type, &pyquery))
++        return NULL;
++
++    ret = e_book_get_contacts(E_BOOK(self->obj),
++                              pyquery->query,
++                              &contacts,
++                              NULL);
++
++    if (!ret) {
++        PyErr_SetString(PyExc_RuntimeError, "Unknown error");
++        return NULL;
++    }
++
++    pycontacts = glist_to_pylist(contacts, econtact_to_pycontact);
++
++    g_list_free(contacts);
++
++    return pycontacts;
++}
+Index: evolution-python-0.0.4/test/get_contacts.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ evolution-python-0.0.4/test/get_contacts.py	2007-11-12 17:55:13.000000000 -0300
+@@ -0,0 +1,21 @@
++#!/usr/bin/env python2.5
++
++import evolution.ebook as ebook
++
++def main():
++    book = ebook.open_addressbook("default")
++
++    query = ebook.EBookQuery.field_test(ebook.CONTACT_CATEGORY_LIST, ebook.BOOK_QUERY_BEGINS_WITH, "gru")
++
++    contacts = book.get_contacts(query)
++
++    for contact in contacts:
++        attrs = contact.get_attributes()
++        for attr in attrs:
++            print "Getting values for %s", attr.get_name()
++            print attr.get_values()
++            print
++        print
++
++if __name__ == "__main__":
++    main()
