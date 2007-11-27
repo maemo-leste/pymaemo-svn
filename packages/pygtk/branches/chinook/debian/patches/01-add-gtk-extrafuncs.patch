@@ -1,8 +1,8 @@
-Index: gtk/Makefile.am
+Index: pygtk-2.12.0/gtk/Makefile.am
 ===================================================================
---- python-gtk2-2.10.4.orig/gtk/Makefile.am	2007-05-30 16:28:47.000000000 -0300
-+++ python-gtk2-2.10.4/gtk/Makefile.am	2007-05-30 16:28:53.000000000 -0300
-@@ -130,7 +130,7 @@
+--- pygtk-2.12.0.orig/gtk/Makefile.am	2007-09-15 12:00:42.000000000 -0300
++++ pygtk-2.12.0/gtk/Makefile.am	2007-11-27 17:20:23.000000000 -0300
+@@ -138,7 +138,7 @@
  if BUILD_GTK
  pygtkexec_LTLIBRARIES += _gtk.la
  defs_DATA += $(GDK_DEFS) $(GDK_TYPES_DEFS) $(GTK_DEFS) $(GTK_TYPES_DEFS) \
@@ -11,3 +11,26 @@ Index: gtk/Makefile.am
  endif
  
  # libglade module
+Index: pygtk-2.12.0/gtk/gtk-extrafuncs.defs
+===================================================================
+--- pygtk-2.12.0.orig/gtk/gtk-extrafuncs.defs	2007-09-15 12:00:42.000000000 -0300
++++ pygtk-2.12.0/gtk/gtk-extrafuncs.defs	2007-11-27 17:28:46.000000000 -0300
+@@ -126,3 +126,18 @@
+   (return-type "GtkCellRenderer*")
+ )
+ 
++;; glib functions
++
++(define-function set_application_name
++  (c-name "g_set_application_name")
++  (return-type "none")
++  (parameters
++    '("const-gchar*" "application")
++  )
++)
++
++(define-function get_application_name
++  (c-name "g_get_application_name")
++  (return-type "const-gchar*")
++)
++

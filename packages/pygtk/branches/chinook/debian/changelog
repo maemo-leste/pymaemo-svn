@@ -1,3 +1,9 @@
+python-gtk2 (2.12.0-1osso6) unstable; urgency=low
+
+  * Added gtk.[get|set]_application_name binding the same glib functions.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 27 Nov 2007 17:33:34 -0300
+
 python-gtk2 (2.12.0-1osso5) unstable; urgency=low
 
   * downgrade to glade2.4
