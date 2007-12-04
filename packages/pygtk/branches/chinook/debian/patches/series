@@ -4,3 +4,4 @@
 04-tap-and-hold-support.patch
 05-glade-support.patch
 06-add-autogen-and-m4.patch
+07-python-launcher-support.patch
