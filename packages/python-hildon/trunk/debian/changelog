@@ -1,3 +1,9 @@
+python-hildon (0.8.7-1osso6) unstable; urgency=low
+
+  * fix #1720 Adding hildon keysyms (hildon.KEY_*)
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue,  4 Dec 2007 16:45:50 -0300
+
 python-hildon (0.8.7-1osso5) unstable; urgency=low
 
   * fix #946 - Exporting enumerations

@@ -31,6 +31,23 @@ void pyhildon_register_classes (PyObject *d);
 extern void pyhildon_add_constants(PyObject *module, const gchar *strip_prefix);
 extern PyMethodDef pyhildon_functions[];
 
+void _add_keysyms(PyObject *module)
+{
+    PyModule_AddIntConstant(module, "KEY_LEFT", 0xff51);
+    PyModule_AddIntConstant(module, "KEY_UP", 0xff52);
+    PyModule_AddIntConstant(module, "KEY_RIGHT", 0xff53);
+    PyModule_AddIntConstant(module, "KEY_DOWN", 0xff54);
+
+    PyModule_AddIntConstant(module, "KEY_SELECT", 0xff0d);
+    PyModule_AddIntConstant(module, "KEY_MENU", 0xffc1);
+    PyModule_AddIntConstant(module, "KEY_HOME", 0xffc2);
+    PyModule_AddIntConstant(module, "KEY_ESC", 0xff1b);
+    PyModule_AddIntConstant(module, "KEY_FULLSCREEN", 0xffc3);
+    PyModule_AddIntConstant(module, "KEY_INCREASE", 0xffc4);
+    PyModule_AddIntConstant(module, "KEY_DECREASE", 0xffc5);
+    return;
+}
+
 DL_EXPORT(void)
 inithildon (void)
 {
@@ -44,4 +61,5 @@ inithildon (void)
     
     pyhildon_register_classes(d);
     pyhildon_add_constants(m, "HILDON_");
+    _add_keysyms(m);
 }
