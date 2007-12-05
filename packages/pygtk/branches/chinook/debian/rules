@@ -19,11 +19,9 @@ build: build-stamp
 build-stamp:
 	dh_testdir
 
-	automake
-	autoconf
 	CFLAGS="$(CFLAGS)" \
 	PYTHON=`which $(PYTHON)` \
-		./configure \
+		./autogen.sh \
 			--prefix=/usr \
 			--enable-thread \
 			--disable-docs \
