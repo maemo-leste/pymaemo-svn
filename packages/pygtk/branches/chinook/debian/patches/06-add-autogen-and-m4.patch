@@ -2,7 +2,7 @@ Index: python-gtk2-2.12.0/autogen.sh
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ python-gtk2-2.12.0/autogen.sh	2007-12-04 15:00:02.000000000 -0300
-@@ -0,0 +1,483 @@
+@@ -0,0 +1,484 @@
 +#!/bin/sh
 +# Run this to generate all the initial makefiles, etc.
 +
@@ -254,10 +254,11 @@ Index: python-gtk2-2.12.0/autogen.sh
 +want_gtk_doc=false
 +want_gnome_doc_utils=false
 +
-+configure_files="`find $srcdir -name '{arch}' -prune -o -name configure.ac -print -o -name configure.in -print`"
 +# avoid config files listed in FILES_TO_SKIP
 +if [ -f "$srcdir/FILES_TO_SKIP" ]; then
-+    configure_files="`echo $configure_files | grep -v -f $srcdir/FILES_TO_SKIP`"
++    configure_files="`find $srcdir -name '{arch}' -prune -o -name configure.ac -print -o -name configure.in -print | grep -v -f $srcdir/FILES_TO_SKIP`"
++else
++    configure_files="`find $srcdir -name '{arch}' -prune -o -name configure.ac -print -o -name configure.in -print`"
 +fi
 +
 +for configure_ac in $configure_files; do
