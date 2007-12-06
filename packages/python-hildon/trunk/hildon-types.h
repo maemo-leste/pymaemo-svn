@@ -93,9 +93,66 @@
 #include <hildon-widgets/hildon-find-replace-dialog.h>
 #endif
 
-#include "hildon-types.h.in"
-
 GType hildon_note_type_get_type (void);
 #define HILDON_TYPE_NOTE_TYPE (hildon_note_type_get_type())
 
+
+/* Generated data (by glib-mkenums) */
+
+/* enumerations from "/usr/include/hildon-widgets/hildon-date-editor.h" */
+GType hildon_date_editor_error_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_DATE_EDITOR_ERROR_TYPE (hildon_date_editor_error_type_get_type())
+/* enumerations from "/usr/include/hildon-widgets/hildon-grid-item.h" */
+GType hildon_grid_position_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_GRID_POSITION_TYPE (hildon_grid_position_type_get_type())
+GType hildon_grid_item_icon_size_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_GRID_ITEM_ICON_SIZE_TYPE (hildon_grid_item_icon_size_type_get_type())
+/* enumerations from "/usr/include/hildon-widgets/hildon-input-mode-hint.h" */
+GType hildon_input_mode_hint_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_INPUT_MODE_HINT (hildon_input_mode_hint_get_type())
+/* enumerations from "/usr/include/hildon-widgets/hildon-number-editor.h" */
+GType hildon_number_editor_error_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_NUMBER_EDITOR_ERROR_TYPE (hildon_number_editor_error_type_get_type())
+/* enumerations from "/usr/include/hildon-widgets/hildon-telephone-editor.h" */
+GType hildon_telephone_editor_format_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_TELEPHONE_EDITOR_FORMAT (hildon_telephone_editor_format_get_type())
+/* enumerations from "/usr/include/hildon-widgets/hildon-time-editor.h" */
+GType hildon_time_editor_error_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_TIME_EDITOR_ERROR_TYPE (hildon_time_editor_error_type_get_type())
+
+/* Generated data ends here */
+
+
+/* Generated data (by glib-mkenums) */
+
+/* enumerations from "/usr/include/hildon-fm/hildon-widgets/hildon-file-selection.h" */
+GType hildon_file_selection_mode_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SELECTION_MODE (hildon_file_selection_mode_get_type())
+GType hildon_file_selection_sort_key_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SELECTION_SORT_KEY (hildon_file_selection_sort_key_get_type())
+GType hildon_file_selection_pane_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SELECTION_PANE (hildon_file_selection_pane_get_type())
+GType hildon_file_selection_visible_columns_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SELECTION_VISIBLE_COLUMNS (hildon_file_selection_visible_columns_get_type())
+/* enumerations from "/usr/include/hildon-fm/hildon-widgets/hildon-file-system-common.h" */
+GType hildon_file_system_model_item_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SYSTEM_MODEL_ITEM_TYPE (hildon_file_system_model_item_type_get_type())
+/* enumerations from "/usr/include/hildon-fm/hildon-widgets/hildon-file-system-model.h" */
+GType hildon_file_system_model_columns_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SYSTEM_MODEL_COLUMNS (hildon_file_system_model_columns_get_type())
+
+/* Generated data ends here */
+
+/* Generated data (by glib-mkenums) */
+
+/* enumerations from "/usr/include/glib-2.0/glib/gdate.h" */
+GType g_date_dmy_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_DATE_DMY (g_date_dmy_get_type())
+GType g_date_weekday_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_DATE_WEEKDAY (g_date_weekday_get_type())
+GType g_date_month_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_DATE_MONTH (g_date_month_get_type())
+
+/* Generated data ends here */
 #endif /* !HILDON_TYPES_H */
+

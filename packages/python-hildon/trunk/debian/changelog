@@ -1,3 +1,11 @@
+python-hildon (0.8.7-1osso7) unstable; urgency=low
+
+  * fix #1724 Use pygtk's TemplateExtension to build.
+  * Bump pygtk dependency to build to 2.10.3-1osso9, which fixes an export
+    problem.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  6 Dec 2007 16:36:00 -0300
+
 python-hildon (0.8.7-1osso6) unstable; urgency=low
 
   * fix #1720 Adding hildon keysyms (hildon.KEY_*)

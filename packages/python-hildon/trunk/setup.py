@@ -4,145 +4,39 @@ import subprocess
 import os
 import sys
 
-datadir = '/usr/share'
+datadir = '/usr/share' #FIXME Get this from pygtk.pc's  'datadir' variable
 defsdir = datadir+'/pygtk/2.0/defs'
-includedir = '/usr/include'
 
-def get_hildon_version():
-    input = open('/usr/lib/pkgconfig/hildon-libs.pc','r')
+PYGTK_SUFFIX="2.0"
+CODEGEN_DIR    = os.path.join('/', 'usr', 'share', 'pygtk', PYGTK_SUFFIX)
+sys.path.append(CODEGEN_DIR)
 
-    for line in input:
-        result = line.split()
-        if result:
-            if result[0] == 'Version:':
-                raw_version = result[-1]
+print sys.path
 
-    input.close()
-    hildon_version = tuple([ int(x) for x in raw_version.split('.') ])
-    return hildon_version
-hildon_version = get_hildon_version()
+import codegen
 
-def gen_auto_file(filename, subproc_args):
-    proc = subprocess.Popen(
-        subproc_args,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
-    cmdresult, error = proc.communicate() 
-    print error
-#   error = proc.stderr
-#   Print disabled to avoid problems with scratchbox
-#   print >>sys.sdterr, error.read()
-    if cmdresult:
-        new_file = open(filename, 'w')
-        new_file.write(cmdresult)
-    new_file.close()
+from dsextras import BuildExt, TemplateExtension, Template
 
-class PyHildonBuild(build):
-    def run(self):
-        """Create the temporary files used to compile the hildon module:
-        -hildon.c
-        -hildon-types.h.in
-        -hildon-types.c.in"""
-        # Generate enum/flags run-time information
-        HILDON_TYPE_FILES = [
-            includedir+'/hildon-fm/hildon-widgets/hildon-file-system-model.h',
-            includedir+'/hildon-fm/hildon-widgets/hildon-file-system-common.h',
-            includedir+'/hildon-fm/hildon-widgets/hildon-file-selection.h',
-            includedir+'/hildon-widgets/hildon-date-editor.h',
-            includedir+'/hildon-widgets/hildon-font-selection-dialog.h',
-            includedir+'/hildon-widgets/hildon-grid-item.h',
-            includedir+'/hildon-widgets/hildon-input-mode-hint.h',
-            includedir+'/hildon-widgets/hildon-number-editor.h',
-            includedir+'/hildon-widgets/hildon-telephone-editor.h',
-            includedir+'/hildon-widgets/hildon-time-editor.h',
-            includedir+'/hildon-base-lib/hildon-base-types.h',
-            includedir+'/glib-2.0/glib/gdate.h',
-        ]
-
-        gen_auto_file('hildon-types.h.in', ['/bin/sh', './gen-enum-h']+HILDON_TYPE_FILES)
-        gen_auto_file('hildon-types.c.in', ['/bin/sh', './gen-enum-c']+HILDON_TYPE_FILES)
-
-        # Creation of ".c" files, using pygtk-codegen-2.0
-        override_filename = 'hildon.override'
-        if hildon_version > (0, 14, 0):
-            defs_filename = 'hildon-0.14.defs'
-        else:
-            defs_filename = 'hildon.defs'
-
-        parameter = [
-            '--register', defsdir+'/gdk.defs',
-            '--register', defsdir+'/gtk-types.defs',
-            '--register', defsdir+'/gtk.defs',
-            '--register', defsdir+'/gtk-base.defs',
-            '--register', defsdir+'/pango-types.defs',
-            '--register', 'defs/missing-types.defs',
-            '--register', 'defs/hildon-grid-item.defs',
-            '--override', 'hildon.override',
-            '--prefix', 'pyhildon',
-            defs_filename,
-        ]
-        gen_auto_file('hildon.c', ['/bin/sh', 'pygtk-codegen-2.0']+parameter)
-
-        build.run(self)
-
-
-compile_args = [
-        '-Os',
-        '-DXTHREADS',
-        '-DXUSE_MTSAFE_API',
-        '-DHILDON_DISABLE_DEPRECATED',
-#        '-ansi',
-#        '-pedantic',
-#        '-Wno-long-long',
-#        '-g',
-#        '-rdynamic',
-]
-
-if hildon_version > (0, 14, 0):
-    compile_args.append("-DHILDON_0_14")
-
-hildon = Extension('hildon',
-    sources = [
-        'hildon.c',
-        'hildonmodule.c',
-        'hildon-extra.c',
-        'hildon-types.c',
-    ],
-    libraries = [
-        'hildonbase',
-        'hildonwidgets',
-        'hildonfm',
-        'dbus-1',
-                'dbus-glib-1',
-                'glib-2.0',
-                'gobject-2.0',
-                'gmodule-2.0',
-                'atk-1.0',
-                'pangoxft-1.0',
-                'pangox-1.0',
-                'pango-1.0',
-                'gdk-x11-2.0',
-                'gdk_pixbuf-2.0',
-    ],
-    include_dirs=[
-                '/usr/include',
-                '/usr/include/freetype2',
-                '/usr/include/dbus-1.0',
-                '/usr/include/glib-2.0',
-                '/usr/include/atk-1.0',
-                '/usr/include/pango-1.0',
-                '/usr/include/gtk-2.0',
-                '/usr/include/pygtk-2.0',
-                '/usr/include/hildon-fm',
-        '/usr/include/hildon-widgets'
-        '/usr/lib/dbus-1.0/include',
-                '/usr/lib/glib-2.0/include',
-                '/usr/lib/gtk-2.0/include',
-                '/usr/X11R6/include',
-    ],
-    extra_compile_args=compile_args,
-)
+hildon = TemplateExtension(name='hildon', pkc_name='hildon-libs',
+                           pkc_version="1.99.0",
+                           pygobject_pkc=('hildon-fm', 'hildon-base-lib',
+                                          'pygobject-2.0'),
+                           sources=['hildonmodule.c', 'hildon.c',
+                                    'hildon-types.c'],
+                           register=['hildon-types.defs',
+                                     defsdir+'/gtk-types.defs',
+                                     defsdir+'/gtk.defs',
+                                     defsdir+'/gdk.defs',
+                                     defsdir+'/gtk-base.defs',
+                                     'defs/missing-types.defs',
+                                     ],
+                           override='hildon.override',
+                           defs='hildon.defs',
+                           py_ssize_t_clean=True,
+                           extra_compile_args=['-Os',
+                                               '-DXTHREADS',
+                                               '-DXUSE_MTSAFE_API',
+                                               '-DHILDON_DISABLE_DEPRECATED',])
 
 setup(
     name = 'hildon',
@@ -152,5 +46,5 @@ setup(
     author_email = 'osvaldo.santana@indt.org.br',
     url = 'http://www.maemo.org',
     ext_modules = [hildon],
-    cmdclass={'build': PyHildonBuild}
+    cmdclass={'build_ext': BuildExt}
 )
