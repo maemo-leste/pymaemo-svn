@@ -1,3 +1,9 @@
+python-hildon (0.8.8-1osso5) unstable; urgency=low
+
+  * Fixing #1724 - use pygtk's TemplateExtension when building
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  6 Dec 2007 16:54:12 -0300
+
 python-hildon (0.8.8-1osso4) unstable; urgency=low
 
   * Fixing #1720 - adding hildon keysyms (hildon.KEY_*)
