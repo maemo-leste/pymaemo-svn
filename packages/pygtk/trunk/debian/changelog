@@ -1,3 +1,9 @@
+python-gtk2 (2.10.3-1osso9) unstable; urgency=low
+
+  * Export codegen/createdefs.py. Patch from bug #75606 in ubuntu's pygtk
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  6 Dec 2007 15:21:07 -0300
+
 python-gtk2 (2.10.3-1osso8) unstable; urgency=low
 
   * Adding dependency on python2.5-gobject-dev (python2.5-gtk2-dev package)

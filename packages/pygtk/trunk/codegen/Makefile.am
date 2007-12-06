@@ -9,6 +9,7 @@ codegen_PYTHON = \
 	argtypes.py \
 	reversewrapper.py \
 	codegen.py \
+	createdefs.py \
 	definitions.py \
 	defsparser.py \
 	docextract.py \
@@ -19,4 +20,4 @@ codegen_PYTHON = \
 	override.py \
 	scmexpr.py
 
-EXTRA_DIST = README.defs pygtk-codegen-$(PLATFORM_VERSION).in createdefs.py
+EXTRA_DIST = README.defs pygtk-codegen-$(PLATFORM_VERSION).in
