@@ -1,3 +1,9 @@
+python-hildon (0.8.8-1osso6) unstable; urgency=low
+
+  * Fixes #1565 - Adding hildon-help bindings (module hildonhelp).
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 10 Dec 2007 16:20:12 -0300
+
 python-hildon (0.8.8-1osso5) unstable; urgency=low
 
   * Fixing #1724 - use pygtk's TemplateExtension when building

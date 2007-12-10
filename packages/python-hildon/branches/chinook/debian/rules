@@ -44,6 +44,7 @@ install: build
 	mkdir -p $(d_base)/usr/lib/python$(PYVER)/site-packages/
 	cp hildonglade.pyo $(d_base)/usr/lib/python$(PYVER)/site-packages
 	cp $(d)/usr/lib/python$(PYVER)/site-packages/hildon.so $(d_base)/usr/lib/python$(PYVER)/site-packages
+	cp $(d)/usr/lib/python$(PYVER)/site-packages/hildonhelp.so $(d_base)/usr/lib/python$(PYVER)/site-packages
 
 	# dev
 	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/wip/demos
