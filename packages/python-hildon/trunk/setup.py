@@ -11,8 +11,6 @@ PYGTK_SUFFIX="2.0"
 CODEGEN_DIR    = os.path.join('/', 'usr', 'share', 'pygtk', PYGTK_SUFFIX)
 sys.path.append(CODEGEN_DIR)
 
-print sys.path
-
 import codegen
 
 from dsextras import BuildExt, TemplateExtension, Template
