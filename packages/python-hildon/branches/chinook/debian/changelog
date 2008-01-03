@@ -1,3 +1,10 @@
+python-hildon (0.8.8-1osso7) unstable; urgency=low
+
+  * hildon.override: Removing comment from hildon.Caption constructor that was avoiding the
+    override. 
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  3 Jan 2008 18:02:08 -0300
+
 python-hildon (0.8.8-1osso6) unstable; urgency=low
 
   * Fixes #1565 - Adding hildon-help bindings (module hildonhelp).

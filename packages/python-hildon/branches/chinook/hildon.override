@@ -434,10 +434,6 @@ _wrap_hildon_weekday_picker_isset_day(PyGObject *self, PyObject *args, PyObject 
 }
 
 %%
-/* Bug #725 fixed
- * Author: Jan Arne Petersen
- *         maemo@jpetersen.org
- */
 override hildon_caption_new kwargs
 static int
 _wrap_hildon_caption_new(PyGObject *self, PyObject *args, PyObject *kwargs)
