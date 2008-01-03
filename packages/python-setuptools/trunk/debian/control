@@ -1,0 +1,12 @@
+Source: python-setuptools
+Section: python
+Priority: optional
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends-Indep: debhelper (>= 4.2.32), python2.5-dev (>= 2.5.1-1osso4)
+Standards-Version: 3.6.1
+
+Package: python2.5-setuptools
+Architecture: all
+Depends: python2.5-dev (>= 2.5.1-1osso4)
+Description: Python Distutils Enhancements
+ Extensions to the python-distutils for large or complex distributions.
