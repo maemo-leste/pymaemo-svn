@@ -72,8 +72,8 @@ binary-arch: build install
 	: # Replace all '#!' calls to python with $(PYTHON)
 	: # and make them executable
 	for i in \
-	  debian/python-setuptools/usr/bin/easy_install \
-	  `find debian/python-setuptools/usr/lib -type f`; \
+	  $(d)/usr/bin/easy_install \
+	  `find $(d)/usr/lib -type f`; \
 	do \
 	  case "$$i" in *-[0-9].[0-9]) continue; esac; \
 	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
@@ -87,7 +87,7 @@ binary-arch: build install
 	  fi; \
 	done
 	sed -i -e 's/python2\../python2.5/g' \
-		debian/python-setuptools/usr/bin/easy_install-2.5
+		$(d)/usr/bin/easy_install-2.5
 
 	dh_installdeb -i
 	dh_gencontrol -i
