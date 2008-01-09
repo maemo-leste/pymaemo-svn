@@ -14,8 +14,3 @@ Index: python2.5-2.5.1/debian/postrm
 +#! /bin/sh -e
 +
 +update-alternatives --remove python /usr/bin/python2.5
-+
-+if [ -f /usr/bin/python2.4 ]
-+then
-+    update-alternatives --install /usr/bin/python python /usr/bin/python2.4 5 
-+fi
