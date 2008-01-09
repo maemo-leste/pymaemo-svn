@@ -1,16 +1,3 @@
-Index: pygtk-2.12.0/gtk/Makefile.am
-===================================================================
---- pygtk-2.12.0.orig/gtk/Makefile.am	2007-09-15 12:00:42.000000000 -0300
-+++ pygtk-2.12.0/gtk/Makefile.am	2007-11-27 17:20:23.000000000 -0300
-@@ -138,7 +138,7 @@
- if BUILD_GTK
- pygtkexec_LTLIBRARIES += _gtk.la
- defs_DATA += $(GDK_DEFS) $(GDK_TYPES_DEFS) $(GTK_DEFS) $(GTK_TYPES_DEFS) \
--	gdk.defs gtk.defs gdk-types.defs gtk-types.defs
-+	gdk.defs gtk.defs gdk-types.defs gtk-types.defs gtk-extrafuncs.defs
- endif
- 
- # libglade module
 Index: pygtk-2.12.0/gtk/gtk-extrafuncs.defs
 ===================================================================
 --- pygtk-2.12.0.orig/gtk/gtk-extrafuncs.defs	2007-09-15 12:00:42.000000000 -0300
