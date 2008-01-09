@@ -2,7 +2,7 @@ Index: pygobject/aclocal.m4
 ===================================================================
 --- pygobject.orig/aclocal.m4	2007-03-06 16:42:48.000000000 -0300
 +++ pygobject/aclocal.m4	2007-03-06 16:43:09.000000000 -0300
-@@ -7497,7 +7497,7 @@
+@@ -7668,7 +7668,7 @@
    dnl $prefix/lib/site-python in 1.4 to $prefix/lib/python1.5/site-packages
    dnl in 1.5.
    m4_define([_AM_PYTHON_INTERPRETER_LIST],

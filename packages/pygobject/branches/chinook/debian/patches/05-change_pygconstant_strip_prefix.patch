@@ -2,7 +2,7 @@ Index: pygobject-2.13.1/gobject/gobjectmodule.c
 ===================================================================
 --- pygobject-2.13.1.orig/gobject/gobjectmodule.c	2007-04-30 11:51:17.000000000 -0300
 +++ pygobject-2.13.1/gobject/gobjectmodule.c	2007-10-22 14:20:55.000000000 -0300
-@@ -2879,6 +2879,9 @@
+@@ -2926,6 +2926,9 @@
      
      prefix_len = strlen(strip_prefix);
      

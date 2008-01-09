@@ -1,3 +1,1 @@
-01-create_debian_dir.patch
-02-adds_python2.5_to_aclocal.patch
 05-change_pygconstant_strip_prefix.patch
