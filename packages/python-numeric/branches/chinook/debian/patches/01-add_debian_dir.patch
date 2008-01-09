@@ -1,8 +1,14 @@
-Index: python-numeric/debian/changelog
+Index: python-numeric-24.2/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-numeric/debian/changelog	2007-03-06 17:55:37.000000000 -0300
-@@ -0,0 +1,104 @@
++++ python-numeric-24.2/debian/changelog	2008-01-09 17:02:55.000000000 -0300
+@@ -0,0 +1,110 @@
++python-numeric (24.2-1osso5) unstable; urgency=low
++
++  * Remove Numeric_headers from base package.
++
++ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed,  9 Jan 2008 17:02:19 -0300
++
 +python-numeric (24.2-1osso4) unstable; urgency=low
 +
 +  * moved from Python2.4 to 2.5
@@ -107,16 +113,16 @@ Index: python-numeric/debian/changelog
 +  * New upstream version.
 +
 + -- Matthias Klose <doko@debian.org>  Mon,  7 Mar 2005 01:26:04 +0100
-Index: python-numeric/debian/compat
+Index: python-numeric-24.2/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-numeric/debian/compat	2007-03-06 17:55:37.000000000 -0300
++++ python-numeric-24.2/debian/compat	2008-01-09 17:00:10.000000000 -0300
 @@ -0,0 +1 @@
 +4
-Index: python-numeric/debian/control
+Index: python-numeric-24.2/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-numeric/debian/control	2007-03-06 17:55:37.000000000 -0300
++++ python-numeric-24.2/debian/control	2008-01-09 17:00:10.000000000 -0300
 @@ -0,0 +1,40 @@
 +Source: python-numeric
 +Section: python
@@ -158,10 +164,10 @@ Index: python-numeric/debian/control
 +Architecture: all
 +Depends: python2.5-numeric (= ${Source-Version})
 +Description: Development files for Numeric Python
-Index: python-numeric/debian/copyright
+Index: python-numeric-24.2/debian/copyright
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-numeric/debian/copyright	2007-03-06 17:55:37.000000000 -0300
++++ python-numeric-24.2/debian/copyright	2008-01-09 17:00:10.000000000 -0300
 @@ -0,0 +1,48 @@
 +This package was debianized by Matthias Klose doko@debian.org on
 +Mon,  9 Mar 1998 11:00:24 +0100.
@@ -211,11 +217,11 @@ Index: python-numeric/debian/copyright
 +opinions of authors expressed herein do not necessarily state or reflect
 +those of the United States Government or the University of California,
 +and shall not be used for advertising or product endorsement purposes.
-Index: python-numeric/debian/rules
+Index: python-numeric-24.2/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-numeric/debian/rules	2007-03-06 17:55:37.000000000 -0300
-@@ -0,0 +1,112 @@
++++ python-numeric-24.2/debian/rules	2008-01-09 17:00:10.000000000 -0300
+@@ -0,0 +1,113 @@
 +#!/usr/bin/make -f
 +
 +PYVER=2.5
@@ -264,6 +270,7 @@ Index: python-numeric/debian/rules
 +	find $(d_base) -type f -name "*.py" | xargs rm -f
 +	find $(d_base) -type f -name "*.pyc" | xargs rm -f
 +	rm -rf $(d_base)/usr/include
++	rm -rf $(d_base)/$(pysite)/Numeric/Numeric_headers
 +
 +	# dev
 +	find $(d_dev) -type f -name "*.so" | xargs rm -f
