@@ -1,7 +1,7 @@
 Index: evolution-python-0.0.4/src/ebook.override
 ===================================================================
---- evolution-python-0.0.4.orig/src/ebook.override	2007-11-26 14:02:41.000000000 -0300
-+++ evolution-python-0.0.4/src/ebook.override	2007-11-26 15:11:24.000000000 -0300
+--- evolution-python-0.0.4.orig/src/ebook.override	2008-01-08 17:11:23.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.override	2008-01-08 17:11:34.000000000 -0300
 @@ -45,8 +45,10 @@
  	return result;
  }
@@ -248,7 +248,7 @@ Index: evolution-python-0.0.4/src/ebook.override
  
      g_list_free(contacts);
  
-@@ -1371,9 +1369,8 @@
+@@ -1371,11 +1369,10 @@
  _wrap_e_vcard_get_attributes(PyGObject *self)
  {
      GList *attrs;
@@ -259,10 +259,12 @@ Index: evolution-python-0.0.4/src/ebook.override
 -    return glist_to_pylist(attrs, pyevcard_attribute_new);
 +    return glist_to_pylist(attrs, (ConverterFunction) pyevcard_attribute_new);
  }
+ %%
+ override e_vcard_new kwargs
 Index: evolution-python-0.0.4/src/evo-addressbook.h
 ===================================================================
---- evolution-python-0.0.4.orig/src/evo-addressbook.h	2007-08-14 18:05:57.000000000 -0300
-+++ evolution-python-0.0.4/src/evo-addressbook.h	2007-11-26 15:00:32.000000000 -0300
+--- evolution-python-0.0.4.orig/src/evo-addressbook.h	2008-01-08 17:11:23.000000000 -0300
++++ evolution-python-0.0.4/src/evo-addressbook.h	2008-01-08 17:11:34.000000000 -0300
 @@ -29,6 +29,9 @@
  gboolean evo_addressbook_get_changed_contacts(EBook *addressbook, GList **added, GList **modified, GList **deleted, char *change_id);
  GList *evo_addressbook_free_text_search(EBook *book, const char *query);
@@ -275,8 +277,8 @@ Index: evolution-python-0.0.4/src/evo-addressbook.h
  
 Index: evolution-python-0.0.4/configure.ac
 ===================================================================
---- evolution-python-0.0.4.orig/configure.ac	2007-09-02 22:58:00.000000000 -0300
-+++ evolution-python-0.0.4/configure.ac	2007-11-26 15:29:57.000000000 -0300
+--- evolution-python-0.0.4.orig/configure.ac	2008-01-08 17:11:23.000000000 -0300
++++ evolution-python-0.0.4/configure.ac	2008-01-08 17:11:34.000000000 -0300
 @@ -58,6 +58,57 @@
  AC_SUBST(PYGTK_H2DEFS)
  AC_MSG_RESULT($PYGTK_H2DEFS)
@@ -337,8 +339,8 @@ Index: evolution-python-0.0.4/configure.ac
  evolution-python.pc
 Index: evolution-python-0.0.4/src/Makefile.am
 ===================================================================
---- evolution-python-0.0.4.orig/src/Makefile.am	2007-11-26 15:14:04.000000000 -0300
-+++ evolution-python-0.0.4/src/Makefile.am	2007-11-26 15:31:54.000000000 -0300
+--- evolution-python-0.0.4.orig/src/Makefile.am	2008-01-08 17:11:23.000000000 -0300
++++ evolution-python-0.0.4/src/Makefile.am	2008-01-08 17:11:34.000000000 -0300
 @@ -12,7 +12,7 @@
  pkgpyexec_DATA = __init__.py
  

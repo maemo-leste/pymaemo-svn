@@ -1,8 +1,8 @@
 Index: evolution-python-0.0.4/src/ebook.defs
 ===================================================================
---- evolution-python-0.0.4.orig/src/ebook.defs	2007-11-26 13:44:14.000000000 -0300
-+++ evolution-python-0.0.4/src/ebook.defs	2007-11-26 13:44:14.000000000 -0300
-@@ -442,4 +442,387 @@
+--- evolution-python-0.0.4.orig/src/ebook.defs	2008-01-09 14:44:31.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.defs	2008-01-09 14:57:27.000000000 -0300
+@@ -442,4 +442,388 @@
    )
  )
  
@@ -39,26 +39,27 @@ Index: evolution-python-0.0.4/src/ebook.defs
 +  )
 +)
 +
++; Overriden to support string arguments
 +(define-function e_vcard_new
 +  (c-name "e_vcard_new")
-+  (is-constructor-of "EVcard")
++  (is-constructor-of "EVCard")
 +  (return-type "EVCard*")
 +)
 +
-+(define-function e_vcard_new_from_string
-+  (c-name "e_vcard_new_from_string")
-+  (return-type "EVCard*")
-+  (parameters
-+    '("const-char*" "str")
-+  )
-+)
++;(define-function e_vcard_new_from_string
++;  (c-name "e_vcard_new_from_string")
++;  (return-type "EVCard*")
++;  (parameters
++;    '("const-char*" "str")
++;  )
++;)
 +
 +(define-method to_string
 +  (of-object "EVCard")
 +  (c-name "e_vcard_to_string")
 +  (return-type "char*")
 +  (parameters
-+    '("EVCardFormat" "format")
++    '("EVCardFormat" "format" (default "EVC_FORMAT_VCARD_30"))
 +  )
 +)
 +
@@ -392,8 +393,8 @@ Index: evolution-python-0.0.4/src/ebook.defs
  
 Index: evolution-python-0.0.4/src/ebook.override
 ===================================================================
---- evolution-python-0.0.4.orig/src/ebook.override	2007-11-26 13:44:14.000000000 -0300
-+++ evolution-python-0.0.4/src/ebook.override	2007-11-26 14:02:41.000000000 -0300
+--- evolution-python-0.0.4.orig/src/ebook.override	2008-01-09 14:44:31.000000000 -0300
++++ evolution-python-0.0.4/src/ebook.override	2008-01-09 15:11:03.000000000 -0300
 @@ -45,6 +45,30 @@
  	return result;
  }
@@ -425,7 +426,7 @@ Index: evolution-python-0.0.4/src/ebook.override
  /* EBookQuery */
  
  typedef struct {
-@@ -425,38 +449,307 @@
+@@ -425,39 +449,308 @@
  	return pyebook_query_new(e_book_query_copy(self->query));
  }
  
@@ -693,7 +694,7 @@ Index: evolution-python-0.0.4/src/ebook.override
 +    name = e_vcard_attribute_get_group(self->attribute);
 +
 +    return PyString_FromString(name);
- }
++}
 +static PyObject *
 +pyevcard_attribute_get_name(PyEVCardAttribute *self)
 +{
@@ -702,8 +703,8 @@ Index: evolution-python-0.0.4/src/ebook.override
 +    name = e_vcard_attribute_get_name(self->attribute);
 +
 +    return PyString_FromString(name);
-+}
-+
+ }
+ 
 +static PyObject *
 +pyevcard_attribute_get_value(PyEVCardAttribute *self)
 +{
@@ -750,9 +751,10 @@ Index: evolution-python-0.0.4/src/ebook.override
 +    PyObject *callback;
 +    PyObject *extra_data;
 +};
- 
++
  PyObject *econtact_to_pycontact(EContact *contact)
  {
+     return pygobject_new(G_OBJECT(contact));
 @@ -531,6 +824,12 @@
  	if (PyType_Ready(&PyEBookQuery_Type) < 0)
  		return;
@@ -766,7 +768,7 @@ Index: evolution-python-0.0.4/src/ebook.override
  %%
  modulename ebook
  %%
-@@ -956,3 +1255,125 @@
+@@ -956,3 +1255,184 @@
  
      return pycontacts;
  }
@@ -892,10 +894,69 @@ Index: evolution-python-0.0.4/src/ebook.override
 +
 +    return glist_to_pylist(attrs, pyevcard_attribute_new);
 +}
++%%
++override e_vcard_new kwargs
++static int
++_wrap_e_vcard_new(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] = { "str", NULL };
++    gchar *str = NULL;
++    EVCard *vcard = NULL;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|z:EVCard.__init__",
++                                     kwlist, &str))
++        return -1;
++
++    if (str)
++        vcard = (EVCard *) e_vcard_new_from_string(str);
++    else
++        vcard = (EVCard *) e_vcard_new();
++
++    if (!vcard) {
++        PyErr_SetString(PyExc_RuntimeError, "could not create EVCard object");
++        return -1;
++    } else {
++        self->obj = G_OBJECT(vcard);
++        return 0;
++    }
++
++}
++%%
++override e_vcard_to_string kwargs
++static PyObject *
++_wrap_e_vcard_to_string(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] = { "format", NULL };
++    PyObject *py_format = NULL;
++    EVCardFormat format = EVC_FORMAT_VCARD_30;
++    gchar *ret;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|O:EVCard.to_string",
++                                     kwlist, &py_format))
++        return NULL;
++
++    /* Had to override as when pyg_enum_get_value is called with a NULL object the value is
++     * set to 0 */
++
++    if (py_format != NULL &&
++            pyg_enum_get_value(E_TYPE_VCARD_FORMAT, py_format, (gpointer)&format))
++        return NULL;
++
++    ret = e_vcard_to_string(E_VCARD(self->obj), format);
++
++    if (ret) {
++        PyObject *py_ret = PyString_FromString(ret);
++        g_free(ret);
++        return py_ret;
++    }
++    Py_INCREF(Py_None);
++    return Py_None;
++}
++
 Index: evolution-python-0.0.4/src/ebookmodule.c
 ===================================================================
---- evolution-python-0.0.4.orig/src/ebookmodule.c	2007-11-26 13:38:50.000000000 -0300
-+++ evolution-python-0.0.4/src/ebookmodule.c	2007-11-26 13:44:14.000000000 -0300
+--- evolution-python-0.0.4.orig/src/ebookmodule.c	2008-01-09 14:44:25.000000000 -0300
++++ evolution-python-0.0.4/src/ebookmodule.c	2008-01-09 14:44:31.000000000 -0300
 @@ -27,6 +27,7 @@
  
  extern PyMethodDef pyebook_functions[];
@@ -914,8 +975,8 @@ Index: evolution-python-0.0.4/src/ebookmodule.c
          Py_FatalError("could not initialise module _ebook");
 Index: evolution-python-0.0.4/src/ebook-enums.c
 ===================================================================
---- evolution-python-0.0.4.orig/src/ebook-enums.c	2007-11-26 13:44:14.000000000 -0300
-+++ evolution-python-0.0.4/src/ebook-enums.c	2007-11-26 13:44:14.000000000 -0300
+--- evolution-python-0.0.4.orig/src/ebook-enums.c	2008-01-09 14:44:31.000000000 -0300
++++ evolution-python-0.0.4/src/ebook-enums.c	2008-01-09 14:44:31.000000000 -0300
 @@ -178,3 +178,25 @@
  
  /* Generated data ends here */
@@ -944,8 +1005,8 @@ Index: evolution-python-0.0.4/src/ebook-enums.c
 +
 Index: evolution-python-0.0.4/src/ebook-enums.h
 ===================================================================
---- evolution-python-0.0.4.orig/src/ebook-enums.h	2007-11-26 13:38:50.000000000 -0300
-+++ evolution-python-0.0.4/src/ebook-enums.h	2007-11-26 13:44:14.000000000 -0300
+--- evolution-python-0.0.4.orig/src/ebook-enums.h	2008-01-09 14:44:25.000000000 -0300
++++ evolution-python-0.0.4/src/ebook-enums.h	2008-01-09 14:44:31.000000000 -0300
 @@ -39,3 +39,12 @@
  /* Generated data ends here */
  
@@ -962,8 +1023,8 @@ Index: evolution-python-0.0.4/src/ebook-enums.h
 Index: evolution-python-0.0.4/test/evcard_attr.py
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ evolution-python-0.0.4/test/evcard_attr.py	2007-11-26 13:44:14.000000000 -0300
-@@ -0,0 +1,57 @@
++++ evolution-python-0.0.4/test/evcard_attr.py	2008-01-09 15:03:58.000000000 -0300
+@@ -0,0 +1,84 @@
 +#!/usr/bin/env python2.5
 +
 +import unittest
@@ -975,6 +1036,7 @@ Index: evolution-python-0.0.4/test/evcard_attr.py
 +    def testConstructorSucces(self):
 +        a = ebook.EVCardAttribute("foo", "bar")
 +        self.assert_(a)
++        del a
 +
 +    def testConstructorFails(self):
 +        self.assertRaises(TypeError, ebook.EVCardAttribute, "group", 4)
@@ -986,6 +1048,8 @@ Index: evolution-python-0.0.4/test/evcard_attr.py
 +        a = ebook.EVCardAttribute("group", "name")
 +        self.assertEqual(a.get_group().lower(), "group")
 +        self.assertEqual(a.get_name().lower(), "name")
++
++        del a
 +
 +    def testSingleValued(self):
 +        a = ebook.EVCardAttribute("group", "name")
@@ -1000,6 +1064,8 @@ Index: evolution-python-0.0.4/test/evcard_attr.py
 +
 +        val = a.get_value()
 +        self.assertEqual(val, None)
++
++        del a
 +
 +    def testMultiValues(self):
 +        a = ebook.EVCardAttribute("group", "name")
@@ -1018,6 +1084,28 @@ Index: evolution-python-0.0.4/test/evcard_attr.py
 +        a.remove_values()
 +        vals = a.get_values()
 +        self.assertEqual([], vals)
++
++        del a
++
++class TestEVCard(unittest.TestCase):
++
++    def testCreationFromString(self):
++        original_string = """BEGIN:vCard
++VERSION:3.0
++FN:Frank Dawson
++ORG:Lotus Development Corporation
++ADR;TYPE=WORK,POSTAL,PARCEL:;;6544 Battleford Drive
++ ;Raleigh;NC;27613-3502;U.S.A.
++TEL;TYPE=VOICE,MSG,WORK:+1-919-676-9515
++TEL;TYPE=FAX,WORK:+1-919-676-9564
++EMAIL;TYPE=INTERNET,PREF:Frank_Dawson@Lotus.com
++EMAIL;TYPE=INTERNET:fdawson@earthlink.net
++URL:http://home.earthlink.net/~fdawson
++END:vCard"""
++
++        a = ebook.EVCard(original_string)
++
++        print a.to_string()#ebook.EVC_FORMAT_VCARD_30)
 +
 +if __name__ == "__main__":
 +    unittest.main()
