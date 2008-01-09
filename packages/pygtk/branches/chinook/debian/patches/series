@@ -6,3 +6,4 @@
 06-add-autogen-and-m4.patch
 07-python-launcher-support.patch
 08-h2def-struct-fix.patch
+09-gtk-builder.patch

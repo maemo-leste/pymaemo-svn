@@ -1,0 +1,384 @@
+diff -urN pygtk-2.12.0/gtk/gtk-2.10-types.defs pygtk-2.12.0.gtkbuilder210/gtk/gtk-2.10-types.defs
+--- pygtk-2.12.0/gtk/gtk-2.10-types.defs	2007-09-15 18:00:42.000000000 +0300
++++ pygtk-2.12.0.gtkbuilder210/gtk/gtk-2.10-types.defs	2007-10-19 17:36:24.000000000 +0300
+@@ -374,3 +374,37 @@
+   )
+ )
+ 
++
++;; Added for maemo-gtk 2.10 that has gtkbuilder
++
++; object definitions ...
++(define-interface Buildable
++  (in-module "Gtk")
++  (c-name "GtkBuildable")
++  (gtype-id "GTK_TYPE_BUILDABLE")
++)
++
++(define-object Builder
++  (in-module "Gtk")
++  (parent "GObject")
++  (c-name "GtkBuilder")
++  (gtype-id "GTK_TYPE_BUILDER")
++)
++
++
++;; Enumerations and flags ...
++
++(define-enum BuilderError
++  (in-module "Gtk")
++  (c-name "GtkBuilderError")
++  (gtype-id "GTK_TYPE_BUILDER_ERROR")
++  (values
++    '("invalid-type-function" "GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION")
++    '("unhandled-tag" "GTK_BUILDER_ERROR_UNHANDLED_TAG")
++    '("missing-attribute" "GTK_BUILDER_ERROR_MISSING_ATTRIBUTE")
++    '("invalid-attribute" "GTK_BUILDER_ERROR_INVALID_ATTRIBUTE")
++    '("invalid-tag" "GTK_BUILDER_ERROR_INVALID_TAG")
++    '("missing-property-value" "GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE")
++    '("invalid-value" "GTK_BUILDER_ERROR_INVALID_VALUE")
++  )
++)
+diff -urN pygtk-2.12.0/gtk/gtk-2.10.defs pygtk-2.12.0.gtkbuilder210/gtk/gtk-2.10.defs
+--- pygtk-2.12.0/gtk/gtk-2.10.defs	2007-09-15 18:00:42.000000000 +0300
++++ pygtk-2.12.0.gtkbuilder210/gtk/gtk-2.10.defs	2007-10-19 17:35:23.000000000 +0300
+@@ -4130,4 +4130,339 @@
+   (return-type "GtkWindowGroup*")
+ )
+ 
++;; Added for maemo-gtk 2.10 that includes gtkbuilder
++;; From gtkbuildable.h
++
++(define-function gtk_buildable_get_type
++  (c-name "gtk_buildable_get_type")
++  (return-type "GType")
++)
++
++(define-method set_name
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_set_name")
++  (return-type "none")
++  (parameters
++    '("const-gchar*" "name")
++  )
++)
++
++(define-method get_name
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_get_name")
++  (return-type "const-gchar*")
++)
++
++(define-method add_child
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_add_child")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "type" (null-ok))
++  )
++)
++
++(define-method set_buildable_property
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_set_buildable_property")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("const-gchar*" "name")
++    '("const-GValue*" "value")
++  )
++)
++
++(define-method construct_child
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_construct_child")
++  (return-type "GObject*")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("const-gchar*" "name")
++  )
++)
++
++(define-method custom_tag_start
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_custom_tag_start")
++  (return-type "gboolean")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "tagname")
++    '("GMarkupParser*" "parser")
++    '("gpointer*" "data")
++  )
++)
++
++(define-method custom_tag_end
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_custom_tag_end")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "tagname")
++    '("gpointer*" "data")
++  )
++)
++
++(define-method custom_finished
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_custom_finished")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "tagname")
++    '("gpointer" "data")
++  )
++)
++
++(define-method parser_finished
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_parser_finished")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++  )
++)
++
++(define-method get_internal_child
++  (of-object "GtkBuildable")
++  (c-name "gtk_buildable_get_internal_child")
++  (return-type "GObject*")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("const-gchar*" "childname")
++  )
++)
++
++(define-virtual set_name
++  (of-object "GtkBuildable")
++  (return-type "none")
++  (parameters
++    '("const-gchar*" "name")
++  )
++)
++
++(define-virtual get_name
++  (of-object "GtkBuildable")
++  (return-type "constgchar*")
++)
++
++(define-virtual add_child
++  (of-object "GtkBuildable")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "type")
++  )
++)
++
++(define-virtual set_buildable_property
++  (of-object "GtkBuildable")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("const-gchar*" "name")
++    '("const-GValue*" "value")
++  )
++)
++
++(define-virtual construct_child
++  (of-object "GtkBuildable")
++  (return-type "GObject*")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("const-gchar*" "name")
++  )
++)
++
++(define-virtual custom_tag_start
++  (of-object "GtkBuildable")
++  (return-type "gboolean")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "tagname")
++    '("GMarkupParser*" "parser")
++    '("gpointer*" "data")
++  )
++)
++
++(define-virtual custom_tag_end
++  (of-object "GtkBuildable")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "tagname")
++    '("gpointer*" "data")
++  )
++)
++
++(define-virtual custom_finished
++  (of-object "GtkBuildable")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("GObject*" "child")
++    '("const-gchar*" "tagname")
++    '("gpointer" "data")
++  )
++)
++
++(define-virtual parser_finished
++  (of-object "GtkBuildable")
++  (return-type "none")
++  (parameters
++    '("GtkBuilder*" "builder")
++  )
++)
++
++(define-virtual get_internal_child
++  (of-object "GtkBuildable")
++  (return-type "GObject*")
++  (parameters
++    '("GtkBuilder*" "builder")
++    '("const-gchar*" "childname")
++  )
++)
++
++
++
++;; From gtkbuilder.h
++
++(define-function builder_error_quark
++  (c-name "gtk_builder_error_quark")
++  (return-type "GQuark")
++)
++
++(define-function gtk_builder_get_type
++  (c-name "gtk_builder_get_type")
++  (return-type "GType")
++)
++
++(define-function gtk_builder_new
++  (c-name "gtk_builder_new")
++  (is-constructor-of "GtkBuilder")
++  (return-type "GtkBuilder*")
++)
++
++(define-method add_from_file
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_add_from_file")
++  (return-type "guint")
++  (parameters
++    '("const-gchar*" "filename")
++    '("GError**" "error")
++  )
++)
++
++(define-method add_from_string
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_add_from_string")
++  (return-type "guint")
++  (parameters
++    '("const-gchar*" "buffer")
++    '("gsize" "length")
++    '("GError**" "error")
++  )
++)
++
++(define-method get_object
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_get_object")
++  (return-type "GObject*")
++  (parameters
++    '("const-gchar*" "name")
++  )
++)
++
++(define-method get_objects
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_get_objects")
++  (return-type "GSList*")
++)
++
++(define-method connect_signals
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_connect_signals")
++  (return-type "none")
++  (parameters
++    '("gpointer" "user_data")
++  )
++)
++
++(define-method connect_signals_full
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_connect_signals_full")
++  (return-type "none")
++  (parameters
++    '("GtkBuilderConnectFunc" "func")
++    '("gpointer" "user_data")
++  )
++)
++
++(define-method set_translation_domain
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_set_translation_domain")
++  (return-type "none")
++  (parameters
++    '("const-gchar*" "domain" (null-ok))
++  )
++)
++
++(define-method get_translation_domain
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_get_translation_domain")
++  (return-type "const-gchar*")
++)
++
++(define-method get_type_from_name
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_get_type_from_name")
++  (return-type "GType")
++  (parameters
++    '("const-char*" "type_name")
++  )
++)
++
++(define-method value_from_string
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_value_from_string")
++  (return-type "gboolean")
++  (parameters
++    '("GParamSpec*" "pspec")
++    '("const-gchar*" "string")
++    '("GValue*" "value")
++    '("GError**" "error")
++  )
++)
++
++(define-method value_from_string_type
++  (of-object "GtkBuilder")
++  (c-name "gtk_builder_value_from_string_type")
++  (return-type "gboolean")
++  (parameters
++    '("GType" "type")
++    '("const-gchar*" "string")
++    '("GValue*" "value")
++    '("GError**" "error")
++  )
++)
++
++(define-virtual get_type_from_name
++  (of-object "GtkBuilder")
++  (return-type "GType")
++  (parameters
++    '("const-char*" "type_name")
++  )
++)
++
+ 
