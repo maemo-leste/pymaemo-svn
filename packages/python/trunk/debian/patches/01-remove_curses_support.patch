@@ -1,7 +1,7 @@
-Index: python/configure.in
+Index: python2.5-2.5.1/configure.in
 ===================================================================
---- python.orig/configure.in	2007-03-06 17:07:34.000000000 -0300
-+++ python/configure.in	2007-03-06 17:07:46.000000000 -0300
+--- python2.5-2.5.1.orig/configure.in	2008-01-09 16:20:45.000000000 -0300
++++ python2.5-2.5.1/configure.in	2008-01-09 16:20:51.000000000 -0300
 @@ -1071,9 +1071,9 @@
  
  # checks for header files
@@ -293,14 +293,44 @@ Index: python/configure.in
 +#else
 +#  AC_MSG_RESULT(no)
 +#fi
-
+ 
  AC_MSG_CHECKING(for %zd printf() format support)
  AC_TRY_RUN([#include <stdio.h>
- #include <stddef.h>
-Index: python/setup.py
+Index: python2.5-2.5.1/setup.py
 ===================================================================
---- python.orig/setup.py	2007-03-06 17:07:34.000000000 -0300
-+++ python/setup.py	2007-03-06 17:07:46.000000000 -0300
+--- python2.5-2.5.1.orig/setup.py	2008-01-09 16:20:45.000000000 -0300
++++ python2.5-2.5.1/setup.py	2008-01-09 16:42:31.000000000 -0300
+@@ -487,18 +487,18 @@
+                 readline_extra_link_args = ()
+ 
+             readline_libs = ['readline']
+-            if self.compiler.find_library_file(lib_dirs,
+-                                                 'ncursesw'):
+-                readline_libs.append('ncursesw')
+-            elif self.compiler.find_library_file(lib_dirs,
+-                                                 'ncurses'):
+-                readline_libs.append('ncurses')
+-            elif self.compiler.find_library_file(lib_dirs, 'curses'):
+-                readline_libs.append('curses')
+-            elif self.compiler.find_library_file(lib_dirs +
+-                                               ['/usr/lib/termcap'],
+-                                               'termcap'):
+-                readline_libs.append('termcap')
++#            if self.compiler.find_library_file(lib_dirs,
++#                                                'ncursesw'):
++#                readline_libs.append('ncursesw')
++#            elif self.compiler.find_library_file(lib_dirs,
++#                                                 'ncurses'):
++#                readline_libs.append('ncurses')
++#            elif self.compiler.find_library_file(lib_dirs, 'curses'):
++#                readline_libs.append('curses')
++#            if self.compiler.find_library_file(lib_dirs +
++#                                               ['/usr/lib/termcap'],
++#                                               'termcap'):
++#                readline_libs.append('termcap')
+             exts.append( Extension('readline', ['readline.c'],
+                                    library_dirs=['/usr/lib/termcap'],
+                                    extra_link_args=readline_extra_link_args,
 @@ -900,40 +900,40 @@
                  exts.append( Extension('nis', ['nismodule.c'],
                                         libraries = libs) )
