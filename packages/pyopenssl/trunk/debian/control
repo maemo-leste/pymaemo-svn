@@ -1,0 +1,26 @@
+Source: pyopenssl
+Section: python
+Priority: optional
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends: debhelper (>> 3.6.1), python2.5-dev, libssl-dev (>= 0.9.7)
+Standards-Version: 3.6.1
+
+Package: python2.5-pyopenssl
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}
+Suggests: pyopenssl-doc
+Replaces: python2-pyopenssl
+Conflicts: python2-pyopenssl
+Description: Python wrapper around the OpenSSL library
+ Includes: SSL Context objects, SSL Connection objects, using
+ Python sockets as transport layer. The Connection object
+ wraps all the socket methods and can therefore be used
+ interchangeably.
+
+Package: pyopenssl-doc
+Section: doc
+Architecture: all
+Suggests: python2.5-pyopenssl
+Description: Documentation for pyOpenSSL
+ This package provides documentation for the pyOpenSSL package,
+ in HTML, postscript and text formats.
