@@ -1,0 +1,28 @@
+This package was debianized by Lauro Moura Maranhao Neto <lauro.neto@openbossa.org> on
+Thu, 10 Jan 2008 11:04:05 -0300.
+
+It was downloaded from http://sourceforge.net/projects/goocanvas
+
+Upstream Author: Damon Chaplin
+
+Copyright: 
+
+     This library is free software; you can redistribute it and/or
+     modify it under the terms of the GNU Library General Public
+     License as published by the Free Software Foundation; either
+     version 2 of the License, or (at your option) any later version.
+ 
+     This library is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+     Library General Public License for more details.
+ 
+     On Debian systems you should have a local copy of the GNU Library
+     General Public License in /usr/share/common-licenses/LGPL-2. If you
+     downloaded the source you will find it in the file COPYING; if not,
+     write to the Free Software Foundation, Inc.,
+     59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+The Debian packaging is (C) 2008, Lauro Moura Maranhao Neto <lauro.neto@openbossa.org> and
+is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+
