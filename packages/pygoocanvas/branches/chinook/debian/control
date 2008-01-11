@@ -1,0 +1,20 @@
+Source: pygoocanvas
+Priority: extra
+Maintainer: Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>
+Build-Depends: debhelper (>= 5), autotools-dev, python2.5-gobject-dev (>= 2.10.1), python2.5-gtk2-dev (>= 2.10.0), libgoocanvas-dev (>= 0.9), python2.5-cairo-dev (>= 1.2.0)
+Standards-Version: 3.7.2
+Section: libs
+
+#Package: python2.5-pygoocanvas-dev
+#Section: libdevel
+#Architecture: any
+#Depends: python2.5-pygoocanvas (= ${Source-Version})
+#Description: <insert up to 60 chars description>
+# <insert long description, indented with spaces>
+
+Package: python2.5-pygoocanvas
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: GooCanvas python bindings.
+ This package include Python bindings for GooCanvas. It is needed to run programs written in Python and using GooCanvas set.
