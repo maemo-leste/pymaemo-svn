@@ -74,14 +74,6 @@ install: build
 	# Add here commands to install the package into debian/tmp
 	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
 
-	# dev
-	#mv $(CURDIR)/debian/tmp/usr/include $(CURDIR)/debian/goocanvas-dev/usr/
-	#mv $(CURDIR)/debian/tmp/usr/lib/pkgconfig $(CURDIR)/debian/goocanvas-dev/usr/lib
-	
-	# lib
-	#mv $(CURDIR)/debian/tmp/usr/lib $(CURDIR)/debian/libgoocanvas/usr
-
-
 # Build architecture-independent files here.
 binary-indep: build install
 # We have nothing to do by default.
