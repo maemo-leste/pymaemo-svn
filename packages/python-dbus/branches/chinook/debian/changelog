@@ -1,3 +1,9 @@
+python-dbus (0.82-4osso1) unstable; urgency=low
+
+  * upgraded to python-dbus-0.82.4 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue, 15 Jan 2008 14:35:35 -0300
+
 python-dbus (0.81-1osso2) unstable; urgency=low
 
   * upgraded to python-dbus-0.81
