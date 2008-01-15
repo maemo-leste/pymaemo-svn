@@ -1,0 +1,92 @@
+pygame (1.7.1-1osso2) unstable; urgency=low
+
+  * fix #905
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue, 15 Jan 2007 14:15:00 -0300
+
+pygame (1.7.1-1osso1) unstable; urgency=low
+
+  * upgraded to pygame v1.7.1
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  14 Nov 2006 17:00:00 -0300
+
+pygame (1.6-2osso5) unstable; urgency=low
+
+  * total refactoring in debian/rules
+  * added shlibs dependencies
+  * added -mthumb flags
+  * changed architecture from 'any' to 'all'
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed,  7 Jun 2006 19:13:00 -0300
+
+pygame (1.6-2osso4) unstable; urgency=low
+
+  * Added python2.4-numeric-dev package in Build-Depends
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 1 Jun 2006 23:50:00 -0300
+
+pygame (1.6-2osso3) unstable; urgency=low
+
+  * Fixes in pygame package
+  * split pygame in pygame and pygame-dev packages
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 May 2006 17:38:00 -0300
+
+pygame (1.6-2osso2) unstable; urgency=low
+
+  * Recompiled agains SDK 2.0 RC3
+  * Removed requirement for SMPEG
+ 
+ -- Elvis Pfutzenreuter <elvis.pfutzenreuter@indt.org.br>  Fri, 28 Apr 2006 09:15:00 -0300
+
+pygame (1.6-2osso1) unstable; urgency=low
+
+  * First OSSO release for SDK 1.2
+ 
+ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 09 Feb 2006 15:01:42 -0300
+
+pygame (1.6-2indt6) unstable; urgency=low
+
+  * Recompiled against SDK 1.1rc8
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Fri, 02 Dec 2005 17:10:57 -0300
+
+pygame (1.6-2indt5) unstable; urgency=low
+
+  * Recompiled against rootstrap 1.1-Beta3
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 19 Sep 2005 18:56:39 -0300
+
+pygame (1.6-2indt4) unstable; urgency=low
+
+  * Remove python-pygame package (now we've only python2.4-pygame)
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue,  6 Sep 2005 10:56:00 -0300
+
+pygame (1.6-2indt3) unstable; urgency=low
+
+  * Recompiled against rootstrap 1.1-Beta2
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Tue, 30 Aug 2005 19:09:09 -0300
+
+pygame (1.6-2indt2) unstable; urgency=low
+
+  * Recompiled against new Python (with -O2 CFLAGS)
+ 
+ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 08 Aug 2005 16:31:28 -0300
+
+pygame (1.6-2indt1) unstable; urgency=low
+
+  * Adopted by INdT
+  * Recompiled against Python 2.4
+  * Removed build and dependencies on Python less than 2.4
+  * Removed dependence on sharutils
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 16 Jun 2005 10:29:00 -0300
+
+pygame (1.6-2) unstable; urgency=low
+
+  * Actually build-depend on python (for dh_python)
+    * Closes: #264086
+
+ -- Ed Boraas <ed@debian.org>  Sun,  8 Aug 2004 00:10:10 -0600
