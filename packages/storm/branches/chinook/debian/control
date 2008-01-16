@@ -1,14 +1,12 @@
 Source: storm
-Section: python
 Priority: optional
 Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2)
+Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso5)
 Standards-Version: 3.6.1
 
 Package: python2.5-storm
-Section: user/programming
 Architecture: any
-Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Dependes}
+Depends: python2.5 (>= 2.5.1-1osso5), ${shlibs:Dependes}
 Description: Storm is an object-relational mapper (ORM) for Python
  developed at Canonical.  The project has been in development for more
  than a year for use in Canonical projects such as Launchpad, and has

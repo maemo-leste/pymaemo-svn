@@ -1,3 +1,9 @@
+storm (0.11.0-osso2) unstable; urgency=low
+
+  * Remove from Application Manager programs list
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 15:02:56 -0300
+
 storm (0.11.0-osso1) unstable; urgency=low
 
   * First port to Maemo
