@@ -1,8 +1,10 @@
 python-hildon (0.8.8-1osso8) unstable; urgency=low
 
   * Adding python2.5-osso as dependency (hildonhelp depends on it).
+  * Fix #2009 - Hildon banner should accept null arguments
+  * Adding tests directory to hold unit tests. 
 
- -- Lauro Moura Maranhao Neto <lauromoura@gmail.com>  Fri,  4 Jan 2008 13:47:49 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed, 16 Jan 2008 15:44:35 -0300
 
 python-hildon (0.8.8-1osso7) unstable; urgency=low
 
