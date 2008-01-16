@@ -1,12 +1,10 @@
 Source: python-gpsbt
-Section: python
 Priority: optional
 Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2), python2.5-pyrex (>= 0.9.5.1-1osso1), libgpsbt-dev (>= 0.1-18)
+Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2), python2.5-pyrex (>= 0.9.4.1-1osso4), libgpsbt-dev (>= 0.1-18)
 Standards-Version: 3.6.1
 
 Package: python2.5-gpsbt
-Section: user/programming
 Architecture: any
 Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
 Provides: python-gpsbt

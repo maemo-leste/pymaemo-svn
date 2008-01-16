@@ -1,3 +1,10 @@
+python-gpsbt (0.1-18osso2) unstable; urgency=low
+
+  * remove from Application Manager programs list
+  * use pyrex 0.9.4
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 14:21:24 -0300
+
 python-gpsbt (0.1-18osso1) unstable; urgency=low
 
   * Initial Release.
