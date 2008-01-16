@@ -1,0 +1,69 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base = python2.5-feedparser
+p_dev = python2.5-feedparser-dev
+d_base = debian/$(p_base)
+d_dev = debian/$(p_dev)
+
+filename=feedparser
+fullfilename=$(PYTHON)-$(filename)
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	find . -name .DS_Store -exec rm -rf {} \;
+	find [DPTCs]* -type f -exec chmod -x {} \;
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -rf $(d_base)
+	$(PYTHON) setup.py clean --all
+	find . -name "*.py[co]" -exec rm -rf {} \;
+	find . -name "Makefile" -exec rm -rf {} \;
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+
+	$(PYTHON) setup.py install --root=$(d_base)
+	$(PYTHON) -OO -m compileall -d / -f $(d_base)/usr/lib/$(PYTHON)/site-packages
+
+	#base
+	find $(d_base) -name "*.py" | xargs rm -rf
+	find $(d_base) -name "*.pyc" | xargs rm -rf
+
+	#dev
+	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)
+	cp -R docs/* $(d_dev)/usr/share/doc/$(p_dev) 
+
+	# cleanup
+	find $(d_base) -name ".svn" | xargs rm -rf
+	find $(d_dev) -name ".svn" | xargs rm -rf
+	find $(d_dev) -name ".hg" | xargs rm -rf
+
+
+binary: binary-indep binary-arch
+binary-indep: install
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+#	dh_installchangelogs CHANGES.txt
+	dh_installdocs
+	dh_installexamples
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean binary binary-arch binary-indep install configure

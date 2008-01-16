@@ -1,0 +1,18 @@
+Source: python-feedparser
+Priority: optional
+Maintainer: Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>
+Build-Depends-Indep: debhelper (>= 4.1.0), python2.5-dev (>= 2.5.1-1osso2)
+Standards-Version: 3.6.2
+
+Package: python2.5-feedparser
+Architecture: all
+Depends: python2.5 (>= 2.5.1-1osso2)
+Recommends: python2.5-dev (>= 2.5.1-1osso2)
+Description: RSS and Atom parser library.
+ RSS and Atom parser library.
+
+Package: python2.5-feedparser-dev
+Architecture: all
+Depends: python2.5-feedparser (= ${Source-Version})
+Recommends: python2.5-dev (>= 2.5.1-1osso2)
+Description: Python-feedparser development package.
