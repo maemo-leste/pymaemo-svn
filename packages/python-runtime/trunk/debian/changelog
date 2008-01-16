@@ -1,8 +1,9 @@
 python-runtime (0.4-14) unstable; urgency=low
 
-  * don't list inside Application Manager 
+  * don't list inside Application Manager
+  * Add python2.5-sdk package 
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 11:07:31 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed, 16 Jan 2008 19:27:46 -0300
 
 python-runtime (0.4-13) unstable; urgency=low
 
