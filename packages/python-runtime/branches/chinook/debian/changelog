@@ -1,10 +1,9 @@
 python-runtime (c1.0-2) unstable; urgency=low
 
-  [ Luciano Miguel Wolf ]
   * PyGtk with glade support
   * Remove from Application Manager programs list
-
-  [ Lauro Moura Maranhao Neto ]
+  * Fixes #1039, #1195, #1544, #1565, #1673, #1720, #1721, #1726, #1862,
+    #1938, #1950, #2009
   * Added python2.5-sdk package. Fixes #1721
 
  -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 14:53:26 -0300
