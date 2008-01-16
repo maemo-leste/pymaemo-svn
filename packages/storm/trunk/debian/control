@@ -1,12 +1,10 @@
 Source: storm
-Section: python
 Priority: optional
 Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
 Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2)
 Standards-Version: 3.6.1
 
 Package: python2.5-storm
-Section: user/programming
 Architecture: any
 Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Dependes}
 Description: Storm is an object-relational mapper (ORM) for Python
