@@ -1,8 +1,14 @@
-Index: trunk/debian/changelog
+Index: ipython-0.8.1/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ trunk/debian/changelog	2007-05-20 00:18:02.000000000 +0300
-@@ -0,0 +1,341 @@
++++ ipython-0.8.1/debian/changelog	2008-01-16 14:33:58.000000000 -0300
+@@ -0,0 +1,347 @@
++ipython (0.8.1-1.maemo2) unstable; urgency=low
++
++  * remove from Application Manager programs list
++
++ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 11:08:23 -0300
++
 +ipython (0.8.1-1.maemo1) unstable; urgency=low
 +
 +  * upgrade to v0.8.1
@@ -344,22 +350,20 @@ Index: trunk/debian/changelog
 +
 + -- Jack Moffitt <jack@xiph.org>  Wed, 12 Mar 2003 21:04:22 -0700
 +
-Index: trunk/debian/compat
+Index: ipython-0.8.1/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ trunk/debian/compat	2007-05-20 00:15:35.000000000 +0300
++++ ipython-0.8.1/debian/compat	2008-01-15 16:46:30.000000000 -0300
 @@ -0,0 +1 @@
 +4
 Index: ipython-0.8.1/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ trunk/debian/control	2007-05-20 00:15:35.000000000 +0300
-@@ -0,0 +1,27 @@
++++ ipython-0.8.1/debian/control	2008-01-16 11:09:54.000000000 -0300
+@@ -0,0 +1,25 @@
 +Source: ipython
-+Section: User/python
 +Priority: optional
 +Maintainer: Ed Bartosh <bartosh@gmail.com>
-+Section: user/programming
 +Build-Depends-Indep: debhelper (>= 4), quilt (>= 0.45), python2.5-dev (>= 2.5.0-1osso10)
 +Standards-Version: 3.7.2.1
 +
@@ -382,10 +386,10 @@ Index: ipython-0.8.1/debian/control
 + Python programs.
 + .
 + Homepage: http://ipython.scipy.org/ 
-Index: trunk/debian/copyright
+Index: ipython-0.8.1/debian/copyright
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ trunk/debian/copyright	2007-05-20 00:15:35.000000000 +0300
++++ ipython-0.8.1/debian/copyright	2008-01-15 16:46:30.000000000 -0300
 @@ -0,0 +1,168 @@
 +This package was debianized by Jack Moffitt <jack@xiph.org> on
 +Wed, 12 Mar 2003 20:38:14 -0700.
@@ -555,10 +559,10 @@ Index: trunk/debian/copyright
 +
 +Itpl.py is copyright (C) 2001 Ka-Ping Yee <ping@lfw.org> and licensed
 +under the MIT license reproduced above.
-Index: trunk/debian/rules
+Index: ipython-0.8.1/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ trunk/debian/rules	2007-05-20 00:15:35.000000000 +0300
++++ ipython-0.8.1/debian/rules	2008-01-15 16:46:30.000000000 -0300
 @@ -0,0 +1,116 @@
 +#!/usr/bin/make -f
 +# ipython debian/rules file
