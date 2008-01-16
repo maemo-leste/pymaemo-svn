@@ -1,8 +1,6 @@
 Source: ipython
-Section: User/python
 Priority: optional
 Maintainer: Ed Bartosh <bartosh@gmail.com>
-Section: user/programming
 Build-Depends-Indep: debhelper (>= 4), quilt (>= 0.45), python2.5-dev (>= 2.5.0-1osso10)
 Standards-Version: 3.7.2.1
 
