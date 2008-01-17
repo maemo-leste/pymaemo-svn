@@ -1,3 +1,9 @@
+python-runtime (0.4-15) unstable; urgency=low
+
+  * bump revision
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed, 16 Jan 2008 21:31:08 -0300
+
 python-runtime (0.4-14) unstable; urgency=low
 
   * don't list inside Application Manager
