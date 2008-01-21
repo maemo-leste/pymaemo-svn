@@ -63,6 +63,28 @@ hildonhelp = TemplateExtension(name='hildonhelp', pkc_name='hildon-help',
                                    ])
 extensions.append(hildonhelp)
 
+hildonmime = TemplateExtension(name='hildonmime', pkc_name='libhildonmime',
+                               pkc_version="1.99.0",
+                               pygobject_pkc=('hildon-fm-2', 'pygobject-2.0'),
+                               sources=['mime/hildonmimemodule.c', 'mime/hildonmime.c',
+                                        'mime/hildonmime-types.c'],
+                               register=['mime/hildonmime-types.defs',
+                                         defsdir+'/gtk-types.defs',
+                                         defsdir+'/gtk.defs',
+                                         defsdir+'/gdk.defs',
+                                         defsdir+'/gtk-base.defs',
+                                         ],
+                               override='mime/hildonmime.override',
+                               defs='mime/hildonmime.defs',py_ssize_t_clean=True,
+                               extra_compile_args=['-Os',
+                                                   '-DXTHREADS',
+                                                   '-DXUSE_MTSAFE_API',
+                                                   '-DHILDON_DISABLE_DEPRECATED',
+                                                   '-DMAEMO_CHANGES',
+                                                   '-DHILDON_ENABLE_UNSTABLE_API'
+                               ])
+extensions.append(hildonmime)
+
 setup(
     name = 'hildon',
     version = '0.1',
@@ -83,6 +105,8 @@ setup(
         ('share/python-hildon/defs/defs', ['defs/'+x for x in os.listdir('./defs') if x != '.svn']),
         ('share/python-hildon/help/defs', ['help/hildonhelp-types.defs']),
         ('share/python-hildon/help/defs', ['help/hildonhelp.defs']),
+        ('share/python-hildon/mime/defs', ['mime/hildonmime-types.defs']),
+        ('share/python-hildon/mime/defs', ['mime/hildonmime.defs']),
     ],
     ext_modules = extensions,
     cmdclass={'build_ext': BuildExt}
