@@ -70,6 +70,20 @@ setup(
     author = 'Osvaldo Santana Neto',
     author_email = 'osvaldo.santana@indt.org.br',
     url = 'http://www.maemo.org',
+    py_modules=['hildonglade'],
+    data_files=[
+        ('share/doc/python-hildon/examples', ['examples/hildon-test.py']),
+        ('share/doc/python-hildon/examples', ['examples/maemo-pad.py']),
+        ('share/doc/python-hildon/examples', ['examples/key_test.py']),
+        ('share/doc/python-hildon/examples', ['examples/hildon-banner.py']),
+        ('share/doc/python-hildon/examples', ['examples/help_test.py']),
+        ('share/doc/python-hildon/examples', ['examples/hello-hildon.py']),
+        ('share/python-hildon/defs', ['hildon-types.defs']),
+        ('share/python-hildon/defs', ['hildon.defs']),
+        ('share/python-hildon/defs/defs', ['defs/'+x for x in os.listdir('./defs') if x != '.svn']),
+        ('share/python-hildon/help/defs', ['help/hildonhelp-types.defs']),
+        ('share/python-hildon/help/defs', ['help/hildonhelp.defs']),
+    ],
     ext_modules = extensions,
     cmdclass={'build_ext': BuildExt}
 )
