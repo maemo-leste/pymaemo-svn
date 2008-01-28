@@ -5,13 +5,6 @@ Build-Depends: debhelper (>= 5), autotools-dev, python2.5-gobject-dev (>= 2.10.1
 Standards-Version: 3.7.2
 Section: libs
 
-#Package: python2.5-pygoocanvas-dev
-#Section: libdevel
-#Architecture: any
-#Depends: python2.5-pygoocanvas (= ${Source-Version})
-#Description: <insert up to 60 chars description>
-# <insert long description, indented with spaces>
-
 Package: python2.5-pygoocanvas
 Section: libs
 Architecture: any
