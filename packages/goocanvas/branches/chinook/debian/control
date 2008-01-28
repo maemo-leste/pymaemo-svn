@@ -8,7 +8,7 @@ Section: libs
 Package: libgoocanvas-dev
 Section: libdevel
 Architecture: any
-Depends: libgoocanvas (= ${Source-Version})
+Depends: libgoocanvas3 (= ${Source-Version})
 Description: new canvas widget for GTK+ that uses the cairo 2D library
  GooCanvas is a new canvas widget for GTK+ that uses the cairo 2D
  library for drawing. It has a model/view split, and uses interfaces for
@@ -16,7 +16,7 @@ Description: new canvas widget for GTK+ that uses the cairo 2D library
  canvas items.
  This package contains the development libraries, include files and documentation
    
-Package: libgoocanvas
+Package: libgoocanvas3
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
