@@ -37,32 +37,15 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
-	python$(PYVER) setup.py install --prefix=$(d_base)/usr --skip-build
-
-	# base
-	touch $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
-	python$(PYVER) -OO -m compileall -d / -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/
-	rm $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
-	mkdir -p $(d_base)/usr/share/doc/$(p_base)
-	cp debian/copyright $(d_base)/usr/share/doc/$(p_base)
-
-	# dev
-	mkdir -p $(d_dev)/usr/share/doc/$(p_base)/examples/
-	mkdir -p $(d_dev)/usr/share/doc/$(p_base)/examples/gnomevfs
-	mkdir -p $(d_dev)/usr/share/$(p_base)/defs
-	cp examples/gconf/*py     $(d_dev)/usr/share/doc/$(p_base)/examples
-	cp gconf/gconf.defs $(d_dev)/usr/share/$(p_base)/defs
-	cp examples/vfs/*py     $(d_dev)/usr/share/doc/$(p_base)/examples/gnomevfs
-
-	# finish
-	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
-	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
+	python$(PYVER) setup.py install --prefix=$(d)/usr --skip-build
+	python$(PYVER) -OO -m compileall -d / $(d)/usr/lib
 
 binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
 	dh_installman
+	dh_install --source=debian/tmp
 	dh_link
 	dh_strip
 	dh_fixperms
