@@ -1,0 +1,36 @@
+python-gnome (2.18.0-1osso6) unstable; urgency=low
+
+  * Move build and packaging to use dsextras and dh_install
+  * Install .pc file
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed, 30 Jan 2008 17:16:35 -0300
+
+python-gnome (2.18.0-1osso5) unstable; urgency=low
+
+  * updating copyright info 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue, 15 Jan 2008 11:47:32 -0300
+
+python-gnome (2.18.0-1osso4) unstable; urgency=low
+
+  * bump version 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 26 Oct 2007 09:53:27 -0300
+
+python-gnome (2.18.0-1osso3) unstable; urgency=low
+
+  * fix missing __init__.pyo problem
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 26 Oct 2007 09:25:55 -0300
+
+python-gnome (2.18.0-1osso2) unstable; urgency=low
+
+  * fix #972 and #988
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 24 Oct 2007 15:50:03 -0300
+
+python-gnome (2.18.0-1osso1) unstable; urgency=low
+
+  * PythonGnome2.18 release for PyMaemo.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 13 Apr 2007 09:30:00 -0300
