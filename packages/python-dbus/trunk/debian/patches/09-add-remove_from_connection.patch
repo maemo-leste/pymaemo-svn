@@ -1,7 +1,17 @@
-diff -Nurp python-dbus-0.71/dbus/dbus_bindings.pyx python-dbus-kenne/dbus/dbus_bindings.pyx
---- python-dbus-0.71/dbus/dbus_bindings.pyx	2006-07-17 13:58:36.000000000 -0300
-+++ python-dbus-new/dbus/dbus_bindings.pyx	2008-01-14 18:40:21.000000000 -0300
-@@ -334,6 +334,9 @@ cdef class Connection:
+Index: dbus-python-0.71/dbus/dbus_bindings.pyx
+===================================================================
+--- dbus-python-0.71.orig/dbus/dbus_bindings.pyx	2008-01-31 17:37:33.000000000 -0300
++++ dbus-python-0.71/dbus/dbus_bindings.pyx	2008-01-31 17:43:40.000000000 -0300
+@@ -281,7 +281,7 @@
+     conn.__cinit__(None, connection)
+     args = (conn,
+             message)
+- 
++
+     retval = function(*args)
+ 
+     if (retval == None):
+@@ -334,6 +334,9 @@
      cdef _set_conn(self, DBusConnection *conn):
          self.conn = conn
      
@@ -11,72 +21,23 @@ diff -Nurp python-dbus-0.71/dbus/dbus_bindings.pyx python-dbus-kenne/dbus/dbus_b
      cdef DBusConnection *_get_conn(self):
          return self.conn
      
-diff -Nurp python-dbus-0.71/dbus/service.py python-dbus-kenne/dbus/service.py
---- python-dbus-0.71/dbus/service.py	2006-07-17 13:58:36.000000000 -0300
-+++ python-dbus-new/dbus/service.py	2008-01-14 15:54:10.000000000 -0300
-@@ -270,6 +270,71 @@ class Object(Interface):
+Index: dbus-python-0.71/dbus/service.py
+===================================================================
+--- dbus-python-0.71.orig/dbus/service.py	2008-01-31 17:37:33.000000000 -0300
++++ dbus-python-0.71/dbus/service.py	2008-01-31 17:40:03.000000000 -0300
+@@ -270,6 +270,21 @@
  
          self._connection.register_object_path(object_path, self._unregister_cb, self._message_cb)
  
 +    @property 
 +    def __dbus_object_path__(self):
-+        """The object-path at which this object is available. 
-+           Access raises AttributeError if there is no object path, or more than 
-+           one object path.
-+           
-+           Changed in 0.82.0: AttributeError can be raised.
-+        """
-+        if self._object_path is _MANY:
-+            raise AttributeError('Object %r has more than one object path: '
-+                                 'use Object.locations instead' % self)
-+        elif self._object_path is None:
-+            raise AttributeError('Object %r has no object path yet' % self)
-+        else:
-+            return self._object_path
++        return self._object_path
 +
 +    @property 
 +    def connection(self):
-+        """The Connection on which this object is available. 
-+           Access raises AttributeError if there is no Connection, or more than 
-+           one Connection. 
-+           
-+           Changed in 0.82.0: AttributeError can be raised. 
-+        """
-+        if self._connection is _MANY:
-+            raise AttributeError('Object %r is on more than one Connection: '
-+                                 'use Object.locations instead' % self)
-+        elif self._connection is None:
-+            raise AttributeError('Object %r has no Connection yet' % self)
-+        else:
-+            return self._connection 
++        return self._connection 
 +
 +    def remove_from_connection(self, connection=None, path=None):
-+        """Make this object inaccessible via the given D-Bus connection
-+        and object path. If no connection or path is specified,
-+        the object ceases to be accessible via any connection or path.
-+
-+        It's not currently possible to export an object on more than one
-+        connection or with more than one object-path, but this will be
-+        supported in future.
-+
-+        :Parameters:
-+            `connection` : dbus.connection.Connection or None
-+                Only remove the object from this Connection. If None,
-+                remove from all Connections on which it's exported.
-+            `path` : dbus.ObjectPath or other str, or None
-+                Only remove the object from this object path. If None,
-+                remove from all object paths.
-+        :Raises LookupError:
-+            if the object was not exported on the requested connection
-+            or path, or (if both are None) was not exported at all.
-+        """
-+        if self._object_path is None or self._connection is None:
-+            raise LookupError('%r is not exported' % self)
-+        if path is not None and self._object_path != path:
-+            raise LookupError('%r is not exported at path %r' % (self, path))
-+        if connection is not None and self._connection != connection:
-+            raise LookupError('%r is not exported on %r' % (self, connection))
-+
 +        try:
 +            self._connection._unregister_object_path(self._object_path)
 +        finally:

@@ -1,8 +1,15 @@
-Index: python-dbus-0.71/debian/changelog
+Index: dbus-python-0.71/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-dbus-0.71/debian/changelog	2008-01-17 16:26:06.000000000 -0300
-@@ -0,0 +1,96 @@
++++ dbus-python-0.71/debian/changelog	2008-01-31 17:54:42.000000000 -0300
+@@ -0,0 +1,103 @@
++python-dbus (0.71-1osso10) unstable; urgency=low
++
++  * Fix remove_from_connection compatibility with 0.71.
++  * Added try/except shielding to GIL_c*_function_handlers
++
++ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 31 Jan 2008 17:53:46 -0300
++
 +python-dbus (0.71-1osso9) unstable; urgency=low
 +
 +  * Add remove_from_connection function 
@@ -99,16 +106,16 @@ Index: python-dbus-0.71/debian/changelog
 +
 + -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 16 May 2006 13:48:00 -0300
 +
-Index: python-dbus-0.71/debian/compat
+Index: dbus-python-0.71/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-dbus-0.71/debian/compat	2008-01-17 16:21:36.000000000 -0300
++++ dbus-python-0.71/debian/compat	2008-01-31 17:51:27.000000000 -0300
 @@ -0,0 +1 @@
 +4
-Index: python-dbus-0.71/debian/control
+Index: dbus-python-0.71/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-dbus-0.71/debian/control	2008-01-17 16:21:36.000000000 -0300
++++ dbus-python-0.71/debian/control	2008-01-31 17:51:27.000000000 -0300
 @@ -0,0 +1,21 @@
 +Source: python-dbus
 +Section: python
@@ -131,10 +138,10 @@ Index: python-dbus-0.71/debian/control
 +Architecture: all
 +Depends: python2.5-dbus (= ${Source-Version}), python2.5-xml-dev
 +Description: Development files for Python wrappers around D-Bus.
-Index: python-dbus-0.71/debian/copyright
+Index: dbus-python-0.71/debian/copyright
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-dbus-0.71/debian/copyright	2008-01-17 16:21:36.000000000 -0300
++++ dbus-python-0.71/debian/copyright	2008-01-31 17:51:27.000000000 -0300
 @@ -0,0 +1,6 @@
 +This package was debianized by Osvaldo Santana Neto
 +<osvaldo.santana@indt.org.br> on Tue, 16 May 2006
@@ -142,10 +149,10 @@ Index: python-dbus-0.71/debian/copyright
 +It was downloaded from http://dbus.freedesktop.org/
 +
 +Copyright Holder: see COPYING
-Index: python-dbus-0.71/debian/rules
+Index: dbus-python-0.71/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python-dbus-0.71/debian/rules	2008-01-17 16:21:36.000000000 -0300
++++ dbus-python-0.71/debian/rules	2008-01-31 17:53:02.000000000 -0300
 @@ -0,0 +1,73 @@
 +#!/usr/bin/make -f
 +

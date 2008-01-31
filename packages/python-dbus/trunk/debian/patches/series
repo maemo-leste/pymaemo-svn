@@ -7,3 +7,4 @@
 07-using-an-output-instead-print.patch
 08-dbus-ecore-bindings.patch
 09-add-remove_from_connection.patch
+10-fix-GIL-handlers.patch
