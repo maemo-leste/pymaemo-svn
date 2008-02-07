@@ -1,3 +1,4 @@
 usr/include
 usr/lib/libgoocanvas*.so
+usr/lib/libgoocanvas*.la
 usr/lib/pkgconfig
