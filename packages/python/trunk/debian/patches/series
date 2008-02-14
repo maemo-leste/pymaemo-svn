@@ -11,3 +11,4 @@
 11-move-pydoc-and-pdb-to-main-package.patch
 12-postinst-postrm-scripts.patch
 13-set-wakeup-fix.patch
+14-encodings-oriental.patch

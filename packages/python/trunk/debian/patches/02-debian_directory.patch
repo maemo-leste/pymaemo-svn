@@ -1,10 +1,17 @@
 Idex: python/debian/changelog
 ===================================================================
-Index: python2.5-2.5.1/debian/changelog
+Index: python-2.5.1/debian/changelog
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python2.5-2.5.1/debian/changelog	2007-05-19 20:01:10.000000000 +0300
-@@ -0,0 +1,229 @@
++++ python-2.5.1/debian/changelog	2008-02-14 15:40:23.000000000 -0300
+@@ -0,0 +1,236 @@
++python2.5 (2.5.1-1osso6) unstable; urgency=low
++
++  * Fix #2154  - cp encodings back in base and oriental in encodings_orient,
++    but still searchable with encodings.search_function.
++
++ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 14 Feb 2008 15:39:12 -0300
++
 +python2.5 (2.5.1-1osso5) unstable; urgency=low
 +
 +  * Apply patch for signal.set_wakeup_fd (http://bugs.python.org/issue1583)
@@ -234,16 +241,16 @@ Index: python2.5-2.5.1/debian/changelog
 +  * Python 2.4.2 release.
 +
 + -- Matthias Klose <doko@debian.org>  Thu, 29 Sep 2005 01:49:28 +0200
-Index: python2.5-2.5.1/debian/compat
+Index: python-2.5.1/debian/compat
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python2.5-2.5.1/debian/compat	2007-05-19 19:58:57.000000000 +0300
++++ python-2.5.1/debian/compat	2008-02-14 15:26:45.000000000 -0300
 @@ -0,0 +1 @@
 +4
-Index: python2.5-2.5.1/debian/control
+Index: python-2.5.1/debian/control
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python2.5-2.5.1/debian/control	2007-05-19 19:59:30.000000000 +0300
++++ python-2.5.1/debian/control	2008-02-14 15:41:57.000000000 -0300
 @@ -0,0 +1,27 @@
 +Source: python2.5
 +Section: python
@@ -272,10 +279,10 @@ Index: python2.5-2.5.1/debian/control
 + Python (v2.5) in applications.
 + .
 + Maintainers of Python packages should read README.maintainers.
-Index: python2.5-2.5.1/debian/onlysdk
+Index: python-2.5.1/debian/onlysdk
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python2.5-2.5.1/debian/onlysdk	2007-05-19 19:59:30.000000000 +0300
++++ python-2.5.1/debian/onlysdk	2008-02-14 15:41:56.000000000 -0300
 @@ -0,0 +1,64 @@
 +pdb
 +pydoc
@@ -341,10 +348,10 @@ Index: python2.5-2.5.1/debian/onlysdk
 +shift_jis
 +shift_jis_2004
 +shift_jisx0213
-Index: python2.5-2.5.1/debian/rules
+Index: python-2.5.1/debian/rules
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ python2.5-2.5.1/debian/rules	2007-05-19 19:59:31.000000000 +0300
++++ python-2.5.1/debian/rules	2008-02-14 15:41:57.000000000 -0300
 @@ -0,0 +1,216 @@
 +#!/usr/bin/make -f
 +
