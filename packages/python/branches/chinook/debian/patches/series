@@ -7,3 +7,4 @@
 08-disable-tk_support.patch
 09-lib-site.patch
 13-set-wakeup-fix.patch
+14-encodings-oriental.patch

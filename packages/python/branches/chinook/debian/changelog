@@ -1,3 +1,11 @@
+python2.5 (2.5.1-1osso6) unstable; urgency=low
+
+  * Adding patch 14-encodings-oriental to make encodings installed in -dev
+    package (oriental ones) available in the encodings_orient package. Also
+    cp and mac encodings were moved back to the base package. Fixes #2154
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 14 Feb 2008 15:06:07 -0300
+
 python2.5 (2.5.1-1osso5) unstable; urgency=low
 
   * Apply patch for signal.set_wakeup_fd (http://bugs.python.org/issue1583)
