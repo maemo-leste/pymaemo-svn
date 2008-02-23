@@ -1,10 +1,12 @@
-python2.5 (2.5.1-1osso6) unstable; urgency=low
+python2.5 (2.5.2-1osso0) unstable; urgency=low
 
+  * Update to 2.5.2
   * Adding patch 14-encodings-oriental to make encodings installed in -dev
     package (oriental ones) available in the encodings_orient package. Also
     cp and mac encodings were moved back to the base package. Fixes #2154
+  * Adding patch 15-fix-tests to adapt tests to our changes.
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 14 Feb 2008 15:06:07 -0300
+ -- Lauro Moura Maranhao Neto <lauromoura@gmail.com>  Sat, 23 Feb 2008 13:56:35 -0300
 
 python2.5 (2.5.1-1osso5) unstable; urgency=low
 

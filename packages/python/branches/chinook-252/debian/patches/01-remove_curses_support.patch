@@ -1,8 +1,8 @@
-Index: python2.5-2.5.1/configure.in
+Index: python-2.5.2/configure.in
 ===================================================================
---- python2.5-2.5.1.orig/configure.in	2008-01-09 16:20:45.000000000 -0300
-+++ python2.5-2.5.1/configure.in	2008-01-09 16:20:51.000000000 -0300
-@@ -1071,9 +1071,9 @@
+--- python-2.5.2.orig/configure.in	2008-02-23 13:10:13.000000000 -0300
++++ python-2.5.2/configure.in	2008-02-23 13:10:15.000000000 -0300
+@@ -1080,9 +1080,9 @@
  
  # checks for header files
  AC_HEADER_STDC
@@ -14,7 +14,7 @@ Index: python2.5-2.5.1/configure.in
  shadow.h signal.h stdint.h stropts.h termios.h thread.h \
  unistd.h utime.h \
  sys/audioio.h sys/bsdtty.h sys/file.h sys/loadavg.h sys/lock.h sys/mkdev.h \
-@@ -1086,12 +1086,12 @@
+@@ -1095,12 +1095,12 @@
  AC_HEADER_DIRENT
  AC_HEADER_MAJOR
  
@@ -33,7 +33,7 @@ Index: python2.5-2.5.1/configure.in
  
  # On Linux, netlink.h requires asm/types.h
  AC_CHECK_HEADERS(linux/netlink.h,,,[
-@@ -3068,54 +3068,55 @@
+@@ -3092,54 +3092,55 @@
    [Define this if you have flockfile(), getc_unlocked(), and funlockfile()])
  fi
  
@@ -137,7 +137,7 @@ Index: python2.5-2.5.1/configure.in
  
  AC_MSG_CHECKING(for broken nice())
  AC_CACHE_VAL(ac_cv_broken_nice, [
-@@ -3290,82 +3291,82 @@
+@@ -3314,82 +3315,82 @@
    [Define if you have struct stat.st_mtimensec])
  fi
  
@@ -294,13 +294,13 @@ Index: python2.5-2.5.1/configure.in
 +#  AC_MSG_RESULT(no)
 +#fi
  
- AC_MSG_CHECKING(for %zd printf() format support)
- AC_TRY_RUN([#include <stdio.h>
-Index: python2.5-2.5.1/setup.py
+ case $MACHDEP in
+ darwin)	
+Index: python-2.5.2/setup.py
 ===================================================================
---- python2.5-2.5.1.orig/setup.py	2008-01-09 16:20:45.000000000 -0300
-+++ python2.5-2.5.1/setup.py	2008-01-09 16:42:31.000000000 -0300
-@@ -487,18 +487,18 @@
+--- python-2.5.2.orig/setup.py	2008-02-23 13:10:13.000000000 -0300
++++ python-2.5.2/setup.py	2008-02-23 13:10:15.000000000 -0300
+@@ -488,18 +488,18 @@
                  readline_extra_link_args = ()
  
              readline_libs = ['readline']
@@ -331,7 +331,7 @@ Index: python2.5-2.5.1/setup.py
              exts.append( Extension('readline', ['readline.c'],
                                     library_dirs=['/usr/lib/termcap'],
                                     extra_link_args=readline_extra_link_args,
-@@ -900,40 +900,40 @@
+@@ -919,40 +919,40 @@
                  exts.append( Extension('nis', ['nismodule.c'],
                                         libraries = libs) )
  
