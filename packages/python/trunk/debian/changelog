@@ -2,8 +2,9 @@ python2.5 (2.5.1-1osso6) unstable; urgency=low
 
   * Fix #2154  - cp encodings back in base and oriental in encodings_orient,
     but still searchable with encodings.search_function.
+  * Added package python2.5-testing with regression tests. Fixes #2233
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 14 Feb 2008 15:39:12 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 25 Feb 2008 18:06:22 -0300
 
 python2.5 (2.5.1-1osso5) unstable; urgency=low
 
