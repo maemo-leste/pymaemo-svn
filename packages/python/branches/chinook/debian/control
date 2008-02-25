@@ -23,5 +23,11 @@ Description: Header files and a static library for Python (v2.5)
  Header files, a static library and development tools for building
  Python (v2.5) modules, extending the Python interpreter or embedding
  Python (v2.5) in applications.
+
+Package: python2.5-testing
+Architecture: any
+Depends: python2.5-dev (= ${Source-Version})
+Description: Regression testing modules for python.
+ Modules used to test python (regression tests).
  .
  Maintainers of Python packages should read README.maintainers.
