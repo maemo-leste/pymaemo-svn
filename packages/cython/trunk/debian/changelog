@@ -1,3 +1,9 @@
+cython (0.9.6.12-1osso0) unstable; urgency=low
+
+  * Update to version 0.9.6.12
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 26 Feb 2008 16:57:11 -0300
+
 cython (0.9.6.10b-1osso1) unstable; urgency=low
 
   * updating to version 0.9.6.10b
