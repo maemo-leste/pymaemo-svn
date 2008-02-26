@@ -7,8 +7,10 @@ PYTHON=python$(PYVER)
 
 p_base=$(PYTHON)
 p_dev=$(PYTHON)-dev
+p_test=$(PYTHON)-testing
 d_base=$(CURDIR)/debian/$(p_base)
 d_dev=$(CURDIR)/debian/$(p_dev)
+d_test=$(CURDIR)/debian/$(p_test)
 
 only_dev_list=$(CURDIR)/debian/onlysdk
 
@@ -68,21 +70,28 @@ stamp-install: stamp-build
 
 	# remove unneeded modules
 	rm -rf \
-	    $(d_dev)/$(scriptdir)/test \
-	    $(d_dev)/$(scriptdir)/ctypes/test \
-	    $(d_dev)/$(scriptdir)/sqlite3/test \
-	    $(d_dev)/$(scriptdir)/email/test \
 	    $(d_dev)/$(scriptdir)/lib-dynload/rgbimage.so \
 	    $(d_dev)/$(scriptdir)/lib-dynload/rgbimg.so \
 	    $(d_dev)/$(scriptdir)/lib-dynload/linuxaudiodev.so \
 	    $(d_dev)/$(scriptdir)/lib-dynload/ossaudiodev.so \
 	    $(d_dev)/$(scriptdir)/lib-dynload/audioop.so \
-	    $(d_dev)/$(scriptdir)/lib-dynload/_ctypes_test.so \
-	    $(d_dev)/$(scriptdir)/lib-dynload/_testcapi.so \
 	    $(d_dev)/$(scriptdir)/idlelib \
 	    $(d_dev)/$(scriptdir)/lib-tk \
 	    $(d_dev)/$(scriptdir)/bsddb \
 	    $(d_dev)/$(scriptdir)/xml/{dom,parsers,sax}
+
+	# testing
+	# ====
+	mkdir -p $(d_test)/$(scriptdir)/ctypes
+	mkdir -p $(d_test)/$(scriptdir)/sqlite3
+	mkdir -p $(d_test)/$(scriptdir)/email
+	mkdir -p $(d_test)/$(scriptdir)/lib-dynload
+	mv $(d_dev)/$(scriptdir)/test $(d_test)/$(scriptdir)
+	mv $(d_dev)/$(scriptdir)/ctypes/test $(d_test)/$(scriptdir)/ctypes/
+	mv $(d_dev)/$(scriptdir)/sqlite3/test $(d_test)/$(scriptdir)/sqlite3/
+	mv $(d_dev)/$(scriptdir)/email/test $(d_test)/$(scriptdir)/email/
+	mv $(d_dev)/$(scriptdir)/lib-dynload/_ctypes_test.so $(d_test)/$(scriptdir)/lib-dynload/
+	mv $(d_dev)/$(scriptdir)/lib-dynload/_testcapi.so $(d_test)/$(scriptdir)/lib-dynload/
 
 	# base
 	# ====
@@ -160,9 +169,9 @@ stamp-install: stamp-build
 	# cleanups
 	# ========
 
-	find $(d_base) $(d_dev) -name CVS | xargs rm -rf
-	find $(d_base) $(d_dev) -name .cvsignore | xargs rm -f
-	find $(d_base) $(d_dev) -name "*.exe" | xargs rm -f
+	find $(d_base) $(d_dev) $(d_test) -name CVS | xargs rm -rf
+	find $(d_base) $(d_dev) $(d_test) -name .cvsignore | xargs rm -f
+	find $(d_base) $(d_dev) $(d_test) -name "*.exe" | xargs rm -f
 
 	# default python
 	# ============== 
@@ -172,7 +181,7 @@ stamp-install: stamp-build
 	cp -p Tools/i18n/pygettext.py $(d_dev)/usr/bin/pygettext$(PYVER)
 	ln -sf pygettext$(PYVER) $(d_dev)/usr/bin/pygettext
 
-	for i in `find $(d_base) $(d_dev) -type f`; do \
+	for i in `find $(d_base) $(d_dev) $(d_test) -type f`; do \
 	  sed '1s,#!.*python[^ ]*\(.*\),#!/usr/bin/env $(PYTHON)\1,' $$i > $$i.temp; \
 	  if cmp --quiet $$i $$i.temp; then \
 	    rm -f $$i.temp; \
@@ -192,6 +201,7 @@ binary-indep: install
 	dh_installexamples
 	dh_link
 	dh_compress -p$(p_dev) -X.py -X.cls -X.css -X.txt -Xgdbinit
+	dh_compress -p$(p_test) -X.py -X.cls -X.css -X.txt -Xgdbinit
 	dh_fixperms
 	dh_installdeb
 	dh_gencontrol
@@ -204,7 +214,7 @@ binary-arch: install
 	dh_installdirs
 	dh_strip
 	dh_link
-	dh_compress -p$(p_dev) -X.py -X.cls -X.css -X.txt -Xgdbinit
+	dh_compress -p$(p_test) -X.py -X.cls -X.css -X.txt -Xgdbinit
 	dh_fixperms
 	dh_makeshlibs
 	dh_installdeb

@@ -5,6 +5,7 @@ python2.5 (2.5.2-1osso0) unstable; urgency=low
     package (oriental ones) available in the encodings_orient package. Also
     cp and mac encodings were moved back to the base package. Fixes #2154
   * Adding patch 15-fix-tests to adapt tests to our changes.
+  * Adding package python2.5-testing with regression tests.
 
  -- Lauro Moura Maranhao Neto <lauromoura@gmail.com>  Sat, 23 Feb 2008 13:56:35 -0300
 
