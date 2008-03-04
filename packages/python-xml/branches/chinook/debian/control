@@ -1,0 +1,35 @@
+Source: python-xml
+Section: python
+Priority: optional
+Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Build-Depends: python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), debhelper (>= 4.2.5)
+Standards-Version: 3.6.1
+
+Package: python2.5-xml
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
+Description: XML tools for Python
+ The Python/XML distribution contains the basic tools required for
+ processing XML data using the Python programming language, assembled
+ into one easy-to-install package.  The distribution includes parsers
+ and standard interfaces such as SAX and DOM, along with various other
+ useful modules.
+ .
+ The package currently contains:
+ .
+  * XML parsers: Pyexpat (Jack Jansen), xmlproc (Lars Marius
+    Garshol), sgmlop (Fredrik Lundh).
+  * SAX interface (Lars Marius Garshol)
+  * minidom DOM implementation (Paul Prescod, others)
+  * 4DOM and 4XPath from Fourthought (Uche Ogbuji, Mike Olson)
+  * Schema implementations: TREX (James Tauber)
+  * Various utility modules and functions (various people)
+  * Documentation and example programs (various people)
+ .
+ This package is an empty dummy package that always depends on
+ a package built for Debian's default Python version.
+
+Package: python2.5-xml-dev
+Architecture: all
+Depends: python2.5-xml (= ${Source-Version})
+Description: Development files for XML tools for Python (2.5.x)

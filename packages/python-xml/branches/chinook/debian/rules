@@ -1,0 +1,104 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base=$(PYTHON)-xml
+p_dev=$(p_base)-dev
+
+d_base = debian/$(p_base)
+d_dev  = debian/$(p_dev)
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+	CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+	CFLAGS=-Os -Wall -Wstrict-prototypes
+endif
+
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py build --without-xslt
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	-rm -f build-stamp
+	-rm -rf build dist
+	-rm -rf $(d_dev) $(d_base)
+	find . -name "*.py[co]" | xargs rm -f
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	CFLAGS="$(CFLAGS)" \
+	    $(PYTHON) -OO setup.py install \
+		--without-xslt \
+		--no-compile \
+		--prefix=$(d_base)/usr
+	sed '/^#!.*python/d' $(d_base)/usr/lib/$(PYTHON)/site-packages/_xmlplus/dom/ext/c14n.py > \
+		$(d_base)/usr/lib/$(PYTHON)/site-packages/_xmlplus/dom/ext/c14n.py.new
+	mv      $(d_base)/usr/lib/$(PYTHON)/site-packages/_xmlplus/dom/ext/c14n.py.new \
+		$(d_base)/usr/lib/$(PYTHON)/site-packages/_xmlplus/dom/ext/c14n.py
+	$(PYTHON) -OO -m compileall -f $(d_base)
+	cp -a $(d_base)/* $(d_dev)
+
+	# base
+	rm -rf $(d_base)/usr/share/doc/$(p_dev)
+	rm -rf $(d_base)/usr/bin
+	find $(d_base) -name "*.py" -exec rm -f {} \;
+	find $(d_base) -name "*.pyc" -exec rm -f {} \;
+
+	# dev
+	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/{test,demo}
+	cp -r doc/*  $(d_dev)/usr/share/doc/$(p_dev)
+	cp -r demo/* $(d_dev)/usr/share/doc/$(p_dev)/examples/demo
+	cp -r test/* $(d_dev)/usr/share/doc/$(p_dev)/examples/test
+	find $(d_dev) -name "*.pyo" -exec rm -f {} \;
+	find $(d_dev) -name "*.so" -exec rm -f {} \;
+	find $(d_dev) -name "*.mo" -exec rm -f {} \;
+
+	# cleanup
+	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
+
+	for i in `find $(d_base) $(d_dev) -type f`; do \
+	    sed "1s,#\!.*python[^ ]*\(.*\),#\!/usr/bin/env $(PYTHON) \1," $$i > $$i.temp; \
+	    cat $$i.temp > $$i; \
+	    rm $$i.temp; \
+	done
+
+binary: binary-indep binary-arch
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_installchangelogs -p$(p_dev)
+	dh_installdocs -p$(p_dev)
+	dh_compress -p$(p_dev) -X.py -Xexamples
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean install binary-indep binary-arch binary
+

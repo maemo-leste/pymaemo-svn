@@ -1,0 +1,69 @@
+python-xml (0.8.4-1osso9) unstable; urgency=low
+
+  * minor adjustments in debian/rules
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 11 May 2007 17:42:44 -0300
+
+python-xml (0.8.4-1osso8) unstable; urgency=low
+
+  * minor adjustments in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri,  9 Jun 2006 16:37:03 -0300
+
+python-xml (0.8.4-1osso7) unstable; urgency=low
+
+  * full refactoring on debian/rules
+  * make package compatible with debhelp 4
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed,  7 Jun 2006 16:42:22 -0300
+
+python-xml (0.8.4-1osso6) unstable; urgency=low
+
+  * added changelog and copyright info in -dev package
+  * minor cleanups in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed,  7 Jun 2006 00:58:26 -0300
+
+python-xml (0.8.4-1osso5) unstable; urgency=low
+
+  * fixed depends on shlibs
+  * enable "-mthumb" and "-msoft-abi=softfp" flags on gcc
+  * fixed a bug on changing "#!/usr/bin/python" to "#!/usr/bin/env python2.4"
+  * removed postinst and postrm scripts
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 5 May 2006 19:18:00 -0300
+
+python-xml (0.8.4-1osso4) unstable; urgency=low
+
+  * remove .svn directories in development package (documentation and example) :/
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 May 2006 10:38:00 -0300
+
+python-xml (0.8.4-1osso4) unstable; urgency=low
+
+  * remove unused files from debian/
+  * remove compileall in post-install script
+  * replace python2.4 to macro in debian/rules
+  * renamed documentation directory in development package
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 May 2006 15:55:00 -0300
+
+python-xml (0.8.4-1osso3) unstable; urgency=low
+
+  * some package cleanups
+  * recompiled with 2.0rc7
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 5 May 2006 16:54:00 -0300
+
+python-xml (0.8.4-1osso2) unstable; urgency=low
+
+  * added to Python for Maemo
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 06 Apr 2006 10:20:00 -0300
+
+python-xml (0.8.4-1ubuntu2) unstable; urgency=low
+
+  * Change python version (2.3->2.4) used in xbel-utils.postinst
+  * Update xbel-utils.dirs for the same version change
+
+ -- Andrew Mitchell <ajmitch@ubuntu.com>  Fri, 30 Sep 2005 16:36:15 +1200
