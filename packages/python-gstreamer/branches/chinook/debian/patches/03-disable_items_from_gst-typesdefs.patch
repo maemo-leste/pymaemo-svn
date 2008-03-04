@@ -1,7 +1,7 @@
 Index: python-gstreamer/gst/gst-types.defs
 ===================================================================
---- python-gstreamer.orig/gst/gst-types.defs	2007-03-06 17:43:13.000000000 -0300
-+++ python-gstreamer/gst/gst-types.defs	2007-03-06 17:43:30.000000000 -0300
+--- python-gstreamer.orig/gst/gst-types.defs	2008-03-04 11:33:18.000000000 -0300
++++ python-gstreamer/gst/gst-types.defs	2008-03-04 11:33:31.000000000 -0300
 @@ -311,13 +311,15 @@
    )
  )
@@ -25,7 +25,7 @@ Index: python-gstreamer/gst/gst-types.defs
  
  ;; Enumerations and flags ...
  
-@@ -1053,10 +1055,12 @@
+@@ -1069,10 +1071,12 @@
     (gtype-id "GST_TYPE_TAG_SETTER")
  )
  

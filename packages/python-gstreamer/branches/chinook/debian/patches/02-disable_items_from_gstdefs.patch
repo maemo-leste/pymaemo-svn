@@ -1,8 +1,8 @@
 Index: python-gstreamer/gst/gst.defs
 ===================================================================
---- python-gstreamer.orig/gst/gst.defs	2007-03-06 17:31:02.000000000 -0300
-+++ python-gstreamer/gst/gst.defs	2007-03-06 17:31:19.000000000 -0300
-@@ -2643,13 +2643,15 @@
+--- python-gstreamer.orig/gst/gst.defs	2008-03-04 11:33:18.000000000 -0300
++++ python-gstreamer/gst/gst.defs	2008-03-04 11:33:25.000000000 -0300
+@@ -2789,13 +2789,15 @@
    )
  )
  
@@ -25,7 +25,7 @@ Index: python-gstreamer/gst/gst.defs
  
  ;; From ../gstreamer/gst/gstiterator.h
  
-@@ -6171,14 +6173,16 @@
+@@ -6451,14 +6453,16 @@
    (return-type "GstCaps*")
  )
  
