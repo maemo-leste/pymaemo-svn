@@ -1,4 +1,3 @@
-01-add_debian_dir.patch
 02-modify_demo_files.patch
 03-add_rpm_build-sh.patch
 04-add_rpm_install-sh.patch

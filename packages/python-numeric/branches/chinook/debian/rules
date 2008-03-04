@@ -1,0 +1,113 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base	= python$(PYVER)-numeric
+p_dev   = python$(PYVER)-numeric-dev
+
+d_base	= debian/$(p_base)
+d_dev   = debian/$(p_dev)
+
+pysite=usr/lib/python$(PYVER)/site-packages
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+    CFLAGS=-Os -Wall -Wstrict-prototypes
+endif
+
+build: stamp-build
+stamp-build:
+	dh_testdir
+	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py build
+	touch stamp-build
+
+clean:
+	dh_testdir
+	dh_testroot
+	-rm -f stamp-build
+	-rm -rf `find -name build -type d`
+	-rm -rf $(d_base) $(d_dev)
+	-rm -rf doc/www.pfdubois.com
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	CFLAGS="$(CFLAGS)" $(PYTHON) setup.py install --prefix=$(d_base)/usr
+	CFLAGS="$(CFLAGS)" $(PYTHON) -OO -m compileall -f $(d_base)/usr
+	cp -a $(d_base)/* $(d_dev)
+
+	# base
+	find $(d_base) -type f -name "*.py" | xargs rm -f
+	find $(d_base) -type f -name "*.pyc" | xargs rm -f
+	rm -rf $(d_base)/usr/include
+	rm -rf $(d_base)/$(pysite)/Numeric/Numeric_headers
+
+	# dev
+	find $(d_dev) -type f -name "*.so" | xargs rm -f
+	find $(d_dev) -type f -name "*.py[co]" | xargs rm -f
+	rm -f $(d_dev)/$(pysite)/Numeric.pth
+
+	dh_installdirs -p$(p_dev) $(pysite)/NumTut usr/share/doc/$(p_dev)
+
+	cp -a Demo/NumTut $(d_dev)/$(pysite)
+	chmod a+x $(d_dev)/$(pysite)/NumTut/__init__.py $(d_dev)/$(pysite)/NumTut/view.py
+
+	dh_link -p$(p_dev) /$(pysite)/NumTut /usr/share/doc/$(p_dev)/NumTut
+	install -m 644 doc/numpy.pdf $(d_dev)/usr/share/doc/$(p_dev)
+
+	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/Demo
+	cp -a Test $(d_dev)/usr/share/doc/$(p_dev)/examples
+	cp -p Demo/*.py $(d_dev)/usr/share/doc/$(p_dev)/examples/Demo
+	rm -f $(d_dev)/usr/share/doc/$(p_dev)/examples/Test/testwin.bat
+
+	# cleanup
+	find $(d_base) $(d_dev) -name '.svn' | xargs rm -rf
+	
+	# fix interpreter
+	for i in `find $(d_dev) $(d_base) -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#!/usr/bin/python2.5\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+binary: binary-indep binary-arch
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_installchangelogs -p$(p_dev)
+	dh_installdocs -p$(p_dev)
+	dh_compress -p$(p_dev) -X.py -Xexamples
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean install binary-indep binary-arch binary
+

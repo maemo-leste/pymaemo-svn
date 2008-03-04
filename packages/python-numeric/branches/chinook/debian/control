@@ -1,0 +1,40 @@
+Source: python-numeric
+Section: python
+Priority: optional
+Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+Standards-Version: 3.6.1
+Build-Depends: python2.5-dev (>= 2.5.1-1osso2), debhelper (>= 4.1.67)
+
+Package: python2.5-numeric
+Architecture: any
+Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
+Description: Numerical (matrix-oriented) Mathematics for Python
+ The Numeric Extensions to Python (NumPy) add powerful
+ multi-dimensional array objects to the wonderful general purpose
+ programming language Python. These new objects give Python the number
+ crunching power of numeric languages like Matlab and IDL while
+ maintaining all of the advantages of the general-purpose programming
+ language Python.
+ .
+ These extensions add two new object types to Python, and then include
+ a number of extensions that take advantage of these two new objects:
+ .
+  - Multidimensional Array Objects
+    * Efficient arrays of homogeneous machine types (floats, longs,
+      complex doubles)
+    * Arbitrary number of dimensions
+    * Sophisticated structural operations
+  - Universal Function Objects
+    * Support mathematical functions on all Python objects
+    * Very efficient for array objects
+  - Simple interfaces to existing numerical libraries:
+    * Linear Algebra (LAPACK)
+    * Fourier Transforms (FFTPACK)
+    * Random Arrays (RANLIB)
+    * Independent Random Streams (RNG, ranf)
+    * Masked Arrays (MA)
+
+Package: python2.5-numeric-dev
+Architecture: all
+Depends: python2.5-numeric (= ${Source-Version})
+Description: Development files for Numeric Python

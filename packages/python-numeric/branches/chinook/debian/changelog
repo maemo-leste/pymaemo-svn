@@ -1,0 +1,110 @@
+python-numeric (24.2-1osso5) unstable; urgency=low
+
+  * Remove Numeric_headers from base package.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed,  9 Jan 2008 17:02:19 -0300
+
+python-numeric (24.2-1osso4) unstable; urgency=low
+
+  * moved from Python2.4 to 2.5
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  16 Nov 2006 11:45:00 -0300
+
+python-numeric (24.2-1osso3) unstable; urgency=low
+
+  * refactored all debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu,  8 Jun 2006 01:01:47 -0300
+
+python-numeric (24.2-1osso2) unstable; urgency=low
+
+  * added shlibs dependencies
+  * enable -mthumb and -mfloat-abi=softfp flags for armel architecture
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 6 Jun 2006 18:00:00 -0300
+
+python-numeric (24.2-1osso1) unstable; urgency=low
+
+  * updated to 24.2 version wich includes Legal.htm with license
+    informations)
+  * removed pdubois tutorial from documentation
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 30 May 2006 10:25:00 -0300
+
+python-numeric (23.8-1osso5) unstable; urgency=low
+
+  * fixed reference to COPYING file. This file was missing and license terms
+    is in README file instead.
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 19 May 2006 13:41:00 -0300
+
+python-numeric (23.8-1osso4) unstable; urgency=low
+
+  * renamed documentation directory in development package
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 May 2006 17:58:00 -0300
+
+python-numeric (23.8-1osso3) unstable; urgency=low
+
+  *  some Debian package cleanups
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 3 May 2006 19:45:00 -0300
+
+python-numeric (23.8-1osso2) unstable; urgency=low
+
+  *  First OSSO release for SDK 2.0
+  *  Changed dependency from g77-3.3 to g77-3.4
+ 
+ -- Elvis Pfutzenreuter <elvis.pfutzenreuterindt.org.br>  Wed, 26 Apr 2006 16:00:00 -0300
+
+python-numeric (23.8-1osso1) unstable; urgency=low
+
+  *  First OSSO release for SDK 1.2
+ 
+ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 09 Feb 2006 11:27:48 -0300
+
+python-numeric (23.8-1indt6) unstable; urgency=low
+  
+  * Recompiled against SDK 1.1rc8
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 05 Dec 2005 15:39:06 -0300
+
+python-numeric (23.8-1indt5) unstable; urgency=low
+  
+  * Recompiled against rootstrap 1.1-PreFinal
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 26 Sep 2005 17:18:04 -0300
+
+python-numeric (23.8-1indt4) unstable; urgency=low
+  
+  * Recompiled against rootstrap 1.1-Beta3
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Mon, 19 Sep 2005 15:43:58 -0300
+
+python-numeric (23.8-1indt3) unstable; urgency=low
+
+  * Package Improves
+  * Added python-numeric-tutorial subpackage
+ 
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue,  6 Sep 2005 09:37:00 -0300
+
+python-numeric (23.8-1indt2) unstable; urgency=low
+
+  * Recompiled against new Python (with -O2 CFLAGS)
+ 
+ -- Ruda Moura <ruda.moura@indt.org.br>  Wed, 15 Jun 2005 15:08:48 -0300
+
+python-numeric (23.8-1indt1) unstable; urgency=low
+
+  * Adopted by INdT
+  * Force build on Python 2.4 only
+  * Disable build of pynumeric 2.1, 2.2 and 2.3 and tutorial
+  * Force build with included lapack (for i386)
+ 
+ -- Ruda Moura <ruda.moura@indt.org.br>  Wed, 15 Jun 2005 15:08:48 -0300
+
+python-numeric (23.8-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Matthias Klose <doko@debian.org>  Mon,  7 Mar 2005 01:26:04 +0100
