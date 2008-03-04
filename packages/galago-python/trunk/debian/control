@@ -1,0 +1,17 @@
+Source: galago-python
+Priority: optional
+Section: python
+Maintainer: Lauro Moura Mara
+Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), libgalago-dev (>= 0.5.0)
+Standards-Version: 3.6.1
+
+Package: python2.5-galago
+Architecture: any
+Depends: python2.5-gtk2 (>= 2.10.3-1osso4), python2.5 (>= 2.5.1-1osso2), libgalago1 (>= 0.5.0) ${shlibs:Depends}
+Description: Python bindings for Galago library
+
+Package: python2.5-galago-dev
+Architecture: all
+Depends: python2.5-galago (= ${Source-Version})
+Description: Examples and header files for Python bindings for Galago library
+
