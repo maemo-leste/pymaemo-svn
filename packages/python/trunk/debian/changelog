@@ -1,3 +1,9 @@
+python2.5 (2.5.1-1osso7) unstable; urgency=low
+
+  * Added patch for upstream issue #1179 - Integer overflow on imageop module.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 11 Mar 2008 16:15:32 -0300
+
 python2.5 (2.5.1-1osso6) unstable; urgency=low
 
   * Fix #2154  - cp encodings back in base and oriental in encodings_orient,
