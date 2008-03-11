@@ -8,3 +8,4 @@
 09-lib-site.patch
 13-set-wakeup-fix.patch
 14-encodings-oriental.patch
+15-bug1179-imageop.patch

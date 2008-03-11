@@ -1,3 +1,10 @@
+python2.5 (2.5.1-1osso7) unstable; urgency=low
+
+  * Adding patch from upstream issue #1179 on integer overflows in imageop
+    module.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 11 Mar 2008 11:57:41 -0300
+
 python2.5 (2.5.1-1osso6) unstable; urgency=low
 
   * Adding patch 14-encodings-oriental to make encodings installed in -dev
