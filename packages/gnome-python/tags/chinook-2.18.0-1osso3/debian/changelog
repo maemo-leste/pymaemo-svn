@@ -1,0 +1,19 @@
+python-gnome (2.18.0-1osso3) unstable; urgency=low
+
+  * correct copyright file and put it inside /usr/share/doc
+  * fix doc install path
+  * fix missing __init__.py problem
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 16:44:35 -0300
+
+python-gnome (2.18.0-1osso2) unstable; urgency=low
+
+  * fix #972 and #988
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 24 Oct 2007 15:50:03 -0300
+
+python-gnome (2.18.0-1osso1) unstable; urgency=low
+
+  * PythonGnome2.18 release for PyMaemo.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 13 Apr 2007 09:30:00 -0300
