@@ -1,10 +1,8 @@
 02-update-gconf-defs.patch
-#03-create-headers-file.patch
-#04-update-headers-inside-gconf-dir.patch
 05-removing-incompatible-fields.patch
 06-bonobo-removal-and-init-modification.patch
-#07-update-setup-file.patch
-07-update-setup-py.patch
-007-create-dummy-gnome-package.patch
+#07-update-setup-py.patch
+#007-create-dummy-gnome-package.patch
 08-modify-vfs-examples.patch
 09-modify-gconf-examples.patch
+10-move-into-gnome-package.patch

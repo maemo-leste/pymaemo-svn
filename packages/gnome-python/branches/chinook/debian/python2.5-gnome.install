@@ -1,3 +1,2 @@
-usr/lib/python2.5/site-packages/gnome/*.so
-usr/lib/python2.5/site-packages/gnome/__init__.pyo
-usr/share/doc/python-gnome/copyright
+usr/lib/python2.5/site-packages/gtk-2.0/gnome/*.so
+usr/lib/python2.5/site-packages/gtk-2.0/gnome/__init__.pyo

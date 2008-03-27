@@ -1,13 +1,12 @@
 python-gnome (2.18.0-1osso4) unstable; urgency=low
 
-  * Removed original patch on setup.py and added a new one to use dsextras
-    from pygtk
+  * Fallback to autotools while the fakeroot + popen + qemu-eabi bug isn't
+    solved. (Previously was using dsextras classes from pygtk)
   * debian/rules using dh_install to select files
-  * Added patch to create dummy gnome python package to remove unecessary
-    files.
-  * Now exporting the .pc file. 
+  * Now exporting the .pc file.
+  * Added libgtk2.0 and gnome-common to build-depends
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 29 Jan 2008 18:32:22 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 27 Mar 2008 17:07:23 -0300
 
 python-gnome (2.18.0-1osso3) unstable; urgency=low
 
