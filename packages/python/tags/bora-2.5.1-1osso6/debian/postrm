@@ -1,0 +1,3 @@
+#! /bin/sh -e
+
+update-alternatives --remove python /usr/bin/python2.5
