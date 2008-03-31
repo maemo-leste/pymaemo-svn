@@ -1,0 +1,74 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+d=debian/tmp
+d_base=debian/python$(PYVER)-gnome
+d_dev=debian/python$(PYVER)-gnome-dev
+
+ifeq ($(DEB_BUILD_ARCH),armel)
+   CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+else
+   CFLAGS=-Os -Wall -Wstrict-prototypes
+endif
+
+CLEANFILES = gconf/gconf.c gconf/*.pyo gconf/*.lo gconf/*.la gconf/*.in
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py build
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp 
+	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py clean -a
+	dh_clean $(CLEANFILES)
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	python$(PYVER) setup.py install --prefix=$(d_base)/usr --skip-build
+
+	# base
+	touch $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
+	python$(PYVER) -OO -m compileall -d / -l $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome
+	rm $(d_base)/usr/lib/python$(PYVER)/site-packages/gnome/__init__.py
+
+	# dev
+	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/
+	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)/examples/gnomevfs
+	mkdir -p $(d_dev)/usr/share/python-gnome/defs
+	cp examples/gconf/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples
+	cp gconf/gconf.defs $(d_dev)/usr/share/python-gnome/defs
+	cp examples/vfs/*py     $(d_dev)/usr/share/doc/$(p_dev)/examples/gnomevfs
+
+	# finish
+	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
+	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
+
+binary-indep: build install
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installman
+	dh_link
+	dh_strip
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install 
