@@ -1,0 +1,6 @@
+gnome-python-desktop (2.22.0-1osso0) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue,  1 Apr 2008 19:15:17 -0300
+

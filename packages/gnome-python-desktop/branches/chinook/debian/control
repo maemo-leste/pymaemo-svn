@@ -1,0 +1,20 @@
+Source: gnome-python-desktop
+Priority: extra
+Maintainer: Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>
+Build-Depends: debhelper (>= 5), autotools-dev, python2.5-gnome-dev (>= 2.18.0)
+Standards-Version: 3.7.2
+Section: libs
+
+Package: python2.5-gnome-desktop-dev
+Section: libdevel
+Architecture: any
+Depends: python2.5-gnome-desktop (= ${Source-Version})
+Description: Python bindings for gnome-desktop libraries
+ This package contains the development headers and files.
+
+Package: python2.5-gnome-desktop
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Python bindings for gnome-desktop libraries
+ This package contains the base libraries
