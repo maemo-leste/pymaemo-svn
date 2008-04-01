@@ -1,8 +1,8 @@
-Index: gnome-python-2.18/setup.py
+Index: gnome-python-2.18.0/setup.py
 ===================================================================
---- gnome-python-2.18.orig/setup.py	2007-04-04 09:56:41.000000000 -0300
-+++ gnome-python-2.18/setup.py	2007-04-04 09:58:54.000000000 -0300
-@@ -1,354 +1,120 @@
+--- gnome-python-2.18.0.orig/setup.py	2008-04-01 10:56:51.000000000 -0300
++++ gnome-python-2.18.0/setup.py	2008-04-01 11:21:13.000000000 -0300
+@@ -1,354 +1,130 @@
 -#!/usr/bin/env python
 -#
 -# setup.py - distutils configuration for pygtk
@@ -188,6 +188,12 @@ Index: gnome-python-2.18/setup.py
 +    extra_compile_args=compile_args+['-DGNOME_VFS_PYTHON_DIR="/usr/lib/gnome-vfs-2.0/modules"'],
 +)
 +
++
++
++example_dir='share/doc/python2.5-gnome/examples'
++gconf_files = ['examples/gconf/'+x for x in os.listdir('examples/gconf')]
++vfs_files = ['examples/vfs/'+x for x in os.listdir('examples/vfs') if os.path.isfile('examples/vfs/'+x)]
++
 +setup(
 +    name = 'gnome',
 +    version = '0.1',
@@ -195,6 +201,10 @@ Index: gnome-python-2.18/setup.py
 +    author = 'Luciano Miguel Wolf',
 +    author_email = 'luciano.wolf@indt.org.br',
 +    url = 'http://www.maemo.org',
++    data_files=[(example_dir+'/gconf', gconf_files),
++                (example_dir+'/vfs', vfs_files),
++                ('share/python-gnome/gconf', ['gconf/gconf.defs'])],
++    packages = ['gnome'],
 +    ext_package = 'gnome',
 +    ext_modules = [gconf, gnomevfs],
 +    cmdclass={'build': PyGconfBuild}
