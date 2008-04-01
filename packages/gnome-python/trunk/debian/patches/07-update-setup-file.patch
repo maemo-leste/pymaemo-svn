@@ -1,8 +1,8 @@
 Index: gnome-python-2.18.0/setup.py
 ===================================================================
---- gnome-python-2.18.0.orig/setup.py	2008-04-01 10:56:51.000000000 -0300
-+++ gnome-python-2.18.0/setup.py	2008-04-01 11:21:13.000000000 -0300
-@@ -1,354 +1,130 @@
+--- gnome-python-2.18.0.orig/setup.py	2008-04-01 15:24:25.000000000 -0300
++++ gnome-python-2.18.0/setup.py	2008-04-01 15:25:06.000000000 -0300
+@@ -1,354 +1,146 @@
 -#!/usr/bin/env python
 -#
 -# setup.py - distutils configuration for pygtk
@@ -65,21 +65,10 @@ Index: gnome-python-2.18.0/setup.py
 -GTKHTML2_REQUIRED_VERSION           = '2.0.0'
 -LIBGNOMEPRINT_REQUIRED_VERSION      = '2.2.0'
 -LIBGNOMEPRINTUI_REQUIRED_VERSION    = '2.2.0'
--
++from dsextras import InstallData
+ 
 -PYGTK_SUFFIX = '2.0'
 -PYGTK_SUFFIX_LONG = 'gtk-' + PYGTK_SUFFIX
--
--GLOBAL_INC += ['gconf', 'gnome', 'gnomeprint']
--
--DEFS_DIR    = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'defs')
--CODEGEN_DIR = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'codegen')
--INCLUDE_DIR = os.path.join('include', 'pygtk-%s' % PYGTK_SUFFIX)
--
--str_version = sys.version[:3]
--version = map(int, str_version.split('.'))
--if version < [2, 2]:
--    raise SystemExit, \
--          "Python 2.2 or higher is required, %s found" % str_version
 +datadir = '/usr/share'
 +defsdir = datadir+'/pygtk/2.0/defs'
 +includedir = '/usr/include'
@@ -99,15 +88,9 @@ Index: gnome-python-2.18.0/setup.py
 +        new_file.write(cmdresult.read())
 +    new_file.close()
  
--install_vfsmethod = 0
--class GnomePythonInstallLib(InstallLib):
+-GLOBAL_INC += ['gconf', 'gnome', 'gnomeprint']
 +class PyGconfBuild(build):
-     def run(self):
--        self.add_template_option('VERSION', VERSION)
--        self.prepare()
--
--        self.install_template('gnome-python-2.0.pc.in',
--                              os.path.join(self.libdir, 'pkgconfig'))
++    def run(self):
 +        """Create the temporary files used to compile the hildon module:
 +        -gconf.c
 +        -gconf-types.h.in
@@ -133,82 +116,33 @@ Index: gnome-python-2.18.0/setup.py
 +            gconf_defs_filename,
 +        ] 
 +        gen_auto_file('gconf/gconf.c', ['/bin/sh', 'pygtk-codegen-2.0']+gconf_parameter)
-+
+ 
+-DEFS_DIR    = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'defs')
+-CODEGEN_DIR = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'codegen')
+-INCLUDE_DIR = os.path.join('include', 'pygtk-%s' % PYGTK_SUFFIX)
+-
+-str_version = sys.version[:3]
+-version = map(int, str_version.split('.'))
+-if version < [2, 2]:
+-    raise SystemExit, \
+-          "Python 2.2 or higher is required, %s found" % str_version
 +        build.run(self)
+ 
+-install_vfsmethod = 0
+-class GnomePythonInstallLib(InstallLib):
++PYGTK_SUFFIX = '2.0'
++PYGTK_SUFFIX_LONG = 'gtk-' + PYGTK_SUFFIX
 +
-+
-+compile_args = [
-+        '-Os',
-+        '-DXTHREADS',
-+        '-DXUSE_MTSAFE_API',
-+#        '-DGCONF_DISABLE_DEPRECATED',
-+#        '-ansi',
-+#        '-pedantic',
-+#        '-Wno-long-long',
-+#        '-g',
-+#        '-rdynamic',
-+]
-+
-+gconf = Extension('gconf',
-+    sources=['gconf/gconf.c',
-+             'gconf/gconfmodule.c',
-+             'gconf/gconf-fixes.c',
-+             'gconf/gconf-types.c'],
-+    libraries = ['gconf-2',
-+                 'glib-2.0'],
-+    include_dirs=['/usr/include',
-+                  '/usr/include/gconf/2',
-+                  '/usr/include/glib-2.0',
-+                  '/usr/lib/glib-2.0/include',
-+                  '/usr/include/pygtk-2.0'],
-+    extra_compile_args=compile_args,
-+)
-+
-+gnomevfs = Extension('gnomevfs',
-+    sources=['gnomevfs/gnome-vfs-python-method.c',
-+             'gnomevfs/vfs-drive.c',
-+             'gnomevfs/vfs-uri.c',
-+             'gnomevfs/vfs-async-handle.c',
-+             'gnomevfs/vfs-file-info.c',
-+             'gnomevfs/vfs-volume-monitor.c',
-+             'gnomevfs/vfsmodule.c',
-+             'gnomevfs/vfs-context.c',
-+             'gnomevfs/vfs-volume.c',
-+             'gnomevfs/vfs-dir-handle.c',
-+             'gnomevfs/vfs-handle.c',
-+             'gnomevfs/vfs-xfer-progress-info.c'],
-+    libraries = ['gnomevfs-2',
-+                 'glib-2.0'],
-+    include_dirs=['/usr/include',
-+                  '/usr/include/gnome-vfs-2.0',
-+                  '/usr/include/gnome-vfs-module-2.0',
-+                  '/usr/include/glib-2.0',
-+                  '/usr/lib/glib-2.0/include',
-+                  '/usr/include/pygtk-2.0'],
-+    extra_compile_args=compile_args+['-DGNOME_VFS_PYTHON_DIR="/usr/lib/gnome-vfs-2.0/modules"'],
-+)
-+
-+
-+
-+example_dir='share/doc/python2.5-gnome/examples'
-+gconf_files = ['examples/gconf/'+x for x in os.listdir('examples/gconf')]
-+vfs_files = ['examples/vfs/'+x for x in os.listdir('examples/vfs') if os.path.isfile('examples/vfs/'+x)]
-+
-+setup(
-+    name = 'gnome',
-+    version = '0.1',
-+    description = 'Python bindings for gconf.',
-+    author = 'Luciano Miguel Wolf',
-+    author_email = 'luciano.wolf@indt.org.br',
-+    url = 'http://www.maemo.org',
-+    data_files=[(example_dir+'/gconf', gconf_files),
-+                (example_dir+'/vfs', vfs_files),
-+                ('share/python-gnome/gconf', ['gconf/gconf.defs'])],
-+    packages = ['gnome'],
-+    ext_package = 'gnome',
-+    ext_modules = [gconf, gnomevfs],
-+    cmdclass={'build': PyGconfBuild}
-+)
++class GnomePythonInstallData(InstallData):
+     def run(self):
+-        self.add_template_option('VERSION', VERSION)
++        print "INSTALL DIR: ", self.install_dir
++        self.add_template_option('VERSION', '2.18.0')
+         self.prepare()
+ 
+         self.install_template('gnome-python-2.0.pc.in',
+-                              os.path.join(self.libdir, 'pkgconfig'))
++                              os.path.join(self.install_dir, 'lib', 'pkgconfig'))
  
 -        if install_vfsmethod:
 -            self.install_vfsmethod()
@@ -226,7 +160,8 @@ Index: gnome-python-2.18.0/setup.py
 -        if (os.path.exists(module_file) and
 -            not os.path.exists(os.path.join(self.build_dir, module_file))):
 -            self.copy_file(module_file, module_dir)
--        
++        InstallData.run(self)
+         
 -if not pkgc_version_check('pygtk-2.0', 'PyGTK', PYGTK_REQUIRED_VERSION):
 -    raise SystemExit, "Aborting"
 -pygtkincludedir = getoutput('pkg-config --variable pygtkincludedir pygtk-2.0')
@@ -479,4 +414,78 @@ Index: gnome-python-2.18.0/setup.py
 -      data_files=data_files,
 -      cmdclass={'install_lib': GnomePythonInstallLib,
 -                'build_ext': BuildExt })
++compile_args = [
++        '-Os',
++        '-DXTHREADS',
++        '-DXUSE_MTSAFE_API',
++#        '-DGCONF_DISABLE_DEPRECATED',
++#        '-ansi',
++#        '-pedantic',
++#        '-Wno-long-long',
++#        '-g',
++#        '-rdynamic',
++]
++
++gconf = Extension('gconf',
++    sources=['gconf/gconf.c',
++             'gconf/gconfmodule.c',
++             'gconf/gconf-fixes.c',
++             'gconf/gconf-types.c'],
++    libraries = ['gconf-2',
++                 'glib-2.0'],
++    include_dirs=['/usr/include',
++                  '/usr/include/gconf/2',
++                  '/usr/include/glib-2.0',
++                  '/usr/lib/glib-2.0/include',
++                  '/usr/include/pygtk-2.0'],
++    extra_compile_args=compile_args,
++)
++
++gnomevfs = Extension('gnomevfs',
++    sources=['gnomevfs/gnome-vfs-python-method.c',
++             'gnomevfs/vfs-drive.c',
++             'gnomevfs/vfs-uri.c',
++             'gnomevfs/vfs-async-handle.c',
++             'gnomevfs/vfs-file-info.c',
++             'gnomevfs/vfs-volume-monitor.c',
++             'gnomevfs/vfsmodule.c',
++             'gnomevfs/vfs-context.c',
++             'gnomevfs/vfs-volume.c',
++             'gnomevfs/vfs-dir-handle.c',
++             'gnomevfs/vfs-handle.c',
++             'gnomevfs/vfs-xfer-progress-info.c'],
++    libraries = ['gnomevfs-2',
++                 'glib-2.0'],
++    include_dirs=['/usr/include',
++                  '/usr/include/gnome-vfs-2.0',
++                  '/usr/include/gnome-vfs-module-2.0',
++                  '/usr/include/glib-2.0',
++                  '/usr/lib/glib-2.0/include',
++                  '/usr/include/pygtk-2.0'],
++    extra_compile_args=compile_args+['-DGNOME_VFS_PYTHON_DIR="/usr/lib/gnome-vfs-2.0/modules"'],
++)
++
++
++
++example_dir='share/doc/python2.5-gnome/examples'
++gconf_files = ['examples/gconf/'+x for x in os.listdir('examples/gconf')]
++vfs_files = ['examples/vfs/'+x for x in os.listdir('examples/vfs') if os.path.isfile('examples/vfs/'+x)]
++
++setup(
++    name = 'gnome',
++    version = '0.1',
++    description = 'Python bindings for gconf.',
++    author = 'Luciano Miguel Wolf',
++    author_email = 'luciano.wolf@indt.org.br',
++    url = 'http://www.maemo.org',
++    data_files=[(example_dir+'/gconf', gconf_files),
++                (example_dir+'/vfs', vfs_files),
++                ('share/python-gnome/gconf', ['gconf/gconf.defs'])],
++    packages = ['gnome'],
++    ext_package = 'gnome',
++    ext_modules = [gconf, gnomevfs],
++    cmdclass={'build': PyGconfBuild,
++              'install_data': GnomePythonInstallData}
++)
++
 +# vim:ts=4:sw=4:et:sm:ai
