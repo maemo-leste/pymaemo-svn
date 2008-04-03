@@ -1,6 +1,7 @@
 gnome-python-desktop (2.22.0-1osso0) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release (Closes: #2338)
+  * Patch to disable documentation building  
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue,  1 Apr 2008 19:15:17 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  3 Apr 2008 16:01:44 -0300
 

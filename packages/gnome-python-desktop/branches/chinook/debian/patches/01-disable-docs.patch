@@ -1,0 +1,15 @@
+Index: gnome-python-desktop-2.22.0/wscript
+===================================================================
+--- gnome-python-desktop-2.22.0.orig/wscript	2008-03-09 16:15:45.000000000 -0300
++++ gnome-python-desktop-2.22.0/wscript	2008-04-03 15:52:21.000000000 -0300
+@@ -113,7 +113,7 @@
+     bld.add_subdirs('totem')
+     bld.add_subdirs('wnck')
+ 
+-    bld.add_subdirs('docs/gnomeprint')
+-    bld.add_subdirs('docs/gnomeprintui')
+-    bld.add_subdirs('docs/gtksourceview')
++    #bld.add_subdirs('docs/gnomeprint')
++    #bld.add_subdirs('docs/gnomeprintui')
++    #bld.add_subdirs('docs/gtksourceview')
+ 
