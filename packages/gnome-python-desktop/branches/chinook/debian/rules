@@ -15,6 +15,8 @@
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
+PYVER=2.5
+PYTHON=python$(PYVER)
 
 CFLAGS = -Wall -g
 
@@ -36,8 +38,7 @@ major=2
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
-	python2.5 ./waf configure --prefix=/usr #FIXME CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
-	#PYTHON=python2.5 ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
+	PYTHON=$(PYTHON) $(PYTHON) ./waf configure --prefix=/usr #FIXME CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
 	touch config.status
 
 
@@ -45,8 +46,7 @@ build: build-stamp
 build-stamp:  config.status
 	dh_testdir
 	# Add here commands to compile the package.
-	#$(MAKE) PYTHON=python2.5
-	python2.5 ./waf
+	$(PYTHON) ./waf
 	touch $@
 
 clean:
@@ -55,8 +55,7 @@ clean:
 	rm -f build-stamp 
 
 	# Add here commands to clean up after the build process.
-	#-$(MAKE) distclean
-	python2.5 ./waf distclean
+	$(PYTHON) ./waf distclean
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""
 	cp -f /usr/share/misc/config.sub config.sub
 endif
@@ -73,8 +72,7 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/tmp
-	#$(MAKE) DESTDIR=$(CURDIR)/debian/tmp PYTHON=python2.5 install
-	python2.5 ./waf install --destdir=$(CURDIR)/debian/tmp
+	$(PYTHON) ./waf install --destdir=$(CURDIR)/debian/tmp
 
 
 # Build architecture-independent files here.
