@@ -9,3 +9,4 @@
 13-set-wakeup-fix.patch
 14-encodings-oriental.patch
 15-fix-tests.patch
+16-bug1179-imageop.patch
