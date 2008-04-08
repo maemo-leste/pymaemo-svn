@@ -7,9 +7,10 @@ python2.5 (2.5.2-1osso0) unstable; urgency=low
   * Adding patch 15-fix-tests to adapt tests to our changes.
   * Adding package python2.5-testing with regression tests.
   * Adding patch 16-bug1179-imagop to fix integer overflow in the imageop
-    module. 
+    module.
+  * Adding python2.5-dbg package with debug symbols. 
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon,  7 Apr 2008 17:32:22 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue,  8 Apr 2008 09:48:54 -0300
 
 python2.5 (2.5.1-1osso5) unstable; urgency=low
 
