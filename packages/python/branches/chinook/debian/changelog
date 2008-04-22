@@ -1,9 +1,15 @@
-python2.5 (2.5.1-1osso7) unstable; urgency=low
+python2.5 (2.5.2-1osso0) unstable; urgency=low
 
-  * Adding patch from upstream issue #1179 on integer overflows in imageop
+  * Update to 2.5.2 (Merging from chinook-252 branch)
+  * Adding patch 14-encodings-oriental to make encodings installed in -dev
+    package (oriental ones) available in the encodings_orient package. Also
+    cp and mac encodings were moved back to the base package. Fixes #2154
+  * Adding patch 15-fix-tests to adapt tests to our changes.
+  * Adding patch 16-bug1179-imagop to fix integer overflow in the imageop
     module.
+  * Adding python2.5-dbg package with debug symbols.
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 11 Mar 2008 11:57:41 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 22 Apr 2008 14:46:25 -0300
 
 python2.5 (2.5.1-1osso6) unstable; urgency=low
 
@@ -12,7 +18,7 @@ python2.5 (2.5.1-1osso6) unstable; urgency=low
     cp and mac encodings were moved back to the base package. Fixes #2154
   * Added package python2.5-testing with regression tests. Fixes #2233
 
- -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 25 Feb 2008 16:31:55 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 14 Feb 2008 15:06:07 -0300
 
 python2.5 (2.5.1-1osso5) unstable; urgency=low
 

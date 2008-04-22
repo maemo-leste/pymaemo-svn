@@ -1,7 +1,7 @@
-Index: python2.5-2.5.1/Modules/signalmodule.c
+Index: python-2.5.2/Modules/signalmodule.c
 ===================================================================
---- python2.5-2.5.1.orig/Modules/signalmodule.c	2008-01-07 15:42:09.000000000 -0300
-+++ python2.5-2.5.1/Modules/signalmodule.c	2008-01-09 10:20:29.000000000 -0300
+--- python-2.5.2.orig/Modules/signalmodule.c	2008-02-23 13:10:12.000000000 -0300
++++ python-2.5.2/Modules/signalmodule.c	2008-02-23 13:10:48.000000000 -0300
 @@ -12,6 +12,8 @@
  
  #include <signal.h>
@@ -28,16 +28,16 @@ Index: python2.5-2.5.1/Modules/signalmodule.c
  #ifdef WITH_THREAD
  #ifdef WITH_PTH
  	if (PyThread_get_thread_ident() != main_thread) {
-@@ -126,6 +131,8 @@
+@@ -128,6 +133,8 @@
+                    cleared in PyErr_CheckSignals() before .tripped. */
  		is_tripped = 1;
- 		Handlers[sig_num].tripped = 1;
  		Py_AddPendingCall(checksignals_witharg, NULL);
 +		if (wakeup_fd != -1)
 +			write(wakeup_fd, &dummy_byte, 1);
  #ifdef WITH_THREAD
  	}
  #endif
-@@ -265,6 +272,39 @@
+@@ -267,6 +274,39 @@
  anything else -- the callable Python object used as a handler");
  
  
@@ -77,7 +77,7 @@ Index: python2.5-2.5.1/Modules/signalmodule.c
  /* List of functions defined in the module */
  static PyMethodDef signal_methods[] = {
  #ifdef HAVE_ALARM
-@@ -272,6 +312,7 @@
+@@ -274,6 +314,7 @@
  #endif
  	{"signal",	        signal_signal, METH_VARARGS, signal_doc},
  	{"getsignal",	        signal_getsignal, METH_VARARGS, getsignal_doc},

@@ -1,5 +1,4 @@
 01-remove_curses_support.patch
-03-corrects-race-condition-with-signals.patch
 04-import.patch
 05-install.patch
 06-fix-urllib-exception.patch
@@ -8,4 +7,5 @@
 09-lib-site.patch
 13-set-wakeup-fix.patch
 14-encodings-oriental.patch
-15-bug1179-imageop.patch
+15-fix-tests.patch
+16-bug1179-imageop.patch
