@@ -17,9 +17,9 @@ only_dev_list=$(CURDIR)/debian/onlysdk
 scriptdir=usr/lib/$(PYTHON)
 
 ifeq ($(DEB_BUILD_ARCH),armel)
-	CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+	CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes -g
 else
-	CFLAGS=-Os -Wall -Wstrict-prototypes
+	CFLAGS=-Os -Wall -Wstrict-prototypes -g
 endif
 
 clean:
@@ -48,7 +48,7 @@ stamp-configure:
 	mkdir -p build
 	cd build && \
 	  CFLAGS="$(CFLAGS)" \
-	  OPT="$(CFLAGS) -DNDEBUG" \
+	  OPT="$(CFLAGS)" \
 	  ../configure $(common_configure_args)
 	touch stamp-configure
 
@@ -56,7 +56,7 @@ build: stamp-build
 stamp-build: stamp-configure
 	dh_testdir
 
-	OPT="$(CFLAGS) -DNDEBUG" $(MAKE) -C build
+	OPT="$(CFLAGS) " $(MAKE) -C build
 	touch stamp-build
 
 install: build stamp-install
@@ -133,6 +133,8 @@ stamp-install: stamp-build
 		zip -0q $(d_base)/usr/lib/python$(PYMAJOR)$(PYMINOR).zip -@ \
 	)
 	find $(d_dev)/$(scriptdir) -name "*.pyo" -type f | grep -v -f $(only_dev_list) | xargs rm -f
+
+	find $(d_dev)/$(scriptdir)/encodings | grep -f $(only_dev_list) | xargs -i mv '{}' $(d_dev)/$(scriptdir)/encodings_orient
 
 	# move the interpreter
 	mv $(d_dev)/usr/bin/python2.5 $(d_base)/usr/bin/python2.5
@@ -212,7 +214,7 @@ binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installdirs
-	dh_strip
+	dh_strip --dbg-package=$(PYTHON)
 	dh_link
 	dh_compress -p$(p_test) -X.py -X.cls -X.css -X.txt -Xgdbinit
 	dh_fixperms

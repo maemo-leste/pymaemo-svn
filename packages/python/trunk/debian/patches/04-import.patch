@@ -1,7 +1,7 @@
-Index: python/Modules/getpath.c
+Index: python-2.5.2/Modules/getpath.c
 ===================================================================
---- python.orig/Modules/getpath.c	2007-03-06 17:14:44.000000000 -0300
-+++ python/Modules/getpath.c	2007-03-06 17:14:57.000000000 -0300
+--- python-2.5.2.orig/Modules/getpath.c	2008-02-23 13:10:13.000000000 -0300
++++ python-2.5.2/Modules/getpath.c	2008-02-23 13:10:31.000000000 -0300
 @@ -156,13 +156,26 @@
  static int
  ismodule(char *filename)        /* Is module -- check for .pyc/.pyo too */
@@ -32,11 +32,11 @@ Index: python/Modules/getpath.c
              return 1;
      }
      return 0;
-Index: python/Python/import.c
+Index: python-2.5.2/Python/import.c
 ===================================================================
---- python.orig/Python/import.c	2007-03-06 17:14:44.000000000 -0300
-+++ python/Python/import.c	2007-03-06 17:14:57.000000000 -0300
-@@ -89,6 +89,7 @@
+--- python-2.5.2.orig/Python/import.c	2008-02-23 13:10:13.000000000 -0300
++++ python-2.5.2/Python/import.c	2008-02-23 13:10:31.000000000 -0300
+@@ -91,6 +91,7 @@
  static const struct filedescr _PyImport_StandardFiletab[] = {
  	{"/py", "U", PY_SOURCE},
  	{"/pyc", "rb", PY_COMPILED},
@@ -44,7 +44,7 @@ Index: python/Python/import.c
  	{0, 0}
  };
  #else
-@@ -98,6 +99,7 @@
+@@ -100,6 +101,7 @@
  	{".pyw", "U", PY_SOURCE},
  #endif
  	{".pyc", "rb", PY_COMPILED},
@@ -52,7 +52,7 @@ Index: python/Python/import.c
  	{0, 0}
  };
  #endif
-@@ -133,14 +135,20 @@
+@@ -139,14 +141,20 @@
  	_PyImport_Filetab = filetab;
  
  	if (Py_OptimizeFlag) {
@@ -75,7 +75,7 @@ Index: python/Python/import.c
  #endif
  		}
  	}
-@@ -694,7 +702,7 @@
+@@ -700,7 +708,7 @@
     Doesn't set an exception. */
  
  static char *
@@ -84,7 +84,7 @@ Index: python/Python/import.c
  {
  	size_t len = strlen(pathname);
  	if (len+2 > buflen)
-@@ -707,7 +715,7 @@
+@@ -713,7 +721,7 @@
  		--len;	/* pretend 'w' isn't there */
  #endif
  	memcpy(buf, pathname, len);
@@ -93,7 +93,7 @@ Index: python/Python/import.c
  	buf[len+1] = '\0';
  
  	return buf;
-@@ -903,9 +911,9 @@
+@@ -909,9 +917,9 @@
  load_source_module(char *name, char *pathname, FILE *fp)
  {
  	time_t mtime;
@@ -105,7 +105,7 @@ Index: python/Python/import.c
  	PyCodeObject *co;
  	PyObject *m;
  
-@@ -928,9 +936,15 @@
+@@ -934,9 +942,15 @@
  	}
  #endif
  	cpathname = make_compiled_pathname(pathname, buf,
@@ -124,7 +124,7 @@ Index: python/Python/import.c
  		co = read_compiled_module(cpathname, fpc);
  		fclose(fpc);
  		if (co == NULL)
-@@ -1653,6 +1667,8 @@
+@@ -1659,6 +1673,8 @@
  		return 0;
  	buf[i++] = SEP;
  	pname = buf + i;
@@ -133,7 +133,7 @@ Index: python/Python/import.c
  	strcpy(pname, "__init__.py");
  	if (stat(buf, &statbuf) == 0) {
  		if (case_ok(buf,
-@@ -1664,7 +1680,22 @@
+@@ -1670,7 +1686,22 @@
  		}
  	}
  	i += strlen(pname);

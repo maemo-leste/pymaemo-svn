@@ -1,7 +1,6 @@
 distutils
 compile
-encodings/cp
-encodings/mac
+encodings_orient
 doctest
 unittest
 hotshot
