@@ -1,3 +1,9 @@
+python-runtime (c1.0-4) unstable; urgency=low
+
+  * python upgraded to v2.5.2
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue, 22 Apr 2008 18:41:13 -0300
+
 python-runtime (c1.0-3) unstable; urgency=low
 
   * bump revision
