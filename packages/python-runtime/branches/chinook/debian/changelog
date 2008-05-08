@@ -1,3 +1,9 @@
+python-runtime (c1.0-5) unstable; urgency=low
+
+  * adding bdist_maemo support to distutils module
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  8 May 2008 14:50:38 -0300
+
 python-runtime (c1.0-4) unstable; urgency=low
 
   * python upgraded to v2.5.2
