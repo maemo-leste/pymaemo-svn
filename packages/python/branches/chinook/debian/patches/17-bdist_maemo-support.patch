@@ -1,0 +1,150 @@
+Index: python2.5-2.5.2/Lib/distutils/command/__init__.py
+===================================================================
+--- python2.5-2.5.2.orig/Lib/distutils/command/__init__.py	2008-05-08 11:29:12.000000000 -0300
++++ python2.5-2.5.2/Lib/distutils/command/__init__.py	2008-05-08 11:30:03.000000000 -0300
+@@ -22,6 +22,7 @@
+            'register',
+            'bdist',
+            'bdist_dumb',
++           'bdist_maemo',
+            'bdist_rpm',
+            'bdist_wininst',
+            # These two are reserved for future use:
+Index: python2.5-2.5.2/Lib/distutils/command/bdist_maemo.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python2.5-2.5.2/Lib/distutils/command/bdist_maemo.py	2008-05-08 10:29:52.000000000 -0300
+@@ -0,0 +1,133 @@
++#
++# bdist_maemo.py
++#
++# Script to add 'bdist_maemo' binary package distribution command to
++# 'distutils'. This command builds '.deb' packages suitable for installation
++# on the Maemo platform (e.g. Nokia 770) by the Application Installer.
++#
++#  Author: follower@rancidbacon.com
++#
++#    Date: 15 September 2006
++#
++# License: GPL 2.0
++# 
++# (Based on standard Python-supplied 'command_template' file.)
++# 
++"""distutils.command.bdist_maemo
++
++Implements the Distutils 'bdist_maemo' command.
++"""
++
++from distutils.core import Command
++from distutils.file_util import copy_file
++
++import os
++
++class bdist_maemo(Command):
++
++    # Brief (40-50 characters) description of the command
++    description = "Package for distribution on Maemo platform"
++
++    # List of option tuples: long name, short name (None if no short
++    # name), and help string.
++    user_options = [('name=', None,
++                     "Package name"),
++                    ('section=', None,
++                     "Section (Only 'user/*' will display in AI usually)"),
++                    ('priority=', None,
++                     "Priority"),
++                    ('architecture=', None,
++                     "Architecture"),
++                    ('depends=', None,
++                     "Other Debian package dependencies (comma separated)"),
++                   ]
++
++
++    def initialize_options (self):
++        self.dist_dir = None
++        self.section = None
++        self.priority = None
++        self.architecture = None
++        self.depends = None
++
++    # initialize_options()
++
++
++    def finalize_options (self):
++        if self.dist_dir is None:
++            self.dist_dir = "dist"
++
++        if self.section is None:
++            self.section = "user/other"
++
++        if self.priority is None:
++            self.priority = "optional"
++
++        if self.architecture is None:
++            self.architecture = "all"
++
++        self.maintainer = "%s <%s>" % \
++                          (self.distribution.get_maintainer(),
++                           self.distribution.get_maintainer_email())
++
++        if self.depends is None:
++            self.depends = "python2.5, python2.5-hildon, python2.5-gtk2"
++
++        self.name = self.distribution.get_name()
++        self.description = self.distribution.get_description()
++        self.long_description = self.distribution.get_long_description()
++        self.version = self.distribution.get_version()
++
++    # finalize_options()
++
++
++    def run (self):
++        """
++        """
++        ROOT_DIR = "root"
++        BASE_DIR = os.path.join(ROOT_DIR, "usr")
++
++        script_dir = os.path.join(self.dist_dir, BASE_DIR, "bin/")
++        try:
++            os.makedirs(script_dir)
++        except: # TODO: Check exception is exists
++            pass
++
++        for script in self.distribution.scripts:
++            copy_file(script, script_dir)
++
++        for theDir, theFiles in self.distribution.data_files:
++            fulldirpath = os.path.join(self.dist_dir, BASE_DIR, theDir)
++            try:
++                os.makedirs(fulldirpath)
++            except: # TODO: Check exception is exists
++                pass
++
++            for currFile in theFiles:
++                copy_file(currFile, fulldirpath)
++
++        from debfile import MaemoPackage, ControlFile
++
++        theMaemoPackage = MaemoPackage(
++            ControlFile(Package=self.name,
++                        Version=self.version,
++                        Section=self.section,
++                        Priority=self.priority,
++                        Architecture=self.architecture,
++                        Maintainer=self.maintainer,
++                        Depends=self.depends,
++                        Description=self.description,
++                        long_description=self.long_description
++                        ),
++            os.path.join(self.dist_dir, ROOT_DIR)
++            )
++
++        packageFilename="%s_%s-1_%s.deb" % (self.name,
++                                             self.version,
++                                             self.architecture)
++        open(os.path.join(self.dist_dir, packageFilename),
++             "wb").write(theMaemoPackage.packed())
++        
++    # run()
++
++# class x
