@@ -1,3 +1,9 @@
+python2.5 (2.5.2-1osso2) unstable; urgency=low
+
+  * Add help support and missing files to distutils
+
+ -- Luciano Miguel Wolf <luciano.wolf@openbossa.org>  Mon, 12 May 2008 11:10:36 -0300
+
 python2.5 (2.5.2-1osso1) unstable; urgency=low
 
   * Adding bdist_maemo support to distutils
