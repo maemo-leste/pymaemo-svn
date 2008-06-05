@@ -1,0 +1,22 @@
+Source: python-qt4
+Priority: extra
+Maintainer: Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>
+Build-Depends: debhelper (>= 5), sip (>= 4.7.4), python2.5-dev (>= 2.5.1), libqt4-dev (>= 4.4.0)
+Standards-Version: 3.7.2
+Section: libs
+
+Package: python2.5-qt4-dev
+Section: libdevel
+Architecture: any
+Depends: python2.5-qt4 (= ${Source-Version})
+Replaces: python-qt4-dev
+Description: Python bindings for QT4
+ This package contains examples and development files.
+
+Package: python2.5-qt4
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python2.5 (>= 2.5.1)
+Replaces: python-qt4
+Description: Python bindings for QT4
+ This package contains the python extensions and modules.

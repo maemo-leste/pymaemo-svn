@@ -1,0 +1,21 @@
+This package was debianized by Lauro Moura Maranhao Neto <lauro.neto@openbossa.org> on
+Mon, 18 Feb 2008 17:25:59 -0300.
+
+It was downloaded from http://www.riverbankcomputing.co.uk/pyqt/download.php
+
+Upstream Author: Riverbank Computing Limited <info@riverbankcomputing.com>
+
+Copyright: 2007 Riverbank Computing Limited
+
+License:
+
+See LICENSE file.
+
+
+The Debian packaging is (C) 2008, Lauro Moura Maranhao Neto <lauro.neto@openbossa.org> and
+is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+
+
+# Please also look if there are files or directories which have a
+# different copyright/license attached and list them here.
+

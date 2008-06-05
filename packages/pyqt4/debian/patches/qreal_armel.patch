@@ -1,0 +1,450 @@
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtCore/qglobal.sip PyQt-x11-gpl-4.4.2-armel/sip/QtCore/qglobal.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtCore/qglobal.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtCore/qglobal.sip	Sat May 31 14:47:49 2008
+***************
+*** 59,65 ****
+  typedef unsigned long long quint64;
+  typedef qint64 qlonglong;
+  typedef quint64 qulonglong;
+! typedef double qreal;
+  typedef unsigned char uchar;
+  typedef unsigned short ushort;
+  typedef unsigned int uint;
+--- 59,65 ----
+  typedef unsigned long long quint64;
+  typedef qint64 qlonglong;
+  typedef quint64 qulonglong;
+! typedef float qreal;
+  typedef unsigned char uchar;
+  typedef unsigned short ushort;
+  typedef unsigned int uint;
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtCore/qlist.sip PyQt-x11-gpl-4.4.2-armel/sip/QtCore/qlist.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtCore/qlist.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtCore/qlist.sip	Sat May 31 14:52:01 2008
+***************
+*** 335,342 ****
+  %End
+  };
+  %If (Qt_4_3_0 -)
+! // QList<QPair<double, double> > is implemented as a Python list of 2-element tuples.
+! %MappedType QList<QPair<double, double> >
+  {
+  %TypeHeaderCode
+  #include <qlist.h>
+--- 335,342 ----
+  %End
+  };
+  %If (Qt_4_3_0 -)
+! // QList<QPair<float, float> > is implemented as a Python list of 2-element tuples.
+! %MappedType QList<QPair<float, float> >
+  {
+  %TypeHeaderCode
+  #include <qlist.h>
+***************
+*** 353,359 ****
+      // Set the list elements.
+      for (int i = 0; i < sipCpp->size(); ++i)
+      {
+!         const QPair<double, double> &p = sipCpp->at(i);
+          PyObject *pobj;
+  
+          if ((pobj = Py_BuildValue((char *)"dd", p.first, p.second)) == NULL)
+--- 353,359 ----
+      // Set the list elements.
+      for (int i = 0; i < sipCpp->size(); ++i)
+      {
+!         const QPair<float, float> &p = sipCpp->at(i);
+          PyObject *pobj;
+  
+          if ((pobj = Py_BuildValue((char *)"dd", p.first, p.second)) == NULL)
+***************
+*** 383,398 ****
+          return 1;
+      }
+  
+!     QList<QPair<double, double> > *ql = new QList<QPair<double, double> >;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+      {
+          PyObject *tup = PyList_GET_ITEM(sipPy, i);
+  
+!         double first = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 0));
+!         double second = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 1));
+   
+!         ql->append(QPair<double, double>(first, second));
+      }
+   
+      *sipCppPtr = ql;
+--- 383,398 ----
+          return 1;
+      }
+  
+!     QList<QPair<float, float> > *ql = new QList<QPair<float, float> >;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+      {
+          PyObject *tup = PyList_GET_ITEM(sipPy, i);
+  
+!         float first = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 0));
+!         float second = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 1));
+   
+!         ql->append(QPair<float, float>(first, second));
+      }
+   
+      *sipCppPtr = ql;
+***************
+*** 402,410 ****
+  };
+  %End
+  %If (Qt_4_3_0 -)
+! // QList<QPair<double, TYPE> > is implemented as a Python list of 2-element tuples.
+! template<double, TYPE>
+! %MappedType QList<QPair<double, TYPE> >
+  {
+  %TypeHeaderCode
+  #include <qlist.h>
+--- 402,410 ----
+  };
+  %End
+  %If (Qt_4_3_0 -)
+! // QList<QPair<float, TYPE> > is implemented as a Python list of 2-element tuples.
+! template<float, TYPE>
+! %MappedType QList<QPair<float, TYPE> >
+  {
+  %TypeHeaderCode
+  #include <qlist.h>
+***************
+*** 421,427 ****
+      // Set the list elements.
+      for (int i = 0; i < sipCpp->size(); ++i)
+      {
+!         const QPair<double, TYPE> &p = sipCpp->at(i);
+          TYPE *t = new TYPE(p.second);
+          PyObject *pobj;
+  
+--- 421,427 ----
+      // Set the list elements.
+      for (int i = 0; i < sipCpp->size(); ++i)
+      {
+!         const QPair<float, TYPE> &p = sipCpp->at(i);
+          TYPE *t = new TYPE(p.second);
+          PyObject *pobj;
+  
+***************
+*** 460,471 ****
+          return 1;
+      }
+  
+!     QList<QPair<double, TYPE> > *ql = new QList<QPair<double, TYPE> >;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+      {
+          PyObject *tup = PyList_GET_ITEM(sipPy, i);
+!         double d;
+          int state;
+  
+          d = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 0));
+--- 460,471 ----
+          return 1;
+      }
+  
+!     QList<QPair<float, TYPE> > *ql = new QList<QPair<float, TYPE> >;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+      {
+          PyObject *tup = PyList_GET_ITEM(sipPy, i);
+!         float d;
+          int state;
+  
+          d = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 0));
+***************
+*** 479,485 ****
+              return 0;
+          }
+  
+!         ql->append(QPair<double, TYPE>(d, *t));
+  
+          sipReleaseInstance(t, sipClass_TYPE, state);
+      }
+--- 479,485 ----
+              return 0;
+          }
+  
+!         ql->append(QPair<float, TYPE>(d, *t));
+  
+          sipReleaseInstance(t, sipClass_TYPE, state);
+      }
+***************
+*** 537,544 ****
+      return sipGetState(sipTransferObj);
+  %End
+  };
+! // QList<double> is implemented as a Python list of floats.
+! %MappedType QList<double>
+  {
+  %TypeHeaderCode
+  #include <qlist.h>
+--- 537,544 ----
+      return sipGetState(sipTransferObj);
+  %End
+  };
+! // QList<float> is implemented as a Python list of floats.
+! %MappedType QList<float>
+  {
+  %TypeHeaderCode
+  #include <qlist.h>
+***************
+*** 574,580 ****
+      if (sipIsErr == NULL)
+          return PyList_Check(sipPy);
+  
+!     QList<double> *ql = new QList<double>;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+          ql->append(PyFloat_AsDouble(PyList_GET_ITEM(sipPy, i)));
+--- 574,580 ----
+      if (sipIsErr == NULL)
+          return PyList_Check(sipPy);
+  
+!     QList<float> *ql = new QList<float>;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+          ql->append(PyFloat_AsDouble(PyList_GET_ITEM(sipPy, i)));
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtCore/qvector.sip PyQt-x11-gpl-4.4.2-armel/sip/QtCore/qvector.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtCore/qvector.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtCore/qvector.sip	Sat May 31 14:47:49 2008
+***************
+*** 156,163 ****
+      return sipGetState(sipTransferObj);
+  %End
+  };
+! // QVector<double> is implemented as a Python list of floats.
+! %MappedType QVector<double>
+  {
+  %TypeHeaderCode
+  #include <qvector.h>
+--- 156,163 ----
+      return sipGetState(sipTransferObj);
+  %End
+  };
+! // QVector<float> is implemented as a Python list of floats.
+! %MappedType QVector<float>
+  {
+  %TypeHeaderCode
+  #include <qvector.h>
+***************
+*** 193,199 ****
+      if (sipIsErr == NULL)
+          return PyList_Check(sipPy);
+  
+!     QVector<double> *ql = new QVector<double>;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+          ql->append(PyFloat_AsDouble(PyList_GET_ITEM(sipPy, i)));
+--- 193,199 ----
+      if (sipIsErr == NULL)
+          return PyList_Check(sipPy);
+  
+!     QVector<float> *ql = new QVector<float>;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+          ql->append(PyFloat_AsDouble(PyList_GET_ITEM(sipPy, i)));
+***************
+*** 203,211 ****
+      return sipGetState(sipTransferObj);
+  %End
+  };
+! // QVector<QPair<double, TYPE> > is implemented as a Python list of 2-element tuples.
+  template<TYPE>
+! %MappedType QVector<QPair<double, TYPE> >
+  {
+  %TypeHeaderCode
+  #include <qvector.h>
+--- 203,211 ----
+      return sipGetState(sipTransferObj);
+  %End
+  };
+! // QVector<QPair<float, TYPE> > is implemented as a Python list of 2-element tuples.
+  template<TYPE>
+! %MappedType QVector<QPair<float, TYPE> >
+  {
+  %TypeHeaderCode
+  #include <qvector.h>
+***************
+*** 222,228 ****
+      // Set the list elements.
+      for (int i = 0; i < sipCpp->size(); ++i)
+      {
+!         const QPair<double, TYPE> &p = sipCpp->at(i);
+          TYPE *pt = new TYPE(p.second);
+          PyObject *pobj;
+  
+--- 222,228 ----
+      // Set the list elements.
+      for (int i = 0; i < sipCpp->size(); ++i)
+      {
+!         const QPair<float, TYPE> &p = sipCpp->at(i);
+          TYPE *pt = new TYPE(p.second);
+          PyObject *pobj;
+  
+***************
+*** 261,274 ****
+          return 1;
+      }
+  
+!     QVector<QPair<double, TYPE> > *qv = new QVector<QPair<double, TYPE> >;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+      {
+          PyObject *tup = PyList_GET_ITEM(sipPy, i);
+          int state;
+          TYPE *s;
+!         QPair<double, TYPE> p;
+  
+          p.first = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 0));
+  
+--- 261,274 ----
+          return 1;
+      }
+  
+!     QVector<QPair<float, TYPE> > *qv = new QVector<QPair<float, TYPE> >;
+   
+      for (int i = 0; i < PyList_GET_SIZE(sipPy); ++i)
+      {
+          PyObject *tup = PyList_GET_ITEM(sipPy, i);
+          int state;
+          TYPE *s;
+!         QPair<float, TYPE> p;
+  
+          p.first = PyFloat_AsDouble(PyTuple_GET_ITEM(tup, 0));
+  
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtGui/qbrush.sip PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qbrush.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtGui/qbrush.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qbrush.sip	Sat May 31 14:49:29 2008
+***************
+*** 151,157 ****
+  
+  QDataStream &operator>>(QDataStream &, QBrush & /Constrained/);
+  QDataStream &operator<<(QDataStream &, const QBrush & /Constrained/);
+! typedef QVector<QPair<double, QColor> > QGradientStops;
+  
+  class QGradient
+  {
+--- 151,157 ----
+  
+  QDataStream &operator>>(QDataStream &, QBrush & /Constrained/);
+  QDataStream &operator<<(QDataStream &, const QBrush & /Constrained/);
+! typedef QVector<QPair<float, QColor> > QGradientStops;
+  
+  class QGradient
+  {
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtGui/qgraphicsitemanimation.sip PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qgraphicsitemanimation.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtGui/qgraphicsitemanimation.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qgraphicsitemanimation.sip	Sat May 31 14:47:49 2008
+***************
+*** 77,95 ****
+  
+  public:
+  %If (Qt_4_3_0 -)
+!     QList<QPair<double, QPointF> > posList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<double, double> > rotationList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<double, QPointF> > translationList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<double, QPointF> > scaleList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<double, QPointF> > shearList() const;
+  %End
+  
+  private:
+--- 77,95 ----
+  
+  public:
+  %If (Qt_4_3_0 -)
+!     QList<QPair<float, QPointF> > posList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<float, float> > rotationList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<float, QPointF> > translationList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<float, QPointF> > scaleList() const;
+  %End
+  %If (Qt_4_3_0 -)
+!     QList<QPair<float, QPointF> > shearList() const;
+  %End
+  
+  private:
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtGui/qpainterpath.sip PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qpainterpath.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtGui/qpainterpath.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qpainterpath.sip	Sat May 31 14:47:49 2008
+***************
+*** 219,226 ****
+      void setCurveThreshold(qreal threshold);
+      qreal curveThreshold() const;
+      void setDashPattern(Qt::PenStyle);
+!     void setDashPattern(const QVector<double> &dashPattern);
+!     QVector<double> dashPattern() const;
+      QPainterPath createStroke(const QPainterPath &path) const;
+  %If (Qt_4_3_0 -)
+      void setDashOffset(qreal offset);
+--- 219,226 ----
+      void setCurveThreshold(qreal threshold);
+      qreal curveThreshold() const;
+      void setDashPattern(Qt::PenStyle);
+!     void setDashPattern(const QVector<float> &dashPattern);
+!     QVector<float> dashPattern() const;
+      QPainterPath createStroke(const QPainterPath &path) const;
+  %If (Qt_4_3_0 -)
+      void setDashOffset(qreal offset);
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtGui/qpen.sip PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qpen.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtGui/qpen.sip	Tue May 20 17:32:57 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qpen.sip	Sat May 31 14:47:49 2008
+***************
+*** 104,111 ****
+      void setCapStyle(Qt::PenCapStyle pcs);
+      Qt::PenJoinStyle joinStyle() const;
+      void setJoinStyle(Qt::PenJoinStyle pcs);
+!     QVector<double> dashPattern() const;
+!     void setDashPattern(const QVector<double> &pattern);
+      qreal miterLimit() const;
+      void setMiterLimit(qreal limit);
+      bool operator==(const QPen &p) const;
+--- 104,111 ----
+      void setCapStyle(Qt::PenCapStyle pcs);
+      Qt::PenJoinStyle joinStyle() const;
+      void setJoinStyle(Qt::PenJoinStyle pcs);
+!     QVector<float> dashPattern() const;
+!     void setDashPattern(const QVector<float> &pattern);
+      qreal miterLimit() const;
+      void setMiterLimit(qreal limit);
+      bool operator==(const QPen &p) const;
+diff -crB PyQt-x11-gpl-4.4.2/sip/QtGui/qtextoption.sip PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qtextoption.sip
+*** PyQt-x11-gpl-4.4.2/sip/QtGui/qtextoption.sip	Tue May 20 17:32:56 2008
+--- PyQt-x11-gpl-4.4.2-armel/sip/QtGui/qtextoption.sip	Sat May 31 14:47:49 2008
+***************
+*** 75,82 ****
+      typedef QFlags<QTextOption::Flag> Flags;
+      QFlags<QTextOption::Flag> flags() const;
+      qreal tabStop() const;
+!     void setTabArray(QList<double> tabStops);
+!     QList<double> tabArray() const;
+      void setUseDesignMetrics(bool b);
+      bool useDesignMetrics() const;
+      void setAlignment(Qt::Alignment aalignment);
+--- 75,82 ----
+      typedef QFlags<QTextOption::Flag> Flags;
+      QFlags<QTextOption::Flag> flags() const;
+      qreal tabStop() const;
+!     void setTabArray(QList<float> tabStops);
+!     QList<float> tabArray() const;
+      void setUseDesignMetrics(bool b);
+      bool useDesignMetrics() const;
+      void setAlignment(Qt::Alignment aalignment);

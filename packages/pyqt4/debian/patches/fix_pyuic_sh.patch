@@ -1,0 +1,7 @@
+Index: pyqt-x11-gpl-4.4.2/pyuic/pyuic4
+===================================================================
+--- pyqt-x11-gpl-4.4.2.orig/pyuic/pyuic4	2008-06-02 15:06:33.000000000 -0300
++++ pyqt-x11-gpl-4.4.2/pyuic/pyuic4	2008-06-02 17:35:32.000000000 -0300
+@@ -1 +1,2 @@
++#!/bin/sh
+ exec /usr/bin/python2.5 /usr/lib/python2.5/site-packages/PyQt4/uic/pyuic.py ${1+"$@"}
