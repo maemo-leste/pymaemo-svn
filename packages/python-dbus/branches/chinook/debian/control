@@ -2,7 +2,7 @@ Source: python-dbus
 Section: python
 Priority: optional
 Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), libdbus-1-dev (>= 0.61), libdbus-glib-1-dev (>= 0.61), python2.5-pyrex (>= 0.9.4.1-1osso4), pkg-config
+Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), libdbus-1-dev (>= 0.61), libdbus-glib-1-dev (>= 0.61), pkg-config
 Standards-Version: 3.6.1
 
 Package: python2.5-dbus
