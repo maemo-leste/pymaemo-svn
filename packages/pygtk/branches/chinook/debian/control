@@ -2,7 +2,7 @@ Source: python-gtk2
 Section: python
 Priority: optional
 Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>= 4.1.65), libtool (>= 1.5.6-6osso), libgtk2.0-dev (>= 2.6.0), python2.5 (>= 2.5.1-1osso5), python2.5-dev (>= 2.5.1-1osso5), python2.5-gobject-dev (>= 2.14.1-1osso1), python2.5-cairo-dev (>= 1.4.0-1osso2)
+Build-Depends: debhelper (>= 4.1.65), libtool (= 1.5.6-6osso), libgtk2.0-dev (>= 2.6.0), python2.5 (>= 2.5.1-1osso5), python2.5-dev (>= 2.5.1-1osso5), python2.5-gobject-dev (>= 2.14.1-1osso1), python2.5-cairo-dev (>= 1.4.0-1osso2)
 Standards-Version: 3.6.1.0
 
 Package: python2.5-gtk2
