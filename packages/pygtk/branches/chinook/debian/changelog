@@ -1,3 +1,9 @@
+python-gtk2 (2.12.1-1osso3) unstable; urgency=low
+
+  * fix libtool dependency, to compile inside Maemo-autobuilder
+
+ -- Luciano <luciano.wolf@indt.org.br>  Mon, 23 Jun 2008 07:52:50 -0300
+
 python-gtk2 (2.12.1-1osso2) unstable; urgency=low
 
   * fix glade.so missing problem
