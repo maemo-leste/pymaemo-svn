@@ -1,3 +1,9 @@
+python-conic (0.1-1osso2) unstable; urgency=low
+
+  * Small fix on setup.py. 
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 26 Jun 2008 11:11:16 -0300
+
 python-conic (0.1-1osso1) unstable; urgency=low
 
   * Using correct package name

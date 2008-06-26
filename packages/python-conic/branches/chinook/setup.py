@@ -51,7 +51,7 @@ def gen_auto_file(filename, subproc_args):
     if cmdresult:
         new_file = open(filename, 'w')
         new_file.write(cmdresult)
-    new_file.close()
+        new_file.close()
 
     #proc.wait()
 
