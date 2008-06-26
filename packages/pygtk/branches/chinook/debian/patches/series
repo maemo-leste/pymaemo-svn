@@ -7,3 +7,4 @@
 07-python-launcher-support.patch
 08-h2def-struct-fix.patch
 09-gtk-builder.patch
+10-libtool-m4.patch
