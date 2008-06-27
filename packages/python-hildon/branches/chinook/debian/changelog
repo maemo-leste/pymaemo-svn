@@ -1,3 +1,9 @@
+python-hildon (0.8.9-1osso2) unstable; urgency=low
+
+  * Dependency on libhildonhelp and libhildonmime
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 14:13:53 -0300
+
 python-hildon (0.8.9-1osso1) unstable; urgency=low
 
   * Bump version to 0.8.9
