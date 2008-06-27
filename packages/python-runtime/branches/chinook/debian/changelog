@@ -1,3 +1,9 @@
+python-runtime (1.0-8) unstable; urgency=low
+
+  * Revision bump
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 18:24:34 -0300
+
 python-runtime (1.0-7) unstable; urgency=low
 
   * Renaming the package to follow debian policy 
