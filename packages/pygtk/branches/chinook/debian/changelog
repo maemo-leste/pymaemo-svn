@@ -1,3 +1,9 @@
+python-gtk2 (2.12.1-1osso4) unstable; urgency=low
+
+  * fix #2654
+
+ -- Luciano <luciano.wolf@indt.org.br>  Mon, 30 Jun 2008 11:05:59 -0300
+
 python-gtk2 (2.12.1-1osso3) unstable; urgency=low
 
   * fix libtool dependency, to compile inside Maemo-autobuilder
