@@ -17,7 +17,7 @@ Description: An interactive high-level object-oriented language
 
 Package: python2.5-dev
 Architecture: any
-Depends: python2.5 (= ${Source-Version})
+Depends: python2.5 (= ${Source-Version}), python2.5-distutils (= ${Source-Version})
 Conflicts: python2.4-dev
 Description: Header files and a static library for Python (v2.5)
  Header files, a static library and development tools for building
@@ -37,4 +37,11 @@ Section: libdevel
 Architecture: any
 Depends: python2.5 (= ${Source-Version}), maemo-debug-scripts (>= 0.10)
 Description: Debug symbols for Python interpreter
+ .
+
+Package: python2.5-distutils
+Section: libdevel
+Architecture: any
+Depends: python2.5 (= ${Source-Version})
+Description: Packaging utilities.
  .

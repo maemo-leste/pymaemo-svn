@@ -8,9 +8,11 @@ PYTHON=python$(PYVER)
 p_base=$(PYTHON)
 p_dev=$(PYTHON)-dev
 p_test=$(PYTHON)-testing
+p_dutil=$(PYTHON)-distutils
 d_base=$(CURDIR)/debian/$(p_base)
 d_dev=$(CURDIR)/debian/$(p_dev)
 d_test=$(CURDIR)/debian/$(p_test)
+d_dutil=$(CURDIR)/debian/$(p_dutil)
 
 only_dev_list=$(CURDIR)/debian/onlysdk
 
@@ -93,6 +95,11 @@ stamp-install: stamp-build
 	mv $(d_dev)/$(scriptdir)/lib-dynload/_ctypes_test.so $(d_test)/$(scriptdir)/lib-dynload/
 	mv $(d_dev)/$(scriptdir)/lib-dynload/_testcapi.so $(d_test)/$(scriptdir)/lib-dynload/
 
+	# distutils
+	# ====
+	mkdir -p $(d_dutil)/$(scriptdir)
+	mv $(d_dev)/$(scriptdir)/distutils $(d_dutil)/$(scriptdir)
+
 	# base
 	# ====
 
@@ -134,6 +141,8 @@ stamp-install: stamp-build
 	)
 	find $(d_dev)/$(scriptdir) -name "*.pyo" -type f | grep -v -f $(only_dev_list) | xargs rm -f
 
+	find $(d_dev)/$(scriptdir)/encodings | grep -f $(only_dev_list) | xargs -i mv '{}' $(d_dev)/$(scriptdir)/encodings_orient
+
 	# move the interpreter
 	mv $(d_dev)/usr/bin/python2.5 $(d_base)/usr/bin/python2.5
 
@@ -149,10 +158,11 @@ stamp-install: stamp-build
 	# dev
 	# ===
 
+	# Break the build in sbox-core (> 1.0.8). Removed to work under 'Builder for Maemo' building machine
 	# manpage
-	mkdir -p $(d_dev)/usr/share/man/man1
-	mv $(d_dev)/usr/man/man1/python.1 $(d_dev)/usr/share/man/man1/$(PYTHON).1
-	rm -rf $(d_dev)/usr/man
+	#mkdir -p $(d_dev)/usr/share/man/man1
+	#mv $(d_dev)/usr/man/man1/python.1 $(d_dev)/usr/share/man/man1/$(PYTHON).1
+	#rm -rf $(d_dev)/usr/man
 
 	# shared library
 	ln -sf lib$(PYTHON).so.1 $(d_dev)/usr/lib/lib$(PYTHON).so
@@ -176,7 +186,8 @@ stamp-install: stamp-build
 	# default python
 	# ============== 
 
-	ln -sf $(PYTHON).1 $(d_dev)/usr/share/man/man1/python.1
+	# Break the build in sbox-core (> 1.0.8). Removed to work under 'Builder for Maemo' building machine
+	#ln -sf $(PYTHON).1 $(d_dev)/usr/share/man/man1/python.1
 	#(cd $(d_base)/usr/bin && ln -sf python$(PYVER) python)
 	cp -p Tools/i18n/pygettext.py $(d_dev)/usr/bin/pygettext$(PYVER)
 	ln -sf pygettext$(PYVER) $(d_dev)/usr/bin/pygettext

@@ -1,3 +1,9 @@
+python2.5 (2.5.2-1osso3) unstable; urgency=low
+
+  * New package with distutils
+
+ -- Luciano Miguel Wolf <luciano.wolf@openbossa.org>  Fri, 27 Jun 2008 09:59:20 -0300
+
 python2.5 (2.5.2-1osso2) unstable; urgency=low
 
   * Add help support and missing files to distutils
