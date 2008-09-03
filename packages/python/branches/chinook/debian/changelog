@@ -1,3 +1,9 @@
+python2.5 (2.5.2-1osso4) unstable; urgency=low
+
+  * Fix build problem that left AF_BLUETOOTH missing.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed,  3 Sep 2008 18:24:54 -0300
+
 python2.5 (2.5.2-1osso3) unstable; urgency=low
 
   * New package with distutils
