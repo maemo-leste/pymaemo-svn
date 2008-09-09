@@ -1,0 +1,75 @@
+Index: python-gobject-2.14.1/gobject/pygobject.c
+===================================================================
+--- python-gobject-2.14.1.orig/gobject/pygobject.c	2008-09-09 16:57:11.000000000 -0300
++++ python-gobject-2.14.1/gobject/pygobject.c	2008-09-09 16:45:28.000000000 -0300
+@@ -1026,18 +1026,19 @@
+     if (ret != 0) return ret;
+ 
+     if (data) {
+-
+         for (tmp = data->closures; tmp != NULL; tmp = tmp->next) {
+             PyGClosure *closure = tmp->data;
+ 
+-            if (closure->callback) ret = visit(closure->callback, arg);
+-            if (ret != 0) return ret;
+-
+-            if (closure->extra_args) ret = visit(closure->extra_args, arg);
+-            if (ret != 0) return ret;
+-
+-            if (closure->swap_data) ret = visit(closure->swap_data, arg);
+-            if (ret != 0) return ret;
++            if (self->obj->ref_count == 1) {
++                if (closure->callback) ret = visit(closure->callback, arg);
++                if (ret != 0) return ret;
++                
++                if (closure->extra_args) ret = visit(closure->extra_args, arg);
++                if (ret != 0) return ret;
++                
++                if (closure->swap_data) ret = visit(closure->swap_data, arg);
++                if (ret != 0) return ret;
++            }
+         }
+     }
+     return ret;
+Index: python-gobject-2.14.1/tests/test_subtype.py
+===================================================================
+--- python-gobject-2.14.1.orig/tests/test_subtype.py	2008-09-09 16:57:02.000000000 -0300
++++ python-gobject-2.14.1/tests/test_subtype.py	2008-09-09 16:49:12.000000000 -0300
+@@ -4,7 +4,7 @@
+ import sys
+ 
+ import testmodule
+-from common import gobject, testhelper
++from common import glib, gobject, gio, testhelper
+ from gobject import GObject, GInterface, GObjectMeta
+ import gtk
+ 
+@@ -267,3 +267,28 @@
+         foo = Foo()
+         d = foo.__dict__
+ 
++    def test_func_closure(self):
++        variables = []
++
++        def make_cancellable():
++            cancellable = gio.Cancellable()
++            def on_cancelled(*args):
++                variables.append (cancellable)
++            cancellable.connect('cancelled', on_cancelled)
++            return cancellable
++
++        # This is a dummy object only need to avoid Python reference
++        # to the callable (only reference will be hold by C GIO).
++        x = gio.FileInfo()
++        x.set_attribute_object('cancellable', make_cancellable())
++
++        gc.collect()
++
++        loop = glib.MainLoop()
++
++        glib.idle_add(lambda: x.get_attribute_object('cancellable').cancel())
++        glib.idle_add(lambda: loop.quit())
++
++        loop.run()
++
++        self.assert_(variables and isinstance(variables[0], gio.Cancellable))

@@ -1,2 +1,3 @@
 05-change_pygconstant_strip_prefix.patch
 06-add-m4-dir.patch
+07-fix-lambda-expression-broken.patch

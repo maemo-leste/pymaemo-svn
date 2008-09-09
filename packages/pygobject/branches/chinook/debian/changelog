@@ -1,3 +1,9 @@
+python-gobject (2.14.1-1osso2) unstable; urgency=low
+
+  * fix #2794
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  9 Sep 2008 16:59:36 -0300
+
 python-gobject (2.14.1-1osso1) unstable; urgency=low
 
   * update to version 2.14.1
