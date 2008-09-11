@@ -1,3 +1,9 @@
+python-setuptools (0.6c6-1osso3) unstable; urgency=low
+
+  * Fix missing import log.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 11 Sep 2008 16:28:49 -0300
+
 python-setuptools (0.6c6-1osso2) unstable; urgency=low
 
   * Update package type to any instead of all, due to buildbot restrictions.
