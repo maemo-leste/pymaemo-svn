@@ -1,8 +1,8 @@
 python-setuptools (0.6c6-1osso2) unstable; urgency=low
 
-  * Changing built to 'any' (x86 and armel being produced)
+  * Update package type to any instead of all, due to buildbot restrictions.
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 18:05:04 -0300
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 30 Jun 2008 10:56:45 -0300
 
 python-setuptools (0.6c6-1osso1) unstable; urgency=low
 

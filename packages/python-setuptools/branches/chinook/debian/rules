@@ -65,10 +65,10 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs -i
-	dh_installdocs -i -A setuptools.txt EasyInstall.txt
-	dh_compress -i
-	dh_fixperms -i
+	#dh_installchangelogs -i
+	#dh_installdocs -i -A setuptools.txt EasyInstall.txt
+	#dh_compress -i
+	#dh_fixperms -i
 	: # Replace all '#!' calls to python with $(PYTHON)
 	: # and make them executable
 	for i in \
@@ -88,11 +88,10 @@ binary-arch: build install
 	done
 	sed -i -e 's/python2\../python2.5/g' \
 		$(d)/usr/bin/easy_install-2.5
-
-	dh_installdeb -i
-	dh_gencontrol -i
-	dh_md5sums -i
-	dh_builddeb -i
+	dh_installdeb 
+	dh_gencontrol 
+	dh_md5sums 
+	dh_builddeb
 
 binary: binary-arch binary-indep
 .PHONY: build clean binary-indep binary-arch binary install
