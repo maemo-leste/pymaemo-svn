@@ -1,3 +1,9 @@
+python-setuptools (0.6c6-1osso2) unstable; urgency=low
+
+  * Changing built to 'any' (x86 and armel being produced)
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 18:05:04 -0300
+
 python-setuptools (0.6c6-1osso1) unstable; urgency=low
 
   * First port to Maemo platform
