@@ -1,3 +1,9 @@
+python2.5-imaging (1.1.6-1osso3) unstable; urgency=low
+
+  * Adding libjpeg as build dependency.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue, 16 Sep 2008 15:14:52 -0300
+
 python2.5-imaging (1.1.6-1osso2) unstable; urgency=low
 
   * fix #972 and #988

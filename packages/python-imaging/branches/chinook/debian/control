@@ -2,7 +2,7 @@ Source: python2.5-imaging
 Section: python
 Priority: optional
 Maintainer: Matt Croydon <matt@ooiio.com>
-Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2)
+Build-Depends: debhelper (>= 4.0.0), python2.5 (>= 2.5.1-1osso2), python2.5-dev (>= 2.5.1-1osso2), libjpeg62-dev (>= 6b-9osso5)
 Standards-Version: 3.6.1
 
 Package: python2.5-imaging
