@@ -223,6 +223,27 @@ def download_source_package(config, section):
         os.rename(tarf.getnames()[0], section)
         tarf.close()
 
+def download_debsrc_package(config, section):
+    dscurl = config.get(section, 'debsrc_url')
+    dscfile = os.path.basename(urlparse.urlsplit(dscurl)[2])
+
+    result = re.match('([^ ]+)-(.+).dsc', dscfile)
+    pkgname = result.group(1)
+    revision = result.group(2)
+
+    tarfile = '%s.orig.tar.gz' % pkgname
+    difffile = '%s-%s.diff.gz' % (pkgname, revision)
+    
+    for f in (dscfile, tarfile, difffile):
+        if not os.access(f, os.R_OK):
+            print 'Downloading %s ...' % f
+            urllib.urlretrieve(urlparse.urljoin(dscurl, f), f)
+        else:
+            print 'file %s already downloaded, skipping' % f
+
+    print 'Running dpkg-source on %s module' % (section)
+    run_command('dpkg-source -x %s' % dscfile)
+
 def apply_patches(package_name):
     '''reapply the patches'''
     
@@ -263,7 +284,7 @@ def build_packages(config):
                 status[0], status[0])
     arch = status[1]
 
-    targetdir = debs_dir+'/'+arch
+    targetdir = os.path.join(debs_dir, arch)
 
     if not os.path.exists(targetdir):
         os.makedirs(targetdir)
@@ -279,17 +300,18 @@ def build_packages(config):
         if os.path.exists(module+'-'+arch+'-stamp'):
             print 'module is already built, skipping'
             continue
+
         if arch == 'armel':
             run_command(
-            'dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.pc -us -uc'\
-            , module)
+            'dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.pc -us -uc',
+            module)
         else:
             run_command(
-            'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc'\
-            , module)
+            'dpkg-buildpackage -rfakeroot -B -sa -tc -I.pc -i.pc -us -uc',
+            module)
 
         module_name, module_version = read_name_and_version(module)
-
+        
         name_version = '_'.join([module_name, module_version])
         changes = '_'.join([name_version, arch]) + '.changes'
 
@@ -329,6 +351,10 @@ def create_tree(config):
     for section in config.sections():
         if section not in config.special:
             print '\n==== section %s ====' % section
+            if config.has_option(section, 'debsrc_url'):
+                download_debsrc_package(config, section)
+                continue
+            
             if config.has_option(section, 'source_url'):
                 download_source_package(config, section)
 
