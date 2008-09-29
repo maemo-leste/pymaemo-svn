@@ -1,3 +1,9 @@
+python-feedparser (4.1-1osso3) unstable; urgency=low
+
+  * Applying patch from Thomas Perl to fix unicode handling (upstream #128)
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 29 Sep 2008 14:52:56 -0300
+
 python-feedparser (4.1-1osso2) unstable; urgency=low
 
   * remove from Application Manager programs list
