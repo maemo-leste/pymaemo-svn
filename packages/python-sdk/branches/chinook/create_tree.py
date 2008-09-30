@@ -56,6 +56,16 @@ class BuildException(Exception):
         ''' Returns exeption code '''
         return self.code
 
+
+def get_build_depends(directory):
+    ''' Returns unmet build dependencies. '''
+
+    controlfile = os.path.join(directory, 'debian', 'control')
+
+    status, message = getstatusoutput('dpkg-checkbuilddeps %s' % controlfile)
+    return re.findall('\s*(\w[\.\w-]*)\s\(.*?\)', message)
+
+
 def run_command(command, directory = None, force = False):
     ''' Runs command. Chdir to directory if specified '''
 
@@ -75,7 +85,7 @@ def run_command(command, directory = None, force = False):
 
 def chksectlst(lst, sections):
     '''Check if list contains valid section names'''
-    
+
     unknown = [sect for sect in lst if sect not in sections]
     if unknown:
         raise BuildException('Unknown section name[s]: %s' % \
@@ -94,7 +104,7 @@ def read_cfg_file(conf_file, options):
         skiplist = [name.strip() for name in options.skip.split(',')]
         chksectlst(skiplist, config.sections())
         [config.remove_section(section) for section in skiplist]
-                
+
     if options.only:
         onlylist = [name.strip() for name in options.only.split(',')]
         chksectlst(onlylist, config.sections())
@@ -106,13 +116,13 @@ def read_cfg_file(conf_file, options):
 def read_name_and_version(module):
     '''Read debian/changelog file to get module name and version'''
 
-    chlog = open(module+'/debian/changelog')
+    chlog = open(os.path.join(module, 'debian', 'changelog'))
     result = re.match('([^ ]+) \(([^)]+)\).*', chlog.readline())
     chlog.close()
 
     module_name = result.group(1)
     module_version = result.group(2)
-    
+
     return module_name, module_version
 
 def download_from_svn(config, section):
@@ -124,7 +134,7 @@ def download_from_svn(config, section):
 
     if config.has_option(section, 'source_url'):
         old_dir_name = 'debian'
-        path_to_test = section+'/debian/patches'
+        path_to_test = os.path.join(section, 'debian', 'patches')
     else:
         old_dir_name = 'trunk'
         path_to_test = section
@@ -233,7 +243,7 @@ def download_debsrc_package(config, section):
 
     tarfile = '%s.orig.tar.gz' % pkgname
     difffile = '%s-%s.diff.gz' % (pkgname, revision)
-    
+
     for f in (dscfile, tarfile, difffile):
         if not os.access(f, os.R_OK):
             print 'Downloading %s ...' % f
@@ -246,7 +256,7 @@ def download_debsrc_package(config, section):
 
 def apply_patches(package_name):
     '''reapply the patches'''
-    
+
     run_command('quilt pop -a --quiltrc ../'+quiltrc, package_name, force = True)
     run_command('quilt push -a --quiltrc ../'+quiltrc, package_name)
 
@@ -257,7 +267,7 @@ def get_debs(control, arch, version):
         controlf = open(control)
         control = controlf.readlines()
         controlf.close()
-    
+
     debs = []
     for line in control:
         if line.find('Package:') > -1:
@@ -295,12 +305,20 @@ def build_packages(config):
 
         if module not in config.sections():
             continue
-        
+
         print '\n===== Building module %s ======' % module
         if os.path.exists(module+'-'+arch+'-stamp'):
             print 'module is already built, skipping'
             continue
 
+        dependencies = get_build_depends(module)
+        if dependencies:
+            deps = ' '.join(dependencies)
+            print 'Module %s depends on packages: %s' % (module, deps)
+            print '* installing build dependencies'
+            run_command('fakeroot apt-get --yes --force-yes install %s' % deps)
+
+        print '* building module'
         if arch == 'armel':
             run_command(
             'dpkg-buildpackage -rfakeroot -sa -tc -I.pc -i.pc -us -uc',
@@ -311,12 +329,13 @@ def build_packages(config):
             module)
 
         module_name, module_version = read_name_and_version(module)
-        
+
         name_version = '_'.join([module_name, module_version])
         changes = '_'.join([name_version, arch]) + '.changes'
 
         # get list of deb files
-        files = get_debs(module+'/debian/control', arch, module_version)
+        files = get_debs(os.path.join(module, 'debian', 'control'),
+                         arch, module_version)
 
         # install them
         run_command('fakeroot dpkg -i -G ' + ' '.join(files))
@@ -324,7 +343,7 @@ def build_packages(config):
         # add .dsc, and source tarball/diff.gz to the list
         files.append(name_version + '.dsc')
         files.append(changes)
-        
+
         orig_file = '_'.join([module_name, \
                             module_version.split('-')[0]])+'.orig.tar.gz'
         if os.path.exists(orig_file):
@@ -354,15 +373,15 @@ def create_tree(config):
             if config.has_option(section, 'debsrc_url'):
                 download_debsrc_package(config, section)
                 continue
-            
+
             if config.has_option(section, 'source_url'):
                 download_source_package(config, section)
 
             if config.has_option(section, 'svn_url'):
                 download_from_svn(config, section)
-    
+
             if config.has_option(section, 'source_url') and \
-               os.path.isdir(section+'/debian/patches'):
+               os.path.isdir(os.path.join(section, 'debian', 'patches')):
                 apply_patches(section)
 
 def parsecommandline(argv):
@@ -398,14 +417,14 @@ def main(argv = None):
 
         if not options.onlybuild:
             create_tree(config)
- 
+
         if not options.onlycreate:
             build_packages(config)
 
     except BuildException, exobj:
         print exobj
         return exobj.exitcode()
-    
+
     return OK
 
 if __name__ == '__main__':
