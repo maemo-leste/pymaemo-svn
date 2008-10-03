@@ -61,10 +61,18 @@ def get_build_depends(directory):
     ''' Returns unmet build dependencies. '''
 
     controlfile = os.path.join(directory, 'debian', 'control')
-
     status, message = getstatusoutput('dpkg-checkbuilddeps %s' % controlfile)
-    return re.findall('\s*(\w[\.\w-]*)\s\(.*?\)', message)
+    message = message[message.rfind(':')+2:]
+    
+    return re.findall('\s*(\w[\.\w-]*)(?:\s\(.*?\))?', message)
 
+def is_installable(packagename):
+    status, message = getstatusoutput('apt-cache show %s' % packagename)
+    return not ('No packages found' in message or message == '')
+
+def install_system_packages(packagelist):
+    pkgs = ' '.join([pkg for pkg in packagelist if is_installable(pkg)])
+    run_command('fakeroot apt-get --yes --force-yes install %s' % pkgs)
 
 def run_command(command, directory = None, force = False):
     ''' Runs command. Chdir to directory if specified '''
@@ -313,10 +321,8 @@ def build_packages(config):
 
         dependencies = get_build_depends(module)
         if dependencies:
-            deps = ' '.join(dependencies)
-            print 'Module %s depends on packages: %s' % (module, deps)
             print '* installing build dependencies'
-            run_command('fakeroot apt-get --yes --force-yes install %s' % deps)
+            install_system_packages(dependencies)
 
         print '* building module'
         if arch == 'armel':
