@@ -253,11 +253,12 @@ def download_debsrc_package(config, section):
     difffile = '%s-%s.diff.gz' % (pkgname, revision)
 
     for f in (dscfile, tarfile, difffile):
-        if not os.access(f, os.R_OK):
+        if not os.access(sources_dir + f, os.R_OK):
             print 'Downloading %s ...' % f
-            urllib.urlretrieve(urlparse.urljoin(dscurl, f), f)
+            urllib.urlretrieve(urlparse.urljoin(dscurl, f), sources_dir + f)
         else:
             print 'file %s already downloaded, skipping' % f
+        shutil.copy(sources_dir + f, f)
 
     print 'Running dpkg-source on %s module' % (section)
     run_command('dpkg-source -x %s' % dscfile)
