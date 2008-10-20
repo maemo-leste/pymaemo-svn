@@ -255,7 +255,18 @@ def download_debsrc_package(config, section):
     for f in (dscfile, tarfile, difffile):
         if not os.access(sources_dir + f, os.R_OK):
             print 'Downloading %s ...' % f
-            urllib.urlretrieve(urlparse.urljoin(dscurl, f), sources_dir + f)
+            try:
+                urllib.urlretrieve(urlparse.urljoin(dscurl, f), sources_dir + f)
+            except IOError, (errno, strerror):
+                if errno == 'socket error':
+                    print '\nERROR: %s' % strerror[1]
+                    print 'The /etc/resolv.conf file of the current ' \
+                          'target should be wrong.\nCopy the host\'s ' \
+                          'resolv.conf to your scratchbox target /etc ' \
+                          'directory\nand try to run %s again.\n' % \
+                          sys.argv[0]
+                    sys.exit(1)
+
         else:
             print 'file %s already downloaded, skipping' % f
         shutil.copy(sources_dir + f, f)
