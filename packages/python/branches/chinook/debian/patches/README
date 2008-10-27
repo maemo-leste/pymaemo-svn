@@ -1,0 +1,18 @@
+01-remove_curses_support.patch
+
+04-import.patch - Make .pyo and .pyc visible at the same time.
+Email from Osvaldo to python-dev - http://mail.python.org/pipermail/python-dev/2005-November/057959.html
+
+05-install.patch - Do not install egg info
+
+06-fix-urllib-exception.patch - Removes the headers from exception data
+07-osso-browser-support.patch - Uses dbus to get the default browser
+08-disable-tk_support.patch - Self explanatory
+
+09-lib-site.patch - Import paths (sitedir) and removes help()
+
+13-set-wakeup-fix.patch
+14-encodings-oriental.patch
+15-fix-tests.patch
+16-bug1179-imageop.patch
+17-bdist_maemo-support.patch
