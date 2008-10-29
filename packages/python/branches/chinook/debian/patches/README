@@ -11,8 +11,8 @@ Email from Osvaldo to python-dev - http://mail.python.org/pipermail/python-dev/2
 
 09-lib-site.patch - Import paths (sitedir) and removes help()
 
-13-set-wakeup-fix.patch
-14-encodings-oriental.patch
-15-fix-tests.patch
-16-bug1179-imageop.patch
-17-bdist_maemo-support.patch
+13-set-wakeup-fix.patch - Adds set_wakeup_fd (used by pygtk, integrated in python trunk) http://bugs.python.org/issue1583
+14-encodings-oriental.patch - Allows importing extra encondings outside the zip file
+15-fix-tests.patch - Fixing unit tests with pymaemo changes
+16-bug1179-imageop.patch - Integer overflow on imageop - Applied to 2.6 and 2.5 - http://bugs.python.org/issue1179
+17-bdist_maemo-support.patch - Adds the bdist maemo deb to distutils.
