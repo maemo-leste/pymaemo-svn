@@ -1,3 +1,9 @@
+python-gtk2 (2.12.1-1osso4ubuntu1) intrepid; urgency=low
+
+  * Removing the gtk builder patch - Crashing. 
+
+ -- Lauro Moura <lauro@subaru>  Fri, 31 Oct 2008 14:33:13 -0300
+
 python-gtk2 (2.12.1-1osso4) unstable; urgency=low
 
   * fix #2654
