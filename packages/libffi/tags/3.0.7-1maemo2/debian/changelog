@@ -1,0 +1,73 @@
+libffi (3.0.7-1maemo2) unstable; urgency=low
+
+  * debian/control:
+    + Remove "Uploaders" field (not applicable to maemo).
+    + Put the pymaemo-developers mailing list address in "Maintainer" field and
+      move original value to a separate field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 26 Mar 2009 13:40:58 -0400
+
+libffi (3.0.7-1maemo1) unstable; urgency=low
+
+  [ Bruno dos Santos de Araujo ]
+  * New version from Debian (3.0.7-1)
+
+  [ Anderson Lizardo ]
+  * Fix build issue on ARM.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 10 Dec 2008 11:49:32 -0400
+
+libffi (3.0.6-1maemo1) unstable; urgency=low
+
+  * Remove Build-Depends: g++-multilib, dejagnu, expect-tcl8.3, dejagnu.
+  * Disable tests due to dejagnu dependency.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 12 Nov 2008 14:58:32 -0400
+
+libffi (3.0.6-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 23 Jul 2008 01:32:07 +0200
+
+libffi (3.0.5-4) unstable; urgency=low
+
+  * Build-depend on expect-tcl8.3 on hppa.
+  * Set CCASFLAGS to generate debugging symbols for assembly code.
+    Closes: #480443.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 25 May 2008 19:31:02 +0200
+
+libffi (3.0.5-3) unstable; urgency=high
+
+  * Fix installation of header files on mips* (Thiemo Seufer).
+    Closes: #481628.
+  * Set CXX in configure targets.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 21 May 2008 16:51:03 +0200
+
+libffi (3.0.5-2) unstable; urgency=low
+
+  * Install header files in multiarch directories. Closes: #480208.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 13 May 2008 04:49:49 +0000
+
+libffi (3.0.5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Suport mips triarch (Arthur Loiret). Closes: #474049.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 04 Apr 2008 21:20:12 +0000
+
+libffi (3.0.4-2) unstable; urgency=medium
+
+  * Fix lib64ffi-dev package description.
+  * Fix FTBFS on kfreebsd-amd64 (Aurelian Jarno). Closes: #471399.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 22 Mar 2008 18:39:07 +0100
+
+libffi (3.0.4-1) unstable; urgency=low
+
+  * The 10th Anniversary Release, split out from the GCC sources.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 10 Mar 2008 06:46:40 +0100

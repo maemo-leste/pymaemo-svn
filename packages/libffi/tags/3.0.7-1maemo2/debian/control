@@ -1,0 +1,101 @@
+Source: libffi
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Build-Depends: debhelper (>= 5), lsb-release, texinfo
+Standards-Version: 3.8.0
+Section: libs
+
+Package: libffi-dev
+Section: libdevel
+Architecture: any
+Depends: libffi5 (= ${binary:Version})
+Conflicts: libffi4-dev
+Description: Foreign Function Interface library (development files)
+ This package contains the headers and static library files necessary for
+ building programs which use libffi.
+ .
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: lib32ffi-dev
+Section: libdevel
+Architecture: amd64 ppc64 kfreebsd-amd64
+Depends: libffi-dev (= ${binary:Version}), lib32ffi5 (= ${binary:Version})
+Description: Foreign Function Interface library (development files, 32bit)
+ This package contains the headers and static library files necessary for
+ building programs which use libffi.
+ .
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: lib64ffi-dev
+Section: libdevel
+Architecture: i386 mips mipsel powerpc sparc s390
+Depends: libffi-dev (= ${binary:Version}), lib64ffi5 (= ${binary:Version})
+Description: Foreign Function Interface library (development files, 64bit)
+ This package contains the headers and static library files necessary for
+ building programs which use libffi.
+ .
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: libn32ffi-dev
+Section: libdevel
+Architecture: mips mipsel
+Depends: libffi-dev (= ${binary:Version}), libn32ffi5 (= ${binary:Version})
+Description: Foreign Function Interface library (development files, n32)
+ This package contains the headers and static library files necessary for
+ building programs which use libffi.
+ .
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: libffi5
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Foreign Function Interface library runtime
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: lib32ffi5
+Section: libs
+Architecture: amd64 ppc64 kfreebsd-amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Foreign Function Interface library runtime (32bit)
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: lib64ffi5
+Section: libs
+Architecture: i386 mips mipsel powerpc sparc s390
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Foreign Function Interface library runtime (64bit)
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: libn32ffi5
+Section: libs
+Architecture: mips mipsel
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Foreign Function Interface library runtime (n32)
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.
+
+Package: libffi5-dbg
+Section: libdevel
+Architecture: any
+Depends: libffi5 (= ${binary:Version}), ${shlibs:Depends}
+Description: Foreign Function Interface library runtime (debug symbols)
+ A foreign function interface is the popular name for the interface that
+ allows code written in one language to call code written in another
+ language.

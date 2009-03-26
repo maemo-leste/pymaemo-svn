@@ -1,0 +1,11 @@
+#! /bin/sh
+
+set -e
+
+if [ "$1" = "configure" ]; then
+    install-info --quiet \
+	--section Development 'Portable foreign-function interface library' \
+	/usr/share/info/libffi.info
+fi
+
+#DEBHELPER#
