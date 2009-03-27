@@ -1,0 +1,76 @@
+#! /bin/sh -e
+
+# DP: Call the linker with -O1 -Bsymbolic-functions
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p0 < $0
+        autoconf
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
+        rm -f configure
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+---
+ configure.in |   20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
+
+Index: configure.in
+===================================================================
+--- configure.in.orig
++++ configure.in
+@@ -1433,6 +1433,22 @@ else
+ fi
+ AC_MSG_RESULT($SO)
+ AC_DEFINE_UNQUOTED(SHLIB_EXT, "$SO", [Define this to be extension of shared libraries (including the dot!).])
++
++LINK_OPT="-Wl,-O1 -Wl,-Bsymbolic-functions"
++AC_MSG_CHECKING(whether $CC supports $LINK_OPT)
++ac_save_cc="$CC"
++CC="$CC $LINK_OPT"
++AC_TRY_RUN([int main() { return 0; }],
++ac_cv_link_opt_ok=yes,
++ac_cv_link_opt_ok=no,
++ac_cv_link_opt_ok=no)
++CC="$ac_save_cc"
++AC_MSG_RESULT($ac_cv_link_opt_ok)
++if test $ac_cv_link_opt_ok = no
++then
++	LINK_OPT=""
++fi
++
+ # LDSHARED is the ld *command* used to create shared library
+ # -- "cc -G" on SunOS 5.x, "ld -shared" on IRIX 5
+ # (Shared libraries in this instance are shared modules to be loaded into
+@@ -1516,7 +1532,7 @@ then
+ 			fi
+ 		fi
+ 		;;
+-	Linux*|GNU*) LDSHARED='$(CC) -shared';;
++	Linux*|GNU*) LDSHARED='$(CC) -shared '"$LINK_OPT";;
+ 	BSD/OS*/4*) LDSHARED="gcc -shared";;
+ 	FreeBSD*)
+ 		if [[ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]]
+@@ -1603,7 +1619,7 @@ then
+ 	    LINKFORSHARED="-Wl,-E -Wl,+s";;
+ #	    LINKFORSHARED="-Wl,-E -Wl,+s -Wl,+b\$(BINLIBDEST)/lib-dynload";;
+ 	BSD/OS/4*) LINKFORSHARED="-Xlinker -export-dynamic";;
+-	Linux*|GNU*) LINKFORSHARED="-Xlinker -export-dynamic";;
++	Linux*|GNU*) LINKFORSHARED="-Xlinker -export-dynamic $LINK_OPT";;
+ 	# -u libsys_s pulls in all symbols in libsys
+ 	Darwin/*) 
+ 		# -u _PyMac_Error is needed to pull in the mac toolbox glue,
