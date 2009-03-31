@@ -1,0 +1,170 @@
+#!/usr/bin/make -f
+# Copyright © 2002,2003 Colin Walters <walters@verbum.org>
+# Copyright © 2003 Daniel Stone <daniels@debian.org>
+# Copyright © 2006 Sjoerd Simons <sjoerd@debian.org>
+
+DEB_PYTHON_SYSTEM := pysupport
+
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+CFLAGS += -Wall -g -O$(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),0,2)
+
+PYVERS := $(shell pyversions --requested --version debian/control)
+PYDEFAULTVER := $(shell pyversions --default --version)
+
+ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+	CONFIGURE_FLAGS += --build=$(DEB_BUILD_GNU_TYPE)
+else
+	CONFIGURE_FLAGS += --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
+endif
+
+CONFIGURE_FLAGS += \
+	--prefix=/usr \
+	--docdir=/usr/share/doc/deleteme
+
+
+with_doc := no
+
+ifneq ($(with_doc),yes)
+NOPKGS += -Npython-dbus-doc
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+ifneq ($(shell dh_listpackages -i $(DH_OPTIONS) 2>/dev/null),)
+with_indep := yes
+endif
+
+
+# Don't bother building documentation if the Python version is not Debian's
+# default. We want to build the documentation exactly once, and the Debian
+# default version is as good as any.
+build-%/configure-stamp:
+	dh_testdir
+	mkdir -p build-$*
+	case $* in \
+		*-dbg) \
+			CFLAGS="$(CFLAGS) -g -O0"; \
+			export CFLAGS; \
+			;; \
+	esac; \
+	maybe_disable_doc="--disable-html-docs --disable-api-docs"; \
+	if test $(PYDEFAULTVER) = $*; then \
+		maybe_disable_doc=""; \
+	fi; \
+	cd build-$* && PYTHON=/usr/bin/python$* ../configure \
+		$(CONFIGURE_FLAGS) $$maybe_disable_doc
+	touch $@
+
+build-%/build-stamp: build-%/configure-stamp
+	dh_testdir
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$*
+	touch $@
+
+build: apply-patches $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=build-%-dbg/build-stamp)
+	ln -s build-$(PYDEFAULTVER) build-default
+
+install-clean:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+install-%: build-%/build-stamp
+	dh_testdir
+	dh_testroot
+	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-dbus
+	# keep a copy of /usr/include/debian-python.h and
+	# /usr/lib/pkgconfig/debian-python.pc to verify they match later
+	cp debian/python-dbus/usr/include/dbus-1.0/dbus/dbus-python.h debian/tmp-$*.h
+	cp debian/python-dbus/usr/lib/pkgconfig/dbus-python.pc debian/tmp-$*.pc
+
+dbg-install-%: build-%-dbg/build-stamp
+	dh_testdir
+	dh_testroot
+	$(MAKE) -C build-$*-dbg install DESTDIR=$(CURDIR)/debian/python-dbus-dbg
+	find debian/python-dbus-dbg ! -type d ! -name '*.so' -print0 | xargs -0 rm -f
+	find debian/python-dbus-dbg -depth -empty -exec rmdir {} \;
+
+install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
+	rm -f debian/python-dbus/usr/lib/python*/site-packages/*.la
+	rm -rf debian/python-dbus/usr/share/doc/deleteme
+	# compare installed .pc and .h, asserting that the ones all versions
+	# wanted are the same as what we ended up with
+	for v in $(PYVERS); do \
+		diff --brief debian/python-dbus/usr/include/dbus-1.0/dbus/dbus-python.h \
+			debian/tmp-$$v.h || exit 1; \
+		diff --brief debian/python-dbus/usr/lib/pkgconfig/dbus-python.pc \
+			debian/tmp-$$v.pc || exit 1; \
+	done
+	rm -f debian/tmp-*.pc debian/tmp-*.h
+	for i in $$(find debian/python-dbus-dbg -name '*.so'); do \
+		b=$$(basename $$i .so); \
+		mv $$i $$(dirname $$i)/$${b}_d.so; \
+	done
+
+clean:: reverse-patches
+	dh_testdir
+	dh_testroot
+	rm -Rf debian/tmp-*
+	rm -Rf build-*
+	-test -f config.sub && \
+		test -r /usr/share/misc/config.sub && \
+		cp -f /usr/share/misc/config.sub config.sub
+	-test -f config.guess && \
+		test -r /usr/share/misc/config.guess && \
+		cp -f /usr/share/misc/config.guess config.guess
+	find dbus -name '*.py[co]' -print0 | xargs -0 rm -f
+	dh_clean
+
+ifeq ($(with_indep),yes)
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_install -i
+	dh_installchangelogs ChangeLog -i
+	dh_installdocs -i
+	dh_installexamples -i
+	dh_compress -i -X.js
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_shlibdeps -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+else
+binary-indep:
+#do nothing
+endif
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_install -s
+	dh_installdocs -s
+	dh_installchangelogs ChangeLog -s
+	dh_installexamples -s
+	install -d debian/python-dbus-dbg/usr/share/lintian/overrides
+	install -m644 debian/python-dbus-dbg.lintian-overrides \
+	debian/python-dbus-dbg/usr/share/lintian/overrides/python-dbus-dbg
+	rm -rf debian/python-dbus-dbg/usr/share/doc/python-dbus-dbg
+	dh_strip -ppython-dbus --dbg-package=python-dbus-dbg
+	dh_link -s
+	dh_compress -s -X.py -X.js
+	dh_fixperms -s
+	dh_pysupport -s
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install install-clean
