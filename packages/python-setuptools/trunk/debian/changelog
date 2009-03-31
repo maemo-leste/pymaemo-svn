@@ -1,8 +1,65 @@
-python-setuptools (0.6c6-1osso1) unstable; urgency=low
+python-setuptools (0.6c8-4maemo4) unstable; urgency=low
 
-  * First port to Maemo platform
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  3 Jan 2008 16:15:30 -0300
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 30 Mar 2009 06:59:43 -0400
+
+python-setuptools (0.6c8-4maemo3) unstable; urgency=low
+
+  * Avoid using quilt provided by maemo3-tools devkit.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 30 Dec 2008 10:53:59 -0400
+
+python-setuptools (0.6c8-4maemo2) unstable; urgency=low
+
+  * Add pymaemo specific patches:
+    - 01-fix-missing-import-log-command.patch
+  * Add quilt build dependency
+  * Move debhelper to Build-Depends in debian/control, because it is a
+    dependency for the clean target of debian/rules
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 10 Dec 2008 09:33:58 -0400
+
+python-setuptools (0.6c8-4maemo1) unstable; urgency=low
+
+  * Remove references from python2.4 from debian/rules.
+  * Add Conflicts/Replaces for python2.5-setuptools (<< 0.6c8-4maemo1).
+  * Remove Build-Depends: python2.5-dev (already installed by python-all-dev).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 17 Nov 2008 16:41:17 -0400
+
+python-setuptools (0.6c8-4) unstable; urgency=low
+
+  * Don't break with subversion-1.5. Closes: #489263.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 12 Jul 2008 09:25:36 +0200
+
+python-setuptools (0.6c8-3) unstable; urgency=low
+
+  * Move site.py into the python-pkg-resources package.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 09 Apr 2008 22:44:47 +0200
+
+python-setuptools (0.6c8-2) unstable; urgency=low
+
+  * python-pkg-resources: Conflict with python-setuptools. Closes: #468944.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 02 Mar 2008 15:34:10 +0100
+
+python-setuptools (0.6c8-1) unstable; urgency=low
+
+  * New upstream version. Closes: #467012.
+  * Split out a python-pkg-resources package (to be used as a runtime
+    dependency instead of python-setuptools).
+
+ -- Matthias Klose <doko@debian.org>  Fri, 29 Feb 2008 01:20:15 +0100
+
+python-setuptools (0.6c7-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 02 Nov 2007 10:57:34 -0400
 
 python-setuptools (0.6c6-1) unstable; urgency=low
 
