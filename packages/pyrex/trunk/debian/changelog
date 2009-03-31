@@ -1,83 +1,115 @@
-pyrex (0.9.5.1-1osso1) unstable; urgency=low
+pyrex (0.9.7.2-0.1maemo3) unstable; urgency=low
 
-  * upgraded to pyrex v0.9.5.1
+  * Fix typo in debian/control (used "XSBC-Maintainer" instead of
+    "XSBC-Original-Maintainer").
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon,  9 Jul 2007 11:33:56 -0300
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 31 Mar 2009 11:35:10 -0400
 
-pyrex (0.9.4.1-1osso4) unstable; urgency=low
+pyrex (0.9.7.2-0.1maemo2) unstable; urgency=low
 
-  * applied patch that fixes #560 
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 15:34:03 -0300
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 31 Mar 2009 11:06:01 -0400
 
-pyrex (0.9.4.1-1osso3) unstable; urgency=low
+pyrex (0.9.7.2-0.1maemo1) unstable; urgency=low
 
-  * remove Makefile when cleaning
+  * Change PYTHON and PYVER variables in debian/rules so that they do not call
+    /usr/bin/python directly, which would invoke the Scratchbox python.
+  * Make pyrex-mode package build optional and disable it for maemo.
+  * Add Conflicts/Replaces for "python2.5-pyrex (<< ${binary:Version})".
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 26 Dec 2006 17:57:49 -0300
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 10 Nov 2008 10:37:24 -0400
 
-pyrex (0.9.4.1-1osso2) unstable; urgency=low
+pyrex (0.9.7.2-0.1) unstable; urgency=high
 
-  * workaround the _tls assertion bug in package build
+  * NMU because maintainer is MIA.
+  * New upstream release fixing an integer indexing optimisation problem
+    (0.9.7.1 and 0.9.7.2 contain this fix only, so this is safe for
+    Lenny release) (Closes: #483035).
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 20 Dec 2006 13:50:49 -0300
+ -- Marc Dequènes (Duck) <Duck@DuckCorp.org>  Fri, 29 Aug 2008 03:00:52 +0200
 
-pyrex (0.9.4.1-1osso1) unstable; urgency=low
+pyrex (0.9.7-1) unstable; urgency=low
 
-  * fix the package version
+  * New upstream release.
+  * remove dh_python from debian/rules, add XB-Python-Version
+    (closes: #460253)
+  * remove auto-mode-alist from debian/pyrex-mode.el (ubuntu #73904)
+  * add provide to debian/pyrex-mode.el (ubuntu #73903)
+  * debian/control: added Homepage field
+  * debian/rules, debian/control: add dpatch
+  * debian/patches: add hash patch, thanks to Jakub Wilk (closes: #469735)
+  * debian/control: drop Suggests: python-numeric (closes: #478455)
+  * debian/python-pyrex.doc-base: switch to section Programming/Pyrex
+  * debian/control: added fields Vcs-Browser and Vcs-Hg
+  * debian/control: fix typo python -> Python
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 16 Nov 2006 17:13:23 -0300
+ -- Paul Brossier <piem@debian.org>  Sun, 11 May 2008 16:19:48 +0200
 
-pyrex (0.9.4-1osso1) unstable; urgency=low
+pyrex (0.9.6.4-1) unstable; urgency=low
 
-  * upgraded to pyrex v0.9.4.1 
+  * New upstream release (closes:#406025)
+  * Move python-all-dev to Build-Depends since python gets called in
+    debian/rules:clean
+  * Delete empty usr/lib from python-pyrex
+  * Delete blank lines from debian/python-pyrex.doc-base
+  * Remove empty binary-arch target
+  * Bump Standards-Version to 3.7.3
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  14 Nov 2006 15:53:00 -0300
+ -- Paul Brossier <piem@debian.org>  Fri, 11 Jan 2008 11:50:29 +0100
 
-pyrex (0.9.3-1osso6) unstable; urgency=low
+pyrex (0.9.5.1a-1) unstable; urgency=low
 
-  * debian/rules refactored
+  * New upstream release (closes: #411004)
+  * Provide only ${python:Provides} (closes: #399937)
+  * Drop Conflicts and Replaces against oldstable packages
+  * Bumpep Build-depends on debhelper to 5.0.37.2
+  * Added debian/pycompat, set to 2
+  * Moved DH_COMPAT=5 to debian/compat
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri,  9 Jun 2006 16:36:29 -0300
+ -- Paul Brossier <piem@debian.org>  Sat, 21 Apr 2007 15:16:07 +0200
 
-pyrex (0.9.3-1osso5) unstable; urgency=low
+pyrex (0.9.4.1-2) unstable; urgency=low
 
-  * changed architecture from 'any' to 'all'
+  * Correct pyrex-mode emacsen-startup script: load python-mode, not
+    python-mode. Add support for .pxi/.pxd extensions (thanks to Lukasz
+    Pankowski, closes: #375861). Avoid loading pyrex-mode when package has
+    been removed but not purged, do not touch load-path.
+  * Move dh_pycentral call right before dh_python.
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 6 Jun 2006 18:06:00 -0300
+ -- Paul Brossier <piem@debian.org>  Tue,  4 Jul 2006 15:44:27 +0200
 
-pyrex (0.9.3-1osso4) unstable; urgency=low
+pyrex (0.9.4.1-1) unstable; urgency=low
 
-  * added byte-compiled files to package
+  * New upstream release
+  * Update to new Python policy (closes: #373505)
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 19 May 2006 13:58:00 -0300
+ -- Paul Brossier <piem@debian.org>  Wed, 14 Jun 2006 18:21:15 +0200
 
-pyrex (0.9.3-1osso3) unstable; urgency=low
+pyrex (0.9.4-1) unstable; urgency=low
 
-  * some package cleanups
-  * added python2.4 requirement
+  * New upstream release
 
- -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 5 May 2006 16:38:00 -0300
+ -- Paul Brossier <piem@debian.org>  Thu, 20 Apr 2006 15:54:27 +0200
 
-pyrex (0.9.3-1osso2) unstable; urgency=low
+pyrex (0.9.3.1-2) unstable; urgency=low
 
-  * Fixed error in rules: dh_link parameter (was not creating /usr/bin/pyrexc
-    symlink)
+  * Add missing gcc 4.0 patch (closes: #343533)
+  
+ -- Paul Brossier <piem@debian.org>  Mon, 19 Dec 2005 09:01:29 +0000
 
- -- Elvis Pfutzenreuter <elvis.pfutzenreuter@indt.org.br>  Wed, 26 Apr 2005 17:15:00 -0300
+pyrex (0.9.3.1-1) unstable; urgency=low
 
-pyrex (0.9.3-1osso1) unstable; urgency=low
+  * New upstream release, integrates some of the gcc-4.x changes:
+    - adopted changes in Pyrex/Compiler/Nodes.py
+    - changed casts from PyObject* to void* in Pyrex/Compiler/Code.py
+    - removed Demos/{callback,embed} and Tools as in upstream
+    (closes: #328871)
+  * Keep a copy of pyrex-mode.el to debian/
+  * Added missing emacscen-startup script for pyrex-mode (closes: #337054)
 
-  * Compiled against SDK 2.0 RC3
-  * Changed package suffix from indt to osso
-
- -- Elvis Pfutzenreuter <elvis.pfutzenreuter@indt.org.br>  Wed, 26 Apr 2005 16:20:00 -0300
-
-pyrex (0.9.3-3indt1) unstable; urgency=low
-
-  * Adopted
-
- -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 10 Nov 2005 10:55:20 -0300
+ -- Paul Brossier <piem@debian.org>  Sun, 11 Dec 2005 15:45:59 +0000
 
 pyrex (0.9.3-3) unstable; urgency=low
 
