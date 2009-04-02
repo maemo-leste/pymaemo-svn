@@ -45,15 +45,15 @@
 
 <p>
   The first thing is to add the maemo <em>extras</em> repository (where Python is located) to your
-  list of package sources. To do that you'll have to edit the file <var>/etc/apt/sources.list</var>
-  inside scratchbox, for both targets (X86 and ARMEL), which should look like this:
+  list of package sources. To do that you will have to edit the file <var>/etc/apt/sources.list</var>
+  inside scratchbox, for both targets (X86 and ARMEL), which should look similar to this:
 </p>
 <pre>
-deb http://repository.maemo.org/ bora free non-free
-deb-src http://repository.maemo.org/ bora free
-deb file:/home/[username]/maemo-sdk-nokia-binaries_3.1 bora explicit</pre>
+deb http://repository.maemo.org/ diablo free non-free
+deb-src http://repository.maemo.org/ diablo free
+deb file:/home/[username]/maemo-sdk-nokia-binaries_4.1.2 diablo explicit</pre>
 <p>Add the following line to it:</p>
-<pre>deb http://repository.maemo.org/extras bora free non-free</pre>
+<pre>deb http://repository.maemo.org/extras/ diablo free non-free</pre>
 
 <p>Now resynchronize your package index files with the following command:</p>
 <pre>[sbox-SDK_X86: ~] > apt-get update</pre>
@@ -77,6 +77,15 @@ deb file:/home/[username]/maemo-sdk-nokia-binaries_3.1 bora explicit</pre>
    script. Call python with it as follows:
 </p>
 <pre>run-standalone.sh python2.5 &lt;yourscript.py&gt;</pre>
+
+<h3 id="fremantle">Instructions for maemo 5 alpha (fremantle)</h3>
+<p>To install PyMaemo on maemo 5 alpha SDK, follow the same instructions as
+above (replacing occurrences of "diablo" with "fremantle"), but replace the
+"extras" repository with the "extras-devel" one:</p>
+<pre>deb http://repository.maemo.org/extras-devel/ fremantle free non-free</pre>
+<p>Also note that the runtime metapackage is now called "python-runtime"
+(without the Python version), therefore to install the bindings, do:</p>
+<pre>[sbox-FREMANTLE_X86: ~] > apt-get install python-runtime</pre>
   </div>
   <div class="footer">
     &copy; Copyright Instituto Nokia de Tecnologia | Design by <a href="http://www.kumi.co.nr">Kumiko</a>
