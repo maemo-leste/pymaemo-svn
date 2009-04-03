@@ -14,19 +14,14 @@
   (c-name "HildonNumberEditorErrorType")
   (gtype-id "HILDON_TYPE_NUMBER_EDITOR_ERROR_TYPE")
   (values
-    '("maximum-value-exceed" "MAXIMUM_VALUE_EXCEED")
-    '("minimum-value-exceed" "MINIMUM_VALUE_EXCEED")
-    '("erroneous-value" "ERRONEOUS_VALUE")
+    '("maximum-value-exceed" "HILDON_NUMBER_EDITOR_ERROR_MAXIMUM_VALUE_EXCEED")
+    '("minimum-value-exceed" "HILDON_NUMBER_EDITOR_ERROR_MINIMUM_VALUE_EXCEED")
+    '("erroneous-value" "HILDON_NUMBER_EDITOR_ERROR_ERRONEOUS_VALUE")
   )
 )
 
 
-;; From /usr/include/hildon-widgets/hildon-number-editor.h
-
-(define-function hildon_number_editor_get_type
-  (c-name "hildon_number_editor_get_type")
-  (return-type "GType")
-)
+;; From hildon-number-editor.h
 
 (define-function hildon_number_editor_new
   (c-name "hildon_number_editor_new")

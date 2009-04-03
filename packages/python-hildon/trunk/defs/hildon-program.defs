@@ -10,12 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-program.h
-
-(define-function hildon_program_get_type
-  (c-name "hildon_program_get_type")
-  (return-type "GType")
-)
+;; From hildon-program.h
 
 (define-function hildon_program_get_instance
   (c-name "hildon_program_get_instance")
@@ -45,7 +40,7 @@
   (c-name "hildon_program_set_can_hibernate")
   (return-type "none")
   (parameters
-    '("gboolean" "killable")
+    '("gboolean" "can_hibernate")
   )
 )
 

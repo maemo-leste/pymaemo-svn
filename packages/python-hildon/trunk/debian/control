@@ -1,18 +1,16 @@
 Source: python-hildon
 Section: python
-Priority: optional
-Maintainer: Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso9), python2.5-dev (>= 2.5.1-1osso2), hildon-libs-dev, hildon-base-lib-dev, hildon-fm-dev
-Standards-Version: 3.6.1
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libgtk2.0-dev, libhildon1-dev, libhildonfm2-dev, libhildonhelp-dev, libhildonmime-dev, python-osso-dev
+XS-Python-Version: all
+Standards-Version: 3.7.2
 
-Package: python2.5-hildon
+Package: python-hildon
 Architecture: any
-Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Conflicts: python2.5-hildon (<< 0.8.9-2maemo1)
+Replaces: python2.5-hildon (<< 0.8.9-2maemo1)
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
 Description: Python bindings for Hildon Framework.
-
-Package: python2.5-hildon-dev
-Section: libs
-Architecture: all
-Depends: python2.5-hildon (= ${Source-Version}), python2.5-gtk2-dev
-Description: Examples and development files Python Hildon.
-

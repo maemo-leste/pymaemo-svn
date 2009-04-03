@@ -1,0 +1,124 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ * python-hildon - Python bindings for the Hildon toolkit.
+ *
+ *   hildon.override: overrides for the hildon module.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#include <libintl.h>
+
+#include <glib-object.h>
+
+#include <hildon/hildon-help.h>
+
+#include <python-osso/osso.h>
+
+%%
+modulename hildonhelp
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Dialog as PyGtkDialog_Type
+import osso.Context as PyOssoContext_Type
+
+%%
+ignore-glob *_get_type
+%%
+override hildon_help_show kwargs
+static PyObject *
+_wrap_hildon_help_show(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "context", "topic_id", "flags", NULL };
+
+    PyObject *pyosso = NULL;
+    osso_context_t *osso = NULL;
+    osso_return_t ret;
+    char *topic_id;
+    int flags;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                    "Osi:hildon.help_show",
+                                    kwlist,
+                                    &pyosso, &topic_id, &flags))
+        return NULL;
+
+    if (pyosso != NULL) {
+        if (PyObject_TypeCheck(pyosso, &PyOssoContext_Type)) {
+            osso = ((Context *)pyosso)->context;
+        } else if (pyosso != Py_None) {
+            PyErr_SetString(PyExc_TypeError,
+                            "context must be osso.Context or None");
+            return NULL;
+        }
+    }
+
+    ret = hildon_help_show(osso, topic_id, flags);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_help_dialog_help_enable kwargs
+static PyObject *
+_wrap_hildon_help_dialog_help_enable(PyObject *self,
+                                     PyObject *args,
+                                     PyObject *kwargs)
+{
+    static char *kwlist[] = {"dialog", "topic", "context", NULL};
+    gboolean ret = FALSE;
+
+    PyGObject *pydialog;
+    GtkDialog *dialog;
+    PyObject *pyosso = NULL;
+    osso_context_t *osso = NULL;
+    char *topic;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                    "O!s|O:hildon.help_dialog_enable_help",
+                                    kwlist,
+                                    &PyGtkDialog_Type, &pydialog,
+                                    &topic,
+                                    &pyosso))
+        return NULL;
+    
+    if (pyosso != NULL) {
+        if (PyObject_TypeCheck(pyosso, &PyOssoContext_Type)) {
+            osso = ((Context *)pyosso)->context;
+        } else if (pyosso != Py_None) {
+            PyErr_SetString(PyExc_TypeError,
+                            "context must be osso.Context or None");
+            return NULL;
+        }
+    }
+
+    dialog = (GtkDialog *)(pydialog->obj);
+
+    ret = hildon_help_dialog_help_enable(dialog, topic, osso);
+
+    if (ret) {
+        Py_RETURN_TRUE;
+    } else {
+        Py_RETURN_FALSE;
+    }
+}

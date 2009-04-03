@@ -1,12 +1,33 @@
-This package was debianized by Osvaldo Santana Neto <osvaldo.santana@indt.org.br> on
-Thu, 16 Jun 2005 15:58:17 -0300.
+This package was debianized by Anderson Lizardo <anderson.lizardo@indt.org.br>
+on Wed, 19 Nov 2008 16:21:23 -0400.
 
-It was downloaded from http://pymaemo.sourceforge.net
+It was downloaded from http://pymaemo.garage.maemo.org/
 
-Copyright:
+Upstream Authors:
 
-Upstream Author(s): Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+    Marius Vollmer <marius.vollmer@nokia.com>
+    Osvaldo Santana Neto <osvaldo.santana@indt.org.br>
+    Daniel d'Andrada T. de Carvalho <daniel.carvalho@indt.org.br>
+
+Copyright: 
+
+    Copyright (C) 2008 by Nokia Corporation
 
 License:
 
-See COPYING file.
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+ 
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+ 
+    You should have received a copy of the GNU General Public License
+    along with this package; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.

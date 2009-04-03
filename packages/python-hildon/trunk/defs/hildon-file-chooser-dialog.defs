@@ -74,3 +74,51 @@
   (return-type "gchar*")
 )
 
+(define-method set_show_upnp
+  (of-object "HildonFileChooserDialog")
+  (c-name "hildon_file_chooser_dialog_set_show_upnp")
+  (return-type "none")
+  (parameters
+    '("gboolean" "value")
+  )
+)
+
+(define-method get_show_upnp
+  (of-object "HildonFileChooserDialog")
+  (c-name "hildon_file_chooser_dialog_get_show_upnp")
+  (return-type "gboolean")
+)
+
+(define-method add_extra
+  (of-object "HildonFileChooserDialog")
+  (c-name "hildon_file_chooser_dialog_add_extra")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+  )
+)
+
+(define-method add_extensions_combo
+  (of-object "HildonFileChooserDialog")
+  (c-name "hildon_file_chooser_dialog_add_extensions_combo")
+  (return-type "GtkWidget*")
+  (parameters
+    '("char**" "extensions")
+    '("char**" "ext_names")
+  )
+)
+
+(define-method get_extension
+  (of-object "HildonFileChooserDialog")
+  (c-name "hildon_file_chooser_dialog_get_extension")
+  (return-type "gchar*")
+)
+
+(define-method set_extension
+  (of-object "HildonFileChooserDialog")
+  (c-name "hildon_file_chooser_dialog_set_extension")
+  (return-type "none")
+  (parameters
+    '("gchar*" "extension")
+  )
+)

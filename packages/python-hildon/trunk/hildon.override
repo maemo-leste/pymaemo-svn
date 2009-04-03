@@ -54,6 +54,8 @@ import gtk.Toolbar as PyGtkToolbar_Type
 import gtk.UIManager as PyGtkUIManager_Type
 import gtk.Window as PyGtkWindow_Type
 import gtk.Widget as PyGtkWidget_Type
+import gtk.ScrolledWindow as PyGtkScrolledWindow_Type
+import gtk.Label as PyGtkLabel_Type
 import pango.FontDescription as PyPangoFontDescription_Type
 
 %%
@@ -206,20 +208,6 @@ _wrap_hildon_file_chooser_dialog_new(PyGObject *self, PyObject *args, PyObject *
 }
 
 %%
-override hildon_appview_get_vbox noargs
-static PyObject *
-_wrap_hildon_appview_get_vbox (PyGObject *self)
-{
-    GtkWidget *ret;
-    HildonAppView *appview;
-
-    appview = HILDON_APPVIEW(self->obj);
-    ret = appview->vbox;
-
-    return pygobject_new((GObject *)ret);
-}
-
-%%
 override hildon_note_new kwargs
 static int
 _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -235,7 +223,9 @@ _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
     if (strcmp (note_type, "confirmation") == 0) {
         PyObject* parent;
         const char* description;
+#ifndef HILDON_DISABLE_DEPRECATED
         const char* icon_name;
+#endif
         
         if (PyTuple_Size (py_tuple) != 3 && PyTuple_Size (py_tuple) != 2) {
             PyErr_SetString(PyExc_RuntimeError, "A \"confirmation\" HildonNote type takes three or two items in its tuple.");
@@ -253,6 +243,7 @@ _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
             return -1;
         }
 
+#ifndef HILDON_DISABLE_DEPRECATED
         if (PyTuple_Size (py_tuple) == 3) {
             py_obj = PyTuple_GetItem (py_tuple, 2);
             icon_name = PyString_AsString (py_obj);
@@ -261,9 +252,12 @@ _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
             }
             self->obj = (GObject *)hildon_note_new_confirmation_with_icon_name (GTK_WINDOW(pygobject_get(parent)), description, icon_name);
         } else {
+#endif
             /* Use the default icon. */
             self->obj = (GObject *)hildon_note_new_confirmation (GTK_WINDOW(pygobject_get(parent)), description);
+#ifndef HILDON_DISABLE_DEPRECATED
         }
+#endif
         
         if (!self->obj) {
             PyErr_SetString(PyExc_RuntimeError, "could not create HildonNote object");
@@ -272,7 +266,9 @@ _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
     } else if (strcmp (note_type, "information") == 0) {
         PyObject* parent;
         const char* description;
+#ifndef HILDON_DISABLE_DEPRECATED
         const char* icon_name;
+#endif
         
         if (PyTuple_Size (py_tuple) != 3 && PyTuple_Size (py_tuple) != 2) {
             PyErr_SetString(PyExc_RuntimeError, "A \"information\" HildonNote type takes three or two items in its tuple.");
@@ -289,7 +285,8 @@ _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
         if (description == NULL) {
             return -1;
         }
-        
+
+#ifndef HILDON_DISABLE_DEPRECATED
         if (PyTuple_Size (py_tuple) == 3) {
             py_obj = PyTuple_GetItem (py_tuple, 2);
             icon_name = PyString_AsString (py_obj);
@@ -299,10 +296,12 @@ _wrap_hildon_note_new (PyGObject *self, PyObject *args, PyObject *kwargs)
             
             self->obj = (GObject *)hildon_note_new_information_with_icon_name (GTK_WINDOW(pygobject_get(parent)), description, icon_name);
         } else {
+#endif
             /* Use the default icon. */
             self->obj = (GObject *)hildon_note_new_information (GTK_WINDOW(pygobject_get(parent)), description);
+#ifndef HILDON_DISABLE_DEPRECATED
         }
-        
+#endif
         if (!self->obj) {
             PyErr_SetString(PyExc_RuntimeError, "could not create HildonNote object");
             return -1;
@@ -446,36 +445,6 @@ _wrap_hildon_weekday_picker_isset_day(PyGObject *self, PyObject *args, PyObject 
 }
 
 %%
-override hildon_grid_item_new_with_label kwargs
-static int
-_wrap_hildon_grid_item_new_with_label(PyGObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "icon_basename", "label", NULL };
-    char *icon_basename;
-    char *label = NULL;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s|s:HildonGridItem.__init__", kwlist, &icon_basename, &label))
-        return -1;
-        
-    if (label != NULL) {
-        self->obj = (GObject *)hildon_grid_item_new_with_label(icon_basename, label);
-    } else {
-        self->obj = (GObject *)hildon_grid_item_new(icon_basename);
-    }
-
-    if (!self->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create HildonGridItem object");
-        return -1;
-    }
-    pygobject_register_wrapper((PyObject *)self);
-    return 0;
-}
-
-%%
-/* Bug #725 fixed
- * Author: Jan Arne Petersen
- *         maemo@jpetersen.org
- */
 override hildon_caption_new kwargs
 static int
 _wrap_hildon_caption_new(PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -529,73 +498,14 @@ _wrap_hildon_caption_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
-
-%%
-override gtk_infoprint kwargs
-static PyObject *
-_wrap_gtk_infoprint(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "parent", "text", NULL };
-    PyGObject *parent;
-    char *text;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Os:gtk_infoprint", kwlist, &parent, &text))
-        return NULL;
-
-    if (parent == Py_None)
-        gtk_infoprint(NULL, text);
-    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
-        gtk_infoprint(GTK_WINDOW(parent->obj), text);
-    else
-        return NULL;
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-%%
-override gtk_infoprint_with_icon_stock kwargs
-static PyObject *
-_wrap_gtk_infoprint_with_icon_stock(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "parent", "text", "stock_id", NULL };
-    PyGObject *parent;
-    char *text, *stock_id;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Oss:gtk_infoprint_with_icon_stock", kwlist, &parent, &text, &stock_id))
-        return NULL;
-
-    if (parent == Py_None)
-        gtk_infoprint_with_icon_stock(NULL, text, stock_id);
-    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
-        gtk_infoprint_with_icon_stock(GTK_WINDOW(parent->obj), text, stock_id);
-    else
-        return NULL;
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-%%
-override gtk_infoprint_with_icon_name kwargs
-static PyObject *
-_wrap_gtk_infoprint_with_icon_name(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "parent", "text", "icon_name", NULL };
-    PyGObject *parent;
-    char *text, *icon_name;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Oss:gtk_infoprint_with_icon_name", kwlist, &parent, &text, &icon_name))
-        return NULL;
-
-    if (parent == Py_None)
-        gtk_infoprint_with_icon_name(NULL, text, icon_name);
-    else if (PyObject_TypeCheck(parent, &PyGtkWindow_Type))
-        gtk_infoprint_with_icon_name(GTK_WINDOW(parent->obj), text, icon_name);
-    else
-        return NULL;
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
 /* End of fix */
+%%
+override hildon_color_button_get_color noargs
+static PyObject *
+_wrap_hildon_color_button_get_color(PyGObject *self)
+{
+    GdkColor color = {0, 0, 0 ,0};
+    hildon_color_button_get_color(HILDON_COLOR_BUTTON(self->obj), &color);
+    return pyg_boxed_new(GDK_TYPE_COLOR, &color, TRUE, TRUE);
+}
+

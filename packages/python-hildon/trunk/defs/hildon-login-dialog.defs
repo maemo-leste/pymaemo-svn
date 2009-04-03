@@ -1,0 +1,55 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object LoginDialog
+  (in-module "Hildon")
+  (parent "GtkDialog")
+  (c-name "HildonLoginDialog")
+  (gtype-id "HILDON_TYPE_LOGIN_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-login-dialog.h
+
+(define-function hildon_login_dialog_new
+  (c-name "hildon_login_dialog_new")
+  (is-constructor-of "HildonLoginDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+  )
+)
+
+(define-function hildon_login_dialog_new_with_default
+  (c-name "hildon_login_dialog_new_with_default")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "name")
+    '("const-gchar*" "password")
+  )
+)
+
+(define-method get_username
+  (of-object "HildonLoginDialog")
+  (c-name "hildon_login_dialog_get_username")
+  (return-type "const-gchar*")
+)
+
+(define-method get_password
+  (of-object "HildonLoginDialog")
+  (c-name "hildon_login_dialog_get_password")
+  (return-type "const-gchar*")
+)
+
+(define-method set_message
+  (of-object "HildonLoginDialog")
+  (c-name "hildon_login_dialog_set_message")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "msg")
+  )
+)
+
+

@@ -9,34 +9,40 @@
 
 ;; Enumerations and flags ...
 
-(define-enum TimeEditorErrorType
+(define-enum DateTimeError
   (in-module "Hildon")
-  (c-name "HildonTimeEditorErrorType")
-  (gtype-id "HILDON_TYPE_TIME_EDITOR_ERROR_TYPE")
+  (c-name "HildonDateTimeError")
+  (gtype-id "HILDON_TYPE_DATE_TIME_ERROR")
   (values
-    '("no-time-error" "NO_TIME_ERROR")
-    '("max-hours" "MAX_HOURS")
-    '("max-mins" "MAX_MINS")
-    '("max-secs" "MAX_SECS")
-    '("min-hours" "MIN_HOURS")
-    '("min-mins" "MIN_MINS")
-    '("min-secs" "MIN_SECS")
-    '("empty-hours" "EMPTY_HOURS")
-    '("empty-mins" "EMPTY_MINS")
-    '("empty-secs" "EMPTY_SECS")
-    '("min-dur" "MIN_DUR")
-    '("max-dur" "MAX_DUR")
-    '("invalid-time" "INVALID_TIME")
+    '("no-error" "HILDON_DATE_TIME_ERROR_NO_ERROR")
+    '("max-hours" "HILDON_DATE_TIME_ERROR_MAX_HOURS")
+    '("max-mins" "HILDON_DATE_TIME_ERROR_MAX_MINS")
+    '("max-secs" "HILDON_DATE_TIME_ERROR_MAX_SECS")
+    '("max-day" "HILDON_DATE_TIME_ERROR_MAX_DAY")
+    '("max-month" "HILDON_DATE_TIME_ERROR_MAX_MONTH")
+    '("max-year" "HILDON_DATE_TIME_ERROR_MAX_YEAR")
+    '("min-hours" "HILDON_DATE_TIME_ERROR_MIN_HOURS")
+    '("min-mins" "HILDON_DATE_TIME_ERROR_MIN_MINS")
+    '("min-secs" "HILDON_DATE_TIME_ERROR_MIN_SECS")
+    '("min-day" "HILDON_DATE_TIME_ERROR_MIN_DAY")
+    '("min-month" "HILDON_DATE_TIME_ERROR_MIN_MONTH")
+    '("min-year" "HILDON_DATE_TIME_ERROR_MIN_YEAR")
+    '("empty-hours" "HILDON_DATE_TIME_ERROR_EMPTY_HOURS")
+    '("empty-mins" "HILDON_DATE_TIME_ERROR_EMPTY_MINS")
+    '("empty-secs" "HILDON_DATE_TIME_ERROR_EMPTY_SECS")
+    '("empty-day" "HILDON_DATE_TIME_ERROR_EMPTY_DAY")
+    '("empty-month" "HILDON_DATE_TIME_ERROR_EMPTY_MONTH")
+    '("empty-year" "HILDON_DATE_TIME_ERROR_EMPTY_YEAR")
+    '("min-duration" "HILDON_DATE_TIME_ERROR_MIN_DURATION")
+    '("max-duration" "HILDON_DATE_TIME_ERROR_MAX_DURATION")
+    '("invalid-char" "HILDON_DATE_TIME_ERROR_INVALID_CHAR")
+    '("invalid-date" "HILDON_DATE_TIME_ERROR_INVALID_DATE")
+    '("invalid-time" "HILDON_DATE_TIME_ERROR_INVALID_TIME")
   )
 )
 
 
-;; From /usr/include/hildon-widgets/hildon-time-editor.h
-
-(define-function hildon_time_editor_get_type
-  (c-name "hildon_time_editor_get_type")
-  (return-type "GType")
-)
+;; From hildon-time-editor.h
 
 (define-function hildon_time_editor_new
   (c-name "hildon_time_editor_new")
@@ -65,25 +71,6 @@
     '("guint*" "seconds")
   )
 )
-
-;Deprecated
-;(define-method show_seconds
-;  (of-object "HildonTimeEditor")
-;  (c-name "hildon_time_editor_show_seconds")
-;  (return-type "none")
-;  (parameters
-;    '("gboolean" "enable")
-;  )
-;)
-
-;(define-method enable_duration_mode
-;  (of-object "HildonTimeEditor")
-;  (c-name "hildon_time_editor_enable_duration_mode")
-;  (return-type "none")
-;  (parameters
-;    '("gboolean" "enable")
-;  )
-;)
 
 (define-method set_duration_range
   (of-object "HildonTimeEditor")
@@ -193,6 +180,15 @@
   (of-object "HildonTimeEditor")
   (c-name "hildon_time_editor_get_duration_max")
   (return-type "guint")
+)
+
+(define-function hildon_time_editor_get_time_separators
+  (c-name "hildon_time_editor_get_time_separators")
+  (return-type "none")
+  (parameters
+    '("GtkLabel*" "hm_sep_label")
+    '("GtkLabel*" "ms_sep_label")
+  )
 )
 
 

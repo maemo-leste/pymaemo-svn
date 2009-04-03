@@ -10,12 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-code-dialog.h
-
-(define-function hildon_code_dialog_get_type
-  (c-name "hildon_code_dialog_get_type")
-  (return-type "GType")
-)
+;; From hildon-code-dialog.h
 
 (define-function hildon_code_dialog_new
   (c-name "hildon_code_dialog_new")
@@ -41,6 +36,15 @@
   (return-type "none")
   (parameters
     '("const-gchar*" "text")
+  )
+)
+
+(define-method set_input_sensitive
+  (of-object "HildonCodeDialog")
+  (c-name "hildon_code_dialog_set_input_sensitive")
+  (return-type "none")
+  (parameters
+    '("gboolean" "sensitive")
   )
 )
 

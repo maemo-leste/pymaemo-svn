@@ -1,0 +1,39 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemStorageDialog
+  (in-module "Hildon")
+  (parent "GtkDialog")
+  (c-name "HildonFileSystemStorageDialog")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_STORAGE_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-storage-dialog.h
+
+(define-function hildon_file_system_storage_dialog_get_type
+  (c-name "hildon_file_system_storage_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_file_system_storage_dialog_new
+  (c-name "hildon_file_system_storage_dialog_new")
+  (is-constructor-of "HildonFileSystemStorageDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "uri_str")
+  )
+)
+
+(define-function hildon_file_system_storage_dialog_set_uri
+  (c-name "hildon_file_system_storage_dialog_set_uri")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "uri_str")
+  )
+)
+
+

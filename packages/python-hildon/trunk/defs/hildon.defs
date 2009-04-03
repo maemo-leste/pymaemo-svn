@@ -3,6 +3,6 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-app-private.h
+;; From hildon.h
 
 

@@ -104,22 +104,23 @@
   )
 )
 
-(define-method set_current_folder
+(define-method set_current_folder_uri
   (of-object "HildonFileSelection")
-  (c-name "hildon_file_selection_set_current_folder")
+  (c-name "hildon_file_selection_set_current_folder_uri")
   (return-type "gboolean")
   (parameters
-    '("const-GtkFilePath*" "folder")
+    '("const-char*" "folder")
     '("GError**" "error")
   )
 )
 
-(define-method get_current_folder
+(define-method get_current_folder_uri
   (of-object "HildonFileSelection")
-  (c-name "hildon_file_selection_get_current_folder")
-  (return-type "GtkFilePath*")
+  (c-name "hildon_file_selection_get_current_folder_uri")
+  (return-type "char*")
 )
 
+; Deprecated
 ;(define-method get_current_content_iter
 ;  (of-object "HildonFileSelection")
 ;  (c-name "hildon_file_selection_get_current_content_iter")
@@ -129,15 +130,16 @@
 ;  )
 ;)
 
-;(define-method get_current_folder_iter
-;  (of-object "HildonFileSelection")
-;  (c-name "hildon_file_selection_get_current_folder_iter")
-;  (return-type "gboolean")
-;  (parameters
-;    '("GtkTreeIter*" "iter")
-;  )
-;)
+(define-method get_current_folder_iter
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_get_current_folder_iter")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
 
+; Deprecated
 ;(define-method get_active_content_iter
 ;  (of-object "HildonFileSelection")
 ;  (c-name "hildon_file_selection_get_active_content_iter")
@@ -147,6 +149,7 @@
 ;  )
 ;)
 
+; Deprecated
 ;(define-method content_iter_is_selected
 ;  (of-object "HildonFileSelection")
 ;  (c-name "hildon_file_selection_content_iter_is_selected")
@@ -156,22 +159,22 @@
 ;  )
 ;)
 
-(define-method select_path
+(define-method select_uri
   (of-object "HildonFileSelection")
-  (c-name "hildon_file_selection_select_path")
+  (c-name "hildon_file_selection_select_uri")
   (return-type "gboolean")
   (parameters
-    '("const-GtkFilePath*" "path")
+    '("const-char*" "uri")
     '("GError**" "error")
   )
 )
 
-(define-method unselect_path
+(define-method unselect_uri
   (of-object "HildonFileSelection")
-  (c-name "hildon_file_selection_unselect_path")
+  (c-name "hildon_file_selection_unselect_uri")
   (return-type "none")
   (parameters
-    '("const-GtkFilePath*" "path")
+    '("const-char*" "uri")
   )
 )
 
@@ -193,9 +196,9 @@
   (return-type "none")
 )
 
-(define-method get_selected_paths
+(define-method get_selected_uris
   (of-object "HildonFileSelection")
-  (c-name "hildon_file_selection_get_selected_paths")
+  (c-name "hildon_file_selection_get_selected_uris")
   (return-type "GSList*")
 )
 
@@ -211,6 +214,21 @@
 (define-method get_select_multiple
   (of-object "HildonFileSelection")
   (c-name "hildon_file_selection_get_select_multiple")
+  (return-type "gboolean")
+)
+
+(define-method set_column_headers_visible
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_set_column_headers_visible")
+  (return-type "none")
+  (parameters
+    '("gboolean" "visible")
+  )
+)
+
+(define-method get_column_headers_visible
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_get_column_headers_visible")
   (return-type "gboolean")
 )
 
@@ -259,4 +277,11 @@
   (return-type "none")
 )
 
-
+(define-method move_cursor_to_uri
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_move_cursor_to_uri")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
