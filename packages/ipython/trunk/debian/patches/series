@@ -1,5 +1,4 @@
-01-debianization.patch
-02-docdir-base.patch
-03-profiler-message.patch
-04-ipmaker-add-missed-Helper.patch
-05-gnuglobal.patch
+03_ipy_gnuglobal.patch
+04_remove_shebang.patch
+05_fix_seteditor_example.patch
+06_ipythonwx_importerror.patch
