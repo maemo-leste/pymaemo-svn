@@ -1,6 +1,6 @@
 Source: python-runtime
 Priority: optional
-Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.1
 XB-Maemo-Icon-26:
@@ -17,14 +17,37 @@ XB-Maemo-Icon-26:
   qZE6x9erVlRuGQlp4RSYjgoZ0w3SlVvCwAbOJKJGaG1GbMiWkQB8A+PrdkmoDOKGAAAAAElF
   TkSuQmCC
 
-Package: python2.5-runtime
+Package: python-runtime
+Provides: python2.5-runtime
+Conflicts: python2.5-runtime (<< 1.0-9)
+Replaces: python2.5-runtime (<< 1.0-9)
 Architecture: all
-Depends: python2.5 (>= 2.5.2-1osso0), python2.5-bluez (>= 0.9.1-1osso3), python2.5-dbus (>= 0.71-1osso6), python2.5-gobject (>= 2.12.2-1osso4), python2.5-gstreamer (>= 0.10.5-0osso2), python2.5-gtk2 (>= 2.10.3-1osso9), python2.5-hildon (>= 0.8.7-1osso7), python2.5-numeric (>= 24.2-1osso4), python2.5-osso (>= 0.2-1osso6), python2.5-pygame (>= 1.7.1-1osso2), python2.5-xml (>= 0.8.4-1osso9), python2.5-conic (>= 0.1-1osso1), python2.5-gnome (>= 2.18.0-1osso4), python2.5-id3lib (>= 0.5.1-1osso1), python2.5-imaging (>= 1.1.6-1osso2)
-Provides: python-runtime
+Depends: gnome-python (>= 2.18.0-2maemo1),
+    python (>= 2.5.2-3maemo1),
+    python-bluez (>= 0.15-1.1maemo1),
+    python-cairo (>= 1.4.0-0maemo),
+    python-conic (>= 0.1-2),
+    python-dbus (>= 0.83.0-1maemo1),
+    python-gobject (>= 2.14.2-1maemo1),
+    python-gtk2 (>= 2.12.1-6maemo1),
+    python-hildon (>= 0.8.9-2maemo1),
+    python-imaging (>= 1.1.6-3maemo1),
+    python-numeric (>= 24.2-9maemo1),
+    python-osso (>= 0.3-2maemo1),
+    python-pygame (>= 1.7.1release-4.2maemo1),
+    python-xml (>= 0.8.4-10.1maemo1)
 Description: Python runtime environment.
 
-Package: python2.5-sdk
+Package: python-sdk
+Provides: python2.5-sdk
+Conflicts: python2.5-sdk (<< 1.0-9)
+Replaces: python2.5-sdk (<< 1.0-9)
 Architecture: all
-Depends: python2.5-dev (>= 2.5.2-1osso0), python2.5-bluez-dev (>= 0.9.1-1osso3), python2.5-dbus-dev (>= 0.71-1osso6), python2.5-gobject-dev (>= 2.12.2-1osso4), python2.5-gstreamer-dev (>= 0.10.5-0osso2), python2.5-gtk2-dev (>= 2.10.3-1osso9), python2.5-hildon-dev (>= 0.8.7-1osso7), python2.5-numeric-dev (>= 24.2-1osso4), python2.5-osso-dev (>= 0.2-1osso6), python2.5-pygame-dev (>= 1.7.1-1osso2), python2.5-xml-dev (>= 0.8.4-1osso9), python2.5-conic-dev (>= 0.1-1osso1), python2.5-gnome-dev (>= 2.18.0-1osso4), python2.5-setuptools (>= 0.6c6-1osso1)
-Provides: python-runtime
-Description: Python runtime environment.
+Depends: python-runtime (= ${Source-Version}),
+    python-cairo-dev (>= 1.4.12-1.1maemo1),
+    python-dev (>= 2.5.2-3maemo1),
+    python-gobject-dev (>= 2.14.2-1maemo1),
+    python-gtk2-dev (>= 2.12.1-6maemo1),
+    python-osso-dev (>= 0.3-2maemo1),
+    python-setuptools (>= 0.6c8-4maemo1)
+Description: Developer-oriented versions of python runtime environment packages.
