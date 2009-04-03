@@ -1,17 +1,18 @@
-Source: python-gnome
-Priority: optional
-Section: python
-Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), libgconf2-dev, libglib2.0-dev, libosso-gnomevfs2-dev
-Standards-Version: 3.6.1
+Source: gnome-python
+Section: unknown
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: cdbs, debhelper (>= 5), autotools-dev, python-gtk2-dev, python-all-dev, libgconf2-dev, libglib2.0-dev, libosso-gnomevfs2-dev, libgtk2.0-dev, gnome-common, quilt (>> 0.45), python-support
+Standards-Version: 3.7.2
 
-Package: python2.5-gnome
+Package: gnome-python
 Architecture: any
-Depends: python2.5 (>= 2.5.1-1osso2), libgconf2-6, libglib2.0-0, libosso-gnomevfs2-0, ${shlibs:Depends}
-Description: Python bindings for GConf and GnomeVFS 
+Depends:  python-all, libgconf2-6, libglib2.0-0, libosso-gnomevfs2-0, ${shlibs:Depends}, ${python:Depends}
+Replaces: python2.5-gnome (<< 2.18.0-2maemo4)
+Conflicts: python2.5-gnome (<< 2.18.0-2maemo4)
+Description: Python bindings for GConf and GnomeVFS
 
-Package: python2.5-gnome-dev
+Package: gnome-python-dev
 Architecture: all
-Depends: python2.5-gnome (= ${Source-Version})
+Depends: gnome-python, ${python:Depends}
 Description: Examples and header files for bindings of GConf and GnomeVFS
-

@@ -1,25 +1,8 @@
-Index: gnome-python-2.18/setup.py
+Index: gnome-python-2.18.0/setup.py
 ===================================================================
---- gnome-python-2.18.orig/setup.py	2007-04-04 09:56:41.000000000 -0300
-+++ gnome-python-2.18/setup.py	2007-04-04 09:58:54.000000000 -0300
-@@ -1,354 +1,120 @@
--#!/usr/bin/env python
--#
--# setup.py - distutils configuration for pygtk
--#
--# TODO:
--# pygtk.spec(.in)
--# win32 testing
--# install *.pyc for codegen
--#
--"""Python Bindings for Gnome.
--
--TODO: Write a good long description"""
--
-+from distutils.core import setup, Extension
- from distutils.command.build import build
--from distutils.core import setup
-+import subprocess
+--- gnome-python-2.18.0.orig/setup.py	2008-01-29 17:29:18.000000000 -0300
++++ gnome-python-2.18.0/setup.py	2008-01-29 18:13:54.000000000 -0300
+@@ -16,57 +16,41 @@
  import os
  import sys
  
@@ -30,33 +13,47 @@ Index: gnome-python-2.18/setup.py
 --- 
 -''')
 -
--try:
--    import pygtk
--    pygtk.require('2.0')
--except (ImportError, AssertionError):
--    raise SystemExit, 'ERROR: Could not find a recent version of pygtk.'
--
--from dsextras import list_files, have_pkgconfig, GLOBAL_INC, GLOBAL_MACROS
+ try:
+     import pygtk
+     pygtk.require('2.0')
+ except (ImportError, AssertionError):
+     raise SystemExit, 'ERROR: Could not find a recent version of pygtk.'
+ 
++PYGTK_SUFFIX = '2.0'
++PYGTK_SUFFIX_LONG = 'gtk-' + PYGTK_SUFFIX
++
++
++DEFS_DIR    = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'defs')
++CODEGEN_DIR = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'codegen')
++INCLUDE_DIR = os.path.join('include', 'pygtk-%s' % PYGTK_SUFFIX)
++
++# FIXME Hardcoded to /usr as dsextras needs access to codegen dir
++sys.path.append(os.path.join('/', 'usr', 'share', 'pygtk', PYGTK_SUFFIX))
++
+ from dsextras import list_files, have_pkgconfig, GLOBAL_INC, GLOBAL_MACROS
 -from dsextras import InstallLib, BuildExt, PkgConfigExtension
--from dsextras import Template, TemplateExtension, pkgc_version_check
--from dsextras import getoutput
--
--MAJOR_VERSION = 2
++from dsextras import InstallLib, InstallData, BuildExt, PkgConfigExtension
+ from dsextras import Template, TemplateExtension, pkgc_version_check
+ from dsextras import getoutput
+ 
+ MAJOR_VERSION = 2
 -MINOR_VERSION = 5
 -MICRO_VERSION = 91
--
--VERSION = "%d.%d.%d" % (MAJOR_VERSION,
--                        MINOR_VERSION,
--                        MICRO_VERSION)
--
--PYGTK_REQUIRED_VERSION              = '2.0.0'
++MINOR_VERSION = 18
++MICRO_VERSION = 0
+ 
+ VERSION = "%d.%d.%d" % (MAJOR_VERSION,
+                         MINOR_VERSION,
+                         MICRO_VERSION)
+ 
+ PYGTK_REQUIRED_VERSION              = '2.0.0'
 -PYORBIT_REQUIRED_VERSION            = '2.0.0'
 -LIBGNOME_REQUIRED_VERSION           = '2.0.0'
 -LIBGNOMEUI_REQUIRED_VERSION         = '2.0.0'
 -LIBGNOMECANVAS_REQUIRED_VERSION     = '2.0.0'
--LIBGNOMEVFS_REQUIRED_VERSION        = '2.0.0'
+ LIBGNOMEVFS_REQUIRED_VERSION        = '2.0.0'
 -LIBZVT_REQUIRED_VERSION             = '2.0.0'
--GCONF_REQUIRED_VERSION              = '1.2.0'
+ GCONF_REQUIRED_VERSION              = '1.2.0'
 -BONOBO_ACTIVATION_REQUIRED_VERSION  = '1.0.0'
 -LIBBONOBO_REQUIRED_VERSION          = '2.0.0'
 -LIBBONOBOUI_REQUIRED_VERSION        = '2.0.0'
@@ -68,137 +65,33 @@ Index: gnome-python-2.18/setup.py
 -
 -PYGTK_SUFFIX = '2.0'
 -PYGTK_SUFFIX_LONG = 'gtk-' + PYGTK_SUFFIX
--
+ 
 -GLOBAL_INC += ['gconf', 'gnome', 'gnomeprint']
 -
 -DEFS_DIR    = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'defs')
 -CODEGEN_DIR = os.path.join('share', 'pygtk', PYGTK_SUFFIX, 'codegen')
 -INCLUDE_DIR = os.path.join('include', 'pygtk-%s' % PYGTK_SUFFIX)
--
--str_version = sys.version[:3]
--version = map(int, str_version.split('.'))
--if version < [2, 2]:
--    raise SystemExit, \
--          "Python 2.2 or higher is required, %s found" % str_version
-+datadir = '/usr/share'
-+defsdir = datadir+'/pygtk/2.0/defs'
-+includedir = '/usr/include'
-+
-+def gen_auto_file(filename, subproc_args):
-+    proc = subprocess.Popen(
-+        subproc_args,
-+        stdout=subprocess.PIPE,
-+        stderr=subprocess.PIPE
-+    )
-+    cmdresult = proc.stdout
-+    error = proc.stderr
-+#   Print disabled to avoid problems with scratchbox
-+#   print >>sys.sdterr, error.read()
-+    if cmdresult:
-+        new_file = open(filename, 'w')
-+        new_file.write(cmdresult.read())
-+    new_file.close()
++GLOBAL_INC += ['gconf']
+ 
+ str_version = sys.version[:3]
+ version = map(int, str_version.split('.'))
+@@ -74,33 +58,13 @@
+     raise SystemExit, \
+           "Python 2.2 or higher is required, %s found" % str_version
  
 -install_vfsmethod = 0
 -class GnomePythonInstallLib(InstallLib):
-+class PyGconfBuild(build):
-     def run(self):
+-    def run(self):
 -        self.add_template_option('VERSION', VERSION)
 -        self.prepare()
 -
 -        self.install_template('gnome-python-2.0.pc.in',
 -                              os.path.join(self.libdir, 'pkgconfig'))
-+        """Create the temporary files used to compile the hildon module:
-+        -gconf.c
-+        -gconf-types.h.in
-+        -gconf-types.c.in
-+        -vfs.c
-+        -vfs-types.h.in
-+        -vfs-types.c.in"""
-+        # Generate enum/flags run-time information
-+        GCONF_TYPE_FILES = [
-+            includedir+'/gconf/2/gconf/gconf.h',
-+        ]
-+
-+        gen_auto_file('gconf/gconf-types.h.in', ['/bin/sh', './gen-enum-h']+GCONF_TYPE_FILES)
-+        gen_auto_file('gconf/gconf-types.c.in', ['/bin/sh', './gen-enum-c']+GCONF_TYPE_FILES)
-+
-+        # Creation of ".c" files, using pygtk-codegen-2.0
-+        gconf_override_filename = 'gconf/gconf.override'
-+        gconf_defs_filename = 'gconf/gconf.defs'
-+
-+        gconf_parameter = [
-+            '--override', gconf_override_filename,
-+            '--prefix', 'pygconf',
-+            gconf_defs_filename,
-+        ] 
-+        gen_auto_file('gconf/gconf.c', ['/bin/sh', 'pygtk-codegen-2.0']+gconf_parameter)
-+
-+        build.run(self)
-+
-+
 +compile_args = [
-+        '-Os',
-+        '-DXTHREADS',
-+        '-DXUSE_MTSAFE_API',
-+#        '-DGCONF_DISABLE_DEPRECATED',
-+#        '-ansi',
-+#        '-pedantic',
-+#        '-Wno-long-long',
-+#        '-g',
-+#        '-rdynamic',
++    '-Os',
++    '-DXTHREADS',
++    '-DXUSE_MTSAFE_API',
 +]
-+
-+gconf = Extension('gconf',
-+    sources=['gconf/gconf.c',
-+             'gconf/gconfmodule.c',
-+             'gconf/gconf-fixes.c',
-+             'gconf/gconf-types.c'],
-+    libraries = ['gconf-2',
-+                 'glib-2.0'],
-+    include_dirs=['/usr/include',
-+                  '/usr/include/gconf/2',
-+                  '/usr/include/glib-2.0',
-+                  '/usr/lib/glib-2.0/include',
-+                  '/usr/include/pygtk-2.0'],
-+    extra_compile_args=compile_args,
-+)
-+
-+gnomevfs = Extension('gnomevfs',
-+    sources=['gnomevfs/gnome-vfs-python-method.c',
-+             'gnomevfs/vfs-drive.c',
-+             'gnomevfs/vfs-uri.c',
-+             'gnomevfs/vfs-async-handle.c',
-+             'gnomevfs/vfs-file-info.c',
-+             'gnomevfs/vfs-volume-monitor.c',
-+             'gnomevfs/vfsmodule.c',
-+             'gnomevfs/vfs-context.c',
-+             'gnomevfs/vfs-volume.c',
-+             'gnomevfs/vfs-dir-handle.c',
-+             'gnomevfs/vfs-handle.c',
-+             'gnomevfs/vfs-xfer-progress-info.c'],
-+    libraries = ['gnomevfs-2',
-+                 'glib-2.0'],
-+    include_dirs=['/usr/include',
-+                  '/usr/include/gnome-vfs-2.0',
-+                  '/usr/include/gnome-vfs-module-2.0',
-+                  '/usr/include/glib-2.0',
-+                  '/usr/lib/glib-2.0/include',
-+                  '/usr/include/pygtk-2.0'],
-+    extra_compile_args=compile_args+['-DGNOME_VFS_PYTHON_DIR="/usr/lib/gnome-vfs-2.0/modules"'],
-+)
-+
-+setup(
-+    name = 'gnome',
-+    version = '0.1',
-+    description = 'Python bindings for gconf.',
-+    author = 'Luciano Miguel Wolf',
-+    author_email = 'luciano.wolf@indt.org.br',
-+    url = 'http://www.maemo.org',
-+    ext_package = 'gnome',
-+    ext_modules = [gconf, gnomevfs],
-+    cmdclass={'build': PyGconfBuild}
-+)
  
 -        if install_vfsmethod:
 -            self.install_vfsmethod()
@@ -218,25 +111,24 @@ Index: gnome-python-2.18/setup.py
 -            self.copy_file(module_file, module_dir)
 -        
 -if not pkgc_version_check('pygtk-2.0', 'PyGTK', PYGTK_REQUIRED_VERSION):
--    raise SystemExit, "Aborting"
--pygtkincludedir = getoutput('pkg-config --variable pygtkincludedir pygtk-2.0')
--codegendir = getoutput('pkg-config --variable codegendir pygtk-2.0')
--defsdir = getoutput('pkg-config --variable defsdir pygtk-2.0')
--
--GLOBAL_INC.append(pygtkincludedir)
--GTKDEFS = [os.path.join(defsdir, 'pango-types.defs'),
--           os.path.join(defsdir, 'gdk-types.defs'),
--           os.path.join(defsdir, 'gtk-types.defs')]
++if not pkgc_version_check('pygtk-2.0', PYGTK_REQUIRED_VERSION):
+     raise SystemExit, "Aborting"
+ pygtkincludedir = getoutput('pkg-config --variable pygtkincludedir pygtk-2.0')
+ codegendir = getoutput('pkg-config --variable codegendir pygtk-2.0')
+@@ -110,9 +74,6 @@
+ GTKDEFS = [os.path.join(defsdir, 'pango-types.defs'),
+            os.path.join(defsdir, 'gdk-types.defs'),
+            os.path.join(defsdir, 'gtk-types.defs')]
 -BONOBODEFS = [os.path.join('bonobo', 'bonobo-types.defs'),
 -              os.path.join('bonobo', 'bonoboui-types.defs')]
 -CANVASDEFS = [os.path.join('gnome', 'canvas.defs')]
--sys.path.append(codegendir)
--try:
--    from override import Overrides
--except ImportError:
--    raise SystemExit, \
--'Could not find code generator in %s, do you have installed pygtk correctly?'
--
+ sys.path.append(codegendir)
+ try:
+     from override import Overrides
+@@ -120,61 +81,35 @@
+     raise SystemExit, \
+ 'Could not find code generator in %s, do you have installed pygtk correctly?'
+ 
 -have_pyorbit = pkgc_version_check('pyorbit-2', 'PyORBit.',
 -                                 PYORBIT_REQUIRED_VERSION)
 -if have_pyorbit:
@@ -272,10 +164,24 @@ Index: gnome-python-2.18/setup.py
 -                                            'gnome/canvas.c'],
 -                                   register=['gnome/canvas.defs'],
 -                                   override='gnome/canvas.override')
--
++class PythonGnomeInstallData(InstallData):
++    def run(self):
++        self.add_template_option('VERSION', VERSION)
++        self.prepare()
++
++        self.install_templates()
++
++        InstallData.run(self)
++
++    def install_templates(self):
++        self.install_template('gnome-python-2.0.pc.in',
++                                os.path.join(self.install_dir,
++                                            'lib', 'pkgconfig'))
+ 
 -libgnomevfs = PkgConfigExtension(name='gnome.vfs',
--                                 pkc_name='gnome-vfs-2.0',
--                                 pkc_version=LIBGNOMEVFS_REQUIRED_VERSION,
++libgnomevfs = PkgConfigExtension(name='gnome.gnomevfs',
+                                  pkc_name='gnome-vfs-2.0',
+                                  pkc_version=LIBGNOMEVFS_REQUIRED_VERSION,
 -                                 sources=['gnome/vfs-dir-handle.c',
 -                                          'gnome/vfs-file-info.c',
 -                                          'gnome/vfs-handle.c',
@@ -292,16 +198,28 @@ Index: gnome-python-2.18/setup.py
 -                                    'gnome/zvt.c'],
 -                           register=['gnome/zvt.defs'],
 -                           override='gnome/zvt.override')
--
--gconf = TemplateExtension(name='gconf',
--                          pkc_name='gconf-2.0',
--                          pkc_version=GCONF_REQUIRED_VERSION,
--                          output='gnome.gconf',
--                          defs='gconf/gconf.defs',
--                          sources=['gconf/gconfmodule.c',
--                                   'gconf/gconf-fixes.c',
--                                   'gconf/gconf.c'],
--                          register=['gconf/gconf.defs'],
++                                 sources=['gnomevfs/vfs-dir-handle.c',
++                                          'gnomevfs/vfs-async-handle.c',
++                                          'gnomevfs/vfs-file-info.c',
++                                          'gnomevfs/vfs-drive.c',
++                                          'gnomevfs/vfs-volume-monitor.c',
++                                          'gnomevfs/vfs-xfer-progress-info.c',
++                                          'gnomevfs/vfs-handle.c',
++                                          'gnomevfs/vfsmodule.c',
++                                          'gnomevfs/vfs-uri.c',
++                                          'gnomevfs/vfs-volume.c',
++                                          'gnomevfs/vfs-context.c'],
++                                 extra_compile_args=compile_args)
+ 
+ gconf = TemplateExtension(name='gconf',
+                           pkc_name='gconf-2.0',
+@@ -183,161 +118,34 @@
+                           defs='gconf/gconf.defs',
+                           sources=['gconf/gconfmodule.c',
+                                    'gconf/gconf-fixes.c',
++                                   'gconf/gconf-types.c',
+                                    'gconf/gconf.c'],
+                           register=['gconf/gconf.defs'],
 -                          override='gconf/gconf.override')
 -
 -bonobo_activation = PkgConfigExtension(name='bonobo.activation',
@@ -386,9 +304,11 @@ Index: gnome-python-2.18/setup.py
 -                                    ['gnomeprint/print.defs',
 -                                     'gnomeprint/printui.defs'],
 -                           override='gnomeprint/printui.override')
--
--data_files = []
--ext_modules = []
++                          override='gconf/gconf.override',
++                          extra_compile_args=compile_args)
+ 
+ data_files = []
+ ext_modules = []
 -py_modules = []
 -if libgnome.can_build() or libgnomecanvas.can_build():
 -    py_modules.append('gnome.__init__')    
@@ -401,7 +321,10 @@ Index: gnome-python-2.18/setup.py
 -if libgnomecanvas.can_build():
 -    ext_modules.append(libgnomecanvas)
 -    data_files.append((DEFS_DIR, ('gnome/canvas.defs',)))    
--if libgnomevfs.can_build():
++py_packages = []
++py_packages.append('gnome')
++
+ if libgnomevfs.can_build():
 -    #libdir = getoutput('pkg-config --variable=libdir gnome-vfs-module-2.0')
 -    #pythondir = os.path.join(libdir, 'gnome-vfs-2.0', 'modules', 'python')
 -    #GLOBAL_MACROS.append(('GNOME_VFS_PYTHON_DIR', '"%s"' % pythondir))
@@ -413,13 +336,13 @@ Index: gnome-python-2.18/setup.py
 -    #    install_vfsmethod = 1
 -    #    ext_modules.append(libpythonmethod)
 -        
--    ext_modules.append(libgnomevfs)
+     ext_modules.append(libgnomevfs)
 -if libzvt.can_build():
 -    ext_modules.append(libzvt)
 -    data_files.append((DEFS_DIR, ('gnome/zvt.defs',)))
--if gconf.can_build():
--    ext_modules.append(gconf)
--    data_files.append((DEFS_DIR, ('gconf/gconf.defs',)))
+ if gconf.can_build():
+     ext_modules.append(gconf)
+     data_files.append((DEFS_DIR, ('gconf/gconf.defs',)))
 -if have_pyorbit and bonobo_activation.can_build():
 -    ext_modules.append(bonobo_activation)
 -if have_pyorbit and libbonobo.can_build():
@@ -452,21 +375,31 @@ Index: gnome-python-2.18/setup.py
 -                     libbonobo.can_build() or
 -                     libbonoboui.can_build()):
 -    py_modules.append('bonobo.__init__')
--
--doclines = __doc__.split("\n")
--
--setup(name="gnome-python",
--      url='http://www.daa.com.au/~james/gnome/',
--      version=VERSION,
--      license='LGPL',
--      platforms=['yes'],
--      maintainer="James Henstridge",
--      maintainer_email="james@daa.com.au",
--      description = doclines[0],
--      long_description = "\n".join(doclines[2:]),
+ 
+ doclines = __doc__.split("\n")
+ 
++data_files.append(('share/doc/python-gnome', ['debian/copyright']))
++
++#Examples
++for i in ('vfs', 'gconf'):
++    data_files.append(('share/doc/python-gnome/examples/%s' % i,
++                       ['examples/%s/%s' % (i, x) \
++                            for x in os.listdir(os.path.join('examples', i)) \
++                                if x not in ('.svn', 'pygvfsmethod')]))
++
+ setup(name="gnome-python",
+       url='http://www.daa.com.au/~james/gnome/',
+       version=VERSION,
+@@ -347,8 +155,9 @@
+       maintainer_email="james@daa.com.au",
+       description = doclines[0],
+       long_description = "\n".join(doclines[2:]),
 -      py_modules=py_modules,
--      ext_modules=ext_modules,
--      data_files=data_files,
++      packages=py_packages,
++      package_dir={'gnome':'tmp'}, #Workaround instead of deleting old files
+       ext_modules=ext_modules,
+       data_files=data_files,
 -      cmdclass={'install_lib': GnomePythonInstallLib,
 -                'build_ext': BuildExt })
-+# vim:ts=4:sw=4:et:sm:ai
++      cmdclass={'build_ext': BuildExt,
++                'install_data':PythonGnomeInstallData})
