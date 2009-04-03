@@ -1,4 +1,8 @@
-02-adds_python2.5_to_aclocal.patch
-03-remove_docs.patch
-04-remove-PKG-INFO.patch
+01_pkgconfig-private.patch
+02_ffi-use-pkgconfig.patch
+03_maintainer_mode.patch
+60_use-python-config-for-includes.patch
+61_wakeupfd-fix.patch
+90_autofoo.patch
 05-change_pygconstant_strip_prefix.patch
+07-fix-lambda-expression-broken.patch
