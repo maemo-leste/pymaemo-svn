@@ -1,58 +1,19 @@
 #!/usr/bin/make -f
 
-PYTHON=python2.5
-package = python2.5-storm
-root_dir = debian/$(package)
+ver=0.12
+DEB_PYTHON_SYSTEM = pycentral
 
-build: build-stamp
-build-stamp:
-	dh_testdir
-	$(PYTHON) setup.py build
-	touch build-stamp
+# workaround to force using python2.5 inside Scratchbox
+# this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk
+cdbs_python_compile_version=2.5
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
-	rm -rf build
-	dh_clean
+# python modules are installed in python central, so we don't
+# need the empty directory /usr/lib
+export DH_ALWAYS_EXCLUDE=lib
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	
-	$(PYTHON) setup.py install --root=$(root_dir)
-	$(PYTHON) -OO -m compileall -d / -f $(root_dir)/usr/lib/$(PYTHON)/site-packages/storm
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
 
-	mkdir -p $(root_dir)/usr/share/doc/python-storm
-	cp debian/copyright $(root_dir)/usr/share/doc/python-storm
-	
-	# cleanup
-	find $(root_dir) -name "*.py" | xargs rm -rf
-	find $(root_dir) -name "*.pyc" | xargs rm -rf
-
-	find $(root_dir) -name ".svn" | xargs rm -rf
-
-binary-indep: build install
-
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs
-	dh_installchangelogs
-	dh_installinit
-	dh_installdebconf
-	dh_installlogrotate
-	dh_compress
-	dh_fixperms
-
-	dh_python
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-
-.PHONY: binary binary-arch binary-indep clean
+get-orig-source:
+	cd ..; wget https://launchpad.net/storm/trunk/$(ver)/+download/storm-$(ver).tar.bz2
+	cd ..; bzcat storm-$(ver).tar.bz2 | gzip -c -9 > storm_$(ver).orig.tar.gz

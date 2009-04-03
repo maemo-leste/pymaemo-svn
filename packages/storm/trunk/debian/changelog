@@ -1,65 +1,58 @@
-storm (0.11.0-osso2) unstable; urgency=low
+storm (0.12-0.1maemo2) unstable; urgency=low
 
-  * don't list inside Application Manager
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 11:11:25 -0300
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 01 Apr 2009 11:17:17 -0400
 
-storm (0.11.0-osso1) unstable; urgency=low
+storm (0.12-0.1maemo1) unstable; urgency=low
 
-  * First port to Maemo
+  * Remove version from cdbs build dependency.
+  * Add Conflicts/Replaces: python2.5-storm (<< 0.12-0.1maemo1).
+  * Force python version to 2.5 in debian/rules for proper compiling inside
+    Scratchbox.
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 11:27:59 -0300
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 17 Nov 2008 15:21:12 -0400
 
-storm (0.11.0-gutsy1-jkakar7) gutsy; urgency=low
+storm (0.12-0ubuntu2) intrepid; urgency=low
 
-  * Fixed incorrect package variable in rules file.
+  * Added python-psycopg2, python-mysqldb and python-pysqlite2 to Suggests of
+    python-storm (LP: #259883).
 
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:11 +0000
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Thu, 21 Aug 2008 19:19:29 +0200
 
-storm (0.11.0-feisty1-jkakar7) feisty; urgency=low
+storm (0.12-0ubuntu1) hardy; urgency=low
 
-  * Fixed incorrect package variable in rules file.
+  [ Morten Kjeldgaard ]
+  * New upstream release, fixes several bugs (LP: #156100)
+    - debian/rules: get-orig-source target added. Avoid packing
+      usr/lib
+    - debian/control: move to section python, move http stanza
+      to Homepage field.
 
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:08 +0000
+  [ Scott Kitterman ]
+  * Change get-orig-source to use production launchpad URL (remove edge)
 
-storm (0.11.0-edgy1-jkakar7) edgy; urgency=low
+ -- Morten Kjeldgaard <mok@bioxray.au.dk>  Mon, 25 Feb 2008 15:35:09 +0100
 
-  * Fixed incorrect package variable in rules file.
+storm (0.11-0ubuntu2) hardy; urgency=low
 
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:05 +0000
+  * Fix subst variable in debian/control to make python-storm install properly
+    again.
+  * Don't run prerm if upgrading from 0.11-0ubuntu1.
 
-storm (0.11.0-dapper1-jkakar7) dapper; urgency=low
+ -- Soren Hansen <soren@ubuntu.com>  Fri, 11 Jan 2008 17:39:39 +0100
 
-  * Fixed incorrect package variable in rules file.
+storm (0.11-0ubuntu1) hardy; urgency=low
 
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Tue, 23 Oct 2007 06:15:01 +0000
+  * New upstream release
+  * Switch to python-central.
 
-storm (0.11.0-gutsy1-jkakar6) gutsy; urgency=low
+ -- Soren Hansen <soren@ubuntu.com>  Thu, 10 Jan 2008 17:23:53 +0100
 
-  * Final test, I hope.
+storm (0.9-0ubuntu1) gutsy; urgency=low
 
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:37:09 +0000
+  * Initial release.
 
-storm (0.11.0-feisty1-jkakar6) feisty; urgency=low
+ -- Soren Hansen <soren@ubuntu.com>  Fri, 13 Jul 2007 09:38:21 +0100
 
-  * Final test, I hope.
-
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:37:06 +0000
-
-storm (0.11.0-edgy1-jkakar6) edgy; urgency=low
-
-  * Final test, I hope.
-
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:37:04 +0000
-
-storm (0.11.0-dapper1-jkakar6) dapper; urgency=low
-
-  * Final test, I hope.
-
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Sat, 20 Oct 2007 19:36:59 +0000
-
-storm (0.10.0-feisty1-storm1) feisty; urgency=low
-
-  * New upstream release.
-
- -- Jamshed Kakar <jamshed.kakar@canonical.com>  Thu, 27 Sep 2007 15:56:00 -0700

@@ -1,13 +1,43 @@
 Source: storm
-Priority: optional
-Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2)
-Standards-Version: 3.6.1
+Section: python
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
+Build-Depends: cdbs, debhelper (>= 5.0.38), python-all-dev (>= 2.3.5-11), python-central (>= 0.5.6)
+Standards-Version: 3.7.3
+XS-Python-Version: all
+Homepage: http://storm.canonical.com/
 
-Package: python2.5-storm
-Architecture: any
-Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Dependes}
-Description: Storm is an object-relational mapper (ORM) for Python
- developed at Canonical.  The project has been in development for more
- than a year for use in Canonical projects such as Launchpad, and has
- recently been released as an open-source product.
+Package: python-storm
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Provides: ${python:Provides}
+Suggests: python-psycopg2, python-mysqldb, python-pysqlite2
+Conflicts: python2.5-storm (<< 0.12-0.1maemo1)
+Replaces: python2.5-storm (<< 0.12-0.1maemo1)
+XB-Python-Version: ${python:Versions}
+Description: object-relational mapper (ORM) for Python
+ Storm is an object-relation mapper (ORM) for the Python language.  In
+ simple terms, that kind of system allows rows from a relational
+ database to be seen as objects in an object-oriented language like
+ Python.
+ .
+ Features:
+  * Clean and lightweight API offers a short learning curve and long-
+    erm maintainability.
+  * Storm is developed in a test-driven manner. An untested line of
+    code is considered a bug.
+  * Storm needs no special class constructors, nor imperative base
+    classes.
+  * Storm is well designed (different classes have very clear
+    boundaries, with small and clean public APIs).
+  * Designed from day one to work both with thin relational databases,
+    such as SQLite, and big iron systems like PostgreSQL and MySQL.
+  * Storm is easy to debug, since its code is written with a KISS
+    principle, and thus is easy to understand.
+  * Designed from day one to work both at the low end, with trivial
+    small databases, and the high end, with applications accessing
+    billion row tables and committing to multiple database backends.
+  * It's very easy to write and support backends for Storm (current
+    backends have around 100 lines of code).
+ 
