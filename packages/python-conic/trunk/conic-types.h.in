@@ -1,0 +1,18 @@
+
+/* Generated data (by glib-mkenums) */
+
+/* enumerations from "/usr/include/conic/conicconnection.h" */
+GType con_ic_connect_flags_get_type (void) G_GNUC_CONST;
+#define CON_IC_TYPE_CONNECT_FLAGS (con_ic_connect_flags_get_type())
+GType con_ic_proxy_mode_get_type (void) G_GNUC_CONST;
+#define CON_IC_TYPE_PROXY_MODE (con_ic_proxy_mode_get_type())
+GType con_ic_proxy_protocol_get_type (void) G_GNUC_CONST;
+#define CON_IC_TYPE_PROXY_PROTOCOL (con_ic_proxy_protocol_get_type())
+/* enumerations from "/usr/include/conic/conicconnectionevent.h" */
+GType con_ic_connection_status_get_type (void) G_GNUC_CONST;
+#define CON_IC_TYPE_CONNECTION_STATUS (con_ic_connection_status_get_type())
+GType con_ic_connection_error_get_type (void) G_GNUC_CONST;
+#define CON_IC_TYPE_CONNECTION_ERROR (con_ic_connection_error_get_type())
+
+/* Generated data ends here */
+

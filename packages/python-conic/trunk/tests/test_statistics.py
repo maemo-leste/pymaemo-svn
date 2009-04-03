@@ -6,15 +6,15 @@ Tests statistics functions
 Lauro Moura <lauro.neto@indt.org.br>, 2007
 """
 
-import conic
 import dbus
-import dbus.glib
+from dbus.mainloop.glib import DBusGMainLoop
+DBusGMainLoop(set_as_default=True)
 import gobject
-
+import conic
 counter = 0
 loop = None
 iap_id = None
-
+connection = None
 def request_statistics(connection):
     global counter, loop
     print "request_statistics():"
@@ -43,6 +43,7 @@ def statistics_cb(connection, event, data):
 
 def start():
     print "start():"
+    global connection
     connection = conic.Connection()
     connection.connect("connection-event", connection_cb, 0xFFAA)
     connection.connect("statistics", statistics_cb, 0x55AA)
@@ -71,7 +72,9 @@ def connection_cb(connection, event, data):
    
 
 if __name__ == "__main__":
+    
     loop = gobject.MainLoop()
+    
     bus = dbus.SystemBus(private=True)
     
     gobject.idle_add(start)

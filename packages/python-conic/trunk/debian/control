@@ -1,18 +1,30 @@
 Source: python-conic
 Section: python
-Priority: optional
-Maintainer: Lauro Moura Maranhao Neto <lauro.neto@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-gtk2-dev (>= 2.10.3-1osso4), python2.5-dev (>= 2.5.1-1osso2), libconic0-dev (>= 0.13)
-Standards-Version: 3.6.1
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, libconic0-dev, libdbus-glib-1-dev, python-gtk2-dev
+XS-Python-Version: all
+Standards-Version: 3.7.2
 
-Package: python2.5-conic
+Package: python-conic
 Architecture: any
-Depends: python2.5 (>= 2.5.1-1osso2), python2.5-gtk2 (>= 2.10.3-1osso4), ${shlibs:Depends}
-Description: Python bindings for ConIc Framework.
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Provides: ${python:Provides}
+Conflicts: python2.5-conic (<< 0.1-2)
+Replaces: python2.5-conic (<< 0.1-2)
+Description: Python bindings for Internet Connectivity library
+ Internet Connectivity library (libconic) is for requesting Internet
+ connections. It also provides statistics and settings for the current
+ connection.
+ .
+ This package contains the Python bindings for libconic.
 
-Package: python2.5-conic-dev
-Section: libs
-Architecture: all
-Depends: python2.5-conic (= ${Source-Version})
-Description: Examples and development files Python ConIC.
-
+#Package: python-conic-tests
+#Section: tests
+#Priority: optional
+#Architecture: any
+#Depends: ${shlibs:Depends}, ${python:Depends}, python-conic 
+#XB-Python-Version: ${python:Versions}
+#Description: Tests for python-conic package.
+# Standalone tests for python-conic package; these tests can be 
+# executed directly by calling /usr/share/python-conic-tests/runtests.sh.

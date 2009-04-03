@@ -15,11 +15,14 @@ Lauro Moura <lauro.neto@indt.org.br>, 2007
 
 import conic
 import dbus
-import gobject
-import dbus.glib
+from dbus.mainloop.glib import DBusGMainLoop
 
+import gobject
+#import dbus.glib
+connection = None
 def start():
     print "start():"
+    global connection
     connection = conic.Connection()
     connection.connect("connection-event", connection_cb)
     connection.set_property("automatic-connection-events", True)
@@ -51,7 +54,9 @@ def connection_cb(connection, event):
 
 if __name__ == "__main__":
 
+    DBusGMainLoop(set_as_default=True)
     loop = gobject.MainLoop()
+    
     bus = dbus.SystemBus(private=True)
     
     connection = start()

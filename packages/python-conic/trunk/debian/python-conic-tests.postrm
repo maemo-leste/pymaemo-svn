@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Post-removal script for python-conic-tests
+# Remove all the files generated duing test execution
+#
+#DEBHELPER#
+
+rm -fr /tmp/python-conic-tests
+

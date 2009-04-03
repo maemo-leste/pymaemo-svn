@@ -1,5 +1,6 @@
 from distutils.core import setup, Extension
 from distutils.command.build import build
+from distutils.command.install import install
 from distutils.cmd import Command
 import subprocess
 import os
@@ -65,7 +66,7 @@ def gen_auto_file(filename, subproc_args):
     if cmdresult:
         new_file = open(filename, 'w')
         new_file.write(cmdresult)
-    new_file.close()
+        new_file.close()
 
     #proc.wait()
 
@@ -144,6 +145,13 @@ class PyConicDocBuild(Command):
         subprocess.call(['xsltproc'] + xslt_args)
         return True
 
+class PyConicInstall(install):
+    def run(self):
+        # Workaround for scratchbox bug where LD_PRELOAD components are
+        # separated by commas and not by colons as they should be.
+        os.environ['LD_PRELOAD'] = os.environ['SBOX_PRELOAD'].replace(',',':')
+
+        install.run(self)
 
 compile_args = [
         '-Os',
@@ -191,7 +199,8 @@ setup(
     ext_modules = [conic],
     cmdclass={
         'build': PyConicBuild,
-        'build_doc': PyConicDocBuild
+        'build_doc': PyConicDocBuild,
+        'install': PyConicInstall
     }
 )
 # vim:ts=4:sw=4:et:

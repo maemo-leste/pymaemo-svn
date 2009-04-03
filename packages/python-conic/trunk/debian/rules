@@ -1,73 +1,25 @@
 #!/usr/bin/make -f
+  
+DEB_PYTHON_SYSTEM = pycentral
 
-PYVER=2.5
-PYGTKVER=2.0
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
 
-DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
-DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+# Add here any variable or target overrides you need.
 
-d=debian/tmp
-d_base=debian/python$(PYVER)-conic
-d_dev=debian/python$(PYVER)-conic-dev
+#with_tests := no
 
-ifeq ($(DEB_BUILD_ARCH),armel)
-   CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
-else
-   CFLAGS=-Os -Wall -Wstrict-prototypes
-endif
+#ifneq ($(with_tests),yes)
+#NOPKGS += -Npython-conic-tests
+#endif
 
-CLEANFILES = conic.c *.pyo *.lo *.la *.in
+#export DH_OPTIONS = $(NOPKGS)
 
-build: build-stamp
-build-stamp:
-	dh_testdir
-	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py build
-	touch build-stamp
+#install/python-conic::
+#	mkdir -p $(CURDIR)/debian/python-conic/usr/lib/python2.5/site-packages
+#	cp $(CURDIR)/debian/tmp/usr/lib/python2.5/site-packages/* $(CURDIR)/debian/python-conic/usr/lib/python2.5/site-packages
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp 
-	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py clean -a
-	dh_clean $(CLEANFILES)
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
-
-	python$(PYVER) setup.py install --prefix=$(d)/usr --skip-build
-	python$(PYVER) -OO -m compileall -l .
-
-	# base
-	mkdir -p $(d_base)/usr/lib/python$(PYVER)/site-packages/
-	cp $(d)/usr/lib/python$(PYVER)/site-packages/conic.so $(d_base)/usr/lib/python$(PYVER)/site-packages
-
-	# dev
-	mkdir -p $(d_dev)/usr/share/python-conic/defs
-	mkdir -p $(d_dev)/usr/lib/python$(PYVER)/site-packages/
-	cp conic.defs $(d_dev)/usr/share/python-conic
-#	cp $(d)/usr/lib/python$(PYVER)/site-packages/hildon.la $(d_dev)/usr/lib/python$(PYVER)/site-packages
-
-	# finish
-	find $(d_base) $(d_dev) -name "CVS" | xargs rm -rf
-	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
-
-binary-indep: build install
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installman
-	dh_link
-	dh_strip
-	dh_fixperms
-	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install 
+#install/python-conic-tests::
+#	mkdir -p $(CURDIR)/debian/python-conic-tests/usr/share/python-conic-tests
+#	cp -r $(CURDIR)/tests/* $(CURDIR)/debian/python-conic-tests/usr/share/python-conic-tests
+#	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/python-conic-tests/usr/share/python-conic-tests
