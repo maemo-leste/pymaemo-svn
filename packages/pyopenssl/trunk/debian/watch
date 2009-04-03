@@ -1,0 +1,3 @@
+version=3
+
+opts="uversionmangle=s/([a-z].*)/~$1/" http://sf.net/pyopenssl/pyOpenSSL-(.*)\.tar\.gz

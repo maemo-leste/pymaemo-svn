@@ -1,48 +1,43 @@
 #!/usr/bin/make -f
-# Sample debian/rules that uses debhelper. 
-# GNU copyright 1997 by Joey Hess.
-#
-# This version is for a hypothetical package that builds an
-# architecture-dependant package, as well as an architecture-independent
-# package.
 
 # Uncomment this to turn on verbose mode. 
 #export DH_VERBOSE=1
 
-# This is the debhelper compatability version to use.
-export DH_COMPAT=4
+include /usr/share/dpatch/dpatch.make
 
-VERSIONS = 2.5
+PYVERS := $(shell pyversions -r)
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
+with_doc = no
+ifneq ($(with_doc),yes)
+export DH_OPTIONS = -Npython-openssl-doc -Npyopenssl-doc
+endif
 
-	for ver in $(VERSIONS); do \
-	    cp debian/python-pyopenssl.docs debian/python$$ver-pyopenssl.docs; \
-	done
-
-	touch configure-stamp
-
-build: configure-stamp build-stamp
+build: patch build-stamp
 build-stamp:
 	dh_testdir
 
-	for ver in $(VERSIONS); do \
-	    /usr/bin/python$$ver setup.py build; \
+	set -e; \
+	for py in $(PYVERS); do  \
+	    $$py setup.py build; \
+	    $$py-dbg setup.py build; \
 	done
-
+ifeq ($(with_doc),yes)
+	$(MAKE) -C doc all
+endif
 	touch build-stamp
 
-clean:
+clean: unpatch
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp configure-stamp
+	rm -f build-stamp
 
-	for ver in $(VERSIONS); do \
-	    rm -f debian/python$$ver-pyopenssl.docs; \
+	-for py in $(PYVERS); do \
+	    $$py setup.py clean --all; \
+	    $$py-dbg setup.py clean --all; \
 	done
-	rm -rf build version.pyc
+	rm -rf build version.pyc version.pyo
+
+	$(MAKE) -C doc clean
 
 	dh_clean
 
@@ -53,9 +48,15 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
-	for ver in $(VERSIONS); do \
-	    /usr/bin/python$$ver setup.py install --prefix=$(CURDIR)/debian/python$$ver-pyopenssl/usr; \
-	done
+	set -e; \
+	for py in $(PYVERS); do \
+	    echo "installing for $$py ..."; \
+ 	    $$py setup.py install --root=$(CURDIR)/debian/python-openssl; \
+	    echo "installing for $$py-dbg ..."; \
+	    $$py-dbg setup.py install --root=$(CURDIR)/debian/python-openssl-dbg; \
+ 	done
+	find debian/python-openssl-dbg ! -type d ! -name '*_d.so' | xargs rm -f
+	find debian/python-openssl-dbg -depth -empty -exec rmdir {} \;
 
 # Build architecture-independent files here.
 # Pass -i to all debhelper commands in this target to reduce clutter.
@@ -64,14 +65,10 @@ binary-indep: build install
 	dh_testroot -i
 	dh_installdocs -i
 	dh_installexamples -i
-#	dh_installmenu -i
-#	dh_installcron -i
-#	dh_installinfo -i
 	dh_installchangelogs ChangeLog -i
-#	dh_link -i
 	dh_compress -i
 	dh_fixperms -i
-	dh_python -i
+	dh_pysupport -i
 	dh_installdeb -i
 	dh_gencontrol -i
 	dh_md5sums -i
@@ -83,15 +80,13 @@ binary-arch: build install
 	dh_testroot -a
 	dh_installdocs -a
 	dh_installexamples -a
-#	dh_installmenu -a
-#	dh_installcron -a
-#	dh_installinfo -a
 	dh_installchangelogs ChangeLog -a
-	dh_strip -a
-#	dh_link -a
+	dh_strip -ppython-openssl --dbg-package=python-openssl-dbg
+	rm -rf debian/python-openssl-dbg/usr/share/doc/python-openssl-dbg
+	ln -s python-openssl debian/python-openssl-dbg/usr/share/doc/python-openssl-dbg
 	dh_compress -a
 	dh_fixperms -a
-	dh_python -a
+	dh_pysupport -a
 	dh_makeshlibs -a
 	dh_installdeb -a
 	dh_shlibdeps -a
@@ -100,4 +95,4 @@ binary-arch: build install
 	dh_builddeb -a
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
+.PHONY: build clean binary-indep binary-arch binary install

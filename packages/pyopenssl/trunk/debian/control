@@ -1,26 +1,76 @@
 Source: pyopenssl
 Section: python
 Priority: optional
-Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>> 3.6.1), python2.5-dev, libssl-dev (>= 0.9.7)
-Standards-Version: 3.6.1
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 5.0.37.2), python-all-dev (>= 2.3.5-11), python-all-dbg (>= 2.4.4-6), python-support (>= 0.6.4), libssl-dev (>= 0.9.8), dpatch, w3m
+Standards-Version: 3.8.0
+Homepage: http://pyopenssl.sourceforge.net/
+Vcs-Svn: svn://svn.debian.org/python-modules/packages/pycg/trunk/
+Vcs-Browser: http://svn.debian.org/wsvn/python-modules/packages/pycg/trunk/?op=log
+XS-Python-Version: all
+XS-DM-Upload-Allowed: yes
 
-Package: python2.5-pyopenssl
+Package: python-openssl
 Architecture: any
-Depends: ${shlibs:Depends}, ${python:Depends}
-Suggests: pyopenssl-doc
-Replaces: python2-pyopenssl
-Conflicts: python2-pyopenssl
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python:Provides}, python-pyopenssl
+Suggests: python-openssl-doc, python-openssl-dbg
+Replaces: python-pyopenssl, python2-pyopenssl, python2.3-pyopenssl (<< 0.6-2.3), python2.4-pyopenssl (<< 0.6-2.3), python2.5-pyopenssl (<< 0.7-2maemo2)
+Conflicts: python-pyopenssl (<< 0.6-3), python2-pyopenssl, python2.3-pyopenssl (<< 0.6-2.3), python2.4-pyopenssl (<< 0.6-2.3), python2.5-pyopenssl (<< 0.7-2maemo2)
+XB-Python-Version: ${python:Versions}
 Description: Python wrapper around the OpenSSL library
- Includes: SSL Context objects, SSL Connection objects, using
- Python sockets as transport layer. The Connection object
- wraps all the socket methods and can therefore be used
- interchangeably.
+ High-level wrapper around a subset of the OpenSSL library, includes
+ .
+   * SSL.Connection objects, wrapping the methods of Python's portable
+     sockets
+   * Callbacks written in Python
+   * Extensive error-handling mechanism, mirroring OpenSSL's error
+     codes
+ .
+ A lot of the object methods do nothing more than calling a
+ corresponding function in the OpenSSL library.
+
+Package: python-pyopenssl
+Architecture: all
+Depends: python-openssl
+Description: transitional dummy package
+ This is a dummy package to ease transition to new package name
+ (python-openssl).
+ .
+ It can be safely removed from your system.
+
+Package: python-openssl-doc
+Section: doc
+Architecture: all
+Suggests: python-openssl
+Description: Documentation for pyOpenSSL
+ This package provides documentation for the pyOpenSSL package,
+ in HTML, postscript and text formats.
 
 Package: pyopenssl-doc
 Section: doc
 Architecture: all
-Suggests: python2.5-pyopenssl
-Description: Documentation for pyOpenSSL
- This package provides documentation for the pyOpenSSL package,
- in HTML, postscript and text formats.
+Depends: python-openssl-doc
+Description: transitional dummy package
+ This is a dummy package to ease transition to new package name
+ (python-openssl-doc).
+ .
+ It can be safely removed from your system.
+
+Package: python-openssl-dbg
+Priority: extra
+Architecture: any
+Depends: python-openssl (= ${binary:Version}), python-dbg, ${shlibs:Depends}
+Description: Python wrapper around the OpenSSL library (debug extension)
+ High-level wrapper around a subset of the OpenSSL library, includes
+ .
+   * SSL.Connection objects, wrapping the methods of Python's portable
+     sockets
+   * Callbacks written in Python
+   * Extensive error-handling mechanism, mirroring OpenSSL's error
+     codes
+ .
+ A lot of the object methods do nothing more than calling a
+ corresponding function in the OpenSSL library.
+

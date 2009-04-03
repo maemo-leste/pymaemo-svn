@@ -1,8 +1,167 @@
-pyopenssl (0.6-2osso1) unstable; urgency=low
+pyopenssl (0.7-2maemo2) unstable; urgency=low
 
-  * first port to Maemo platform
+  [ Bruno dos Santos de Araujo ]
+  * Change (<< ${binary:Version}) in Conflicts/Replaces to (<< 0.7-2maemo2)
+  * Small fix in clean rule of debian/rules
 
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 10 Jan 2008 17:48:54 -0300
+  [ Anderson Lizardo ]
+  * debian/control:
+    + Remove "Uploaders" field (not applicable to maemo).
+    + Put the pymaemo-developers mailing list address in "Maintainer" field and
+      move original value to a separate field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 31 Mar 2009 14:48:22 -0400
+
+pyopenssl (0.7-2maemo1) unstable; urgency=low
+
+  * Add Conflicts/Replaces for "python2.5-pyopenssl (<< ${binary:Version})".
+  * Make build of documentation packages optional and disable them for maemo.
+  * Remove Build-Depends: tex4ht, texlive-latex-base,
+    texlive-latex-recommended.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 14 Nov 2008 11:28:09 -0400
+
+pyopenssl (0.7-2) unstable; urgency=medium
+
+  * debian/control
+    - added texlive-latex-base, texlive-latex-recommended to build-dep to fix a
+      FTBFS; thanks to Lucas Nussbaum for the report; Closes: 486950
+    - bump Standards-Version to 3.8.0
+  * debian/README.source
+    - added as requested by Policy 3.8.0
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Thu, 19 Jun 2008 20:05:55 +0200
+
+pyopenssl (0.7-1) unstable; urgency=low
+
+  [ Sandro Tosi ]
+  * New upstream release
+  * debian/patches/01_restore_pristine_code.dpatch
+    - removed since merged upstream
+  * debian/rules
+    - added doc creation at build-time
+  * debian/patches/10_fix_doc_buildsystem.dpatch
+    - added to allow doc build on debian
+  * debian/control
+    - added tex4ht and w3m build-dep needed to build doc
+  * debian/python-openssl-doc.doc-base
+    - updated for new index filename
+  * debian/copyright
+    - updated upstream author and copyright notices
+  * debian/watch
+    - fixed to correctly detect X.YaZ < X.Y
+  [ Piotr Ożarowski ]
+  * Added XS-DM-Upload-Allowed: yes
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Thu, 24 Apr 2008 20:00:36 +0200
+
+pyopenssl (0.6-5) unstable; urgency=low
+
+  * debian/control
+    - fixed dependencies on documentation package
+  * python-openssl-doc.doc-base
+    - converted to UTF8
+    - changed Section to Programming
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Sat, 08 Mar 2008 23:06:19 +0100
+
+pyopenssl (0.6-4) unstable; urgency=low
+
+  [ Scott Kitterman ]
+  * Add debug package (incorporate changes from Ubuntu)
+    - Add build-dep on python-all-dbg
+    - Suggest python-openssl-dbg
+    - Add building debug variants to debian/rules
+  * Add myself to uploaders
+
+  [ Sandro Tosi ]
+  * debian/rules
+    - fixing commands to refer to new packages names
+
+  [ Piotr Ożarowski ]
+  * Add python-pyopenssl to python-openssl's Conflicts, Replaces and Provides 
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Mon, 25 Feb 2008 22:39:45 +0100
+
+pyopenssl (0.6-3) unstable; urgency=low
+
+  [ Sandro Tosi ]
+  * Adopting package (Closes: #465988)
+  * Acknowledging NMUs (Closes: #373548, #355947, #351133, #347541)
+  * debian/control
+    - set DPMT as maintainer
+    - set myself as uploader
+    - bump Standards-Version to 3.7.3
+    - added Vcs-{Svn,Browser} tag
+    - added misc:Depends
+    - updated versioned build-dep on python-support
+    - renamed doc package to python-openssl-doc (and added transitional
+      package)
+    - added Homepage field
+    - added dpatch build-dep
+    - changed short description (Closes: #410705)
+    - changed long description
+    - changed bin package name to python-openssl (and added transitional
+      package)
+  * debian/pycompat
+    - removed
+  * debian/rules
+    - removed comment header
+    - removed commented dh_* calls
+    - removed dh_python calls
+    - removed DH_COMPAT variable set
+    - added dpatch stuff
+    - build for all supported python version (Closes: #452616)
+  * debian/python-openssl-doc.doc-base
+    - renamed from debian/pyopenssl-doc.doc-base
+    - corrected files location
+    - reformatted description
+  * debian/pyopenssl-doc.docs
+    - removed
+  * debian/python-openssl-doc.examples
+    - renamed from debian/pyopenssl-doc.examples
+  * debian/README.Debian
+    - removed
+  * debian/compat
+    - created with value 5
+  * doc/pyOpenSSL.ps
+    - restored to upstream file (changes only in generation dates)
+  * debian/patches/01_restore_pristine_code.dpatch
+    - added to restore upstream source code
+  * debian/copyright
+    - clear separation of copyright and license
+    - upstream author, copyright and license indented with 4 spaces
+    - added copyright info for 3 files, different from the main one
+
+  [ Piotr Ożarowski ]
+  * debian/watch
+    - added
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Sun, 24 Feb 2008 22:38:11 +0100
+
+pyopenssl (0.6-2.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Update Package for last python policy (Closes: #373548).
+
+ -- Pierre Habouzit <madcoder@debian.org>  Fri, 30 Jun 2006 13:31:10 +0200
+
+pyopenssl (0.6-2.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Include patch from Cyril Lacoux <clacoux@easter-eggs.com>,
+    fixing Segmentation fault when creating x509 extension.
+    (Closes: #355947)
+
+ -- Julien Danjou <acid@debian.org>  Fri, 12 May 2006 16:42:47 +0200
+
+pyopenssl (0.6-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Stop building modules for python2.2. (Closes: #351133)
+  * Also rebuild module using libssl0.9.8. (Closes: #347541)
+
+ -- Pierre Habouzit <madcoder@debian.org>  Sun,  9 Apr 2006 19:45:16 +0200
 
 pyopenssl (0.6-2) unstable; urgency=low
 
