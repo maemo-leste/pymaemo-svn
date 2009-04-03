@@ -1,0 +1,237 @@
+#!/usr/bin/make -f
+# -*- mode: makefile -*-
+# Made with the aid of debmake, by Christoph Lameter,
+# based on the sample debian/rules file for GNU hello by Ian Jackson.
+
+include /usr/share/quilt/quilt.make
+
+export SHELL	= /bin/bash
+
+# all versions
+PYVERS	:= $(filter-out 2.3, $(shell pyversions -vs))
+PYVERS	:= $(shell pyversions -vs)
+PYVER   := $(shell python -c 'import sys; print sys.version[:3]')
+
+PYSITE	= usr/lib/python$(PYVER)/site-packages
+
+p_num	= python-numeric
+p_ext	= python-numeric-ext
+p_dbg	= python-numeric-dbg
+p_edbg	= python-numeric-ext-dbg
+p_tut	= python-numeric-tutorial
+
+d_num	= debian/$(p_num)
+d_ext	= debian/$(p_ext)
+d_dbg	= debian/$(p_dbg)
+d_edbg	= debian/$(p_edbg)
+
+d_tut	= debian/$(p_tut)
+
+with_ext := no
+with_ext_dbg := no
+with_tutorial := no
+
+ifneq ($(with_ext),yes)
+NOPKGS += -Npython-numeric-ext
+endif
+
+ifneq ($(with_ext_dbg),yes)
+NOPKGS += -Npython-numeric-ext-dbg
+endif
+
+ifneq ($(with_tutorial),yes)
+NOPKGS += -Npython-numeric-tutorial
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+use_lapack_dotblas := no
+
+DEB_HOST_ARCH :=  $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+ifeq ($(use_lapack_dotblas),yes)
+
+ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH),arm m68k))
+  export USE_LAPACK=yes
+  export USE_DOTBLAS=yes
+endif
+
+endif
+
+ifeq ($(DEB_HOST_ARCH),hppa)
+  export FLAG_FUNCTION_SECTIONS=yes
+endif
+
+build: stamp-build
+stamp-build: $(PYVERS:%=stamp-build-%)
+	touch $@
+
+stamp-build-%: patch
+	dh_testdir
+	python$* ./setup.py build
+	python$*-dbg ./setup.py build
+	touch $@
+
+get-doc:
+	-mkdir doc
+	cd doc && wget -m http://www.pfdubois.com/numpy/html2/numpy.html
+	cd doc && wget http://www.pfdubois.com/numpy/numpy.pdf
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f stamp-*
+	-rm -rf `find -name build -type d`
+
+	dh_clean
+
+ifeq ($(USE_DOTBLAS),yes)
+    dotblas_module=,_dotblas
+    dotblas_dir=,dotblas
+endif
+
+install: build pre-install $(PYVERS:%=stamp-install-%)
+pre-install:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+stamp-install-%: stamp-build-%
+	python$* setup.py install --prefix=`pwd`/debian/python-numeric/usr
+
+	-find $(d_num) -name '*.py[co]' | xargs rm -f
+
+	: # Replace all '#!' calls to python with python
+	: # and make them executable
+	for i in `find $(d_num) -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+ifeq ($(use_lapack_dotblas),yes)
+	dh_movefiles -p $(p_ext) --sourcedir=$(d_num) \
+		usr/lib/python$*/site-packages/Numeric/{FFT,MA,RNG$(dotblas_dir)} \
+		usr/lib/python$*/site-packages/Numeric/{LinearAlgebra,MLab,Matrix,RandomArray}.py \
+		usr/lib/python$*/site-packages/Numeric/{lapack_lite,ranlib$(dotblas_module)}.so \
+		usr/include/python$*/Numeric/{f2c.h,ranlib.h}
+endif
+	python$*-dbg setup.py install --prefix=`pwd`/$(d_dbg)/usr
+	mv $(d_dbg)/usr/include/python$* $(d_dbg)/usr/include/python$*_d
+	for i in $(d_dbg)/usr/include/python$*_d/Numeric/*.h; do \
+	  ln -sf ../../python$*/Numeric/$$(basename $$i) $$i; \
+	done
+	find $(d_dbg)/usr/lib/python$* -name '*.h' | xargs rm -f
+
+ifeq ($(use_lapack_dotblas),yes)
+	dh_movefiles -p $(p_edbg) --sourcedir=$(d_dbg) \
+		usr/lib/python$*/site-packages/Numeric/{FFT,MA,RNG$(dotblas_dir)} \
+		usr/lib/python$*/site-packages/Numeric/{LinearAlgebra,MLab,Matrix,RandomArray}.py \
+		usr/lib/python$*/site-packages/Numeric/{lapack_lite,ranlib$(dotblas_module)}_d.so \
+		usr/include/python$*_d/Numeric/{f2c.h,ranlib.h}
+endif
+
+ifeq ($(with_ext),yes)
+	find $(d_dbg) $(d_edbg) ! -type d ! \( -name '*_d.so' -o -name '*.h' \) | xargs rm -f
+
+	find $(d_num) $(d_ext) $(d_dbg) $(d_edbg) -depth -empty -exec rmdir {} \;
+else
+	find $(d_dbg) ! -type d ! \( -name '*_d.so' -o -name '*.h' \) | xargs rm -f
+
+	find $(d_num) $(d_dbg) -depth -empty -exec rmdir {} \;
+endif
+
+ifeq ($(with_tutorial), yes)
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+
+	dh_installdirs -p$(p_tut) $(PYSITE) usr/share/doc
+	ln -sf $(p_num) $(d_tut)/usr/share/doc/$(p_tut)
+
+	dh_installdocs -p$(p_num) README
+	dh_installdocs -i -X$(p_num)
+	dh_installchangelogs -i changes.txt
+
+	cp -a Demo/NumTut $(d_tut)/$(PYSITE)/
+	chmod a+x $(d_tut)/$(PYSITE)/NumTut/__init__.py \
+		$(d_tut)/$(PYSITE)/NumTut/view.py
+	dh_link -p$(p_tut) /$(PYSITE)/NumTut /usr/share/doc/$(p_num)/NumTut
+	install -m 644 doc/numpy.pdf $(d_tut)/usr/share/doc/$(p_num)/.
+	cp -a doc/www.pfdubois.com/numpy/html2 \
+		$(d_tut)/usr/share/doc/$(p_num)/html
+
+	: # Replace all '#!' calls to python with python
+	: # and make them executable
+	for i in `find $(d_tut) -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+	chmod 644 $(d_tut)/$(PYSITE)/NumTut/view.py
+
+	mkdir -p $(d_num)/usr/share/doc/$(p_num)/examples/Demo
+	cp -a Test $(d_num)/usr/share/doc/$(p_num)/examples/.
+	rm -f $(d_num)/usr/share/doc/$(p_num)/examples/Test/testwin.bat
+	cp -p Demo/*.py $(d_num)/usr/share/doc/$(p_num)/examples/Demo/.
+
+	dh_compress -i -X.py -X.pik -X.pdf -X.css
+	dh_pycentral -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+else
+binary-indep:
+	#do nothing
+endif
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs -a README
+	dh_installchangelogs -a changes.txt
+ifeq ($(with_ext),yes)
+	for p in $(p_ext) $(p_dbg) $(p_edbg); do \
+	  rm -rf debian/$$p/usr/share/doc/$$p; \
+	  ln -sf $(p_num) debian/$$p/usr/share/doc/$$p; \
+	done
+else
+	for p in $(p_dbg); do \
+	  rm -rf debian/$$p/usr/share/doc/$$p; \
+	  ln -sf $(p_num) debian/$$p/usr/share/doc/$$p; \
+	done
+endif
+	dh_strip -p$(p_num) --dbg-package=$(p_dbg)
+ifeq ($(with_ext),yes)
+	dh_strip -p$(p_ext) --dbg-package=$(p_edbg)
+endif
+	dh_compress -a -X.py
+	dh_pycentral -a
+	dh_fixperms -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	sed -i -e 's/atlas3-base | lapack3/lapack3 | atlas3-base/; s/atlas3-base | refblas3/refblas3 | atlas3-base/' debian/python-*.substvars
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-arch binary-indep
+
+.PHONY: binary binary-arch binary-indep clean
