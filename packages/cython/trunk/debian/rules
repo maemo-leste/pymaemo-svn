@@ -1,71 +1,34 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
 
-PYVER=2.5
-PYTHON=python$(PYVER)
+DEB_PYTHON_SYSTEM=pysupport
+#mean hack to force python version to be 2.5 in scratchbox
+#this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk, not meant to be used outside
+cdbs_python_compile_version=2.5
 
-p_base = python2.5-cython
-p_dev = python2.5-cython-dev
-d_base = debian/$(p_base)
-d_dev = debian/$(p_dev)
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
 
-filename=cython
-fullfilename=$(PYTHON)-$(filename)
+DEB_DESTDIR=$(CURDIR)/debian/tmp/
+DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
 
-build: build-stamp
-build-stamp:
-	dh_testdir
-	find . -name .DS_Store -exec rm -rf {} \;
-	find [DPTCs]* -type f -exec chmod -x {} \;
-	touch build-stamp
+#with_tests := no
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
-	rm -rf $(d_base)
-	$(PYTHON) setup.py clean --all
-	find . -name "*.py[co]" -exec rm -rf {} \;
-	find . -name "Makefile" -exec rm -rf {} \;
-	dh_clean
+#ifneq ($(with_tests),yes)
+#NOPKGS += -Ncython-tests
+#endif
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_installdirs
+#export DH_OPTIONS = $(NOPKGS)
 
-	$(PYTHON) setup.py install --root=$(d_base)
-	# There are some links to ".py" files inside the code
-	#$(PYTHON) -OO -m compileall -d / -f $(d_base)/usr/lib/$(PYTHON)/site-packages/Cython
+clean::
+	find . -name *.pyo | xargs rm -rf
+	rm -fr build/lib/Cython/Compiler/Lexicon.pickle
 
-	#base
-	#find $(d_base) -name "*.py" | xargs rm -rf
-	#find $(d_base) -name "*.pyc" | xargs rm -rf
+install/cython::
+	dh_installman -pcython debian/cython.1
 
-	#dev
-	mkdir -p $(d_dev)/usr/share/doc/$(p_dev)
-	cp Doc/* $(d_dev)/usr/share/doc/$(p_dev) 
-	cp -r Demos/ $(d_dev)/usr/share/doc/$(p_dev) 
-
-	# cleanup
-	find $(d_base) -name ".svn" | xargs rm -rf
-	find $(d_dev) -name ".svn" | xargs rm -rf
-	find $(d_dev) -name ".hg" | xargs rm -rf
-
-
-binary: binary-indep binary-arch
-binary-indep: install
-binary-arch: install
-	dh_testdir
-	dh_testroot
-	dh_installdirs
-#	dh_installchangelogs CHANGES.txt
-	dh_installdocs
-	dh_installexamples
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-.PHONY: build clean binary binary-arch binary-indep install configure
+#install/cython-tests::
+#	mkdir -p $(CURDIR)/debian/cython-tests/usr/share/cython-tests
+#	cp -r $(CURDIR)/tests $(CURDIR)/debian/cython-tests/usr/share/cython-tests
+#	cp $(CURDIR)/runtests.py $(CURDIR)/debian/cython-tests/usr/share/cython-tests
+#	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/cython-tests/usr/share/cython-tests
