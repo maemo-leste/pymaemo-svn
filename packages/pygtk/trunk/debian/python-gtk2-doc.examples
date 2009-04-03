@@ -1,0 +1,8 @@
+debian/tmp/usr/lib/pygtk/2.0/demos
+debian/tmp/usr/lib/pygtk/2.0/*.py
+examples/atk
+examples/glade
+examples/gtk
+examples/ide
+examples/pango
+examples/simple

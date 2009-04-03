@@ -1,0 +1,11 @@
+--- gtk/gtk.override.orig	2008-06-03 23:38:47.998186781 +0200
++++ gtk/gtk.override	2008-06-03 23:45:37.202189454 +0200
+@@ -1168,7 +1168,7 @@
+ static GSource *
+ pygtk_main_watch_new(void)
+ {
+-    return g_source_new(&pygtk_main_watch_funcs, sizeof(GSource));
++    return g_source_new(&pygtk_main_watch_funcs, sizeof(PySignalWatchSource));
+ }
+ 
+ 
