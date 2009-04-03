@@ -1,77 +1,69 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
 
-PYVER=2.5
+include /usr/share/quilt/quilt.make
 
-DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
-DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
-p_base=python$(PYVER)-pycurl
-p_dev=python$(PYVER)-pycurl-dev
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
 
-d=debian/tmp
-d_base=debian/$(p_base)
-d_dev=debian/$(p_dev)
-
-ifeq ($(DEB_BUILD_ARCH),armel)
-    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
-else
-    CFLAGS=-Os -Wall -Wstrict-prototypes
-endif
+PYVERS := $(shell pyversions -vs)
 
 build: build-stamp
-build-stamp:
-	dh_testdir
-	CFLAGS="$(CFLAGS)" python$(PYVER) setup.py build --curl-config=/usr/bin/curl-config
+
+build-stamp: DH_OPTIONS=
+build-stamp: $(PYVERS:%=build-python%)
 	touch build-stamp
 
-clean:
+build-python%: patch
+	dh_testdir
+	python$* setup.py build
+	touch $@
+
+clean: unpatch
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp 
-	python$(PYVER) setup.py clean
-	-rm -rf $(d_base) $(d_dev)
-	-rm -rf build
-	dh_clean 
+	rm -f build-*
+	rm -rf build
+	-find -name '*.py[co]' | xargs rm -f
+	dh_clean
 
+install: DH_OPTIONS=
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k 
+	dh_clean -k
 	dh_installdirs
+	for i in $(PYVERS); do \
+	  mkdir -p debian/python-pycurl/usr/lib/python$$i/site-packages; \
+	  install -m 644 build/lib.*-*-$$i/pycurl.so \
+	    debian/python-pycurl/usr/lib/python$$i/site-packages; \
+	done
 
-	mkdir -p $(d)/usr
-	python$(PYVER) setup.py install --curl-config=/usr/bin/curl-config --prefix=$(d)/usr
-	python$(PYVER) -OO -m compileall -l $(d)/usr/lib/python$(PYVER)/site-packages/curl 
-
-	# base
-	mkdir -p $(d_base)/usr
-	mv $(d)/usr/lib $(d_base)/usr
-	mkdir -p $(d_base)/usr/share/doc/pycurl
-	cp debian/copyright $(d_base)/usr/share/doc/pycurl
-
-	# dev
-	mkdir -p $(d_dev)/usr
-	mv $(d)/usr/share $(d_dev)/usr
-
-	# finish
-	find $(d_base) $(d_dev) -name ".svn" | xargs rm -rf
-	find $(d_base) -name "*.py" | xargs rm -rf
-	find $(d_base) -name "*.pyo" | xargs rm -rf
-
+# Build architecture-independent files here.
+binary-indep: DH_OPTIONS=-i
 binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: DH_OPTIONS=-a
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installman
-	dh_link
+	cp -a doc/*.html debian/python-pycurl/usr/share/doc/python-pycurl/html
+	dh_installdocs -A TODO
+	dh_installexamples -A examples/* tests/*
+	dh_installchangelogs ChangeLog
+	dh_python
 	dh_strip
+	dh_compress
 	dh_fixperms
-	dh_makeshlibs
 	dh_installdeb
 	dh_shlibdeps
-	dh_md5sums
 	dh_gencontrol
+	dh_md5sums
 	dh_builddeb
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install 
+.PHONY: build clean binary-indep binary-arch binary install
