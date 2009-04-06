@@ -1,0 +1,209 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+PYVERS	:= $(shell pyversions -vr)
+PYVER   := $(shell python -c 'import sys; print sys.version[:3]')
+
+with_python-imaging-tk := no
+with_python-imaging-tk-dbg := no
+with_python-imaging-sane := no
+with_python-imaging-sane-dbg := no
+with_python-imaging-doc := no
+
+ifneq ($(with_python-imaging-tk),yes)
+NOPKGS += -Npython-imaging-tk
+endif
+
+ifneq ($(with_python-imaging-tk-dbg),yes)
+NOPKGS += -Npython-imaging-tk-dbg
+endif
+
+ifneq ($(with_python-imaging-sane),yes)
+NOPKGS += -Npython-imaging-sane
+endif
+
+ifneq ($(with_python-imaging-sane-dbg),yes)
+NOPKGS += -Npython-imaging-sane-dbg
+endif
+
+ifneq ($(with_python-imaging-doc),yes)
+NOPKGS += -Npython-imaging-doc
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+ifneq ($(shell dh_listpackages -i $(DH_OPTIONS) 2>/dev/null),)
+with_indep := yes
+endif
+
+
+build: build-stamp
+build-stamp: $(PYVERS:%=build-stamp-python%)
+	touch $@
+build-stamp-python%:
+	python$* setup.py build
+
+ifeq ($(with_python-imaging-sane),yes)
+	cd Sane && python$* setup.py build
+endif
+
+	python$*-dbg setup.py build
+
+ifeq ($(with_python-imaging-sane-dbg),yes)
+	cd Sane && python$*-dbg setup.py build
+endif
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f *-stamp*
+	rm -rf compile build Sane/build
+	find -name '*.py[co]' -exec rm -f {} \;
+	dh_clean
+
+get-doc:
+	wget -r --no-parent --no-host-directories --cut-dirs=2 \
+		http://www.pythonware.com/library/pil/handbook/index.htm
+
+install: build install-prereq $(PYVERS:%=install-python%)
+	
+ifeq ($(with_python-imaging-doc),yes)
+	dh_installdocs -ppython-imaging-doc Docs/*
+	dh_installexamples -ppython-imaging-doc Scripts/*
+endif
+
+	dh_installdocs -ppython-imaging README
+	
+ifeq ($(with_python-imaging-sane),yes)
+	dh_installdocs -ppython-imaging-sane Sane/sanedoc.txt
+	dh_installexamples -ppython-imaging-sane Sane/demo*.py
+endif
+	: # Replace all '#!' calls to python with /usr/bin/python
+	: # and make them executable
+	for i in `find debian -mindepth 3 -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+install-prereq:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+install-python%:
+	python$* setup.py install --root $(CURDIR)/debian/python-imaging
+ifeq ($(with_python-imaging-sane),yes)
+	cd Sane && python$* setup.py install \
+		--root $(CURDIR)/debian/python-imaging-sane
+endif	
+	mkdir -p debian/python-imaging/usr/include/python$*
+	install -o root -g root -m 644 \
+		libImaging/Imaging.h \
+		libImaging/ImPlatform.h \
+		libImaging/ImDib.h \
+		debian/python-imaging/usr/include/python$*
+
+ifeq ($(with_python-imaging-tk),yes)
+	dh_movefiles -ppython-imaging-tk \
+	    --sourcedir=debian/python-imaging \
+		usr/lib/python$*/site-packages/PIL/_imagingtk.so \
+		usr/lib/python$*/site-packages/PIL/ImageTk.py
+endif
+	python$*-dbg setup.py install --root $(CURDIR)/debian/python-imaging-dbg
+	mkdir -p debian/python-imaging-dbg/usr/include/python$*_d
+	for i in Imaging.h ImPlatform.h ImDib.h; do \
+	  ln -sf ../python$*/$$i \
+	    debian/python-imaging-dbg/usr/include/python$*_d/$$i; \
+	done
+
+ifeq ($(with_python-imaging-sane-dbg),yes)
+	cd Sane && python$*-dbg setup.py install \
+		--root $(CURDIR)/debian/python-imaging-sane-dbg
+endif	
+	find debian/python-imaging*-dbg \
+		! -type d ! \( -name '*_d.so' -o -name '*.h' \) | xargs rm -f
+	find debian/python-imaging*-dbg -depth -empty -exec rmdir {} \;
+
+ifeq ($(with_python-imaging-tk-dbg),yes)
+	dh_movefiles -ppython-imaging-tk-dbg \
+	    --sourcedir=debian/python-imaging-dbg \
+		usr/lib/python$*/site-packages/PIL/_imagingtk_d.so
+endif
+
+ifeq ($(with_indep),yes)
+
+# Build architecture-independent files here.
+# Pass -i to all debhelper commands in this target to reduce clutter.
+binary-indep: build install
+	dh_testdir -i
+	dh_testroot -i
+#	dh_installdebconf -i
+	dh_installdocs -i
+	dh_installexamples -i
+#	dh_installmenu -i
+#	dh_installman -i
+#	dh_installinfo -i
+#	dh_undocumented -i
+	dh_installchangelogs -i CHANGES
+	dh_pycentral -i
+	dh_link -i
+	dh_compress -i -X.py
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+else
+binary-indep:
+#do nothing
+endif
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+#	dh_installdebconf -a
+	dh_installdocs -a
+	dh_installexamples -a
+#	dh_installmenu -a
+#	dh_installman -a
+#	dh_installinfo -a
+#	dh_undocumented -a
+	dh_installchangelogs -a CHANGES
+
+	#removing packages that weren't built
+	#for p in python-imaging python-imaging-tk python-imaging-sane; do \
+	for p in python-imaging; do \
+	  rm -rf debian/$$p-dbg/usr/share/doc/$$p-dbg; \
+	  ln -s $$p debian/$$p-dbg/usr/share/doc/$$p-dbg; \
+	done
+	dh_pycentral -a
+	dh_strip -ppython-imaging --dbg-package=python-imaging-dbg
+ifeq ($(with_python-imaging-tk-dbg),yes)
+	dh_strip -ppython-imaging-tk --dbg-package=python-imaging-tk-dbg
+endif
+ifeq ($(with_python-imaging-sane-dbg),yes)
+	dh_strip -ppython-imaging-sane --dbg-package=python-imaging-sane-dbg
+endif
+	dh_link -a
+	dh_compress -a -X.py
+	dh_fixperms -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
