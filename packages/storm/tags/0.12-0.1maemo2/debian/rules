@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+ver=0.12
+DEB_PYTHON_SYSTEM = pycentral
+
+# workaround to force using python2.5 inside Scratchbox
+# this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk
+cdbs_python_compile_version=2.5
+
+# python modules are installed in python central, so we don't
+# need the empty directory /usr/lib
+export DH_ALWAYS_EXCLUDE=lib
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
+
+get-orig-source:
+	cd ..; wget https://launchpad.net/storm/trunk/$(ver)/+download/storm-$(ver).tar.bz2
+	cd ..; bzcat storm-$(ver).tar.bz2 | gzip -c -9 > storm_$(ver).orig.tar.gz

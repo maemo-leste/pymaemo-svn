@@ -1,0 +1,58 @@
+storm (0.12-0.1maemo2) unstable; urgency=low
+
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 01 Apr 2009 11:17:17 -0400
+
+storm (0.12-0.1maemo1) unstable; urgency=low
+
+  * Remove version from cdbs build dependency.
+  * Add Conflicts/Replaces: python2.5-storm (<< 0.12-0.1maemo1).
+  * Force python version to 2.5 in debian/rules for proper compiling inside
+    Scratchbox.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 17 Nov 2008 15:21:12 -0400
+
+storm (0.12-0ubuntu2) intrepid; urgency=low
+
+  * Added python-psycopg2, python-mysqldb and python-pysqlite2 to Suggests of
+    python-storm (LP: #259883).
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Thu, 21 Aug 2008 19:19:29 +0200
+
+storm (0.12-0ubuntu1) hardy; urgency=low
+
+  [ Morten Kjeldgaard ]
+  * New upstream release, fixes several bugs (LP: #156100)
+    - debian/rules: get-orig-source target added. Avoid packing
+      usr/lib
+    - debian/control: move to section python, move http stanza
+      to Homepage field.
+
+  [ Scott Kitterman ]
+  * Change get-orig-source to use production launchpad URL (remove edge)
+
+ -- Morten Kjeldgaard <mok@bioxray.au.dk>  Mon, 25 Feb 2008 15:35:09 +0100
+
+storm (0.11-0ubuntu2) hardy; urgency=low
+
+  * Fix subst variable in debian/control to make python-storm install properly
+    again.
+  * Don't run prerm if upgrading from 0.11-0ubuntu1.
+
+ -- Soren Hansen <soren@ubuntu.com>  Fri, 11 Jan 2008 17:39:39 +0100
+
+storm (0.11-0ubuntu1) hardy; urgency=low
+
+  * New upstream release
+  * Switch to python-central.
+
+ -- Soren Hansen <soren@ubuntu.com>  Thu, 10 Jan 2008 17:23:53 +0100
+
+storm (0.9-0ubuntu1) gutsy; urgency=low
+
+  * Initial release.
+
+ -- Soren Hansen <soren@ubuntu.com>  Fri, 13 Jul 2007 09:38:21 +0100
+
