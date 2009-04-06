@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Post-installation script for sample-tests
+#
+#DEBHELPER#
+
+chmod a+x /usr/share/cython-tests/runtests.sh
+

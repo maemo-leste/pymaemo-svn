@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Post-removal script for sample-tests
+# Remove all the files generated duing test execution
+#
+#DEBHELPER#
+
+if [ -d /tmp/cython-tests ];
+then
+	echo "removing /tmp/cython-tests directory..."
+	rm -r /tmp/cython-tests
+fi
+
