@@ -1,0 +1,114 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+#
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+#
+# Modified to make a template file for a multi-binary package with separated
+# build-arch and build-indep targets  by Bill Allombert 2001
+
+include /usr/share/quilt/quilt.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# setuptools doesn't handle translated messages
+export LC_ALL=C
+
+PYVERS	:= $(shell pyversions -vr debian/control)
+PYVER   := $(shell python2.5 -c 'import sys; print sys.version[:3]')
+SETUPTOOLSVER=$(shell dpkg-parsechangelog | grep 'Version:' | sed 's,Version: \(.*\)-.*,\1,g')
+export PYVERS
+
+d = debian/python-setuptools
+d2 = debian/python-pkg-resources
+
+build: build-stamp
+build-stamp: $(PYVERS:%=build-python%)
+	touch $@
+build-python%: patch
+	python$* setup.py build
+	touch $@
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -rf build dist
+	#rm -rf setuptools.egg-info
+	-find -name '*.py[co]' | xargs rm -f
+	dh_clean
+
+install: build install-prereq $(PYVERS:%=install-python%)
+	-find debian -name 'setuptools_boot.py*' | xargs rm -f
+	-find debian -name '*.py[co]' | xargs rm -f
+
+	: # Replace all '#!' calls to python with $(PYTHON)
+	: # and make them executable
+	for i in \
+	  debian/python-setuptools/usr/bin/easy_install \
+	  `find debian/python-setuptools/usr/lib -type f`; \
+	do \
+	  case "$$i" in *-[0-9].[0-9]) continue; esac; \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+	        $$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+install-prereq:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+install-python%:
+	dh_installdirs -A usr/bin usr/lib/python$*/site-packages
+	python$* setup.py install --root=$(CURDIR)/$(d)
+
+	mv $(d)/usr/lib/python$*/site-packages/pkg_resources.py \
+	  $(d2)/usr/lib/python$*/site-packages/
+
+	mv $(d)/usr/lib/python$*/site-packages/setuptools-$(SETUPTOOLSVER)-py$*.egg-info \
+	  $(d)/usr/lib/python$*/site-packages/setuptools.egg-info
+	echo setuptools-$(SETUPTOOLSVER).egg-info \
+	  > $(d)/usr/lib/python$*/site-packages/setuptools.pth
+
+binary-arch:
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -i
+	dh_installdocs -ppython-setuptools setuptools.txt EasyInstall.txt
+	dh_installdocs -ppython-pkg-resources pkg_resources.txt
+	dh_compress -i
+	dh_fixperms -i
+	sed -i -e 's/python2\../python2.5/g' \
+		debian/python-setuptools/usr/bin/easy_install-2.5
+	DH_PYCENTRAL=noprepare dh_pycentral -i
+	cat $(d).substvars
+	( \
+	  echo 'python:Versions=2.5'; \
+	  echo 'python:Provides=python2.5-setuptools'; \
+	  echo 'python:Depends=python (>= 2.4), python (<< 2.6), python-central (>= 0.5.7)'; \
+	) > $(d).substvars
+	cat $(d).substvars
+
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install
