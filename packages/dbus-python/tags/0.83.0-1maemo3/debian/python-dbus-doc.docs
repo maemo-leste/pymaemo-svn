@@ -1,0 +1,7 @@
+build-default/api
+doc/
+build-default/doc/
+NEWS
+README
+build-default/NEWS.html
+build-default/README.html

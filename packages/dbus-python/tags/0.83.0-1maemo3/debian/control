@@ -1,0 +1,59 @@
+Source: dbus-python
+Section: devel
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Build-Depends: cdbs,
+               debhelper (>= 5.0.37.2),
+               xmlto,
+               python-all-dev (>= 2.3.5-11),
+               python-all-dbg,
+               python-support (>= 0.3),
+               libdbus-glib-1-dev (>= 0.71),
+               autotools-dev
+Build-Depends-Indep: 
+Standards-Version: 3.7.3.0
+XS-Python-Version: >= 2.4
+XS-Dm-Upload-Allowed: yes
+
+Package: python-dbus
+Section: python
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         ${python:Depends}
+Recommends: python-gobject | python-gtk (<< 2.10)
+Suggests: python-dbus-doc, python-dbus-dbg
+Replaces: python2.4-dbus, python2.5-dbus (<< 0.83.0-1maemo2)
+Conflicts: python2.4-dbus,
+           gnome-osd (<< 0.12.0),
+           gajim (<< 0.11.1),
+           python2.5-dbus (<< 0.83.0-1maemo2)
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: simple interprocess messaging system (Python interface)
+ D-Bus is a message bus, used for sending messages between applications.
+ Conceptually, it fits somewhere in between raw sockets and CORBA in
+ terms of complexity.
+ .
+ This package provides a Python interface to D-Bus.
+ .
+ See the dbus description for more information about D-Bus in general.
+
+Package: python-dbus-dbg
+Section: python
+Priority: extra
+Architecture: any
+Depends: python-dbus (= ${binary:Version}), python-dbg, ${shlibs:Depends}, ${misc:Depends}
+Description: Debug build of the D-Bus Python interface
+ This package provides a version of the python-dbus package built for
+ debugging versions of Python.
+
+Package: python-dbus-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: python-dbus
+Description: Documentation for the D-Bus Python interface
+ This package provides text and HTML documentation, and examples, for the
+ python-dbus package.
