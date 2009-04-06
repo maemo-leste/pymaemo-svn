@@ -1,0 +1,19 @@
+Index: pycairo-1.4.12/test/test.test
+===================================================================
+--- pycairo-1.4.12.orig/test/test.test	2008-12-16 14:00:54.000000000 -0400
++++ pycairo-1.4.12/test/test.test	2008-12-16 14:01:09.000000000 -0400
+@@ -9,12 +9,12 @@
+ >>> os.chdir (_dir)
+ >>> files = [f for f in os.listdir('.') if f.endswith('.py')]
+ >>> for f in files:
+-...     ret = os.system ('python %s' % f) # return value is system dependent
++...     ret = os.system ('python2.5 %s' % f) # return value is system dependent
+ ...     if ret != 0 and sys.platform.startswith('linux'): 
+ ...         print 'Error:', f, 'returned', ret
+ 
+ # run png snippets
+->>> cmd = 'python snippets_png.py -s'
++>>> cmd = 'python2.5 snippets_png.py -s'
+ >>> _dir = os.path.join(cwd, '..', 'examples', 'cairo_snippets')
+ >>> os.chdir (_dir)
+ >>> ret = os.system (cmd)
