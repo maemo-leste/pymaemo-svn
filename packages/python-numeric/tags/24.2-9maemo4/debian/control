@@ -1,0 +1,106 @@
+Source: python-numeric
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
+Build-Depends:  python-all-dev (>= 2.3.5-11), python-all-dbg, debhelper (>= 5.0.37.2), python-central (>= 0.5), quilt (>> 0.45)
+Build-Conflicts:  batlas-base-dev, atlas3-base, atlas3-base-dev, python-setuptools
+XS-Python-Version: all
+Standards-Version: 3.7.3
+
+Package: python-numeric
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}
+Suggests: python-numeric-tutorial (>= 20.0), python-numeric-ext, python-numeric-dbg
+Conflicts: python2-numeric, python2.3-numeric, python2.4-numeric, python2.5-numeric (<< 24.2-9maemo4)
+Replaces: python2-numeric, python2.3-numeric, python2.4-numeric, python2.5-numeric (<< 24.2-9maemo4)
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Numerical (matrix-oriented) Mathematics for Python
+ This package is now deprecated, please use the python-numpy package
+ for developing new software.
+ .
+ The Numeric Extensions to Python (NumPy) add powerful
+ multi-dimensional array objects to the wonderful general purpose
+ programming language Python. These new objects give Python the number
+ crunching power of numeric languages like Matlab and IDL while
+ maintaining all of the advantages of the general-purpose programming
+ language Python.
+ .
+ These extensions add two new object types to Python, and then include
+ a number of extensions that take advantage of these two new objects:
+ .
+  - Multidimensional Array Objects
+    * Efficient arrays of homogeneous machine types (floats, longs,
+      complex doubles)
+    * Arbitrary number of dimensions
+    * Sophisticated structural operations
+  - Universal Function Objects
+    * Support mathematical functions on all Python objects
+    * Very efficient for array objects
+
+Package: python-numeric-dbg
+Priority: extra
+Architecture: any
+Depends: python-numeric (= ${binary:Version}), python-dbg, ${shlibs:Depends}
+Description: Numerical (matrix-oriented) Mathematics for Python (debug extension)
+ The Numeric Extensions to Python (NumPy) add powerful
+ multi-dimensional array objects to the wonderful general purpose
+ programming language Python. These new objects give Python the number
+ crunching power of numeric languages like Matlab and IDL while
+ maintaining all of the advantages of the general-purpose programming
+ language Python.
+ .
+ This package contains the extension built for the Python debug interpreter.
+
+Package: python-numeric-ext
+Architecture: any
+Depends: ${python:Depends}, python-numeric (= ${binary:Version}), ${shlibs:Depends}
+Conflicts: python2-numeric-ext, python2.3-numeric-ext, python2.4-numeric-ext
+Replaces: python2-numeric-ext, python2.3-numeric-ext, python2.4-numeric-ext
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Extension modules for Numeric Python
+ This package is now deprecated, please use the python-numpy package
+ for developing new software.
+ .
+ Simple interfaces to existing numerical libraries:
+   * Linear Algebra (LAPACK)
+   * Fourier Transforms (FFTPACK)
+   * Random Arrays (RANLIB)
+   * Independent Random Streams (RNG, ranf)
+   * Masked Arrays (MA)
+
+Package: python-numeric-ext-dbg
+Priority: extra
+Architecture: any
+Depends: python-numeric-ext (= ${binary:Version}), python-numeric-dbg (= ${binary:Version}), python-dbg, ${shlibs:Depends}
+Description: Extension modules for Numeric Python
+ Simple interfaces to existing numerical libraries:
+   * Linear Algebra (LAPACK)
+   * Fourier Transforms (FFTPACK)
+   * Random Arrays (RANLIB)
+   * Independent Random Streams (RNG, ranf)
+   * Masked Arrays (MA)
+ .
+ This package contains the extension built for the Python debug interpreter.
+
+Package: python-numeric-tutorial
+Section: doc
+Architecture: all
+Depends: ${python:Depends}, python-numeric (>= ${source:Version}), python-numeric (<< ${source:Version}.1~), python-tk
+Recommends: python-imaging-tk (>= 1.1.5-11), python-egenix-mxdatetime, xpdf-reader | pdf-viewer
+Suggests: python-imaging-doc
+Conflicts: python2-numeric-tutorial
+Replaces: python2-numeric-tutorial
+XB-Python-Version: all
+Description: Tutorial for the Numerical Python Library
+ This package is now deprecated, please use the python-numpy package
+ for developing new software.
+ .
+ The Numeric Extensions to Python (NumPy) add powerful
+ multi-dimensional array objects to the wonderful general purpose
+ programming language Python. These new objects give Python the number
+ crunching power of numeric languages like Matlab and IDL while
+ maintaining all of the advantages of the general-purpose programming
+ language Python.

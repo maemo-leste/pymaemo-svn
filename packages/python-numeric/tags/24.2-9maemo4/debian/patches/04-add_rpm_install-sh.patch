@@ -1,0 +1,12 @@
+Index: python-numeric/rpm_install.sh
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ python-numeric/rpm_install.sh	2007-03-06 18:00:30.000000000 -0300
+@@ -0,0 +1,7 @@
++/usr/bin/python2.5 setup.py install --root=$RPM_BUILD_ROOT
++
++cat >INSTALLED_FILES <<EOF
++%doc Demo
++EOF
++find $RPM_BUILD_ROOT -type f | sed -e "s|$RPM_BUILD_ROOT||g" >>INSTALLED_FILES
++
