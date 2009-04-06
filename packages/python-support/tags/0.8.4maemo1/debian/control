@@ -1,0 +1,22 @@
+Source: python-support
+Section: python
+Priority: standard
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Josselin Mouette <joss@debian.org>
+Build-Depends: debhelper (>= 5.0.38), cdbs
+Build-Depends-Indep: python (>= 2.4)
+Standards-Version: 3.8.0
+
+Package: python-support
+Architecture: all
+Depends: python (>= 2.4)
+Conflicts: debhelper (<< 5.0.38)
+Description: automated rebuilding support for Python modules
+ This package contains the 'update-python-modules' script, which takes 
+ care of byte-compilation of Python-only modules.
+ .
+ Private modules are automatically rebuilt upon major Python upgrades, 
+ avoiding the need for strong dependencies.
+ .
+ Public modules are automatically made available for all installed 
+ Python versions.

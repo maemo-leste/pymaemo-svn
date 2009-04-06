@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+PY=$(shell pyversions -d)
+SUPP=$(shell $(PY) -c 'import pysupport; print " ".join(pysupport.py_supported)')
+
+clean::
+	rm -f debhelper/dh_pysupport.1 *.pyc
+
+build/python-support::
+	cd debhelper && pod2man -c "python-support" -r "$(DEB_VERSION)" dh_pysupport dh_pysupport.1
+
+binary-install/python-support::
+	for ver in $(SUPP); do \
+	  mkdir -p debian/python-support/usr/lib/$$ver/site-packages ;\
+	  ln -s /var/lib/python-support/$$ver/.path debian/python-support/usr/lib/$$ver/site-packages/python-support.pth ;\
+	done
