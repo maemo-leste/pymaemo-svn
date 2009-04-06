@@ -1,0 +1,57 @@
+;; -*- scheme -*-
+; object definitions ...
+
+(define-object StatisticsEvent
+  (in-module "Conic")
+  (parent "ConIcEvent")
+  (c-name "ConIcStatisticsEvent")
+  (gtype-id "CON_IC_TYPE_STATISTICS_EVENT")
+)
+
+;; Enumerations and flags ...
+
+
+;; From conicstatisticsevent.h
+
+(define-function con_ic_statistics_event_get_type
+  (c-name "con_ic_statistics_event_get_type")
+  (return-type "GType")
+)
+
+(define-method get_time_active
+  (of-object "ConIcStatisticsEvent")
+  (c-name "con_ic_statistics_event_get_time_active")
+  (return-type "guint")
+)
+
+(define-method get_signal_strength
+  (of-object "ConIcStatisticsEvent")
+  (c-name "con_ic_statistics_event_get_signal_strength")
+  (return-type "guint")
+)
+
+(define-method get_rx_packets
+  (of-object "ConIcStatisticsEvent")
+  (c-name "con_ic_statistics_event_get_rx_packets")
+  (return-type "guint64")
+)
+
+(define-method get_tx_packets
+  (of-object "ConIcStatisticsEvent")
+  (c-name "con_ic_statistics_event_get_tx_packets")
+  (return-type "guint64")
+)
+
+(define-method get_rx_bytes
+  (of-object "ConIcStatisticsEvent")
+  (c-name "con_ic_statistics_event_get_rx_bytes")
+  (return-type "guint64")
+)
+
+(define-method get_tx_bytes
+  (of-object "ConIcStatisticsEvent")
+  (c-name "con_ic_statistics_event_get_tx_bytes")
+  (return-type "guint64")
+)
+
+

@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Post-installation script for python-conic-tests
+#
+#DEBHELPER#
+
+chmod a+x /usr/share/python-conic-tests/runtests.sh
+
