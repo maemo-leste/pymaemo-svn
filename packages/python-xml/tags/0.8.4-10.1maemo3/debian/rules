@@ -1,0 +1,287 @@
+#!/usr/bin/make -f
+# -*-Makefile-*-
+# Made with the aid of dh_make, by Craig Small
+# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+# Some lines taken from debmake, by Cristoph Lameter.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEFAULT_PYTHON	:= $(shell pyversions -d)
+VERSIONS	:= $(shell pyversions -vs)
+
+dest_xbel := debian/xbel
+dest_xbel_utils := debian/xbel-utils
+
+doc_xbel := $(dest_xbel)/usr/share/doc/xbel
+doc_xbel_utils := $(dest_xbel_utils)/usr/share/doc/xbel-utils
+debian_patches=
+
+with_doc := no
+with_xbel := no
+with_tests := no
+
+ifneq ($(with_doc),yes)
+NOPKGS += -Npython-xml-doc
+endif
+
+ifneq ($(with_xbel),yes)
+NOPKGS += -Nxbel -Nxbel-utils
+endif
+
+ifneq ($(with_tests),yes)
+NOPKGS += -Npython-xml-tests
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+ifneq ($(shell dh_listpackages -i $(DH_OPTIONS) 2>/dev/null),)
+with_indep := yes
+endif
+
+build: stamp-build
+stamp-build: $(VERSIONS:%=stamp-build-%)
+	touch $@
+stamp-build-%: patched-stamp
+	dh_testdir
+	python$* setup.py build --without-xslt
+	cp doc/man/xmlproc_parse.1 doc/man/xmlproc_parse.python$*-xml.1
+	cp doc/man/xmlproc_val.1 doc/man/xmlproc_val.python$*-xml.1
+
+	python$*-dbg setup.py build --without-xslt
+
+	touch $@
+
+clean: reverse-patches
+	dh_testdir
+	dh_testroot
+	rm -f stamp-*
+	rm -rf build dist
+	rm -f doc/man/xmlproc_*.python2.?-xml.1
+	find . -name "*.py[co]" -exec rm -f {} \;
+	rm -f debian/man/index.bt
+	dh_clean
+
+# no arch independent packages left
+ifeq ($(with_indep),yes)
+
+# Build architecture-independent files here.
+binary-indep: 
+	dh_testdir -i
+	dh_testroot -i
+	dh_clean -k -i
+	dh_installdirs -i
+
+ifeq ($(with_xbel),yes)
+# xbel
+	install -m 0644 demo/xbel/doc/* $(doc_xbel)
+	install -m 0644 demo/xbel/README $(doc_xbel)
+	install -m 0644 demo/xbel/*.dtd $(dest_xbel)/usr/share/sgml/dtd
+	ln -s ../../dtd/xbel-1.0.dtd \
+	  $(dest_xbel)/usr/share/sgml/IDN_python.org/dtd/XML_Bookmark_Exchange_Language_1.0
+	ln -s ../../dtd/xbel-1.1.dtd \
+	  $(dest_xbel)/usr/share/sgml/IDN_python.org/dtd/XML_Bookmark_Exchange_Language_1.1
+	install -m 0644 debian/xbel.sgml-catalog $(dest_xbel)/usr/share/sgml/misc/xbel/xbel.cat
+
+# xbel_utils
+	install -m 0644 demo/xbel/README $(doc_xbel_utils)
+	mkdir -p $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/site-packages/_xmlplus/xbel
+	install -m 0644 demo/xbel/*.py \
+	  $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/site-packages/_xmlplus/xbel
+	touch $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/site-packages/_xmlplus/xbel/__init__.py
+
+	set -e; \
+	cd $(dest_xbel_utils) && \
+	for i in `find -type f`; do \
+	    if head -1 $$i | grep "^#! */usr/bin" | grep "python" >/dev/null ; then \
+	        sed "s%#! */usr/bin/env \+python.*$\%#! /usr/bin/python%" <$$i >$$i.temp; \
+	        mv $$i.temp $$i; \
+			chmod +x $$i; \
+	    fi; \
+	done
+
+	for i in adr_parse lynx_parse msie_parse ns_parse xbel2html xbel_parse ; do \
+	  ( \
+	    echo "#! /bin/sh"; \
+	    echo "ver=\$$(/usr/bin/python -c 'import sys; print sys.version[:3]')"; \
+	    echo "exec /usr/bin/python /usr/lib/python\$$ver/site-packages/_xmlplus/xbel/$$i.py \"\$$@\""; \
+	  ) > $(dest_xbel_utils)/usr/bin/$$i; \
+	done
+endif
+
+ifeq ($(with_doc),yes)
+# python-xml-doc
+	mkdir -p debian/python-xml-doc/usr/share/doc/python-xml
+	mkdir -p debian/python-xml-doc/usr/share/doc/python-xml-doc
+	cp -R doc/* debian/python-xml-doc/usr/share/doc/python-xml/
+	rm -rf debian/python-xml-doc/usr/share/doc/python-xml/man
+	rm -rf debian/python-xml-doc/usr/share/doc/python-xml/*.tex
+	cp -r demo/* debian/python-xml-doc/usr/share/doc/python-xml/examples/demo/
+	cp -r test/* debian/python-xml-doc/usr/share/doc/python-xml/examples/test/
+	rm -rf debian/python-xml-doc/usr/share/doc/python-xml/examples/demo/xbel
+
+	for i in debian/python-xml-doc/usr/share/doc/python-xml/*; do \
+	  b=$$(basename $$i); \
+	  ln -sf ../python-xml/$$b debian/python-xml-doc/usr/share/doc/python-xml-doc/$$b; \
+	done
+
+	: # Replace all '#!' calls to python with /usr/bin/python
+	: # and make them executable
+	for i in `find debian/python-xml-doc -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+endif
+
+	dh_pycentral -i
+
+	dh_installdocs -i
+	dh_installman -pxbel-utils 
+	dh_installchangelogs -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+else
+binary-indep:
+# do nothing
+endif
+
+# Build architecture-dependent files here.
+binary-arch: build
+	dh_testdir -a
+	dh_testroot -a
+	dh_clean -k -a
+	dh_installdirs -a
+	for version in $(VERSIONS)  ; do \
+	  PYTHON=python$${version} ; \
+	  PACKAGE=python-xml ;\
+	  DESTDIR=debian/$${PACKAGE} ;\
+	  SITE_PACK=$${DESTDIR}/usr/lib/$${PYTHON}/site-packages/_xmlplus ;\
+	  $${PYTHON} setup.py install \
+	    --without-xslt --no-compile --prefix=$${DESTDIR}/usr ;\
+	  chmod 755 $${SITE_PACK}/dom/html/GenerateHtml.py ;\
+	  rm $${DOC}/examples/demo/sgmlop/test2.htm ;\
+	  tail -n +2 $${SITE_PACK}/dom/ext/c14n.py > $${SITE_PACK}/dom/ext/c14n.py.new ;\
+	  mv $${SITE_PACK}/dom/ext/c14n.py.new $${SITE_PACK}/dom/ext/c14n.py ;\
+          for i in `find $${DESTDIR} -type f`; do \
+	      if head -1 $$i | grep "^#! */usr/bin" | grep "python" >/dev/null ; then \
+	        sed -i 's@^\(#! */usr/bin/env \+\)python[.[:digit:]]*$$@\1'$${PYTHON}'@;s@^\(#! */usr/bin/\)python[.[:digit:]]*$$@\1'$${PYTHON}'@' $$i; \
+	      fi ;\
+          done ;\
+	  mv $${DESTDIR}/usr/bin/xmlproc_parse \
+	    $${DESTDIR}/usr/bin/xmlproc_parse.$${PACKAGE} ;\
+	  mv $${DESTDIR}/usr/bin/xmlproc_val \
+	    $${DESTDIR}/usr/bin/xmlproc_val.$${PACKAGE} ;\
+	done
+	: # Replace all '#!' calls to python with /usr/bin/python
+	: # and make them executable
+	for i in `find debian -mindepth 3 -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+	for version in $(VERSIONS)  ; do \
+	  PYTHON=python$${version} ; \
+	  PACKAGE=python-xml-dbg ;\
+	  DESTDIR=debian/$${PACKAGE} ;\
+	  SITE_PACK=$${DESTDIR}/usr/lib/$${PYTHON}/site-packages/_xmlplus ;\
+	  DOC=$${DESTDIR}/usr/share/doc/$${PACKAGE} ;\
+	  $${PYTHON}-dbg setup.py \
+	    install --without-xslt --no-compile --prefix=$${DESTDIR}/usr ;\
+	done
+	find debian/python-xml-dbg ! -type d ! \( -name '*_d.so' -o -name '*.h' \) \
+		| xargs rm -f
+	find debian/python-xml-dbg -depth -empty -exec rmdir {} \;
+
+ifeq ($(with_tests),yes)
+	#python-xml-tests
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/python-xml-tests
+
+	cp -r $(CURDIR)/test $(CURDIR)/debian/tmp/usr/share/python-xml-tests
+	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/tmp/usr/share/python-xml-tests
+	dh_install --sourcedir=debian/tmp -ppython-xml-tests
+endif
+
+	dh_pycentral -a
+	dh_installdocs -a
+	dh_installmenu -a
+	dh_installman -a
+	dh_installchangelogs -a ANNOUNCE
+	rm -rf debian/python-xml-dbg/usr/share/doc/python-xml-dbg
+	ln -s python-xml debian/python-xml-dbg/usr/share/doc/python-xml-dbg
+	dh_strip -ppython-xml --dbg-package=python-xml-dbg
+	dh_compress -a
+	dh_fixperms -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+source diff:                                                                  
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary
+
+# ---------------------------------------------------------------------------
+# Various rules to unpack addons and (un)apply patches.
+# Borrowed from DBS
+
+patch_dir       = debian/patches
+
+apply-patches: patched-stamp
+reverse-patches:
+	@for stamp in none patched-*; do \
+		case "$$stamp" in none|patched-stamp|patched-\*) continue; esac; \
+		patch=`echo $$stamp | sed -e 's/patched-//'`; \
+		echo "trying to revert patch $$patch ..."; \
+		if [ -x $(patch_dir)/$$patch.dpatch ]; then true; else \
+			chmod +x $(patch_dir)/$$patch.dpatch; fi; \
+		if $(patch_dir)/$$patch.dpatch -unpatch; then \
+			echo "reverted $$patch patch."; \
+			rm -f $$stamp; \
+		else \
+			echo "error in reverting $$patch patch."; \
+			exit 1; \
+		fi; \
+	done
+	@echo "Removing patched-stamp"
+	@rm -f patched-stamp
+
+patched-%: $(patch_dir)/%.dpatch
+	@if [ -x $< ]; then true; else chmod +x $<; fi
+	@if [ -f $@ ]; then \
+		echo "$* patches already applied. $< $@"; exit 1; \
+	fi
+	$< -patch
+	@echo "$* patches applied." > $@
+
+patched-stamp: $(foreach p,$(debian_patches),patched-$(p))
+	@echo -e "\nPatches applied:" >> pxxx
+	@for i in none $(debian_patches); do \
+		if [ -r debian/patches/$$i.dpatch ]; then \
+			printf "\n$$i:\n" >> pxxx; \
+			sed -n 's/^# *DP: */  /p' debian/patches/$$i.dpatch >> pxxx; \
+		fi \
+	done
+	@echo "Writing patched-stamp"
+	@mv -f pxxx patched-stamp

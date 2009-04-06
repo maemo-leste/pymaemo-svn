@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Post-installation script for python-xml-tests
+#
+#DEBHELPER#
+
+chmod a+x /usr/share/python-xml-tests/runtests.sh
+

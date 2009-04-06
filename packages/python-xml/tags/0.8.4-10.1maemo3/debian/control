@@ -1,0 +1,95 @@
+Source: python-xml
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Debian/Ubuntu Zope Team <pkg-zope-developers@lists.alioth.debian.org>
+Build-Depends: python-all-dev, python-all-dbg, debhelper (>= 5.0.37.1), python-central (>= 0.4.15)
+Standards-Version: 3.8.0
+XS-Python-Version: all
+XS-Vcs-Svn: svn://svn.debian.org/pkg-zope/python-xml/trunk
+
+Package: python-xml
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}
+Conflicts: python-4suite (<< 0.12), python2.3-xml, python2.4-xml, python2.5-xml (<< 0.8.4-10.1maemo3)
+Replaces: python2.3-xml, python2.4-xml, python2.5-xml (<< 0.8.4-10.1maemo3)
+Provides: ${python:Provides}
+Suggests: python-xml-doc, python-xml-dbg
+XB-Python-Version: ${python:Versions}
+Description: XML tools for Python
+ The Python/XML distribution contains the basic tools required for
+ processing XML data using the Python programming language, assembled
+ into one easy-to-install package.  The distribution includes parsers
+ and standard interfaces such as SAX and DOM, along with various other
+ useful modules.
+ .
+ The package currently contains:
+ .
+  * XML parsers: Pyexpat (Jack Jansen), xmlproc (Lars Marius
+    Garshol), sgmlop (Fredrik Lundh).
+  * SAX interface (Lars Marius Garshol)
+  * minidom DOM implementation (Paul Prescod, others)
+  * 4DOM and 4XPath from Fourthought (Uche Ogbuji, Mike Olson)
+  * Schema implementations: TREX (James Tauber)
+  * Various utility modules and functions (various people)
+
+Package: python-xml-doc
+Architecture: all
+Section: doc
+Replaces: python-xml (<< 0.8.4-10)
+Description: XML tools for Python (documentation and examples)
+ The Python/XML distribution contains the basic tools required for
+ processing XML data using the Python programming language, assembled
+ into one easy-to-install package.  The distribution includes parsers
+ and standard interfaces such as SAX and DOM, along with various other
+ useful modules.
+ .
+ The package currently contains documentation and example programs.
+
+Package: python-xml-dbg
+Priority: extra
+Architecture: any
+Depends: python-xml (= ${binary:Version}), python-dbg, ${shlibs:Depends}
+Description: XML tools for Python (debug extension)
+ The Python/XML distribution contains the basic tools required for
+ processing XML data using the Python programming language, assembled
+ into one easy-to-install package.  The distribution includes parsers
+ and standard interfaces such as SAX and DOM, along with various other
+ useful modules.
+ .
+ This package contains the extension built for the python debug interpreter.
+
+Package: xbel
+Architecture: all
+Section: web
+Depends: sgml-base
+Recommends: xml-core
+Description: XML Bookmark Exchange Language
+ The XML Bookmark Exchange Language (XBEL) is a rich interchange
+ format for "bookmark" data as used by most web browsers.
+ .
+ This package contains XBEL DTDs for 1.0 and 1.1 formats as well
+ as documentation.
+
+Package: xbel-utils
+Architecture: all
+Section: web
+Depends: ${python:Depends}, python-xml (>= ${binary:Version}), xbel
+Replaces: xbel-utils-0.6
+Conflicts: xbel-utils-0.6
+XB-Python-Version: ${python:Versions}
+Description: XML Bookmark Exchange Language Utilities
+ The XML Bookmark Exchange Language (XBEL) is a rich interchange
+ format for "bookmark" data as used by most web browsers.
+ .
+ This package contains several utilities for converting between
+ XBEL and other common bookmark formats.
+
+Package: python-xml-tests
+Section: tests
+Priority: optional
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}, python-xml, python2.5-testing 
+Description: Tests for python-xml package.
+ Standalone tests for python-xml package; these tests can be 
+ executed directly by calling /usr/share/python-xml-tests/runtests.sh.
