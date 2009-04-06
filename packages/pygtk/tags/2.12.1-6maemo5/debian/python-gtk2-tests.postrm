@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Post-removal script for python-gtk2-tests
+# Remove all the files generated duing test execution
+#
+#DEBHELPER#
+
+rm -rf /tmp/python-gtk2-tests

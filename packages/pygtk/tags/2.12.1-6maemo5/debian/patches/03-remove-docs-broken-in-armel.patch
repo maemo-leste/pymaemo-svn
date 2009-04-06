@@ -1,0 +1,13 @@
+Index: python-gtk2-2.10.4/Makefile.am
+===================================================================
+--- python-gtk2-2.10.4.orig/Makefile.am	2007-09-28 17:41:55.000000000 -0300
++++ python-gtk2-2.10.4/Makefile.am	2007-09-28 17:44:01.000000000 -0300
+@@ -4,7 +4,7 @@
+   GTK_SUBDIR = gtk
+ endif
+ 
+-SUBDIRS = codegen . $(GTK_SUBDIR) examples tests docs
++SUBDIRS = codegen . $(GTK_SUBDIR) examples tests
+ 
+ PLATFORM_VERSION = 2.0
+ 
