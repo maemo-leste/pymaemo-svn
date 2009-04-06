@@ -1,0 +1,5 @@
+02-fix-sdl-config-return.patch
+03-fix_examples.patch
+04-remove-joystick-cdrom-modules.patch
+05-create-runtests.sh.patch
+06-add-verbosity-to-standalone-tests.patch
