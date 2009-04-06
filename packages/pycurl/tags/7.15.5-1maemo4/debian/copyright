@@ -1,0 +1,21 @@
+This package was debianized by Domenico Andreoli <cavok@debian.org> on
+Mon, 10 Jun 2002 19:48:05 +0200.
+
+It was downloaded from http://pycurl.sourceforge.net
+
+Upstream Authors: Kjetil Jacobsen <kjetilja@cs.uit.no> 
+                  Markus F.X.J. Oberhumer <markus@oberhumer.com>
+
+Copyright:
+
+  Copyright (c) 2001-2002 by Kjetil Jacobsen <kjetilja@cs.uit.no>
+  Copyright (c) 2001-2002 by Markus F.X.J. Oberhumer <markus@oberhumer.com>
+
+  PycURL is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published
+  by the Free Software Foundation; either version 2.1 of the License,
+  or (at your option) any later version.
+
+
+On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+Public License can be found in '/usr/share/common-licenses'.

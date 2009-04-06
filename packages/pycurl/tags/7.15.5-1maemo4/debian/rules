@@ -1,0 +1,69 @@
+#! /usr/bin/make -f
+
+include /usr/share/quilt/quilt.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+PYVERS := $(shell pyversions -vs)
+
+build: build-stamp
+
+build-stamp: DH_OPTIONS=
+build-stamp: $(PYVERS:%=build-python%)
+	touch build-stamp
+
+build-python%: patch
+	dh_testdir
+	python$* setup.py build
+	touch $@
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-*
+	rm -rf build
+	-find -name '*.py[co]' | xargs rm -f
+	dh_clean
+
+install: DH_OPTIONS=
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+	for i in $(PYVERS); do \
+	  mkdir -p debian/python-pycurl/usr/lib/python$$i/site-packages; \
+	  install -m 644 build/lib.*-*-$$i/pycurl.so \
+	    debian/python-pycurl/usr/lib/python$$i/site-packages; \
+	done
+
+# Build architecture-independent files here.
+binary-indep: DH_OPTIONS=-i
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: DH_OPTIONS=-a
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	cp -a doc/*.html debian/python-pycurl/usr/share/doc/python-pycurl/html
+	dh_installdocs -A TODO
+	dh_installexamples -A examples/* tests/*
+	dh_installchangelogs ChangeLog
+	dh_python
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
