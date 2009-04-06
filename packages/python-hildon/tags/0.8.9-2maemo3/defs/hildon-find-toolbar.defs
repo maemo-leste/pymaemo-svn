@@ -1,0 +1,43 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FindToolbar
+  (in-module "Hildon")
+  (parent "GtkToolbar")
+  (c-name "HildonFindToolbar")
+  (gtype-id "HILDON_TYPE_FIND_TOOLBAR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-find-toolbar.h
+
+(define-function hildon_find_toolbar_new
+  (c-name "hildon_find_toolbar_new")
+  (is-constructor-of "HildonFindToolbar")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+  )
+)
+
+(define-function hildon_find_toolbar_new_with_model
+  (c-name "hildon_find_toolbar_new_with_model")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("GtkListStore*" "model")
+    '("gint" "column")
+  )
+)
+
+(define-method highlight_entry
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_highlight_entry")
+  (return-type "none")
+  (parameters
+    '("gboolean" "get_focus")
+  )
+)
+
+

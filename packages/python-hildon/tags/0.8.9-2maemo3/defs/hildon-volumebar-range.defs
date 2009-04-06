@@ -1,0 +1,39 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object VolumebarRange
+  (in-module "Hildon")
+  (parent "GtkScale")
+  (c-name "HildonVolumebarRange")
+  (gtype-id "HILDON_TYPE_VOLUMEBAR_RANGE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-volumebar-range.h
+
+(define-function hildon_volumebar_range_new
+  (c-name "hildon_volumebar_range_new")
+  (is-constructor-of "HildonVolumebarRange")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkOrientation" "orientation")
+  )
+)
+
+(define-method get_level
+  (of-object "HildonVolumebarRange")
+  (c-name "hildon_volumebar_range_get_level")
+  (return-type "gdouble")
+)
+
+(define-method set_level
+  (of-object "HildonVolumebarRange")
+  (c-name "hildon_volumebar_range_set_level")
+  (return-type "none")
+  (parameters
+    '("gdouble" "level")
+  )
+)
+
+

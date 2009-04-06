@@ -1,0 +1,118 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-flags MimeCategory
+  (in-module "Hildon")
+  (c-name "HildonMimeCategory")
+  (gtype-id "HILDON_MIME_TYPE_CATEGORY")
+  (values
+    '("bookmarks" "HILDON_MIME_CATEGORY_BOOKMARKS")
+    '("contacts" "HILDON_MIME_CATEGORY_CONTACTS")
+    '("documents" "HILDON_MIME_CATEGORY_DOCUMENTS")
+    '("emails" "HILDON_MIME_CATEGORY_EMAILS")
+    '("images" "HILDON_MIME_CATEGORY_IMAGES")
+    '("audio" "HILDON_MIME_CATEGORY_AUDIO")
+    '("video" "HILDON_MIME_CATEGORY_VIDEO")
+    '("other" "HILDON_MIME_CATEGORY_OTHER")
+    '("all" "HILDON_MIME_CATEGORY_ALL")
+  )
+)
+
+
+;; From hildon-mime.h
+
+(define-function get_category_for_mime_type
+  (c-name "hildon_mime_get_category_for_mime_type")
+  (return-type "HildonMimeCategory")
+  (parameters
+    '("const-gchar*" "mime_type")
+  )
+)
+
+(define-function get_mime_types_for_category
+  (c-name "hildon_mime_get_mime_types_for_category")
+  (return-type "GList*")
+  (parameters
+    '("HildonMimeCategory" "category")
+  )
+)
+
+;(define-function types_list_free
+;  (c-name "hildon_mime_types_list_free")
+;  (return-type "none")
+;  (parameters
+;    '("GList*" "list")
+;  )
+;)
+
+(define-function open_file
+  (c-name "hildon_mime_open_file")
+  (return-type "gint")
+  (parameters
+    '("DBusConnection*" "con")
+    '("const-gchar*" "file")
+  )
+)
+
+(define-function open_file_list
+  (c-name "hildon_mime_open_file_list")
+  (return-type "gint")
+  (parameters
+    '("DBusConnection*" "con")
+    '("GSList*" "files")
+  )
+)
+
+(define-function open_file_with_mime_type
+  (c-name "hildon_mime_open_file_with_mime_type")
+  (return-type "gint")
+  (parameters
+    '("DBusConnection*" "con")
+    '("const-gchar*" "file")
+    '("const-gchar*" "mime_type")
+  )
+)
+
+(define-function get_category_name
+  (c-name "hildon_mime_get_category_name")
+  (return-type "const-gchar*")
+  (parameters
+    '("HildonMimeCategory" "category")
+  )
+)
+
+(define-function get_category_from_name
+  (c-name "hildon_mime_get_category_from_name")
+  (return-type "HildonMimeCategory")
+  (parameters
+    '("const-gchar*" "category")
+  )
+)
+
+(define-function application_get_mime_types
+  (c-name "hildon_mime_application_get_mime_types")
+  (return-type "GList*")
+  (parameters
+    '("const-gchar*" "application_id")
+  )
+)
+
+;(define-function application_mime_types_list_free
+;  (c-name "hildon_mime_application_mime_types_list_free")
+;  (return-type "none")
+;  (parameters
+;    '("GList*" "mime_types")
+;  )
+;)
+
+(define-function get_icon_names
+  (c-name "hildon_mime_get_icon_names")
+  (return-type "gchar**")
+  (parameters
+    '("const-gchar*" "mime_type")
+    '("GnomeVFSFileInfo*" "file_info")
+  )
+)
+
+

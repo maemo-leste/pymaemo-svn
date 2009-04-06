@@ -1,0 +1,39 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ColorChooser
+  (in-module "Hildon")
+  (parent "GtkWidget")
+  (c-name "HildonColorChooser")
+  (gtype-id "HILDON_TYPE_COLOR_CHOOSER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-color-chooser.h
+
+(define-function hildon_color_chooser_new
+  (c-name "hildon_color_chooser_new")
+  (is-constructor-of "HildonColorChooser")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_color
+  (of-object "HildonColorChooser")
+  (c-name "hildon_color_chooser_set_color")
+  (return-type "none")
+  (parameters
+    '("GdkColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "HildonColorChooser")
+  (c-name "hildon_color_chooser_get_color")
+  (return-type "none")
+  (parameters
+    '("GdkColor*" "color")
+  )
+)
+
+

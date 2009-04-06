@@ -1,0 +1,118 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Note
+  (in-module "Hildon")
+  (parent "GtkDialog")
+  (c-name "HildonNote")
+  (gtype-id "HILDON_TYPE_NOTE")
+)
+
+;; Enumerations and flags ...
+
+(define-enum NoteType
+  (in-module "Hildon")
+  (c-name "HildonNoteType")
+  (gtype-id "HILDON_TYPE_NOTE_TYPE")
+  (values
+    '("confirmation" "HILDON_NOTE_TYPE_CONFIRMATION")
+    '("confirmation-button" "HILDON_NOTE_TYPE_CONFIRMATION_BUTTON")
+    '("information" "HILDON_NOTE_TYPE_INFORMATION")
+    '("information-theme" "HILDON_NOTE_TYPE_INFORMATION_THEME")
+    '("progressbar" "HILDON_NOTE_TYPE_PROGRESSBAR")
+  )
+)
+
+
+; There is no "hildon_note_new" function. That declaration is here just to be overrided.
+(define-function hildon_note_new
+  (c-name "hildon_note_new")
+  (is-constructor-of "HildonNote")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+
+;; From hildon-note.h
+
+(define-function hildon_note_new_confirmation
+  (c-name "hildon_note_new_confirmation")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+
+(define-function hildon_note_new_confirmation_add_buttons
+  (c-name "hildon_note_new_confirmation_add_buttons")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+  (varargs #t)
+)
+
+; Deprecated
+;(define-function hildon_note_new_confirmation_with_icon_name
+;  (c-name "hildon_note_new_confirmation_with_icon_name")
+;  (return-type "GtkWidget*")
+;  (parameters
+;    '("GtkWindow*" "parent")
+;    '("const-gchar*" "description")
+;    '("const-gchar*" "icon_name")
+;  )
+;)
+
+(define-function hildon_note_new_cancel_with_progress_bar
+  (c-name "hildon_note_new_cancel_with_progress_bar")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+    '("GtkProgressBar*" "progressbar")
+  )
+)
+
+(define-function hildon_note_new_information
+  (c-name "hildon_note_new_information")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+
+; Deprecated
+;(define-function hildon_note_new_information_with_icon_name
+;  (c-name "hildon_note_new_information_with_icon_name")
+;  (return-type "GtkWidget*")
+;  (parameters
+;    '("GtkWindow*" "parent")
+;    '("const-gchar*" "description")
+;    '("const-gchar*" "icon_name")
+;  )
+;)
+
+(define-method set_button_text
+  (of-object "HildonNote")
+  (c-name "hildon_note_set_button_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method set_button_texts
+  (of-object "HildonNote")
+  (c-name "hildon_note_set_button_texts")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text_ok")
+    '("const-gchar*" "text_cancel")
+  )
+)
+
+
