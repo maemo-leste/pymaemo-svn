@@ -1,0 +1,53 @@
+Source: python-runtime
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.1
+XB-Maemo-Icon-26:
+  iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+gvaeTAAAA
+  CXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1gUMFRIHdvjhsQAAAeVJREFUSMe1lrFL60Ac
+  xz+JtToo780ZHVQsWRzE6QWSVUURo6Cb0k3/ACnokLmCbuWNClKHx8PRWIiTOKhQFHVw7Fyd
+  tIpxuUApuUtT4ne5XO5+9737/e57v5+GAnbRGwMOAAvIS6a1gADYrFVKj7K1NAXJb+BOdC+B
+  WaBfsa8GUKhVSs24QV1huAQYwGKtUloEyqhhCBvSEhmiLdhFrx8YJRlGL0SRW/8Cr8BCF0TS
+  UOQURg/Af8lis6pFpUQi8EsxR7+ReGFGRlSvWivAWNsFOTHdoJmzi944cK7yb0osA/Nt/d16
+  1XJ0YD9DEtkF2deFGLPChyTulq5QfGpoWngFTMQM5fUMT3O05/i/gJG01zvCNXAr3BKHd+Ci
+  7PgtDQ570dFrnxaulR0/D/wBBiTzhoBtYDJRRxKJr5cdfxlYzcKvshg97zn+S1YkEVEr5v+9
+  poVTGV6Uli6SVic+E3JPWgQ6sCXepJ9CA9jK1SqlB7voFToe1UdgXGL4BXii7YbkxHSDpvSp
+  r1etXWAnZigETkXbiWPTDY57FWxcPppr678Bg+L7tpcMG3ZB+g8YBjaSbPQE/ybhyXSDz7Zq
+  qZE6x9erVlRuGQlp4RSYjgoZ0w3SlVvCwAbOJKJGaG1GbMiWkQB8A+PrdkmoDOKGAAAAAElF
+  TkSuQmCC
+
+Package: python-runtime
+Provides: python2.5-runtime
+Conflicts: python2.5-runtime (<< 1.0-9)
+Replaces: python2.5-runtime (<< 1.0-9)
+Architecture: all
+Depends: gnome-python (>= 2.18.0-2maemo1),
+    python (>= 2.5.2-3maemo1),
+    python-bluez (>= 0.15-1.1maemo1),
+    python-cairo (>= 1.4.0-0maemo),
+    python-conic (>= 0.1-2),
+    python-dbus (>= 0.83.0-1maemo1),
+    python-gobject (>= 2.14.2-1maemo1),
+    python-gtk2 (>= 2.12.1-6maemo1),
+    python-hildon (>= 0.8.9-2maemo1),
+    python-imaging (>= 1.1.6-3maemo1),
+    python-numeric (>= 24.2-9maemo1),
+    python-osso (>= 0.3-2maemo1),
+    python-pygame (>= 1.7.1release-4.2maemo1),
+    python-xml (>= 0.8.4-10.1maemo1)
+Description: Python runtime environment.
+
+Package: python-sdk
+Provides: python2.5-sdk
+Conflicts: python2.5-sdk (<< 1.0-9)
+Replaces: python2.5-sdk (<< 1.0-9)
+Architecture: all
+Depends: python-runtime (= ${Source-Version}),
+    python-cairo-dev (>= 1.4.12-1.1maemo1),
+    python-dev (>= 2.5.2-3maemo1),
+    python-gobject-dev (>= 2.14.2-1maemo1),
+    python-gtk2-dev (>= 2.12.1-6maemo1),
+    python-osso-dev (>= 0.3-2maemo1),
+    python-setuptools (>= 0.6c8-4maemo1)
+Description: Developer-oriented versions of python runtime environment packages.

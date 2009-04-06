@@ -1,0 +1,186 @@
+python-runtime (1.0-11) unstable; urgency=low
+
+  [ Bruno dos Santos de Araujo ]
+  * Downgrade pycairo version requirement of python-runtime to ensure
+    compatibility with Diablo.
+  * Remove python-id3lib dependency for the time being (see MB#4235).
+
+  [ Anderson Lizardo ]
+  * Put the pymaemo-developers mailing list address in "Maintainer" field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 01 Apr 2009 13:23:32 -0400
+
+python-runtime (1.0-10) unstable; urgency=low
+
+  * Fix duplicated Provides field in debian/control
+  * Move commands from binary-arch target to binary-indep in debian/rules
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu, 27 Nov 2008 08:14:04 -0400
+
+python-runtime (1.0-9) unstable; urgency=low
+
+  * Replace packages names in debian/control, that now follow Debian policy.
+  * Simplify debian/rules.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 25 Nov 2008 14:32:00 -0400
+
+python-runtime (1.0-8) unstable; urgency=low
+
+  * Revision bump
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 18:24:34 -0300
+
+python-runtime (1.0-7) unstable; urgency=low
+
+  * Renaming the package to follow debian policy 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 17:52:21 -0300
+
+python-runtime (c1.0-6) unstable; urgency=low
+
+  * Adding help support and some missing files to bdist_maemo module
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 12 May 2008 11:15:17 -0300
+
+python-runtime (c1.0-5) unstable; urgency=low
+
+  * adding bdist_maemo support to distutils module
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  8 May 2008 14:50:38 -0300
+
+python-runtime (c1.0-4) unstable; urgency=low
+
+  * python upgraded to v2.5.2
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue, 22 Apr 2008 18:41:13 -0300
+
+python-runtime (c1.0-3) unstable; urgency=low
+
+  * bump revision
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 21:46:13 -0300
+
+python-runtime (c1.0-2) unstable; urgency=low
+
+  * PyGtk with glade support
+  * Remove from Application Manager programs list
+  * Fixes #1039, #1195, #1544, #1565, #1673, #1720, #1721, #1726, #1862,
+    #1938, #1950, #2009
+  * Added python2.5-sdk package. Fixes #1721
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 16 Jan 2008 14:53:26 -0300
+
+python-runtime (c1.0-1) unstable; urgency=low
+
+  * First release for Chinook  
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 25 Oct 2007 17:33:01 -0300
+
+python-runtime (0.4-11) unstable; urgency=low
+
+  * added pycairo
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu,  2 Aug 2007 10:46:20 -0300
+
+python-runtime (0.4-10) unstable; urgency=low
+
+  * fixed #542, #560, #561, #564, #642, #711, #751 and #752 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 14:26:26 -0300
+
+python-runtime (0.4-9) unstable; urgency=low
+
+  * gdbm dependency included
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 19 Mar 2007 16:29:08 -0300
+
+python-runtime (0.4-8) unstable; urgency=low
+
+  * bump release version 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 23 Feb 2007 10:13:00 -0300
+
+python-runtime (0.4-7) unstable; urgency=low
+
+  * python package now contains pyexpat module
+  * fixed race condition with signals inside python
+  * python-osso fixes #388, #389
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Thu, 22 Feb 2007 09:35:00 -0300
+
+python-runtime (0.4-6) unstable; urgency=low
+
+  * changed the package group
+  * removed the pyrex and python-runtime dependencies
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 24 Jan 2007 10:28:00 -0300
+
+python-runtime (0.4-5) unstable; urgency=low
+
+  * update dependencies' versions
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 24 Jan 2007 10:21:00 -0300
+
+python-runtime (0.4-4) unstable; urgency=low
+
+  * added sqlite3 support to Python
+  * added bindings for g_set/get_application_name() in pygtk
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Tue, 23 Jan 2007 10:45:00 -0300
+
+python-runtime (0.4-3) unstable; urgency=low
+
+  * fix a problem with "Provides" item inside /debian/control file.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 10 Jan 2007 16:28:00 -0300
+
+python-runtime (0.4-2) unstable; urgency=low
+
+  * now, python-runtime provides "python" too.
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 8 Jan 2007 13:38:00 -0300
+
+python-runtime (0.4-1) unstable; urgency=low
+
+  * new python release (2.5)
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 19 Jul 2006 17:23:57 -0300
+
+python-runtime (0.3-2) unstable; urgency=low
+
+  * fixed the target 'binary' in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 14 Jun 2006 16:34:40 -0300
+
+python-runtime (0.2-2) unstable; urgency=low
+
+  * minor cleanup in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri,  9 Jun 2006 16:26:53 -0300
+
+python-runtime (0.2-1) unstable; urgency=low
+
+  * changed architecture from 'any' to 'all'
+  * changed package versioning
+  * remove verbose option in debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 5 Jun 2006 15:28:00 -0300
+
+python-runtime (0.1-1osso3) unstable; urgency=low
+
+  * remove 'touch binary-stamp' from debian/rules
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 1 Jun 2006 23:52:00 -0300
+
+python-runtime (0.1-1osso2) unstable; urgency=low
+
+  * Now, python-runtime is a meta package
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 25 May 2006 13:51:00 -0300
+
+python-runtime (0.1-1osso1) unstable; urgency=low
+
+  * First Run-Time Environment package.
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 16 May 2006 17:39:00 -0300
+
