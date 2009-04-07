@@ -1,3 +1,1 @@
-02-disable_items_from_gstdefs.patch
-03-disable_items_from_gst-typesdefs.patch
-04-remove_gstversion-override.patch
+02_pygstdir.patch

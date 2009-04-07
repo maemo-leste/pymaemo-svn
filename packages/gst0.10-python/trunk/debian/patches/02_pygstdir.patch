@@ -1,0 +1,15 @@
+--- gst0.10-python-0.10.9.orig/pygst.py.in	2006-06-09 19:21:40.000000000 +0200
++++ gst0.10-python-0.10.9/pygst.py.in	2007-12-02 11:50:38.000000000 +0100
+@@ -25,10 +25,11 @@
+ # In order to have backward compatibility
+ 
+ import sys
++import os.path
+ 
+ __all__ = ['require']
+ 
+-_pygst_dir = '@PYGSTDIR@'
++_pygst_dir = os.path.dirname(__file__) + '/gst-@GST_MAJORMINOR@'
+ 
+ _pygst_version = '@GST_MAJORMINOR@'
+ 

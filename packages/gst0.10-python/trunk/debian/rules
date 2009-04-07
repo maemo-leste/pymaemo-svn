@@ -1,83 +1,141 @@
 #!/usr/bin/make -f
 
-PYVER=2.5
-PYTHON=python$(PYVER)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
-p_base=$(PYTHON)-gstreamer
-p_dev=$(PYTHON)-gstreamer-dev
-d_base=$(CURDIR)/debian/$(p_base)
-d_dev=$(CURDIR)/debian/$(p_dev)
+CFLAGS += -Wall -g -O$(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),0,2)
 
-ifeq ($(DEB_BUILD_ARCH),armel)
-    CFLAGS=-Os -mthumb -mfloat-abi=softfp -Wall -Wstrict-prototypes
+CFLAGS += -Wno-error
+CXXFLAGS += -Wno-error
+
+PY_DEFAULT := $(shell pyversions --default)
+PY_VERSIONS = $(sort $(shell pyversions --requested) $(PY_DEFAULT))
+
+PATCH_DIR := debian/patches
+
+configure_flags := --prefix=/usr
+
+# packages where /usr/share/doc/$p is a symlink
+USD_SYMLINK_PKGS := python-gst0.10-dbg
+
+ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+	configure_flags += --build=$(DEB_BUILD_GNU_TYPE)
 else
-    CFLAGS=-Os -Wall -Wstrict-prototypes
+	configure_flags += --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
 endif
 
+# how to call quilt
+QUILT := QUILT_PATCHES=$(PATCH_DIR) quilt --quiltrc /dev/null
 
-config.status: configure
-	dh_testdir
-	CFLAGS="$(CFLAGS)" PYTHON="$(PYTHON)" ./configure \
-		   --prefix=/usr \
-		   --mandir=\$${prefix}/share/man \
-		   --infodir=\$${prefix}/share/info
+patch: patch-stamp
 
-build: build-stamp
-build-stamp:  config.status
+patch-stamp:
 	dh_testdir
+	# apply patches
+	$(QUILT) push -a || test $$? = 2
+	# backup the original files to restore them in the clean target
+	-test -r config.sub && cp config.sub config.sub.orig
+	-test -r config.guess && cp config.guess config.guess.orig
+	-test -r /usr/share/misc/config.sub && \
+		cp -f /usr/share/misc/config.sub config.sub
+	-test -r /usr/share/misc/config.guess && \
+		cp -f /usr/share/misc/config.guess config.guess
+	touch $@
+
+build-stamp-%: patch-stamp
+	dh_testdir
+	[ ! -f Makefile ] || $(MAKE) distclean
+	PYTHON=`which $*` PKG_CONFIG_PATH=/usr/lib/pkgconfig/$* CFLAGS="$(CFLAGS)" \
+		./configure $(configure_flags)
 	$(MAKE)
-	touch build-stamp
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/python-gst0.10
+	# move installed files to a per python runtime location to allow
+	# comparison of the resulting files across runtimes or shipping
+	# multiple versions
+	# pkg-config file (this is shipped twice because of varying pyexecdir)
+	mkdir debian/python-gst0.10/usr/lib/pkgconfig/$*
+	mv debian/python-gst0.10/usr/lib/pkgconfig/*.pc debian/python-gst0.10/usr/lib/pkgconfig/$*
+	# defs files, should be the same whatever the build-time python runtime
+	mkdir debian/python-gst0.10/usr/share/gst-python/0.10/defs/$*
+	mv debian/python-gst0.10/usr/share/gst-python/0.10/defs/*.defs debian/python-gst0.10/usr/share/gst-python/0.10/defs/$*
+	touch $@
+
+dbg-build-stamp-%: patch-stamp
+	dh_testdir
+	[ ! -f Makefile ] || $(MAKE) distclean
+	PYTHON=`which $*-dbg` PKG_CONFIG_PATH=/usr/lib/pkgconfig/$* CFLAGS="$(CFLAGS) -O0" \
+		./configure $(configure_flags)
+	$(MAKE)
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/python-gst0.10-dbg
+	touch $@
+
+build-arch: $(addprefix build-stamp-, $(PY_VERSIONS)) $(addprefix dbg-build-stamp-, $(PY_VERSIONS))
+
+build: build-arch
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp 
-	-$(MAKE) distclean
-	rm -rf $(d_base) $(d_dev)
-	find . -name "*.pyo" | xargs rm -f
-	find . -name "*.pyc" | xargs rm -f
-	dh_clean 
+	[ ! -f Makefile ] || $(MAKE) distclean
+	# restore files from backup (before unpatching)
+	-test -r config.sub.orig && mv -f config.sub.orig config.sub
+	-test -r config.guess.orig && mv -f config.guess.orig config.guess
+	# unapply patches, if any
+	$(QUILT) pop -a -R || test $$? = 2
+	-rm -rf .pc
+	rm -f patch-stamp build-stamp-* dbg-build-stamp-* */*.py[co] *.py[co]
+	dh_clean
 
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k 
-	dh_installdirs
-	$(MAKE) install DESTDIR=$(d_base)
-	$(PYTHON) -m compileall -f $(d_base)/usr/lib/$(PYTHON)
-	$(PYTHON) -OO -m compileall -f $(d_base)/usr/lib/$(PYTHON)
+	dh_install
+	# check that all builds with various Python runtimes produced the same
+	# *.defs files (or fail)
+	for v in $(PY_VERSIONS); do \
+	    echo "Comparing defs files for the default Python version ($(PY_DEFAULT)) with defs files for Python $$v"; \
+	    diff --brief --recursive debian/python-gst0.10/usr/share/gst-python/0.10/defs/$(PY_DEFAULT) debian/python-gst0.10/usr/share/gst-python/0.10/defs/$$v; \
+	done
+	
+	# drop all *.la files
+	find debian/python-gst0.10/usr/lib/python* -name '*.la' -print0 | xargs -0r rm -f --
+	# only keep *.so files and symlinks in the dbg packages
+	find debian/python-*-dbg ! -type d ! -name '*.so' -print0 | xargs -0r rm -f --
+	find debian/python-*-dbg -depth -empty -exec rmdir -- {} \;
+	# suffix *.so files and symlinks with _d in the dbg packages
+	for i in $$(find debian/python-*-dbg -name '*.so'); do \
+	    b="$$(basename "$$i" .so)"; \
+	    mv "$$i" "$$(dirname "$$i")/$${b}_d.so"; \
+	done
+	# since all Python runtimes produced the same files, only keep one set
+	@echo "Cleaning up..."
+	mv debian/python-gst0.10/usr/share/gst-python/0.10/defs/$(PY_DEFAULT)/*.defs debian/python-gst0.10/usr/share/gst-python/0.10/defs
+	for v in $(PY_VERSIONS); do \
+	    rm --force --recursive debian/python-gst0.10/usr/share/gst-python/0.10/defs/$$v; \
+	done
+	# set executable bit on files with a shebang
+	egrep -rlZ '^#!(.*)(python|sh)' debian/python-gst0.10 | xargs -0 chmod a+x --
 
-binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installdocs -p$(p_dev)
-	dh_installchangelogs -p$(p_dev) ChangeLog
+	dh_installchangelogs -s $(addprefix -N, $(USD_SYMLINK_PKGS)) ChangeLog
+	dh_installdocs -s $(addprefix -N, $(USD_SYMLINK_PKGS))
+	dh_link -s
+	dh_link $(addprefix -p, $(USD_SYMLINK_PKGS)) \
+		$(addprefix usr/share/doc/python-gst0.10 \
+			usr/share/doc/,$(USD_SYMLINK_PKGS))
+	dh_strip -s -Npython-gst0.10-dbg --dbg-package=python-gst0.10-dbg
+	dh_compress -s -Xexample
+	dh_fixperms -s
+	dh_pycentral -s
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
 
-	mkdir -p $(d_dev)
-	cp -a $(d_base)/usr $(d_dev)
-
-	# base
-	find $(d_base) -name "*.py" | xargs rm -f
-	find $(d_base) -name "*.pyc" | xargs rm -f
-	find $(d_base) -name "*.la" | xargs rm -f
-	rm -rf $(d_base)/usr/share $(d_base)/usr/lib/pkgconfig
-
-	# dev
-	find $(d_dev) -name "*.pyo" -or -name "*.so" | xargs rm -f
-	rm $(d_dev)/usr/lib/$(PYTHON)/site-packages/pygst.pth
-	mv $(d_dev)/usr/share/gst-python/0.10/examples $(d_dev)/usr/share/doc/$(p_dev)
-
-	dh_link
-	dh_strip
-	dh_compress -Xexample
-	dh_fixperms
-	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+binary-indep:
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install 
+.PHONY: build clean binary-indep binary-arch binary install patch
