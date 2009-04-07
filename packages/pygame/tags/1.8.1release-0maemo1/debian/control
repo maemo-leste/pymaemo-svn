@@ -1,0 +1,34 @@
+Source: pygame
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Ed Boraas <ed@debian.org> 
+Build-Depends: debhelper (>= 5.0.38), python-all-dev (>= 2.3.5-11), libsdl1.2-dev (>= 1.2.2-3.1), libsdl-image1.2-dev (>= 1.2.0-1.1), libsdl-mixer1.2-dev (>= 1.2.0-1.1), libsdl-ttf2.0-dev (>= 1.2.2-1.1), sharutils, python-numeric (>= 24.2-3), python-central (>= 0.5.6), quilt
+Standards-Version: 3.8.0
+XS-Python-Version: >= 2.3
+
+Package: python-pygame
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}, python-numeric (>= 24.2-3)
+Provides: ${python:Provides}
+Replaces: python2.3-pygame, python2.4-pygame, python2.5-pygame (<< 1.8.1release-0maemo1)
+Conflicts: python2.3-pygame, python2.4-pygame, python2.5-pygame (<< 1.8.1release-0maemo1)
+XB-Python-Version: ${python:Versions}
+Description: SDL bindings for games development in Python
+ A multimedia development kit for Python. Pygame provides modules for you
+ to access the video display, play sounds, track time, read the mouse and
+ joystick, control the CD player, render true type fonts and more. It does
+ this using mainly the cross-platform SDL library, a lightweight wrapper
+ to OS-specific APIs.
+ .
+ This package also includes Pygame's API documentation and examples.
+
+Package: python-pygame-tests
+Section: tests
+Priority: optional
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}, python-pygame 
+Description: Tests for pygame package.
+ Standalone tests for python-pygame package; these tests can be 
+ executed directly by calling /usr/share/python-pygame-tests/runtests.sh;
+ results are stored in /tmp/python-pygame-tests/testresults.log.

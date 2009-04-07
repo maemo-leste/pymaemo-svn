@@ -1,0 +1,6 @@
+usr/share/python-pygame-tests/test_runner.py
+usr/share/python-pygame-tests/runtests.sh
+usr/share/python-pygame-tests/run_tests.py
+usr/share/python-pygame-tests/unittest_patch.py
+usr/share/python-pygame-tests/test/*
+usr/share/python-pygame-tests/examples/*
