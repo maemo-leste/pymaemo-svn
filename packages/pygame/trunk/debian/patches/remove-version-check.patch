@@ -1,0 +1,37 @@
+Index: pygame-1.8.1release/src/display.c
+===================================================================
+--- pygame-1.8.1release.orig/src/display.c	2009-04-06 16:18:20.000000000 -0400
++++ pygame-1.8.1release/src/display.c	2009-04-06 16:20:09.000000000 -0400
+@@ -163,13 +163,14 @@
+     SDL_version versioninfo;
+     SDL_VERSION (&versioninfo);
+ 
++/*
+     if (versioninfo.major >= 1 && versioninfo.minor >= 2
+         && versioninfo.patch >= 10 )
+     {
+         current_w = info->current_w;
+         current_h = info->current_h;
+     }
+-
++*/
+     if (!strcmp (name, "hw"))
+         return PyInt_FromLong (info->hw_available);
+     else if (!strcmp (name, "wm"))
+@@ -221,14 +222,14 @@
+ 
+     SDL_version versioninfo;
+     SDL_VERSION (&versioninfo);
+-
++/*
+     if(versioninfo.major >= 1 && versioninfo.minor >= 2
+        && versioninfo.patch >= 10 )
+     {
+         current_w = info->current_w;
+         current_h = info->current_h;
+     }
+-
++*/
+     sprintf (str, "<VideoInfo(hw = %d, wm = %d,video_mem = %d\n"
+              "	     blit_hw = %d, blit_hw_CC = %d, blit_hw_A = %d,\n"
+              "	     blit_sw = %d, blit_sw_CC = %d, blit_sw_A = %d,\n"

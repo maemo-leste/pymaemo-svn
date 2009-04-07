@@ -56,14 +56,20 @@ install: build
 		do $$python setup.py install \
 			--root=$(CURDIR)/debian/python-pygame; \
 	done
-
+	
+ifeq ($(with_tests),yes)
 	#python-pygame-tests
-	mkdir -p $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/src
-
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/examples
 	cp -r $(CURDIR)/test $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	rm -fr $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/test/movie_test.py
+	cp -r $(CURDIR)/examples $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
 	cp $(CURDIR)/run_tests.py $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
-  	#this file is created by a patch
-	cp $(CURDIR)/runtests.sh $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/test_runner.py $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/unittest_patch.py $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	chmod u+x $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/runtests.sh
+	dh_install -ppython-pygame-tests --sourcedir=debian/tmp 
+endif	
 
 # We include all the documentation except:
 # util (which is for building the docs from the source)
@@ -75,7 +81,6 @@ binary-arch: build install
 	dh_testdir -a
 	dh_testroot -a
 	dh_installdocs -a $(doclist)
-	dh_movefiles
 	dh_installchangelogs -a WHATSNEW
 	dh_link -a
 	dh_strip -a

@@ -1,56 +1,58 @@
-pygame (1.7.1release-4.2maemo4) unstable; urgency=low
+pygame (1.8.1release-0maemo1) unstable; urgency=low
 
-  [ Bruno dos Santos de Araujo ]
-  * Misc. fixes for cleanup and improve compatibility of runtests.sh
-  * Add Conflicts/Replaces entry in debian/control:
-    - python2.5-pygame (<< 1.7.1release-4.2maemo4)
-  * Small fix in clean rule of debian/rules
+  * Initial import from Intrepid.
+  * Drop build dependency: libsmpeg-dev.
+  * Apply patches:
+    - add-stddef-header.patch 
+    - remove-version-check.patch
+  * Add binary package (python-pygame-tests).
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    keep the original mantainer in a separated field.
 
-  [ Anderson Lizardo ]
-  * debian/control:
-    + Remove "Uploaders" field (not applicable to maemo).
-    + Put the pymaemo-developers mailing list address in "Maintainer" field and
-      move original value to a separate field.
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  6 Apr 2009 15:53:12 -0400
 
- -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 01 Apr 2009 11:23:08 -0400
+pygame (1.8.1release-0ubuntu1) intrepid; urgency=low
 
-pygame (1.7.1release-4.2maemo3) unstable; urgency=low
+  * New upstream release. (LP: #255823)
+  * debian/control: Bumped Standards-Version to 3.8.0
+  * Created debian/watch
 
-  * Avoid using quilt provided by maemo3-tools devkit.
+ -- Andrew Starr-Bochicchio <a.starr.b@gmail.com>  Sun, 17 Aug 2008 14:31:28 -0400
 
- -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 30 Dec 2008 10:53:57 -0400
+pygame (1.8.0release-0ubuntu1) intrepid; urgency=low
 
-pygame (1.7.1release-4.2maemo2) unstable; urgency=low
+  * Merge from Debian experimental, remaining Ubuntu changes:
+    + debian/rules:
+      - Add quilt support.
+    + debian/patches/documentation_fix:
+      - Fix URL to point to the exact location of the online documentation.
+    + debian/control:
+      - Build-depend on quilt.
+      - Update Maintainer field as per spec.
+  * New upstream version (LP: #198544, #209967)
 
-  * Add python-pygame-tests binary package, containing standalone tests from
-    the source code of pygame.
-  * New patches: 
-    - 05-create-runtests.sh.patch (needed to run the standalone tests for this package)
-    - 06-add-verbosity-to-standalone-tests.patch
-  * Add quilt dependency in debian/control
-  * Apply patches specific to PyMaemo
-    - 02-fix-sdl-config-return.patch
-    - 03-fix_examples.patch
-    - 04-remove-joystick-cdrom-modules.patch
-  * Modify debian/rules to automatically patch/unpatch the source code during build/clean
+ -- Luca Falavigna <dktrkranz@ubuntu.com>  Sat, 07 Jun 2008 12:03:18 +0200
 
- -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu, 11 Dec 2008 16:14:34 -0400
-
-pygame (1.7.1release-4.2maemo1) unstable; urgency=low
-
-  * Remove libsmpeg-dev dependency
-  * Modify debian/rules to make calls to setup.py non-interactive
-
- -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 14 Nov 2008 11:48:55 -0400
-
-pygame (1.7.1release-4.2) unstable; urgency=high
+pygame (1.8.0release-0) experimental; urgency=low
 
   * Non-maintainer upload.
+  * New upstream release
+    thanks to René Dudfield (Closes: #473672).
   * Bug fix: "python-pygame: pygame.image.fromstring does not work",
-    thanks to Sam Morris (Closes: #481071), by applying
-    http://patches.ubuntu.com/p/pygame/extracted/01_stack_overwrite.dpatch
+    thanks to Sam Morris (Closes: #481071).
 
- -- A Mennucc1 <mennucc1@debian.org>  Wed, 04 Jun 2008 21:15:00 +0200
+ -- A Mennucc1 <mennucc1@debian.org>  Wed, 04 Jun 2008 20:36:19 +0200
+
+pygame (1.7.1release-4.1ubuntu1) gutsy; urgency=low
+
+  * Build-depend on dpatch
+  * 01_stack_overwrite.dpatch: fix a stack overwrite issue which prevents
+    pygame from starting (LP: #138430)
+  * 02_documentation_fixup.dpatch: fix URL to point to the exact location
+    of the online documentation (LP: #134977)
+  * Update Maintainer field in debian/control
+
+ -- Luca Falavigna <dktrkranz@ubuntu.com>  Sun, 23 Sep 2007 14:00:49 +0200
 
 pygame (1.7.1release-4.1) unstable; urgency=high
 

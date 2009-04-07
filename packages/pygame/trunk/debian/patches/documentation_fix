@@ -1,0 +1,13 @@
+Index: pygame-1.8.0release/docs/tut/tom/MakeGames.html
+===================================================================
+--- pygame-1.8.0release.orig/docs/tut/tom/MakeGames.html	2008-06-07 12:02:21.000000000 +0200
++++ pygame-1.8.0release/docs/tut/tom/MakeGames.html	2008-06-07 12:03:05.000000000 +0200
+@@ -88,7 +88,7 @@
+ >
+ 
+ <DIV>
+-<p>The most current version of this document will always be found at <a href="http://www.tomchance.org.uk/writing/pygame">http://www.tomchance.org.uk/writing/pygame</a>.<br>
++<p>The most current version of this document will always be found at <a href="http://tom.acrewoods.net/writing/pygame">http://tom.acrewoods.net/writing/pygame</a>.<br>
+ <HR></DIV>
+ <DIV
+ CLASS="TOC"

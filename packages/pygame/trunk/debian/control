@@ -3,16 +3,16 @@ Section: python
 Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Ed Boraas <ed@debian.org> 
-Build-Depends: debhelper (>= 5.0.38), python-all-dev (>= 2.3.5-11), libsdl1.2-dev (>= 1.2.2-3.1), libsdl-image1.2-dev (>= 1.2.0-1.1), libsdl-mixer1.2-dev (>= 1.2.0-1.1), libsdl-ttf2.0-dev (>= 1.2.2-1.1), sharutils, python-numeric (>= 24.2-3), python-central (>= 0.5.6), quilt (>> 0.45)
-Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 5.0.38), python-all-dev (>= 2.3.5-11), libsdl1.2-dev (>= 1.2.2-3.1), libsdl-image1.2-dev (>= 1.2.0-1.1), libsdl-mixer1.2-dev (>= 1.2.0-1.1), libsdl-ttf2.0-dev (>= 1.2.2-1.1), sharutils, python-numeric (>= 24.2-3), python-central (>= 0.5.6), quilt
+Standards-Version: 3.8.0
 XS-Python-Version: >= 2.3
 
 Package: python-pygame
 Architecture: any
 Depends: ${python:Depends}, ${shlibs:Depends}, python-numeric (>= 24.2-3)
 Provides: ${python:Provides}
-Replaces: python2.3-pygame, python2.4-pygame, python2.5-pygame (<< 1.7.1release-4.2maemo4)
-Conflicts: python2.3-pygame, python2.4-pygame, python2.5-pygame (<< 1.7.1release-4.2maemo4)
+Replaces: python2.3-pygame, python2.4-pygame, python2.5-pygame (<< 1.8.1release-0maemo1)
+Conflicts: python2.3-pygame, python2.4-pygame, python2.5-pygame (<< 1.8.1release-0maemo1)
 XB-Python-Version: ${python:Versions}
 Description: SDL bindings for games development in Python
  A multimedia development kit for Python. Pygame provides modules for you

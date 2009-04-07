@@ -1,9 +1,4 @@
 #!/bin/sh
-#
-# Post-removal script for sample-tests
-# Remove all the files generated duing test execution
-#
-#DEBHELPER#
 
 rm -rf /tmp/python-pygame-tests
 
