@@ -30,7 +30,7 @@
   (parameters
     '("HildonBreadCrumb*" "item")
     '("gpointer" "id")
-    '("GDestroyNotify" "notify")
+    '("GDestroyNotify" "destroy")
   )
 )
 
@@ -41,7 +41,7 @@
   (parameters
     '("const-gchar*" "text")
     '("gpointer" "id")
-    '("GDestroyNotify" "notify")
+    '("GDestroyNotify" "destroy")
   )
 )
 

@@ -30,6 +30,11 @@
   (return-type "GType")
 )
 
+(define-function hildon_touch_selector_selection_mode_get_type
+  (c-name "hildon_touch_selector_selection_mode_get_type")
+  (return-type "GType")
+)
+
 (define-function hildon_window_clipboard_operation_get_type
   (c-name "hildon_window_clipboard_operation_get_type")
   (return-type "GType")
@@ -42,6 +47,36 @@
 
 (define-function hildon_calendar_display_options_get_type
   (c-name "hildon_calendar_display_options_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_pannable_area_mode_get_type
+  (c-name "hildon_pannable_area_mode_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_movement_mode_get_type
+  (c-name "hildon_movement_mode_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_movement_direction_get_type
+  (c-name "hildon_movement_direction_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_size_request_policy_get_type
+  (c-name "hildon_size_request_policy_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_button_arrangement_get_type
+  (c-name "hildon_button_arrangement_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_button_style_get_type
+  (c-name "hildon_button_style_get_type")
   (return-type "GType")
 )
 

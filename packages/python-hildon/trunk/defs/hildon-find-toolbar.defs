@@ -23,6 +23,7 @@
 
 (define-function hildon_find_toolbar_new_with_model
   (c-name "hildon_find_toolbar_new_with_model")
+  (is-constructor-of "HildonFindToolbar")
   (return-type "GtkWidget*")
   (parameters
     '("const-gchar*" "label")
@@ -38,6 +39,45 @@
   (parameters
     '("gboolean" "get_focus")
   )
+)
+
+(define-method set_active
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_set_active")
+  (return-type "none")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+(define-method get_active
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_get_active")
+  (return-type "gint")
+)
+
+(define-method set_active_iter
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_set_active_iter")
+  (return-type "none")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method get_active_iter
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_get_active_iter")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method get_last_index
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_get_last_index")
+  (return-type "gint32")
 )
 
 

@@ -1,10 +1,7 @@
-To build this file:
+To build:
 
-	$ autoconf
-	$ automake
-	$ ./configure
-	$ make
+	$ ./setup.py build
 
 To install:
 
-	$ make install
+	$ ./setup.py install

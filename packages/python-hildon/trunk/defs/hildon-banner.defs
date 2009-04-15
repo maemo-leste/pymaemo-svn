@@ -17,7 +17,7 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkWidget*" "widget")
-    '("const-gchar*" "icon_name" (null-ok) (default "NULL"))
+    '("const-gchar*" "icon_name")
     '("const-gchar*" "text")
   )
 )
@@ -27,7 +27,7 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkWidget*" "widget")
-    '("const-gchar*" "icon_name" (null-ok) (default "NULL"))
+    '("const-gchar*" "icon_name")
     '("const-gchar*" "format")
   )
   (varargs #t)
@@ -38,7 +38,7 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkWidget*" "widget")
-    '("const-gchar*" "icon_name" (null-ok) (default "NULL"))
+    '("const-gchar*" "icon_name")
     '("const-gchar*" "markup")
   )
 )
@@ -48,7 +48,7 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkWidget*" "widget")
-    '("const-gchar*" "animation_name" (null-ok) (default "NULL"))
+    '("const-gchar*" "animation_name")
     '("const-gchar*" "text")
   )
 )
@@ -58,7 +58,7 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkWidget*" "widget")
-    '("GtkProgressBar*" "bar" (null-ok) (default "NULL"))
+    '("GtkProgressBar*" "bar")
     '("const-gchar*" "text")
   )
 )

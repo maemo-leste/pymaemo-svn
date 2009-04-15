@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-file-chooser-dialog.h
+;; From hildon-file-chooser-dialog.h
 
 (define-function hildon_file_chooser_dialog_get_type
   (c-name "hildon_file_chooser_dialog_get_type")
@@ -122,3 +122,5 @@
     '("gchar*" "extension")
   )
 )
+
+

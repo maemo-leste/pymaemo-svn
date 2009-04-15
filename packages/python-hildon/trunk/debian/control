@@ -2,13 +2,13 @@ Source: python-hildon
 Section: python
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libgtk2.0-dev, libhildon1-dev, libhildonfm2-dev, libhildonhelp-dev, libhildonmime-dev, python-osso-dev
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libhildon1-dev, libhildonfm2-dev, libhildonhelp-dev, libhildondesktop1-dev
 XS-Python-Version: all
 Standards-Version: 3.7.2
 
 Package: python-hildon
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-gtk2
 Conflicts: python2.5-hildon (<< 0.8.9-2maemo1)
 Replaces: python2.5-hildon (<< 0.8.9-2maemo1)
 Provides: ${python:Provides}

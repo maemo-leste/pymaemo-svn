@@ -1,3 +1,14 @@
+0.9.0 - 20090414
+    - Anderson Lizardo <anderson.lizardo@indt.org.br>
+      - Update API (now covering most of maemo 5 alpha API)
+      - Rewrite setup.py
+      - Lots of cleanups
+      - Improve unit tests (cover all hand-written override code)
+      - Automate update of .defs with hildon_gen_defs.sh script
+
+0.8.9 - ???
+???
+
 0.8.8 - 20060913
     - Luciano Miguel Wolf <luciano.wolf@indt.org.br>
       - Fixed messages print format inside setup.py

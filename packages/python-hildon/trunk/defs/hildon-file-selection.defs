@@ -54,7 +54,7 @@
 )
 
 
-;; From /usr/include/hildon-widgets/hildon-file-selection.h
+;; From hildon-file-selection.h
 
 (define-function hildon_file_selection_get_type
   (c-name "hildon_file_selection_get_type")
@@ -63,6 +63,7 @@
 
 (define-function hildon_file_selection_new_with_model
   (c-name "hildon_file_selection_new_with_model")
+  (is-constructor-of "HildonFileSelection")
   (return-type "GtkWidget*")
   (parameters
     '("HildonFileSystemModel*" "model")
@@ -120,15 +121,14 @@
   (return-type "char*")
 )
 
-; Deprecated
-;(define-method get_current_content_iter
-;  (of-object "HildonFileSelection")
-;  (c-name "hildon_file_selection_get_current_content_iter")
-;  (return-type "gboolean")
-;  (parameters
-;    '("GtkTreeIter*" "iter")
-;  )
-;)
+(define-method get_current_content_iter
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_get_current_content_iter")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
 
 (define-method get_current_folder_iter
   (of-object "HildonFileSelection")
@@ -139,25 +139,32 @@
   )
 )
 
-; Deprecated
-;(define-method get_active_content_iter
-;  (of-object "HildonFileSelection")
-;  (c-name "hildon_file_selection_get_active_content_iter")
-;  (return-type "gboolean")
-;  (parameters
-;    '("GtkTreeIter*" "iter")
-;  )
-;)
+(define-method set_current_folder_iter
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_set_current_folder_iter")
+  (return-type "none")
+  (parameters
+    '("GtkTreeIter*" "main_iter")
+  )
+)
 
-; Deprecated
-;(define-method content_iter_is_selected
-;  (of-object "HildonFileSelection")
-;  (c-name "hildon_file_selection_content_iter_is_selected")
-;  (return-type "gboolean")
-;  (parameters
-;    '("GtkTreeIter*" "iter")
-;  )
-;)
+(define-method get_active_content_iter
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_get_active_content_iter")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method content_iter_is_selected
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_content_iter_is_selected")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
 
 (define-method select_uri
   (of-object "HildonFileSelection")
@@ -265,6 +272,12 @@
   (return-type "HildonFileSelectionPane")
 )
 
+(define-method hide_navigation_pane
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_hide_navigation_pane")
+  (return-type "none")
+)
+
 (define-method hide_content_pane
   (of-object "HildonFileSelection")
   (c-name "hildon_file_selection_hide_content_pane")
@@ -285,3 +298,5 @@
     '("const-gchar*" "uri")
   )
 )
+
+

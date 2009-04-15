@@ -35,4 +35,15 @@
   )
 )
 
+(define-method set_forward_page_func
+  (of-object "HildonWizardDialog")
+  (c-name "hildon_wizard_dialog_set_forward_page_func")
+  (return-type "none")
+  (parameters
+    '("HildonWizardDialogPageFunc" "page_func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "destroy")
+  )
+)
+
 

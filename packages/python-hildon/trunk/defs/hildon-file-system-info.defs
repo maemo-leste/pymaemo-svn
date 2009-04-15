@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/hildon-widgets/hildon-file-system-info.h
+;; From hildon-file-system-info.h
 
 (define-function hildon_file_system_info_async_new
   (c-name "hildon_file_system_info_async_new")
@@ -49,20 +49,20 @@
   )
 )
 
-;(define-function hildon_file_system_info_new
-;  (c-name "hildon_file_system_info_new")
-;  (is-constructor-of "HildonFileSystemInfo")
-;  (return-type "HildonFileSystemInfo*")
-;  (parameters
-;    '("const-gchar*" "uri")
-;    '("GError**" "error")
-;  )
-;)
+(define-function hildon_file_system_info_new
+  (c-name "hildon_file_system_info_new")
+  (is-constructor-of "HildonFileSystemInfo")
+  (return-type "HildonFileSystemInfo*")
+  (parameters
+    '("const-gchar*" "uri")
+    '("GError**" "error")
+  )
+)
 
-;(define-method free
-;  (of-object "HildonFileSystemInfo")
-;  (c-name "hildon_file_system_info_free")
-;  (return-type "none")
-;)
+(define-method free
+  (of-object "HildonFileSystemInfo")
+  (c-name "hildon_file_system_info_free")
+  (return-type "none")
+)
 
 

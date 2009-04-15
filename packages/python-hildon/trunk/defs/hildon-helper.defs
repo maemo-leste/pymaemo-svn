@@ -33,26 +33,24 @@
   )
 )
 
-; Deprecated
-;(define-function hildon_helper_set_insensitive_message
-;  (c-name "hildon_helper_set_insensitive_message")
-;  (return-type "none")
-;  (parameters
-;    '("GtkWidget*" "widget")
-;    '("const-gchar*" "message")
-;  )
-;)
+(define-function hildon_helper_set_insensitive_message
+  (c-name "hildon_helper_set_insensitive_message")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "message")
+  )
+)
 
-; Deprecated
-;(define-function hildon_helper_set_insensitive_messagef
-;  (c-name "hildon_helper_set_insensitive_messagef")
-;  (return-type "none")
-;  (parameters
-;    '("GtkWidget*" "widget")
-;    '("const-gchar*" "format")
-;  )
-;  (varargs #t)
-;)
+(define-function hildon_helper_set_insensitive_messagef
+  (c-name "hildon_helper_set_insensitive_messagef")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "format")
+  )
+  (varargs #t)
+)
 
 (define-function hildon_helper_set_thumb_scrollbar
   (c-name "hildon_helper_set_thumb_scrollbar")

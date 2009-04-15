@@ -1,7 +1,7 @@
 /* -*- Mode: C; c-basic-offset: 4 -*-
- * pygtk- Python bindings for the GTK toolkit.
+ * python-hildon - Python bindings for the Hildon toolkit.
  *
- *   hildonmodule.c: wrapper for Hildon widgets library.
+ *   hildonmodule.c: module wrapping the Hildon library.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,19 +19,17 @@
  * USA
  */
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
 #include <Python.h>
 
 #include <pygobject.h>
 #include <pygtk/pygtk.h>
 
-void pyhildon_register_classes (PyObject *d);
+void pyhildon_register_classes(PyObject *d);
 extern void pyhildon_add_constants(PyObject *module, const gchar *strip_prefix);
 extern PyMethodDef pyhildon_functions[];
 
-void _add_keysyms(PyObject *module)
+static void
+_add_keysyms(PyObject *module)
 {
     PyModule_AddIntConstant(module, "KEY_LEFT", 0xff51);
     PyModule_AddIntConstant(module, "KEY_UP", 0xff52);
@@ -45,11 +43,10 @@ void _add_keysyms(PyObject *module)
     PyModule_AddIntConstant(module, "KEY_FULLSCREEN", 0xffc3);
     PyModule_AddIntConstant(module, "KEY_INCREASE", 0xffc4);
     PyModule_AddIntConstant(module, "KEY_DECREASE", 0xffc5);
-    return;
 }
 
 DL_EXPORT(void)
-inithildon (void)
+inithildon(void)
 {
     PyObject *m, *d;
 

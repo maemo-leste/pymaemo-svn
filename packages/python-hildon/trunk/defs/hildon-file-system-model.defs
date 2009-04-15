@@ -14,7 +14,7 @@
   (c-name "HildonFileSystemModelColumns")
   (gtype-id "HILDON_TYPE_FILE_SYSTEM_MODEL_COLUMNS")
   (values
-    '("column-gtk-path" "HILDON_FILE_SYSTEM_MODEL_COLUMN_GTK_PATH")
+    '("column-gtk-path-internal" "HILDON_FILE_SYSTEM_MODEL_COLUMN_GTK_PATH_INTERNAL")
     '("column-local-path" "HILDON_FILE_SYSTEM_MODEL_COLUMN_LOCAL_PATH")
     '("column-uri" "HILDON_FILE_SYSTEM_MODEL_COLUMN_URI")
     '("column-file-name" "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_NAME")
@@ -40,24 +40,24 @@
     '("column-failed-access-message" "HILDON_FILE_SYSTEM_MODEL_COLUMN_FAILED_ACCESS_MESSAGE")
     '("column-sort-weight" "HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_WEIGHT")
     '("column-extra-info" "HILDON_FILE_SYSTEM_MODEL_COLUMN_EXTRA_INFO")
+    '("column-is-drive" "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_DRIVE")
     '("num-columns" "HILDON_FILE_SYSTEM_MODEL_NUM_COLUMNS")
   )
 )
 
 
-;; From /usr/include/hildon-widgets/hildon-file-system-model.h
+;; From hildon-file-system-model.h
 
 (define-function hildon_file_system_model_get_type
   (c-name "hildon_file_system_model_get_type")
   (return-type "GType")
 )
 
-; Deprecated
-;(define-method finished_loading
-;  (of-object "HildonFileSystemModel")
-;  (c-name "hildon_file_system_model_finished_loading")
-;  (return-type "gboolean")
-;)
+(define-method finished_loading
+  (of-object "HildonFileSystemModel")
+  (c-name "hildon_file_system_model_finished_loading")
+  (return-type "gboolean")
+)
 
 (define-method search_local_path
   (of-object "HildonFileSystemModel")

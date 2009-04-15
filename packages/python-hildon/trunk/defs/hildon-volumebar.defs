@@ -48,4 +48,23 @@
   (return-type "GtkAdjustment*")
 )
 
+(define-method set_range_insensitive_message
+  (of-object "HildonVolumebar")
+  (c-name "hildon_volumebar_set_range_insensitive_message")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "message")
+  )
+)
+
+(define-method set_range_insensitive_messagef
+  (of-object "HildonVolumebar")
+  (c-name "hildon_volumebar_set_range_insensitive_messagef")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "format")
+  )
+  (varargs #t)
+)
+
 

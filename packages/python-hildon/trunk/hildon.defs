@@ -1,68 +1,28 @@
+;; -*- scheme -*-
+;; THIS FILE IS GENERATED - DO NOT EDIT
+(include "defs/hildon-animation-actor.defs")
+(include "defs/hildon-app-menu.defs")
 (include "defs/hildon-banner.defs")
-
-; Deprecated
-;(include "defs/hildon-bread-crumb-trail.defs")
-;(include "defs/hildon-bread-crumb.defs")
-;(include "defs/hildon-calendar-popup.defs")
-;(include "defs/hildon-calendar.defs")
-
+(include "defs/hildon-bread-crumb-trail.defs")
+(include "defs/hildon-bread-crumb.defs")
+(include "defs/hildon-button.defs")
+(include "defs/hildon-calendar-popup.defs")
+(include "defs/hildon-calendar.defs")
 (include "defs/hildon-caption.defs")
-
-; Deprecated
-;(include "defs/hildon-code-dialog.defs")
-;(include "defs/hildon-color-button.defs")
-;(include "defs/hildon-color-chooser-dialog.defs")
-;(include "defs/hildon-color-chooser.defs")
-;(include "defs/hildon-controlbar.defs")
-;(include "defs/hildon-date-editor.defs")
-
+(include "defs/hildon-check-button.defs")
+(include "defs/hildon-code-dialog.defs")
+(include "defs/hildon-color-button.defs")
+(include "defs/hildon-color-chooser-dialog.defs")
+(include "defs/hildon-color-chooser.defs")
+(include "defs/hildon-controlbar.defs")
+(include "defs/hildon-date-button.defs")
+(include "defs/hildon-date-editor.defs")
+(include "defs/hildon-date-selector.defs")
 (include "defs/hildon-defines.defs")
+(include "defs/hildon-dialog.defs")
+(include "defs/hildon-edit-toolbar.defs")
+(include "defs/hildon-entry.defs")
 (include "defs/hildon-enum-types.defs")
-(include "defs/hildon-find-toolbar.defs")
-
-; Deprecated
-;(include "defs/hildon-font-selection-dialog.defs")
-;(include "defs/hildon-get-password-dialog.defs")
-
-(include "defs/hildon-helper.defs")
-
-; Deprecated
-;(include "defs/hildon-hvolumebar.defs")
-;(include "defs/hildon-login-dialog.defs")
-
-(include "defs/hildon-marshalers.defs")
-(include "defs/hildon-note.defs")
-
-; Deprecated
-;(include "defs/hildon-number-editor.defs")
-
-(include "defs/hildon-program.defs")
-
-; Deprecated
-;(include "defs/hildon-range-editor.defs")
-;(include "defs/hildon-seekbar.defs")
-;(include "defs/hildon-set-password-dialog.defs")
-;(include "defs/hildon-sort-dialog.defs")
-
-(include "defs/hildon-sound.defs")
-
-; Deprecated
-;(include "defs/hildon-time-editor.defs")
-;(include "defs/hildon-time-picker.defs")
-
-(include "defs/hildon-volumebar-range.defs")
-
-; Deprecated
-;(include "defs/hildon-volumebar.defs")
-;(include "defs/hildon-vvolumebar.defs")
-;(include "defs/hildon-weekday-picker.defs")
-
-(include "defs/hildon-window.defs")
-(include "defs/hildon-wizard-dialog.defs")
-(include "defs/hildon.defs")
-(include "defs/missing-types.defs")
-
-; File Chooser defs
 (include "defs/hildon-file-chooser-dialog.defs")
 (include "defs/hildon-file-details-dialog.defs")
 (include "defs/hildon-file-selection.defs")
@@ -70,4 +30,44 @@
 (include "defs/hildon-file-system-info.defs")
 (include "defs/hildon-file-system-model.defs")
 (include "defs/hildon-file-system-storage-dialog.defs")
+(include "defs/hildon-find-toolbar.defs")
 (include "defs/hildon-fm1-compat.defs")
+(include "defs/hildon-font-selection-dialog.defs")
+(include "defs/hildon-get-password-dialog.defs")
+(include "defs/hildon-gtk.defs")
+(include "defs/hildon-help-private.defs")
+(include "defs/hildon-help.defs")
+(include "defs/hildon-helper.defs")
+(include "defs/hildon-hvolumebar.defs")
+(include "defs/hildon-login-dialog.defs")
+(include "defs/hildon-main.defs")
+(include "defs/hildon-marshalers.defs")
+(include "defs/hildon-note.defs")
+(include "defs/hildon-number-editor.defs")
+(include "defs/hildon-pannable-area.defs")
+(include "defs/hildon-picker-button.defs")
+(include "defs/hildon-picker-dialog.defs")
+(include "defs/hildon-program.defs")
+(include "defs/hildon-range-editor.defs")
+(include "defs/hildon-seekbar.defs")
+(include "defs/hildon-set-password-dialog.defs")
+(include "defs/hildon-sort-dialog.defs")
+(include "defs/hildon-sound.defs")
+(include "defs/hildon-stackable-window.defs")
+(include "defs/hildon-text-view.defs")
+(include "defs/hildon-time-button.defs")
+(include "defs/hildon-time-editor.defs")
+(include "defs/hildon-time-picker.defs")
+(include "defs/hildon-time-selector.defs")
+(include "defs/hildon-touch-selector-column.defs")
+(include "defs/hildon-touch-selector-entry.defs")
+(include "defs/hildon-touch-selector.defs")
+(include "defs/hildon-version.defs")
+(include "defs/hildon-volumebar-range.defs")
+(include "defs/hildon-volumebar.defs")
+(include "defs/hildon-vvolumebar.defs")
+(include "defs/hildon-weekday-picker.defs")
+(include "defs/hildon-window-stack.defs")
+(include "defs/hildon-window.defs")
+(include "defs/hildon-wizard-dialog.defs")
+(include "defs/hildon.defs")

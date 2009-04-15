@@ -1,3 +1,14 @@
+python-hildon (0.9.0-1maemo1) unstable; urgency=low
+
+  * Bump version to 0.9.0.
+  * Restore deprecated API (should avoid breaking existing applications).
+  * Add unit tests for hand-written code in hildon.override.
+  * Create hildon_gen_defs.sh script to automate (re)generation of .defs.
+  * Cleanup build system (see TODO for missing things).
+  * Fix build/installation dependencies.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 14 Apr 2009 16:01:56 -0400
+
 python-hildon (0.8.9-2maemo3) unstable; urgency=low
 
   * Put the pymaemo-developers mailing list address in "Maintainer" field.

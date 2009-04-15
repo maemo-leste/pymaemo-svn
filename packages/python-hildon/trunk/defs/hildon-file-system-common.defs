@@ -15,6 +15,7 @@
     '("safe-folder-sounds" "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS")
     '("safe-folder-documents" "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS")
     '("safe-folder-games" "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_GAMES")
+    '("safe-folder-camera" "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA")
     '("mmc" "HILDON_FILE_SYSTEM_MODEL_MMC")
     '("gateway" "HILDON_FILE_SYSTEM_MODEL_GATEWAY")
     '("local-device" "HILDON_FILE_SYSTEM_MODEL_LOCAL_DEVICE")
@@ -22,7 +23,7 @@
 )
 
 
-;; From /usr/include/hildon-widgets/hildon-file-system-common.h
+;; From hildon-file-system-common.h
 
 (define-function hildon_file_system_create_backend
   (c-name "hildon_file_system_create_backend")

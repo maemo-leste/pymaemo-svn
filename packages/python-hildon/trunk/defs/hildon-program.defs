@@ -65,6 +65,21 @@
   (return-type "GtkMenu*")
 )
 
+(define-method set_common_app_menu
+  (of-object "HildonProgram")
+  (c-name "hildon_program_set_common_app_menu")
+  (return-type "none")
+  (parameters
+    '("HildonAppMenu*" "menu")
+  )
+)
+
+(define-method get_common_app_menu
+  (of-object "HildonProgram")
+  (c-name "hildon_program_get_common_app_menu")
+  (return-type "HildonAppMenu*")
+)
+
 (define-method set_common_toolbar
   (of-object "HildonProgram")
   (c-name "hildon_program_set_common_toolbar")
@@ -84,6 +99,24 @@
   (of-object "HildonProgram")
   (c-name "hildon_program_get_is_topmost")
   (return-type "gboolean")
+)
+
+(define-method pop_window_stack
+  (of-object "HildonProgram")
+  (c-name "hildon_program_pop_window_stack")
+  (return-type "HildonStackableWindow*")
+)
+
+(define-method peek_window_stack
+  (of-object "HildonProgram")
+  (c-name "hildon_program_peek_window_stack")
+  (return-type "HildonStackableWindow*")
+)
+
+(define-method go_to_root_window
+  (of-object "HildonProgram")
+  (c-name "hildon_program_go_to_root_window")
+  (return-type "none")
 )
 
 

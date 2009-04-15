@@ -44,15 +44,23 @@
   (return-type "GtkMenu*")
 )
 
-; Deprecated
-;(define-method set_menu
-;  (of-object "HildonWindow")
-;  (c-name "hildon_window_set_menu")
-;  (return-type "none")
-;  (parameters
-;    '("GtkMenu*" "menu")
-;  )
-;)
+(define-method set_main_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_main_menu")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu")
+  )
+)
+
+(define-method set_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_menu")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu")
+  )
+)
 
 (define-method add_toolbar
   (of-object "HildonWindow")
@@ -69,6 +77,15 @@
   (return-type "none")
   (parameters
     '("GtkToolbar*" "toolbar")
+  )
+)
+
+(define-method set_edit_toolbar
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_edit_toolbar")
+  (return-type "none")
+  (parameters
+    '("HildonEditToolbar*" "toolbar")
   )
 )
 
