@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
 Build-Depends: debhelper (>= 5),
-               python-support,
+               python-support (>= 0.7.6),
                gnome-pkg-tools (>= 0.10),
                cdbs,
                python2.5-dev (>= 2.5.2-5),
@@ -35,7 +35,7 @@ Python-Depends: python-numeric (>= 24.2-3),
 Suggests: python-gtk2-doc
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
-Replaces: python2.5-gtk2 (<< ${binary:Version})
+Replaces: python2.5-gtk2 (<< 2.12.1-6maemo3)
 Conflicts: python-gdk-imlib,
            python-glade,
            python-gnome,
@@ -43,7 +43,7 @@ Conflicts: python-gdk-imlib,
            python2.3-gtk2,
            python2.4-gtk2,
            python-gtk-1.2 (<< 0.6.12-7),
-           python2.5-gtk2 (<< ${binary:Version})
+           python2.5-gtk2 (<< 2.12.1-6maemo3)
 Description: Python bindings for the GTK+ widget set
  This archive contains modules that allow you to use GTK+ in Python
  programs. This package contains the bindings for the version 2.0

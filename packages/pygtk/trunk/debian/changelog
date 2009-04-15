@@ -1,3 +1,15 @@
+pygtk (2.12.1-6maemo6) unstable; urgency=low
+
+  * Add build dependency on python-support >= 0.7.6.
+  * Add debian/hildon_gtkenums_defs.sh script (that automates collecting
+    missing .defs entries parsed from gtkenums.h
+  * Add new patches:
+    + 70-hildon_enums_defs.patch: add missing .defs entries from gtkenums.h
+    + 80-codegen_hildon_compatibility.patch: improve codegen compatibility
+      with Hildon headers.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 14 Apr 2009 21:43:04 -0400
+
 pygtk (2.12.1-6maemo5) unstable; urgency=low
 
   [ Bruno dos Santos de Araujo ]
