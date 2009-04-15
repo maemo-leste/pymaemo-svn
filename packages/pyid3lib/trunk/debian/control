@@ -2,7 +2,6 @@ Source: pyid3lib
 Section: python
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-XSBC-Original-Maintainer: Anderson Lizardo <anderson.lizardo@indt.org.br>
 Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, libid3-3.8.3-dev
 XS-Python-Version: all
 Standards-Version: 3.7.2
@@ -14,5 +13,7 @@ Conflicts: python2.5-id3lib (<< 0.5.1-2maemo1)
 Provides: ${python:Provides}
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 XB-Python-Version: ${python:Versions}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: id3lib wrapper for Python - library
+ pyid3lib is a Python module for editing ID3v2 tags of MP3 audio files. It
+ requires id3lib, an open-source, cross-platform software development library
+ for reading, writing, and manipulating ID3v1 and ID3v2 tags.

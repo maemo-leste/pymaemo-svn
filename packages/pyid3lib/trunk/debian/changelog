@@ -1,9 +1,17 @@
+pyid3lib (0.5.1-2maemo2) unstable; urgency=low
+
+  * Small packaging fixes.
+  * Add proper package description to debian/control.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 13 Apr 2009 09:02:54 -0400
+
 pyid3lib (0.5.1-2maemo1) unstable; urgency=low
 
   [ Anderson Lizardo ]
   * Initial release (CDBS repackaging).
 
-   * Put the pymaemo-developers mailing list address in "Maintainer" field and
+  [ Bruno dos Santos de Araujo ]
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
     move original value to a separate field.
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu,  9 Apr 2009 09:26:38 -0400
