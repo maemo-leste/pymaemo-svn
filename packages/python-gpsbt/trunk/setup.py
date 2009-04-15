@@ -1,5 +1,12 @@
+import os
 from distutils.core import setup, Extension
 from Pyrex.Distutils import build_ext
+
+class BuildExt(build_ext):
+    def run(self):
+	# Hack to get compilation working in newer maemo targets
+	os.environ['LD_PRELOAD'] = os.environ.get('SBOX_PRELOAD')
+        build_ext.run(self)
 
 #Common attributes to be used by Extension
 common_compile_args = ['-Os',
@@ -17,6 +24,7 @@ common_include_dirs = ['/usr/include',
 
 common_libraries = ['gpsbt',
                     'gpsmgr',
+                    'gps',
                     'glib-2.0']
 
 #Modules to be built
@@ -34,5 +42,5 @@ setup(
         author_email = 'luciano.wolf@indt.org.br',
         url = 'http://www.maemo.org',
         ext_modules = gps_modules,
-        cmdclass = {'build_ext': build_ext}
+        cmdclass = {'build_ext': BuildExt}
 )

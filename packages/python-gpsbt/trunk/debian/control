@@ -1,11 +1,18 @@
 Source: python-gpsbt
-Priority: optional
-Maintainer: Luciano Miguel Wolf <luciano.wolf@indt.org.br>
-Build-Depends: debhelper (>= 4.0.0), python2.5-dev (>= 2.5.1-1osso2), python2.5-pyrex (>= 0.9.4.1-1osso4), libgpsbt-dev (>= 0.1-18)
-Standards-Version: 3.6.1
+Section: python
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-pyrex, libgpsbt-dev
+XS-Python-Version: all
+Standards-Version: 3.7.2
 
-Package: python2.5-gpsbt
+Package: python-gpsbt
 Architecture: any
-Depends: python2.5 (>= 2.5.1-1osso2), ${shlibs:Depends}
-Provides: python-gpsbt
-Description: Python bindings for osso-gpsd lib.
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Provides: ${python:Provides}
+Conflicts: python2.5-gpsbt (<< 0.1-19maemo1)
+Replaces: python2.5-gpsbt (<< 0.1-19maemo1)
+Description: Python bindings for libgpsbt
+ libgpsbt is a library for finding paired bluetooth and internal GPS devices.
+ .
+ This package contains the Python bindings for libgpsbt.

@@ -1,12 +1,31 @@
-This package was debianized by Luciano Miguel Wolf <luciano.wolf@indt.org.br> on
-Tue, 21 Aug 2007 16:50:00 -0300.
+This package was debianized by Anderson Lizardo <anderson.lizardo@indt.org.br>
+on Mon, 17 Nov 2008 14:26:57 -0400.
 
-It was downloaded from http://pymaemo.garage.maemo.org
+It was downloaded from http://pymaemo.garage.maemo.org/
 
-Copyright:
+Upstream Author: 
 
-Upstream Author(s): Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+    Luciano Miguel Wolf <luciano.wolf@indt.org.br>
+
+Copyright: 
+
+    Copyright (C) 2008 Instituto Nokia de Tecnologia
 
 License:
 
-See COPYING file.
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+ 
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+ 
+    You should have received a copy of the GNU General Public License
+    along with this package; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
