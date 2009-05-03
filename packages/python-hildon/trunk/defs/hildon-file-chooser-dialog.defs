@@ -119,7 +119,7 @@
   (c-name "hildon_file_chooser_dialog_set_extension")
   (return-type "none")
   (parameters
-    '("gchar*" "extension")
+    '("const-gchar*" "extension")
   )
 )
 

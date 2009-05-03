@@ -38,12 +38,6 @@
   )
 )
 
-(define-method get_menu
-  (of-object "HildonWindow")
-  (c-name "hildon_window_get_menu")
-  (return-type "GtkMenu*")
-)
-
 (define-method set_main_menu
   (of-object "HildonWindow")
   (c-name "hildon_window_set_main_menu")
@@ -53,6 +47,27 @@
   )
 )
 
+(define-method get_main_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_main_menu")
+  (return-type "GtkMenu*")
+)
+
+(define-method set_app_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_app_menu")
+  (return-type "none")
+  (parameters
+    '("HildonAppMenu*" "menu")
+  )
+)
+
+(define-method get_app_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_app_menu")
+  (return-type "HildonAppMenu*")
+)
+
 (define-method set_menu
   (of-object "HildonWindow")
   (c-name "hildon_window_set_menu")
@@ -60,6 +75,12 @@
   (parameters
     '("GtkMenu*" "menu")
   )
+)
+
+(define-method get_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_menu")
+  (return-type "GtkMenu*")
 )
 
 (define-method add_toolbar
@@ -93,6 +114,21 @@
   (of-object "HildonWindow")
   (c-name "hildon_window_get_is_topmost")
   (return-type "gboolean")
+)
+
+(define-method get_markup
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_markup")
+  (return-type "const-gchar*")
+)
+
+(define-method set_markup
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_markup")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "markup")
+  )
 )
 
 

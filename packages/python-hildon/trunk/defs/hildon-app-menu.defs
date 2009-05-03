@@ -70,4 +70,25 @@
   )
 )
 
+(define-method popup
+  (of-object "HildonAppMenu")
+  (c-name "hildon_app_menu_popup")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent_window")
+  )
+)
+
+(define-method get_items
+  (of-object "HildonAppMenu")
+  (c-name "hildon_app_menu_get_items")
+  (return-type "GList*")
+)
+
+(define-method get_filters
+  (of-object "HildonAppMenu")
+  (c-name "hildon_app_menu_get_filters")
+  (return-type "GList*")
+)
+
 

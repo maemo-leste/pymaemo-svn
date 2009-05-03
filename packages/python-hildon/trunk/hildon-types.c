@@ -25,6 +25,50 @@
 
 #include "hildon-types.h"
 
+/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-model.h" */
+
+GType
+hildon_file_system_model_columns_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_GTK_PATH_INTERNAL, "HILDON_FILE_SYSTEM_MODEL_COLUMN_GTK_PATH_INTERNAL", "column-gtk-path-internal" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_LOCAL_PATH, "HILDON_FILE_SYSTEM_MODEL_COLUMN_LOCAL_PATH", "column-local-path" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_URI, "HILDON_FILE_SYSTEM_MODEL_COLUMN_URI", "column-uri" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_NAME, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_NAME", "column-file-name" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_DISPLAY_NAME, "HILDON_FILE_SYSTEM_MODEL_COLUMN_DISPLAY_NAME", "column-display-name" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_KEY, "HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_KEY", "column-sort-key" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_MIME_TYPE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_MIME_TYPE", "column-mime-type" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_SIZE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_SIZE", "column-file-size" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_TIME, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_TIME", "column-file-time" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_FOLDER, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_FOLDER", "column-is-folder" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_AVAILABLE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_AVAILABLE", "column-is-available" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_HAS_LOCAL_PATH, "HILDON_FILE_SYSTEM_MODEL_COLUMN_HAS_LOCAL_PATH", "column-has-local-path" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_TYPE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_TYPE", "column-type" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON, "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON", "column-icon" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_EXPANDED, "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_EXPANDED", "column-icon-expanded" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_COLLAPSED, "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_COLLAPSED", "column-icon-collapsed" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_THUMBNAIL, "HILDON_FILE_SYSTEM_MODEL_COLUMN_THUMBNAIL", "column-thumbnail" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_LOAD_READY, "HILDON_FILE_SYSTEM_MODEL_COLUMN_LOAD_READY", "column-load-ready" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FREE_SPACE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FREE_SPACE", "column-free-space" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_TITLE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_TITLE", "column-title" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_AUTHOR, "HILDON_FILE_SYSTEM_MODEL_COLUMN_AUTHOR", "column-author" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_HIDDEN, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_HIDDEN", "column-is-hidden" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_UNAVAILABLE_REASON, "HILDON_FILE_SYSTEM_MODEL_COLUMN_UNAVAILABLE_REASON", "column-unavailable-reason" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FAILED_ACCESS_MESSAGE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FAILED_ACCESS_MESSAGE", "column-failed-access-message" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_WEIGHT, "HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_WEIGHT", "column-sort-weight" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_EXTRA_INFO, "HILDON_FILE_SYSTEM_MODEL_COLUMN_EXTRA_INFO", "column-extra-info" },
+            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_DRIVE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_DRIVE", "column-is-drive" },
+            { HILDON_FILE_SYSTEM_MODEL_NUM_COLUMNS, "HILDON_FILE_SYSTEM_MODEL_NUM_COLUMNS", "num-columns" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("HildonFileSystemModelColumns", values);
+    }
+    return etype;
+}
+
+
 /* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-selection.h" */
 
 GType
@@ -107,7 +151,6 @@ hildon_file_system_model_item_type_get_type (void)
             { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_VIDEOS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_VIDEOS", "safe-folder-videos" },
             { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS", "safe-folder-sounds" },
             { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS", "safe-folder-documents" },
-            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_GAMES, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_GAMES", "safe-folder-games" },
             { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA", "safe-folder-camera" },
             { HILDON_FILE_SYSTEM_MODEL_MMC, "HILDON_FILE_SYSTEM_MODEL_MMC", "mmc" },
             { HILDON_FILE_SYSTEM_MODEL_GATEWAY, "HILDON_FILE_SYSTEM_MODEL_GATEWAY", "gateway" },
@@ -120,45 +163,20 @@ hildon_file_system_model_item_type_get_type (void)
 }
 
 
-/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-model.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-window.h" */
 
 GType
-hildon_file_system_model_columns_get_type (void)
+hildon_window_clipboard_operation_get_type (void)
 {
     static GType etype = 0;
     if (etype == 0) {
         static const GEnumValue values[] = {
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_GTK_PATH_INTERNAL, "HILDON_FILE_SYSTEM_MODEL_COLUMN_GTK_PATH_INTERNAL", "column-gtk-path-internal" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_LOCAL_PATH, "HILDON_FILE_SYSTEM_MODEL_COLUMN_LOCAL_PATH", "column-local-path" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_URI, "HILDON_FILE_SYSTEM_MODEL_COLUMN_URI", "column-uri" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_NAME, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_NAME", "column-file-name" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_DISPLAY_NAME, "HILDON_FILE_SYSTEM_MODEL_COLUMN_DISPLAY_NAME", "column-display-name" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_KEY, "HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_KEY", "column-sort-key" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_MIME_TYPE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_MIME_TYPE", "column-mime-type" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_SIZE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_SIZE", "column-file-size" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_TIME, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_TIME", "column-file-time" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_FOLDER, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_FOLDER", "column-is-folder" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_AVAILABLE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_AVAILABLE", "column-is-available" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_HAS_LOCAL_PATH, "HILDON_FILE_SYSTEM_MODEL_COLUMN_HAS_LOCAL_PATH", "column-has-local-path" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_TYPE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_TYPE", "column-type" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON, "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON", "column-icon" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_EXPANDED, "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_EXPANDED", "column-icon-expanded" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_COLLAPSED, "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON_COLLAPSED", "column-icon-collapsed" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_THUMBNAIL, "HILDON_FILE_SYSTEM_MODEL_COLUMN_THUMBNAIL", "column-thumbnail" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_LOAD_READY, "HILDON_FILE_SYSTEM_MODEL_COLUMN_LOAD_READY", "column-load-ready" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FREE_SPACE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FREE_SPACE", "column-free-space" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_TITLE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_TITLE", "column-title" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_AUTHOR, "HILDON_FILE_SYSTEM_MODEL_COLUMN_AUTHOR", "column-author" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_HIDDEN, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_HIDDEN", "column-is-hidden" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_UNAVAILABLE_REASON, "HILDON_FILE_SYSTEM_MODEL_COLUMN_UNAVAILABLE_REASON", "column-unavailable-reason" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_FAILED_ACCESS_MESSAGE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_FAILED_ACCESS_MESSAGE", "column-failed-access-message" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_WEIGHT, "HILDON_FILE_SYSTEM_MODEL_COLUMN_SORT_WEIGHT", "column-sort-weight" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_EXTRA_INFO, "HILDON_FILE_SYSTEM_MODEL_COLUMN_EXTRA_INFO", "column-extra-info" },
-            { HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_DRIVE, "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_DRIVE", "column-is-drive" },
-            { HILDON_FILE_SYSTEM_MODEL_NUM_COLUMNS, "HILDON_FILE_SYSTEM_MODEL_NUM_COLUMNS", "num-columns" },
+            { HILDON_WINDOW_CO_COPY, "HILDON_WINDOW_CO_COPY", "copy" },
+            { HILDON_WINDOW_CO_CUT, "HILDON_WINDOW_CO_CUT", "cut" },
+            { HILDON_WINDOW_CO_PASTE, "HILDON_WINDOW_CO_PASTE", "paste" },
             { 0, NULL, NULL }
         };
-        etype = g_enum_register_static ("HildonFileSystemModelColumns", values);
+        etype = g_enum_register_static ("HildonWindowClipboardOperation", values);
     }
     return etype;
 }
@@ -177,6 +195,46 @@ hildon_touch_selector_selection_mode_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static ("HildonTouchSelectorSelectionMode", values);
+    }
+    return etype;
+}
+
+
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-time-editor.h" */
+
+GType
+hildon_date_time_error_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { HILDON_DATE_TIME_ERROR_NO_ERROR, "HILDON_DATE_TIME_ERROR_NO_ERROR", "no-error" },
+            { HILDON_DATE_TIME_ERROR_MAX_HOURS, "HILDON_DATE_TIME_ERROR_MAX_HOURS", "max-hours" },
+            { HILDON_DATE_TIME_ERROR_MAX_MINS, "HILDON_DATE_TIME_ERROR_MAX_MINS", "max-mins" },
+            { HILDON_DATE_TIME_ERROR_MAX_SECS, "HILDON_DATE_TIME_ERROR_MAX_SECS", "max-secs" },
+            { HILDON_DATE_TIME_ERROR_MAX_DAY, "HILDON_DATE_TIME_ERROR_MAX_DAY", "max-day" },
+            { HILDON_DATE_TIME_ERROR_MAX_MONTH, "HILDON_DATE_TIME_ERROR_MAX_MONTH", "max-month" },
+            { HILDON_DATE_TIME_ERROR_MAX_YEAR, "HILDON_DATE_TIME_ERROR_MAX_YEAR", "max-year" },
+            { HILDON_DATE_TIME_ERROR_MIN_HOURS, "HILDON_DATE_TIME_ERROR_MIN_HOURS", "min-hours" },
+            { HILDON_DATE_TIME_ERROR_MIN_MINS, "HILDON_DATE_TIME_ERROR_MIN_MINS", "min-mins" },
+            { HILDON_DATE_TIME_ERROR_MIN_SECS, "HILDON_DATE_TIME_ERROR_MIN_SECS", "min-secs" },
+            { HILDON_DATE_TIME_ERROR_MIN_DAY, "HILDON_DATE_TIME_ERROR_MIN_DAY", "min-day" },
+            { HILDON_DATE_TIME_ERROR_MIN_MONTH, "HILDON_DATE_TIME_ERROR_MIN_MONTH", "min-month" },
+            { HILDON_DATE_TIME_ERROR_MIN_YEAR, "HILDON_DATE_TIME_ERROR_MIN_YEAR", "min-year" },
+            { HILDON_DATE_TIME_ERROR_EMPTY_HOURS, "HILDON_DATE_TIME_ERROR_EMPTY_HOURS", "empty-hours" },
+            { HILDON_DATE_TIME_ERROR_EMPTY_MINS, "HILDON_DATE_TIME_ERROR_EMPTY_MINS", "empty-mins" },
+            { HILDON_DATE_TIME_ERROR_EMPTY_SECS, "HILDON_DATE_TIME_ERROR_EMPTY_SECS", "empty-secs" },
+            { HILDON_DATE_TIME_ERROR_EMPTY_DAY, "HILDON_DATE_TIME_ERROR_EMPTY_DAY", "empty-day" },
+            { HILDON_DATE_TIME_ERROR_EMPTY_MONTH, "HILDON_DATE_TIME_ERROR_EMPTY_MONTH", "empty-month" },
+            { HILDON_DATE_TIME_ERROR_EMPTY_YEAR, "HILDON_DATE_TIME_ERROR_EMPTY_YEAR", "empty-year" },
+            { HILDON_DATE_TIME_ERROR_MIN_DURATION, "HILDON_DATE_TIME_ERROR_MIN_DURATION", "min-duration" },
+            { HILDON_DATE_TIME_ERROR_MAX_DURATION, "HILDON_DATE_TIME_ERROR_MAX_DURATION", "max-duration" },
+            { HILDON_DATE_TIME_ERROR_INVALID_CHAR, "HILDON_DATE_TIME_ERROR_INVALID_CHAR", "invalid-char" },
+            { HILDON_DATE_TIME_ERROR_INVALID_DATE, "HILDON_DATE_TIME_ERROR_INVALID_DATE", "invalid-date" },
+            { HILDON_DATE_TIME_ERROR_INVALID_TIME, "HILDON_DATE_TIME_ERROR_INVALID_TIME", "invalid-time" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("HildonDateTimeError", values);
     }
     return etype;
 }
@@ -249,6 +307,68 @@ hildon_size_request_policy_get_type (void)
 }
 
 
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-wizard-dialog.h" */
+
+GType
+hildon_wizard_dialog_response_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { HILDON_WIZARD_DIALOG_CANCEL, "HILDON_WIZARD_DIALOG_CANCEL", "cancel" },
+            { HILDON_WIZARD_DIALOG_PREVIOUS, "HILDON_WIZARD_DIALOG_PREVIOUS", "previous" },
+            { HILDON_WIZARD_DIALOG_NEXT, "HILDON_WIZARD_DIALOG_NEXT", "next" },
+            { HILDON_WIZARD_DIALOG_FINISH, "HILDON_WIZARD_DIALOG_FINISH", "finish" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("HildonWizardDialogResponse", values);
+    }
+    return etype;
+}
+
+
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-calendar.h" */
+
+GType
+hildon_calendar_display_options_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GFlagsValue values[] = {
+            { HILDON_CALENDAR_SHOW_HEADING, "HILDON_CALENDAR_SHOW_HEADING", "show-heading" },
+            { HILDON_CALENDAR_SHOW_DAY_NAMES, "HILDON_CALENDAR_SHOW_DAY_NAMES", "show-day-names" },
+            { HILDON_CALENDAR_NO_MONTH_CHANGE, "HILDON_CALENDAR_NO_MONTH_CHANGE", "no-month-change" },
+            { HILDON_CALENDAR_SHOW_WEEK_NUMBERS, "HILDON_CALENDAR_SHOW_WEEK_NUMBERS", "show-week-numbers" },
+            { HILDON_CALENDAR_WEEK_START_MONDAY, "HILDON_CALENDAR_WEEK_START_MONDAY", "week-start-monday" },
+            { 0, NULL, NULL }
+        };
+        etype = g_flags_register_static ("HildonCalendarDisplayOptions", values);
+    }
+    return etype;
+}
+
+
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-note.h" */
+
+GType
+hildon_note_type_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { HILDON_NOTE_TYPE_CONFIRMATION, "HILDON_NOTE_TYPE_CONFIRMATION", "confirmation" },
+            { HILDON_NOTE_TYPE_CONFIRMATION_BUTTON, "HILDON_NOTE_TYPE_CONFIRMATION_BUTTON", "confirmation-button" },
+            { HILDON_NOTE_TYPE_INFORMATION, "HILDON_NOTE_TYPE_INFORMATION", "information" },
+            { HILDON_NOTE_TYPE_INFORMATION_THEME, "HILDON_NOTE_TYPE_INFORMATION_THEME", "information-theme" },
+            { HILDON_NOTE_TYPE_PROGRESSBAR, "HILDON_NOTE_TYPE_PROGRESSBAR", "progressbar" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("HildonNoteType", values);
+    }
+    return etype;
+}
+
+
 /* enumerations from "/usr/include/hildon-1/hildon/hildon-button.h" */
 
 GType
@@ -277,106 +397,6 @@ hildon_button_style_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static ("HildonButtonStyle", values);
-    }
-    return etype;
-}
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-note.h" */
-
-GType
-hildon_note_type_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { HILDON_NOTE_TYPE_CONFIRMATION, "HILDON_NOTE_TYPE_CONFIRMATION", "confirmation" },
-            { HILDON_NOTE_TYPE_CONFIRMATION_BUTTON, "HILDON_NOTE_TYPE_CONFIRMATION_BUTTON", "confirmation-button" },
-            { HILDON_NOTE_TYPE_INFORMATION, "HILDON_NOTE_TYPE_INFORMATION", "information" },
-            { HILDON_NOTE_TYPE_INFORMATION_THEME, "HILDON_NOTE_TYPE_INFORMATION_THEME", "information-theme" },
-            { HILDON_NOTE_TYPE_PROGRESSBAR, "HILDON_NOTE_TYPE_PROGRESSBAR", "progressbar" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("HildonNoteType", values);
-    }
-    return etype;
-}
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-calendar.h" */
-
-GType
-hildon_calendar_display_options_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GFlagsValue values[] = {
-            { HILDON_CALENDAR_SHOW_HEADING, "HILDON_CALENDAR_SHOW_HEADING", "show-heading" },
-            { HILDON_CALENDAR_SHOW_DAY_NAMES, "HILDON_CALENDAR_SHOW_DAY_NAMES", "show-day-names" },
-            { HILDON_CALENDAR_NO_MONTH_CHANGE, "HILDON_CALENDAR_NO_MONTH_CHANGE", "no-month-change" },
-            { HILDON_CALENDAR_SHOW_WEEK_NUMBERS, "HILDON_CALENDAR_SHOW_WEEK_NUMBERS", "show-week-numbers" },
-            { HILDON_CALENDAR_WEEK_START_MONDAY, "HILDON_CALENDAR_WEEK_START_MONDAY", "week-start-monday" },
-            { 0, NULL, NULL }
-        };
-        etype = g_flags_register_static ("HildonCalendarDisplayOptions", values);
-    }
-    return etype;
-}
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-number-editor.h" */
-
-GType
-hildon_number_editor_error_type_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { HILDON_NUMBER_EDITOR_ERROR_MAXIMUM_VALUE_EXCEED, "HILDON_NUMBER_EDITOR_ERROR_MAXIMUM_VALUE_EXCEED", "maximum-value-exceed" },
-            { HILDON_NUMBER_EDITOR_ERROR_MINIMUM_VALUE_EXCEED, "HILDON_NUMBER_EDITOR_ERROR_MINIMUM_VALUE_EXCEED", "minimum-value-exceed" },
-            { HILDON_NUMBER_EDITOR_ERROR_ERRONEOUS_VALUE, "HILDON_NUMBER_EDITOR_ERROR_ERRONEOUS_VALUE", "erroneous-value" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("HildonNumberEditorErrorType", values);
-    }
-    return etype;
-}
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-wizard-dialog.h" */
-
-GType
-hildon_wizard_dialog_response_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { HILDON_WIZARD_DIALOG_CANCEL, "HILDON_WIZARD_DIALOG_CANCEL", "cancel" },
-            { HILDON_WIZARD_DIALOG_PREVIOUS, "HILDON_WIZARD_DIALOG_PREVIOUS", "previous" },
-            { HILDON_WIZARD_DIALOG_NEXT, "HILDON_WIZARD_DIALOG_NEXT", "next" },
-            { HILDON_WIZARD_DIALOG_FINISH, "HILDON_WIZARD_DIALOG_FINISH", "finish" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("HildonWizardDialogResponse", values);
-    }
-    return etype;
-}
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-window.h" */
-
-GType
-hildon_window_clipboard_operation_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { HILDON_WINDOW_CO_COPY, "HILDON_WINDOW_CO_COPY", "copy" },
-            { HILDON_WINDOW_CO_CUT, "HILDON_WINDOW_CO_CUT", "cut" },
-            { HILDON_WINDOW_CO_PASTE, "HILDON_WINDOW_CO_PASTE", "paste" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("HildonWindowClipboardOperation", values);
     }
     return etype;
 }
@@ -415,41 +435,20 @@ hildon_caption_icon_position_get_type (void)
 }
 
 
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-time-editor.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-number-editor.h" */
 
 GType
-hildon_date_time_error_get_type (void)
+hildon_number_editor_error_type_get_type (void)
 {
     static GType etype = 0;
     if (etype == 0) {
         static const GEnumValue values[] = {
-            { HILDON_DATE_TIME_ERROR_NO_ERROR, "HILDON_DATE_TIME_ERROR_NO_ERROR", "no-error" },
-            { HILDON_DATE_TIME_ERROR_MAX_HOURS, "HILDON_DATE_TIME_ERROR_MAX_HOURS", "max-hours" },
-            { HILDON_DATE_TIME_ERROR_MAX_MINS, "HILDON_DATE_TIME_ERROR_MAX_MINS", "max-mins" },
-            { HILDON_DATE_TIME_ERROR_MAX_SECS, "HILDON_DATE_TIME_ERROR_MAX_SECS", "max-secs" },
-            { HILDON_DATE_TIME_ERROR_MAX_DAY, "HILDON_DATE_TIME_ERROR_MAX_DAY", "max-day" },
-            { HILDON_DATE_TIME_ERROR_MAX_MONTH, "HILDON_DATE_TIME_ERROR_MAX_MONTH", "max-month" },
-            { HILDON_DATE_TIME_ERROR_MAX_YEAR, "HILDON_DATE_TIME_ERROR_MAX_YEAR", "max-year" },
-            { HILDON_DATE_TIME_ERROR_MIN_HOURS, "HILDON_DATE_TIME_ERROR_MIN_HOURS", "min-hours" },
-            { HILDON_DATE_TIME_ERROR_MIN_MINS, "HILDON_DATE_TIME_ERROR_MIN_MINS", "min-mins" },
-            { HILDON_DATE_TIME_ERROR_MIN_SECS, "HILDON_DATE_TIME_ERROR_MIN_SECS", "min-secs" },
-            { HILDON_DATE_TIME_ERROR_MIN_DAY, "HILDON_DATE_TIME_ERROR_MIN_DAY", "min-day" },
-            { HILDON_DATE_TIME_ERROR_MIN_MONTH, "HILDON_DATE_TIME_ERROR_MIN_MONTH", "min-month" },
-            { HILDON_DATE_TIME_ERROR_MIN_YEAR, "HILDON_DATE_TIME_ERROR_MIN_YEAR", "min-year" },
-            { HILDON_DATE_TIME_ERROR_EMPTY_HOURS, "HILDON_DATE_TIME_ERROR_EMPTY_HOURS", "empty-hours" },
-            { HILDON_DATE_TIME_ERROR_EMPTY_MINS, "HILDON_DATE_TIME_ERROR_EMPTY_MINS", "empty-mins" },
-            { HILDON_DATE_TIME_ERROR_EMPTY_SECS, "HILDON_DATE_TIME_ERROR_EMPTY_SECS", "empty-secs" },
-            { HILDON_DATE_TIME_ERROR_EMPTY_DAY, "HILDON_DATE_TIME_ERROR_EMPTY_DAY", "empty-day" },
-            { HILDON_DATE_TIME_ERROR_EMPTY_MONTH, "HILDON_DATE_TIME_ERROR_EMPTY_MONTH", "empty-month" },
-            { HILDON_DATE_TIME_ERROR_EMPTY_YEAR, "HILDON_DATE_TIME_ERROR_EMPTY_YEAR", "empty-year" },
-            { HILDON_DATE_TIME_ERROR_MIN_DURATION, "HILDON_DATE_TIME_ERROR_MIN_DURATION", "min-duration" },
-            { HILDON_DATE_TIME_ERROR_MAX_DURATION, "HILDON_DATE_TIME_ERROR_MAX_DURATION", "max-duration" },
-            { HILDON_DATE_TIME_ERROR_INVALID_CHAR, "HILDON_DATE_TIME_ERROR_INVALID_CHAR", "invalid-char" },
-            { HILDON_DATE_TIME_ERROR_INVALID_DATE, "HILDON_DATE_TIME_ERROR_INVALID_DATE", "invalid-date" },
-            { HILDON_DATE_TIME_ERROR_INVALID_TIME, "HILDON_DATE_TIME_ERROR_INVALID_TIME", "invalid-time" },
+            { HILDON_NUMBER_EDITOR_ERROR_MAXIMUM_VALUE_EXCEED, "HILDON_NUMBER_EDITOR_ERROR_MAXIMUM_VALUE_EXCEED", "maximum-value-exceed" },
+            { HILDON_NUMBER_EDITOR_ERROR_MINIMUM_VALUE_EXCEED, "HILDON_NUMBER_EDITOR_ERROR_MINIMUM_VALUE_EXCEED", "minimum-value-exceed" },
+            { HILDON_NUMBER_EDITOR_ERROR_ERRONEOUS_VALUE, "HILDON_NUMBER_EDITOR_ERROR_ERRONEOUS_VALUE", "erroneous-value" },
             { 0, NULL, NULL }
         };
-        etype = g_enum_register_static ("HildonDateTimeError", values);
+        etype = g_enum_register_static ("HildonNumberEditorErrorType", values);
     }
     return etype;
 }

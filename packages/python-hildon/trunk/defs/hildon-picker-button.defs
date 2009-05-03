@@ -72,4 +72,10 @@
   )
 )
 
+(define-method value_changed
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_value_changed")
+  (return-type "none")
+)
+
 

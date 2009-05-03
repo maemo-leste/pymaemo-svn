@@ -58,4 +58,10 @@
   )
 )
 
+(define-method get_entry
+  (of-object "HildonTouchSelectorEntry")
+  (c-name "hildon_touch_selector_entry_get_entry")
+  (return-type "HildonEntry*")
+)
+
 

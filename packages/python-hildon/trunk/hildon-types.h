@@ -28,6 +28,12 @@
 #include "hildon-includes.h"
 
 
+/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-model.h" */
+
+GType hildon_file_system_model_columns_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SYSTEM_MODEL_COLUMNS (hildon_file_system_model_columns_get_type())
+
+
 /* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-selection.h" */
 
 GType hildon_file_selection_mode_get_type (void) G_GNUC_CONST;
@@ -49,16 +55,22 @@ GType hildon_file_system_model_item_type_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_FILE_SYSTEM_MODEL_ITEM_TYPE (hildon_file_system_model_item_type_get_type())
 
 
-/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-model.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-window.h" */
 
-GType hildon_file_system_model_columns_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_FILE_SYSTEM_MODEL_COLUMNS (hildon_file_system_model_columns_get_type())
+GType hildon_window_clipboard_operation_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_WINDOW_CLIPBOARD_OPERATION (hildon_window_clipboard_operation_get_type())
 
 
 /* enumerations from "/usr/include/hildon-1/hildon/hildon-touch-selector.h" */
 
 GType hildon_touch_selector_selection_mode_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_TOUCH_SELECTOR_SELECTION_MODE (hildon_touch_selector_selection_mode_get_type())
+
+
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-time-editor.h" */
+
+GType hildon_date_time_error_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_DATE_TIME_ERROR (hildon_date_time_error_get_type())
 
 
 /* enumerations from "/usr/include/hildon-1/hildon/hildon-pannable-area.h" */
@@ -76,19 +88,10 @@ GType hildon_size_request_policy_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_SIZE_REQUEST_POLICY (hildon_size_request_policy_get_type())
 
 
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-button.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-wizard-dialog.h" */
 
-GType hildon_button_arrangement_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_BUTTON_ARRANGEMENT (hildon_button_arrangement_get_type())
-
-GType hildon_button_style_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_BUTTON_STYLE (hildon_button_style_get_type())
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-note.h" */
-
-GType hildon_note_type_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_NOTE_TYPE (hildon_note_type_get_type())
+GType hildon_wizard_dialog_response_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_WIZARD_DIALOG_RESPONSE (hildon_wizard_dialog_response_get_type())
 
 
 /* enumerations from "/usr/include/hildon-1/hildon/hildon-calendar.h" */
@@ -97,22 +100,19 @@ GType hildon_calendar_display_options_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_CALENDAR_DISPLAY_OPTIONS (hildon_calendar_display_options_get_type())
 
 
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-number-editor.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-note.h" */
 
-GType hildon_number_editor_error_type_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_NUMBER_EDITOR_ERROR_TYPE (hildon_number_editor_error_type_get_type())
-
-
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-wizard-dialog.h" */
-
-GType hildon_wizard_dialog_response_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_WIZARD_DIALOG_RESPONSE (hildon_wizard_dialog_response_get_type())
+GType hildon_note_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_NOTE_TYPE (hildon_note_type_get_type())
 
 
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-window.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-button.h" */
 
-GType hildon_window_clipboard_operation_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_WINDOW_CLIPBOARD_OPERATION (hildon_window_clipboard_operation_get_type())
+GType hildon_button_arrangement_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_BUTTON_ARRANGEMENT (hildon_button_arrangement_get_type())
+
+GType hildon_button_style_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_BUTTON_STYLE (hildon_button_style_get_type())
 
 
 /* enumerations from "/usr/include/hildon-1/hildon/hildon-caption.h" */
@@ -124,10 +124,10 @@ GType hildon_caption_icon_position_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_CAPTION_ICON_POSITION (hildon_caption_icon_position_get_type())
 
 
-/* enumerations from "/usr/include/hildon-1/hildon/hildon-time-editor.h" */
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-number-editor.h" */
 
-GType hildon_date_time_error_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_DATE_TIME_ERROR (hildon_date_time_error_get_type())
+GType hildon_number_editor_error_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_NUMBER_EDITOR_ERROR_TYPE (hildon_number_editor_error_type_get_type())
 
 
 /* enumerations from "/usr/include/glib-2.0/glib/gdate.h" */

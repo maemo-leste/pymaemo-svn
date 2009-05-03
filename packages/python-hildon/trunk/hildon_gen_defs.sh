@@ -3,8 +3,8 @@
 # Author: Anderson Lizardo <anderson.lizardo@indt.org.br>
 set -e
 
-#dev_packages="libhildon1-dev libhildondesktop1-dev libhildonfm2-dev libhildonhelp-dev"
-dev_packages="libhildon1-dev libhildonfm2-dev libhildonhelp-dev"
+#dev_packages="libhildon1-dev libhildondesktop1-dev libhildonfm2-dev"
+dev_packages="libhildon1-dev libhildonfm2-dev"
 #codegen_dir="$(pkg-config --variable=codegendir pygtk-2.0)"
 codegen_dir=$HOME/workspace/pygtk/pygtk-2.12.1-codegen
 # contains some enums used in HildonWeekdayPicker
@@ -14,7 +14,8 @@ mkdir -p defs
 
 headers=""
 for p in $dev_packages; do
-	headers="$(dpkg -L $p | grep '\.h$') $headers"
+	# Exclude hildon-fm.h due to MB#4450
+	headers="$(dpkg -L $p | grep '\.h$' | grep -v 'hildon/hildon-fm\.h$') $headers"
 done
 
 echo Parsing .h files and creating .defs...

@@ -239,6 +239,17 @@
   )
 )
 
+(define-method set_print_func_full
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_print_func_full")
+  (return-type "none")
+  (parameters
+    '("HildonTouchSelectorPrintFunc" "func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "destroy_func")
+  )
+)
+
 (define-method get_print_func
   (of-object "HildonTouchSelector")
   (c-name "hildon_touch_selector_get_print_func")

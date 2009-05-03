@@ -14,8 +14,6 @@ hildon = TemplateExtension(name = "hildon",
                            pkc_version = "2.1.42",
                            pygobject_pkc = ("libhildondesktop-1",
                                             "hildon-fm-2",
-                                            "hildon-help",
-                                            "libgtkhtml-3.8", # for hildon-help
                                             "pygobject-2.0",
                                            ),
                            sources = ["hildonmodule.c",
