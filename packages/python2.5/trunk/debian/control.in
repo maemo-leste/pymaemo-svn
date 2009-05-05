@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
-Build-Depends: debhelper (>= 5), autoconf, automake1.9, libreadline4-dev, zlib1g-dev, libgdbm-dev, libssl-dev, libbz2-dev, libbluetooth3-dev, locales, libsqlite3-dev, libffi-dev (>= 3.0.5-2), netbase, lsb-release, bzip2
+Build-Depends: debhelper (>= 5), autoconf, automake1.9, libreadline4-dev, zlib1g-dev, libgdbm-dev, libssl-dev, libbz2-dev, libbluetooth3-dev, locales, libffi-dev (>= 3.0.5-2), netbase, lsb-release, bzip2
 Build-Depends-Indep: libhtml-tree-perl, texinfo, debiandoc-sgml, sharutils
 Build-Conflicts: tcl8.3-dev, tk8.3-dev, @PVER@-xml, python-xml
 XS-Python-Version: @VER@
