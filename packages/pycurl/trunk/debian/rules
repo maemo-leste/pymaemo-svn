@@ -13,7 +13,7 @@ PYVERS := $(shell pyversions -vs)
 build: build-stamp
 
 build-stamp: DH_OPTIONS=
-build-stamp: patch-stamp $(PYVERS:%=build-python%)
+build-stamp: $(PYVERS:%=build-python%)
 	touch build-stamp
 
 build-python%: patch

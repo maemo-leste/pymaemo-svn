@@ -3,7 +3,7 @@ Section: python
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 5.0.37.1), python-all-dev (>= 2.3.5-9), libcurl4-openssl-dev (>= 7.18.1), quilt (>> 0.45)
+Build-Depends: debhelper (>= 5.0.37.1), python-all-dev (>= 2.3.5-9), python-all-dbg (>= 2.3.5-9), libcurl4-openssl-dev (>= 7.18.1), quilt (>> 0.45), python-central (>= 0.6.8)
 Standards-Version: 3.7.3
 XS-Python-Version: all
 
