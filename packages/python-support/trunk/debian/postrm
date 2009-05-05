@@ -3,6 +3,10 @@ set -e
 
 #DEBHELPER#
 
+if [ -L /var/lib/python-support ]; then
+  rm -f /var/lib/python-support
+fi
+
 if [ "$1" = "purge" ]; then
-  rm -rf /var/lib/python-support
+  rm -rf /usr/lib/pymodules
 fi

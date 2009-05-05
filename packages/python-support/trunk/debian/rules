@@ -2,8 +2,7 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 
-PY=$(shell pyversions -d)
-SUPP=$(shell $(PY) -c 'import pysupport; print " ".join(pysupport.py_supported)')
+SUPP=$(shell python -c 'import pysupport; print " ".join(pysupport.py_supported)')
 
 clean::
 	rm -f debhelper/dh_pysupport.1 *.pyc
@@ -13,6 +12,11 @@ build/python-support::
 
 binary-install/python-support::
 	for ver in $(SUPP); do \
-	  mkdir -p debian/python-support/usr/lib/$$ver/site-packages ;\
-	  ln -s /var/lib/python-support/$$ver/.path debian/python-support/usr/lib/$$ver/site-packages/python-support.pth ;\
+          if dpkg --compare-versions $$ver ge python2.6; then \
+            subdir=dist-packages ; \
+          else \
+            subdir=site-packages ; \
+          fi ; \
+	  mkdir -p debian/python-support/usr/lib/$$ver/$$subdir ;\
+	  ln -s ../../pymodules/$$ver/.path debian/python-support/usr/lib/$$ver/$$subdir/python-support.pth ;\
 	done

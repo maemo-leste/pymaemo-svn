@@ -1,3 +1,138 @@
+python-support (1.0.2maemo1) unstable; urgency=low
+
+  * New version from Debian sid. 
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  4 May 2009 09:39:12 -0400
+
+python-support (1.0.2) unstable; urgency=low
+
+  * dh_pysupport: remove warning about compatibility mode.
+  * movemodules: list files in /usr/share/pyshared, so that this place 
+    can be used as a destination for stuff installed by hand.
+  * Switch to debhelper compatibility mode 7.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 15 Apr 2009 16:25:13 +0200
+
+python-support (1.0.1) unstable; urgency=low
+
+  * update-python-modules:
+    + Use the warning() function for all warnings. Closes: #522856.
+  * movemodules:
+    + Read links destinations instead of their contents, so that we can 
+      support dangling symbolic links. Closes: #523033.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 08 Apr 2009 12:23:23 +0200
+
+python-support (1.0.0) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 06 Apr 2009 13:22:14 +0200
+
+python-support (0.90.5) experimental; urgency=low
+
+  * movemodules:
+    + Better handling of files from multiple sources, used for files 
+      being installed in different directories for python2.5 and 2.6.
+    + Add /usr/local/lib/pythonX.Y/dist-packages as a source for 
+      modules.
+    + Use hashlib instead of md5. Closes: #519189.
+  * Require python 2.5 for the hashlib module.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 26 Mar 2009 19:09:31 +0100
+
+python-support (0.90.4) experimental; urgency=low
+
+  * movemodules:
+    + When moving relative symbolic links, handle the case where we move 
+      several of them.
+    + Support dist-packages as a source for modules.
+  * rules: install the .pth in dist-packages for python2.6.
+    Closes: #518826.
+  * update-python-modules: fix a crash occurring when a package drops 
+    some supported versions. Closes: #518973.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 24 Mar 2009 16:24:12 +0100
+
+python-support (0.90.3) experimental; urgency=low
+
+  * Add a quick guide for maintainers on top of the README. Maybe it 
+    will prevent maintainers from doing useless things they thought were 
+    necessary by reading the rest.
+  * movemodules:
+    + Now that we have the /var/lib/python-support symlink, also move 
+      files from that directory at build time, this will avoid to change 
+      a couple of packages.
+    + Preserve relative symbolic links when moving them to a different 
+      level
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 27 Feb 2009 00:39:41 +0100
+
+python-support (0.90.2) experimental; urgency=low
+
+  * dh_pysupport: match /\.py$/ instead of /.py$/.
+  * movemodules: completely remove empty __init__.py files, they are 
+    added at installation time by update-python-modules.
+  * post{inst,rm}: add a symbolic link in /var/lib/python-support, 
+    otherwise the upgrade will be a big failure for several packages.
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 20 Feb 2009 16:42:52 +0100
+
+python-support (0.90.1) experimental; urgency=low
+
+  * Update priority to match the override.
+  * update-python-modules: add a consistency check for the case when no 
+    packages using python-support are installed.
+  * dh_pysupport: avoid duplicates when handling private modules.
+  * movemodules: correctly support the case where 
+    /usr/lib/pyshared/pythonX.Y is used but more Python versions are 
+    supported.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 19 Feb 2009 19:16:49 +0100
+
+python-support (0.90.0) experimental; urgency=low
+
+  * Major changes to the installed packages format. The old format is 
+    still supported at runtime, but will not be generated anymore.
+  * Private modules now ship foo.private files, containing the metadata 
+    and file listing for the package.
+  * Public modules now ship foo.public files for metadata and listing, 
+    and files go to /usr/{share,lib}/pyshared. Closes: #478178.
+  * The modules installation path was changed to /usr/lib/pymodules.
+  * The private directory has moved to 
+    /usr/share/python-support/private. The specific scripts are now 
+    installed in here.
+  * Important documentation updates.
+  * copyright: point to the correct LGPL location.
+  * Add support for python2.6.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 18 Feb 2009 21:44:25 +0100
+
+python-support (0.8.7) unstable; urgency=low
+
+  * update-python-modules (install_modules):
+    + Make the error message more useful.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 27 Oct 2008 09:02:41 +0100
+
+python-support (0.8.6) unstable; urgency=low
+
+  * update-python-modules (create_dotpath):
+    + Completely ignore lines starting with "import", as they would be 
+      executed by python upon startup.
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 29 Aug 2008 22:31:43 +0200
+
+python-support (0.8.5) unstable; urgency=low
+
+  * update-python-modules (post_change_stuff):
+    + Don't create a namespace package if there is a file named .noinit 
+      in the same directory. Closes: #459468.
+  * dh_pysupport: add correct dependencies when there is such a file.
+  * README: document how to do that and that you shouldn't.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 24 Jul 2008 14:30:01 +0200
+
 python-support (0.8.4maemo1) unstable; urgency=low
 
   * Downgrade debhelper build dependency to (>= 5.0.38).

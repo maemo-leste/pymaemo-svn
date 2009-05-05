@@ -3,13 +3,13 @@ Section: python
 Priority: standard
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Josselin Mouette <joss@debian.org>
-Build-Depends: debhelper (>= 5.0.38), cdbs
-Build-Depends-Indep: python (>= 2.4)
-Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), cdbs
+Build-Depends-Indep: python (>= 2.5)
+Standards-Version: 3.8.1
 
 Package: python-support
 Architecture: all
-Depends: python (>= 2.4)
+Depends: python (>= 2.5), dpkg (>= 1.14.19), ${misc:Depends}
 Conflicts: debhelper (<< 5.0.38)
 Description: automated rebuilding support for Python modules
  This package contains the 'update-python-modules' script, which takes 
