@@ -970,7 +970,7 @@ debian_patches = \
 	sbox-ld-preload \
 	sbox-arm-segfault \
 	04-import \
-	disable-sqlite3-support
+	disable-sqlite3-support \
 
 #	pydebug-path \
 
