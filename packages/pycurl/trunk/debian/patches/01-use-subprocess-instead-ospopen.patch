@@ -1,7 +1,7 @@
-Index: pycurl-7.15.5/setup.py
+Index: pycurl-7.18.1/setup.py
 ===================================================================
---- pycurl-7.15.5.orig/setup.py	2007-10-23 11:40:52.000000000 -0300
-+++ pycurl-7.15.5/setup.py	2007-10-23 11:41:33.000000000 -0300
+--- pycurl-7.18.1.orig/setup.py	2009-05-04 13:30:49.000000000 -0400
++++ pycurl-7.18.1/setup.py	2009-05-04 13:31:41.000000000 -0400
 @@ -15,6 +15,7 @@
  from distutils.extension import Extension
  from distutils.util import split_quoted
@@ -28,7 +28,7 @@ Index: pycurl-7.15.5/setup.py
  
  if sys.platform == "win32":
      # Windows users have to configure the CURL_DIR path parameter to match
-@@ -83,20 +95,20 @@
+@@ -83,13 +95,13 @@
          include_dirs.append(os.path.join(OPENSSL_DIR, "include"))
      CURL_CONFIG = "curl-config"
      CURL_CONFIG = scan_argv("--curl-config=", CURL_CONFIG)
@@ -44,15 +44,18 @@ Index: pycurl-7.15.5/setup.py
          if e[:2] == "-I":
              # do not add /usr/include
              if not re.search(r"^\/+usr\/+include\/*$", e[2:]):
-                 include_dirs.append(e[2:])
+@@ -97,8 +109,8 @@
          else:
              extra_compile_args.append(e)
--    for e in split_quoted(os.popen("'%s' --libs" % CURL_CONFIG).read()):
-+    for e in split_quoted(run_curlconf(["/bin/sh", CURL_CONFIG, "--libs"])):
+     libs = split_quoted(
+-        os.popen("'%s' --libs" % CURL_CONFIG).read()+\
+-        os.popen("'%s' --static-libs" % CURL_CONFIG).read())
++        run_curlconf(["/bin/sh", CURL_CONFIG, "--libs"])+\
++        run_curlconf(["/bin/sh", CURL_CONFIG, "--static-libs"]))
+     for e in libs:
          if e[:2] == "-l":
              libraries.append(e[2:])
-             if e[2:] == 'ssl':
-@@ -107,7 +119,7 @@
+@@ -110,7 +122,7 @@
              library_dirs.append(e[2:])
          else:
              extra_link_args.append(e)

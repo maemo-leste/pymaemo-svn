@@ -13,18 +13,32 @@ PYVERS := $(shell pyversions -vs)
 build: build-stamp
 
 build-stamp: DH_OPTIONS=
-build-stamp: $(PYVERS:%=build-python%)
+build-stamp: patch-stamp $(PYVERS:%=build-python%)
 	touch build-stamp
 
 build-python%: patch
 	dh_testdir
 	python$* setup.py build
+	python$*-dbg setup.py build
+
+	# this looks like a self test, commenting for the time being
+	#set -e ;\
+	#for test in "tests/test_internals.py" "tests/test_memleak.py" ; do \
+  	#    PYTHONPATH=$(CURDIR)/build/lib.$(DEB_BUILD_ARCH_OS)-$(shell uname -m)-$* \
+	#        python$* $$test; \
+	#done
 	touch $@
 
 clean: unpatch
 	dh_testdir
 	dh_testroot
 	rm -f build-*
+
+	for py in $(PYVERS); do \
+	    python$$py setup.py clean; \
+	    python$$py-dbg setup.py clean; \
+	done
+
 	rm -rf build
 	-find -name '*.py[co]' | xargs rm -f
 	dh_clean
@@ -35,11 +49,13 @@ install: build
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
-	for i in $(PYVERS); do \
-	  mkdir -p debian/python-pycurl/usr/lib/python$$i/site-packages; \
-	  install -m 644 build/lib.*-*-$$i/pycurl.so \
-	    debian/python-pycurl/usr/lib/python$$i/site-packages; \
+	for py in $(PYVERS); do \
+  	    python$$py setup.py install --root=$(CURDIR)/debian/python-pycurl; \
+ 	    python$$py-dbg setup.py install --root=$(CURDIR)/debian/python-pycurl-dbg; \
 	done
+	dh_install -ppython-pycurl-dbg --sourcedir=debian/tmp
+	rm -rf $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/site-packages/curl
+	rm -f $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/site-packages/pycurl-*.egg-info
 
 # Build architecture-independent files here.
 binary-indep: DH_OPTIONS=-i
@@ -47,23 +63,25 @@ binary-indep: build install
 # We have nothing to do by default.
 
 # Build architecture-dependent files here.
-binary-arch: DH_OPTIONS=-a
 binary-arch: build install
 	dh_testdir
 	dh_testroot
 	cp -a doc/*.html debian/python-pycurl/usr/share/doc/python-pycurl/html
-	dh_installdocs -A TODO
-	dh_installexamples -A examples/* tests/*
-	dh_installchangelogs ChangeLog
-	dh_python
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+	dh_installdocs -a -A TODO
+	dh_installexamples -a -A examples/* 
+	dh_installchangelogs -a ChangeLog
+	dh_pycentral -a
+	dh_strip -ppython-pycurl --dbg-package=python-pycurl-dbg
+	#rm -rf debian/python-pycurl-dbg/usr/share/doc/python-pycurl-dbg
+	rm -rf debian/python-pycurl-dbg/usr/share
+	#ln -s python-pycurl debian/python-pycurl-dbg/usr/share/doc/python-pycurl-dbg
+	dh_compress -a -X.py
+	dh_fixperms -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install

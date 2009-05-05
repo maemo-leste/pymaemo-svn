@@ -1,14 +1,15 @@
-Index: pycurl-7.15.5/setup.py
+Index: pycurl-7.18.1/setup.py
 ===================================================================
---- pycurl-7.15.5.orig/setup.py	2008-12-24 13:30:41.000000000 -0400
-+++ pycurl-7.15.5/setup.py	2008-12-24 13:32:31.000000000 -0400
-@@ -93,7 +93,9 @@
+--- pycurl-7.18.1.orig/setup.py	2009-05-04 13:29:25.000000000 -0400
++++ pycurl-7.18.1/setup.py	2009-05-04 13:30:17.000000000 -0400
+@@ -93,7 +93,10 @@
      OPENSSL_DIR = scan_argv("--openssl-dir=", "")
      if OPENSSL_DIR != "":
          include_dirs.append(os.path.join(OPENSSL_DIR, "include"))
 -    CURL_CONFIG = "curl-config"
 +    # Use absolute path to "curl-config" to avoid using the one provided by
 +    # scratchbox-devkit-apt-https
++    os.environ['SBOX_REDIRECT_IGNORE']='/usr/bin/curl-config:' + os.environ['SBOX_REDIRECT_IGNORE']
 +    CURL_CONFIG = "/usr/bin/curl-config"
      CURL_CONFIG = scan_argv("--curl-config=", CURL_CONFIG)
      d = run_curlconf(["/bin/sh", CURL_CONFIG, "--version"])

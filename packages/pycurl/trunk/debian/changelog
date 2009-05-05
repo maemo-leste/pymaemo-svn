@@ -1,3 +1,76 @@
+pycurl (7.18.2-1maemo1) unstable; urgency=low
+
+  * Import from Debian sid
+  * Change build dependency libcurl4-gnutls-dev to libcurl4-openssl-dev 
+ 
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  4 May 2009 09:17:35 -0400
+
+pycurl (7.18.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bernd Zeimetz <bzed@debian.org>  Mon, 16 Jun 2008 13:15:53 +0200
+
+pycurl (7.18.1-1) unstable; urgency=low
+
+  [ Sandro Tosi ]
+  * Adopting packages (Closes: #481074)
+  * New upstream release.
+  * debian/control
+    - set the team as Maintainer
+    - added Bernd Zeimetz and me in Uploaders, removing Matthias Klose
+    - bumped Build-Dep on libcurl4-gnutls-dev to (>= 7.18.1)
+    - added dpatch Build-Dep
+    - bumped Standards-Version to 3.7.3 (no changes)
+    - moved Homepage field to source stanza
+    - updated dependency for -dbg extension to python-pycurl to use
+      ${binary:Version}, to be binNMU safe
+    - fixed a mispell of Python in Description
+  * debian/rules
+    - added dpatch stuff
+    - using setup.py for install and clean targets
+    - running some tests at build-time
+  * debian/patches/10_setup.py.dpatch
+    - added to remove direct upstream code modification
+  * debian/python-pycurl.doc-base
+    - Section updated to Programming/Python
+  * debian/copyright
+    - indented upstream authors, copyright and license with 4 spaces
+    - separated copyright and license notice
+    - extended years in Copyright notice
+    - explicitly identified LGPL location on filesystem
+    - added dual licensing, including MIT license text
+
+ -- Bernd Zeimetz <bzed@debian.org>  Mon, 02 Jun 2008 19:17:08 +0200
+
+pycurl (7.16.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 18 Jul 2007 17:54:16 +0200
+
+pycurl (7.16.2.1-3) unstable; urgency=low
+
+  * Fixed package description (closes: #423905).
+  * Merge from Ubuntu:
+    - build a python-pycurl-dbg package.
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 28 May 2007 01:14:33 +0200
+
+pycurl (7.16.2.1-2) unstable; urgency=low
+
+  * Proper SSL library flavour is now known during build.
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 14 May 2007 01:17:33 +0200
+
+pycurl (7.16.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Build depends on libcurl4-gnutls-dev (closes: #423446, #423632).
+  * Use dh_pycentral instead of dh_python.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 10 May 2007 16:29:02 +0200
+
 pycurl (7.15.5-1maemo4) unstable; urgency=low
 
   [ Bruno dos Santos de Araujo ]

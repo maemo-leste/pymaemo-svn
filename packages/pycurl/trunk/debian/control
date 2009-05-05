@@ -2,14 +2,14 @@ Source: pycurl
 Section: python
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-XSBC-Original-Maintainer: Domenico Andreoli <cavok@debian.org>
-Build-Depends: debhelper (>= 5.0.37.1), python-all-dev (>= 2.3.5-9), libcurl3-dev (>= 7.15.4-1), quilt (>> 0.45)
-Standards-Version: 3.7.2
+XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 5.0.37.1), python-all-dev (>= 2.3.5-9), libcurl4-openssl-dev (>= 7.18.1), quilt (>> 0.45)
+Standards-Version: 3.7.3
 XS-Python-Version: all
 
 Package: python-pycurl
 Architecture: any
-Suggests: libcurl3-gnutls-dev
+Suggests: libcurl4-openssl-dev
 Depends: ${shlibs:Depends}, ${python:Depends}
 Conflicts: python2.3-pycurl, python2.4-pycurl, python2.5-pycurl
 Replaces: python2.3-pycurl, python2.4-pycurl, python2.5-pycurl 
@@ -17,8 +17,20 @@ Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Description: Python bindings to libcurl
  This module provides the Python bindings to libcurl. Please refer to
- the libcurl documentation available in libcurl3-gnutls-dev Debian package.
+ the libcurl documentation available in libcurl4-openssl-dev Debian package.
  .
- NOTE: the SSL support is provided by GnuTLS.
+ NOTE: the SSL support is provided by openssl.
  .
  Homepage: http://pycurl.sourceforge.net
+
+Package: python-pycurl-dbg
+Priority: extra
+Architecture: any
+Depends: ${shlibs:Depends}, python-dbg, python-pycurl (= ${binary:Version})
+XB-Python-Version: ${python:Versions}
+Description: Python bindings to libcurl (debug extension)
+ This module provides the Python bindings to libcurl. Please refer to
+ the libcurl documentation available in libcurl4-gnutls-dev Debian package.
+ .
+ Homepage: http://pycurl.sourceforge.net
+ This package contains the extension built for the Python debug interpreter.
