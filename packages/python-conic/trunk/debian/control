@@ -2,7 +2,7 @@ Source: python-conic
 Section: python
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, libconic0-dev, libdbus-glib-1-dev, python-gtk2-dev
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, libconic0-dev, libdbus-glib-1-dev, python-gtk2-dev, quilt (>> 0.45)
 XS-Python-Version: all
 Standards-Version: 3.7.2
 

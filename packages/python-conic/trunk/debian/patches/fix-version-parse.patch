@@ -1,0 +1,12 @@
+Index: python-conic-0.1/setup.py
+===================================================================
+--- python-conic-0.1.orig/setup.py	2009-05-04 14:45:40.000000000 -0400
++++ python-conic-0.1/setup.py	2009-05-04 14:46:42.000000000 -0400
+@@ -48,6 +48,7 @@
+                 raw_version = result[-1]
+ 
+     input.close()
++    raw_version = raw_version.split('+')[0]
+     conic_version = tuple([ int(x) for x in raw_version.split('.') ])
+     return conic_version
+ conic_version = get_conic_version()
