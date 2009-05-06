@@ -1,3 +1,16 @@
+pygame (1.8.1release-0maemo3) unstable; urgency=low
+
+  * Add missing build dependency on libpng12-dev, which actually fixes
+    GB#4008.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 06 May 2009 16:42:08 -0400
+
+pygame (1.8.1release-0maemo2) unstable; urgency=low
+
+  * Increment version to trigger a rebuild, which seems to fix GB#4008.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 06 May 2009 15:13:33 -0400
+
 pygame (1.8.1release-0maemo1) unstable; urgency=low
 
   * Initial import from Intrepid.
