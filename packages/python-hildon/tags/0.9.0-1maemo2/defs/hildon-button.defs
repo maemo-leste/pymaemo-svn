@@ -1,0 +1,220 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Button
+  (in-module "Hildon")
+  (parent "GtkButton")
+  (c-name "HildonButton")
+  (gtype-id "HILDON_TYPE_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+(define-enum ButtonArrangement
+  (in-module "Hildon")
+  (c-name "HildonButtonArrangement")
+  (gtype-id "HILDON_TYPE_BUTTON_ARRANGEMENT")
+  (values
+    '("horizontal" "HILDON_BUTTON_ARRANGEMENT_HORIZONTAL")
+    '("vertical" "HILDON_BUTTON_ARRANGEMENT_VERTICAL")
+  )
+)
+
+(define-enum ButtonStyle
+  (in-module "Hildon")
+  (c-name "HildonButtonStyle")
+  (gtype-id "HILDON_TYPE_BUTTON_STYLE")
+  (values
+    '("normal" "HILDON_BUTTON_STYLE_NORMAL")
+    '("picker" "HILDON_BUTTON_STYLE_PICKER")
+  )
+)
+
+
+;; From hildon-button.h
+
+(define-function hildon_button_get_type
+  (c-name "hildon_button_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_button_new
+  (c-name "hildon_button_new")
+  (is-constructor-of "HildonButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+  )
+)
+
+(define-function hildon_button_new_with_text
+  (c-name "hildon_button_new_with_text")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+    '("const-gchar*" "title")
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_title
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_title")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "title")
+  )
+)
+
+(define-method set_value
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_value")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method get_title
+  (of-object "HildonButton")
+  (c-name "hildon_button_get_title")
+  (return-type "const-gchar*")
+)
+
+(define-method get_value
+  (of-object "HildonButton")
+  (c-name "hildon_button_get_value")
+  (return-type "const-gchar*")
+)
+
+(define-method set_text
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "title")
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_image
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_image")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "image")
+  )
+)
+
+(define-method get_image
+  (of-object "HildonButton")
+  (c-name "hildon_button_get_image")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_image_position
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_image_position")
+  (return-type "none")
+  (parameters
+    '("GtkPositionType" "position")
+  )
+)
+
+(define-method set_alignment
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_alignment")
+  (return-type "none")
+  (parameters
+    '("gfloat" "xalign")
+    '("gfloat" "yalign")
+    '("gfloat" "xscale")
+    '("gfloat" "yscale")
+  )
+)
+
+(define-method set_title_alignment
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_title_alignment")
+  (return-type "none")
+  (parameters
+    '("gfloat" "xalign")
+    '("gfloat" "yalign")
+  )
+)
+
+(define-method set_value_alignment
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_value_alignment")
+  (return-type "none")
+  (parameters
+    '("gfloat" "xalign")
+    '("gfloat" "yalign")
+  )
+)
+
+(define-method set_image_alignment
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_image_alignment")
+  (return-type "none")
+  (parameters
+    '("gfloat" "xalign")
+    '("gfloat" "yalign")
+  )
+)
+
+(define-method add_title_size_group
+  (of-object "HildonButton")
+  (c-name "hildon_button_add_title_size_group")
+  (return-type "none")
+  (parameters
+    '("GtkSizeGroup*" "size_group")
+  )
+)
+
+(define-method add_value_size_group
+  (of-object "HildonButton")
+  (c-name "hildon_button_add_value_size_group")
+  (return-type "none")
+  (parameters
+    '("GtkSizeGroup*" "size_group")
+  )
+)
+
+(define-method add_image_size_group
+  (of-object "HildonButton")
+  (c-name "hildon_button_add_image_size_group")
+  (return-type "none")
+  (parameters
+    '("GtkSizeGroup*" "size_group")
+  )
+)
+
+(define-method add_size_groups
+  (of-object "HildonButton")
+  (c-name "hildon_button_add_size_groups")
+  (return-type "none")
+  (parameters
+    '("GtkSizeGroup*" "title_size_group")
+    '("GtkSizeGroup*" "value_size_group")
+    '("GtkSizeGroup*" "image_size_group")
+  )
+)
+
+(define-method set_style
+  (of-object "HildonButton")
+  (c-name "hildon_button_set_style")
+  (return-type "none")
+  (parameters
+    '("HildonButtonStyle" "style")
+  )
+)
+
+(define-method get_style
+  (of-object "HildonButton")
+  (c-name "hildon_button_get_style")
+  (return-type "HildonButtonStyle")
+)
+
+
