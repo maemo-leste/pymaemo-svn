@@ -1,0 +1,3 @@
+version=3
+
+ftp://pygame.org/pub/pygame/pygame-(.*)release\.tar\.gz

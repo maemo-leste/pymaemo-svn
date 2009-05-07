@@ -1,0 +1,11 @@
+Index: pygame-1.8.1release/src/pygame.h
+===================================================================
+--- pygame-1.8.1release.orig/src/pygame.h	2009-04-06 16:25:59.000000000 -0400
++++ pygame-1.8.1release/src/pygame.h	2009-04-06 16:26:16.000000000 -0400
+@@ -640,4 +640,6 @@
+ #define PYGAME_EXPORT
+ #endif
+ 
++#include <stddef.h>
++
+ #endif /* PYGAME_H */

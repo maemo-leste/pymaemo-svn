@@ -1,0 +1,99 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+include /usr/share/quilt/quilt.make
+
+PYVERS=$(shell pyversions -r debian/control)
+
+with_tests := no
+
+ifneq ($(with_tests),yes)
+NOPKGS += -Npython-pygame-tests
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	for python in $(PYVERS); \
+		do $$python config.py; \
+	done
+	touch $@
+
+build: build-stamp
+build-stamp: patch
+	dh_testdir
+	for python in $(PYVERS); \
+		do yes y | $$python setup.py build; \
+	done
+	touch $@
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+
+	# We ignore errors, as if the build is already clean
+	# (Setup has been removed) this command doesn't run
+	-for python in $(PYVERS); \
+		do yes y | $$python setup.py clean; \
+	done
+	# Other files that setup.py clean doesn't remove.
+	rm -f *.pyc *.pyo
+	rm -fr build
+	rm -f Setup
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+	for python in $(PYVERS); \
+		do $$python setup.py install \
+			--root=$(CURDIR)/debian/python-pygame; \
+	done
+	
+ifeq ($(with_tests),yes)
+	#python-pygame-tests
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/examples
+	cp -r $(CURDIR)/test $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	rm -fr $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/test/movie_test.py
+	cp -r $(CURDIR)/examples $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/run_tests.py $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/test_runner.py $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	cp $(CURDIR)/unittest_patch.py $(CURDIR)/debian/tmp/usr/share/python-pygame-tests
+	chmod u+x $(CURDIR)/debian/tmp/usr/share/python-pygame-tests/runtests.sh
+	dh_install -ppython-pygame-tests --sourcedir=debian/tmp 
+endif	
+
+# We include all the documentation except:
+# util (which is for building the docs from the source)
+# fullinstall.txt (which is installation instructions)
+# LGPL (which is in /usr/share/common-licenses/LGPL under Debian)
+doclist = $(filter-out docs/util docs/fullinstall.txt docs/LGPL,$(wildcard docs/*))
+
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a $(doclist)
+	dh_installchangelogs -a WHATSNEW
+	dh_link -a
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_pycentral -a
+	dh_installdeb -a
+	dh_shlibdeps -a 
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary-indep:
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
