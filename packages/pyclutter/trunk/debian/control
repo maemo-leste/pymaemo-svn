@@ -1,0 +1,32 @@
+Source: pyclutter
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Ross Burton <ross@debian.org>
+XS-Python-Version: current
+Build-Depends: debhelper (>= 5.0.38), cdbs, python-support (>= 0.5.3), python, python-dev, python-gtk2-dev, libclutter-0.8-dev, python-cairo-dev, python-gst0.10
+Standards-Version: 3.7.3
+
+Package: python-clutter
+Architecture: any
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Depends: ${shlibs:Depends}, ${python:Depends}, ${misc:Depends}
+Description: Open GL based interactive canvas library - Python bindings
+ Clutter is an Open GL based interactive canvas library, designed for creating
+ fast, mainly 2D single window applications such as media box UIs,
+ presentations, kiosk style applications and so on.
+ .
+ This package contains the Python bindings.
+
+Package: python-clutter-dbg
+Architecture: any
+Priority: extra
+XB-Python-Version: ${python:Versions}
+Depends: python-clutter, ${shlibs:Depends}, ${python:Depends}, ${misc:Depends}
+Description: Open GL based interactive canvas library - Python bindings
+ Clutter is an Open GL based interactive canvas library, designed for creating
+ fast, mainly 2D single window applications such as media box UIs,
+ presentations, kiosk style applications and so on.
+ .
+ This package contains the debug symbols for the Python bindings.

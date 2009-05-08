@@ -1,0 +1,2 @@
+version=2
+http://www.clutter-project.org/sources/pyclutter/([\d.]+[02468])/pyclutter-(.*)\.tar\.gz
