@@ -7,6 +7,8 @@ pyclutter (0.8.0-1maemo1) unstable; urgency=low
     move original value to a separate field.
   * Remove Uploaders field from debian/control, as it is not applicable to
     maemo.
+  * Building for i386 only for the time being because one of the dependencies 
+    in ARMEL is broken. See https://bugs.maemo.org/show_bug.cgi?id=4197 for more info.
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu, 30 Apr 2009 08:04:08 -0400
 
