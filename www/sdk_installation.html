@@ -44,7 +44,7 @@
 
 
 <p>
-  The first thing is to add the maemo <em>extras</em> repository (where Python is located) to your
+  The first thing is to add the Maemo <em>extras</em> repository (where Python is located) to your
   list of package sources. To do that you will have to edit the file <var>/etc/apt/sources.list</var>
   inside scratchbox, for both targets (X86 and ARMEL), which should look similar to this:
 </p>
@@ -68,7 +68,7 @@ deb file:/home/[username]/maemo-sdk-nokia-binaries_4.1.2 diablo explicit</pre>
 
 <p>
    Note that you'll see also scratchbox's own python (version 2.3) which you must
-   <strong>not</strong> use for your maemo development. So, run your scripts explicitly calling
+   <strong>not</strong> use for your Maemo development. So, run your scripts explicitly calling
    <var>python2.5</var> instead of just <var>python</var>.
 </p>
 
@@ -78,8 +78,8 @@ deb file:/home/[username]/maemo-sdk-nokia-binaries_4.1.2 diablo explicit</pre>
 </p>
 <pre>run-standalone.sh python2.5 &lt;yourscript.py&gt;</pre>
 
-<h3 id="fremantle">Instructions for maemo 5 beta (fremantle)</h3>
-<p>To install PyMaemo on maemo 5 beta SDK, follow the same instructions as
+<h3 id="fremantle">Instructions for Maemo 5 beta (fremantle)</h3>
+<p>To install PyMaemo on Maemo 5 beta SDK, follow the same instructions as
 above (replacing occurrences of "diablo" with "fremantle"), but replace the
 "extras" repository with the "extras-devel" one:</p>
 <pre>deb http://repository.maemo.org/extras-devel/ fremantle free non-free</pre>
