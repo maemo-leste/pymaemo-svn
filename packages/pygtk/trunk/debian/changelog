@@ -1,3 +1,9 @@
+pygtk (2.12.1-6maemo7) unstable; urgency=low
+
+  * Enable glade support.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue, 12 May 2009 18:03:11 -0400
+
 pygtk (2.12.1-6maemo6) unstable; urgency=low
 
   * Add build dependency on python-support >= 0.7.6.

@@ -20,7 +20,7 @@ endif
 PYVERS := $(shell pyversions --requested --version debian/control)
 PYDEFAULTVER := $(shell pyversions --default --version)
 
-with_glade = no
+with_glade = yes
 with_doc = no
 with_tests = no
 
