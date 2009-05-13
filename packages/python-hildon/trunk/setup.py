@@ -35,5 +35,6 @@ extensions.append(hildon)
 setup(name = "hildon",
       version = "0.9.0",
       ext_modules = extensions,
+      py_modules=['hildonglade'],
       cmdclass = {"build_ext": BuildExt}
      )
