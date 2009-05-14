@@ -28,6 +28,12 @@
 #include "hildon-includes.h"
 
 
+/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-common.h" */
+
+GType hildon_file_system_model_item_type_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_FILE_SYSTEM_MODEL_ITEM_TYPE (hildon_file_system_model_item_type_get_type())
+
+
 /* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-model.h" */
 
 GType hildon_file_system_model_columns_get_type (void) G_GNUC_CONST;
@@ -49,10 +55,10 @@ GType hildon_file_selection_visible_columns_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_FILE_SELECTION_VISIBLE_COLUMNS (hildon_file_selection_visible_columns_get_type())
 
 
-/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-common.h" */
+/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-voldev.h" */
 
-GType hildon_file_system_model_item_type_get_type (void) G_GNUC_CONST;
-#define HILDON_TYPE_FILE_SYSTEM_MODEL_ITEM_TYPE (hildon_file_system_model_item_type_get_type())
+GType voldev_t_voldev_t_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_VOLDEV_T (voldev_t_voldev_t_get_type())
 
 
 /* enumerations from "/usr/include/hildon-1/hildon/hildon-window.h" */

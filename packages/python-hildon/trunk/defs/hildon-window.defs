@@ -43,7 +43,7 @@
   (c-name "hildon_window_set_main_menu")
   (return-type "none")
   (parameters
-    '("GtkMenu*" "menu")
+    '("GtkMenu*" "menu" (null-ok) (default "NULL"))
   )
 )
 
@@ -58,7 +58,7 @@
   (c-name "hildon_window_set_app_menu")
   (return-type "none")
   (parameters
-    '("HildonAppMenu*" "menu")
+    '("HildonAppMenu*" "menu" (null-ok) (default "NULL"))
   )
 )
 

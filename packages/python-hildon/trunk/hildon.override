@@ -38,6 +38,7 @@ import gtk.Dialog as PyGtkDialog_Type
 import gtk.Entry as PyGtkEntry_Type
 import gtk.EventBox as PyGtkEventBox_Type
 import gtk.FileFilter as PyGtkFileFilter_Type
+//import gtk.FileSystem as PyGtkFileSystem_Type
 import gtk.HBox as PyGtkHBox_Type
 import gtk.IconView as PyGtkIconView_Type
 import gtk.Label as PyGtkLabel_Type
@@ -60,6 +61,12 @@ import gtk.Window as PyGtkWindow_Type
 
 %%
 ignore-glob *_get_type
+
+// gtk.FileSystem is not exported by current PyGTK
+ignore hildon_file_system_special_location_get_display_name
+ignore hildon_file_system_special_location_get_icon
+ignore hildon_file_system_special_location_volumes_changed
+ignore hildon_file_system_special_location_rewrite_path
 
 %%
 override hildon_calendar_popup_get_date noargs
@@ -223,4 +230,50 @@ _wrap_hildon_weekday_picker_isset_day(PyGObject *self, PyObject *args, PyObject 
     ret = hildon_weekday_picker_isset_day(HILDON_WEEKDAY_PICKER(self->obj), day);
 
     return PyBool_FromLong(ret);
+}
+
+%%
+override hildon_window_set_app_menu kwargs
+
+static void __hildon_window_set_app_menu_destroy(gpointer user_data)
+{
+    PyGObject *py_menu = user_data;
+    py_menu->obj = NULL;
+    Py_XDECREF(py_menu);
+}
+
+static PyObject *
+_wrap_hildon_window_set_app_menu(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "menu", NULL };
+    PyGObject *py_menu = NULL;
+    HildonAppMenu *menu = NULL;
+    static PyGObject *current_py_menu = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|O:HildonWindow.set_app_menu", kwlist, &py_menu))
+        return NULL;
+    if ((PyObject *)py_menu == Py_None)
+        menu = NULL;
+    else if (py_menu && pygobject_check(py_menu, &PyHildonAppMenu_Type))
+        menu = HILDON_APP_MENU(py_menu->obj);
+    else if (py_menu) {
+        PyErr_SetString(PyExc_TypeError, "menu should be a HildonAppMenu or None");
+        return NULL;
+    }
+    if (py_menu != current_py_menu) {
+        hildon_window_set_app_menu(HILDON_WINDOW(self->obj), (HildonAppMenu *) menu);
+        if (current_py_menu != NULL) {
+            current_py_menu->obj = NULL;
+            Py_DECREF(current_py_menu);
+        }
+        if (menu == NULL) {
+            current_py_menu = NULL;
+        } else {
+            current_py_menu = py_menu;
+            Py_INCREF(current_py_menu);
+        }
+    }
+
+    Py_INCREF(Py_None);
+    return Py_None;
 }

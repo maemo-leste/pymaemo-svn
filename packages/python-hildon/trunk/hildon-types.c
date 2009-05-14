@@ -25,6 +25,33 @@
 
 #include "hildon-types.h"
 
+/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-common.h" */
+
+GType
+hildon_file_system_model_item_type_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { HILDON_FILE_SYSTEM_MODEL_UNKNOWN, "HILDON_FILE_SYSTEM_MODEL_UNKNOWN", "unknown" },
+            { HILDON_FILE_SYSTEM_MODEL_FILE, "HILDON_FILE_SYSTEM_MODEL_FILE", "file" },
+            { HILDON_FILE_SYSTEM_MODEL_FOLDER, "HILDON_FILE_SYSTEM_MODEL_FOLDER", "folder" },
+            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_IMAGES, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_IMAGES", "safe-folder-images" },
+            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_VIDEOS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_VIDEOS", "safe-folder-videos" },
+            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS", "safe-folder-sounds" },
+            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS", "safe-folder-documents" },
+            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA", "safe-folder-camera" },
+            { HILDON_FILE_SYSTEM_MODEL_MMC, "HILDON_FILE_SYSTEM_MODEL_MMC", "mmc" },
+            { HILDON_FILE_SYSTEM_MODEL_GATEWAY, "HILDON_FILE_SYSTEM_MODEL_GATEWAY", "gateway" },
+            { HILDON_FILE_SYSTEM_MODEL_LOCAL_DEVICE, "HILDON_FILE_SYSTEM_MODEL_LOCAL_DEVICE", "local-device" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("HildonFileSystemModelItemType", values);
+    }
+    return etype;
+}
+
+
 /* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-model.h" */
 
 GType
@@ -136,28 +163,20 @@ hildon_file_selection_visible_columns_get_type (void)
 }
 
 
-/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-common.h" */
+/* enumerations from "/usr/include/hildon-fm-2/hildon/hildon-file-system-voldev.h" */
 
 GType
-hildon_file_system_model_item_type_get_type (void)
+voldev_t_voldev_t_get_type (void)
 {
     static GType etype = 0;
     if (etype == 0) {
         static const GEnumValue values[] = {
-            { HILDON_FILE_SYSTEM_MODEL_UNKNOWN, "HILDON_FILE_SYSTEM_MODEL_UNKNOWN", "unknown" },
-            { HILDON_FILE_SYSTEM_MODEL_FILE, "HILDON_FILE_SYSTEM_MODEL_FILE", "file" },
-            { HILDON_FILE_SYSTEM_MODEL_FOLDER, "HILDON_FILE_SYSTEM_MODEL_FOLDER", "folder" },
-            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_IMAGES, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_IMAGES", "safe-folder-images" },
-            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_VIDEOS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_VIDEOS", "safe-folder-videos" },
-            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_SOUNDS", "safe-folder-sounds" },
-            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_DOCUMENTS", "safe-folder-documents" },
-            { HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA, "HILDON_FILE_SYSTEM_MODEL_SAFE_FOLDER_CAMERA", "safe-folder-camera" },
-            { HILDON_FILE_SYSTEM_MODEL_MMC, "HILDON_FILE_SYSTEM_MODEL_MMC", "mmc" },
-            { HILDON_FILE_SYSTEM_MODEL_GATEWAY, "HILDON_FILE_SYSTEM_MODEL_GATEWAY", "gateway" },
-            { HILDON_FILE_SYSTEM_MODEL_LOCAL_DEVICE, "HILDON_FILE_SYSTEM_MODEL_LOCAL_DEVICE", "local-device" },
+            { EXT_CARD, "EXT_CARD", "ext-card" },
+            { INT_CARD, "INT_CARD", "int-card" },
+            { USB_STORAGE, "USB_STORAGE", "usb-storage" },
             { 0, NULL, NULL }
         };
-        etype = g_enum_register_static ("HildonFileSystemModelItemType", values);
+        etype = g_enum_register_static ("voldev_t", values);
     }
     return etype;
 }

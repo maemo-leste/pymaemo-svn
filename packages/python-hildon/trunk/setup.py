@@ -14,6 +14,8 @@ hildon = TemplateExtension(name = "hildon",
                            pkc_version = "2.1.42",
                            pygobject_pkc = ("hildon-fm-2",
                                             "pygobject-2.0",
+                                            "gconf-2.0", # needed by hildon-fm-2 (see MB#4538)
+                                            "gnome-vfs-2.0", # needed by hildon-fm-2 (see MB#4538)
                                            ),
                            sources = ["hildonmodule.c",
                                       "hildon.c",
@@ -35,6 +37,6 @@ extensions.append(hildon)
 setup(name = "hildon",
       version = "0.9.0",
       ext_modules = extensions,
-      py_modules=['hildonglade'],
+      py_modules = ["hildonglade"],
       cmdclass = {"build_ext": BuildExt}
      )
