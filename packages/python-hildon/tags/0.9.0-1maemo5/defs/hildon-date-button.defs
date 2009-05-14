@@ -1,0 +1,63 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object DateButton
+  (in-module "Hildon")
+  (parent "HildonPickerButton")
+  (c-name "HildonDateButton")
+  (gtype-id "HILDON_TYPE_DATE_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-date-button.h
+
+(define-function hildon_date_button_get_type
+  (c-name "hildon_date_button_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_date_button_new
+  (c-name "hildon_date_button_new")
+  (is-constructor-of "HildonDateButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+  )
+)
+
+(define-function hildon_date_button_new_with_year_range
+  (c-name "hildon_date_button_new_with_year_range")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+    '("gint" "min_year")
+    '("gint" "max_year")
+  )
+)
+
+(define-method get_date
+  (of-object "HildonDateButton")
+  (c-name "hildon_date_button_get_date")
+  (return-type "none")
+  (parameters
+    '("guint*" "year")
+    '("guint*" "month")
+    '("guint*" "day")
+  )
+)
+
+(define-method set_date
+  (of-object "HildonDateButton")
+  (c-name "hildon_date_button_set_date")
+  (return-type "none")
+  (parameters
+    '("guint" "year")
+    '("guint" "month")
+    '("guint" "day")
+  )
+)
+
+

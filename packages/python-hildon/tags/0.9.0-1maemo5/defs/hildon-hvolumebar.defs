@@ -1,0 +1,21 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object HVolumebar
+  (in-module "Hildon")
+  (parent "HildonVolumebar")
+  (c-name "HildonHVolumebar")
+  (gtype-id "HILDON_TYPE_HVOLUMEBAR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-hvolumebar.h
+
+(define-function hildon_hvolumebar_new
+  (c-name "hildon_hvolumebar_new")
+  (is-constructor-of "HildonHvolumebar")
+  (return-type "GtkWidget*")
+)
+
+

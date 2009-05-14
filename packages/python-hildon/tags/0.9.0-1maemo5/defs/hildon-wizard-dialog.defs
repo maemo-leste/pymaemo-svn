@@ -1,0 +1,49 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object WizardDialog
+  (in-module "Hildon")
+  (parent "GtkDialog")
+  (c-name "HildonWizardDialog")
+  (gtype-id "HILDON_TYPE_WIZARD_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+(define-enum WizardDialogResponse
+  (in-module "Hildon")
+  (c-name "HildonWizardDialogResponse")
+  (gtype-id "HILDON_TYPE_WIZARD_DIALOG_RESPONSE")
+  (values
+    '("cancel" "HILDON_WIZARD_DIALOG_CANCEL")
+    '("previous" "HILDON_WIZARD_DIALOG_PREVIOUS")
+    '("next" "HILDON_WIZARD_DIALOG_NEXT")
+    '("finish" "HILDON_WIZARD_DIALOG_FINISH")
+  )
+)
+
+
+;; From hildon-wizard-dialog.h
+
+(define-function hildon_wizard_dialog_new
+  (c-name "hildon_wizard_dialog_new")
+  (is-constructor-of "HildonWizardDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-char*" "wizard_name")
+    '("GtkNotebook*" "notebook")
+  )
+)
+
+(define-method set_forward_page_func
+  (of-object "HildonWizardDialog")
+  (c-name "hildon_wizard_dialog_set_forward_page_func")
+  (return-type "none")
+  (parameters
+    '("HildonWizardDialogPageFunc" "page_func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "destroy")
+  )
+)
+
+
