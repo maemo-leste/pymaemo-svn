@@ -1,0 +1,55 @@
+Improve codegen compatibility with Hildon headers:
+
+* Allow arbitrary number of spaces between the "struct" keyword and the struct
+  name.
+* Detect constructor functions with suffixes other than _new:
+  + _new_with_model
+  + _new_with_properties
+
+--- codegen/h2def.py	2009-04-10 10:51:54.000000000 -0400
++++ codegen/h2def.py	2009-04-10 12:40:15.000000000 -0400
+@@ -72,7 +72,7 @@
+     maybeobjdefs = []  # contains all possible objects from file
+ 
+     # first find all structures that look like they may represent a GtkObject
+-    pat = re.compile("struct _(" + obj_name_pat + ")\s*{\s*" +
++    pat = re.compile("struct\s+_(" + obj_name_pat + ")\s*{\s*" +
+                      "(" + obj_name_pat + ")\s+", re.MULTILINE)
+     pos = 0
+     while pos < len(buf):
+@@ -93,7 +93,7 @@
+         pos = m.end()
+ 
+     # now find all structures that look like they might represent a class:
+-    pat = re.compile("struct _(" + obj_name_pat + ")Class\s*{\s*" +
++    pat = re.compile("struct\s+_(" + obj_name_pat + ")Class\s*{\s*" +
+                      "(" + obj_name_pat + ")Class\s+", re.MULTILINE)
+     pos = 0
+     while pos < len(buf):
+@@ -122,7 +122,7 @@
+ 
+     # now find all structures that look like they might represent
+     # a class inherited from GTypeInterface:
+-    pat = re.compile("struct _(" + obj_name_pat + ")Class\s*{\s*" +
++    pat = re.compile("struct\s+_(" + obj_name_pat + ")Class\s*{\s*" +
+                      "GTypeInterface\s+", re.MULTILINE)
+     pos = 0
+     while pos < len(buf):
+@@ -138,7 +138,7 @@
+ 
+     # now find all structures that look like they might represent
+     # an Iface inherited from GTypeInterface:
+-    pat = re.compile("struct _(" + obj_name_pat + ")Iface\s*{\s*" +
++    pat = re.compile("struct\s+_(" + obj_name_pat + ")Iface\s*{\s*" +
+                      "GTypeInterface\s+", re.MULTILINE)
+     pos = 0
+     while pos < len(buf):
+@@ -260,7 +260,7 @@
+ 
+ get_type_pat = re.compile(r'(const-)?([A-Za-z0-9]+)\*?\s+')
+ pointer_pat = re.compile('.*\*$')
+-func_new_pat = re.compile('(\w+)_new$')
++func_new_pat = re.compile('(\w+)_new(?:_with_(?:properties|model))?$')
+ 
+ class DefsWriter:
+     def __init__(self, fp=None, prefix=None, verbose=False,

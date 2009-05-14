@@ -1,0 +1,14 @@
+diff -urNad pygtk-2.8.6.orig~/codegen/pygtk-codegen-2.0.in pygtk-2.8.6.orig/codegen/pygtk-codegen-2.0.in
+--- pygtk-2.8.6.orig~/codegen/pygtk-codegen-2.0.in	2005-08-17 18:47:18.000000000 +0200
++++ pygtk-2.8.6.orig/codegen/pygtk-codegen-2.0.in	2006-06-30 18:27:21.000000000 +0200
+@@ -8,4 +8,9 @@
+ PYTHONPATH=$codegendir
+ export PYTHONPATH
+ 
+-exec @PYTHON@ $codegendir/codegen.py "$@"
++python=/usr/bin/python
++if [ -x "$PYTHON" ]; then
++    python="$PYTHON"
++fi
++
++exec $python $codegendir/codegen.py "$@"
