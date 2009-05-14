@@ -23,6 +23,7 @@
 
 #include <pygobject.h>
 #include <pygtk/pygtk.h>
+#include <hildon/hildon-defines.h>
 
 void pyhildon_register_classes(PyObject *d);
 extern void pyhildon_add_constants(PyObject *module, const gchar *strip_prefix);
@@ -31,18 +32,18 @@ extern PyMethodDef pyhildon_functions[];
 static void
 _add_keysyms(PyObject *module)
 {
-    PyModule_AddIntConstant(module, "KEY_LEFT", 0xff51);
-    PyModule_AddIntConstant(module, "KEY_UP", 0xff52);
-    PyModule_AddIntConstant(module, "KEY_RIGHT", 0xff53);
-    PyModule_AddIntConstant(module, "KEY_DOWN", 0xff54);
+    PyModule_AddIntConstant(module, "KEY_LEFT", HILDON_HARDKEY_LEFT);
+    PyModule_AddIntConstant(module, "KEY_UP", HILDON_HARDKEY_UP);
+    PyModule_AddIntConstant(module, "KEY_RIGHT", HILDON_HARDKEY_RIGHT);
+    PyModule_AddIntConstant(module, "KEY_DOWN", HILDON_HARDKEY_DOWN);
 
-    PyModule_AddIntConstant(module, "KEY_SELECT", 0xff0d);
-    PyModule_AddIntConstant(module, "KEY_MENU", 0xffc1);
-    PyModule_AddIntConstant(module, "KEY_HOME", 0xffc2);
-    PyModule_AddIntConstant(module, "KEY_ESC", 0xff1b);
-    PyModule_AddIntConstant(module, "KEY_FULLSCREEN", 0xffc3);
-    PyModule_AddIntConstant(module, "KEY_INCREASE", 0xffc4);
-    PyModule_AddIntConstant(module, "KEY_DECREASE", 0xffc5);
+    PyModule_AddIntConstant(module, "KEY_SELECT", HILDON_HARDKEY_SELECT);
+    PyModule_AddIntConstant(module, "KEY_MENU", HILDON_HARDKEY_MENU);
+    PyModule_AddIntConstant(module, "KEY_HOME", HILDON_HARDKEY_HOME);
+    PyModule_AddIntConstant(module, "KEY_ESC", HILDON_HARDKEY_ESC);
+    PyModule_AddIntConstant(module, "KEY_FULLSCREEN", HILDON_HARDKEY_FULLSCREEN);
+    PyModule_AddIntConstant(module, "KEY_INCREASE", HILDON_HARDKEY_INCREASE);
+    PyModule_AddIntConstant(module, "KEY_DECREASE", HILDON_HARDKEY_DECREASE);
 }
 
 DL_EXPORT(void)
