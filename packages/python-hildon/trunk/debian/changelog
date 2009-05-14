@@ -2,6 +2,8 @@ python-hildon (0.9.0-1maemo6) unstable; urgency=low
 
   * hildonmodule.c: replace hardcoded constants with defines from
     hildon-defines.h.
+  * hildon.override: add override for hildon_color_button_get_color (restores
+    behavior added by GB#1195 fix.
 
  -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 14 May 2009 13:49:15 -0400
 
