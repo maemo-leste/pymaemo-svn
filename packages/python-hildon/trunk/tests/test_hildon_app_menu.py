@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.5
+
 import unittest
 from sys import getrefcount
 
