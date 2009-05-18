@@ -288,13 +288,6 @@ _wrap_hildon_weekday_picker_isset_day(PyGObject *self, PyObject *args, PyObject 
 %%
 override hildon_window_set_app_menu kwargs
 
-static void __hildon_window_set_app_menu_destroy(gpointer user_data)
-{
-    PyGObject *py_menu = user_data;
-    py_menu->obj = NULL;
-    Py_XDECREF(py_menu);
-}
-
 static PyObject *
 _wrap_hildon_window_set_app_menu(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -326,6 +319,91 @@ _wrap_hildon_window_set_app_menu(PyGObject *self, PyObject *args, PyObject *kwar
             Py_INCREF(current_py_menu);
         }
     }
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_wizard_dialog_set_forward_page_func kwargs
+
+/* borrowed from PyGTK */
+typedef struct {
+    PyObject *func, *data;
+} PyHildonCustomNotify;
+
+/* borrowed from PyGTK */
+void
+pyhildon_custom_destroy_notify(gpointer user_data)
+{
+    PyHildonCustomNotify *cunote = user_data;
+    PyGILState_STATE state;
+
+    g_return_if_fail(user_data);
+    state = pyg_gil_state_ensure();
+    Py_XDECREF(cunote->func);
+    Py_XDECREF(cunote->data);
+    pyg_gil_state_release(state);
+    
+    g_free(cunote);
+}
+
+static gboolean
+python_hildon_page_func(GtkNotebook *notebook, gint current_page, gpointer data)
+{
+    PyHildonCustomNotify *cunote = data;
+    PyObject *py_ret;
+    gboolean ret;
+    PyGILState_STATE state;
+
+    g_assert(cunote->func);
+    state = pyg_gil_state_ensure();
+    py_ret = PyObject_CallFunction(cunote->func, "(NiO)", pygobject_new((GObject *)notebook), current_page, cunote->data);
+    if (py_ret == NULL) {
+        PyErr_Print();
+        ret = FALSE;
+    } else {
+        ret = py_ret == Py_True ? TRUE : FALSE;
+    }
+    pyg_gil_state_release(state);
+    return ret;
+}
+
+static PyObject *
+_wrap_hildon_wizard_dialog_set_forward_page_func(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "page_func", "data", "destroy" , NULL };
+    PyObject *py_page_func, *py_data = Py_None, *py_destroy = Py_None;
+    PyHildonCustomNotify *cunote;
+    PyGILState_STATE state;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O|OO:HildonWizardDialog.set_forward_page_func", kwlist, &py_page_func, &py_data, &py_destroy))
+        return NULL;
+    if (!PyCallable_Check(py_page_func)) {
+        PyErr_SetString(PyExc_TypeError, "page_func must be callable");
+        return NULL;
+    }
+#if 0
+    /* FIXME: implement handling of destroy callback */
+    if (py_destroy != Py_None && !PyCallable_Check(py_destroy)) {
+        PyErr_SetString(PyExc_TypeError, "destroy must be callable or None");
+        return NULL;
+    }
+#endif
+    if (py_destroy != Py_None) {
+        PyErr_SetString(PyExc_NotImplementedError, "destroy callback support not implemented");
+        return NULL;
+    }
+    cunote = g_new0(PyHildonCustomNotify, 1);
+    cunote->func = py_page_func;
+    cunote->data = py_data;
+    Py_INCREF(cunote->func);
+    Py_INCREF(cunote->data);
+    state = pyg_gil_state_ensure();
+    g_object_weak_ref(G_OBJECT(self->obj), (GWeakNotify) pyhildon_custom_destroy_notify, cunote);
+    pyg_gil_state_release(state);
+    /* FIXME: handle destroy callback argument */
+    hildon_wizard_dialog_set_forward_page_func(HILDON_WIZARD_DIALOG(self->obj), python_hildon_page_func, cunote, NULL);
 
     Py_INCREF(Py_None);
     return Py_None;

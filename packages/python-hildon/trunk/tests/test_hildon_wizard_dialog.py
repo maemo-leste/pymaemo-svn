@@ -1,20 +1,23 @@
 #!/usr/bin/env python2.5
 import unittest
 
-import hildon
 import gtk
+import hildon
 
 class TestHildonWizardDialog(unittest.TestCase):
-    def test_constructor_with_parent(self):
-        w = gtk.Window()
-        n = gtk.Notebook()
-        x = hildon.WizardDialog(w, "xyz", n)
-        self.assertTrue(x)
+    def test_constructor(self):
+        d = hildon.WizardDialog(gtk.Window(), "Wizard", gtk.Notebook())
+        self.assertTrue(type(d) is hildon.WizardDialog)
+        d = hildon.WizardDialog(None, "Wizard", gtk.Notebook())
+        self.assertTrue(type(d) is hildon.WizardDialog)
 
-    def test_constructor_no_parent(self):
-        n = gtk.Notebook()
-        x = hildon.WizardDialog(None, "xyz", n)
-        self.assertTrue(x)
+    def test_set_page_func(self):
+        d = hildon.WizardDialog(None, "Wizard", gtk.Notebook())
+        d.set_forward_page_func(lambda n,c,u: None)
+
+    def test_set_page_destroy_not_implemented(self):
+        d = hildon.WizardDialog(None, "Wizard", gtk.Notebook())
+        self.assertRaises(NotImplementedError, d.set_forward_page_func, lambda n,c,u: None, None, lambda: None)
 
 if __name__ == "__main__":
     unittest.main()
