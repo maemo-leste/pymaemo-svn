@@ -29,7 +29,7 @@
   (is-constructor-of "HildonWizardDialog")
   (return-type "GtkWidget*")
   (parameters
-    '("GtkWindow*" "parent")
+    '("GtkWindow*" "parent" (null-ok) (default "NULL"))
     '("const-char*" "wizard_name")
     '("GtkNotebook*" "notebook")
   )
