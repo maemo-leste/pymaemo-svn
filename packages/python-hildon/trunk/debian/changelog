@@ -6,6 +6,8 @@ python-hildon (0.9.0-1maemo6) unstable; urgency=low
     behavior added by GB#1195 fix).
   * debian/rules: Fix build cleanup.
   * Allow None as parent argument for WizardDialog (restores GB#825 fix).
+  * Restore hildon.Note custom constructor, fixing a few bugs and simplifying
+    the arguments.
   * Restore working examples and tests from previous version (0.8.9).
 
  -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 14 May 2009 13:49:15 -0400

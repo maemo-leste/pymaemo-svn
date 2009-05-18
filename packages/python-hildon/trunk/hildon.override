@@ -116,6 +116,48 @@ _wrap_hildon_date_editor_get_date(PyGObject *self)
 }
 
 %%
+override hildon_note_new kwargs
+static int
+_wrap_hildon_note_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "note_type", "parent", "description", "icon_name", "progressbar", NULL };
+    PyGObject *parent, *progressbar = NULL;
+    char *note_type, *description, *icon_name = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sO!s|sO!:HildonNote.__init__", kwlist, &note_type, &PyGtkWindow_Type, &parent, &description, &icon_name, &PyGtkProgressBar_Type, &progressbar))
+        return -1;
+    if (strcmp (note_type, "confirmation") == 0) {
+        if (icon_name == NULL) {
+            self->obj = (GObject *)hildon_note_new_confirmation(GTK_WINDOW(parent->obj), description);
+        } else {
+            self->obj = (GObject *)hildon_note_new_confirmation_with_icon_name(GTK_WINDOW(parent->obj), description, icon_name);
+        }
+    } else if (strcmp (note_type, "information") == 0) {
+        if (icon_name == NULL) {
+            self->obj = (GObject *)hildon_note_new_information(GTK_WINDOW(parent->obj), description);
+        } else {
+            self->obj = (GObject *)hildon_note_new_information_with_icon_name(GTK_WINDOW(parent->obj), description, icon_name);
+        }
+    } else if (strcmp (note_type, "cancel") == 0) {
+        if (progressbar == NULL) {
+            PyErr_SetString(PyExc_TypeError, "progress bar must be specified");
+            return -1;
+        } else {
+            self->obj = (GObject *)hildon_note_new_cancel_with_progress_bar(GTK_WINDOW(parent->obj), description, GTK_PROGRESS_BAR(progressbar->obj));
+        }
+    } else {
+        PyErr_SetString(PyExc_ValueError, "unknown note type");
+        return -1;
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonNote object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
 override hildon_range_editor_get_range noargs 
 static PyObject *
 _wrap_hildon_range_editor_get_range(PyGObject *self)

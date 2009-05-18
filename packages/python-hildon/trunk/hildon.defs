@@ -23,6 +23,7 @@
 (include "defs/hildon-edit-toolbar.defs")
 (include "defs/hildon-entry.defs")
 (include "defs/hildon-enum-types.defs")
+(include "defs/hildon-extras.defs")
 (include "defs/hildon-file-chooser-dialog.defs")
 (include "defs/hildon-file-details-dialog.defs")
 (include "defs/hildon-file-selection.defs")

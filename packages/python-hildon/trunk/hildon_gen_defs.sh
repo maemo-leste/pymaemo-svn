@@ -22,6 +22,18 @@ for h in $headers; do
 	$codegen_dir/h2def.py -f hildon-ignore.defs $h > defs/$(basename $h .h).defs
 	echo "#include \"$h\"" >> hildon-includes.h
 done
+cat > defs/hildon-extras.defs << "EOF"
+; There is no "hildon_note_new" function. That declaration is here just to be overrided.
+(define-function hildon_note_new
+  (c-name "hildon_note_new")
+  (is-constructor-of "HildonNote")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+EOF
 $codegen_dir/createdefs.py hildon.defs defs/*.defs
 
 # Apply some transformations to the generated .defs
