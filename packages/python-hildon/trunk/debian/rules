@@ -13,3 +13,4 @@ include /usr/share/cdbs/1/class/python-distutils.mk
 
 clean::
 	rm -f hildon.c
+	find -name "*.py[co]" | xargs -r rm
