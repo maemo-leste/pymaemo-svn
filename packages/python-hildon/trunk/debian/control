@@ -14,3 +14,16 @@ Replaces: python2.5-hildon (<< 0.8.9-2maemo1)
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Description: Python bindings for Hildon Framework.
+
+Package: python-hildon-dev
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}, python-hildon
+XB-Python-Version: ${python:Versions}
+Description: Development files for Hildon Framework.
+
+#Package: python-hildon-tests
+#Architecture: any
+#Section: tests
+#Depends: ${shlibs:Depends}, ${python:Depends}, python-hildon
+#XB-Python-Version: ${python:Versions}
+#Description: Standalone tests for Hildon Framework.

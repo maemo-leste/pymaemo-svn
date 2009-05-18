@@ -1,6 +1,6 @@
 #!/usr/bin/python2.5
 import sys
-import os
+import glob
 from distutils.core import setup
 
 sys.path.append("/usr/share/pygtk/2.0")
@@ -35,14 +35,12 @@ hildon = TemplateExtension(name = "hildon",
 
 extensions.append(hildon)
 
-sys.prefix = "/usr/share/python-hildon"
-
 setup(name = "hildon",
       version = "0.9.0",
       ext_modules = extensions,
       py_modules = ["hildonglade"],
-      data_files = [("examples", ["examples/"+f for f in os.listdir("examples") if f.endswith(".py")]),
-                    ("tests",["tests/"+f for f in os.listdir("tests") if f.endswith(".py")]),
-                    ("defs",["defs/"+f for f in os.listdir("defs") if f.endswith(".defs")])],
+      data_files = [("/usr/share/python-hildon-dev/examples", glob.glob("examples/*.py")),
+                    ("/usr/share/python-hildon-dev/defs", glob.glob("defs/*.defs")),
+                    ("/usr/share/python-hildon-tests", glob.glob("tests/*.py"))],
       cmdclass = {"build_ext": BuildExt}
      )
