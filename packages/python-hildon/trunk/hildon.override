@@ -408,3 +408,63 @@ _wrap_hildon_wizard_dialog_set_forward_page_func(PyGObject *self, PyObject *args
     Py_INCREF(Py_None);
     return Py_None;
 }
+
+%%
+override hildon_file_system_model_new kwargs
+static int
+_wrap_hildon_file_system_model_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "ref_widget", "root_dir", NULL };
+    PyGObject *py_ref_widget = NULL, *py_root_dir = NULL;
+    GtkWidget *ref_widget = NULL;
+    char *root_dir = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|OO:HildonFileSystemModel.__init__", kwlist, &py_ref_widget, &py_root_dir))
+        return -1;
+    if ((PyObject *)py_ref_widget == Py_None)
+        ref_widget = NULL;
+    else if (py_ref_widget && pygobject_check(py_ref_widget, &PyGtkWidget_Type))
+        ref_widget = GTK_WIDGET(py_ref_widget->obj);
+    else if (py_ref_widget) {
+        PyErr_SetString(PyExc_TypeError, "ref_widget should be a GtkWidget or None");
+        return -1;
+    }
+    if ((PyObject *)py_root_dir == Py_None)
+        root_dir = NULL;
+    else if (py_root_dir && PyString_Check(py_root_dir))
+        root_dir = PyString_AsString((PyObject *)py_root_dir);
+    else if (py_root_dir) {
+        PyErr_SetString(PyExc_TypeError, "root_dir should be a string or None");
+        return -1;
+    }
+    self->obj = (GObject *)g_object_new(HILDON_TYPE_FILE_SYSTEM_MODEL, "ref-widget", ref_widget, "root-dir", root_dir, NULL);
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonFileSystemModel object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_file_chooser_dialog_new kwargs
+static int
+_wrap_hildon_file_chooser_dialog_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "parent", "action", "file_system_model", NULL };
+    PyGObject *parent = NULL, *py_file_system_model = NULL;
+    PyObject *py_action = NULL;
+    GtkFileChooserAction action;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!OO!:HildonFileChooserDialog.__init__", kwlist, &PyGtkWindow_Type, &parent, &py_action, &PyHildonFileSystemModel_Type, &py_file_system_model))
+        return -1;
+    if (pyg_enum_get_value(GTK_TYPE_FILE_CHOOSER_ACTION, py_action, (gpointer)&action))
+        return -1;
+    self->obj = (GObject *)g_object_new(HILDON_TYPE_FILE_CHOOSER_DIALOG, "file-system-model", py_file_system_model->obj, "action", action, NULL);
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonFileChooserDialog object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}

@@ -11,7 +11,8 @@ python-hildon (0.9.0-1maemo6) unstable; urgency=low
     the arguments.
   * Add support for hildon.WizardDialog.set_forward_page_func(), plus unit
     tests and an example.
-  * Make title optional for hildon.FontSelectionDialog()
+  * Make title optional for hildon.FontSelectionDialog().
+  * Add support for hildon.FileSystemModel() and hildonFileChooserDialog().
   * Restore working examples and tests from previous version (0.8.9).
 
   [ Bruno dos Santos de Araujo ]
