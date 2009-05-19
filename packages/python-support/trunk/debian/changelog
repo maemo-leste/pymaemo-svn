@@ -1,8 +1,12 @@
 python-support (1.0.2maemo1) unstable; urgency=low
 
+  [ Bruno dos Santos de Araujo ]
   * New version from Debian sid. 
 
- -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  4 May 2009 09:39:12 -0400
+  [ Anderson Lizardo ]
+  * Avoid using python from Scratchbox.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 08 May 2009 15:26:17 -0400
 
 python-support (1.0.2) unstable; urgency=low
 
