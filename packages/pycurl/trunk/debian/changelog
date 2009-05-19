@@ -1,9 +1,15 @@
 pycurl (7.18.2-1maemo1) unstable; urgency=low
 
+  [ Bruno dos Santos de Araujo ]
   * Import from Debian sid
   * Change build dependency libcurl4-gnutls-dev to libcurl4-openssl-dev 
  
- -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  4 May 2009 09:17:35 -0400
+  [ Anderson Lizardo ]
+  * patches/02-sbox-curl-config-abspath.patch: revert SBOX_REDIRECT_IGNORE
+    change (not necessary and breaks when SBOX_REDIRECT_IGNORE is not
+    defined).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 08 May 2009 16:29:42 -0400
 
 pycurl (7.18.2-1) unstable; urgency=low
 
