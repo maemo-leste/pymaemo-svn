@@ -18,7 +18,7 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkWindow*" "parent")
-    '("const-gchar*" "title")
+    '("const-gchar*" "title" (null-ok) (default "NULL"))
   )
 )
 
