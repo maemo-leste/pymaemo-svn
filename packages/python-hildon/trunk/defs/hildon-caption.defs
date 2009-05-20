@@ -37,10 +37,10 @@
   (is-constructor-of "HildonCaption")
   (return-type "GtkWidget*")
   (parameters
-    '("GtkSizeGroup*" "group")
+    '("GtkSizeGroup*" "group" (null-ok) (default "NULL"))
     '("const-gchar*" "value")
     '("GtkWidget*" "control")
-    '("GtkWidget*" "icon")
+    '("GtkWidget*" "icon" (null-ok) (default "NULL"))
     '("HildonCaptionStatus" "flag")
   )
 )

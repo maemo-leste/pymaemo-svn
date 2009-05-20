@@ -63,6 +63,8 @@ set_null_ok defs/hildon-window.defs set_main_menu menu
 set_null_ok defs/hildon-window.defs set_app_menu menu
 set_null_ok defs/hildon-wizard-dialog.defs hildon_wizard_dialog_new parent
 set_null_ok defs/hildon-font-selection-dialog.defs hildon_font_selection_dialog_new title
+set_null_ok defs/hildon-caption.defs hildon_caption_new group
+set_null_ok defs/hildon-caption.defs hildon_caption_new icon
 
 echo Generating hildon-types.c and hildon-types.h...
 glib-mkenums --template hildon-types-template.h $headers $extra_headers > hildon-types.h

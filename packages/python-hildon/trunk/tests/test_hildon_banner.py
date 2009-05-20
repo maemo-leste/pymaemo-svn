@@ -15,7 +15,7 @@ class TestHildonBannerNullArguments(unittest.TestCase):
         hildon.hildon_banner_show_information(self.parent,
                                               "",
                                               "Dummy text")
-        
+
     def testShowInformationWithMarkup(self):
         hildon.hildon_banner_show_information_with_markup(self.parent,
                                               "",
@@ -30,6 +30,6 @@ class TestHildonBannerNullArguments(unittest.TestCase):
         hildon.hildon_banner_show_progress(self.parent,
                                               gtk.ProgressBar(),
                                               "Dummy text")
-        
+
 if __name__ == "__main__":
     unittest.main()
