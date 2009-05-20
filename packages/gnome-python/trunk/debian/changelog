@@ -1,3 +1,9 @@
+gnome-python (2.18.0-2maemo5) unstable; urgency=low
+
+  * Fix debian/copyright
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 20 May 2009 15:35:24 -0400
+
 gnome-python (2.18.0-2maemo4) unstable; urgency=low
 
   [ Bruno dos Santos de Araujo ]
