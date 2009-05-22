@@ -1,3 +1,9 @@
+gnome-python (2.18.0-2maemo6) unstable; urgency=low
+
+  * Add missing information in debian/copyright
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 22 May 2009 09:13:06 -0400
+
 gnome-python (2.18.0-2maemo5) unstable; urgency=low
 
   * Fix debian/copyright
