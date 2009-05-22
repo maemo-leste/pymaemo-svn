@@ -1,3 +1,11 @@
+python2.5 (2.5.2-15maemo3) unstable; urgency=low
+
+  * Drop patch:
+    - disable-sqlite3-support.dpatch
+  * Enable sqlite3 support in debian/control (Fixes: MB#4530)
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 22 May 2009 12:19:56 -0400
+
 python2.5 (2.5.2-15maemo2) unstable; urgency=low
 
   * Drop sqlite3-dev support in debian/control
