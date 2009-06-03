@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.7">
+<meta name="Forrest-skin-name" content="pelt">
+<title>hildon.Volumebar</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<div class="breadtrail">
+<a href="http://www.apache.org/">myGroup</a> &gt; <a href="http://forrest.apache.org/">myProject</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<div class="header">
+<div class="grouplogo">
+<a href="http://mygroup.org"><img class="logoImage" alt="MyGroup" src="../images/group.png" title="MyGroup Description"></a>
+</div>
+<div class="projectlogo">
+<a href="http://myproj.mygroup.org/"><img class="logoImage" alt="MyProject" src="../images/project.png" title="MyProject Description"></a>
+</div>
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="mydomain" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input attr="value" name="Search" value="Search" type="submit">
+</form>
+</div>
+<ul id="tabs">
+<li class="current">
+<a class="base-selected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="base-not-selected" href="../samples/sample.html">Samples</a>
+</li>
+<li>
+<a class="base-not-selected" href="http://xml.apache.org">Apache XML Projects</a>
+</li>
+<li>
+<a class="base-not-selected" href="../pluginDocs/plugins_0_70/index.html">Plugins</a>
+</li>
+<li>
+<a class="base-not-selected" href="../my_work/index.html">My Work</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<div id="level2tabs"></div>
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="breadtrail">
+             
+             &nbsp;
+           </div>
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">About</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../index.html" title="Welcome to MyProj">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', '../skin/')" id="menu_1.2Title" class="menutitle">Samples</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/sample.html" title="A nonsense document using all possible elements in the current document v2.0">Apache doc v2.0</a>
+</div>
+<div class="menuitem">
+<a href="../samples/document-v13.html" title="A nonsense document using all possible elements in the document v1.3">Apache doc v1.3</a>
+</div>
+<div class="menuitem">
+<a href="../samples/static.html" title="Static raw un-processed content">Static content</a>
+</div>
+<div class="menuitem">
+<a href="../samples/linking.html" title="Linking explained and demonstrated">Linking</a>
+</div>
+<div class="menuitem">
+<a href="../samples/embedded_html.html" title="Test of Embedded HTML">Embedded HTML</a>
+</div>
+<div class="menuitem">
+<a href="../samples/ascii-art.html" title="Sample Ascii Art page">ascii-art page</a>
+</div>
+<div class="menuitem">
+<a href="../samples/usemap.html" title="Client-side imagemap">usemap</a>
+</div>
+<div class="menuitem">
+<a href="../samples/customSchema.html" title="Custom XML Schemas">User Schemas</a>
+</div>
+<div class="menuitem">
+<a href="../samples/custom.html" title="A custom XML file">Custom File</a>
+</div>
+<div class="menuitem">
+<a href="../samples/faq.html" title="Frequently Asked Questions">FAQ</a>
+</div>
+<div onclick="SwitchMenu('menu_1.2.11', '../skin/')" id="menu_1.2.11Title" class="menutitle">Subdir</div>
+<div id="menu_1.2.11" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/subdir/index.html" title="Page generated from a sub-directory">Index</a>
+</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', '../skin/')" id="menu_1.3Title" class="menutitle">Plugins</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="../pluginDocs/plugins_0_70/index.html" title="List of plugins available for Forrest">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.4', '../skin/')" id="menu_1.4Title" class="menutitle">My Work</div>
+<div id="menu_1.4" class="menuitemgroup">
+<div class="menuitem">
+<a href="../my_work/index.html" title="Documents produced so far">Index</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_maemo_howto.html" title="How To Use Python In Maemo">Python Maemo How-to</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_libosso_api.html" title="LibOSSO API for Python">LibOSSO API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<div id="credit2"></div>
+</div>
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="pyhildon_volumebar.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>hildon.Volumebar</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Description">Description</a>
+</li>
+<li>
+<a href="#Ancestry">Ancestry</a>
+</li>
+<li>
+<a href="#Properties">Properties</a>
+</li>
+<li>
+<a href="#Signals">Signals</a>
+</li>
+<li>
+<a href="#Methods">Methods</a>
+<ul class="minitoc">
+<li>
+<a href="#get_level">get_level</a>
+</li>
+<li>
+<a href="#set_level">set_level</a>
+</li>
+<li>
+<a href="#get_mute">get_mute</a>
+</li>
+<li>
+<a href="#set_mute">set_mute</a>
+</li>
+<li>
+<a href="#level_change">level_change</a>
+</li>
+<li>
+<a href="#get_adjustment">get_adjustment</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<p>Base class for widgets that displays a volume bar.</p>
+    
+<a name="N1000F"></a><a name="Description"></a>
+<h2 class="boxed">Description</h2>
+<div class="section">
+<p>
+<span class="codefrag">hildon.Volumebar</span> is a base class for widgets that displays a volume bar that allows
+         increasing or decreasing volume within a pre-defined range and muting the volume by clicking on a specific mute icon.</p>
+</div>
+    
+<a name="N1001B"></a><a name="Ancestry"></a>
+<h2 class="boxed">Ancestry</h2>
+<div class="section">
+<p>Up to the first non-hildon ancestor:</p>
+<pre class="code">
+...
+ +-- gtk.Container
+      +-- hildon.Volumebar
+</pre>
+</div>
+    
+<a name="N10029"></a><a name="Properties"></a>
+<h2 class="boxed">Properties</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="1" rowspan="1">Name</th>
+          <th colspan="1" rowspan="1">Access</th>
+          <th colspan="1" rowspan="1">Description</th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"can-focus"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">The widget focusablility. <span class="codefrag">True</span> is focusable.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"has_mute"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the mute button is visible. Default value is <span class="codefrag">True</span>.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"level"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Current volume level. Varies from <span class="codefrag">0.0</span> to <span class="codefrag">100.0</span>.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"mute"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Whether volume is muted.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N1009D"></a><a name="Signals"></a>
+<h2 class="boxed">Signals</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"mute_toggled"</span></td>
+          <td colspan="1" rowspan="1"><span class="codefrag">def callback(widget, user_param1, ...)</span></td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"level_changed"</span></td>
+          <td colspan="1" rowspan="1"><span class="codefrag">def callback(widget, user_param1, ...)</span></td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N100C5"></a><a name="Methods"></a>
+<h2 class="boxed">Methods</h2>
+<div class="section">
+<a name="N100CB"></a><a name="get_level"></a>
+<h3 class="boxed">get_level</h3>
+<p>Gets the volume level, ranging between 0.0 and 100.0 (inclusive).</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.Volumebar.get_level()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">The volume level</td>
+          
+</tr>
+        
+</table>
+<a name="N100F0"></a><a name="set_level"></a>
+<h3 class="boxed">set_level</h3>
+<p>Sets the volume level, ranging between 0.0 and 100.0 (inclusive).</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.Volumebar.set_level(level)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">level</span></td>
+            <td colspan="1" rowspan="1">The new volume level</td>
+          
+</tr>
+        
+</table>
+<a name="N10116"></a><a name="get_mute"></a>
+<h3 class="boxed">get_mute</h3>
+<p>Gets mute status.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.Volumebar.get_mute()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> if it's mute and <span class="codefrag">False</span> otherwise.</td>
+          
+</tr>
+        
+</table>
+<a name="N10140"></a><a name="set_mute"></a>
+<h3 class="boxed">set_mute</h3>
+<p>Sets mute status.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.Volumebar.set_mute(mute)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">mute</span></td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> to mute and <span class="codefrag">False</span> otherwise.</td>
+          
+</tr>
+        
+</table>
+<a name="N1016B"></a><a name="level_change"></a>
+<h3 class="boxed">level_change</h3>
+<p>Emits "level_changed" signal to the given volumebar. This method is mainly used by derived classes.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.Volumebar.level_change()</span>
+            </th>
+          
+</tr>
+        
+</table>
+<a name="N10183"></a><a name="get_adjustment"></a>
+<h3 class="boxed">get_adjustment</h3>
+<p>Gets the <span class="codefrag">gtk.Adjustment</span> used in volumebar.</p>
+<p>This is a <em>temporary solution</em> until volumebar is restructured to be a child class of <span class="codefrag">gtk.Range</span>.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.Volumebar.get_adjustment()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">A <span class="codefrag">gtk.Adjustment</span> used by the volume bar.</td>
+          
+</tr>
+        
+</table>
+</div>
+  
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2005 The Acme Software Foundation.</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:webmaster@foo.com?subject=Feedback%C2%A0my_work/pyhildon_volumebar.html">webmaster@foo.com</a>
+</div>
+</div>
+</body>
+</html>

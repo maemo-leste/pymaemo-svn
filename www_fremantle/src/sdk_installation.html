@@ -1,0 +1,32 @@
+<h2>SDK Installation (scratchbox)</h2>
+
+
+<p>
+  The first thing is to add the Maemo <em>extras</em> repository (where Python is located) to your
+  list of package sources. To do that you'll have to edit the file <var>/etc/apt/sources.list</var>,
+  which should look like this:
+</p>
+<pre>
+deb http://repository.maemo.org/ bora free non-free
+deb-src http://repository.maemo.org/ bora free
+deb file:/home/[username]/maemo-sdk-nokia-binaries_3.1 bora explicit</pre>
+<p>Add the following line to it:</p>
+<pre>deb http://repository.maemo.org/extras bora free non-free</pre>
+
+<p>Now resynchronize your package index files with the following command:</p>
+<pre>[sbox-SDK_X86: ~] > apt-get update</pre>
+
+<p>
+  After that you are ready to install <var>python2.5</var> plus bindings. All Python 2.5 for Maemo
+  packages are named <var>python2.5-*</var>, so you can install all at once with <var>apt-get</var>
+  if you want to doing the following:
+</p>
+<pre>[sbox-SDK_X86: ~] > apt-get install python2.5*</pre>
+
+<p>To see all python-related packages issue this command</p>
+<pre>[sbox-SDK_X86: ~] > apt-get cache search python*</pre>
+
+<p>
+   Note that you'll see also scratchbox's own python (version 2.3) which you must not use for
+   your Maemo development.
+</p>

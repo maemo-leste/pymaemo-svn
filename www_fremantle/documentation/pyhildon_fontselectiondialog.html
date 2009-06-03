@@ -1,0 +1,535 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.7">
+<meta name="Forrest-skin-name" content="pelt">
+<title>hildon.FontSelectionDialog</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<div class="breadtrail">
+<a href="http://www.apache.org/">myGroup</a> &gt; <a href="http://forrest.apache.org/">myProject</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<div class="header">
+<div class="grouplogo">
+<a href="http://mygroup.org"><img class="logoImage" alt="MyGroup" src="../images/group.png" title="MyGroup Description"></a>
+</div>
+<div class="projectlogo">
+<a href="http://myproj.mygroup.org/"><img class="logoImage" alt="MyProject" src="../images/project.png" title="MyProject Description"></a>
+</div>
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="mydomain" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input attr="value" name="Search" value="Search" type="submit">
+</form>
+</div>
+<ul id="tabs">
+<li class="current">
+<a class="base-selected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="base-not-selected" href="../samples/sample.html">Samples</a>
+</li>
+<li>
+<a class="base-not-selected" href="http://xml.apache.org">Apache XML Projects</a>
+</li>
+<li>
+<a class="base-not-selected" href="../pluginDocs/plugins_0_70/index.html">Plugins</a>
+</li>
+<li>
+<a class="base-not-selected" href="../my_work/index.html">My Work</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<div id="level2tabs"></div>
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="breadtrail">
+             
+             &nbsp;
+           </div>
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">About</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../index.html" title="Welcome to MyProj">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', '../skin/')" id="menu_1.2Title" class="menutitle">Samples</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/sample.html" title="A nonsense document using all possible elements in the current document v2.0">Apache doc v2.0</a>
+</div>
+<div class="menuitem">
+<a href="../samples/document-v13.html" title="A nonsense document using all possible elements in the document v1.3">Apache doc v1.3</a>
+</div>
+<div class="menuitem">
+<a href="../samples/static.html" title="Static raw un-processed content">Static content</a>
+</div>
+<div class="menuitem">
+<a href="../samples/linking.html" title="Linking explained and demonstrated">Linking</a>
+</div>
+<div class="menuitem">
+<a href="../samples/embedded_html.html" title="Test of Embedded HTML">Embedded HTML</a>
+</div>
+<div class="menuitem">
+<a href="../samples/ascii-art.html" title="Sample Ascii Art page">ascii-art page</a>
+</div>
+<div class="menuitem">
+<a href="../samples/usemap.html" title="Client-side imagemap">usemap</a>
+</div>
+<div class="menuitem">
+<a href="../samples/customSchema.html" title="Custom XML Schemas">User Schemas</a>
+</div>
+<div class="menuitem">
+<a href="../samples/custom.html" title="A custom XML file">Custom File</a>
+</div>
+<div class="menuitem">
+<a href="../samples/faq.html" title="Frequently Asked Questions">FAQ</a>
+</div>
+<div onclick="SwitchMenu('menu_1.2.11', '../skin/')" id="menu_1.2.11Title" class="menutitle">Subdir</div>
+<div id="menu_1.2.11" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/subdir/index.html" title="Page generated from a sub-directory">Index</a>
+</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', '../skin/')" id="menu_1.3Title" class="menutitle">Plugins</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="../pluginDocs/plugins_0_70/index.html" title="List of plugins available for Forrest">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.4', '../skin/')" id="menu_1.4Title" class="menutitle">My Work</div>
+<div id="menu_1.4" class="menuitemgroup">
+<div class="menuitem">
+<a href="../my_work/index.html" title="Documents produced so far">Index</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_maemo_howto.html" title="How To Use Python In Maemo">Python Maemo How-to</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_libosso_api.html" title="LibOSSO API for Python">LibOSSO API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<div id="credit2"></div>
+</div>
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="pyhildon_fontselectiondialog.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>hildon.FontSelectionDialog</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Description">Description</a>
+</li>
+<li>
+<a href="#Ancestry">Ancestry</a>
+</li>
+<li>
+<a href="#Usage+Example">Usage Example</a>
+</li>
+<li>
+<a href="#Properties">Properties</a>
+</li>
+<li>
+<a href="#Constructor">Constructor</a>
+</li>
+<li>
+<a href="#Methods">Methods</a>
+<ul class="minitoc">
+<li>
+<a href="#get_preview_text">get_preview_text</a>
+</li>
+<li>
+<a href="#set_preview_text">set_preview_text</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<div style="text-align: center;">
+<img class="figure" alt="hildon.FontSelectionDialog" src="hildon_fontselectiondialog_small.jpg"></div> 
+    
+<p>A widget is used to select a font with certain properties</p>
+    
+<a name="N10013"></a><a name="Description"></a>
+<h2 class="boxed">Description</h2>
+<div class="section">
+<p>Font selection dialog provides the user with the possiblity to choose a different font family, font size,
+         font color, font weight (bold or not bold), font style (italic or not italic), underline, strikethrough,
+         and position (normal, superscript or subscript).</p>
+</div>
+
+<a name="N10023"></a><a name="Ancestry"></a>
+<h2 class="boxed">Ancestry</h2>
+<div class="section">
+<p>Up to the first non-hildon ancestor:</p>
+<pre class="code">
+...
+ +-- gtk.Dialog
+      +-- hildon.FontSelectionDialog
+</pre>
+</div>
+    
+<a name="N1001D"></a><a name="Usage+Example"></a>
+<h2 class="boxed">Usage Example</h2>
+<div class="section">
+<pre class="code">
+#!/usr/bin/env python2.5
+
+import gtk
+import hildon
+
+def font_selected(widget, label, fontDialog):
+    fontDialog.run()
+    fontDialog.hide()
+    
+    if fontDialog.get_property("family-set"):
+        family = fontDialog.get_property("family")
+    else:
+        family = "Not set"
+      
+    if fontDialog.get_property("size-set"):
+        size = fontDialog.get_property("size")
+    else:
+        size = "Not set"
+        
+    if fontDialog.get_property("color-set"):
+        gdk_color = fontDialog.get_property("color")
+        color = "(R:%s, G:%s, B:%s)" % (gdk_color.red, gdk_color.green, gdk_color.blue)
+    else:
+        color = "Not set"
+        
+    if fontDialog.get_property("bold-set"):
+        bold = fontDialog.get_property("bold")
+    else:
+        bold = "Not set"
+        
+    if fontDialog.get_property("italic-set"):
+        italic = fontDialog.get_property("italic")
+    else:
+        italic = "Not set"
+        
+    if fontDialog.get_property("underline-set"):
+        underline = fontDialog.get_property("underline")
+    else:
+        underline = "Not set"
+    
+    if fontDialog.get_property("strikethrough-set"):
+        strikethrough = fontDialog.get_property("strikethrough")
+    else:
+        strikethrough = "Not set"
+        
+    if fontDialog.get_property("position-set"):
+        position = fontDialog.get_property("position")
+    else:
+        position = "Not set"
+      
+    label.set_text("Family: %s | Size: %s | Color: %s\n"
+                   "Bold: %s | Italic: %s | Underline: %s\n"
+                   "Sstrikethrough: %s | Position: %s" %
+        (family, size, color, bold, italic, underline, strikethrough, position))
+
+window = hildon.Window()
+window.set_title("Test App")
+
+label = gtk.Label("No font selected.")
+
+fontDialog = hildon.FontSelectionDialog(window, "Choose a font...")
+fontDialog.set_preview_text ("The lazy dogs caught the quick brown fox.")
+
+button = gtk.Button("Click to select a font")
+button.connect("clicked", font_selected, label, fontDialog)
+
+vbox = gtk.VBox(False, 10)
+vbox.pack_start (button)
+vbox.pack_start (label)
+window.add(vbox)
+
+window.show_all()
+
+gtk.main()
+      </pre>
+</div>
+    
+<a name="N10028"></a><a name="Properties"></a>
+<h2 class="boxed">Properties</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="1" rowspan="1">Name</th>
+          <th colspan="1" rowspan="1">Access</th>
+          <th colspan="1" rowspan="1">Description</th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"family"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">String that defines the font family.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"family-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the family property is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"size"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Font size in Pt (points, typographical unit).</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"size-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the size property is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"color"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">gdk color for the text.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"color-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the color property is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"bold"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Whether the text is bold.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"bold-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the bold is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"italic"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Whether the text is italic.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"italic-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the italic is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"underline"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Whether the text is underlined.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"underline-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the underline is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"strikethrough"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Whether the text is strikethroughed.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"strikethrough-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the strikethrough is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"position"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Font position (regular, super or subscript).</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"position-set"</span></td>
+          <td colspan="1" rowspan="1">Read/Write/Construct</td>
+          <td colspan="1" rowspan="1">Whether the position is inconsistent.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"preview-text"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">The text in preview dialog, which does not include the "Reference: " text. eg: "The quick brown fox jumps over the lazy dog."</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N10187"></a><a name="Constructor"></a>
+<h2 class="boxed">Constructor</h2>
+<div class="section">
+<p>Creates a new font selection dialog.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="2" rowspan="1">
+            <span class="codefrag">hildon.FontSelectionDialog(parent, title)</span>
+          </th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">parent</span></td>
+          <td colspan="1" rowspan="1">The parent window.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">title</span> (optional)</td>
+          <td colspan="1" rowspan="1">The title of font selection dialog. If it's not passed, then a default title "Font" will be used.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1">Returns</td>
+          <td colspan="1" rowspan="1">A new <span class="codefrag">hildon.FontSelectionDialog</span> widget.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N101CC"></a><a name="Methods"></a>
+<h2 class="boxed">Methods</h2>
+<div class="section">
+<a name="N101D2"></a><a name="get_preview_text"></a>
+<h3 class="boxed">get_preview_text</h3>
+<p>Gets the text in preview dialog, which does not include the reference text ("Reference: ").</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.FontSelectionDialog.get_preview_text()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">The preview text being used. eg: "The quick brown fox jumps over the lazy dog."</td>
+          
+</tr>
+          
+</table>
+<a name="N101F7"></a><a name="set_preview_text"></a>
+<h3 class="boxed">set_preview_text</h3>
+<p>Sets the text in preview dialog, which does not include the reference text ("Reference: ").
+           The default preview text is "The quick brown fox jumped over the lazy dogs".</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.FontSelectionDialog.set_preview_text(text)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">text</span></td>
+            <td colspan="1" rowspan="1">The preview text to be used.</td>
+          
+</tr>
+          
+</table>
+</div>
+  
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2005 The Acme Software Foundation.</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:webmaster@foo.com?subject=Feedback%C2%A0my_work/pyhildon_fontselectiondialog.html">webmaster@foo.com</a>
+</div>
+</div>
+</body>
+</html>

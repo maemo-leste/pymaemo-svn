@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.7">
+<meta name="Forrest-skin-name" content="pelt">
+<title>hildon.NumberEditor</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<div class="breadtrail">
+<a href="http://www.apache.org/">myGroup</a> &gt; <a href="http://forrest.apache.org/">myProject</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<div class="header">
+<div class="grouplogo">
+<a href="http://mygroup.org"><img class="logoImage" alt="MyGroup" src="../images/group.png" title="MyGroup Description"></a>
+</div>
+<div class="projectlogo">
+<a href="http://myproj.mygroup.org/"><img class="logoImage" alt="MyProject" src="../images/project.png" title="MyProject Description"></a>
+</div>
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="mydomain" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input attr="value" name="Search" value="Search" type="submit">
+</form>
+</div>
+<ul id="tabs">
+<li class="current">
+<a class="base-selected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="base-not-selected" href="../samples/sample.html">Samples</a>
+</li>
+<li>
+<a class="base-not-selected" href="http://xml.apache.org">Apache XML Projects</a>
+</li>
+<li>
+<a class="base-not-selected" href="../pluginDocs/plugins_0_70/index.html">Plugins</a>
+</li>
+<li>
+<a class="base-not-selected" href="../my_work/index.html">My Work</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<div id="level2tabs"></div>
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="breadtrail">
+             
+             &nbsp;
+           </div>
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">About</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../index.html" title="Welcome to MyProj">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', '../skin/')" id="menu_1.2Title" class="menutitle">Samples</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/sample.html" title="A nonsense document using all possible elements in the current document v2.0">Apache doc v2.0</a>
+</div>
+<div class="menuitem">
+<a href="../samples/document-v13.html" title="A nonsense document using all possible elements in the document v1.3">Apache doc v1.3</a>
+</div>
+<div class="menuitem">
+<a href="../samples/static.html" title="Static raw un-processed content">Static content</a>
+</div>
+<div class="menuitem">
+<a href="../samples/linking.html" title="Linking explained and demonstrated">Linking</a>
+</div>
+<div class="menuitem">
+<a href="../samples/embedded_html.html" title="Test of Embedded HTML">Embedded HTML</a>
+</div>
+<div class="menuitem">
+<a href="../samples/ascii-art.html" title="Sample Ascii Art page">ascii-art page</a>
+</div>
+<div class="menuitem">
+<a href="../samples/usemap.html" title="Client-side imagemap">usemap</a>
+</div>
+<div class="menuitem">
+<a href="../samples/customSchema.html" title="Custom XML Schemas">User Schemas</a>
+</div>
+<div class="menuitem">
+<a href="../samples/custom.html" title="A custom XML file">Custom File</a>
+</div>
+<div class="menuitem">
+<a href="../samples/faq.html" title="Frequently Asked Questions">FAQ</a>
+</div>
+<div onclick="SwitchMenu('menu_1.2.11', '../skin/')" id="menu_1.2.11Title" class="menutitle">Subdir</div>
+<div id="menu_1.2.11" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/subdir/index.html" title="Page generated from a sub-directory">Index</a>
+</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', '../skin/')" id="menu_1.3Title" class="menutitle">Plugins</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="../pluginDocs/plugins_0_70/index.html" title="List of plugins available for Forrest">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.4', '../skin/')" id="menu_1.4Title" class="menutitle">My Work</div>
+<div id="menu_1.4" class="menuitemgroup">
+<div class="menuitem">
+<a href="../my_work/index.html" title="Documents produced so far">Index</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_maemo_howto.html" title="How To Use Python In Maemo">Python Maemo How-to</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_libosso_api.html" title="LibOSSO API for Python">LibOSSO API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<div id="credit2"></div>
+</div>
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="pyhildon_numbereditor.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>hildon.NumberEditor</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Description">Description</a>
+</li>
+<li>
+<a href="#Ancestry">Ancestry</a>
+</li>
+<li>
+<a href="#Usage+Example">Usage Example</a>
+</li>
+<li>
+<a href="#Properties">Properties</a>
+</li>
+<li>
+<a href="#Constructor">Constructor</a>
+</li>
+<li>
+<a href="#Methods">Methods</a>
+<ul class="minitoc">
+<li>
+<a href="#set_range">set_range</a>
+</li>
+<li>
+<a href="#get_value">get_value</a>
+</li>
+<li>
+<a href="#set_value">set_value</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<div style="text-align: center;">
+<img class="figure" alt="hildon.NumberEditor" src="hildon_numbereditor_small.jpg"></div>
+    
+<p>A widget used to set a number.</p>
+    
+<a name="N10013"></a><a name="Description"></a>
+<h2 class="boxed">Description</h2>
+<div class="section">
+<p>
+<span class="codefrag">hildon.NumberEditor</span> is used to set a number from a specific range. There are two buttons
+         to scroll the value in the number field and manual input is also possible.</p>
+</div>
+    
+<a name="N1001F"></a><a name="Ancestry"></a>
+<h2 class="boxed">Ancestry</h2>
+<div class="section">
+<p>Up to the first non-hildon ancestor:</p>
+<pre class="code">
+...
+ +-- gtk.Container
+      +-- hildon.NumberEditor
+</pre>
+</div>
+    
+<a name="N1002D"></a><a name="Usage+Example"></a>
+<h2 class="boxed">Usage Example</h2>
+<div class="section">
+<pre class="code">
+#!/usr/bin/env python2.5
+
+import gtk
+import hildon
+
+window = hildon.Window()
+window.set_title("Test App")
+
+number_editor = hildon.NumberEditor(0, 10)
+number_editor.set_value(5)
+
+window.add(number_editor)
+
+window.show_all()
+
+gtk.main()
+      </pre>
+</div>
+    
+<a name="N10038"></a><a name="Properties"></a>
+<h2 class="boxed">Properties</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="1" rowspan="1">Name</th>
+          <th colspan="1" rowspan="1">Access</th>
+          <th colspan="1" rowspan="1">Description</th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"value"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">The current value of number editor.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N10067"></a><a name="Constructor"></a>
+<h2 class="boxed">Constructor</h2>
+<div class="section">
+<p>Creates new number editor with a given range (minimum and maximum allowable values).</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="2" rowspan="1">
+            <span class="codefrag">hildon.NumberEditor(min, max)</span>
+          </th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">min</span></td>
+          <td colspan="1" rowspan="1">Minimum allowable value.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">max</span></td>
+          <td colspan="1" rowspan="1">Maximum allowable value.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1">Returns</td>
+          <td colspan="1" rowspan="1">A new <span class="codefrag">hildon.NumberEditor</span> widget.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N100AB"></a><a name="Methods"></a>
+<h2 class="boxed">Methods</h2>
+<div class="section">
+<a name="N100B1"></a><a name="set_range"></a>
+<h3 class="boxed">set_range</h3>
+<p>Sets the editor's number range.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.NumberEditor.set_range(min, max)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">min</span></td>
+            <td colspan="1" rowspan="1">Minimum allowable value.</td>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">max</span></td>
+            <td colspan="1" rowspan="1">Maximum allowable value.</td>
+          
+</tr>
+        
+</table>
+<a name="N100E5"></a><a name="get_value"></a>
+<h3 class="boxed">get_value</h3>
+<p>Gets its current value.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.NumberEditor.get_value()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Editor's current value.</td>
+          
+</tr>
+        
+</table>
+<a name="N1010A"></a><a name="set_value"></a>
+<h3 class="boxed">set_value</h3>
+<p>Sets its current value.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.NumberEditor.set_value(value)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">value</span></td>
+            <td colspan="1" rowspan="1">Editor's current value.</td>
+          
+</tr>
+        
+</table>
+</div>
+  
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2005 The Acme Software Foundation.</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:webmaster@foo.com?subject=Feedback%C2%A0my_work/pyhildon_numbereditor.html">webmaster@foo.com</a>
+</div>
+</div>
+</body>
+</html>

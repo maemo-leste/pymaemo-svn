@@ -1,0 +1,761 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.7">
+<meta name="Forrest-skin-name" content="pelt">
+<title>hildon.TimeEditor</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<div class="breadtrail">
+<a href="http://www.apache.org/">myGroup</a> &gt; <a href="http://forrest.apache.org/">myProject</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<div class="header">
+<div class="grouplogo">
+<a href="http://mygroup.org"><img class="logoImage" alt="MyGroup" src="../images/group.png" title="MyGroup Description"></a>
+</div>
+<div class="projectlogo">
+<a href="http://myproj.mygroup.org/"><img class="logoImage" alt="MyProject" src="../images/project.png" title="MyProject Description"></a>
+</div>
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="mydomain" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input attr="value" name="Search" value="Search" type="submit">
+</form>
+</div>
+<ul id="tabs">
+<li class="current">
+<a class="base-selected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="base-not-selected" href="../samples/sample.html">Samples</a>
+</li>
+<li>
+<a class="base-not-selected" href="http://xml.apache.org">Apache XML Projects</a>
+</li>
+<li>
+<a class="base-not-selected" href="../pluginDocs/plugins_0_70/index.html">Plugins</a>
+</li>
+<li>
+<a class="base-not-selected" href="../my_work/index.html">My Work</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<div id="level2tabs"></div>
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="breadtrail">
+             
+             &nbsp;
+           </div>
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">About</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../index.html" title="Welcome to MyProj">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', '../skin/')" id="menu_1.2Title" class="menutitle">Samples</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/sample.html" title="A nonsense document using all possible elements in the current document v2.0">Apache doc v2.0</a>
+</div>
+<div class="menuitem">
+<a href="../samples/document-v13.html" title="A nonsense document using all possible elements in the document v1.3">Apache doc v1.3</a>
+</div>
+<div class="menuitem">
+<a href="../samples/static.html" title="Static raw un-processed content">Static content</a>
+</div>
+<div class="menuitem">
+<a href="../samples/linking.html" title="Linking explained and demonstrated">Linking</a>
+</div>
+<div class="menuitem">
+<a href="../samples/embedded_html.html" title="Test of Embedded HTML">Embedded HTML</a>
+</div>
+<div class="menuitem">
+<a href="../samples/ascii-art.html" title="Sample Ascii Art page">ascii-art page</a>
+</div>
+<div class="menuitem">
+<a href="../samples/usemap.html" title="Client-side imagemap">usemap</a>
+</div>
+<div class="menuitem">
+<a href="../samples/customSchema.html" title="Custom XML Schemas">User Schemas</a>
+</div>
+<div class="menuitem">
+<a href="../samples/custom.html" title="A custom XML file">Custom File</a>
+</div>
+<div class="menuitem">
+<a href="../samples/faq.html" title="Frequently Asked Questions">FAQ</a>
+</div>
+<div onclick="SwitchMenu('menu_1.2.11', '../skin/')" id="menu_1.2.11Title" class="menutitle">Subdir</div>
+<div id="menu_1.2.11" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/subdir/index.html" title="Page generated from a sub-directory">Index</a>
+</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', '../skin/')" id="menu_1.3Title" class="menutitle">Plugins</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="../pluginDocs/plugins_0_70/index.html" title="List of plugins available for Forrest">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.4', '../skin/')" id="menu_1.4Title" class="menutitle">My Work</div>
+<div id="menu_1.4" class="menuitemgroup">
+<div class="menuitem">
+<a href="../my_work/index.html" title="Documents produced so far">Index</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_maemo_howto.html" title="How To Use Python In Maemo">Python Maemo How-to</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_libosso_api.html" title="LibOSSO API for Python">LibOSSO API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<div id="credit2"></div>
+</div>
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="pyhildon_timeeditor.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>hildon.TimeEditor</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Description">Description</a>
+</li>
+<li>
+<a href="#Ancestry">Ancestry</a>
+</li>
+<li>
+<a href="#Usage+Example">Usage Example</a>
+</li>
+<li>
+<a href="#Properties">Properties</a>
+</li>
+<li>
+<a href="#Constructor">Constructor</a>
+</li>
+<li>
+<a href="#Methods">Methods</a>
+<ul class="minitoc">
+<li>
+<a href="#get_time">get_time</a>
+</li>
+<li>
+<a href="#set_time">set_time</a>
+</li>
+<li>
+<a href="#get_duration_range">get_duration_range</a>
+</li>
+<li>
+<a href="#set_duration_range">set_duration_range</a>
+</li>
+<li>
+<a href="#get_ticks">get_ticks</a>
+</li>
+<li>
+<a href="#set_ticks">set_ticks</a>
+</li>
+<li>
+<a href="#get_show_seconds">get_show_seconds</a>
+</li>
+<li>
+<a href="#set_show_seconds">set_show_seconds</a>
+</li>
+<li>
+<a href="#get_duration_mode">get_duration_mode</a>
+</li>
+<li>
+<a href="#set_duration_mode">set_duration_mode</a>
+</li>
+<li>
+<a href="#get_duration_min">get_duration_min</a>
+</li>
+<li>
+<a href="#set_duration_min">set_duration_min</a>
+</li>
+<li>
+<a href="#get_duration_max">get_duration_max</a>
+</li>
+<li>
+<a href="#set_duration_max">set_duration_max</a>
+</li>
+<li>
+<a href="#get_show_hours">get_show_hours</a>
+</li>
+<li>
+<a href="#set_show_hours">set_show_hours</a>
+</li>
+</ul>
+</li>
+</ul>
+</div> 
+    
+<div style="text-align: center;">
+<img class="figure" alt="hildon.CalendarPopup" src="hildon_timeeditor_small.jpg"></div>
+
+    
+<p>A simple widget with entries for hours and minutes and a pm/am</span>.</p>
+    
+<a name="N10012"></a><a name="Description"></a>
+<h2 class="boxed">Description</h2>
+<div class="section">
+<p>A simple widget with entries for hours and minutes and a pm/am indicator as well as a button
+         which pops up a <span class="codefrag">hildon.TimePicker</span> dialog window.</p>
+</div>
+    
+<a name="N1001F"></a><a name="Ancestry"></a>
+<h2 class="boxed">Ancestry</h2>
+<div class="section">
+<p>Up to the first non-hildon ancestor:</p>
+<pre class="code">
+...
+ +-- gtk.Container
+      +-- hildon.TimeEditor
+</pre>
+</div>
+    
+<a name="N1002D"></a><a name="Usage+Example"></a>
+<h2 class="boxed">Usage Example</h2>
+<div class="section">
+<pre class="code">
+#!/usr/bin/env python2.5
+
+import gtk
+import hildon
+
+window = hildon.Window()
+window.set_title("Test App")
+
+time_editor = hildon.TimeEditor()
+
+window.add(time_editor)
+
+window.show_all()
+
+gtk.main()
+      </pre>
+</div>
+    
+<a name="N10038"></a><a name="Properties"></a>
+<h2 class="boxed">Properties</h2>
+<div class="section">
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="1" rowspan="1">Name</th>
+          <th colspan="1" rowspan="1">Access</th>
+          <th colspan="1" rowspan="1">Description</th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"ticks"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">If editor is in duration mode, contains the duration seconds. If not, contains seconds since midnight.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"show_seconds"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Controls whether seconds are shown in the editor.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"show_hours"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Controls whether hours are shown in the editor.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"duration_mode"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Controls whether the TimeEditor is in duration mode.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"duration_min"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Minimum allowed duration value.</td>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1"><span class="codefrag">"duration_max"</span></td>
+          <td colspan="1" rowspan="1">Read/Write</td>
+          <td colspan="1" rowspan="1">Maximum allowed duration value.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N100C6"></a><a name="Constructor"></a>
+<h2 class="boxed">Constructor</h2>
+<div class="section">
+<p>Creates a new <span class="codefrag">hildon.TimeEditor</span> widget.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+        
+<tr>
+          
+<th colspan="2" rowspan="1">
+            <span class="codefrag">hildon.TimeEditor()</span>
+          </th>
+        
+</tr>
+        
+<tr>
+          
+<td colspan="1" rowspan="1">Returns</td>
+          <td colspan="1" rowspan="1">A new <span class="codefrag">hildon.TimeEditor</span>.</td>
+        
+</tr>
+      
+</table>
+</div>
+    
+<a name="N100F1"></a><a name="Methods"></a>
+<h2 class="boxed">Methods</h2>
+<div class="section">
+<a name="N100F7"></a><a name="get_time"></a>
+<h3 class="boxed">get_time</h3>
+<p>Gets the time of the <span class="codefrag">hildon.TimeEditor</span> widget. The time returned is always in 24h format.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_time()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">A tuple of the form <span class="codefrag">(hours, minutes, seconds)</span>.</td>
+          
+</tr>
+          
+</table>
+<a name="N10122"></a><a name="set_time"></a>
+<h3 class="boxed">set_time</h3>
+<p>Sets the time. If the time specified by the arguments is invalid, the function returns without
+           doing anything else. The time is assumed to be in 24h format.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_time(hours, minutes, seconds)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">hours</span></td>
+            <td colspan="1" rowspan="1">Hours.</td>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">minutes</span></td>
+            <td colspan="1" rowspan="1">Minutes.</td>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">seconds</span></td>
+            <td colspan="1" rowspan="1">Seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N10164"></a><a name="get_duration_range"></a>
+<h3 class="boxed">get_duration_range</h3>
+<p>Gets the time range of the duration editor.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_duration_range()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">A tuple of the form <span class="codefrag">(min_seconds, max_seconds)</span>, with <span class="codefrag">min_seconds</span> being its 
+                minimum allowed time in seconds and <span class="codefrag">max_seconds</span> its maximum allowed time in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N10192"></a><a name="set_duration_range"></a>
+<h3 class="boxed">set_duration_range</h3>
+<p>Sets the time range of the duration editor.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_duration_range(min_seconds, max_seconds)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">min_seconds</span></td>
+            <td colspan="1" rowspan="1">Minimum allowed time, in seconds.</td>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">max_seconds</span></td>
+            <td colspan="1" rowspan="1">Maximum allowed time, in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N101C6"></a><a name="get_ticks"></a>
+<h3 class="boxed">get_ticks</h3>
+<p>Returns the current duration, in seconds. This means seconds from midnight, if not in duration mode.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_ticks()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">The current duration, in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N101EB"></a><a name="set_ticks"></a>
+<h3 class="boxed">set_ticks</h3>
+<p>Sets the current duration, in seconds. This means seconds from midnight, if not in duration mode.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_ticks(ticks)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">ticks</span></td>
+            <td colspan="1" rowspan="1">The current duration, in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N10211"></a><a name="get_show_seconds"></a>
+<h3 class="boxed">get_show_seconds</h3>
+<p>Returns whether the seconds field is being shown or not.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_show_seconds()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> if seconds field is being shown and <span class="codefrag">False</span> otherwise.</td>
+          
+</tr>
+        
+</table>
+<a name="N1023B"></a><a name="set_show_seconds"></a>
+<h3 class="boxed">set_show_seconds</h3>
+<p>This method shows or hides the seconds field.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_show_seconds(show_seconds)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">show_seconds</span></td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> to show or <span class="codefrag">False</span> to hide the seconds field.</td>
+          
+</tr>
+        
+</table>
+<a name="N10266"></a><a name="get_duration_mode"></a>
+<h3 class="boxed">get_duration_mode</h3>
+<p></p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_duration_mode()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> if it's in duration mode.</td>
+          
+</tr>
+        
+</table>
+<a name="N1028C"></a><a name="set_duration_mode"></a>
+<h3 class="boxed">set_duration_mode</h3>
+<p>This method sets the duration editor mode, in which the maximum hours is 99 and the
+           <span class="codefrag">hildon.TimePicker</span> is disabled.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_duration_mode(duration_mode)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">duration_mode</span></td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> to set it in duration mode.</td>
+          
+</tr>
+        
+</table>
+<a name="N102B7"></a><a name="get_duration_min"></a>
+<h3 class="boxed">get_duration_min</h3>
+<p>Returns the shortest duration <span class="codefrag">hildon.TimeEditor</span> allows in duration mode.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_duration_min()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Mimimum allowed duration, in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N102DF"></a><a name="set_duration_min"></a>
+<h3 class="boxed">set_duration_min</h3>
+<p>Sets the minimum allowed duration for the duration mode. Note: Has no effect in time mode.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_duration_min(duration_min)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">duration_min</span></td>
+            <td colspan="1" rowspan="1">Mimimum allowed duration, in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N10305"></a><a name="get_duration_max"></a>
+<h3 class="boxed">get_duration_max</h3>
+<p>Returns the longest duration <span class="codefrag">hildon.TimeEditor</span> allows in duration mode.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_duration_max()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1">Maximum allowed duration, in seconds.</td>
+          
+</tr>
+        
+</table>
+<a name="N1032D"></a><a name="set_duration_max"></a>
+<h3 class="boxed">set_duration_max</h3>
+<p>Sets the maximum allowed duration for the duration mode. Note: Has no effect in time mode.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_duration_max(duration_max)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">duration_max</span></td>
+            <td colspan="1" rowspan="1">Maximum allowed duration, in seconds.</td>
+          
+</tr>
+        
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="N10210"></a><a name="get_show_hours"></a>
+<h3 class="boxed">get_show_hours</h3>
+<p>Returns whether the hours field is being shown or not.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.get_show_hours()</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1">Returns</td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> if hours field is being shown and <span class="codefrag">False</span> otherwise.</td>
+          
+</tr>
+
+
+       
+</table>
+<a name="N1028C"></a><a name="set_show_hours"></a>
+<h3 class="boxed">set_show_hours</h3>
+<p>This method shows or hides the hours field.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+          
+<tr>
+            
+<th colspan="2" rowspan="1">
+              <span class="codefrag">hildon.TimeEditor.set_show_hours(show_hours)</span>
+            </th>
+          
+</tr>
+          
+<tr>
+            
+<td colspan="1" rowspan="1"><span class="codefrag">show_hours</span></td>
+            <td colspan="1" rowspan="1"><span class="codefrag">True</span> to show or <span class="codefrag">False</span> to hide the hours field.</td>
+          
+</tr>
+        
+</table>
+
+
+
+
+
+
+
+</div>
+  
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2005 The Acme Software Foundation.</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:webmaster@foo.com?subject=Feedback%C2%A0my_work/pyhildon_timeeditor.html">webmaster@foo.com</a>
+</div>
+</div>
+</body>
+</html>

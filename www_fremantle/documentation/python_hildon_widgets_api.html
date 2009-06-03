@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.7">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Hildon Widgets API for Python</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<div class="breadtrail">
+<a href="http://www.apache.org/">myGroup</a> &gt; <a href="http://forrest.apache.org/">myProject</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<div class="header">
+<div class="grouplogo">
+<a href="http://mygroup.org"><img class="logoImage" alt="MyGroup" src="../images/group.png" title="MyGroup Description"></a>
+</div>
+<div class="projectlogo">
+<a href="http://myproj.mygroup.org/"><img class="logoImage" alt="MyProject" src="../images/project.png" title="MyProject Description"></a>
+</div>
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="mydomain" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input attr="value" name="Search" value="Search" type="submit">
+</form>
+</div>
+<ul id="tabs">
+<li class="current">
+<a class="base-selected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="base-not-selected" href="../samples/sample.html">Samples</a>
+</li>
+<li>
+<a class="base-not-selected" href="http://xml.apache.org">Apache XML Projects</a>
+</li>
+<li>
+<a class="base-not-selected" href="../pluginDocs/plugins_0_70/index.html">Plugins</a>
+</li>
+<li>
+<a class="base-not-selected" href="../my_work/index.html">My Work</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<div id="level2tabs"></div>
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="breadtrail">
+             
+             &nbsp;
+           </div>
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">About</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../index.html" title="Welcome to MyProj">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', '../skin/')" id="menu_1.2Title" class="menutitle">Samples</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/sample.html" title="A nonsense document using all possible elements in the current document v2.0">Apache doc v2.0</a>
+</div>
+<div class="menuitem">
+<a href="../samples/document-v13.html" title="A nonsense document using all possible elements in the document v1.3">Apache doc v1.3</a>
+</div>
+<div class="menuitem">
+<a href="../samples/static.html" title="Static raw un-processed content">Static content</a>
+</div>
+<div class="menuitem">
+<a href="../samples/linking.html" title="Linking explained and demonstrated">Linking</a>
+</div>
+<div class="menuitem">
+<a href="../samples/embedded_html.html" title="Test of Embedded HTML">Embedded HTML</a>
+</div>
+<div class="menuitem">
+<a href="../samples/ascii-art.html" title="Sample Ascii Art page">ascii-art page</a>
+</div>
+<div class="menuitem">
+<a href="../samples/usemap.html" title="Client-side imagemap">usemap</a>
+</div>
+<div class="menuitem">
+<a href="../samples/customSchema.html" title="Custom XML Schemas">User Schemas</a>
+</div>
+<div class="menuitem">
+<a href="../samples/custom.html" title="A custom XML file">Custom File</a>
+</div>
+<div class="menuitem">
+<a href="../samples/faq.html" title="Frequently Asked Questions">FAQ</a>
+</div>
+<div onclick="SwitchMenu('menu_1.2.11', '../skin/')" id="menu_1.2.11Title" class="menutitle">Subdir</div>
+<div id="menu_1.2.11" class="menuitemgroup">
+<div class="menuitem">
+<a href="../samples/subdir/index.html" title="Page generated from a sub-directory">Index</a>
+</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', '../skin/')" id="menu_1.3Title" class="menutitle">Plugins</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="../pluginDocs/plugins_0_70/index.html" title="List of plugins available for Forrest">Index</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.4', '../skin/')" id="menu_1.4Title" class="menutitle">My Work</div>
+<div id="menu_1.4" class="menuitemgroup">
+<div class="menuitem">
+<a href="../my_work/index.html" title="Documents produced so far">Index</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_maemo_howto.html" title="How To Use Python In Maemo">Python Maemo How-to</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_hildon_api.html" title="Hildon API for Python">Python Hildon API</a>
+</div>
+<div class="menuitem">
+<a href="../my_work/python_libosso_api.html" title="LibOSSO API for Python">LibOSSO API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<div id="credit2"></div>
+</div>
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="python_hildon_widgets_api.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>Hildon Widgets API for Python</h1>
+    
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_calendarpopup.html">hildon.CalendarPopup</a></td><td colspan="1" rowspan="1">A dialog which contains a gtk.Calendar.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_colorselector.html">hildon.ColorSelector</a></td><td colspan="1" rowspan="1">A widget for selecting a color.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_controlbar.html">hildon.Controlbar</a></td><td colspan="1" rowspan="1">A widget that allows increasing or decreasing a value within a pre-defined range.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_dateeditor.html">hildon.DateEditor</a></td><td colspan="1" rowspan="1">A simple widget with three entry field (day, month, year) and a icon (eventbox) the clicking of which opens up a hildon.CalendarPopup.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_filedetailsdialog.html">hildon.FileDetailsDialog</a></td><td colspan="1" rowspan="1">Used to show details of a file.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_fontselectiondialog.html">hildon.FontSelectionDialog</a></td><td colspan="1" rowspan="1">A widget is used to select a font with certain properties.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_getpassworddialog.html">hildon.GetPasswordDialog</a></td><td colspan="1" rowspan="1">hildon.GetPasswordDialog is used to get a password.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_grid.html">hildon.Grid</a></td><td colspan="1" rowspan="1">Intended to be used where ever a number of single tap activatable items need to be presented (e.g. Control Panel applets).</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_griditem.html">hildon.GridItem</a></td><td colspan="1" rowspan="1">hildon.GridItem is intended to be used with hildon.Grid.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_hvolumebar.html">hildon.HVolumebar</a></td><td colspan="1" rowspan="1">A widget that displays a horizontal volume bar.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_namepassworddialog.html">hildon.NamePasswordDialog</a></td><td colspan="1" rowspan="1">A widget which allows a user to enter username and password.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_note.html">hildon.Note</a></td><td colspan="1" rowspan="1">A widget to ask confirmation from the user or to show some information to him.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_numbereditor.html">hildon.NumberEditor</a></td><td colspan="1" rowspan="1">A widget to set a number.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_rangeeditor.html">hildon.RangeEditor</a></td><td colspan="1" rowspan="1">Used to set a number range from specific limits.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_seekbar.html">hildon.Seekbar</a></td><td colspan="1" rowspan="1">Used to seek a place from a content. Can be used eg. to browse a mp3 track.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_setpassworddialog.html">hildon.SetPasswordDialog</a></td><td colspan="1" rowspan="1">Used to receive a new password from user. (User sets the password).</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_sortdialog.html">hildon.SortDialog</a></td><td colspan="1" rowspan="1">A widget for defining sorting order of items.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_timeeditor.html">hildon.TimeEditor</a></td><td colspan="1" rowspan="1">A simple widget with entries for hours and minutes and a pm/am indicator as well as a button which pops up a hildon.TimePicker dialog window.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_timepicker.html">hildon.TimePicker</a></td><td colspan="1" rowspan="1">A dialog popup widget which lets the user set a time.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_volumebar.html">hildon.Volumebar</a></td><td colspan="1" rowspan="1">Base class for widgets that display a volume bar.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_vvolumebar.html">hildon.VVolumebar</a></td><td colspan="1" rowspan="1">A widget that displays a vertical volume bar.</td>
+</tr>
+      
+<tr>
+        
+<td colspan="1" rowspan="1"><a href="pyhildon_weekdaypicker.html">hildon.WeekdayPicker</a></td><td colspan="1" rowspan="1">A widget for selecting weekday(s).</td>
+</tr>
+</table>
+    
+<p>Single file version: <a href="pyhildon_widgets_all.html">html</a> and <a href="pyhildon_widgets_all.pdf">pdf</a> 
+</p>
+  
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("<text>Last Published:</text> " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2005 The Acme Software Foundation.</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:webmaster@foo.com?subject=Feedback%C2%A0my_work/python_hildon_widgets_api.html">webmaster@foo.com</a>
+</div>
+</div>
+</body>
+</html>

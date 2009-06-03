@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    <title>Python for Maemo</title>
+</head>
+
+<body>
+<div class="thebox">
+    <div class="logo"><a href="#">Python for Maemo</a>
+    </div>
+    <ul class="header">
+        <li><a href="../../installation.html">installation</a></li>
+        <li><a href="../../documentation.html">documentation</a></li>
+    </ul>
+
+    <div class="side">
+        <h2>Python for Maemo</h2>
+        <a href="../../index.html">Overview</a><br/>
+        <a href="../../index.html#news">News</a><br/>
+        <a href="../../applications.html">Applications</a><br/>
+        <a href="../../applications.html#screenshots">Screenshots</a><br/>
+        <a href="../../faq.html">FAQ</a><br/>
+        <h2>Using it</h2>
+        <a href="../../installation.html">Installation</a><br/>
+        <a href="../../documentation.html">Documentation</a><br/>
+        <a href="../../documentation.html#components">Components</a><br/>
+        <a href="../../documentation.html#examples">Examples</a><br/>
+        <h2>Contributing</h2>
+        <a href="http://garage.maemo.org/projects/pymaemo/">Project Page</a><br/>
+        <a href="https://bugs.maemo.org/buglist.cgi?product=PyMaemo">Bugs</a><br/>
+        <a href="https://garage.maemo.org/tracker/?atid=231&group_id=40&func=browse">Patches</a><br/>
+        <a href="https://garage.maemo.org/scm/?group_id=40">SVN</a><br/>
+        <a href="https://garage.maemo.org/plugins/wiki/index.php?id=40&type=g">Wiki</a><br/>
+        <a href="https://garage.maemo.org/mail/?group_id=40">Mailing List</a><br/>
+        <h2>Links</h2>
+        <a href="http://www.indt.org">INdT</a><br/>
+        <a href="http://www.python.org">Python</a><br/>
+        <a href="http://www.maemo.org">Maemo</a><br/>
+    </div>
+
+    <div class="content">
+        <h1>Python-GPSbt Documentation</h1>
+
+        <h2>Introduction</h2>
+        <p>Python-GPSbt is a binding, based on libgpsbt, that provides access to GPS 
+        data through osso-gpsd. It only depends on a Bluetooth GPS device already 
+        paired.
+        </p>
+
+        <h2>How it works</h2>
+        <p>Libgpsbt allows to connect with Bluetooth GPS devices and uses osso-gpsd 
+        daemon to provide a socket where you can send/receive information.<br/><br/>
+        After a gps.start() its possible to send commands (trhough query) and receive 
+        data from GPS. Almost all information acquired from socket is stored inside 
+        a structure called 'fix'. To fill it just call the get_fix(). It does a
+        query to get all necessary information from GPS device.<br/><br/>
+        To finish the Bluetooth connection just call the gps.stop() method, providing
+        the context (returned by gps.start()).
+        </p>
+
+        <h2>API</h2>
+        <ul>
+            <li>gpsbt.start - establishes a new GPS connection and returns a context. 
+            This one is is used to inform stop method what connection to be ended.
+            <p>context = gps.start()</p>
+            </li>
+        
+            <li>gpsbt.stop - ends an active connection, passed through the context.
+            <p>gps.stop(context)</p>
+            </li>
+
+            <li>gpsbt.gps() - the class that gets information from GPS. Through it 
+            its possible to query, get_fix, get_position, etc.
+            <p></p>
+            </li>
+
+            <li>gpsbt.gps.get_fix() - fills in the 'fix' structure with GPS data. The fields
+            are: mode, time, ept, latitude, longitude, eph, altitude (meters), epv, track 
+            (degrees from true north), speed (knots), climb (meters per second), epd, eps and epc.
+            <p>
+            </p>
+            </li>
+
+            <li>gpsbt.gps.get_position() - its a shortcut to return (latitude, longitude) info.
+            <p></p>
+            </li>
+
+            <li>gpsbt.gps.query() - allows user to send one letter commands to the GPS device. 
+            Its possible to group a sequence of commands to send, e.g.:
+            <ul>
+                <li>gpsbt.gps.query('a') fills in the altitude field of 'fix' structure</li>
+                <li>gpsbt.gps.query('as') fills in the altitude and speed fields</li>
+            </ul>
+            <p></p>
+            </li>
+
+            <li>gpsbt.gps.satellites - contains a list of detected satellites, including information
+            about usage and quality.
+            </li>
+        </ul>
+ 
+        <h2>Example</h2>
+        <p>
+        The code below shows how to connect with a GPS device, get data and close 
+        this connection:</p>
+        <pre>
+import gpsbt
+import time
+
+def main():
+    context = gpsbt.start()
+
+    if context == None:
+        print 'Problem while connecting!'
+        return
+
+    # ensure that GPS device is ready to connect and to receive commands
+    time.sleep(2)
+    gpsdevice = gpsbt.gps()
+
+    # read 3 times and show information
+    for a in range(4):
+        gpsdevice.get_fix()
+        time.sleep(2)
+
+        # print information stored under 'fix' variable
+        print 'Altitude: %.3f'%gpsdevice.fix.altitude
+        # dump all information available
+        print gpsdevice
+
+    # ends Bluetooth connection
+    gpsbt.stop(context)
+
+main()
+        </pre>
+        <p>Download source code <a href='gpsbt-example.py'>here</a>.</p>
+
+        <h2>New releases</h2>
+        <p>In a next version we hope to use <a href=''>GeoClue</a> too and a 
+        new API, developed here at INdT. The idea is to have a layer providing
+        all GPS related services until GeoClue gets mature enough and become 
+        Gnome's default GPS framework.</p>
+    </div>
+    <div class="footer">
+    &copy; Copyright <a href="http://www.indt.org.br">Instituto Nokia de Tecnologia</a> | Design by <a href="http://www.kumi.co.nr">Kumiko</a>
+    </div>
+</div>
+</body>
+</html>

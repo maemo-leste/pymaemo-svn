@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<link REL="SHORTCUT ICON" HREF="images/python-favicon.png">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Python for Maemo</title>
+</head>
+
+<body>
+<div class="thebox">
+  <div class="logo"><a href="#">Python for Maemo</a></div>
+    <ul class="header">
+        <li><a href="installation.html">installation</a></li>
+        <li><a href="index.html#components">components</a></li>
+        <li><a href="index.html#documentation">documentation</a></li>
+  </ul>
+  <div class="side">
+    <h2>Python for Maemo</h2>
+    <a href="index.html#what-is-python-for-maemo">What is PyMaemo?</a><br/>
+    <a href="index.html#news">News</a><br/>
+    <a href="index.html#components">Components</a><br/>
+    <a href="installation.html">Installation</a><br/>
+    <a href="index.html#documentation">Documentation</a><br/>
+    <a href="index.html#screenshots">Screenshots</a><br/>
+    <a href="index.html#applications">Applications</a><br/>
+    <a href="index.html#about">About</a><br/>
+          <h2>Contributing</h2>
+    <a href="http://garage.maemo.org/projects/pymaemo/">Project Page</a><br/>
+          <a href="https://bugs.maemo.org/buglist.cgi?product=PyMaemo">Bugs</a><br/>
+          <a href="https://garage.maemo.org/tracker/?atid=231&group_id=40&func=browse">Patches</a><br/>
+          <a href="https://garage.maemo.org/scm/?group_id=40">SVN</a><br/>
+          <a href="https://garage.maemo.org/plugins/wiki/index.php?id=40&type=g">Wiki</a><br/>
+          <a href="https://garage.maemo.org/mail/?group_id=40">Mailing List</a><br/>
+    <h2>Links</h2>
+    <a href="http://www.indt.org">INdT</a><br/>
+    <a href="http://www.python.org">Python</a><br/>
+    <a href="http://www.maemo.org">Maemo</a><br/>
+  </div>
+  <div class="content">
+	<h2>Python 2.5 for Maemo - Release notes</h2>
+
+	<h3>Foreword</h3>
+
+	<p> Python 2.5 for Maemo is the newest version of the Python port for the Maemo platform. The highlight new features are:
+
+	<ul>
+	<li>Updated to Python 2.5 version of the core language
+	<li>Updated bindings 
+	<li>Added bindings to new Hildon widgets (Maemo GTK+ extension widgets)
+	<li>Improved bindings to OSSO library (access to Maemo-specific services)
+	</ul>
+
+
+	<h3>Project page and repositories</h3>
+
+	<p> The project main page moved to <a href="http://pymaemo.garage.maemo.org/">http://pymaemo.garage.maemo.org/</a>.
+
+	<p> The repository lies at <a href="http://repository.maemo.org/extras/">http://repository.maemo.org/extras/</a>.
+	This repository contains Python 2.5 packages for <tt>bora</tt> and <tt>scirocco</tt> versions of the SDK (components
+	<tt>free</tt> and <tt>non-free</tt>). This new package can be installed using an automatic script or mannualy. 
+
+        <h3><a name="auto_installation">Automatic Installation</a></h3>
+
+	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
+	to ensure that all python2.4 packages will be correctly removed.</p>
+
+	<p> To perform automatic installation just download both .install files. Proceed installing first <i>Base repository</i> file. Do the same with 
+        <i>Python runtime</i> file.
+	
+	<ul>	
+	<li><a href="http://pymaemo.garage.maemo.org/base-repository.install">Base repository</a></li>
+	<li><a href="http://pymaemo.garage.maemo.org/python2.5-runtime.install">Python 2.5 installer</a></li>
+	</ul>
+
+	<p>To install the development packages, check the steps <a href="#dev_install">here</a>.</p>
+
+        <h3><a name="manual_installation">Manual Installation</a></h3>
+
+	<p><i>Warning</i>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you remove python2.4-runtime. This is necessary 
+	to ensure that all python2.4 packages will be correctly removed.</p>
+
+	<p>The next steps only work if following repository is already present. To check this, open the Application Manager and verify the Application 		catalog. It must contain:</p>
+	
+	<p><i>Base packages for Bora</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org
+	Distribution: bora
+	Components:   free non-free
+	</pre>
+	
+	<p><i>Python2.5 for Bora</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org/extras
+	Distribution: bora
+	Components:   free non-free
+	</pre>
+
+	<p><i>Base packages for Scirocco</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org
+	Distribution: scirocco
+	Components:   free non-free
+	</pre>
+	
+	<p><i>Python2.5 for Scirocco</i></p>
+	<pre>
+	Web address:  http://repository.maemo.org/extras
+	Distribution: scirocco
+	Components:   free non-free
+	</pre>
+
+	<p> In the SDK, add the abovementioned repository lines to <i>/etc/apt/sources.list</i>, run
+	<i>apt-get update</i> and you are ready to install <i>python2.5</i> plus bindings. All Python
+	for Maemo 2.5 packages are named <i>python2.5-*</i>, so you can install all at once with 
+	apt-get if you want to.
+
+	<p> In the device, open the Application Installer, add the repository to your repository list and
+	install the <i>python2.5-runtime</i> package, which will automatically pull all available
+	Python bindings, but not the development packages.
+
+	<p> To install the development packages, check the steps <a href="#dev_install">below</a>.</p>
+
+        <h3><a name="dev_install">Development Packages</a></h3>
+
+	<p> To be able to develop and test applications using the device its necessary to install python2.5-dev package. The steps to do this are decribed
+	below.</p>
+	<pre>
+	Open a xterm session. Inside this session run:
+	<i>sudo /usr/sbin/gainroot</i>
+	Now install the package using apt-get utility:
+	<i>apt-get install python2.5-dev</i>
+	And finally exit from gainroot:
+	<i>exit</i>
+	</pre>
+
+	<h3>Converting existing Maemo applications to PyMaemo 2.5</h3>
+
+	In general, the Python for Maemo applications will demand some maintenance to work on
+	2.5 version, but the changes are easy to pinpoint and implement.
+
+	<h4>Package dependencies</h4>
+
+	<p> Remember that the PyMaemo is no longer part of the Maemo SDK, neither it is available in
+	default SDK repository. The repository that contains PyMaemo has been changed to
+	<a href="http://repository.maemo.org/extras/">http://repository.maemo.org/extras/</a>. 
+
+	<p> The Python for Maemo 2.5 packages conflict with the 2.4 versions, so they cannot be
+	installed both at the same time in the same system.
+
+	<p> If you deploy your application to final users, you may have to offer instructions for
+	them to add that repository in the devices' Application Installer.
+
+	<h4>Default interpreter</h4>
+
+	<p> In order to be able to run inside the SDK/Scratchbox environment, executable Python scripts should 
+	have the first line changed to
+
+	<pre>
+	#!/usr/bin/env python2.5
+	</pre>
+
+	<p> This is because Scratchbox supplies a Python version 2.3 and sets that one as the default
+	<i>python</i> interpreter, but Python for Maemo applications must run under the 2.5 version.
+
+	<h4>Changes in Hildon API</h4>
+
+	<p> The changes are minor. Properties from some objects have been removed; data from such
+	properties can still be read/written using explicit <i>set_propertyname(value)</i> and 
+	<i>get_propertyname()</i> methods.
+
+	<h4>Changes in LibOSSO API</h4>
+
+	<p> Most methods formerly bound to the <i>osso.Context</i> object have been grouped under specific objects:
+	Autosave, Application, DeviceState, Mime, Plugin, Rpc, StateSaving, Statusbar, SystemNote
+	and TimeNotification. 
+
+	<p> Apart from that, the methods' names, prototypes and side-effects are
+	the same as Python for Maemo 2.4. In the former version, you did
+
+	<pre>
+	c = osso.Context("application name", "0.5", False)
+	c.force_autosave()
+	</pre>
+
+	which must be changed in the following way to work under Python 2.5:
+
+	<pre>
+	c = osso.Context("application name", "0.5", False)
+	a = osso.Autosave(c)
+	a.force_autosave()
+	</pre>
+
+	<h4>Gazpacho</h4>
+
+	<p> As happened with Python 2.5, Gazpacho for Maemo packages are no longer in the SDK repository.
+	The project is being moved to <a href="http://garage.maemo.org>">http://garage.maemo.org</a> and
+	the packages will be available under the abovementioned repository. 
+
+	<P> Search for Gazpacho in the Garage site in order to get more directions about this application.
+
+	<h4>Python for Maemo 2.4 is obsolete</h4>
+
+	<p> The Python for Maemo version 2.4 included in the Maemo SDK 2.0 ("Mistral") will
+	no longer be updated. Python applications should be upgraded to Python for Maemo 2.5 in order to
+	function properly under SDK 2.1 ("Scirocco") or SDK 3.0 ("Bora").
+
+	<p> Also, there are no Python 2.5 packages for the SDK 2.0. Please upgrade to SDK 2.1 or better.
+
+        <h3><a name="documentation">Further References</h3>
+	<ul>
+	<li><a href="http://teemuharju.net/pymaemo-tutorials/">Teemu's Blog - PyMaemo tutorials</a>
+	<li><a href="http://www.maemo.org/platform/docs/python-bora/python_maemo_howto.html">Python for Maemo tutorial</a></li>
+	<li><a href="http://www.maemo.org/platform/docs/pymaemo/python_hildon_api.html">Hildon bindings API</a></li>
+	<li><a href="http://www.maemo.org/platform/docs/pymaemo/python_libosso_api.html">OSSO bindings API</a></li>
+	<li><a href="http://www.maemo.org/platform/docs/howtos/howto_camera_api_bora.html">Camera API tutorial (includes a Python example)</a></li>
+	</ul>
+        <p>&nbsp;</p>
+  </div>
+  <div class="footer">
+    &copy; Copyright Instituto Nokia de Tecnologia | Design by <a href="http://www.kumi.co.nr">Kumiko</a>
+  </div>
+</div>
+</body>
+</html>

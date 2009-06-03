@@ -1,0 +1,5 @@
+[install]
+repo_name = extras
+repo_deb  = deb http://repository.maemo.org/extras gregale free non-free
+repo_deb_3  = deb http://repository.maemo.org/extras bora free non-free
+package   = python2.5-runtime

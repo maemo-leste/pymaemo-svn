@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<link REL="SHORTCUT ICON" HREF="images/python-favicon.png">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Python for Maemo</title>
+</head>
+
+<body>
+<div class="thebox">
+  <div class="logo"><a href="#">Python for Maemo</a></div>
+    <ul class="header">
+        <li><a href="installation.html">installation</a></li>
+        <li><a href="documentation.html">documentation</a></li>
+    </ul>
+    <div class="side">
+        <h2>Python for Maemo</h2>
+        <a href="index.html">Overview</a><br/>
+        <a href="index.html#news">News</a><br/>
+        <a href="applications.html">Applications</a><br/>
+        <a href="applications.html#screenshots">Screenshots</a><br/>
+        <a href="faq.html">FAQ</a><br/>
+        <h2>Using it</h2>
+        <a href="installation.html">Installation</a><br/>
+        <a href="documentation.html">Documentation</a><br/>
+        <a href="documentation.html#components">Components</a><br/>
+        <a href="documentation/python_osso_examples/index.html">Examples</a><br/>
+        <h2>Contributing</h2>
+        <a href="http://garage.maemo.org/projects/pymaemo/">Project Page</a><br/>
+        <a href="https://bugs.maemo.org/buglist.cgi?product=PyMaemo">Bugs</a><br/>
+        <a href="https://garage.maemo.org/tracker/?atid=231&group_id=40&func=browse">Patches</a><br/>
+        <a href="https://garage.maemo.org/scm/?group_id=40">SVN</a><br/>
+        <a href="https://garage.maemo.org/plugins/wiki/index.php?id=40&type=g">Wiki</a><br/>
+        <a href="https://garage.maemo.org/mail/?group_id=40">Mailing List</a><br/>
+        <h2>Links</h2>
+        <a href="http://www.indt.org">INdT</a><br/>
+        <a href="http://www.python.org">Python</a><br/>
+        <a href="http://www.maemo.org">Maemo</a><br/>
+    </div>
+    
+    <div class="content">
+        <h2>Installation</h2>
+
+        <p>
+        <em>Warning</em>: It is necessary to remove ALL applications that depends on Python2.4 BEFORE you
+        remove python2.4-runtime. This is necessary to ensure that all python2.4 packages will be
+        correctly removed.
+        </p>
+
+        <p>
+        PyMaemo is taken as a dependency for other applications and it isn't listed by Application Manager
+        anymore. This way if you choose to install PyMaemo by yourself follow the steps below:
+        </p>
+
+        <table>
+            <th>OS2007</th>
+            <th></th>
+            <th>OS2008</th>
+            <tr>
+                <td>Open Application Manager</td>
+                <td></td>
+                <td>Open Application Manager</td>
+            </tr>
+            <tr>
+                <td>ApplicationManager->Tools->Application catalogue...</td>
+                <td></td>
+                <td>ApplicationManager->Tools->Application catalogue...</td>
+            </tr>
+            <tr>
+                <td>There is any bora-extras? If no, add them clicking New button</td>
+                <td>    </td>
+                <td>Edit Maemo Extras</td>
+            </tr>
+            <tr>
+                <td><strong>Catalogue Name:</strong> bora-extras</td>
+                <td></td>
+                <td>Uncheck disabled box</td>
+            </tr>
+            <tr>
+                <td><strong>Web address:</strong> http://repository.maemo.org/extras</td>
+                <td></td>
+                <td>Click OK and wait refresh</td>
+            </tr>
+            <tr>
+                <td><strong>Distribution:</strong> bora</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Components:</strong> free non-free</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Click OK and wait refresh</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p>
+        Now run x-term application, to get a command line prompt. Your device must be in <a href=
+        "http://maemo.org/community/wiki/flasher_tool_usage/">RD mode</a>. This is done using 
+        <em>sudo flasher --enable-rd-mode</em>.
+        </p>
+        <p>
+        Inside x-term type (hit ENTER after each line):
+        </p>
+        <ul>
+        <li><em>sudo /usr/sbin/gainroot</em></li>
+        <li><em>apt-get update</em></li>
+        <li><em>apt-get install python2.5-runtime</em></li>
+        </ul>
+        <p>
+        When asked to agree, choose <strong>Y</strong>. Now wait until python is being installed.
+        </p>
+        <p>
+        If you want to install Python on Maemo SDK (scratchbox), check the steps
+        <strong><a href="sdk_installation.html">here</a></strong>.
+        </p>
+
+        <h3 id="fremantle">Installation on Maemo 5 beta (fremantle)</h3>
+        <p>Given that currently only the SDK is available, PyMaemo is
+        supposed to be installed only inside Scratchbox, as instructed <a
+        href="sdk_installation.html#fremantle">here</a>.</p>
+
+        <h2>Upgrade</h2>
+
+        <p>
+        To run an update it is possible to use the install files.
+        <ul>
+        <li><a href="http://maemo.org/downloads/product/OS2007/python/">Update - OS2007</a></li>
+        <li><a href="http://maemo.org/downloads/product/OS2008/pymaemo/">Update - OS2008</a></li>
+        </ul>
+        </p>
+    </div>
+
+    <div class="footer">
+    &copy; Copyright <a href="http://www.indt.org.br">Instituto Nokia de Tecnologia</a> | Design by <a href="http://www.kumi.co.nr">Kumiko</a>
+    </div>
+</div>
+</body>
+</html>
