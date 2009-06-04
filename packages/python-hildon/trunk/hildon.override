@@ -61,8 +61,9 @@ import gtk.Window as PyGtkWindow_Type
 
 %%
 ignore-glob *_get_type
+ignore hildon_find_toolbar_new
 
-// gtk.FileSystem is not exported by current PyGTK
+/* gtk.FileSystem is not exported by current PyGTK */
 ignore hildon_file_system_special_location_get_display_name
 ignore hildon_file_system_special_location_get_icon
 ignore hildon_file_system_special_location_volumes_changed
@@ -468,3 +469,42 @@ _wrap_hildon_file_chooser_dialog_new(PyGObject *self, PyObject *args, PyObject *
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
+
+%%
+override hildon_find_toolbar_new_with_model kwargs
+static int
+_wrap_hildon_find_toolbar_new_with_model(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", "model", "column", NULL };
+    char *label;
+    PyGObject *py_model = NULL;
+    int column = -1;
+    GtkListStore *model = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s|Oi:HildonFindToolbar.__init__", kwlist, &label, &py_model, &column))
+        return -1;
+    if ((PyObject *)py_model == Py_None)
+        model = NULL;
+    else if (py_model && pygobject_check(py_model, &PyGtkListStore_Type))
+        model = GTK_LIST_STORE(py_model->obj);
+    else if (py_model) {
+        PyErr_SetString(PyExc_TypeError, "model should be a GtkListStore or None");
+        return -1;
+    }
+    if (model != NULL) {
+        if (column < 0) {
+            PyErr_SetString(PyExc_ValueError, "column should be non-negative");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_find_toolbar_new_with_model(label, (GtkListStore *) model, column);
+    } else {
+        self->obj = (GObject *)hildon_find_toolbar_new(label);
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonFindToolbar object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
