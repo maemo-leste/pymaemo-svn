@@ -1,3 +1,7 @@
+# Based on C code from:
+# "Hildon Tutorial" version 2009-04-28
+# Example 2.1, "Example of stackable windows"
+
 import gtk
 import hildon
 
