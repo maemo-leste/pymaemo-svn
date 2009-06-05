@@ -1,0 +1,111 @@
+Source: @PVER@
+Section: python
+Priority: optional
+Maintainer: Matthias Klose <doko@debian.org>
+Build-Depends: debhelper (>= 5), autoconf, libreadline5-dev, zlib1g-dev, libssl-dev, sharutils, libbz2-dev, libbluetooth-dev, locales, libsqlite3-dev, libffi-dev (>= 3.0.5), mime-support, netbase, lsb-release, bzip2, libdb-dev
+Build-Depends-Indep: 
+Build-Conflicts: @PVER@-xml, python-xml, libgdbm-dev
+XS-Python-Version: @VER@
+Standards-Version: 3.8.0
+Vcs-Browser: https://code.launchpad.net/~doko/python/pkg@VER@
+Vcs-Bzr: http://bazaar.launchpad.net/~doko/python/pkg@VER@
+
+Package: @PVER@
+Architecture: any
+Priority: @PRIO@
+Depends: @PVER@-minimal (= ${binary:Version}), mime-support, ${shlibs:Depends}
+Suggests: @PVER@-doc, @PVER@-profiler, binutils
+Provides: @PVER@-cjkcodecs, @PVER@-ctypes, @PVER@-elementtree, @PVER@-celementtree, @PVER@-wsgiref
+XB-Python-Version: @VER@
+Description: An interactive high-level object-oriented language (version @VER@)
+ Version @VER@ of the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+
+Package: @PVER@-minimal
+Architecture: any
+Priority: @MINPRIO@
+Depends: ${shlibs:Depends}
+Recommends: @PVER@
+Suggests: binfmt-support
+Replaces: @PVER@ (<< 2.6)
+Conflicts: binfmt-support (<< 1.1.2), python-central (<< 0.6.11ubuntu6)
+XB-Python-Runtime: @PVER@
+XB-Python-Version: @VER@
+Description: A minimal subset of the Python language (version @VER@)
+ This package contains the interpreter and some essential modules.  It can
+ be used in the boot process for some basic tasks.
+ See /usr/share/doc/@PVER@-minimal/README.Debian for a list of the modules
+ contained in this package.
+
+Package: lib@PVER@
+Architecture: any
+Section: libs
+Priority: @PRIO@
+Depends: @PVER@ (= ${binary:Version}), ${shlibs:Depends}
+Replaces: @PVER@ (<< 2.6)
+Description: Shared Python runtime library (version @VER@)
+ Version @VER@ of the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+ .
+ This package contains the shared runtime library, normally not needed
+ for programs using the statically linked interpreter.
+
+Package: @PVER@-examples
+Architecture: all
+Depends: @PVER@ (>= ${source:Version})
+Description: Examples for the Python language (v@VER@)
+ Examples, Demos and Tools for Python (v@VER@). These are files included in
+ the upstream Python distribution (v@VER@).
+
+Package: @PVER@-dev
+Architecture: any
+Depends: @PVER@ (= ${binary:Version}), lib@PVER@ (= ${binary:Version}), ${shlibs:Depends}
+Recommends: libc6-dev | libc-dev
+Replaces: @PVER@ (<< 2.6.2~rc1-0ubuntu2)
+Description: Header files and a static library for Python (v@VER@)
+ Header files, a static library and development tools for building
+ Python (v@VER@) modules, extending the Python interpreter or embedding
+ Python (v@VER@) in applications.
+ .
+ Maintainers of Python packages should read README.maintainers.
+
+Package: idle-@PVER@
+Architecture: all
+Depends: @PVER@, python-tk (>= 2.6~a3), @PVER@-tk
+Enhances: @PVER@
+Replaces: @PVER@ (<< 2.6.1-2)
+XB-Python-Version: @VER@
+Description: An IDE for Python (v@VER@) using Tkinter
+ IDLE is an Integrated Development Environment for Python (v@VER@).
+ IDLE is written using Tkinter and therefore quite platform-independent.
+
+Package: @PVER@-doc
+Section: doc
+Architecture: all
+Suggests: @PVER@
+Description: Documentation for the high-level object-oriented language Python (v@VER@)
+ These is the official set of documentation for the interactive high-level
+ object-oriented language Python (v@VER@). All documents are provided
+ in HTML format. The package consists of ten documents:
+ .
+   * What's New in Python@VER@
+   * Tutorial
+   * Python Library Reference
+   * Macintosh Module Reference
+   * Python Language Reference
+   * Extending and Embedding Python
+   * Python/C API Reference
+   * Installing Python Modules
+   * Documenting Python
+   * Distributing Python Modules
+
+Package: @PVER@-dbg
+Architecture: any
+Priority: extra
+Depends: @PVER@ (>= ${binary:Version}), ${shlibs:Depends}
+Suggests: python-gdbm-dbg, python-tk-dbg
+Description: Debug Build of the Python Interpreter (version @VER@)
+ Python interpreter configured with --pydebug. Dynamically loaded modules are
+ searched in /usr/lib/@PVER@/lib-dynload/debug first.

@@ -1,0 +1,54 @@
+#! /bin/sh -e
+
+# DP: Set site-packages/dist-packages
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p1 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p1 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+--- ./Lib/site.py.orig	2008-10-27 22:39:36.000000000 +0100
++++ ./Lib/site.py	2008-10-27 22:42:36.000000000 +0100
+@@ -13,6 +13,12 @@
+ resulting directories, if they exist, are appended to sys.path, and
+ also inspected for path configuration files.
+ 
++For Debian and derivatives, this sys.path is augmented with directories
++for packages distributed within the distribution. Local addons go
++into /usr/local/lib/python<version>/dist-packages, Debian addons
++install into /usr/{lib,share}/python<version>/dist-packages.
++/usr/lib/python<version>/site-packages is not used.
++
+ A path configuration file is a file whose name has the form
+ <package>.pth; its contents are additional directories (one per line)
+ to be added to sys.path.  Non-existing directories (or
+@@ -260,8 +266,11 @@
+         elif os.sep == '/':
+             sitedirs.append(os.path.join(prefix, "lib",
+                                         "python" + sys.version[:3],
+-                                        "site-packages"))
+-            sitedirs.append(os.path.join(prefix, "lib", "site-python"))
++                                        "dist-packages"))
++            sitedirs.append(os.path.join(prefix, "local/lib",
++                                        "python" + sys.version[:3],
++                                        "dist-packages"))
++            sitedirs.append(os.path.join(prefix, "lib", "dist-python"))
+         else:
+             sitedirs.append(prefix)
+             sitedirs.append(os.path.join(prefix, "lib", "site-packages"))

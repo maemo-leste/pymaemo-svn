@@ -1,0 +1,50 @@
+#! /bin/sh -e
+
+# DP: Recognize other browsers: www-browser, x-www-browser, iceweasel, iceape.
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p0 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+--- Lib/webbrowser.py~	2007-07-04 15:50:53.000000000 +0200
++++ Lib/webbrowser.py	2007-08-31 16:11:12.000000000 +0200
+@@ -453,9 +453,13 @@
+     if "KDE_FULL_SESSION" in os.environ and _iscommand("kfmclient"):
+         register("kfmclient", Konqueror, Konqueror("kfmclient"))
+ 
++    if _iscommand("x-www-browser"):
++        register("x-www-browser", None, BackgroundBrowser("x-www-browser"))
++
+     # The Mozilla/Netscape browsers
+     for browser in ("mozilla-firefox", "firefox",
+                     "mozilla-firebird", "firebird",
++                    "iceweasel", "iceape",
+                     "seamonkey", "mozilla", "netscape"):
+         if _iscommand(browser):
+             register(browser, None, Mozilla(browser))
+@@ -493,6 +497,8 @@
+ 
+ # Also try console browsers
+ if os.environ.get("TERM"):
++    if _iscommand("www-browser"):
++        register("www-browser", None, GenericBrowser("www-browser"))
+     # The Links/elinks browsers <http://artax.karlin.mff.cuni.cz/~mikulas/links/>
+     if _iscommand("links"):
+         register("links", None, GenericBrowser("links"))

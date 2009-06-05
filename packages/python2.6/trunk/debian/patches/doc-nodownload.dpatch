@@ -1,0 +1,36 @@
+#! /bin/sh -e
+
+# DP: Don't try to download documentation tools
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p0 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+--- Doc/Makefile~	2008-04-13 22:51:27.000000000 +0200
++++ Doc/Makefile	2008-05-29 18:50:41.000000000 +0200
+@@ -49,7 +49,7 @@
+ 	svn update tools/jinja
+ 	svn update tools/pygments
+ 
+-build: checkout
++build:
+ 	mkdir -p build/$(BUILDER) build/doctrees
+ 	$(PYTHON) tools/sphinx-build.py $(ALLSPHINXOPTS)
+ 	@echo

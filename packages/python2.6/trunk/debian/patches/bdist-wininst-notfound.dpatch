@@ -1,0 +1,38 @@
+#! /bin/sh -e
+
+# DP: suggest installation of the pythonX.Y-dev package, if bdist_wininst
+# DP: cannot find the wininst-* files.
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p0 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+--- Lib/distutils/command/bdist_wininst.py.orig	2009-04-10 13:44:21.000000000 +0200
++++ Lib/distutils/command/bdist_wininst.py	2009-04-10 13:44:50.000000000 +0200
+@@ -354,5 +354,8 @@
+             sfix = ''
+ 
+         filename = os.path.join(directory, "wininst-%.1f%s.exe" % (bv, sfix))
+-        return open(filename, "rb").read()
++        try:
++            return open(filename, "rb").read()
++        except IOError, msg:
++            raise DistutilsFileError, str(msg) + ', please install the python%s-dev package' % sys.version[:3]
+ # class bdist_wininst

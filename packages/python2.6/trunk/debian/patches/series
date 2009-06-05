@@ -1,0 +1,22 @@
+deb-setup
+deb-locations
+locale-module
+distutils-link
+distutils-sysconfig
+test-sundry
+tkinter-import
+link-opt
+egg-info-no-version
+debug-build
+hotshot-import
+profile-doc
+subprocess-eintr-safety
+webbrowser
+linecache
+doc-nodownload
+
+# FIXME
+#arm-float, for arm only
+
+# FIXME
+# enable-fpectl, if enabled

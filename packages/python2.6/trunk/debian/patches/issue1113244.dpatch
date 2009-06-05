@@ -1,0 +1,80 @@
+#! /bin/sh -e
+
+# DP: Issue #1113244: Py_XINCREF, Py_DECREF, Py_XDECREF: Add `do { ... } while (0)'
+# DP: to avoid compiler warnings.
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p0 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+Index: Include/object.h
+===================================================================
+--- Include/object.h	(Revision 71226)
++++ Include/object.h	(Arbeitskopie)
+@@ -746,11 +746,13 @@
+ 	((PyObject*)(op))->ob_refcnt++)
+ 
+ #define Py_DECREF(op)					\
+-	if (_Py_DEC_REFTOTAL  _Py_REF_DEBUG_COMMA	\
+-	    --((PyObject*)(op))->ob_refcnt != 0)		\
+-		_Py_CHECK_REFCNT(op)			\
+-	else						\
+-		_Py_Dealloc((PyObject *)(op))
++	do {						\
++	    if (_Py_DEC_REFTOTAL  _Py_REF_DEBUG_COMMA	\
++		--((PyObject*)(op))->ob_refcnt != 0)	\
++		    _Py_CHECK_REFCNT(op)		\
++	    else					\
++		_Py_Dealloc((PyObject *)(op));		\
++        } while (0)
+ 
+ /* Safely decref `op` and set `op` to NULL, especially useful in tp_clear
+  * and tp_dealloc implementatons.
+@@ -796,8 +798,8 @@
+         } while (0)
+ 
+ /* Macros to use in case the object pointer may be NULL: */
+-#define Py_XINCREF(op) if ((op) == NULL) ; else Py_INCREF(op)
+-#define Py_XDECREF(op) if ((op) == NULL) ; else Py_DECREF(op)
++#define Py_XINCREF(op) do { if ((op) == NULL) ; else Py_INCREF(op); } while (0)
++#define Py_XDECREF(op) do { if ((op) == NULL) ; else Py_DECREF(op); } while (0)
+ 
+ /*
+ These are provided as conveniences to Python runtime embedders, so that
+Index: Modules/readline.c
+===================================================================
+--- Modules/readline.c	(Revision 71226)
++++ Modules/readline.c	(Arbeitskopie)
+@@ -694,13 +694,13 @@
+ 	r = PyObject_CallFunction(completion_display_matches_hook,
+ 				  "sOi", matches[0], m, max_length);
+ 
+-	Py_DECREF(m), m=NULL;
++	Py_DECREF(m); m=NULL;
+ 	
+ 	if (r == NULL ||
+ 	    (r != Py_None && PyInt_AsLong(r) == -1 && PyErr_Occurred())) {
+ 		goto error;
+ 	}
+-	Py_XDECREF(r), r=NULL;
++	Py_XDECREF(r); r=NULL;
+ 
+ 	if (0) {
+ 	error:
