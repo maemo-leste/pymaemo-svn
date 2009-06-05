@@ -1,3 +1,14 @@
+python-hildon (0.9.0-1maemo7) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET.
+  * Add support for hildon.FindToolbar model/column parameters.
+  * Add support for hildon.Button title/value parameters (fixes MB#4629).
+  * Add support for hildon.EditToolbar label/button parameters.
+  * Move hildon-extras.defs out of hildon_gen_defs.sh.
+  * Add support for API found in hildon-gtk.h (available as Gtk* classes).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 05 Jun 2009 13:54:27 -0400
+
 python-hildon (0.9.0-1maemo6) unstable; urgency=low
 
   [ Anderson Lizardo ]

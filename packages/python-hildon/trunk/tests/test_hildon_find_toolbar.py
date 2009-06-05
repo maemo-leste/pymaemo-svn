@@ -16,6 +16,7 @@ class TestHildonFindToolbar(unittest.TestCase):
         self.assertTrue(type(t) is hildon.FindToolbar)
         self.assertRaises(ValueError, hildon.FindToolbar, "Label", s)
         self.assertRaises(ValueError, hildon.FindToolbar, "Label", s, -2)
+        self.assertRaises(ValueError, hildon.FindToolbar, "Label", column=0)
 
 if __name__ == "__main__":
     unittest.main()

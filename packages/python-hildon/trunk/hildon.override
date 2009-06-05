@@ -61,7 +61,11 @@ import gtk.Window as PyGtkWindow_Type
 
 %%
 ignore-glob *_get_type
+
 ignore hildon_find_toolbar_new
+ignore hildon_button_new
+ignore hildon_edit_toolbar_new
+ignore hildon_gtk_tree_view_new
 
 /* gtk.FileSystem is not exported by current PyGTK */
 ignore hildon_file_system_special_location_get_display_name
@@ -498,6 +502,10 @@ _wrap_hildon_find_toolbar_new_with_model(PyGObject *self, PyObject *args, PyObje
         }
         self->obj = (GObject *)hildon_find_toolbar_new_with_model(label, (GtkListStore *) model, column);
     } else {
+        if (column >= 0) {
+            PyErr_SetString(PyExc_ValueError, "column cannot be used without model");
+            return -1;
+        }
         self->obj = (GObject *)hildon_find_toolbar_new(label);
     }
     if (!self->obj) {
@@ -508,3 +516,60 @@ _wrap_hildon_find_toolbar_new_with_model(PyGObject *self, PyObject *args, PyObje
     return 0;
 }
 
+%%
+override hildon_edit_toolbar_new_with_text kwargs
+static int
+_wrap_hildon_edit_toolbar_new_with_text(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", "button", NULL };
+    char *label = NULL, *button = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|zz:HildonEditToolbar.__init__", kwlist, &label, &button))
+        return -1;
+    if (label) {
+        if (!button) {
+            PyErr_SetString(PyExc_ValueError, "label cannot be used without button");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_edit_toolbar_new_with_text(label, button);
+    } else {
+        if (button) {
+            PyErr_SetString(PyExc_ValueError, "button cannot be used without label");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_edit_toolbar_new();
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonEditToolbar object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_gtk_tree_view_new_with_model kwargs
+static int
+_wrap_hildon_gtk_tree_view_new_with_model(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "mode", "model", NULL };
+    PyObject *py_mode = NULL;
+    PyGObject *model = NULL;
+    HildonUIMode mode;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O|O!:HildonGtkTreeView.__init__", kwlist, &py_mode, &PyGtkTreeModel_Type, &model))
+        return -1;
+    if (pyg_enum_get_value(HILDON_TYPE_UI_MODE, py_mode, (gpointer)&mode))
+        return -1;
+    if (model == NULL) {
+        self->obj = (GObject *)hildon_gtk_tree_view_new(mode);
+    } else {
+        self->obj = (GObject *)hildon_gtk_tree_view_new_with_model(mode, GTK_TREE_MODEL(model->obj));
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonGtkTreeView object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}

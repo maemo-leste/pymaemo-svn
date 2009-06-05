@@ -49,12 +49,13 @@
 
 (define-function hildon_button_new_with_text
   (c-name "hildon_button_new_with_text")
+  (is-constructor-of "HildonButton")
   (return-type "GtkWidget*")
   (parameters
     '("HildonSizeType" "size")
     '("HildonButtonArrangement" "arrangement")
-    '("const-gchar*" "title")
-    '("const-gchar*" "value")
+    '("const-gchar*" "title" (null-ok) (default "NULL"))
+    '("const-gchar*" "value" (null-ok) (default "NULL"))
   )
 )
 

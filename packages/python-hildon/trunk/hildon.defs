@@ -1,5 +1,6 @@
 ;; -*- scheme -*-
 ;; THIS FILE IS GENERATED - DO NOT EDIT
+(include "hildon-extras.defs")
 (include "defs/hildon-animation-actor.defs")
 (include "defs/hildon-app-menu.defs")
 (include "defs/hildon-banner.defs")
@@ -23,7 +24,6 @@
 (include "defs/hildon-edit-toolbar.defs")
 (include "defs/hildon-entry.defs")
 (include "defs/hildon-enum-types.defs")
-(include "defs/hildon-extras.defs")
 (include "defs/hildon-file-chooser-dialog.defs")
 (include "defs/hildon-file-details-dialog.defs")
 (include "defs/hildon-file-selection.defs")
