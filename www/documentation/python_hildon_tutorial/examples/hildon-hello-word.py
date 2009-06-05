@@ -27,10 +27,7 @@ def main():
     # function.
     window.connect("delete_event", gtk.main_quit, None)
 
-    # FIXME: hildon_button_new_with_text missing (MB#4629)
-    #button = hildon.Button(hgtk.HILDON_SIZE_AUTO, hildon.BUTTON_ARRANGEMENT_VERTICAL, "Hello world!")
-    button = hildon.Button(gtk.HILDON_SIZE_AUTO, hildon.BUTTON_ARRANGEMENT_VERTICAL)
-    button.set_title("Hello world!")
+    button = hildon.Button(gtk.HILDON_SIZE_AUTO, hildon.BUTTON_ARRANGEMENT_VERTICAL, "Hello world!")
 
     # When the button is given the "clicked" signal, we ask it to call the
     # hello () function as defined above. The data passed to the callback
