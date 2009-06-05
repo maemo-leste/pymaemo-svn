@@ -1,0 +1,167 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object PannableArea
+  (in-module "Hildon")
+  (parent "GtkBin")
+  (c-name "HildonPannableArea")
+  (gtype-id "HILDON_TYPE_PANNABLE_AREA")
+)
+
+;; Enumerations and flags ...
+
+(define-enum PannableAreaMode
+  (in-module "Hildon")
+  (c-name "HildonPannableAreaMode")
+  (gtype-id "HILDON_TYPE_PANNABLE_AREA_MODE")
+  (values
+    '("push" "HILDON_PANNABLE_AREA_MODE_PUSH")
+    '("accel" "HILDON_PANNABLE_AREA_MODE_ACCEL")
+    '("auto" "HILDON_PANNABLE_AREA_MODE_AUTO")
+  )
+)
+
+(define-flags MovementMode
+  (in-module "Hildon")
+  (c-name "HildonMovementMode")
+  (gtype-id "HILDON_TYPE_MOVEMENT_MODE")
+  (values
+    '("horiz" "HILDON_MOVEMENT_MODE_HORIZ")
+    '("vert" "HILDON_MOVEMENT_MODE_VERT")
+    '("both" "HILDON_MOVEMENT_MODE_BOTH")
+  )
+)
+
+(define-enum MovementDirection
+  (in-module "Hildon")
+  (c-name "HildonMovementDirection")
+  (gtype-id "HILDON_TYPE_MOVEMENT_DIRECTION")
+  (values
+    '("up" "HILDON_MOVEMENT_UP")
+    '("down" "HILDON_MOVEMENT_DOWN")
+    '("left" "HILDON_MOVEMENT_LEFT")
+    '("right" "HILDON_MOVEMENT_RIGHT")
+  )
+)
+
+(define-enum SizeRequestPolicy
+  (in-module "Hildon")
+  (c-name "HildonSizeRequestPolicy")
+  (gtype-id "HILDON_TYPE_SIZE_REQUEST_POLICY")
+  (values
+    '("minimum" "HILDON_SIZE_REQUEST_MINIMUM")
+    '("children" "HILDON_SIZE_REQUEST_CHILDREN")
+  )
+)
+
+
+;; From hildon-pannable-area.h
+
+(define-function hildon_pannable_area_get_type
+  (c-name "hildon_pannable_area_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_pannable_area_new
+  (c-name "hildon_pannable_area_new")
+  (is-constructor-of "HildonPannableArea")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_pannable_area_new_full
+  (c-name "hildon_pannable_area_new_full")
+  (return-type "GtkWidget*")
+  (parameters
+    '("gint" "mode")
+    '("gboolean" "enabled")
+    '("gdouble" "vel_min")
+    '("gdouble" "vel_max")
+    '("gdouble" "decel")
+    '("guint" "sps")
+  )
+)
+
+(define-method add_with_viewport
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_add_with_viewport")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "child")
+  )
+)
+
+(define-method scroll_to
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_scroll_to")
+  (return-type "none")
+  (parameters
+    '("const-gint" "x")
+    '("const-gint" "y")
+  )
+)
+
+(define-method jump_to
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_jump_to")
+  (return-type "none")
+  (parameters
+    '("const-gint" "x")
+    '("const-gint" "y")
+  )
+)
+
+(define-method scroll_to_child
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_scroll_to_child")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "child")
+  )
+)
+
+(define-method jump_to_child
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_jump_to_child")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "child")
+  )
+)
+
+(define-function hildon_pannable_get_child_widget_at
+  (c-name "hildon_pannable_get_child_widget_at")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonPannableArea*" "area")
+    '("gdouble" "x")
+    '("gdouble" "y")
+  )
+)
+
+(define-method get_size_request_policy
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_get_size_request_policy")
+  (return-type "HildonSizeRequestPolicy")
+)
+
+(define-method set_size_request_policy
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_set_size_request_policy")
+  (return-type "none")
+  (parameters
+    '("HildonSizeRequestPolicy" "size_request_policy")
+  )
+)
+
+(define-method get_hadjustment
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_get_hadjustment")
+  (return-type "GtkAdjustment*")
+)
+
+(define-method get_vadjustment
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_get_vadjustment")
+  (return-type "GtkAdjustment*")
+)
+
+

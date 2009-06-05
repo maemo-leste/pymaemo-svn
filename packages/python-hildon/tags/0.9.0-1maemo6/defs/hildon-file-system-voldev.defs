@@ -1,0 +1,21 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-voldev.h
+
+(define-function hildon_file_system_voldev_get_type
+  (c-name "hildon_file_system_voldev_get_type")
+  (return-type "GType")
+)
+
+(define-function find_volume
+  (c-name "find_volume")
+  (return-type "GnomeVFSVolume*")
+  (parameters
+    '("const-char*" "uri")
+  )
+)
+
+

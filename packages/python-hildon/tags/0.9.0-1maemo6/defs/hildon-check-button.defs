@@ -1,0 +1,50 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object CheckButton
+  (in-module "Hildon")
+  (parent "GtkButton")
+  (c-name "HildonCheckButton")
+  (gtype-id "HILDON_TYPE_CHECK_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-check-button.h
+
+(define-function hildon_check_button_get_type
+  (c-name "hildon_check_button_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_check_button_new
+  (c-name "hildon_check_button_new")
+  (is-constructor-of "HildonCheckButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+  )
+)
+
+(define-method set_active
+  (of-object "HildonCheckButton")
+  (c-name "hildon_check_button_set_active")
+  (return-type "none")
+  (parameters
+    '("gboolean" "is_active")
+  )
+)
+
+(define-method get_active
+  (of-object "HildonCheckButton")
+  (c-name "hildon_check_button_get_active")
+  (return-type "gboolean")
+)
+
+(define-method toggled
+  (of-object "HildonCheckButton")
+  (c-name "hildon_check_button_toggled")
+  (return-type "none")
+)
+
+

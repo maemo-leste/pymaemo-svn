@@ -1,0 +1,22 @@
+; There is no "hildon_note_new" function. That declaration is here just to be overrided.
+(define-function hildon_note_new
+  (c-name "hildon_note_new")
+  (is-constructor-of "HildonNote")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+
+; There is no "hildon_file_system_model_new" function. That declaration is here just to be overrided.
+(define-function hildon_file_system_model_new
+  (c-name "hildon_file_system_model_new")
+  (is-constructor-of "HildonFileSystemModel")
+  (return-type "HildonFileSystemModel*")
+  (parameters
+    '("GtkWidget*" "ref_widget")
+    '("const-gchar*" "root_dir")
+  )
+)
+

@@ -1,0 +1,49 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-fm1-compat.h
+
+(define-method set_current_folder
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_set_current_folder")
+  (return-type "gboolean")
+  (parameters
+    '("const-GtkFilePath*" "folder")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_current_folder
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_get_current_folder")
+  (return-type "GtkFilePath*")
+)
+
+(define-method select_path
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_select_path")
+  (return-type "gboolean")
+  (parameters
+    '("const-GtkFilePath*" "path")
+    '("GError**" "error")
+  )
+)
+
+(define-method unselect_path
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_unselect_path")
+  (return-type "none")
+  (parameters
+    '("const-GtkFilePath*" "path")
+  )
+)
+
+(define-method get_selected_paths
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_get_selected_paths")
+  (return-type "GSList*")
+)
+
+
