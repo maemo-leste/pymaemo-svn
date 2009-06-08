@@ -18,10 +18,7 @@ def create_menu(label):
 
     for i in xrange(1, 6):
         # Create menu entries
-        # FIXME: hildon_gtk_button_new() is not exposed to python, so using a
-        # plain gtk.Button for now
-        #button = hildon.GtkButton(gtk.HILDON_SIZE_AUTO)
-        button = gtk.Button()
+        button = hildon.GtkButton(gtk.HILDON_SIZE_AUTO)
         command_id = "Menu command %d" % i
         button.set_label(command_id)
 
