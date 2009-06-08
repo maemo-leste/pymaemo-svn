@@ -26,24 +26,16 @@ To create a HildonAppMenu you can use:
 
 ::
 
-  
-  
-  GtkWidget*  hildon_app_menu_new             (void);
+  hildon.AppMenu()
   
       
 Once the application menu is created you can add entries to the menu by using the following functions:
 
 ::
 
-  
-  
-  void        hildon_app_menu_append          (HildonAppMenu *menu,
-                                               GtkButton *item);
-  void        hildon_app_menu_prepend         (HildonAppMenu *menu,
-                                               GtkButton *item);
-  void        hildon_app_menu_insert          (HildonAppMenu *menu,
-                                               GtkButton *item,
-                                               gint position);
+  menu.append(item)
+  menu.prepend(item)
+  menu.insert(item, position) 
   
       
 These functions allow you to append, prepend an entry or add it in a certain position (from 0 to N-1, where N is the number of menus).
@@ -55,22 +47,18 @@ To add filter buttons you can use:
 ::
 
   
-  
-  void        hildon_app_menu_add_filter      (HildonAppMenu *menu,
-                                               GtkButton *filter);
+  menu.add_filter(filter) 
   
       
-Again, you should be careful with the number of filters that you add to the application menu. More than 4 might not be well displayed, even less, depending on the length of the labels. Filters should be grouped and act as radio buttons, that is, for any filter, there should be at least another filter with a different/opposite action. Actually, GtkRadioButtons can be easily used to accomplish this by having them grouped (using gtk_radio_button_new_from_widget() like the next example shows) and by not drawing their indicator -- with the function gtk_toggle_button_set_mode().
+Again, you should be careful with the number of filters that you add to the application menu. More than 4 might not be well displayed, even less, depending on the length of the labels. Filters should be grouped and act as radio buttons, that is, for any filter, there should be at least another filter with a different/opposite action. Actually, GtkRadioButtons can be easily used to accomplish this by having them grouped (using gtk.RadioButton(group) like the next example shows) and by not drawing their indicator -- with the function gtk.ToggleButton.set_mode().
 
 Once the menu is properly created and filled up with entries and filters you can add the menu to a HildonWindow. You can use the following functions to set and retrieve a window's menu, respectively:
 
 ::
 
   
-  
-  void        hildon_window_set_app_menu      (HildonWindow *self,
-                                               HildonAppMenu *menu);
-  HildonAppMenu* hildon_window_get_app_menu   (HildonWindow *self);
+  hildon.set_app_menu(menu)
+  hildon.get_app_menu()
   
       
 The following example shows how to create and set up an application menu.
@@ -78,115 +66,12 @@ The following example shows how to create and set up an application menu.
 Example of a Hildon application menu
 ====================================
 
-.. code-block:: python
-
-  
-  
-  #include                                        <hildon/hildon.h>
-  
-  static void
-  menu_button_clicked                             (GtkButton *button,
-                                                   GtkLabel *label)
-  {
-    const char *buttontext = gtk_button_get_label (button);
-    char *text = g_strdup_printf("Last option selected:\n%s", buttontext);
-    gtk_label_set_text (label, text);
-    g_free (text);
-    g_debug ("Button clicked: %s", buttontext);
-  }
-  
-  
-  static HildonAppMenu *
-  create_menu                                     (GtkWidget     *label)
-  {
-    int i;
-    gchar *command_id;
-    GtkWidget * button;
-    HildonAppMenu *menu = HILDON_APP_MENU (hildon_app_menu_new ());
-  
-    for (i = 1; i < 6; i++) {
-      /* Create menu entries */
-      button = hildon_gtk_button_new (HILDON_SIZE_AUTO);
-      command_id = g_strdup_printf ("Menu command %d", i);
-      gtk_button_set_label (GTK_BUTTON (button), command_id);
-  
-      /* Attach callback to clicked signal */
-      g_signal_connect_after (button, "clicked",
-                              G_CALLBACK (menu_button_clicked),
-                              label);
-  
-      /* Add entry to the view menu */
-      hildon_app_menu_append (menu, GTK_BUTTON (button));
-    }
-  
-    /* Create filters */
-    button = hildon_gtk_radio_button_new (HILDON_SIZE_AUTO, NULL);
-    gtk_button_set_label (GTK_BUTTON (button), "filter one");
-    g_signal_connect_after (button, "clicked", G_CALLBACK (menu_button_clicked), label);
-    hildon_app_menu_add_filter (menu, GTK_BUTTON (button));
-    gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (button), FALSE);
-  
-    button = hildon_gtk_radio_button_new_from_widget (HILDON_SIZE_AUTO,
-                                                      GTK_RADIO_BUTTON (button));
-    gtk_button_set_label (GTK_BUTTON (button), "filter two");
-    g_signal_connect_after (button, "clicked", G_CALLBACK (menu_button_clicked), label);
-    hildon_app_menu_add_filter (menu, GTK_BUTTON (button));
-    gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (button), FALSE);
-  
-    gtk_widget_show_all (GTK_WIDGET (menu));
-  
-    return menu;
-  }
-  
-  int
-  main                                            (int argc,
-                                                   char **argv)
-  {
-    GtkWidget *win;
-    GtkWidget *label;
-    GtkWidget *label2;
-    GtkBox *vbox;
-    HildonAppMenu *menu;
-  
-    hildon_gtk_init (&argc, &argv);
-  
-    win = hildon_stackable_window_new ();
-  
-    /* Create and pack labels */
-    label = gtk_label_new ("This is an example of the\nHildonAppMenu widget.\n\n"
-                           "Click on the titlebar\nto pop up the menu.");
-    label2 = gtk_label_new ("No menu option has been selected yet.");
-  
-    gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
-    gtk_label_set_justify (GTK_LABEL (label2), GTK_JUSTIFY_CENTER);
-  
-    vbox = GTK_BOX (gtk_vbox_new (FALSE, 10));
-  
-    gtk_box_pack_start (vbox, label, TRUE, TRUE, 0);
-    gtk_box_pack_start (vbox, label2, TRUE, TRUE, 0);
-  
-    /* Create menu */
-    menu = create_menu (label2);
-  
-    /* Attach menu to the window */
-    hildon_window_set_app_menu (HILDON_WINDOW (win), menu);
-  
-    /* Add label's box to window */
-    gtk_container_add (GTK_CONTAINER (win), GTK_WIDGET (vbox));
-  
-    g_signal_connect (win, "delete_event", G_CALLBACK (gtk_main_quit), NULL);
-  
-    gtk_widget_show_all (win);
-  
-    gtk_main ();
-  
-    return 0;
-  }
+.. literalinclude:: ../examples/hildon-app-menu-example.py
   
         
 Each entry and filter button in this example is attached to a function that simply changes a label in the main window.
 
-Note that the function used to attach handlers to the entries is g_signal_connect_after(). So the handler will be called after the default handler of the signal "clicked". The default handler for entries and filters closes the menu.
+.. waring:: FIX THIS Note that the function used to attach handlers to the entries is g_signal_connect_after(). So the handler will be called after the default handler of the signal "clicked". The default handler for entries and filters closes the menu.
 
 Application Menus and Views
 ***************************
@@ -198,8 +83,7 @@ The function hildon_window_set_app_menu() allows to set a menu to an HildonWindo
 ::
 
   
-  
-  hildon_window_set_app_menu (HILDON_STACKABLE_WINDOW (win), menu);
+  window.set_app_menu(menu)  
   
       
 Note that submenus are not supported by view menus. Usually, a menu item that in a desktop application would have suboptions implies a new subview in a Hildon application.
@@ -219,9 +103,7 @@ To create a GtkMenu in a Hildon application you should use the following functio
 
 ::
 
-  
-  
-  GtkWidget*  hildon_gtk_menu_new             (void);
+  gtk.Menu() 
   
       
 This function creates a GtkMenu that allows Hildon specific styling.
