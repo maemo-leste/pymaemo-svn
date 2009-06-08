@@ -38,6 +38,23 @@
   )
 )
 
+(define-object GtkRadioButton
+  (in-module "Hildon")
+  (parent "GtkRadioButton")
+  (c-name "HildonGtkRadioButton")
+  (gtype-id "GTK_TYPE_RADIO_BUTTON")
+)
+
+(define-function hildon_gtk_radio_button_new_from_widget
+  (c-name "hildon_gtk_radio_button_new_from_widget")
+  (is-constructor-of "HildonGtkRadioButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("GSList *" "group")
+  )
+)
+
 (define-object GtkTreeView
   (in-module "Hildon")
   (parent "GtkTreeView")

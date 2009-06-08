@@ -17,7 +17,8 @@
   (return-type "GType")
 )
 
-(define-function hildon_window_stack_get_default
+(define-method get_default
+  (of-object "HildonWindowStack")
   (c-name "hildon_window_stack_get_default")
   (return-type "HildonWindowStack*")
 )

@@ -121,6 +121,49 @@ _wrap_hildon_date_editor_get_date(PyGObject *self)
 }
 
 %%
+override hildon_gtk_radio_button_new_from_widget kwargs
+static int
+_wrap_hildon_gtk_radio_button_new_from_widget(PyGObject *self, PyObject *args,
+                                  PyObject *kwargs)
+{
+    static char *kwlist[] = {"size", "group", NULL};
+    HildonSizeType size;
+    PyObject *py_group = Py_None;
+    GtkRadioButton *group = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "i|O:HildonGtkRadioButton.__init__",
+                                     kwlist, &size, &py_group))
+        return -1;
+
+    if (py_group == Py_None)
+        group = NULL;
+    else if(pygobject_check(py_group, &PyGtkRadioButton_Type))
+        group = GTK_RADIO_BUTTON(pygobject_get(py_group));
+    else {
+        PyErr_SetString(PyExc_TypeError,
+                        "second argument must be a GtkRadioButton or None");
+        return -1;
+    }
+
+    if (group != NULL) {
+        self->obj = (GObject *)hildon_gtk_radio_button_new_from_widget(size, group);
+    } else {
+        self->obj = (GObject *)hildon_gtk_radio_button_new(size, NULL);
+    }
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError,
+                "could not create HildonGtkRadioButton object");
+        return -1;
+    }
+
+    pygobject_register_wrapper((PyObject *)self);
+
+    return 0;
+}
+
+%%
 override hildon_note_new kwargs
 static int
 _wrap_hildon_note_new(PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -572,4 +615,16 @@ _wrap_hildon_gtk_tree_view_new_with_model(PyGObject *self, PyObject *args, PyObj
     }
     pygobject_register_wrapper((PyObject *)self);
     return 0;
+}
+
+%%
+override hildon_window_stack_get_default noargs staticmethod
+static PyObject *
+_wrap_hildon_window_stack_get_default(PyGObject *self)
+{
+    HildonWindowStack *window;
+
+    window = hildon_window_stack_get_default();
+
+    return pygobject_new((GObject *)window);
 }
