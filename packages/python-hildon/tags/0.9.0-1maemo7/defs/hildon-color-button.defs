@@ -1,0 +1,59 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ColorButton
+  (in-module "Hildon")
+  (parent "GtkButton")
+  (c-name "HildonColorButton")
+  (gtype-id "HILDON_TYPE_COLOR_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-color-button.h
+
+(define-function hildon_color_button_new
+  (c-name "hildon_color_button_new")
+  (is-constructor-of "HildonColorButton")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_color_button_new_with_color
+  (c-name "hildon_color_button_new_with_color")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-GdkColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "HildonColorButton")
+  (c-name "hildon_color_button_get_color")
+  (return-type "none")
+  (parameters
+    '("GdkColor*" "color")
+  )
+)
+
+(define-method set_color
+  (of-object "HildonColorButton")
+  (c-name "hildon_color_button_set_color")
+  (return-type "none")
+  (parameters
+    '("GdkColor*" "color")
+  )
+)
+
+(define-method get_popup_shown
+  (of-object "HildonColorButton")
+  (c-name "hildon_color_button_get_popup_shown")
+  (return-type "gboolean")
+)
+
+(define-method popdown
+  (of-object "HildonColorButton")
+  (c-name "hildon_color_button_popdown")
+  (return-type "none")
+)
+
+

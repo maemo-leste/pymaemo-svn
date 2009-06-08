@@ -1,0 +1,53 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Dialog
+  (in-module "Hildon")
+  (parent "GtkDialog")
+  (c-name "HildonDialog")
+  (gtype-id "HILDON_TYPE_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-dialog.h
+
+(define-function hildon_dialog_new
+  (c-name "hildon_dialog_new")
+  (is-constructor-of "HildonDialog")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_dialog_new_with_buttons
+  (c-name "hildon_dialog_new_with_buttons")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "title")
+    '("GtkWindow*" "parent")
+    '("GtkDialogFlags" "flags")
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+(define-method add_button
+  (of-object "HildonDialog")
+  (c-name "hildon_dialog_add_button")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "button_text")
+    '("gint" "response_id")
+  )
+)
+
+(define-method add_buttons
+  (of-object "HildonDialog")
+  (c-name "hildon_dialog_add_buttons")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+

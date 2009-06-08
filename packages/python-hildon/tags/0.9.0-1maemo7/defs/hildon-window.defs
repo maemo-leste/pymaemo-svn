@@ -1,0 +1,134 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Window
+  (in-module "Hildon")
+  (parent "GtkWindow")
+  (c-name "HildonWindow")
+  (gtype-id "HILDON_TYPE_WINDOW")
+)
+
+;; Enumerations and flags ...
+
+(define-enum WindowClipboardOperation
+  (in-module "Hildon")
+  (c-name "HildonWindowClipboardOperation")
+  (gtype-id "HILDON_TYPE_WINDOW_CLIPBOARD_OPERATION")
+  (values
+    '("copy" "HILDON_WINDOW_CO_COPY")
+    '("cut" "HILDON_WINDOW_CO_CUT")
+    '("paste" "HILDON_WINDOW_CO_PASTE")
+  )
+)
+
+
+;; From hildon-window.h
+
+(define-function hildon_window_new
+  (c-name "hildon_window_new")
+  (is-constructor-of "HildonWindow")
+  (return-type "GtkWidget*")
+)
+
+(define-method add_with_scrollbar
+  (of-object "HildonWindow")
+  (c-name "hildon_window_add_with_scrollbar")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "child")
+  )
+)
+
+(define-method set_main_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_main_menu")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu" (null-ok) (default "NULL"))
+  )
+)
+
+(define-method get_main_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_main_menu")
+  (return-type "GtkMenu*")
+)
+
+(define-method set_app_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_app_menu")
+  (return-type "none")
+  (parameters
+    '("HildonAppMenu*" "menu" (null-ok) (default "NULL"))
+  )
+)
+
+(define-method get_app_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_app_menu")
+  (return-type "HildonAppMenu*")
+)
+
+(define-method set_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_menu")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu")
+  )
+)
+
+(define-method get_menu
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_menu")
+  (return-type "GtkMenu*")
+)
+
+(define-method add_toolbar
+  (of-object "HildonWindow")
+  (c-name "hildon_window_add_toolbar")
+  (return-type "none")
+  (parameters
+    '("GtkToolbar*" "toolbar")
+  )
+)
+
+(define-method remove_toolbar
+  (of-object "HildonWindow")
+  (c-name "hildon_window_remove_toolbar")
+  (return-type "none")
+  (parameters
+    '("GtkToolbar*" "toolbar")
+  )
+)
+
+(define-method set_edit_toolbar
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_edit_toolbar")
+  (return-type "none")
+  (parameters
+    '("HildonEditToolbar*" "toolbar")
+  )
+)
+
+(define-method get_is_topmost
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_is_topmost")
+  (return-type "gboolean")
+)
+
+(define-method get_markup
+  (of-object "HildonWindow")
+  (c-name "hildon_window_get_markup")
+  (return-type "const-gchar*")
+)
+
+(define-method set_markup
+  (of-object "HildonWindow")
+  (c-name "hildon_window_set_markup")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "markup")
+  )
+)
+
+

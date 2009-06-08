@@ -1,0 +1,56 @@
+; There is no "hildon_note_new" function. That declaration is here just to be overrided.
+(define-function hildon_note_new
+  (c-name "hildon_note_new")
+  (is-constructor-of "HildonNote")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "description")
+  )
+)
+
+; There is no "hildon_file_system_model_new" function. That declaration is here just to be overrided.
+(define-function hildon_file_system_model_new
+  (c-name "hildon_file_system_model_new")
+  (is-constructor-of "HildonFileSystemModel")
+  (return-type "HildonFileSystemModel*")
+  (parameters
+    '("GtkWidget*" "ref_widget")
+    '("const-gchar*" "root_dir")
+  )
+)
+
+; The objects/functions below expose the API found in hildon-gtk.h
+
+(define-object GtkButton
+  (in-module "Hildon")
+  (parent "GtkButton")
+  (c-name "HildonGtkButton")
+  (gtype-id "GTK_TYPE_BUTTON")
+)
+
+(define-function hildon_gtk_button_new
+  (c-name "hildon_gtk_button_new")
+  (is-constructor-of "GtkButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+  )
+)
+
+(define-object GtkTreeView
+  (in-module "Hildon")
+  (parent "GtkTreeView")
+  (c-name "HildonGtkTreeView")
+  (gtype-id "GTK_TYPE_TREE_VIEW")
+)
+
+(define-function hildon_gtk_tree_view_new_with_model
+  (c-name "hildon_gtk_tree_view_new_with_model")
+  (is-constructor-of "GtkTreeView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonUIMode" "mode")
+    '("GtkTreeModel*" "model" (default "NULL"))
+  )
+)
