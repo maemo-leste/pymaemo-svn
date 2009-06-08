@@ -6,49 +6,47 @@ import gtk
 import hildon
 
 def create_table():
+    # create a table of 10 by 10 squares. 
+    table = gtk.Table (10, 10, False)
 
-  # create a table of 10 by 10 squares. 
-  table = gtk.Table (10, 10, False)
+    # set the spacing to 10 on x and 10 on y 
+    table.set_row_spacings(10)
+    table.set_col_spacings(10)
 
-  # set the spacing to 10 on x and 10 on y 
-  table.set_row_spacings(10)
-  table.set_col_spacings(10)
+    table.show()
 
-  table.show()
+    # this simply creates a grid of toggle buttons on the table
+    # to demonstrate the scrolled window. */
+    for i in range(10):
+        for j in range(10):
+            data_buffer = "button (%d,%d)\n" % (i, j)
+            button = gtk.ToggleButton(data_buffer)
+            table.attach(button, i, i+1, j, j+1)
 
-  # this simply creates a grid of toggle buttons on the table
-  # to demonstrate the scrolled window. */
-  for i in range(10):
-    for j in range(10):
-      buffer = "button (%d,%d)\n" % (i, j)
-      button = gtk.ToggleButton(buffer)
-      table.attach(button, i, i+1, j, j+1)
+    return table
 
-  return table;
-
+def app_quit(widget, data=None):
+    gtk.main_quit()
 
 def main():
-  
+    window = hildon.StackableWindow()
 
-  window = hildon.StackableWindow()
+    window.connect("destroy", app_quit)
 
-  # FIXME: probably unnecessary. See MB#4633
-  #window.connect("destroy", test, None)
+    pannable_area = hildon.PannableArea()
 
-  pannable_area = hildon.PannableArea();
+    table = create_table()
 
-  table = create_table();
+    # pack the table into the scrolled window 
+    pannable_area.add_with_viewport(table)
 
-  # pack the table into the scrolled window 
-  pannable_area.add_with_viewport(table)
+    # Add the box into the window
+    window.add(pannable_area)
 
-  # Add the box into the window
-  window.add(pannable_area)
+    window.show_all()
 
-  window.show_all()
-
-  gtk.main()
+    gtk.main()
 
 if __name__ == "__main__":
-  main()
+    main()
 
