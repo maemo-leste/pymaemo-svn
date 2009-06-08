@@ -1,6 +1,5 @@
-python-hildon (0.9.0-1maemo7) UNRELEASED; urgency=low
+python-hildon (0.9.0-1maemo7) unstable; urgency=low
 
-  * NOT RELEASED YET.
   * Add support for hildon.FindToolbar model/column parameters.
   * Add support for hildon.Button title/value parameters (fixes MB#4629).
   * Add support for hildon.EditToolbar label/button parameters.
