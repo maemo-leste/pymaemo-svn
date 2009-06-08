@@ -3,7 +3,7 @@
 Navigation
 ##########
 
-In previous examples only one widget was added to a window so we could simply use a gtk_container_add() to "pack" it into the window. To pack more than one widget into a window it is necessary to use container widgets.
+In previous examples only one widget was added to a window so we could simply use a container_add() to "pack" it into the window. To pack more than one widget into a window it is necessary to use container widgets.
 
 To develop Hildon user interfaces, you can use any container widget provided by GTK+. For more details, `GTK+ 2.0 Tutorial <GTK+ 2.0 Tutorial>`_ includes a good introduction to this topic.
 
@@ -23,15 +23,13 @@ To create a new pannable area you can choose either of the following functions:
 ::
 
   
-        
-  GtkWidget*  hildon_pannable_area_new        (void);
-  GtkWidget*  hildon_pannable_area_new_full   (gint mode,
-                                               gboolean enabled,
-                                               gdouble vel_min,
-                                               gdouble vel_max,
-                                               gdouble decel,
-                                               guint sps);
-        
+  hildon.PannableArea()
+  hildon.hildon_pannable_area_new_full(mode,
+                                       enabled,
+                                       vel_min,
+                                       vel_max,
+                                       decel,
+                                       sps)  
       
 The first one creates a new pannable area with the properties set to the default values. The second one allows you to set the value of the most important properties of this widget:
 
@@ -47,15 +45,12 @@ Once the area is created you can then place your object into the pannable window
 
 ::
 
-  
-        
-  void        hildon_pannable_area_add_with_viewport (HildonPannableArea *area,
-                                                      GtkWidget *child);
+  def add_with_viewport(self, child) 
         
       
 That is a convenience function used to add a child to a GtkViewport, and add the viewport to the pannable area.
 
-.. warning:: Widgets that have native scrolling should be added directly inside a pannable area. For example, widgets such as GtkTextView, GtkTreeView, GtkIconView and GtkLayout should be added by calling gtk_container_add(). Otherwise, panning could not work properly.
+.. warning:: Widgets that have native scrolling should be added directly inside a pannable area. For example, widgets such as GtkTextView, GtkTreeView, GtkIconView and GtkLayout should be added by calling add(). Otherwise, panning could not work properly.
 
 Pannable area example
 *********************
@@ -65,91 +60,20 @@ Functions explained above are enough for a simple example. The following example
 Example of a pannable area
 ==========================
 
-.. code-block:: python
+.. literalinclude:: ../examples/hildon-pannable-area.py
 
-  
-  
-  #include <stdio.h>
-  #include <hildon/hildon.h>
-  
-  static GtkWidget *create_table ()
-  {
-  
-    GtkWidget *hbox;
-    GtkWidget *table;
-    GtkWidget *button;
-    char buffer[32];
-    int i, j;
-  
-    /* create a table of 10 by 10 squares. */
-    table = gtk_table_new (10, 10, FALSE);
-  
-    /* set the spacing to 10 on x and 10 on y */
-    gtk_table_set_row_spacings (GTK_TABLE (table), 10);
-    gtk_table_set_col_spacings (GTK_TABLE (table), 10);
-  
-    gtk_widget_show (table);
-  
-    /* this simply creates a grid of toggle buttons on the table
-     * to demonstrate the scrolled window. */
-    for (i = 1; i < 10; i++)
-      for (j = 1; j < 10; j++) {
-        sprintf (buffer, "button (%d,%d)\n", i, j);
-        button = gtk_toggle_button_new_with_label (buffer);
-  
-        gtk_table_attach_defaults (GTK_TABLE (table), button,
-                                   i, i+1, j, j+1);
-      }
-  
-    return table;
-  }
-  
-  int main( int   argc,
-            char *argv[] )
-  {
-    static GtkWidget *window;
-    GtkWidget *button;
-    GtkWidget *pannable_area;
-    GtkWidget *table;
-  
-    hildon_gtk_init (&argc, &argv);
-  
-    window = hildon_stackable_window_new ();
-    g_signal_connect (G_OBJECT (window), "destroy",
-                      G_CALLBACK (gtk_widget_destroy), NULL);
-  
-    pannable_area = hildon_pannable_area_new ();
-  
-    table = create_table ();
-  
-    /* pack the table into the scrolled window */
-    hildon_pannable_area_add_with_viewport (
-      HILDON_PANNABLE_AREA (pannable_area), table);
-  
-    /* Add the box into the window*/
-    gtk_container_add (GTK_CONTAINER (window), pannable_area);
-  
-    gtk_widget_show_all (window);
-  
-    gtk_main ();
-  
-    return 0;
-  }
-  
       
 In the example above you can see that the following two calls are enough to use a pannable area. The rest of the code of the example is no different to that used in a GTK+ application.
 
 .. code-block:: python
 
-  
-  
-    /* Create a new pannable area. */
-    pannable_area = hildon_pannable_area_new ();
-    /* Pack the table into the pannable area */
-    hildon_pannable_area_add_with_viewport ( HILDON_PANNABLE_AREA (pannable_area), table);
+    # Create a new pannable area.
+    pannable_area = hildon.PannableArea()
+    # Pack the table into the pannable area
+    pannable_area.add_with_viewport(table);
   
           
-To see all the buttons, users can scroll with the fingers. In this example, horizontal and vertical panning are activated as that is needed to allow users to be able to interact both all the widgets. The property "mov-mode" controls if the area can scroll horizontally, vertically (default value) or both, using HILDON_MOVEMENT_MODE_HORIZ, HILDON_MOVEMENT_MODE_VERT or HILDON_MOVEMENT_MODE_BOTH, respectively.
+To see all the buttons, users can scroll with the fingers. In this example, horizontal and vertical panning are activated as that is needed to allow users to be able to interact both all the widgets. The property "mov-mode" controls if the area can scroll horizontally, vertically (default value) or both, using hildon.MOVEMENT_MODE_HORIZ, hildon.MOVEMENT_MODE_VERT or hildon.MOVEMENT_MODE_BOTH, respectively.
 
 Additional features
 *******************
@@ -162,15 +86,8 @@ For example, the first of the functions changes the current position on the pann
 
 ::
 
-  
-  
-  void        hildon_pannable_area_jump_to    (HildonPannableArea *area,
-                                               const gint x,
-                                               const gint y);
-  
-  void        hildon_pannable_area_scroll_to  (HildonPannableArea *area,
-                                               const gint x,
-                                               const gint y);
+  def jump_to(self, x, y)
+  def scroll_to(self, x, y) 
   
       
 It is also possible to jump or scroll to a certain descendent of the area using the following functions, the argument should be a reference to a descendent widget.
@@ -178,146 +95,20 @@ It is also possible to jump or scroll to a certain descendent of the area using 
 ::
 
   
-  
-  void        hildon_pannable_area_jump_to_child (HildonPannableArea *area,
-                                                  GtkWidget *child);
-  
-  void        hildon_pannable_area_scroll_to_child
-                                              (HildonPannableArea *area,
-                                               GtkWidget *child);
+  def jump_to_child(self, child) 
+  def scroll_to_child(self, child)
   
       
-Here is a modified version of the previous example. The pannable area is packed into an GtkVBox and a new button is also added to navigate to the last clicked button.
+Here is a modified version of the previous example. The pannable area is packed into an gtk.VBox and a new button is also added to navigate to the last clicked button.
 
 Example of a pannable area and a "jump-to" button
 =================================================
 
-.. code-block:: python
+.. literalinclude:: ../examples/hildon-pannable-area-whith-jump-to-button.py
 
-  
-  
-  #include <stdio.h>
-  #include <hildon/hildon.h>
-  
-  /* Pointer to the last clicked button*/
-  GtkWidget *last_clicked_button;
-  
-  /* Callabck to set last clicked button */
-  static void clicked (GtkButton *button,
-                       gpointer   user_data)
-  {
-    last_clicked_button = GTK_WIDGET (button);
-  }
-  
-  static void go_to_last_clicked (GtkButton *button,
-                                  gpointer   user_data)
-  {
-    hildon_pannable_area_scroll_to_child (HILDON_PANNABLE_AREA (pannable_area),
-                                          last_clicked_button);
-  
-  }
-  
-  static GtkWidget *create_table ()
-  {
-  
-    GtkWidget *hbox;
-    GtkWidget *table;
-    GtkWidget *button;
-    char buffer[32];
-    int i, j;
-  
-    /* create a table of 10 by 10 squares. */
-    table = gtk_table_new (10, 10, FALSE);
-  
-    /* set the spacing to 10 on x and 10 on y */
-    gtk_table_set_row_spacings (GTK_TABLE (table), 10);
-    gtk_table_set_col_spacings (GTK_TABLE (table), 10);
-  
-    gtk_widget_show (table);
-  
-    /* this simply creates a grid of toggle buttons on the table
-     * to demonstrate the scrolled window. */
-    for (i = 1; i < 10; i++)
-      for (j = 1; j < 10; j++) {
-        sprintf (buffer, "button (%d,%d)\n", i, j);
-        button = gtk_toggle_button_new_with_label (buffer);
-  
-        /* Attach function cliecked to "clicked" signal of eeach button*/
-        g_signal_connect (G_OBJECT (button),
-                          "clicked",
-                          G_CALLBACK (clicked),
-                          NULL);
-  
-        gtk_table_attach_defaults (GTK_TABLE (table), button,
-                                   i, i+1, j, j+1);
-      }
-  
-    return table;
-  }
-  
-  int main( int   argc,
-            char *argv[] )
-  {
-    static GtkWidget *window;
-    GtkWidget *button;
-    GtkWidget *pannable_area;
-    GtkWidget *vbox;
-    GtkWidget *table;
-  
-    gtk_init (&argc, &argv);
-  
-    window = hildon_stackable_window_new ();
-    g_signal_connect (G_OBJECT (window), "destroy",
-                      G_CALLBACK (gtk_widget_destroy), NULL);
-  
-    pannable_area = hildon_pannable_area_new ();
-    g_object_set (G_OBJECT (pannable_area),
-                  "mov-mode", HILDON_MOVEMENT_MODE_BOTH );
-  
-    button = gtk_button_new_with_label ("Go to last clicked button");
-    g_signal_connect (G_OBJECT (button),
-                      "clicked",
-                      G_CALLBACK (go_to_last_clicked),
-                      NULL);
-  
-    table = create_table ();
-  
-    /* pack the table into the scrolled window */
-    hildon_pannable_area_add_with_viewport (
-      HILDON_PANNABLE_AREA (pannable_area), table);
-  
-  
-    /* Create a box and pack the widgets into it */
-    vbox = gtk_vbox_new (FALSE,0);
-  
-    gtk_container_add (GTK_CONTAINER (pannable_area), table);
-  
-    gtk_box_pack_start (GTK_BOX (vbox),
-                        button,
-                        FALSE,
-                        FALSE,
-                        0);
-  
-    gtk_box_pack_start (GTK_BOX (vbox),
-                        pannable_area,
-                        TRUE,
-                        TRUE,
-                        0);
-  
-    /* Add the box into the window*/
-    gtk_container_add (GTK_CONTAINER (window), vbox);
-  
-    gtk_widget_show_all (window);
-  
-    gtk_main ();
-  
-    return 0;
-  }
-  
-          
 The example used a global variable to store a reference to the last clicked button. This reference will be used by the callback go_to_last_clicked to jump to it by calling one of the navigation functions. This is the function used as a handler for the signal "clicked" of the button outside the pannable area.
 
 You can test the different navigation functions by just changing the call in the mentioned callback.
 
-When you use the navigation functions that allow to navigate to a certain child, the widget must be already realized. You can check it with the GTK_WIDGET_REALIZED macro. If you want to call it during the initialization process you can use the navigation function inside a callback to the "realized" signal, connecting it using g_signal_connect_after().
+When you use the navigation functions that allow to navigate to a certain child, the widget must be already realized. You can check it with the GTK_WIDGET_REALIZED macro. If you want to call it during the initialization process you can use the navigation function inside a callback to the "realized" signal.
 

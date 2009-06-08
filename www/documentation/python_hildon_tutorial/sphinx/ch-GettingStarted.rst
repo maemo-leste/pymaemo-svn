@@ -31,9 +31,9 @@ The next two lines of code create and display a window.
     window.show()
   
     
-The HildonWindow used in this example represents a top-level window in the Hildon framework. It is derived from GtkWindow and provides additional commodities specific to the Hildon framework.
+The hildon.Window used in this example represents a top-level window in the Hildon framework. It is derived from GtkWindow and provides additional commodities specific to the Hildon framework.
 
-In very simple applications, HildonWindow could be enough. However, in most of the applications a HildonStackableWindow should be used. Next chapters will clarify this.
+In very simple applications, hildon.Window could be enough. However, in most of the applications a hildon.StackableWindow should be used. Next chapters will clarify this.
 
 The show() shows the widget (makes it visible) that would not be otherwise displayed.
 
@@ -103,7 +103,7 @@ Only one HildonProgram can be created per process. Therefore, it should be acces
     program = hildon.hildon_program_get_instance()
   
       
-In this simple example a new HildonWindow is created. In cases with nested views, a HildonStackableWindow should be used. Next sections will clarify this topic.
+In this simple example a new hildon.Window is created. In cases with nested views, a hildon.StackableWindow should be used. Next sections will clarify this topic.
 
 ::
   
@@ -125,7 +125,7 @@ The following code is an example of connecting a signal handler to an object, in
     window.connect("delete_event", gtk.main_quit)
   
         
-This call creates a new HildonButton. This button allows to set two labels, one main label and another secondary one. It is also possible set the size of the button and how the labels will be arrange. Notice that you can use GtkButton's in Hildon applications in case you don't need those additional features.
+This call creates a new hildon.Button. This button allows to set two labels, one main label and another secondary one. It is also possible set the size of the button and how the labels will be arrange. Notice that you can use gtk.Button's in Hildon applications in case you don't need those additional features.
 
 ::
 
