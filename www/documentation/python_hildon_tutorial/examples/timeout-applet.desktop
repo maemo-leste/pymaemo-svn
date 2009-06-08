@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=TimeOut Applet
+Comment=Execute an action at a given time
+Type=python
+X-Path=lib-timeout-home-applet.py
+
