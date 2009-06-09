@@ -227,33 +227,18 @@ Style Property Details
 | ``toolbar-borders``       | GtkBorder   | Read                     |              | Size of graphical toolbar borders.   |
 +---------------------------+-------------+--------------------------+--------------+--------------------------------------+
 
-.. _Window.signal-details:
-
 Signal Details
 ==============
 
 .. _Window-clipboard-operation:
 
-The ``clipboard-operation`` signal
+    The ``clipboard-operation`` signal.
 
-::
+    .. function:: user_function(hildon_window, arg1, user_data)
 
-  void                user_function                      (Window *hildonwindow,
-                                                          int          arg1,
-                                                          gpointer      user_data)         : Run First
-
-
-
-``hildonwindow``:
-  the object which received the signal.
-
-
-``arg1``:
-  
-
-
-``user_data``:
-  user data set when the signal handler was connected.
+        :param hildon_window: the object which received the signal.
+        :param operation: the operation that happened
+        :param user_data: user data set when the signal handler was connected.
 
 
 .. _Window.see-also:
