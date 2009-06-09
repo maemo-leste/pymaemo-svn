@@ -3,7 +3,7 @@
 Hildon Widgets and Objects
 ##########################
 
-HildonWindow
+Window
 ************
 
 Object Hierarchy
@@ -18,13 +18,13 @@ Object Hierarchy
                        +----GtkContainer
                              +----GtkBin
                                    +----GtkWindow
-                                         +----HildonWindow
+                                         +----Window
                                                +----HildonStackableWindow
 
 Implemented Interfaces
 ======================
 
-HildonWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+Window implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 Signals
 =======
@@ -37,13 +37,13 @@ Signals
 Description
 ===========
 
-:class:`HildonWindow` is a GTK widget which represents a top-level window in the Hildon framework. It is derived from :class:`GtkWindow` and provides additional commodities specific to the Hildon framework.
+:class:`Window` is a GTK widget which represents a top-level window in the Hildon framework. It is derived from :class:`gtk.Window` and provides additional commodities specific to the Hildon framework.
 
-:class:`HildonWindow` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with :meth:`HildonWindow.set_main_menu` and :meth:`HildonWindow.set_app_menu` respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
+:class:`Window` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with :meth:`Window.set_main_menu` and :meth:`Window.set_app_menu` respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
 
-Similarly, a :class:`HildonWindow` can have several toolbars attached. These can be added with :meth:`HildonWindow.add_toolbar` . In addition to those, a :class:`HildonWindow` can also have a :class:`HildonEditToolbar` . To add it to the window use :meth:`HildonWindow.set_edit_toolbar` .
+Similarly, a :class:`Window` can have several toolbars attached. These can be added with :meth:`Window.add_toolbar` . In addition to those, a :class:`Window` can also have a :class:`HildonEditToolbar` . To add it to the window use :meth:`Window.set_edit_toolbar` .
 
-Creating a HildonWindow
+Creating a Window
 =======================
 
 ::
@@ -71,7 +71,7 @@ Creating a HildonWindow
 Details
 =======
 
-.. data:: HildonWindowClipboardOperation
+.. data:: WindowClipboardOperation
 
 +------------------------------------+-----------------------------------------------------+
 | Value                              | Meaning                                             |
@@ -83,36 +83,36 @@ Details
 | ``WINDOW_CO_PASTE``                | Automatically chooses between push and accel modes, |
 +------------------------------------+-----------------------------------------------------+
 
-.. class:: HildonWindow
+.. class:: Window
 
     .. method:: __init__ (self)
 
-        Creates a new :class:`HildonWindow` .
+        Creates a new :class:`Window` .
 
         :returns: 
-          A newly created :class:`HildonWindow` .
+          A newly created :class:`Window` .
 
 
     .. method:: add_with_scrollbar (child)
 
-        Adds ``child`` to the :class:`HildonWindow` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
+        Adds ``child`` to the :class:`Window` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
 
         :param: child: :class:`GtkWidget`
 
 
     .. method:: set_main_menu (menu)
 
-        Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+        Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. :class:`Window` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.set_app_menu` instead.
+        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`Window.set_app_menu` instead.
 
-        :param: menu: The :class:`GtkMenu` to be used for this :class:`HildonWindow`
+        :param: menu: The :class:`GtkMenu` to be used for this :class:`Window`
 
     .. method:: get_main_menu ()
 
         Gets the :class:`GtkMenu` assigned to the :class:`HildonAppview` . Note that the window is still the owner of the menu.
 
-        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.get_app_menu` instead.
+        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`Window.get_app_menu` instead.
 
         :returns: The :class:`GtkMenu` assigned to this application view.
 
@@ -120,9 +120,9 @@ Details
 
     .. method:: set_app_menu (menu)
 
-        Sets the menu to be used for this window. Pass None to remove the current menu. Any reference to a previous menu will be dropped. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+        Sets the menu to be used for this window. Pass None to remove the current menu. Any reference to a previous menu will be dropped. :class:`Window` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`HildonWindow.set_main_menu` instead.
+        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`Window.set_main_menu` instead.
 
         :param: menu: a :class:`HildonAppMenu` to be used for this window
 
@@ -132,7 +132,7 @@ Details
 
         Returns the :class:`HildonAppMenu` assigned to ``self``, or None if it's unset. Note that the window is still the owner of the menu.
 
-        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`HildonWindow.get_main_menu` instead.
+        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`Window.get_main_menu` instead.
 
 
         :returns: a :class:`HildonAppMenu`
@@ -141,17 +141,17 @@ Details
 
     .. method:: set_menu (menu)
 
-        .. warning:: :meth:`HildonWindow.set_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`HildonWindow.set_main_menu`
+        .. warning:: :meth:`Window.set_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`Window.set_main_menu`
 
-        Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+        Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. Window takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-        Note: :meth:`HildonWindow.set_menu` calls :meth:`GtkWidget.show_all()` for the :class:`GtkMenu` . To pass control about visibility to the application developer, :meth:`HildonWindow.set_main_menu` was introduced, which doesn't do this.
+        Note: :meth:`Window.set_menu` calls :meth:`GtkWidget.show_all()` for the :class:`GtkMenu` . To pass control about visibility to the application developer, :meth:`Window.set_main_menu` was introduced, which doesn't do this.
 
-        :param: menu: The :class:`GtkMenu` to be used for this :class:`HildonWindow`
+        :param: menu: The :class:`GtkMenu` to be used for this :class:`Window`
 
     .. method:: get_menu ()
 
-        .. warning:: :meth:`HildonWindow.get_menu` is deprecated and should not be used in newly-written code. In Hildon 2.2 this function has been renamed to :meth:`HildonWindow.get_main_menu` for consistency
+        .. warning:: :meth:`Window.get_menu` is deprecated and should not be used in newly-written code. In Hildon 2.2 this function has been renamed to :meth:`Window.get_main_menu` for consistency
 
         :returns:  a :class:`GtkMenu`
 
@@ -160,13 +160,13 @@ Details
 
         Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show_all` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide`
 
-        :param: toolbar: A :class:`GtkToolbar` to add to the :class:`HildonWindow`
+        :param: toolbar: A :class:`GtkToolbar` to add to the :class:`Window`
 
     .. method:: remove_toolbar (toolbar)
 
         Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call :meth:`GObject.ref`before calling this function.
 
-        :param: toolbar: A :class:`GtkToolbar` to remove from the :class:`HildonWindow`
+        :param: toolbar: A :class:`GtkToolbar` to remove from the :class:`Window`
 
 
     .. method:: set_edit_toolbar (toolbar)
@@ -181,7 +181,7 @@ Details
 
     .. method:: get_is_topmost ()
 
-        Returns whether the :class:`HildonWindow` is currenty activated by the window manager.
+        Returns whether the :class:`Window` is currenty activated by the window manager.
 
         :returns:  True ``self`` is currently activated, False otherwise.
 
@@ -190,7 +190,7 @@ Details
 
         Sets the marked up title of ``window``. The accepted format is the one used in Pango (see :class:`PangoMarkupFormat` ) with the exception of span.
 
-        Note that you need support from the window manager for this title to be used. See :meth:`GtkWindow.set_title` for the standard way of setting the title of a window.
+        Note that you need support from the window manager for this title to be used. See :meth:`gtk.Window.set_title` for the standard way of setting the title of a window.
 
         :param: markup: the marked up title of the window, or None to unset the current one
 
@@ -198,7 +198,7 @@ Details
 
     .. method:: hildon_window_get_markup ()
 
-        Gets the marked up title of the window title. See :meth:`HildonWindow.set_markup`
+        Gets the marked up title of the window title. See :meth:`Window.set_markup`
 
         :returns: the marked up title of the window, or None if none has been set explicitely. The returned string is owned by the widget and must not be modified or freed.
 
@@ -227,18 +227,18 @@ Style Property Details
 | ``toolbar-borders``       | GtkBorder   | Read                     |              | Size of graphical toolbar borders.   |
 +---------------------------+-------------+--------------------------+--------------+--------------------------------------+
 
-.. _HildonWindow.signal-details:
+.. _Window.signal-details:
 
 Signal Details
 ==============
 
-.. _HildonWindow-clipboard-operation:
+.. _Window-clipboard-operation:
 
 The ``clipboard-operation`` signal
 
 ::
 
-  void                user_function                      (HildonWindow *hildonwindow,
+  void                user_function                      (Window *hildonwindow,
                                                           int          arg1,
                                                           gpointer      user_data)         : Run First
 
@@ -256,7 +256,7 @@ The ``clipboard-operation`` signal
   user data set when the signal handler was connected.
 
 
-.. _HildonWindow.see-also:
+.. _Window.see-also:
 
 See Also
 ========
@@ -278,7 +278,7 @@ Object Hierarchy
                        +----GtkContainer
                              +----GtkBin
                                    +----GtkWindow
-                                         +----HildonWindow
+                                         +----Window
                                                +----StackableWindow
 
 Implemented Interfaces
@@ -297,7 +297,7 @@ To add a window to the stack, just use :meth:`gtk.Widget.show_all` . The previou
 
 Alternatively, you can remove a window from the top of the stack without destroying it by using :meth:`hildon.WindowStack.pop`. The window will be automatically hidden and the previous one will appear.
 
-For advanced details on stack handling, see :class:`HildonWindowStack`
+For advanced details on stack handling, see :class:`WindowStack`
 
 Basic hildon.StackableWindow example
 ====================================
@@ -346,13 +346,13 @@ Details
 
         Returns the stack where window ``self`` is on, or None if the window is not stacked.
 
-        :returns: a :class:`HildonWindowStack` , or None
+        :returns: a :class:`WindowStack` , or None
 
         .. versionadded 2.2
 
     .. method:: set_main_menu (menu)
 
-        .. warning:: :meth:`StackableWindow.set_main_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`HildonWindow.set_app_menu`
+        .. warning:: :meth:`StackableWindow.set_main_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`Window.set_app_menu`
 
         :param menu: a :class:`HildonAppMenu` to be used for this window
 
@@ -361,10 +361,10 @@ See Also
 
 :class:`WindowStack` :class:`Program` :class:`Window`
 
-HildonWindowStack
+WindowStack
 *****************
 
-.. _HildonWindowStack.object-hierarchy:
+.. _WindowStack.object-hierarchy:
 
 Object Hierarchy
 ================
@@ -373,10 +373,10 @@ Object Hierarchy
 
   
     GObject
-     +----HildonWindowStack
+     +----WindowStack
   
 
-.. _HildonWindowStack.properties:
+.. _WindowStack.properties:
 
 Properties
 ==========
@@ -387,12 +387,12 @@ Properties
     window-group             GtkWindowGroup*       : Read / Write / Construct Only
   
 
-.. _HildonWindowStack.description:
+.. _WindowStack.description:
 
 Description
 ===========
 
-The :class:`HildonWindowStack` is an object used to represent a stack of windows in the Hildon framework.
+The :class:`WindowStack` is an object used to represent a stack of windows in the Hildon framework.
 
 Stacks contain all :class:`HildonStackableWindow` s that are being shown. The user can only interact with the topmost window from each stack (as it covers all the others), but all of them are mapped and visible from the Gtk point of view.
 
@@ -408,18 +408,18 @@ For more complex layout changes, applications can push and/or pop several window
 
 
 
-.. _HildonWindowStack.details:
+.. _WindowStack.details:
 
 Details
 =======
 
-.. _HildonWindowStack-struct:
+.. _WindowStack-struct:
 
-.. class:: HildonWindowStack
+.. class:: WindowStack
 
 ::
 
-  typedef struct _HildonWindowStack HildonWindowStack;
+  typedef struct _WindowStack WindowStack;
 
 
 
@@ -429,14 +429,14 @@ Details
 
 ::
 
-  HildonWindowStack*  hildon_window_stack_get_default     (void);
+  WindowStack*  hildon_window_stack_get_default     (void);
 
 Returns the default window stack. This stack always exists and doesn't need to be created by the application.
 
 
 
 :returns: 
-  the default :class:`HildonWindowStack`
+  the default :class:`WindowStack`
 
 
 .. versionadded 2.2
@@ -447,14 +447,14 @@ Returns the default window stack. This stack always exists and doesn't need to b
 
 ::
 
-  HildonWindowStack*  hildon_window_stack_new             (void);
+  WindowStack*  hildon_window_stack_new             (void);
 
-Creates a new :class:`HildonWindowStack` . The stack is initially empty.
+Creates a new :class:`WindowStack` . The stack is initially empty.
 
 
 
 :returns: 
-  a new :class:`HildonWindowStack`
+  a new :class:`WindowStack`
 
 
 .. versionadded 2.2
@@ -465,14 +465,14 @@ Creates a new :class:`HildonWindowStack` . The stack is initially empty.
 
 ::
 
-  int                hildon_window_stack_size            (HildonWindowStack *stack);
+  int                hildon_window_stack_size            (WindowStack *stack);
 
 Returns the number of windows in ``stack``
 
 
 
 ``stack``:
-  A :class:`HildonWindowStack`
+  A :class:`WindowStack`
 
 
 :returns: 
@@ -487,14 +487,14 @@ Returns the number of windows in ``stack``
 
 ::
 
-  GList*              hildon_window_stack_get_windows     (HildonWindowStack *stack);
+  GList*              hildon_window_stack_get_windows     (WindowStack *stack);
 
 Returns the list of windows on this stack (topmost first). The widgets in the list are not individually referenced. Once you are done with the list you must call `g_list_free() <g-list-free>`_ .
 
 
 
 ``stack``:
-  a :class:`HildonWindowStack`
+  a :class:`WindowStack`
 
 
 :returns: 
@@ -509,14 +509,14 @@ Returns the list of windows on this stack (topmost first). The widgets in the li
 
 ::
 
-  GtkWidget*          hildon_window_stack_peek            (HildonWindowStack *stack);
+  GtkWidget*          hildon_window_stack_peek            (WindowStack *stack);
 
 Returns the window on top of ``stack``. The stack is never modified.
 
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 :returns: 
@@ -531,7 +531,7 @@ Returns the window on top of ``stack``. The stack is never modified.
 
 ::
 
-  void                hildon_window_stack_push            (HildonWindowStack *stack,
+  void                hildon_window_stack_push            (WindowStack *stack,
                                                            HildonStackableWindow *win1,
                                                            ...);
 
@@ -540,7 +540,7 @@ Pushes all windows to the top of ``stack``, and shows them. Everything is done i
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 ``win1``:
@@ -559,7 +559,7 @@ Pushes all windows to the top of ``stack``, and shows them. Everything is done i
 
 ::
 
-  void                hildon_window_stack_push_list       (HildonWindowStack *stack,
+  void                hildon_window_stack_push_list       (WindowStack *stack,
                                                            GList *list);
 
 Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everything is done in a single transition, so the user will only see the last window in ``list`` during this operation. None of the windows must be already stacked.
@@ -567,7 +567,7 @@ Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everythi
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 ``list``:
@@ -582,7 +582,7 @@ Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everythi
 
 ::
 
-  void                hildon_window_stack_push_1          (HildonWindowStack *stack,
+  void                hildon_window_stack_push_1          (WindowStack *stack,
                                                            HildonStackableWindow *win);
 
 Adds ``win`` to the top of ``stack``, and shows it. The window must not be already stacked.
@@ -590,7 +590,7 @@ Adds ``win`` to the top of ``stack``, and shows it. The window must not be alrea
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 ``win``:
@@ -605,7 +605,7 @@ Adds ``win`` to the top of ``stack``, and shows it. The window must not be alrea
 
 ::
 
-  void                hildon_window_stack_pop             (HildonWindowStack *stack,
+  void                hildon_window_stack_pop             (WindowStack *stack,
                                                            int nwindows,
                                                            GList **popped_windows);
 
@@ -616,7 +616,7 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 ``nwindows``:
@@ -635,14 +635,14 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 ::
 
-  GtkWidget*          hildon_window_stack_pop_1           (HildonWindowStack *stack);
+  GtkWidget*          hildon_window_stack_pop_1           (WindowStack *stack);
 
 Removes the window on top of ``stack``, and hides it. If the stack is empty nothing happens.
 
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 :returns: 
@@ -657,7 +657,7 @@ Removes the window on top of ``stack``, and hides it. If the stack is empty noth
 
 ::
 
-  void                hildon_window_stack_pop_and_push    (HildonWindowStack *stack,
+  void                hildon_window_stack_pop_and_push    (WindowStack *stack,
                                                            int nwindows,
                                                            GList **popped_windows,
                                                            HildonStackableWindow *win1,
@@ -670,7 +670,7 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 ``nwindows``:
@@ -698,7 +698,7 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 ::
 
   void                hildon_window_stack_pop_and_push_list
-                                                          (HildonWindowStack *stack,
+                                                          (WindowStack *stack,
                                                            int nwindows,
                                                            GList **popped_windows,
                                                            GList *list);
@@ -710,7 +710,7 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 
 ``stack``:
-  A ```HildonWindowStack`` <HildonWindowStack>`_
+  A ```WindowStack`` <WindowStack>`_
 
 
 ``nwindows``:
@@ -727,12 +727,12 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 .. versionadded 2.2
 
-.. _HildonWindowStack.property-details:
+.. _WindowStack.property-details:
 
 Property Details
 ================
 
-.. _HildonWindowStack--window-group:
+.. _WindowStack--window-group:
 
 The ``window-group`` property
 
@@ -742,7 +742,7 @@ The ``window-group`` property
 
 GtkWindowGroup that all windows on this stack belong to.
 
-.. _HildonWindowStack.see-also:
+.. _WindowStack.see-also:
 
 See Also
 ========
@@ -3588,7 +3588,7 @@ To create information notes you can use `hildon_note_new_information() <hildon-n
 
 To create a note with a text, a progress bar and cancel button, `hildon_note_new_cancel_with_progress_bar() <hildon-note-new-cancel-with-progress-bar>`_ can be used.
 
-HildonNote example ================== :: bool show_confirmation_note (GtkWindow *parent) { int retcode; GtkWidget *note; note = hildon_note_new_confirmation (parent, "Confirmation message..."); retcode = gtk_dialog_run (GTK_DIALOG (note)); gtk_widget_destroy (note); if (retcode == GTK_RESPONSE_OK) { g_debug ("User pressed 'OK' button'"); return TRUE; } else { g_debug ("User pressed 'Cancel' button"); return FALSE; } }
+HildonNote example ================== :: bool show_confirmation_note (gtk.Window *parent) { int retcode; GtkWidget *note; note = hildon_note_new_confirmation (parent, "Confirmation message..."); retcode = gtk_dialog_run (GTK_DIALOG (note)); gtk_widget_destroy (note); if (retcode == GTK_RESPONSE_OK) { g_debug ("User pressed 'OK' button'"); return TRUE; } else { g_debug ("User pressed 'Cancel' button"); return FALSE; } }
 
 
 
@@ -6114,7 +6114,7 @@ Details
         :returns:  a new :class:`Entry`
 
 
-    .. mehtod:: set_text(text)
+    .. method:: set_text(text)
         Sets the text in ``entry`` to ``text``, replacing its current contents.
         Note that you must never use :meth:`set_text()`_ to set the text of a :class:`Entry` .
 
@@ -6339,11 +6339,11 @@ This menu opens from the top of the screen and contains a number of entries (:cl
 
 Besides that, the :class:`HildonAppMenu` can contain a group of filter buttons (:class:`GtkToggleButton` or :class:`GtkRadioButton` ).
 
-To use a :class:`HildonAppMenu` , add it to a :class:`HildonWindow` using :meth:`HildonWindow.set_app_menu` . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
+To use a :class:`HildonAppMenu` , add it to a :class:`Window` using :meth:`Window.set_app_menu` . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
 
 The menu will be automatically hidden when one of its buttons is clicked. Use `g_signal_connect_after() <g-signal-connect-after>`_ when connecting callbacks to buttons to make sure that they're called after the menu disappears. Alternatively, you can add the button to the menu before connecting any callback.
 
-Although implemented with a :class:`GtkWindow` , :class:`HildonAppMenu` behaves like a normal ref-counted widget, so `g_object_ref() <g-object-ref>`_ , `g_object_unref() <g-object-unref>`_ , `g_object_ref_sink() <g-object-ref-sink>`_ and friends will behave just like with any other non-toplevel widget.
+Although implemented with a :class:`gtk.Window` , :class:`HildonAppMenu` behaves like a normal ref-counted widget, so `g_object_ref() <g-object-ref>`_ , `g_object_unref() <g-object-unref>`_ , `g_object_ref_sink() <g-object-ref-sink>`_ and friends will behave just like with any other non-toplevel widget.
 
 Creating a HildonAppMenu ======================== :: GtkWidget *win; HildonAppMenu *menu; GtkWidget *button; GtkWidget *filter; win = hildon_stackable_window_new (); menu = HILDON_APP_MENU (hildon_app_menu_new ()); // Create a button and add it to the menu button = gtk_button_new_with_label ("Menu command one"); g_signal_connect_after (button, "clicked", G_CALLBACK (button_one_clicked), userdata); hildon_app_menu_append (menu, GTK_BUTTON (button)); // Another button button = gtk_button_new_with_label ("Menu command two"); g_signal_connect_after (button, "clicked", G_CALLBACK (button_two_clicked), userdata); hildon_app_menu_append (menu, GTK_BUTTON (button)); // Create a filter and add it to the menu filter = gtk_radio_button_new_with_label (NULL, "Filter one"); gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE); g_signal_connect_after (filter, "clicked", G_CALLBACK (filter_one_clicked), userdata); hildon_app_menu_add_filter (menu, GTK_BUTTON (filter)); // Add a new filter filter = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (filter), "Filter two"); gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE); g_signal_connect_after (filter, "clicked", G_CALLBACK (filter_two_clicked), userdata); hildon_app_menu_add_filter (menu, GTK_BUTTON (filter)); // Show all menu items gtk_widget_show_all (GTK_WIDGET (menu)); // Add the menu to the window hildon_window_set_app_menu (HILDON_WINDOW (win), menu);
 
@@ -6558,7 +6558,7 @@ Returns a list of all filters contained in ``menu``.
 ::
 
   void                hildon_app_menu_popup               (HildonAppMenu *menu,
-                                                           GtkWindow *parent_window);
+                                                           gtk.Window *parent_window);
 
 Displays a menu on top of a window and makes it available for selection.
 
@@ -6569,7 +6569,7 @@ Displays a menu on top of a window and makes it available for selection.
 
 
 ``parent_window``:
-  a :class:`GtkWindow`
+  a :class:`gtk.Window`
 
 
 .. versionadded 2.2
@@ -7083,7 +7083,7 @@ Gets emitted when the find button is pressed.
 See Also
 ========
 
-:class:`HildonWindow` .. _HildonEditToolbar:
+:class:`Window` .. _HildonEditToolbar:
 
 HildonEditToolbar
 *****************
@@ -7148,7 +7148,7 @@ The label is a description of the action that the user is supposed to do. The bu
 
 Note that those widgets don't do anything themselves by default. To actually peform actions the developer must provide callbacks for them.
 
-To add a :class:`HildonEditToolbar` to a window use :meth:`HildonWindow.set_edit_toolbar` .
+To add a :class:`HildonEditToolbar` to a window use :meth:`Window.set_edit_toolbar` .
 
 HildonEditToolbar example ========================= :: GtkWidget *window; GtkWidget *toolbar; // Declare more widgets here ... window = hildon_stackable_window_new (); toolbar = hildon_edit_toolbar_new_with_text ("Choose items to delete", "Delete"); // Create more widgets here ... // Add toolbar to window hildon_window_set_edit_toolbar (HILDON_WINDOW (window), HILDON_EDIT_TOOLBAR (toolbar)); // Add other widgets ... g_signal_connect (toolbar, "button-clicked", G_CALLBACK (delete_button_clicked), someparameter); g_signal_connect_swapped (toolbar, "arrow-clicked", G_CALLBACK (gtk_widget_destroy), window); gtk_widget_show_all (window); gtk_window_fullscreen (GTK_WINDOW (window));
 
@@ -7495,7 +7495,7 @@ Creates a new :class:`HildonWizardDialog` .
 
 
 ``parent``:
-  a :class:`GtkWindow`
+  a :class:`gtk.Window`
 
 
 ``wizard_name``:
@@ -7788,7 +7788,7 @@ Details
 
         If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-        :param parent: A :class:`GtkWindow` that the actor will be parented to.
+        :param parent: A :class:`gtk.Window` that the actor will be parented to.
 
         .. versionadded 2.2
 
@@ -8019,7 +8019,7 @@ Details
 
         If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-        :param parent: A :class:`GtkWindow` that the actor will be parented to.
+        :param parent: A :class:`gtk.Window` that the actor will be parented to.
 
         .. versionadded 2.2
 
