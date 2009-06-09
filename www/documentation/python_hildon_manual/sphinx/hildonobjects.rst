@@ -33,8 +33,8 @@ Properties
 
 ::
 
-    is-topmost               bool              : Read
-    markup                   str                : Read / Write
+    is-topmost               bool                  : Read
+    markup                   str                   : Read / Write
 
 Style Properties
 ================
@@ -60,111 +60,72 @@ Description
 
 :class:`HildonWindow` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with :meth:`HildonWindow.set_main_menu` and :meth:`HildonWindow.set_app_menu` respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
 
-Similarly, a :class:`HildonWindow` can have several toolbars attached. These can be added with `hildon_window_add_toolbar() <hildon-window-add-toolbar>`_ . In addition to those, a :class:`HildonWindow` can also have a :class:`HildonEditToolbar` . To add it to the window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
+Similarly, a :class:`HildonWindow` can have several toolbars attached. These can be added with :meth:`HildonWindow.add_toolbar` . In addition to those, a :class:`HildonWindow` can also have a :class:`HildonEditToolbar` . To add it to the window use :meth:`HildonWindow.set_edit_toolbar` .
 
-Creating a HildonWindow ======================= :: HildonWindow *window; GtkToolbar *toolbar; HildonAppMenu *menu; GdkPixbuf *icon_pixbuf; window = HILDON_WINDOW (hildon_window_new()); toolbar = create_toolbar(); menu = create_menu(); icon_pixbuf = create_icon(); hildon_window_set_app_menu (window, menu); hildon_window_add_toolbar (window, toolbar); // Can be used to set the window fullscreen gtk_window_fullscreen (GTK_WINDOW (window)); // Used to trigger the blinking of the window's icon in the task navigator gtk_window_set_urgency_hint (GTK_WINDOW (window), TRUE); // Change the window's icon in the task navigator gtk_window_set_icon (GTK_WINDOW (window), icon_pixbuf);
+Creating a HildonWindow
+=======================
 
+::
 
+  import gtk
+  import hildon
+
+  window = hildon.Window()
+  toolbar = create_toolbar()
+  menu = create_menu()
+
+  icon_pixbuf = create_icon()
+
+  window.set_app_menu(menu)
+
+  window.add_toolbar(toolbar)
+
+  window.fullscreen()
+
+  window.set_urgency_hint(True)
+
+  window.set_icon(window, icon_pixbuf)
 
 
 Details
 =======
 
-.. _HILDON-WINDOW-LONG-PRESS-TIME:CAPS:
+.. data:: HildonWindowClipboardOperation
 
-.. :: HILDON_WINDOW_LONG_PRESS_TIME
-
-::
-
-  #define                                         HILDON_WINDOW_LONG_PRESS_TIME 800 /* in ms */
-  
-
-
-
-.. _HildonWindowClipboardOperation:
-
-.. :: enum HildonWindowClipboardOperation
-
-::
-
-  typedef enum
-  {
-      HILDON_WINDOW_CO_COPY,
-      HILDON_WINDOW_CO_CUT,
-      HILDON_WINDOW_CO_PASTE
-  }                                               HildonWindowClipboardOperation;
-  
-
-
-
-.. _HildonWindow-struct:
++------------------------------------+-----------------------------------------------------+
+| Value                              | Meaning                                             |
++====================================+=====================================================+
+| ``WINDOW_CO_COPY``                 | Areaing follows pointer                             |
++------------------------------------+-----------------------------------------------------+
+| ``WINDOW_CO_CUT``                  | Areaing uses physics to "spin" the widget           |
++------------------------------------+-----------------------------------------------------+
+| ``WINDOW_CO_PASTE``                | Automatically chooses between push and accel modes, |
++------------------------------------+-----------------------------------------------------+
 
 .. class:: HildonWindow
 
-::
+    .. method:: __init__ (self)
 
-  typedef struct _HildonWindow HildonWindow;
+        Creates a new :class:`HildonWindow` .
 
-
-
-.. _hildon-window-new:
-
-.. function:: hildon_window_new ()
-
-::
-
-  GtkWidget*          hildon_window_new                   (void);
-
-Creates a new :class:`HildonWindow` .
+        :returns: 
+          A newly created :class:`HildonWindow` .
 
 
+    .. method:: add_with_scrollbar (child)
 
-:returns: 
-  A :class:`HildonWindow` .
+        Adds ``child`` to the :class:`HildonWindow` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
 
-
-.. _hildon-window-add-with-scrollbar:
-
-.. function:: hildon_window_add_with_scrollbar ()
-
-::
-
-  void                hildon_window_add_with_scrollbar    (HildonWindow *self,
-                                                           GtkWidget *child);
-
-Adds ``child`` to the :class:`HildonWindow` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
+        :param: child: :class:`GtkWidget`
 
 
+    .. method:: set_main_menu (menu)
 
-``self``:
-  A :class:`HildonWindow`
+        Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
+        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.set_app_menu` instead.
 
-``child``:
-  A :class:`GtkWidget`
-
-
-.. _hildon-window-set-main-menu:
-
-.. function:: hildon_window_set_main_menu ()
-
-::
-
-  void                hildon_window_set_main_menu         (HildonWindow *self,
-                                                           GtkMenu *menu);
-
-Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass None to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
-
-Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.set_app_menu` instead.
-
-
-
-``self``:
-  A :class:`HildonWindow`
-
-
-``menu``:
-  The :class:`GtkMenu` to be used for this :class:`HildonWindow`
+        :param: menu: The :class:`GtkMenu` to be used for this :class:`HildonWindow`
 
 
 .. _hildon-window-get-main-menu:
@@ -251,7 +212,7 @@ Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu
 
 .. warning:: ``hildon_window_set_menu`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_
 
-Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass None to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
 Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_show_all() <gtk-widget-show-all>`_ for the :class:`GtkMenu` . To pass control about visibility to the application developer, `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ was introduced, which doesn't do this.
 
@@ -8126,7 +8087,7 @@ The label is a description of the action that the user is supposed to do. The bu
 
 Note that those widgets don't do anything themselves by default. To actually peform actions the developer must provide callbacks for them.
 
-To add a :class:`HildonEditToolbar` to a window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
+To add a :class:`HildonEditToolbar` to a window use :meth:`HildonWindow.set_edit_toolbar` .
 
 HildonEditToolbar example ========================= :: GtkWidget *window; GtkWidget *toolbar; // Declare more widgets here ... window = hildon_stackable_window_new (); toolbar = hildon_edit_toolbar_new_with_text ("Choose items to delete", "Delete"); // Create more widgets here ... // Add toolbar to window hildon_window_set_edit_toolbar (HILDON_WINDOW (window), HILDON_EDIT_TOOLBAR (toolbar)); // Add other widgets ... g_signal_connect (toolbar, "button-clicked", G_CALLBACK (delete_button_clicked), someparameter); g_signal_connect_swapped (toolbar, "arrow-clicked", G_CALLBACK (gtk_widget_destroy), window); gtk_widget_show_all (window); gtk_window_fullscreen (GTK_WINDOW (window));
 
