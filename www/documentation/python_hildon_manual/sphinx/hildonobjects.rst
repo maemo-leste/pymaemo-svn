@@ -119,7 +119,7 @@ Creates a new :class:`HildonWindow` .
 
 
 
-*Returns*:
+:returns: 
   A :class:`HildonWindow` .
 
 
@@ -185,11 +185,11 @@ Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu
   a :class:`HildonWindow`
 
 
-*Returns*:
+:returns: 
   The :class:`GtkMenu` assigned to this application view.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-set-app-menu:
 
@@ -214,7 +214,7 @@ Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu
   a :class:`HildonAppMenu` to be used for this window
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-get-app-menu:
 
@@ -234,11 +234,11 @@ Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu
   a :class:`HildonWindow`
 
 
-*Returns*:
+:returns: 
   a :class:`HildonAppMenu`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-set-menu:
 
@@ -283,7 +283,7 @@ Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_sho
   a :class:`HildonWindow`
 
 
-*Returns*:
+:returns: 
   a :class:`GtkMenu`
 
 
@@ -352,7 +352,7 @@ A window can only have at most one edit toolbar at a time, so the previous toolb
   A :class:`HildonEditToolbar` , or ```NULL`` <NULL:CAPS>`_ to remove the current one.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-get-is-topmost:
 
@@ -370,7 +370,7 @@ Returns whether the :class:`HildonWindow` is currenty activated by the window ma
   A :class:`HildonWindow`
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ if ``self`` is currently activated, ```FALSE`` <FALSE:CAPS>`_ otherwise.
 
 
@@ -397,7 +397,7 @@ Note that you need support from the window manager for this title to be used. Se
   the marked up title of the window, or ```NULL`` <NULL:CAPS>`_ to unset the current one
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-get-markup:
 
@@ -415,11 +415,11 @@ Gets the marked up title of the window title. See `hildon_window_set_markup() <h
   a :class:`HildonWindow`
 
 
-*Returns*:
+:returns: 
   the marked up title of the window, or ```NULL`` <NULL:CAPS>`_ if none has been set explicitely. The returned string is owned by the widget and must not be modified or freed.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonWindow.property-details:
 
@@ -586,11 +586,11 @@ Creates a new :class:`HildonStackableWindow` .
 
 
 
-*Returns*:
+:returns: 
   A :class:`HildonStackableWindow`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-stackable-window-get-stack:
 
@@ -608,11 +608,11 @@ Returns the stack where window ``self`` is on, or ```NULL`` <NULL:CAPS>`_ if the
   a :class:`HildonStackableWindow`
 
 
-*Returns*:
+:returns: 
   a :class:`HildonWindowStack` , or ```NULL`` <NULL:CAPS>`_
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-stackable-window-set-main-menu:
 
@@ -719,11 +719,11 @@ Returns the default window stack. This stack always exists and doesn't need to b
 
 
 
-*Returns*:
+:returns: 
   the default :class:`HildonWindowStack`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-new:
 
@@ -737,11 +737,11 @@ Creates a new :class:`HildonWindowStack` . The stack is initially empty.
 
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonWindowStack`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-size:
 
@@ -759,11 +759,11 @@ Returns the number of windows in ``stack``
   A :class:`HildonWindowStack`
 
 
-*Returns*:
+:returns: 
   Number of windows in ``stack``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-get-windows:
 
@@ -781,11 +781,11 @@ Returns the list of windows on this stack (topmost first). The widgets in the li
   a :class:`HildonWindowStack`
 
 
-*Returns*:
+:returns: 
   a newly-allocated list of :class:`HildonStackableWindow` s
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-peek:
 
@@ -803,11 +803,11 @@ Returns the window on top of ``stack``. The stack is never modified.
   A ```HildonWindowStack`` <HildonWindowStack>`_
 
 
-*Returns*:
+:returns: 
   the window on top of the stack, or ```NULL`` <NULL:CAPS>`_ if the stack is empty.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-push:
 
@@ -835,7 +835,7 @@ Pushes all windows to the top of ``stack``, and shows them. Everything is done i
   A ```NULL`` <NULL:CAPS>`_ -terminated list of additional :class:`HildonStackableWindow` s to push.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-push-list:
 
@@ -858,7 +858,7 @@ Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everythi
   A list of ```HildonStackableWindow`` <HildonStackableWindow>`_ s to push
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-push-1:
 
@@ -881,7 +881,7 @@ Adds ``win`` to the top of ``stack``, and shows it. The window must not be alrea
   A ```HildonStackableWindow`` <HildonStackableWindow>`_
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-pop:
 
@@ -911,7 +911,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
   if non-```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored here
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-pop-1:
 
@@ -929,11 +929,11 @@ Removes the window on top of ``stack``, and hides it. If the stack is empty noth
   A ```HildonWindowStack`` <HildonWindowStack>`_
 
 
-*Returns*:
+:returns: 
   the window on top of the stack, or ```NULL`` <NULL:CAPS>`_ if the stack is empty.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-pop-and-push:
 
@@ -973,7 +973,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
   A ```NULL`` <NULL:CAPS>`_ -terminated list of additional :class:`HildonStackableWindow` s to push.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-window-stack-pop-and-push-list:
 
@@ -1009,7 +1009,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
   A list of ```HildonStackableWindow`` <HildonStackableWindow>`_ s to push
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonWindowStack.property-details:
 
@@ -1198,11 +1198,11 @@ Creates a new :class:`HildonButton` . To set text in the labels, use `hildon_but
   How the labels must be arranged.
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-new-with-text:
 
@@ -1237,11 +1237,11 @@ If you just don't want to use one of the labels, set it to ```NULL`` <NULL:CAPS>
   Value of the button (secondary label), or ```NULL`` <NULL:CAPS>`_
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-title:
 
@@ -1268,7 +1268,7 @@ If ``title`` is set to ```NULL`` <NULL:CAPS>`_ , the title label will be hidden 
   a new title (main label) for the button, or ```NULL`` <NULL:CAPS>`_
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-value:
 
@@ -1295,7 +1295,7 @@ If ``value`` is set to ```NULL`` <NULL:CAPS>`_ , the value label will be hidden 
   a new value (secondary label) for the button, or ```NULL`` <NULL:CAPS>`_
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-get-title:
 
@@ -1313,11 +1313,11 @@ Fetches the text from the main label (title) of ``button``, as set by `hildon_bu
   a :class:`HildonButton`
 
 
-*Returns*:
+:returns: 
   The text of the title label. This string is owned by the widget and must not be modified or freed.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-get-value:
 
@@ -1335,11 +1335,11 @@ Fetches the text from the secondary label (value) of ``button``, as set by `hild
   a :class:`HildonButton`
 
 
-*Returns*:
+:returns: 
   The text of the value label. This string is owned by the widget and must not be modified or freed.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-text:
 
@@ -1367,7 +1367,7 @@ Convenience function to change both labels of a :class:`HildonButton`
   new text for the button value (secondary label)
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-image:
 
@@ -1390,7 +1390,7 @@ Sets the image of ``button`` to the given widget. The previous image (if any) wi
   a widget to set as the button image
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-get-image:
 
@@ -1408,11 +1408,11 @@ Gets the widget that is currenty set as the image of ``button``, previously set 
   a :class:`HildonButton`
 
 
-*Returns*:
+:returns: 
   a :class:`GtkWidget` or ```NULL`` <NULL:CAPS>`_ in case there is no image
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-image-position:
 
@@ -1435,7 +1435,7 @@ Sets the position of the image inside ``button``. Only ```GTK_POS_LEFT`` <GTK-PO
   the position of the image (```GTK_POS_LEFT`` <GTK-POS-LEFT:CAPS>`_ or ```GTK_POS_RIGHT`` <GTK-POS-RIGHT:CAPS>`_ )
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-alignment:
 
@@ -1475,7 +1475,7 @@ Note that for this method to work properly the, child widget of ``button`` must 
   the amount that the child widget expands vertically to fill up unused space, from 0 to 1
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-title-alignment:
 
@@ -1503,7 +1503,7 @@ Sets the alignment of the title label. See also `hildon_button_set_alignment() <
   the vertical alignment of the title label, from 0 (top) to 1 (bottom).
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-value-alignment:
 
@@ -1531,7 +1531,7 @@ Sets the alignment of the value label. See also `hildon_button_set_alignment() <
   the vertical alignment of the value label, from 0 (top) to 1 (bottom).
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-image-alignment:
 
@@ -1559,7 +1559,7 @@ Sets the alignment of the image. See also `hildon_button_set_alignment() <hildon
   the vertical alignment of the image, from 0 (top) to 1 (bottom).
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-add-title-size-group:
 
@@ -1582,7 +1582,7 @@ Adds the title label of ``button`` to ``size_group``.
   A :class:`GtkSizeGroup` for the button title (main label)
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-add-value-size-group:
 
@@ -1605,7 +1605,7 @@ Adds the value label of ``button`` to ``size_group``.
   A :class:`GtkSizeGroup` for the button value (secondary label)
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-add-image-size-group:
 
@@ -1628,7 +1628,7 @@ Adds the image of ``button`` to ``size_group``. You must add an image using `hil
   A :class:`GtkSizeGroup` for the button image
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-add-size-groups:
 
@@ -1661,7 +1661,7 @@ Convenience function to add title, value and image to size groups. ```NULL`` <NU
   A :class:`GtkSizeGroup` group for the button image, or ```NULL`` <NULL:CAPS>`_
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-set-style:
 
@@ -1686,7 +1686,7 @@ Use ```HILDON_BUTTON_STYLE_NORMAL`` <HILDON-BUTTON-STYLE-NORMAL:CAPS>`_ to make 
   A :class:`HildonButtonStyle` for ``button``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-button-get-style:
 
@@ -1704,11 +1704,11 @@ Gets the visual style of the button.
   A :class:`HildonButton`
 
 
-*Returns*:
+:returns: 
   a :class:`HildonButtonStyle`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonButton.property-details:
 
@@ -1900,11 +1900,11 @@ Creates a new :class:`HildonCheckButton` .
   Flags indicating the size of the new button
 
 
-*Returns*:
+:returns: 
   A newly created :class:`HildonCheckButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-check-button-set-active:
 
@@ -1927,7 +1927,7 @@ Sets the status of a :class:`HildonCheckButton` . Set to ```TRUE`` <TRUE:CAPS>`_
   new state for the button
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-check-button-get-active:
 
@@ -1945,11 +1945,11 @@ Gets the current state of ``button``.
   A :class:`HildonCheckButton`
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ if ``button`` is active, ```FALSE`` <FALSE:CAPS>`_ otherwise.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-check-button-toggled:
 
@@ -1967,7 +1967,7 @@ Emits the `"toggled" <HildonCheckButton-toggled>`_ signal on the :class:`HildonC
   A :class:`HildonCheckButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonCheckButton.style-property-details:
 
@@ -2008,7 +2008,7 @@ Emitted when the :class:`HildonCheckButton` 's state is changed.
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPickerButton:
 
@@ -2115,11 +2115,11 @@ Creates a new :class:`HildonPickerButton` . See `hildon_button_new() <hildon-but
   one of :class:`HildonButtonArrangement` , specifying the placement of the labels.
 
 
-*Returns*:
+:returns: 
   a newly created :class:`HildonPickerButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-set-selector:
 
@@ -2142,7 +2142,7 @@ Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:
   a :class:`HildonTouchSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-get-selector:
 
@@ -2160,11 +2160,11 @@ Retrieves the :class:`HildonTouchSelector` associated to ``button``.
   a :class:`HildonPickerButton`
 
 
-*Returns*:
+:returns: 
   a :class:`HildonTouchSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-set-active:
 
@@ -2187,7 +2187,7 @@ Sets the active item of the :class:`HildonTouchSelector` associated to ``button`
   the index of the item to select, or -1 to have no active item
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-get-active:
 
@@ -2205,11 +2205,11 @@ Returns the index of the currently active item, or -1 if there's no active item.
   a :class:`HildonPickerButton`
 
 
-*Returns*:
+:returns: 
   an integer which is the index of the currently active item, or -1 if there's no active item.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-get-done-button-text:
 
@@ -2228,11 +2228,11 @@ Gets the text used in the :class:`HildonPickerDialog` that is launched by ``butt
   a :class:`HildonPickerButton`
 
 
-*Returns*:
+:returns: 
   the custom string to be used, or ```NULL`` <NULL:CAPS>`_ if the default `"done-button-text" <HildonPickerDialog-done-button-text>`_ is to be used.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-set-done-button-text:
 
@@ -2256,7 +2256,7 @@ Sets a custom string to be used in the "done" button in :class:`HildonPickerDial
   a string
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-button-value-changed:
 
@@ -2274,7 +2274,7 @@ Emits a "`"value-changed" <HildonPickerButton-value-changed>`_ " signal to the g
   a :class:`HildonPickerButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPickerButton.property-details:
 
@@ -2329,7 +2329,7 @@ The ::value-changed signal is emitted each time the user chooses a different ite
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPickerButton.see-also:
 
@@ -2413,11 +2413,11 @@ Creates a new :class:`HildonDateButton` . See `hildon_button_new() <hildon-butto
   one of :class:`HildonButtonArrangement`
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonDateButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-button-new-with-year-range:
 
@@ -2451,11 +2451,11 @@ Creates a new :class:`HildonDateButton` with a specific valid range of years. Se
   the maximum available year or -1 to ignore
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonDateButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-button-get-date:
 
@@ -2488,7 +2488,7 @@ Retrieves currently selected date from ``button``.
   return location for the selected day
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-button-set-date:
 
@@ -2521,7 +2521,7 @@ Sets the date in ``button``. The date set will be displayed and will be the defa
   the day of the month to set.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonDateButton.see-also:
 
@@ -2605,11 +2605,11 @@ Creates a new :class:`HildonTimeButton` . See `hildon_button_new() <hildon-butto
   one of :class:`HildonButtonArrangement`
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonTimeButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-time-button-new-step:
 
@@ -2637,11 +2637,11 @@ Creates a new :class:`HildonTimeButton` . See `hildon_button_new() <hildon-butto
   step between the minutes in the selector options
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonTimeButton`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-time-button-get-time:
 
@@ -2669,7 +2669,7 @@ Retrieves the time from ``button``.
   return location for the minutes of the time selected
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-time-button-set-time:
 
@@ -2697,7 +2697,7 @@ Sets the time to be displayed in ``button``. This time will be selected by defau
   the time to be set
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTimeButton.see-also:
 
@@ -2883,7 +2883,7 @@ Creates a new instance of hildon_caption widget, with a specific control and ima
   indicates whether this captioned control is mandatory or optional
 
 
-*Returns*:
+:returns: 
   a :class:`GtkWidget` pointer of Caption
 
 
@@ -2903,7 +2903,7 @@ Query given captioned control for the :class:`GtkSizeGroup` assigned to it.
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   a :class:`GtkSizeGroup`
 
 
@@ -2944,7 +2944,7 @@ Query :class:`HildonCaption` whether this captioned control is a mandatory one.
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   is this captioned control a mandatory one?
 
 
@@ -2985,7 +2985,7 @@ Gets :class:`HildonCaption` status.
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   one of the values from :class:`HildonCaptionStatus`
 
 
@@ -3027,7 +3027,7 @@ Gets :class:`HildonCaption` icon position.
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   one of the values from :class:`HildonCaptionIconPosition` .
 
 
@@ -3068,7 +3068,7 @@ Gets icon of :class:`HildonCaption`
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   the :class:`GtkImage` widget that is being used as the icon by the hildon_caption, or NULL if no icon image is in use.
 
 
@@ -3109,7 +3109,7 @@ Gets label of :class:`HildonCaption`
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   the text currently being used as the label of the caption control. The string is owned by the label and the caller should never free or modify this value.
 
 
@@ -3150,7 +3150,7 @@ Gets separator string of :class:`HildonCaption`
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   the text currently being used as the separator of the caption control. The string is owned by the caption control and the caller should never free or modify this value.
 
 
@@ -3191,7 +3191,7 @@ Gets current vertical alignment for the text part.
   a :class:`HildonCaption` widget
 
 
-*Returns*:
+:returns: 
   vertical alignment
 
 
@@ -3232,7 +3232,7 @@ Gets childs expandability.
   a :class:`HildonCaption`
 
 
-*Returns*:
+:returns: 
   wheter the child is expandable or not.
 
 
@@ -3496,7 +3496,7 @@ This function creates and displays an information banner that automatically goes
   Text to display
 
 
-*Returns*:
+:returns: 
   The newly created banner
 
 
@@ -3531,7 +3531,7 @@ A helper function for `hildon_banner_show_information <hildon-banner-show-inform
   arguments for the format string
 
 
-*Returns*:
+:returns: 
   the newly created banner
 
 
@@ -3562,7 +3562,7 @@ This function creates and displays an information banner that automatically goes
   a markup string to display (see `Pango markup format <PangoMarkupFormat>`_ )
 
 
-*Returns*:
+:returns: 
   the newly created banner
 
 
@@ -3596,7 +3596,7 @@ Please note that banners are destroyed automatically once the window they are at
   the text to display.
 
 
-*Returns*:
+:returns: 
   a :class:`HildonBanner` widget. You must call `gtk_widget_destroy() <gtk-widget-destroy>`_ once you are done with the banner.
 
 
@@ -3628,7 +3628,7 @@ Shows progress notification. See `hildon_banner_show_animation <hildon-banner-sh
   text to display.
 
 
-*Returns*:
+:returns: 
   a :class:`HildonBanner` widget. You must call `gtk_widget_destroy <gtk-widget-destroy>`_ once you are done with the banner.
 
 
@@ -3912,7 +3912,7 @@ Create a new confirmation note. Confirmation note has a text (description) that 
   the message to confirm
 
 
-*Returns*:
+:returns: 
   a :class:`GtkWidget` pointer of the note
 
 
@@ -3945,7 +3945,7 @@ FIXME: This doc seems to be wrong, the two buttons aren't added so it would only
   arguments pairs for new buttons(label and return value). Terminate the list with ```NULL`` <NULL:CAPS>`_ value.
 
 
-*Returns*:
+:returns: 
   A :class:`GtkWidget` pointer of the note
 
 
@@ -3960,7 +3960,7 @@ FIXME: This doc seems to be wrong, the two buttons aren't added so it would only
                                                            const gchar *description,
                                                            const gchar *icon_name);
 
-.. warning:: ``hildon_note_new_confirmation_with_icon_name`` is deprecated and should not be used in newly-written code. Since 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use `hildon_note_new_confirmation() <hildon-note-new-confirmation>`_ instead.
+.. warning:: ``hildon_note_new_confirmation_with_icon_name`` is deprecated and should not be used in newly-written code. .. versionadded 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use `hildon_note_new_confirmation() <hildon-note-new-confirmation>`_ instead.
 
 Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
 
@@ -3978,7 +3978,7 @@ Create a new confirmation note. Confirmation note has a text (description) that 
   icon to be displayed. If NULL, default icon is used.
 
 
-*Returns*:
+:returns: 
   a :class:`GtkWidget` pointer of the note
 
 
@@ -4009,7 +4009,7 @@ Create a new cancel note with a progress bar. Cancel note has text(description) 
   a pointer to :class:`GtkProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be ```NULL`` <NULL:CAPS>`_ as well, in which case plain text cancel note appears.
 
 
-*Returns*:
+:returns: 
   a :class:`GtkDialog` . Use this to get rid of this note when you no longer need it.
 
 
@@ -4034,7 +4034,7 @@ Create a new information note. Information note has a text (description) that yo
   the message to confirm
 
 
-*Returns*:
+:returns: 
   a :class:`GtkWidget` pointer of the note
 
 
@@ -4049,7 +4049,7 @@ Create a new information note. Information note has a text (description) that yo
                                                            const gchar *description,
                                                            const gchar *icon_name);
 
-.. warning:: ``hildon_note_new_information_with_icon_name`` is deprecated and should not be used in newly-written code. Since 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use `hildon_note_new_information() <hildon-note-new-information>`_ instead.
+.. warning:: ``hildon_note_new_information_with_icon_name`` is deprecated and should not be used in newly-written code. .. versionadded 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use `hildon_note_new_information() <hildon-note-new-information>`_ instead.
 
 Create a new information note. Information note has text(description) that you specify, an OK button and an icon.
 
@@ -4067,7 +4067,7 @@ Create a new information note. Information note has text(description) that you s
   icon to be displayed. If NULL, default icon is used.
 
 
-*Returns*:
+:returns: 
   a :class:`GtkWidget` pointer of the note
 
 
@@ -4313,7 +4313,7 @@ Details
   
 
 
-*Returns*:
+:returns: 
   
 
 
@@ -4364,11 +4364,11 @@ Creates a new empty :class:`HildonTouchSelector` .
 
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonTouchSelector` .
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-new-text:
 
@@ -4382,11 +4382,11 @@ Creates a :class:`HildonTouchSelector` with a single text column that can be pop
 
 
 
-*Returns*:
+:returns: 
   A new :class:`HildonTouchSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-append-text:
 
@@ -4409,7 +4409,7 @@ Appends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch
   a non ```NULL`` <NULL:CAPS>`_ text string.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-prepend-text:
 
@@ -4432,7 +4432,7 @@ Prepends a new entry in a :class:`HildonTouchSelector` created with `hildon_touc
   a non ```NULL`` <NULL:CAPS>`_ text string.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-insert-text:
 
@@ -4460,7 +4460,7 @@ Inserts a new entry in a particular position of a :class:`HildonTouchSelector` c
   A non ```NULL`` <NULL:CAPS>`_ text string.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-append-text-column:
 
@@ -4489,11 +4489,11 @@ Equivalent to `hildon_touch_selector_append_column() <hildon-touch-selector-appe
   whether to center the text on the column
 
 
-*Returns*:
+:returns: 
   the new column added, NULL otherwise.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-append-column:
 
@@ -4533,11 +4533,11 @@ This method basically adds a :class:`GtkTreeView` to the widget, using the model
   a ```NULL`` <NULL:CAPS>`_ -terminated pair of attributes and column numbers.
 
 
-*Returns*:
+:returns: 
   the new column added added, ```NULL`` <NULL:CAPS>`_ otherwise.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-set-column-attributes:
 
@@ -4573,7 +4573,7 @@ Sets the attributes for the given column. The attributes must be given in attrib
   A ```NULL`` <NULL:CAPS>`_ -terminated list of attributes.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-remove-column:
 
@@ -4596,11 +4596,11 @@ Removes a column from ``selector``.
   the position of the column to be removed
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ if the column was removed, ```FALSE`` <FALSE:CAPS>`_ otherwise
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-num-columns:
 
@@ -4619,11 +4619,11 @@ Gets the number of columns in the :class:`HildonTouchSelector` .
   a :class:`HildonTouchSelector`
 
 
-*Returns*:
+:returns: 
   the number of columns in ``selector``.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-set-column-selection-mode:
 
@@ -4647,7 +4647,7 @@ Sets the selection mode for ``selector``. See :class:`HildonTouchSelectorSelecti
   the :class:`HildonTouchSelectorMode` for ``selector``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-column-selection-mode:
 
@@ -4666,11 +4666,11 @@ Gets the selection mode of ``selector``.
   a :class:`HildonTouchSelector`
 
 
-*Returns*:
+:returns: 
   one of :class:`HildonTouchSelectorSelectionMode`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-column:
 
@@ -4694,11 +4694,11 @@ Use this method to retrieve a :class:`HildonTouchSelectorColumn` . Then, you can
   a column number
 
 
-*Returns*:
+:returns: 
   the ``column``-th :class:`HildonTouchSelectorColumn` in ``selector``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-set-active:
 
@@ -4728,7 +4728,7 @@ Sets the active item of the :class:`HildonTouchSelector` to ``index``. The colum
   the index of the item to select, or -1 to have no active item
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-active:
 
@@ -4753,11 +4753,11 @@ Returns the index of the currently active item in column number ``column``, or -
   column number
 
 
-*Returns*:
+:returns: 
   an integer which is the index of the currently active item, or -1 if there's no active item.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-selected:
 
@@ -4789,11 +4789,11 @@ See `gtk_tree_selection_get_selected() <gtk-tree-selection-get-selected>`_ for m
   :class:`GtkTreeIter` currently selected
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ if ``iter`` was correctly set, ```FALSE`` <FALSE:CAPS>`_ otherwise
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-center-on-selected:
 
@@ -4812,7 +4812,7 @@ Ensures all the columns in a :class:`HildonTouchSelector` show a selected item. 
   a :class:`HildonTouchSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-select-iter:
 
@@ -4845,7 +4845,7 @@ Sets the currently selected item in the column ``column`` to the one pointed by 
   whether to smoothly scroll to the item
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-unselect-iter:
 
@@ -4873,7 +4873,7 @@ Unselect the item pointed by ``iter`` in the column ``column``
   the :class:`GtkTreeIter` to be unselected
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-unselect-all:
 
@@ -4896,7 +4896,7 @@ Unselects all the selected items in the column ``column``.
   the position of the column to get the selected rows from
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-selected-rows:
 
@@ -4922,11 +4922,11 @@ See `gtk_tree_selection_get_selected_rows() <gtk-tree-selection-get-selected-row
   the position of the column to get the selected rows from
 
 
-*Returns*:
+:returns: 
   A new :class:`GList` containing a :class:`GtkTreePath` for each selected row in the column ``column``.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-set-model:
 
@@ -4954,7 +4954,7 @@ Sets the :class:`GtkTreeModel` for a particular column in ``model``.
   a :class:`GtkTreeModel`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-model:
 
@@ -4977,11 +4977,11 @@ Gets the model of a column of ``selector``.
   the position of the column in ``selector``\
 
 
-*Returns*:
+:returns: 
   the :class:`GtkTreeModel` for the column ``column`` of ``selector``.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-current-text:
 
@@ -5000,11 +5000,11 @@ Returns a string representing the currently selected items for each column of ``
   a :class:`HildonTouchSelector`
 
 
-*Returns*:
+:returns: 
   a newly allocated string.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-set-print-func:
 
@@ -5028,7 +5028,7 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
   a :class:`HildonTouchSelectorPrintFunc` function
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-get-print-func:
 
@@ -5047,7 +5047,7 @@ Gets the :class:`HildonTouchSelectorPrintFunc` currently used. See `hildon_touch
   a :class:`HildonTouchSelector`
 
 
-*Returns*:
+:returns: 
   a :class:`HildonTouchSelectorPrintFunc` or ```NULL`` <NULL:CAPS>`_ if the default one is currently used.
 
 
@@ -5083,7 +5083,7 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
   a callback for freeing the user data or ```NULL`` <NULL:CAPS>`_
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-has-multiple-selection:
 
@@ -5104,11 +5104,11 @@ This information is useful for widgets containing a :class:`HildonTouchSelector`
   A :class:`HildonTouchSelector`
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ if ``selector`` requires multiple selection steps.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTouchSelector.property-details:
 
@@ -5170,7 +5170,7 @@ The "changed" signal is emitted when the active item on any column is changed. T
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTouchSelector-columns-changed:
 
@@ -5193,7 +5193,7 @@ The "columns-changed" signal is emitted when the number of columns in the :class
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTouchSelectorColumn:
 
@@ -5357,11 +5357,11 @@ Creates a :class:`HildonTouchSelectorEntry`
 
 
 
-*Returns*:
+:returns: 
   A new :class:`HildonTouchSelectorEntry`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-entry-new-text:
 
@@ -5376,11 +5376,11 @@ Creates a :class:`HildonTouchSelectorEntry` with a single text column that can b
 
 
 
-*Returns*:
+:returns: 
   A new :class:`HildonTouchSelectorEntry`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-entry-set-text-column:
 
@@ -5404,7 +5404,7 @@ Sets the model column which touch selector box should use to get strings from to
   A column in model to get the strings from
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-entry-get-text-column:
 
@@ -5423,11 +5423,11 @@ Gets the text column that ``selector`` is using as a text column.
   A :class:`HildonTouchSelectorEntry`
 
 
-*Returns*:
+:returns: 
   the number of the column used as a text column.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-entry-set-input-mode:
 
@@ -5453,7 +5453,7 @@ It must be noted that not all input modes are available for the entry in ``selec
   :class:`HildonGtkInputMode` mask
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-entry-get-input-mode:
 
@@ -5472,11 +5472,11 @@ Gets the input mode used in the :class:`GtkEntry` in ``selector``. See `hildon_g
   a :class:`HildonTouchSelectorEntry`
 
 
-*Returns*:
+:returns: 
   a mask of :class:`HildonGtkInputMode`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-touch-selector-entry-get-entry:
 
@@ -5495,11 +5495,11 @@ Provides access to the :class:`HildonEntry` in ``selector``. Use to programmatic
   a :class:`HildonTouchSelectorEntry` .
 
 
-*Returns*:
+:returns: 
   a :class:`HildonEntry` .
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTouchSelectorEntry.property-details:
 
@@ -5522,7 +5522,7 @@ Allowed values: = -1
 
 Default value: -1
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTouchSelectorEntry.see-also:
 
@@ -5610,11 +5610,11 @@ Creates a new :class:`HildonDateSelector`
 
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonDateSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-selector-new-with-year-range:
 
@@ -5638,11 +5638,11 @@ Creates a new :class:`HildonDateSelector` with a specific year range. If ``min_y
   the maximum available year or -1 to ignore
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonDateSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-selector-select-month:
 
@@ -5672,11 +5672,11 @@ Utility function to keep this API similar to the previously existing :class:`Hil
   the current year
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ on success, ```FALSE`` <FALSE:CAPS>`_ otherwise
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-selector-select-day:
 
@@ -5701,7 +5701,7 @@ Utility function to keep this API similar to the previously existing :class:`Hil
   the current day (1-31, 1-30, 1-29, 1-28) depends on the month
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-selector-select-current-date:
 
@@ -5735,11 +5735,11 @@ Sets the current active date on the :class:`HildonDateSelector` widget
   the current day (1-31, 1-30, 1-29, 1-28) depends on the month
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ on success, ```FALSE`` <FALSE:CAPS>`_ otherwise
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-date-selector-get-date:
 
@@ -5772,7 +5772,7 @@ Gets the current active date on the :class:`HildonDateSelector` widget
   to the current day (1-31, 1-30, 1-29, 1-28) depends on the month
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonDateSelector.property-details:
 
@@ -5889,11 +5889,11 @@ Creates a new :class:`HildonTimeSelector`
 
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonTimeSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-time-selector-new-step:
 
@@ -5911,11 +5911,11 @@ Creates a new :class:`HildonTimeSelector` ``minutes_step``: step between the min
   
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonTimeSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-time-selector-set-time:
 
@@ -5945,11 +5945,11 @@ The format of the hours accepted is always 24h format, with a range (0-23):(0-59
   the current minute (0-59)
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ on success, ```FALSE`` <FALSE:CAPS>`_ otherwise
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-time-selector-get-time:
 
@@ -5979,7 +5979,7 @@ This method returns the date always in 24h format, with a range (0-23):(0-59)
   to set the current minute (0-59)
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTimeSelector.property-details:
 
@@ -6215,11 +6215,11 @@ Create a new pannable area widget
 
 
 
-*Returns*:
+:returns: 
   the newly created :class:`HildonPannableArea`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-new-full:
 
@@ -6262,11 +6262,11 @@ Create a new :class:`HildonPannableArea` widget and set various properties
   Value for the sps property
 
 
-*Returns*:
+:returns: 
   the newly create :class:`HildonPannableArea`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-add-with-viewport:
 
@@ -6290,7 +6290,7 @@ Convenience function used to add a child to a :class:`GtkViewport` , and add the
   Child widget to add to the viewport
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-scroll-to:
 
@@ -6326,7 +6326,7 @@ There is a precondition to this function: the widget must be already realized. C
   The y coordinate of the destination point or -1 to ignore this axis.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-jump-to:
 
@@ -6356,7 +6356,7 @@ There is a precondition to this function: the widget must be already realized. C
   The y coordinate of the destination point or -1 to ignore this axis.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-scroll-to-child:
 
@@ -6382,7 +6382,7 @@ There is a precondition to this function: the widget must be already realized. C
   A :class:`GtkWidget` , descendant of ``area``.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-jump-to-child:
 
@@ -6407,7 +6407,7 @@ There is a precondition to this function: the widget must be already realized. Y
   A :class:`GtkWidget` , descendant of ``area``.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-get-child-widget-at:
 
@@ -6435,11 +6435,11 @@ Get the widget at the point (x, y) inside the pannable area. In case no widget f
   vertical coordinate of the point
 
 
-*Returns*:
+:returns: 
   the :class:`GtkWidget` if we find a widget, NULL in any other case
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-get-size-request-policy:
 
@@ -6458,11 +6458,11 @@ This function returns the current size request policy of the widget. That policy
   A :class:`HildonPannableArea` .
 
 
-*Returns*:
+:returns: 
   the policy is currently being used in the widget :class:`HildonSizeRequestPolicy` .
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-set-size-request-policy:
 
@@ -6486,7 +6486,7 @@ This function sets the pannable area size request policy. That policy controls t
   One of the allowed :class:`HildonSizeRequestPolicy`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-get-hadjustment:
 
@@ -6505,11 +6505,11 @@ Returns the horizontal adjustment. This adjustment is the internal widget adjust
   A :class:`HildonPannableArea` .
 
 
-*Returns*:
+:returns: 
   The horizontal :class:`GtkAdjustment`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-pannable-area-get-vadjustment:
 
@@ -6528,11 +6528,11 @@ Returns the vertical adjustment. This adjustment is the internal widget adjustme
   A :class:`HildonPannableArea` .
 
 
-*Returns*:
+:returns: 
   The vertical :class:`GtkAdjustment`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPannableArea.property-details:
 
@@ -6911,7 +6911,7 @@ The horizontal-movement signal is emitted when the pannable area starts a horizo
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPannableArea-vertical-movement:
 
@@ -6949,7 +6949,7 @@ The vertical-movement signal is emitted when the pannable area starts a vertical
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPannableArea.see-also:
 
@@ -7030,11 +7030,11 @@ Creates a new entry.
   The size of the entry
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonEntry`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-entry-set-text:
 
@@ -7059,7 +7059,7 @@ Note that you must never use `gtk_entry_set_text() <gtk-entry-set-text>`_ to set
   the new text
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-entry-get-text:
 
@@ -7081,11 +7081,11 @@ Also note that placeholder text (set using `hildon_entry_set_placeholder() <hild
   a :class:`HildonEntry`
 
 
-*Returns*:
+:returns: 
   the text in ``entry``. This text must not be modified or freed.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-entry-set-placeholder:
 
@@ -7108,7 +7108,7 @@ Sets the placeholder text in ``entry`` to ``text``.
   the new text
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonTextView:
 
@@ -7181,11 +7181,11 @@ Creates a new text view.
 
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonTextView`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-text-view-set-buffer:
 
@@ -7210,7 +7210,7 @@ Note that you must never use `gtk_text_view_set_buffer() <gtk-text-view-set-buff
   a :class:`GtkTextBuffer`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-text-view-get-buffer:
 
@@ -7232,11 +7232,11 @@ Also note that placeholder text (set using `hildon_text_view_set_placeholder() <
   a :class:`HildonTextView`
 
 
-*Returns*:
+:returns: 
   a :class:`GtkTextBuffer`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-text-view-set-placeholder:
 
@@ -7259,7 +7259,7 @@ Sets the placeholder text in ``text_view`` to ``text``.
   the new text
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonAppMenu:
 
@@ -7354,11 +7354,11 @@ Creates a new :class:`HildonAppMenu` .
 
 
 
-*Returns*:
+:returns: 
   A :class:`HildonAppMenu` .
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-append:
 
@@ -7381,7 +7381,7 @@ Adds ``item`` to the end of the menu's item list.
   A :class:`GtkButton` to add to the :class:`HildonAppMenu`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-prepend:
 
@@ -7404,7 +7404,7 @@ Adds ``item`` to the beginning of the menu's item list.
   A :class:`GtkButton` to add to the :class:`HildonAppMenu`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-insert:
 
@@ -7432,7 +7432,7 @@ Adds ``item`` to ``menu`` at the position indicated by ``position``.
   The position in the item list where ``item`` is added (from 0 to n-1).
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-reorder-child:
 
@@ -7460,7 +7460,7 @@ Moves a :class:`GtkButton` to a new position within :class:`HildonAppMenu` .
   The new position to place ``item`` (from 0 to n-1).
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-add-filter:
 
@@ -7483,7 +7483,7 @@ Adds the ``filter`` to ``menu``.
   A :class:`GtkButton` to add to the :class:`HildonAppMenu` .
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-get-items:
 
@@ -7501,11 +7501,11 @@ Returns a list of all items (regular items, not filters) contained in ``menu``.
   a :class:`HildonAppMenu`
 
 
-*Returns*:
+:returns: 
   a newly-allocated list containing the items in ``menu``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-get-filters:
 
@@ -7523,11 +7523,11 @@ Returns a list of all filters contained in ``menu``.
   a :class:`HildonAppMenu`
 
 
-*Returns*:
+:returns: 
   a newly-allocated list containing the filters in ``menu``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-app-menu-popup:
 
@@ -7550,7 +7550,7 @@ Displays a menu on top of a window and makes it available for selection.
   a :class:`GtkWindow`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonAppMenu.style-property-details:
 
@@ -7716,7 +7716,7 @@ Creates a new HildonFindToolbar.
   label for the find_toolbar, NULL to set the label to default "Find"
 
 
-*Returns*:
+:returns: 
   a new HildonFindToolbar
 
 
@@ -7746,7 +7746,7 @@ Creates a new HildonFindToolbar with a model.
   indicating which column the search histry list will retreive string from
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonFindToolbar`
 
 
@@ -7808,7 +7808,7 @@ Gets the index of the currently active item, or -1 if there's no active item. Si
   A find toolbar to query
 
 
-*Returns*:
+:returns: 
   An integer which is the index of the currently active item, or -1 if there's no active item.
 
 
@@ -7854,7 +7854,7 @@ Sets iter to point to the current active item, if it exists. Simply calls gtk_co
   The uninitialized GtkTreeIter
 
 
-*Returns*:
+:returns: 
   TRUE, if iter was set
 
 
@@ -7874,7 +7874,7 @@ Returns the index of the last (most recently added) item in the toolbar. Can be 
   A find toolbar to query
 
 
-*Returns*:
+:returns: 
   Index of the last entry
 
 
@@ -8159,11 +8159,11 @@ Creates a new :class:`HildonEditToolbar` .
 
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonEditToolbar`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-edit-toolbar-new-with-text:
 
@@ -8186,11 +8186,11 @@ Creates a new :class:`HildonEditToolbar` , with the toolbar label set to ``label
   Text for the toolbar button.
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonEditToolbar`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-edit-toolbar-set-label:
 
@@ -8213,7 +8213,7 @@ Sets the label of ``toolbar`` to ``label``. This will clear any previously set v
   a new text for the toolbar label
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-edit-toolbar-set-button-label:
 
@@ -8237,7 +8237,7 @@ Sets the label of the toolbar button to ``label``. This will clear any previousl
   a new text for the label of the toolbar button
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonEditToolbar.style-property-details:
 
@@ -8294,7 +8294,7 @@ Emitted when the toolbar back button (arrow) has been activated (pressed and rel
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonEditToolbar-button-clicked:
 
@@ -8317,7 +8317,7 @@ Emitted when the toolbar button has been activated (pressed and released).
   user data set when the signal handler was connected.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonWizardDialog:
 
@@ -8454,7 +8454,7 @@ Predefined values for use as response ids for :class:`HildonWizardDialog` .
   
 
 
-*Returns*:
+:returns: 
   
 
 
@@ -8484,7 +8484,7 @@ Creates a new :class:`HildonWizardDialog` .
   the notebook to be shown on the dialog
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonWizardDialog`
 
 
@@ -8520,7 +8520,7 @@ Sets the page forwarding function to be ``page_func``. This function will be use
   destroy notifier for ``data``\
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonWizardDialog.property-details:
 
@@ -8654,7 +8654,7 @@ Button label
 
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-dialog-new:
 
@@ -8672,11 +8672,11 @@ Creates a new :class:`HildonPickerDialog`
   the parent window
 
 
-*Returns*:
+:returns: 
   a new :class:`HildonPickerDialog`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-dialog-set-selector:
 
@@ -8699,11 +8699,11 @@ Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in ``dialog``
   a :class:`HildonTouchSelector`
 
 
-*Returns*:
+:returns: 
   ```TRUE`` <TRUE:CAPS>`_ if ``selector`` was set, ```FALSE`` <FALSE:CAPS>`_ otherwise
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-dialog-set-done-label:
 
@@ -8726,7 +8726,7 @@ Sets a custom string to be used as the 'Done' button label in ``dialog``.
   a string
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-dialog-get-done-label:
 
@@ -8744,11 +8744,11 @@ Retrieves current 'Done' button label.
   a :class:`HildonPickerDialog`
 
 
-*Returns*:
+:returns: 
   the custom string to be used.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-picker-dialog-get-selector:
 
@@ -8766,11 +8766,11 @@ Retrieves the :class:`HildonTouchSelector` associated to ``dialog``.
   a :class:`HildonPickerDialog`
 
 
-*Returns*:
+:returns: 
   a :class:`HildonTouchSelector`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HildonPickerDialog.property-details:
 
@@ -8843,11 +8843,11 @@ Creates a new :class:`HildonAnimationActor` .
 
 
 
-*Returns*:
+:returns: 
   A :class:`HildonAnimationActor`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-send-message:
 
@@ -8897,7 +8897,7 @@ This is an internal utility function that application will not need to call dire
   5th animation actor message parameter.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-anchor:
 
@@ -8927,7 +8927,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   The Y coordinate of the anchor point.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-anchor-from-gravity:
 
@@ -8955,7 +8955,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   The gravity constant.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-depth:
 
@@ -8978,7 +8978,7 @@ A shortcut for `hildon_animation_actor_set_position_full() <hildon-animation-act
   Desired window depth (Z coordinate)
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-opacity:
 
@@ -9003,7 +9003,7 @@ See `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-ful
   Desired opacity setting
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-parent:
 
@@ -9032,7 +9032,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   A :class:`GtkWindow` that the actor will be parented to.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-position:
 
@@ -9060,7 +9060,7 @@ A shortcut for `hildon_animation_actor_set_position_full() <hildon-animation-act
   Desired window Y coordinate
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-position-full:
 
@@ -9100,7 +9100,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   Desired window depth (Z coordinate)
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-rotation:
 
@@ -9147,7 +9147,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   Center of the rotation, Z coordinate.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-rotationx:
 
@@ -9191,7 +9191,7 @@ This function is just like `hildon_animation_actor_set_rotation() <hildon-animat
   Center of the rotation, Z coordinate.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-scale:
 
@@ -9221,7 +9221,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   Window's desired scale factor along the Y-axis
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-scalex:
 
@@ -9249,7 +9249,7 @@ This function is just like `hildon_animation_actor_set_scale() <hildon-animation
   Window's desired scale factor along the Y-axis
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-show:
 
@@ -9272,7 +9272,7 @@ This function is a shortcut for `hildon_animation_actor_set_show_full() <hildon-
   A boolean flag setting the visibility of the animation actor.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-animation-actor-set-show-full:
 
@@ -9307,7 +9307,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
   Desired opacity setting
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _HILDON-AA-CENTER-GRAVITY:CAPS:
 
@@ -9439,61 +9439,32 @@ Since 2.2
   #define HILDON_AA_Z_AXIS	    2
   
 
-
-
-.. _hildon-HildonRemoteTexture:
-
 HildonRemoteTexture
 *******************
-
-.. _hildon-HildonRemoteTexture.description:
 
 Description
 ===========
 
 The :class:`HildonRemoteTexture` is a GTK+ widget which allows the rendering of a shared memory area within hildon-desktop. It allows the memory area to be positioned and scaled, without altering its' contents.
 
-
-
-.. _hildon-HildonRemoteTexture.details:
-
 Details
 =======
 
-.. _HildonRemoteTexture:
-
 .. class:: HildonRemoteTexture
 
-::
+    .. method:: __init__ ()
 
-  typedef struct {
-      GtkWindow parent;
-  } HildonRemoteTexture;
-  
+        Creates a new :class:`HildonRemoteTexture` .
 
-
-
-.. _hildon-remote-texture-new:
-
-.. function:: hildon_remote_texture_new ()
-
-::
-
-  GtkWidget*          hildon_remote_texture_new           (void);
-
-Creates a new :class:`HildonRemoteTexture` .
-
-
-
-*Returns*:
+:returns: 
   A :class:`HildonRemoteTexture`
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-send-message:
 
-.. function:: hildon_remote_texture_send_message ()
+.. method:: send_message ()
 
 ::
 
@@ -9539,11 +9510,11 @@ This is an internal utility function that application will not need to call dire
   5th remote texture message parameter.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-image:
 
-.. function:: hildon_remote_texture_set_image ()
+.. method:: set_image ()
 
 ::
 
@@ -9577,11 +9548,11 @@ Since 2.2
   BYTES per pixel - usually 2,3 or 4
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-offset:
 
-.. function:: hildon_remote_texture_set_offset ()
+.. method:: set_offset ()
 
 ::
 
@@ -9607,11 +9578,11 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
   Desired Y offset
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-opacity:
 
-.. function:: hildon_remote_texture_set_opacity ()
+.. method:: set_opacity ()
 
 ::
 
@@ -9632,11 +9603,11 @@ See `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>
   Desired opacity setting
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-parent:
 
-.. function:: hildon_remote_texture_set_parent ()
+.. method:: set_parent ()
 
 ::
 
@@ -9661,11 +9632,11 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
   A :class:`GtkWindow` that the actor will be parented to.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-position:
 
-.. function:: hildon_remote_texture_set_position ()
+.. method:: set_position ()
 
 ::
 
@@ -9701,11 +9672,11 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
   Desired height
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-scale:
 
-.. function:: hildon_remote_texture_set_scale ()
+.. method:: set_scale ()
 
 ::
 
@@ -9729,7 +9700,7 @@ Since 2.2
 
 .. _hildon-remote-texture-set-show:
 
-.. function:: hildon_remote_texture_set_show ()
+.. method:: set_show ()
 
 ::
 
@@ -9748,11 +9719,11 @@ This function is a shortcut for `hildon_remote_texture_set_show_full() <hildon-r
   A boolean flag setting the visibility of the remote texture.
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-set-show-full:
 
-.. function:: hildon_remote_texture_set_show_full ()
+.. method:: set_show_full ()
 
 ::
 
@@ -9782,11 +9753,11 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
   Desired opacity setting
 
 
-Since 2.2
+.. versionadded 2.2
 
 .. _hildon-remote-texture-update-area:
 
-.. function:: hildon_remote_texture_update_area ()
+.. method:: update_area ()
 
 ::
 
@@ -9820,5 +9791,5 @@ This signals to hildon-desktop that a specific region of the memory area has cha
   height of damaged area in pixels
 
 
-Since 2.2
+.. versionadded 2.2
 
