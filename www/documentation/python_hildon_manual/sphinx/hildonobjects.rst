@@ -171,11 +171,11 @@ Details
 
     .. method:: set_edit_toolbar (toolbar)
 
-        Adds a :class:`HildonEditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide` .
+        Adds a :class:`EditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide` .
 
         A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
 
-        :param: toolbar: A :class:`HildonEditToolbar` , or None to remove the current one.
+        :param: toolbar: A :class:`EditToolbar` , or None to remove the current one.
 
         .. versionadded 2.2
 
@@ -7083,18 +7083,15 @@ Gets emitted when the find button is pressed.
 See Also
 ========
 
-:class:`Window` .. _HildonEditToolbar:
+:class:`Window`
 
-HildonEditToolbar
-*****************
-
-.. _HildonEditToolbar.object-hierarchy:
+EditToolbar
+***********
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -7103,172 +7100,89 @@ Object Hierarchy
                        +----GtkContainer
                              +----GtkBox
                                    +----GtkHBox
-                                         +----HildonEditToolbar
+                                         +----EditToolbar
   
-
-.. _HildonEditToolbar.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonEditToolbar implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonEditToolbar.style-properties:
-
-Style Properties
-================
-
-::
-
-  
-    arrow-height             int                 : Read
-    arrow-width              int                 : Read
-  
-
-.. _HildonEditToolbar.signals:
-
-Signals
-=======
-
-::
-
-  
-    arrow-clicked                                  : Run First
-    button-clicked                                 : Run First
-  
-
-.. _HildonEditToolbar.description:
+EditToolbar implements :class:`AtkImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
 
-The :class:`HildonEditToolbar` is a toolbar which contains a label and two buttons, one of them being an arrow pointing backwards.
+The :class:`EditToolbar` is a toolbar which contains a label and two buttons, one of them being an arrow pointing backwards.
 
 The label is a description of the action that the user is supposed to do. The button is to be pressed when the user completes the action. The arrow is used to go back to the previous view discarding any changes.
 
 Note that those widgets don't do anything themselves by default. To actually peform actions the developer must provide callbacks for them.
 
-To add a :class:`HildonEditToolbar` to a window use :meth:`Window.set_edit_toolbar` .
+To add a :class:`EditToolbar` to a window use :meth:`Window.set_edit_toolbar` .
 
-HildonEditToolbar example ========================= :: GtkWidget *window; GtkWidget *toolbar; // Declare more widgets here ... window = hildon_stackable_window_new (); toolbar = hildon_edit_toolbar_new_with_text ("Choose items to delete", "Delete"); // Create more widgets here ... // Add toolbar to window hildon_window_set_edit_toolbar (HILDON_WINDOW (window), HILDON_EDIT_TOOLBAR (toolbar)); // Add other widgets ... g_signal_connect (toolbar, "button-clicked", G_CALLBACK (delete_button_clicked), someparameter); g_signal_connect_swapped (toolbar, "arrow-clicked", G_CALLBACK (gtk_widget_destroy), window); gtk_widget_show_all (window); gtk_window_fullscreen (GTK_WINDOW (window));
+::
+
+    window = hildon.StackableWindow()
+    toolbar = hildon.EditToolbar("Choose items to delete", "Delete");
+    # Create more widgets here ...
+
+    # Add toolbar to window
+    window.set_edit_toolbar(toolbar)
+
+    # Add other widgets ...
+
+    g_signal_connect(toolbar, "button-clicked", delete_button_clicked, someparameter);
+    g_signal_connect_swapped(toolbar, "arrow-clicked", gtk.widget_destroy, window);
+
+    gtk.widget_show_all(window);
+    gtk.window_fullscreen(window);
 
 
 
-.. _HildonEditToolbar.details:
+.. _EditToolbar.details:
 
 Details
 =======
 
-.. _HildonEditToolbar-struct:
+.. class:: EditToolbar
 
-.. class:: HildonEditToolbar
+    .. method:: __init__([label, [button]])
 
-::
+        Creates a new :class:`EditToolbar` , with the toolbar label set to ``label`` and the button label set to ``button``.
 
-  typedef struct _HildonEditToolbar HildonEditToolbar;
+        :param label: Text for the toolbar label.
+        :param button: Text for the toolbar button.
+        :returns: a new :class:`EditToolbar`
 
+        .. versionadded 2.2
 
+.. method:: set_label (label)
 
-.. _hildon-edit-toolbar-new:
+    Sets the label of ``toolbar`` to ``label``. This will clear any previously set value.
 
-.. function:: hildon_edit_toolbar_new ()
+    :param toolbar: a :class:`EditToolbar`
+    :param label: a new text for the toolbar label
 
-::
+    .. versionadded 2.2
 
-  GtkWidget*          hildon_edit_toolbar_new             (void);
-
-Creates a new :class:`HildonEditToolbar` .
-
-
-
-:returns: 
-  a new :class:`HildonEditToolbar`
-
-
-.. versionadded 2.2
-
-.. _hildon-edit-toolbar-new-with-text:
-
-.. function:: hildon_edit_toolbar_new_with_text ()
-
-::
-
-  GtkWidget*          hildon_edit_toolbar_new_with_text   (const gchar *label,
-                                                           const gchar *button);
-
-Creates a new :class:`HildonEditToolbar` , with the toolbar label set to ``label`` and the button label set to ``button``.
-
-
-
-``label``:
-  Text for the toolbar label.
-
-
-``button``:
-  Text for the toolbar button.
-
-
-:returns: 
-  a new :class:`HildonEditToolbar`
-
-
-.. versionadded 2.2
-
-.. _hildon-edit-toolbar-set-label:
-
-.. function:: hildon_edit_toolbar_set_label ()
-
-::
-
-  void                hildon_edit_toolbar_set_label       (HildonEditToolbar *toolbar,
-                                                           const gchar *label);
-
-Sets the label of ``toolbar`` to ``label``. This will clear any previously set value.
-
-
-
-``toolbar``:
-  a :class:`HildonEditToolbar`
-
-
-``label``:
-  a new text for the toolbar label
-
-
-.. versionadded 2.2
-
-.. _hildon-edit-toolbar-set-button-label:
-
-.. function:: hildon_edit_toolbar_set_button_label ()
-
-::
-
-  void                hildon_edit_toolbar_set_button_label
-                                                          (HildonEditToolbar *toolbar,
-                                                           const gchar *label);
+.. method:: set_button_label (label)
 
 Sets the label of the toolbar button to ``label``. This will clear any previously set value.
 
-
-
-``toolbar``:
-  a :class:`HildonEditToolbar`
-
-
-``label``:
-  a new text for the label of the toolbar button
-
+:param toolbar: a :class:`EditToolbar`
+:param label: a new text for the label of the toolbar button
 
 .. versionadded 2.2
-
-.. _HildonEditToolbar.style-property-details:
 
 Style Property Details
 ======================
 
-.. _HildonEditToolbar--arrow-height:
-
-The ``arrow-height`` style property
++---------------------------+--------+--------------------------+--------------+--------------------------------------+
+| Name                      | type   | Access                   | Default      | Meaning                              |
++===========================+========+==========================+==============+======================================+
+| ``arrow-height``          | int    | Read                     | 56           | Number of steps that is going to be  |
++---------------------------+--------+--------------------------+--------------+--------------------------------------+
+| ``arrow-width``           | int    | Read                     | 112          | The multiplier used when decelerating|
++---------------------------+--------+--------------------------+--------------+--------------------------------------+
 
 ::
 
@@ -7278,7 +7192,7 @@ Height of the arrow button.
 
 Default value: 56
 
-.. _HildonEditToolbar--arrow-width:
+.. _EditToolbar--arrow-width:
 
 The ``arrow-width`` style property
 
@@ -7290,18 +7204,18 @@ Width of the arrow button.
 
 Default value: 112
 
-.. _HildonEditToolbar.signal-details:
+.. _EditToolbar.signal-details:
 
 Signal Details
 ==============
 
-.. _HildonEditToolbar-arrow-clicked:
+.. _EditToolbar-arrow-clicked:
 
 The ``arrow-clicked`` signal
 
 ::
 
-  void                user_function                      (HildonEditToolbar *widget,
+  void                user_function                      (EditToolbar *widget,
                                                           gpointer           user_data)      : Run First
 
 Emitted when the toolbar back button (arrow) has been activated (pressed and released).
@@ -7318,13 +7232,13 @@ Emitted when the toolbar back button (arrow) has been activated (pressed and rel
 
 .. versionadded 2.2
 
-.. _HildonEditToolbar-button-clicked:
+.. _EditToolbar-button-clicked:
 
 The ``button-clicked`` signal
 
 ::
 
-  void                user_function                      (HildonEditToolbar *widget,
+  void                user_function                      (EditToolbar *widget,
                                                           gpointer           user_data)      : Run First
 
 Emitted when the toolbar button has been activated (pressed and released).
