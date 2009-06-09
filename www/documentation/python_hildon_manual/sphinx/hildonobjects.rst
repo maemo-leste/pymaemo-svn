@@ -32,7 +32,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonWindow implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonWindow.properties:
 
@@ -42,8 +42,8 @@ Properties
 ::
 
   
-    is-topmost               gboolean              : Read
-    markup                   gchar*                : Read / Write
+    is-topmost               bool              : Read
+    markup                   str                : Read / Write
   
 
 .. _HildonWindow.style-properties:
@@ -74,11 +74,11 @@ Signals
 Description
 ===========
 
-`HildonWindow <HildonWindow>`_ is a GTK widget which represents a top-level window in the Hildon framework. It is derived from `GtkWindow <GtkWindow>`_ and provides additional commodities specific to the Hildon framework.
+:class:`HildonWindow` is a GTK widget which represents a top-level window in the Hildon framework. It is derived from :class:`GtkWindow` and provides additional commodities specific to the Hildon framework.
 
-`HildonWindow <HildonWindow>`_ s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a `GtkMenu <GtkMenu>`_ or a `HildonAppMenu <HildonAppMenu>`_ (set with `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ and `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ respectively). Only one type of menu can be used at the same time. In Hildon 2.2, `HildonAppMenu <HildonAppMenu>`_ is the recommended menu to use.
+:class:`HildonWindow` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ and `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
 
-Similarly, a `HildonWindow <HildonWindow>`_ can have several toolbars attached. These can be added with `hildon_window_add_toolbar() <hildon-window-add-toolbar>`_ . In addition to those, a `HildonWindow <HildonWindow>`_ can also have a `HildonEditToolbar <HildonEditToolbar>`_ . To add it to the window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
+Similarly, a :class:`HildonWindow` can have several toolbars attached. These can be added with `hildon_window_add_toolbar() <hildon-window-add-toolbar>`_ . In addition to those, a :class:`HildonWindow` can also have a :class:`HildonEditToolbar` . To add it to the window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
 
 Creating a HildonWindow ======================= :: HildonWindow *window; GtkToolbar *toolbar; HildonAppMenu *menu; GdkPixbuf *icon_pixbuf; window = HILDON_WINDOW (hildon_window_new()); toolbar = create_toolbar(); menu = create_menu(); icon_pixbuf = create_icon(); hildon_window_set_app_menu (window, menu); hildon_window_add_toolbar (window, toolbar); // Can be used to set the window fullscreen gtk_window_fullscreen (GTK_WINDOW (window)); // Used to trigger the blinking of the window's icon in the task navigator gtk_window_set_urgency_hint (GTK_WINDOW (window), TRUE); // Change the window's icon in the task navigator gtk_window_set_icon (GTK_WINDOW (window), icon_pixbuf);
 
@@ -134,12 +134,12 @@ Details
 
   GtkWidget*          hildon_window_new                   (void);
 
-Creates a new `HildonWindow <HildonWindow>`_ .
+Creates a new :class:`HildonWindow` .
 
 
 
 *Returns*:
-  A `HildonWindow <HildonWindow>`_ .
+  A :class:`HildonWindow` .
 
 
 .. _hildon-window-add-with-scrollbar:
@@ -151,16 +151,16 @@ Creates a new `HildonWindow <HildonWindow>`_ .
   void                hildon_window_add_with_scrollbar    (HildonWindow *self,
                                                            GtkWidget *child);
 
-Adds ``child`` to the `HildonWindow <HildonWindow>`_ and creates a scrollbar for it. Similar to adding first a `GtkScrolledWindow <GtkScrolledWindow>`_ and then ``child`` to it.
+Adds ``child`` to the :class:`HildonWindow` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
 
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 ``child``:
-  A `GtkWidget <GtkWidget>`_
+  A :class:`GtkWidget`
 
 
 .. _hildon-window-set-main-menu:
@@ -172,18 +172,18 @@ Adds ``child`` to the `HildonWindow <HildonWindow>`_ and creates a scrollbar for
   void                hildon_window_set_main_menu         (HildonWindow *self,
                                                            GtkMenu *menu);
 
-Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. `HildonWindow <HildonWindow>`_ takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-Note that if you're using a `HildonAppMenu <HildonAppMenu>`_ rather than a `GtkMenu <GtkMenu>`_ you should use `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ instead.
+Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ instead.
 
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 ``menu``:
-  The `GtkMenu <GtkMenu>`_ to be used for this `HildonWindow <HildonWindow>`_
+  The :class:`GtkMenu` to be used for this :class:`HildonWindow`
 
 
 .. _hildon-window-get-main-menu:
@@ -194,18 +194,18 @@ Note that if you're using a `HildonAppMenu <HildonAppMenu>`_ rather than a `GtkM
 
   GtkMenu*            hildon_window_get_main_menu         (HildonWindow *self);
 
-Gets the `GtkMenu <GtkMenu>`_ assigned to the `HildonAppview <HildonAppview>`_ . Note that the window is still the owner of the menu.
+Gets the :class:`GtkMenu` assigned to the :class:`HildonAppview` . Note that the window is still the owner of the menu.
 
-Note that if you're using a `HildonAppMenu <HildonAppMenu>`_ rather than a `GtkMenu <GtkMenu>`_ you should use `hildon_window_get_app_menu() <hildon-window-get-app-menu>`_ instead.
+Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use `hildon_window_get_app_menu() <hildon-window-get-app-menu>`_ instead.
 
 
 
 ``self``:
-  a `HildonWindow <HildonWindow>`_
+  a :class:`HildonWindow`
 
 
 *Returns*:
-  The `GtkMenu <GtkMenu>`_ assigned to this application view.
+  The :class:`GtkMenu` assigned to this application view.
 
 
 Since 2.2
@@ -219,18 +219,18 @@ Since 2.2
   void                hildon_window_set_app_menu          (HildonWindow *self,
                                                            HildonAppMenu *menu);
 
-Sets the menu to be used for this window. Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. Any reference to a previous menu will be dropped. `HildonWindow <HildonWindow>`_ takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+Sets the menu to be used for this window. Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. Any reference to a previous menu will be dropped. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-Note that if you're using a `GtkMenu <GtkMenu>`_ rather than a `HildonAppMenu <HildonAppMenu>`_ you should use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ instead.
+Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ instead.
 
 
 
 ``self``:
-  a `HildonWindow <HildonWindow>`_
+  a :class:`HildonWindow`
 
 
 ``menu``:
-  a `HildonAppMenu <HildonAppMenu>`_ to be used for this window
+  a :class:`HildonAppMenu` to be used for this window
 
 
 Since 2.2
@@ -243,18 +243,18 @@ Since 2.2
 
   HildonAppMenu*      hildon_window_get_app_menu          (HildonWindow *self);
 
-Returns the `HildonAppMenu <HildonAppMenu>`_ assigned to ``self``, or ```NULL`` <NULL:CAPS>`_ if it's unset. Note that the window is still the owner of the menu.
+Returns the :class:`HildonAppMenu` assigned to ``self``, or ```NULL`` <NULL:CAPS>`_ if it's unset. Note that the window is still the owner of the menu.
 
-Note that if you're using a `GtkMenu <GtkMenu>`_ rather than a `HildonAppMenu <HildonAppMenu>`_ you should use `hildon_window_get_main_menu() <hildon-window-get-main-menu>`_ instead.
+Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use `hildon_window_get_main_menu() <hildon-window-get-main-menu>`_ instead.
 
 
 
 ``self``:
-  a `HildonWindow <HildonWindow>`_
+  a :class:`HildonWindow`
 
 
 *Returns*:
-  a `HildonAppMenu <HildonAppMenu>`_
+  a :class:`HildonAppMenu`
 
 
 Since 2.2
@@ -272,16 +272,16 @@ Since 2.2
 
 Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_show_all() <gtk-widget-show-all>`_ for the `GtkMenu <GtkMenu>`_ . To pass control about visibility to the application developer, `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ was introduced, which doesn't do this.
+Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_show_all() <gtk-widget-show-all>`_ for the :class:`GtkMenu` . To pass control about visibility to the application developer, `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ was introduced, which doesn't do this.
 
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 ``menu``:
-  The `GtkMenu <GtkMenu>`_ to be used for this `HildonWindow <HildonWindow>`_
+  The :class:`GtkMenu` to be used for this :class:`HildonWindow`
 
 
 .. _hildon-window-get-menu:
@@ -299,11 +299,11 @@ Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_sho
 
 
 ``self``:
-  a `HildonWindow <HildonWindow>`_
+  a :class:`HildonWindow`
 
 
 *Returns*:
-  a `GtkMenu <GtkMenu>`_
+  a :class:`GtkMenu`
 
 
 .. _hildon-window-add-toolbar:
@@ -320,11 +320,11 @@ Adds a toolbar to the window. Note that the toolbar is not automatically shown. 
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 ``toolbar``:
-  A `GtkToolbar <GtkToolbar>`_ to add to the `HildonWindow <HildonWindow>`_
+  A :class:`GtkToolbar` to add to the :class:`HildonWindow`
 
 
 .. _hildon-window-remove-toolbar:
@@ -341,11 +341,11 @@ Removes a toolbar from the window. Note that this decreases the refference count
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 ``toolbar``:
-  A `GtkToolbar <GtkToolbar>`_ to remove from the `HildonWindow <HildonWindow>`_
+  A :class:`GtkToolbar` to remove from the :class:`HildonWindow`
 
 
 .. _hildon-window-set-edit-toolbar:
@@ -357,18 +357,18 @@ Removes a toolbar from the window. Note that this decreases the refference count
   void                hildon_window_set_edit_toolbar      (HildonWindow *self,
                                                            HildonEditToolbar *toolbar);
 
-Adds a `HildonEditToolbar <HildonEditToolbar>`_ to the window. Note that the toolbar is not automatically shown. You need to call `gtk_widget_show() <gtk-widget-show>`_ on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling `gtk_widget_hide() <gtk-widget-hide>`_ .
+Adds a :class:`HildonEditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call `gtk_widget_show() <gtk-widget-show>`_ on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling `gtk_widget_hide() <gtk-widget-hide>`_ .
 
 A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
 
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 ``toolbar``:
-  A `HildonEditToolbar <HildonEditToolbar>`_ , or ```NULL`` <NULL:CAPS>`_ to remove the current one.
+  A :class:`HildonEditToolbar` , or ```NULL`` <NULL:CAPS>`_ to remove the current one.
 
 
 Since 2.2
@@ -379,14 +379,14 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_window_get_is_topmost        (HildonWindow *self);
+  bool            hildon_window_get_is_topmost        (HildonWindow *self);
 
-Returns whether the `HildonWindow <HildonWindow>`_ is currenty activated by the window manager.
+Returns whether the :class:`HildonWindow` is currenty activated by the window manager.
 
 
 
 ``self``:
-  A `HildonWindow <HildonWindow>`_
+  A :class:`HildonWindow`
 
 
 *Returns*:
@@ -402,14 +402,14 @@ Returns whether the `HildonWindow <HildonWindow>`_ is currenty activated by the 
   void                hildon_window_set_markup            (HildonWindow *window,
                                                            const gchar *markup);
 
-Sets the marked up title of ``window``. The accepted format is the one used in Pango (see `PangoMarkupFormat <PangoMarkupFormat>`_ ) with the exception of span.
+Sets the marked up title of ``window``. The accepted format is the one used in Pango (see :class:`PangoMarkupFormat` ) with the exception of span.
 
 Note that you need support from the window manager for this title to be used. See `gtk_window_set_title() <gtk-window-set-title>`_ for the standard way of setting the title of a window.
 
 
 
 ``window``:
-  a `HildonWindow <HildonWindow>`_
+  a :class:`HildonWindow`
 
 
 ``markup``:
@@ -424,14 +424,14 @@ Since 2.2
 
 ::
 
-  const gchar*        hildon_window_get_markup            (HildonWindow *window);
+  const str        hildon_window_get_markup            (HildonWindow *window);
 
 Gets the marked up title of the window title. See `hildon_window_set_markup() <hildon-window-set-markup>`_
 
 
 
 ``window``:
-  a `HildonWindow <HildonWindow>`_
+  a :class:`HildonWindow`
 
 
 *Returns*:
@@ -451,7 +451,7 @@ The ``is-topmost`` property
 
 ::
 
-    is-topmost               gboolean              : Read
+    is-topmost               bool              : Read
 
 Whether the window is currently activated by the window manager.
 
@@ -463,7 +463,7 @@ The ``markup`` property
 
 ::
 
-    markup                   gchar*                : Read / Write
+    markup                   str                : Read / Write
 
 Marked up text for the window title.
 
@@ -506,7 +506,7 @@ The ``clipboard-operation`` signal
 ::
 
   void                user_function                      (HildonWindow *hildonwindow,
-                                                          gint          arg1,
+                                                          int          arg1,
                                                           gpointer      user_data)         : Run First
 
 
@@ -528,7 +528,7 @@ The ``clipboard-operation`` signal
 See Also
 ========
 
-`HildonProgram <HildonProgram>`_ `HildonStackableWindow <HildonStackableWindow>`_ .. _HildonStackableWindow:
+:class:`HildonProgram` :class:`HildonStackableWindow` .. _HildonStackableWindow:
 
 HildonStackableWindow
 *********************
@@ -557,14 +557,14 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonStackableWindow implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonStackableWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonStackableWindow.description:
 
 Description
 ===========
 
-The `HildonStackableWindow <HildonStackableWindow>`_ is a GTK+ widget which represents a top-level window in the Hildon framework. It is derived from `HildonWindow <HildonWindow>`_ . Applications that use stackable windows are organized in a hierarchical way so users can go from any window back to the application's root window.
+The :class:`HildonStackableWindow` is a GTK+ widget which represents a top-level window in the Hildon framework. It is derived from :class:`HildonWindow` . Applications that use stackable windows are organized in a hierarchical way so users can go from any window back to the application's root window.
 
 The user can only see and interact with the window on top of the stack. Although all other windows are mapped and visible, they are obscured by the topmost one so in practice they appear as if they were hidden.
 
@@ -572,7 +572,7 @@ To add a window to the stack, just use `gtk_widget_show() <gtk-widget-show>`_ . 
 
 Alternatively, you can remove a window from the top of the stack without destroying it by using `hildon_window_stack_pop() <hildon-window-stack-pop>`_ . The window will be automatically hidden and the previous one will appear.
 
-For advanced details on stack handling, see `HildonWindowStack <HildonWindowStack>`_
+For advanced details on stack handling, see :class:`HildonWindowStack`
 
 Basic HildonStackableWindow example =================================== :: static void show_new_window (void) { GtkWidget *win; win = hildon_stackable_window_new (); // ... configure new window gtk_widget_show (win); } int main (int argc, char **argv) { GtkWidget *win; GtkWidget *button; gtk_init (argc, args); win = hildon_stackable_window_new (); gtk_window_set_title (GTK_WINDOW (win), "Main window); // ... add some widgets to the window g_signal_connect (button, "clicked", G_CALLBACK (show_new_window), NULL); g_signal_connect (win, "destroy", G_CALLBACK (gtk_main_quit), NULL); gtk_widget_show_all (win); gtk_main (); return 0; }
 
@@ -601,12 +601,12 @@ Details
 
   GtkWidget*          hildon_stackable_window_new         (void);
 
-Creates a new `HildonStackableWindow <HildonStackableWindow>`_ .
+Creates a new :class:`HildonStackableWindow` .
 
 
 
 *Returns*:
-  A `HildonStackableWindow <HildonStackableWindow>`_
+  A :class:`HildonStackableWindow`
 
 
 Since 2.2
@@ -624,11 +624,11 @@ Returns the stack where window ``self`` is on, or ```NULL`` <NULL:CAPS>`_ if the
 
 
 ``self``:
-  a `HildonStackableWindow <HildonStackableWindow>`_
+  a :class:`HildonStackableWindow`
 
 
 *Returns*:
-  a `HildonWindowStack <HildonWindowStack>`_ , or ```NULL`` <NULL:CAPS>`_
+  a :class:`HildonWindowStack` , or ```NULL`` <NULL:CAPS>`_
 
 
 Since 2.2
@@ -650,11 +650,11 @@ Since 2.2
 
 
 ``self``:
-  a `HildonStackableWindow <HildonStackableWindow>`_
+  a :class:`HildonStackableWindow`
 
 
 ``menu``:
-  a `HildonAppMenu <HildonAppMenu>`_ to be used for this window
+  a :class:`HildonAppMenu` to be used for this window
 
 
 .. _HildonStackableWindow.see-also:
@@ -662,7 +662,7 @@ Since 2.2
 See Also
 ========
 
-`HildonWindowStack <HildonWindowStack>`_ `HildonProgram <HildonProgram>`_ `HildonWindow <HildonWindow>`_ .. _HildonWindowStack:
+:class:`HildonWindowStack` :class:`HildonProgram` :class:`HildonWindow` .. _HildonWindowStack:
 
 HildonWindowStack
 *****************
@@ -695,9 +695,9 @@ Properties
 Description
 ===========
 
-The `HildonWindowStack <HildonWindowStack>`_ is an object used to represent a stack of windows in the Hildon framework.
+The :class:`HildonWindowStack` is an object used to represent a stack of windows in the Hildon framework.
 
-Stacks contain all `HildonStackableWindow <HildonStackableWindow>`_ s that are being shown. The user can only interact with the topmost window from each stack (as it covers all the others), but all of them are mapped and visible from the Gtk point of view.
+Stacks contain all :class:`HildonStackableWindow` s that are being shown. The user can only interact with the topmost window from each stack (as it covers all the others), but all of them are mapped and visible from the Gtk point of view.
 
 Each window can only be in one stack at a time. All stacked windows are visible and all visible windows are stacked.
 
@@ -739,7 +739,7 @@ Returns the default window stack. This stack always exists and doesn't need to b
 
 
 *Returns*:
-  the default `HildonWindowStack <HildonWindowStack>`_
+  the default :class:`HildonWindowStack`
 
 
 Since 2.2
@@ -752,12 +752,12 @@ Since 2.2
 
   HildonWindowStack*  hildon_window_stack_new             (void);
 
-Creates a new `HildonWindowStack <HildonWindowStack>`_ . The stack is initially empty.
+Creates a new :class:`HildonWindowStack` . The stack is initially empty.
 
 
 
 *Returns*:
-  a new `HildonWindowStack <HildonWindowStack>`_
+  a new :class:`HildonWindowStack`
 
 
 Since 2.2
@@ -768,14 +768,14 @@ Since 2.2
 
 ::
 
-  gint                hildon_window_stack_size            (HildonWindowStack *stack);
+  int                hildon_window_stack_size            (HildonWindowStack *stack);
 
 Returns the number of windows in ``stack``
 
 
 
 ``stack``:
-  A `HildonWindowStack <HildonWindowStack>`_
+  A :class:`HildonWindowStack`
 
 
 *Returns*:
@@ -797,11 +797,11 @@ Returns the list of windows on this stack (topmost first). The widgets in the li
 
 
 ``stack``:
-  a `HildonWindowStack <HildonWindowStack>`_
+  a :class:`HildonWindowStack`
 
 
 *Returns*:
-  a newly-allocated list of `HildonStackableWindow <HildonStackableWindow>`_ s
+  a newly-allocated list of :class:`HildonStackableWindow` s
 
 
 Since 2.2
@@ -851,7 +851,7 @@ Pushes all windows to the top of ``stack``, and shows them. Everything is done i
 
 
 ``...``:
-  A ```NULL`` <NULL:CAPS>`_ -terminated list of additional `HildonStackableWindow <HildonStackableWindow>`_ s to push.
+  A ```NULL`` <NULL:CAPS>`_ -terminated list of additional :class:`HildonStackableWindow` s to push.
 
 
 Since 2.2
@@ -909,7 +909,7 @@ Since 2.2
 ::
 
   void                hildon_window_stack_pop             (HildonWindowStack *stack,
-                                                           gint nwindows,
+                                                           int nwindows,
                                                            GList **popped_windows);
 
 Pops ``nwindows`` windows from ``stack``, and hides them. Everything is done in a single transition, so the user will not see any of the windows being popped in this operation.
@@ -961,7 +961,7 @@ Since 2.2
 ::
 
   void                hildon_window_stack_pop_and_push    (HildonWindowStack *stack,
-                                                           gint nwindows,
+                                                           int nwindows,
                                                            GList **popped_windows,
                                                            HildonStackableWindow *win1,
                                                            ...);
@@ -989,7 +989,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
 
 
 ``...``:
-  A ```NULL`` <NULL:CAPS>`_ -terminated list of additional `HildonStackableWindow <HildonStackableWindow>`_ s to push.
+  A ```NULL`` <NULL:CAPS>`_ -terminated list of additional :class:`HildonStackableWindow` s to push.
 
 
 Since 2.2
@@ -1002,7 +1002,7 @@ Since 2.2
 
   void                hildon_window_stack_pop_and_push_list
                                                           (HildonWindowStack *stack,
-                                                           gint nwindows,
+                                                           int nwindows,
                                                            GList **popped_windows,
                                                            GList *list);
 
@@ -1050,7 +1050,7 @@ GtkWindowGroup that all windows on this stack belong to.
 See Also
 ========
 
-`HildonStackableWindow <HildonStackableWindow>`_ .. _HildonButton:
+:class:`HildonStackableWindow` .. _HildonButton:
 
 HildonButton
 ************
@@ -1079,7 +1079,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonButton implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonButton.properties:
 
@@ -1092,8 +1092,8 @@ Properties
     arrangement              HildonButtonArrangement  : Write / Construct Only
     size                     HildonSizeType        : Write / Construct Only
     style                    HildonButtonStyle     : Read / Write
-    title                    gchar*                : Read / Write
-    value                    gchar*                : Read / Write
+    title                    str                : Read / Write
+    value                    str                : Read / Write
   
 
 .. _HildonButton.style-properties:
@@ -1104,8 +1104,8 @@ Style Properties
 ::
 
   
-    horizontal-spacing       guint                 : Read
-    vertical-spacing         guint                 : Read
+    horizontal-spacing       int                 : Read
+    vertical-spacing         int                 : Read
   
 
 .. _HildonButton.description:
@@ -1113,11 +1113,11 @@ Style Properties
 Description
 ===========
 
-The `HildonButton <HildonButton>`_ is a GTK widget which represents a clickable button. It is derived from the `GtkButton <GtkButton>`_ widget and provides additional commodities specific to the Hildon framework.
+The :class:`HildonButton` is a GTK widget which represents a clickable button. It is derived from the :class:`GtkButton` widget and provides additional commodities specific to the Hildon framework.
 
-The height of a `HildonButton <HildonButton>`_ can be set to either "finger" height or "thumb" height. It can also be configured to use halfscreen or fullscreen width. Alternatively, either dimension can be set to "auto" so it behaves like a standard `GtkButton <GtkButton>`_ .
+The height of a :class:`HildonButton` can be set to either "finger" height or "thumb" height. It can also be configured to use halfscreen or fullscreen width. Alternatively, either dimension can be set to "auto" so it behaves like a standard :class:`GtkButton` .
 
-The `HildonButton <HildonButton>`_ can hold any valid child widget, but it usually contains two labels, named title and value, and it can also contain an image. The contents of the button are packed together inside a `GtkAlignment <GtkAlignment>`_ and they do not expand by default (they don't use the full space of the button).
+The :class:`HildonButton` can hold any valid child widget, but it usually contains two labels, named title and value, and it can also contain an image. The contents of the button are packed together inside a :class:`GtkAlignment` and they do not expand by default (they don't use the full space of the button).
 
 To change the alignment of both labels, use `gtk_button_set_alignment() <gtk-button-set-alignment>`_
 
@@ -1127,7 +1127,7 @@ To change the relative alignment of each label, use `hildon_button_set_title_ali
 
 In hildon-button-example.c included in the Hildon distribution you can see examples of how to create the most common button layouts.
 
-If only one label is needed, `GtkButton <GtkButton>`_ can be used as well, see also `hildon_gtk_button_new() <hildon-gtk-button-new>`_ .
+If only one label is needed, :class:`GtkButton` can be used as well, see also `hildon_gtk_button_new() <hildon-gtk-button-new>`_ .
 
 Creating a HildonButton ======================= :: void button_clicked (HildonButton *button, gpointer user_data) { const gchar *title, *value; title = hildon_button_get_title (button); value = hildon_button_get_value (button); g_debug ("Button clicked with title 's' and value 's'", title, value); } GtkWidget * create_button (void) { GtkWidget *button; GtkWidget *image; button = hildon_button_new (HILDON_SIZE_AUTO_WIDTH | HILDON_SIZE_FINGER_HEIGHT, HILDON_BUTTON_ARRANGEMENT_VERTICAL); hildon_button_set_text (HILDON_BUTTON (button), "Some title", "Some value"); image = gtk_image_new_from_stock (GTK_STOCK_INFO, GTK_ICON_SIZE_BUTTON); hildon_button_set_image (HILDON_BUTTON (button), image); hildon_button_set_image_position (HILDON_BUTTON (button), GTK_POS_RIGHT); gtk_button_set_alignment (GTK_BUTTON (button), 0.0, 0.5); g_signal_connect (button, "clicked", G_CALLBACK (button_clicked), NULL); return button; }
 
@@ -1160,7 +1160,7 @@ Details
   }                                               HildonButtonArrangement;
   
 
-Describes the arrangement of labels inside a `HildonButton <HildonButton>`_
+Describes the arrangement of labels inside a :class:`HildonButton`
 
 
 
@@ -1184,16 +1184,16 @@ Describes the arrangement of labels inside a `HildonButton <HildonButton>`_
   }                                               HildonButtonStyle;
   
 
-Describes the visual style of a `HildonButton <HildonButton>`_
+Describes the visual style of a :class:`HildonButton`
 
 
 
 ``HILDON_BUTTON_STYLE_NORMAL``
-  The button will look like a normal `HildonButton <HildonButton>`_
+  The button will look like a normal :class:`HildonButton`
 
 
 ``HILDON_BUTTON_STYLE_PICKER``
-  The button will look like a `HildonPickerButton <HildonPickerButton>`_
+  The button will look like a :class:`HildonPickerButton`
 
 
 .. _hildon-button-new:
@@ -1205,7 +1205,7 @@ Describes the visual style of a `HildonButton <HildonButton>`_
   GtkWidget*          hildon_button_new                   (HildonSizeType size,
                                                            HildonButtonArrangement arrangement);
 
-Creates a new `HildonButton <HildonButton>`_ . To set text in the labels, use `hildon_button_set_title() <hildon-button-set-title>`_ and `hildon_button_set_value() <hildon-button-set-value>`_ . Alternatively, you can add a custom child widget using `gtk_container_add() <gtk-container-add>`_ .
+Creates a new :class:`HildonButton` . To set text in the labels, use `hildon_button_set_title() <hildon-button-set-title>`_ and `hildon_button_set_value() <hildon-button-set-value>`_ . Alternatively, you can add a custom child widget using `gtk_container_add() <gtk-container-add>`_ .
 
 
 
@@ -1218,7 +1218,7 @@ Creates a new `HildonButton <HildonButton>`_ . To set text in the labels, use `h
 
 
 *Returns*:
-  a new `HildonButton <HildonButton>`_
+  a new :class:`HildonButton`
 
 
 Since 2.2
@@ -1234,7 +1234,7 @@ Since 2.2
                                                            const gchar *title,
                                                            const gchar *value);
 
-Creates a new `HildonButton <HildonButton>`_ with two labels, ``title`` and ``value``.
+Creates a new :class:`HildonButton` with two labels, ``title`` and ``value``.
 
 If you just don't want to use one of the labels, set it to ```NULL`` <NULL:CAPS>`_ . You can set it to a non-```NULL`` <NULL:CAPS>`_ value at any time later using `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_value() <hildon-button-set-value>`_ .
 
@@ -1257,7 +1257,7 @@ If you just don't want to use one of the labels, set it to ```NULL`` <NULL:CAPS>
 
 
 *Returns*:
-  a new `HildonButton <HildonButton>`_
+  a new :class:`HildonButton`
 
 
 Since 2.2
@@ -1280,7 +1280,7 @@ If ``title`` is set to ```NULL`` <NULL:CAPS>`_ , the title label will be hidden 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``title``:
@@ -1307,7 +1307,7 @@ If ``value`` is set to ```NULL`` <NULL:CAPS>`_ , the value label will be hidden 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``value``:
@@ -1322,14 +1322,14 @@ Since 2.2
 
 ::
 
-  const gchar*        hildon_button_get_title             (HildonButton *button);
+  const str        hildon_button_get_title             (HildonButton *button);
 
 Fetches the text from the main label (title) of ``button``, as set by `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be ```NULL`` <NULL:CAPS>`_ . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 *Returns*:
@@ -1344,14 +1344,14 @@ Since 2.2
 
 ::
 
-  const gchar*        hildon_button_get_value             (HildonButton *button);
+  const str        hildon_button_get_value             (HildonButton *button);
 
 Fetches the text from the secondary label (value) of ``button``, as set by `hildon_button_set_value() <hildon-button-set-value>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be ```NULL`` <NULL:CAPS>`_ . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 *Returns*:
@@ -1370,12 +1370,12 @@ Since 2.2
                                                            const gchar *title,
                                                            const gchar *value);
 
-Convenience function to change both labels of a `HildonButton <HildonButton>`_
+Convenience function to change both labels of a :class:`HildonButton`
 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``title``:
@@ -1402,7 +1402,7 @@ Sets the image of ``button`` to the given widget. The previous image (if any) wi
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``image``:
@@ -1424,11 +1424,11 @@ Gets the widget that is currenty set as the image of ``button``, previously set 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 *Returns*:
-  a `GtkWidget <GtkWidget>`_ or ```NULL`` <NULL:CAPS>`_ in case there is no image
+  a :class:`GtkWidget` or ```NULL`` <NULL:CAPS>`_ in case there is no image
 
 
 Since 2.2
@@ -1447,7 +1447,7 @@ Sets the position of the image inside ``button``. Only ```GTK_POS_LEFT`` <GTK-PO
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``position``:
@@ -1470,12 +1470,12 @@ Since 2.2
 
 Sets the alignment of the contents of the widget. If you don't need to change ``xscale`` or ``yscale`` you can just use `gtk_button_set_alignment() <gtk-button-set-alignment>`_ instead.
 
-Note that for this method to work properly the, child widget of ``button`` must be a `GtkAlignment <GtkAlignment>`_ . That's what `HildonButton <HildonButton>`_ uses by default, so this function will work unless you add a custom widget to ``button``.
+Note that for this method to work properly the, child widget of ``button`` must be a :class:`GtkAlignment` . That's what :class:`HildonButton` uses by default, so this function will work unless you add a custom widget to ``button``.
 
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``xalign``:
@@ -1511,7 +1511,7 @@ Sets the alignment of the title label. See also `hildon_button_set_alignment() <
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``xalign``:
@@ -1539,7 +1539,7 @@ Sets the alignment of the value label. See also `hildon_button_set_alignment() <
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``xalign``:
@@ -1567,7 +1567,7 @@ Sets the alignment of the image. See also `hildon_button_set_alignment() <hildon
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``xalign``:
@@ -1594,11 +1594,11 @@ Adds the title label of ``button`` to ``size_group``.
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``size_group``:
-  A `GtkSizeGroup <GtkSizeGroup>`_ for the button title (main label)
+  A :class:`GtkSizeGroup` for the button title (main label)
 
 
 Since 2.2
@@ -1617,11 +1617,11 @@ Adds the value label of ``button`` to ``size_group``.
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``size_group``:
-  A `GtkSizeGroup <GtkSizeGroup>`_ for the button value (secondary label)
+  A :class:`GtkSizeGroup` for the button value (secondary label)
 
 
 Since 2.2
@@ -1640,11 +1640,11 @@ Adds the image of ``button`` to ``size_group``. You must add an image using `hil
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``size_group``:
-  A `GtkSizeGroup <GtkSizeGroup>`_ for the button image
+  A :class:`GtkSizeGroup` for the button image
 
 
 Since 2.2
@@ -1665,19 +1665,19 @@ Convenience function to add title, value and image to size groups. ```NULL`` <NU
 
 
 ``button``:
-  a `HildonButton <HildonButton>`_
+  a :class:`HildonButton`
 
 
 ``title_size_group``:
-  A `GtkSizeGroup <GtkSizeGroup>`_ for the button title (main label), or ```NULL`` <NULL:CAPS>`_
+  A :class:`GtkSizeGroup` for the button title (main label), or ```NULL`` <NULL:CAPS>`_
 
 
 ``value_size_group``:
-  A `GtkSizeGroup <GtkSizeGroup>`_ group for the button value (secondary label), or ```NULL`` <NULL:CAPS>`_
+  A :class:`GtkSizeGroup` group for the button value (secondary label), or ```NULL`` <NULL:CAPS>`_
 
 
 ``image_size_group``:
-  A `GtkSizeGroup <GtkSizeGroup>`_ group for the button image, or ```NULL`` <NULL:CAPS>`_
+  A :class:`GtkSizeGroup` group for the button image, or ```NULL`` <NULL:CAPS>`_
 
 
 Since 2.2
@@ -1693,16 +1693,16 @@ Since 2.2
 
 Sets the style of ``button`` to ``style``. This changes the visual appearance of the button (colors, font sizes) according to the particular style chosen, but the general layout is not altered.
 
-Use ```HILDON_BUTTON_STYLE_NORMAL`` <HILDON-BUTTON-STYLE-NORMAL:CAPS>`_ to make it look like a normal `HildonButton <HildonButton>`_ , or ```HILDON_BUTTON_STYLE_PICKER`` <HILDON-BUTTON-STYLE-PICKER:CAPS>`_ to make it look like a `HildonPickerButton <HildonPickerButton>`_ .
+Use ```HILDON_BUTTON_STYLE_NORMAL`` <HILDON-BUTTON-STYLE-NORMAL:CAPS>`_ to make it look like a normal :class:`HildonButton` , or ```HILDON_BUTTON_STYLE_PICKER`` <HILDON-BUTTON-STYLE-PICKER:CAPS>`_ to make it look like a :class:`HildonPickerButton` .
 
 
 
 ``button``:
-  A `HildonButton <HildonButton>`_
+  A :class:`HildonButton`
 
 
 ``style``:
-  A `HildonButtonStyle <HildonButtonStyle>`_ for ``button``\
+  A :class:`HildonButtonStyle` for ``button``\
 
 
 Since 2.2
@@ -1720,11 +1720,11 @@ Gets the visual style of the button.
 
 
 ``button``:
-  A `HildonButton <HildonButton>`_
+  A :class:`HildonButton`
 
 
 *Returns*:
-  a `HildonButtonStyle <HildonButtonStyle>`_
+  a :class:`HildonButtonStyle`
 
 
 Since 2.2
@@ -1774,7 +1774,7 @@ The ``title`` property
 
 ::
 
-    title                    gchar*                : Read / Write
+    title                    str                : Read / Write
 
 Text of the title label inside the button.
 
@@ -1786,7 +1786,7 @@ The ``value`` property
 
 ::
 
-    value                    gchar*                : Read / Write
+    value                    str                : Read / Write
 
 Text of the value label inside the button.
 
@@ -1803,7 +1803,7 @@ The ``horizontal-spacing`` style property
 
 ::
 
-    horizontal-spacing       guint                 : Read
+    horizontal-spacing       int                 : Read
 
 Horizontal spacing between the title and value labels, when in horizontal mode.
 
@@ -1815,7 +1815,7 @@ The ``vertical-spacing`` style property
 
 ::
 
-    vertical-spacing         guint                 : Read
+    vertical-spacing         int                 : Read
 
 Vertical spacing between the title and value labels, when in vertical mode.
 
@@ -1849,7 +1849,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonCheckButton implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonCheckButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonCheckButton.style-properties:
 
@@ -1859,7 +1859,7 @@ Style Properties
 ::
 
   
-    checkbox-size            guint                 : Read
+    checkbox-size            int                 : Read
   
 
 .. _HildonCheckButton.signals:
@@ -1878,13 +1878,13 @@ Signals
 Description
 ===========
 
-`HildonCheckButton <HildonCheckButton>`_ is a button containing a label and a check box which will remain 'pressed-in' when clicked. Clicking again will make the check box toggle its state.
+:class:`HildonCheckButton` is a button containing a label and a check box which will remain 'pressed-in' when clicked. Clicking again will make the check box toggle its state.
 
-The state of a `HildonCheckButton <HildonCheckButton>`_ can be set using `hildon_check_button_set_active() <hildon-check-button-set-active>`_ , and retrieved using `hildon_check_button_get_active() <hildon-check-button-get-active>`_ . The label can be set using `gtk_button_set_label() <gtk-button-set-label>`_ and retrieved using `gtk_button_get_label() <gtk-button-get-label>`_ .
+The state of a :class:`HildonCheckButton` can be set using `hildon_check_button_set_active() <hildon-check-button-set-active>`_ , and retrieved using `hildon_check_button_get_active() <hildon-check-button-get-active>`_ . The label can be set using `gtk_button_set_label() <gtk-button-set-label>`_ and retrieved using `gtk_button_get_label() <gtk-button-get-label>`_ .
 
-.. note:: `HildonCheckButton <HildonCheckButton>`_ does NOT support an image, so don't use `gtk_button_set_image() <gtk-button-set-image>`_ .
+.. note:: :class:`HildonCheckButton` does NOT support an image, so don't use `gtk_button_set_image() <gtk-button-set-image>`_ .
 
-Using a Hildon check button =========================== :: void button_toggled (HildonCheckButton *button, gpointer user_data) { gboolean active; active = hildon_check_button_get_active (button); if (active) g_debug ("Button is active"); else g_debug ("Button is not active"); } GtkWidget * create_button (void) { GtkWidget *button; button = hildon_check_button_new (HILDON_SIZE_AUTO); gtk_button_set_label (GTK_BUTTON (button), "Click me"); g_signal_connect (button, "toggled", G_CALLBACK (button_toggled), NULL); return button; }
+Using a Hildon check button =========================== :: void button_toggled (HildonCheckButton *button, gpointer user_data) { bool active; active = hildon_check_button_get_active (button); if (active) g_debug ("Button is active"); else g_debug ("Button is not active"); } GtkWidget * create_button (void) { GtkWidget *button; button = hildon_check_button_new (HILDON_SIZE_AUTO); gtk_button_set_label (GTK_BUTTON (button), "Click me"); g_signal_connect (button, "toggled", G_CALLBACK (button_toggled), NULL); return button; }
 
 
 
@@ -1911,7 +1911,7 @@ Details
 
   GtkWidget*          hildon_check_button_new             (HildonSizeType size);
 
-Creates a new `HildonCheckButton <HildonCheckButton>`_ .
+Creates a new :class:`HildonCheckButton` .
 
 
 
@@ -1920,7 +1920,7 @@ Creates a new `HildonCheckButton <HildonCheckButton>`_ .
 
 
 *Returns*:
-  A newly created `HildonCheckButton <HildonCheckButton>`_
+  A newly created :class:`HildonCheckButton`
 
 
 Since 2.2
@@ -1932,14 +1932,14 @@ Since 2.2
 ::
 
   void                hildon_check_button_set_active      (HildonCheckButton *button,
-                                                           gboolean is_active);
+                                                           bool is_active);
 
-Sets the status of a `HildonCheckButton <HildonCheckButton>`_ . Set to ```TRUE`` <TRUE:CAPS>`_ if you want ``button`` to be 'pressed-in', and ```FALSE`` <FALSE:CAPS>`_ to raise it. This action causes the `"toggled" <HildonCheckButton-toggled>`_ signal to be emitted.
+Sets the status of a :class:`HildonCheckButton` . Set to ```TRUE`` <TRUE:CAPS>`_ if you want ``button`` to be 'pressed-in', and ```FALSE`` <FALSE:CAPS>`_ to raise it. This action causes the `"toggled" <HildonCheckButton-toggled>`_ signal to be emitted.
 
 
 
 ``button``:
-  A `HildonCheckButton <HildonCheckButton>`_
+  A :class:`HildonCheckButton`
 
 
 ``is_active``:
@@ -1954,14 +1954,14 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_check_button_get_active      (HildonCheckButton *button);
+  bool            hildon_check_button_get_active      (HildonCheckButton *button);
 
 Gets the current state of ``button``.
 
 
 
 ``button``:
-  A `HildonCheckButton <HildonCheckButton>`_
+  A :class:`HildonCheckButton`
 
 
 *Returns*:
@@ -1978,12 +1978,12 @@ Since 2.2
 
   void                hildon_check_button_toggled         (HildonCheckButton *button);
 
-Emits the `"toggled" <HildonCheckButton-toggled>`_ signal on the `HildonCheckButton <HildonCheckButton>`_ . There is no good reason for an application ever to call this function.
+Emits the `"toggled" <HildonCheckButton-toggled>`_ signal on the :class:`HildonCheckButton` . There is no good reason for an application ever to call this function.
 
 
 
 ``button``:
-  A `HildonCheckButton <HildonCheckButton>`_
+  A :class:`HildonCheckButton`
 
 
 Since 2.2
@@ -1999,7 +1999,7 @@ The ``checkbox-size`` style property
 
 ::
 
-    checkbox-size            guint                 : Read
+    checkbox-size            int                 : Read
 
 Size of the check box.
 
@@ -2019,7 +2019,7 @@ The ``toggled`` signal
   void                user_function                      (HildonCheckButton *arg0,
                                                           gpointer           user_data)      : Run First
 
-Emitted when the `HildonCheckButton <HildonCheckButton>`_ 's state is changed.
+Emitted when the :class:`HildonCheckButton` 's state is changed.
 
 
 
@@ -2060,7 +2060,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonPickerButton implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonPickerButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonPickerButton.properties:
 
@@ -2070,7 +2070,7 @@ Properties
 ::
 
   
-    done-button-text         gchar*                : Read / Write
+    done-button-text         str                : Read / Write
     touch-selector           HildonTouchSelector*  : Read / Write
   
 
@@ -2090,9 +2090,9 @@ Signals
 Description
 ===========
 
-`HildonPickerButton <HildonPickerButton>`_ is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a `HildonPickerDialog <HildonPickerDialog>`_ . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
+:class:`HildonPickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`HildonPickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
 
-You should create your own `HildonTouchSelector <HildonTouchSelector>`_ at convenience and set it to the `HildonPickerButton <HildonPickerButton>`_ with `hildon_picker_button_set_selector() <hildon-picker-button-set-selector>`_ . For the common use cases of buttons to select date and time, you can use `HildonDateButton <HildonDateButton>`_ and `HildonTimeButton <HildonTimeButton>`_ .
+You should create your own :class:`HildonTouchSelector` at convenience and set it to the :class:`HildonPickerButton` with `hildon_picker_button_set_selector() <hildon-picker-button-set-selector>`_ . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
 
 :: GtkWidget * create_selector (void) { GtkWidget *selector; selector = hildon_touch_selector_new_text (); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "America"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Europe"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Asia"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Africa"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Australia"); hildon_touch_selector_set_active (HILDON_TOUCH_SELECTOR (selector), 0, 2); return selector; } GtkWidget * create_button (HildonTouchSelector *selector) { GtkWidget *button; button = hildon_picker_button_new (HILDON_SIZE_AUTO, HILDON_BUTTON_ARRANGEMENT_VERTICAL); hildon_button_set_title (HILDON_BUTTON (button), "Continent"); hildon_picker_button_set_selector (HILDON_PICKER_BUTTON (button), HILDON_TOUCH_SELECTOR (selector)); return button; }
 
@@ -2122,20 +2122,20 @@ Details
   GtkWidget*          hildon_picker_button_new            (HildonSizeType size,
                                                            HildonButtonArrangement arrangement);
 
-Creates a new `HildonPickerButton <HildonPickerButton>`_ . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+Creates a new :class:`HildonPickerButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
 
 
 
 ``size``:
-  One of `HildonSizeType <HildonSizeType>`_ , specifying the size of the new button.
+  One of :class:`HildonSizeType` , specifying the size of the new button.
 
 
 ``arrangement``:
-  one of `HildonButtonArrangement <HildonButtonArrangement>`_ , specifying the placement of the labels.
+  one of :class:`HildonButtonArrangement` , specifying the placement of the labels.
 
 
 *Returns*:
-  a newly created `HildonPickerButton <HildonPickerButton>`_
+  a newly created :class:`HildonPickerButton`
 
 
 Since 2.2
@@ -2149,16 +2149,16 @@ Since 2.2
   void                hildon_picker_button_set_selector   (HildonPickerButton *button,
                                                            HildonTouchSelector *selector);
 
-Sets ``selector`` as the `HildonTouchSelector <HildonTouchSelector>`_ to be shown in the `HildonPickerDialog <HildonPickerDialog>`_ that ``button`` brings up.
+Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:`HildonPickerDialog` that ``button`` brings up.
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 Since 2.2
@@ -2171,16 +2171,16 @@ Since 2.2
 
   HildonTouchSelector* hildon_picker_button_get_selector  (HildonPickerButton *button);
 
-Retrieves the `HildonTouchSelector <HildonTouchSelector>`_ associated to ``button``.
+Retrieves the :class:`HildonTouchSelector` associated to ``button``.
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 *Returns*:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 Since 2.2
@@ -2192,14 +2192,14 @@ Since 2.2
 ::
 
   void                hildon_picker_button_set_active     (HildonPickerButton *button,
-                                                           gint index);
+                                                           int index);
 
-Sets the active item of the `HildonTouchSelector <HildonTouchSelector>`_ associated to ``button`` to ``index``. If the selector has several columns, only the first one is used.
+Sets the active item of the :class:`HildonTouchSelector` associated to ``button`` to ``index``. If the selector has several columns, only the first one is used.
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 ``index``:
@@ -2214,14 +2214,14 @@ Since 2.2
 
 ::
 
-  gint                hildon_picker_button_get_active     (HildonPickerButton *button);
+  int                hildon_picker_button_get_active     (HildonPickerButton *button);
 
 Returns the index of the currently active item, or -1 if there's no active item. If the selector has several columns, only the first one is used.
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 *Returns*:
@@ -2236,15 +2236,15 @@ Since 2.2
 
 ::
 
-  const gchar*        hildon_picker_button_get_done_button_text
+  const str        hildon_picker_button_get_done_button_text
                                                           (HildonPickerButton *button);
 
-Gets the text used in the `HildonPickerDialog <HildonPickerDialog>`_ that is launched by ``button``. If no custom text is set, then ```NULL`` <NULL:CAPS>`_ is returned.
+Gets the text used in the :class:`HildonPickerDialog` that is launched by ``button``. If no custom text is set, then ```NULL`` <NULL:CAPS>`_ is returned.
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 *Returns*:
@@ -2263,12 +2263,12 @@ Since 2.2
                                                           (HildonPickerButton *button,
                                                            const gchar *done_button_text);
 
-Sets a custom string to be used in the "done" button in `HildonPickerDialog <HildonPickerDialog>`_ . If unset, the default HildonPickerButton::done-button-text property value will be used.
+Sets a custom string to be used in the "done" button in :class:`HildonPickerDialog` . If unset, the default HildonPickerButton::done-button-text property value will be used.
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 ``done_button_text``:
@@ -2285,12 +2285,12 @@ Since 2.2
 
   void                hildon_picker_button_value_changed  (HildonPickerButton *button);
 
-Emits a "`"value-changed" <HildonPickerButton-value-changed>`_ " signal to the given `HildonPickerButton <HildonPickerButton>`_
+Emits a "`"value-changed" <HildonPickerButton-value-changed>`_ " signal to the given :class:`HildonPickerButton`
 
 
 
 ``button``:
-  a `HildonPickerButton <HildonPickerButton>`_
+  a :class:`HildonPickerButton`
 
 
 Since 2.2
@@ -2306,7 +2306,7 @@ The ``done-button-text`` property
 
 ::
 
-    done-button-text         gchar*                : Read / Write
+    done-button-text         str                : Read / Write
 
 The text for the "done" button in the dialog launched.
 
@@ -2336,7 +2336,7 @@ The ``value-changed`` signal
   void                user_function                      (HildonPickerButton *widget,
                                                           gpointer            user_data)      : Run Last / Action
 
-The ::value-changed signal is emitted each time the user chooses a different item from the `HildonTouchSelector <HildonTouchSelector>`_ related, and the value label gets updated.
+The ::value-changed signal is emitted each time the user chooses a different item from the :class:`HildonTouchSelector` related, and the value label gets updated.
 
 
 
@@ -2355,7 +2355,7 @@ Since 2.2
 See Also
 ========
 
-`HildonTouchSelector <HildonTouchSelector>`_ `HildonPickerDialog <HildonPickerDialog>`_ .. _HildonDateButton:
+:class:`HildonTouchSelector` :class:`HildonPickerDialog` .. _HildonDateButton:
 
 HildonDateButton
 ****************
@@ -2385,14 +2385,14 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonDateButton implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonDateButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonDateButton.description:
 
 Description
 ===========
 
-`HildonDateButton <HildonDateButton>`_ is a widget that shows a text label and a date, and allows the user to select a different date. Visually, it's a button that, once clicked, presents a `HildonPickerDialog <HildonPickerDialog>`_ containing a `HildonDateSelector <HildonDateSelector>`_ . Once the user selects a different date from the selector, this will be shown in the button.
+:class:`HildonDateButton` is a widget that shows a text label and a date, and allows the user to select a different date. Visually, it's a button that, once clicked, presents a :class:`HildonPickerDialog` containing a :class:`HildonDateSelector` . Once the user selects a different date from the selector, this will be shown in the button.
 
 
 
@@ -2420,20 +2420,20 @@ Details
   GtkWidget*          hildon_date_button_new              (HildonSizeType size,
                                                            HildonButtonArrangement arrangement);
 
-Creates a new `HildonDateButton <HildonDateButton>`_ . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+Creates a new :class:`HildonDateButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
 
 
 
 ``size``:
-  One of `HildonSizeType <HildonSizeType>`_
+  One of :class:`HildonSizeType`
 
 
 ``arrangement``:
-  one of `HildonButtonArrangement <HildonButtonArrangement>`_
+  one of :class:`HildonButtonArrangement`
 
 
 *Returns*:
-  a new `HildonDateButton <HildonDateButton>`_
+  a new :class:`HildonDateButton`
 
 
 Since 2.2
@@ -2447,19 +2447,19 @@ Since 2.2
   GtkWidget*          hildon_date_button_new_with_year_range
                                                           (HildonSizeType size,
                                                            HildonButtonArrangement arrangement,
-                                                           gint min_year,
-                                                           gint max_year);
+                                                           int min_year,
+                                                           int max_year);
 
-Creates a new `HildonDateButton <HildonDateButton>`_ with a specific valid range of years. See `hildon_date_selector_new_with_year_range() <hildon-date-selector-new-with-year-range>`_ for details on the range.
+Creates a new :class:`HildonDateButton` with a specific valid range of years. See `hildon_date_selector_new_with_year_range() <hildon-date-selector-new-with-year-range>`_ for details on the range.
 
 
 
 ``size``:
-  One of `HildonSizeType <HildonSizeType>`_
+  One of :class:`HildonSizeType`
 
 
 ``arrangement``:
-  one of `HildonButtonArrangement <HildonButtonArrangement>`_
+  one of :class:`HildonButtonArrangement`
 
 
 ``min_year``:
@@ -2471,7 +2471,7 @@ Creates a new `HildonDateButton <HildonDateButton>`_ with a specific valid range
 
 
 *Returns*:
-  a new `HildonDateButton <HildonDateButton>`_
+  a new :class:`HildonDateButton`
 
 
 Since 2.2
@@ -2483,16 +2483,16 @@ Since 2.2
 ::
 
   void                hildon_date_button_get_date         (HildonDateButton *button,
-                                                           guint *year,
-                                                           guint *month,
-                                                           guint *day);
+                                                           int *year,
+                                                           int *month,
+                                                           int *day);
 
 Retrieves currently selected date from ``button``.
 
 
 
 ``button``:
-  a `HildonDateButton <HildonDateButton>`_
+  a :class:`HildonDateButton`
 
 
 ``year``:
@@ -2516,16 +2516,16 @@ Since 2.2
 ::
 
   void                hildon_date_button_set_date         (HildonDateButton *button,
-                                                           guint year,
-                                                           guint month,
-                                                           guint day);
+                                                           int year,
+                                                           int month,
+                                                           int day);
 
-Sets the date in ``button``. The date set will be displayed and will be the default selected option on the shown `HildonDateSelector <HildonDateSelector>`_ .
+Sets the date in ``button``. The date set will be displayed and will be the default selected option on the shown :class:`HildonDateSelector` .
 
 
 
 ``button``:
-  a `HildonDateButton <HildonDateButton>`_
+  a :class:`HildonDateButton`
 
 
 ``year``:
@@ -2547,7 +2547,7 @@ Since 2.2
 See Also
 ========
 
-`HildonPickerButton <HildonPickerButton>`_ `HildonTimeButton <HildonTimeButton>`_ .. _HildonTimeButton:
+:class:`HildonPickerButton` :class:`HildonTimeButton` .. _HildonTimeButton:
 
 HildonTimeButton
 ****************
@@ -2577,14 +2577,14 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonTimeButton implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonTimeButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonTimeButton.description:
 
 Description
 ===========
 
-`HildonTimeButton <HildonTimeButton>`_ is a widget that shows a text label and a time, and allows the user to select a different time. Visually, it's a button that, once clicked, presents a `HildonPickerDialog <HildonPickerDialog>`_ containing a `HildonTimeSelector <HildonTimeSelector>`_ . Once the user selects a different time from the selector, this will be shown in the button.
+:class:`HildonTimeButton` is a widget that shows a text label and a time, and allows the user to select a different time. Visually, it's a button that, once clicked, presents a :class:`HildonPickerDialog` containing a :class:`HildonTimeSelector` . Once the user selects a different time from the selector, this will be shown in the button.
 
 
 
@@ -2612,20 +2612,20 @@ Details
   GtkWidget*          hildon_time_button_new              (HildonSizeType size,
                                                            HildonButtonArrangement arrangement);
 
-Creates a new `HildonTimeButton <HildonTimeButton>`_ . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+Creates a new :class:`HildonTimeButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
 
 
 
 ``size``:
-  One of `HildonSizeType <HildonSizeType>`_
+  One of :class:`HildonSizeType`
 
 
 ``arrangement``:
-  one of `HildonButtonArrangement <HildonButtonArrangement>`_
+  one of :class:`HildonButtonArrangement`
 
 
 *Returns*:
-  a new `HildonTimeButton <HildonTimeButton>`_
+  a new :class:`HildonTimeButton`
 
 
 Since 2.2
@@ -2638,18 +2638,18 @@ Since 2.2
 
   GtkWidget*          hildon_time_button_new_step         (HildonSizeType size,
                                                            HildonButtonArrangement arrangement,
-                                                           guint minutes_step);
+                                                           int minutes_step);
 
-Creates a new `HildonTimeButton <HildonTimeButton>`_ . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+Creates a new :class:`HildonTimeButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
 
 
 
 ``size``:
-  One of `HildonSizeType <HildonSizeType>`_
+  One of :class:`HildonSizeType`
 
 
 ``arrangement``:
-  one of `HildonButtonArrangement <HildonButtonArrangement>`_
+  one of :class:`HildonButtonArrangement`
 
 
 ``minutes_step``:
@@ -2657,7 +2657,7 @@ Creates a new `HildonTimeButton <HildonTimeButton>`_ . See `hildon_button_new() 
 
 
 *Returns*:
-  a new `HildonTimeButton <HildonTimeButton>`_
+  a new :class:`HildonTimeButton`
 
 
 Since 2.2
@@ -2669,15 +2669,15 @@ Since 2.2
 ::
 
   void                hildon_time_button_get_time         (HildonTimeButton *button,
-                                                           guint *hours,
-                                                           guint *minutes);
+                                                           int *hours,
+                                                           int *minutes);
 
 Retrieves the time from ``button``.
 
 
 
 ``button``:
-  a `HildonTimeButton <HildonTimeButton>`_
+  a :class:`HildonTimeButton`
 
 
 ``hours``:
@@ -2697,15 +2697,15 @@ Since 2.2
 ::
 
   void                hildon_time_button_set_time         (HildonTimeButton *button,
-                                                           guint hours,
-                                                           guint minutes);
+                                                           int hours,
+                                                           int minutes);
 
-Sets the time to be displayed in ``button``. This time will be selected by default on the `HildonTimeSelector <HildonTimeSelector>`_ .
+Sets the time to be displayed in ``button``. This time will be selected by default on the :class:`HildonTimeSelector` .
 
 
 
 ``button``:
-  a `HildonTimeButton <HildonTimeButton>`_
+  a :class:`HildonTimeButton`
 
 
 ``hours``:
@@ -2723,7 +2723,7 @@ Since 2.2
 See Also
 ========
 
-`HildonPickerButton <HildonPickerButton>`_ `HildonDateButton <HildonDateButton>`_ .. _HildonCaption:
+:class:`HildonPickerButton` :class:`HildonDateButton` .. _HildonCaption:
 
 HildonCaption
 *************
@@ -2751,7 +2751,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonCaption implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonCaption implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonCaption.properties:
 
@@ -2763,9 +2763,9 @@ Properties
   
     icon                     GtkWidget*            : Read / Write
     icon-position            HildonCaptionIconPosition  : Read / Write
-    label                    gchar*                : Read / Write
-    markup                   gchar*                : Write
-    separator                gchar*                : Read / Write
+    label                    str                : Read / Write
+    markup                   str                : Write
+    separator                str                : Read / Write
     size-group               GtkSizeGroup*         : Read / Write
     status                   HildonCaptionStatus   : Read / Write
   
@@ -2778,7 +2778,7 @@ Child Properties
 ::
 
   
-    expand                   gboolean              : Read / Write
+    expand                   bool              : Read / Write
   
 
 .. _HildonCaption.signals:
@@ -2797,7 +2797,7 @@ Signals
 Description
 ===========
 
-`HildonCaption <HildonCaption>`_ is a single-child container widget that precedes the contained widget with a field label and an optional icon. It allows grouping of several controls together. When a captioned widget has focus, both widget and caption label are displayed with active focus.
+:class:`HildonCaption` is a single-child container widget that precedes the contained widget with a field label and an optional icon. It allows grouping of several controls together. When a captioned widget has focus, both widget and caption label are displayed with active focus.
 
 
 
@@ -2819,7 +2819,7 @@ Details
   }                                               HildonCaptionStatus;
   
 
-Keys to set the `HildonCaption <HildonCaption>`_ to be optional or mandatory.
+Keys to set the :class:`HildonCaption` to be optional or mandatory.
 
 
 
@@ -2844,7 +2844,7 @@ Keys to set the `HildonCaption <HildonCaption>`_ to be optional or mandatory.
   }                                               HildonCaptionIconPosition;
   
 
-Keys to set the icon placement in `HildonCaption <HildonCaption>`_ .
+Keys to set the icon placement in :class:`HildonCaption` .
 
 
 
@@ -2883,7 +2883,7 @@ Creates a new instance of hildon_caption widget, with a specific control and ima
 
 
 ``group``:
-  a `GtkSizeGroup <GtkSizeGroup>`_ for controlling the size of related captions, Can be NULL
+  a :class:`GtkSizeGroup` for controlling the size of related captions, Can be NULL
 
 
 ``value``:
@@ -2903,7 +2903,7 @@ Creates a new instance of hildon_caption widget, with a specific control and ima
 
 
 *Returns*:
-  a `GtkWidget <GtkWidget>`_ pointer of Caption
+  a :class:`GtkWidget` pointer of Caption
 
 
 .. _hildon-caption-get-size-group:
@@ -2914,16 +2914,16 @@ Creates a new instance of hildon_caption widget, with a specific control and ima
 
   GtkSizeGroup*       hildon_caption_get_size_group       (const HildonCaption *caption);
 
-Query given captioned control for the `GtkSizeGroup <GtkSizeGroup>`_ assigned to it.
+Query given captioned control for the :class:`GtkSizeGroup` assigned to it.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
-  a `GtkSizeGroup <GtkSizeGroup>`_
+  a :class:`GtkSizeGroup`
 
 
 .. _hildon-caption-set-size-group:
@@ -2935,16 +2935,16 @@ Query given captioned control for the `GtkSizeGroup <GtkSizeGroup>`_ assigned to
   void                hildon_caption_set_size_group       (const HildonCaption *caption,
                                                            GtkSizeGroup *new_group);
 
-Sets a `GtkSizeGroup <GtkSizeGroup>`_ of a given captioned control.
+Sets a :class:`GtkSizeGroup` of a given captioned control.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``new_group``:
-  a `GtkSizeGroup <GtkSizeGroup>`_
+  a :class:`GtkSizeGroup`
 
 
 .. _hildon-caption-is-mandatory:
@@ -2953,14 +2953,14 @@ Sets a `GtkSizeGroup <GtkSizeGroup>`_ of a given captioned control.
 
 ::
 
-  gboolean            hildon_caption_is_mandatory         (const HildonCaption *caption);
+  bool            hildon_caption_is_mandatory         (const HildonCaption *caption);
 
-Query `HildonCaption <HildonCaption>`_ whether this captioned control is a mandatory one.
+Query :class:`HildonCaption` whether this captioned control is a mandatory one.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
@@ -2976,16 +2976,16 @@ Query `HildonCaption <HildonCaption>`_ whether this captioned control is a manda
   void                hildon_caption_set_status           (HildonCaption *caption,
                                                            HildonCaptionStatus flag);
 
-Sets `HildonCaption <HildonCaption>`_ status.
+Sets :class:`HildonCaption` status.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``flag``:
-  one of the values from `HildonCaptionStatus <HildonCaptionStatus>`_
+  one of the values from :class:`HildonCaptionStatus`
 
 
 .. _hildon-caption-get-status:
@@ -2996,16 +2996,16 @@ Sets `HildonCaption <HildonCaption>`_ status.
 
   HildonCaptionStatus hildon_caption_get_status           (const HildonCaption *caption);
 
-Gets `HildonCaption <HildonCaption>`_ status.
+Gets :class:`HildonCaption` status.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
-  one of the values from `HildonCaptionStatus <HildonCaptionStatus>`_
+  one of the values from :class:`HildonCaptionStatus`
 
 
 .. _hildon-caption-set-icon-position:
@@ -3017,16 +3017,16 @@ Gets `HildonCaption <HildonCaption>`_ status.
   void                hildon_caption_set_icon_position    (HildonCaption *caption,
                                                            HildonCaptionIconPosition pos);
 
-Sets `HildonCaption <HildonCaption>`_ icon position.
+Sets :class:`HildonCaption` icon position.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``pos``:
-  one of the values from `HildonCaptionIconPosition <HildonCaptionIconPosition>`_
+  one of the values from :class:`HildonCaptionIconPosition`
 
 
 .. _hildon-caption-get-icon-position:
@@ -3038,16 +3038,16 @@ Sets `HildonCaption <HildonCaption>`_ icon position.
   HildonCaptionIconPosition hildon_caption_get_icon_position
                                                           (const HildonCaption *caption);
 
-Gets `HildonCaption <HildonCaption>`_ icon position.
+Gets :class:`HildonCaption` icon position.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
-  one of the values from `HildonCaptionIconPosition <HildonCaptionIconPosition>`_ .
+  one of the values from :class:`HildonCaptionIconPosition` .
 
 
 .. _hildon-caption-set-icon-image:
@@ -3064,11 +3064,11 @@ Sets the icon image widget to be used by this hildon_caption widget.
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``icon``:
-  the `GtkImage <GtkImage>`_ to use as the icon. calls gtk_widget_show on the icon if !GTK_WIDGET_VISIBLE(icon)
+  the :class:`GtkImage` to use as the icon. calls gtk_widget_show on the icon if !GTK_WIDGET_VISIBLE(icon)
 
 
 .. _hildon-caption-get-icon-image:
@@ -3079,16 +3079,16 @@ Sets the icon image widget to be used by this hildon_caption widget.
 
   GtkWidget*          hildon_caption_get_icon_image       (const HildonCaption *caption);
 
-Gets icon of `HildonCaption <HildonCaption>`_
+Gets icon of :class:`HildonCaption`
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
-  the `GtkImage <GtkImage>`_ widget that is being used as the icon by the hildon_caption, or NULL if no icon image is in use.
+  the :class:`GtkImage` widget that is being used as the icon by the hildon_caption, or NULL if no icon image is in use.
 
 
 .. _hildon-caption-set-label:
@@ -3105,7 +3105,7 @@ Sets the label text that appears before the control. Separator character is adde
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``label``:
@@ -3118,14 +3118,14 @@ Sets the label text that appears before the control. Separator character is adde
 
 ::
 
-  gchar*              hildon_caption_get_label            (const HildonCaption *caption);
+  str              hildon_caption_get_label            (const HildonCaption *caption);
 
-Gets label of `HildonCaption <HildonCaption>`_
+Gets label of :class:`HildonCaption`
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
@@ -3146,7 +3146,7 @@ Sets the separator character that appears after the label. The default seaparato
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``separator``:
@@ -3159,14 +3159,14 @@ Sets the separator character that appears after the label. The default seaparato
 
 ::
 
-  gchar*              hildon_caption_get_separator        (const HildonCaption *caption);
+  str              hildon_caption_get_separator        (const HildonCaption *caption);
 
-Gets separator string of `HildonCaption <HildonCaption>`_
+Gets separator string of :class:`HildonCaption`
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
@@ -3187,7 +3187,7 @@ Sets the vertical alignment to be used for the text part of the caption. Applica
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_ widget
+  a :class:`HildonCaption` widget
 
 
 ``alignment``:
@@ -3207,7 +3207,7 @@ Gets current vertical alignment for the text part.
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_ widget
+  a :class:`HildonCaption` widget
 
 
 *Returns*:
@@ -3221,18 +3221,18 @@ Gets current vertical alignment for the text part.
 ::
 
   void                hildon_caption_set_child_expand     (HildonCaption *caption,
-                                                           gboolean expand);
+                                                           bool expand);
 
 Sets child expandability.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``expand``:
-  gboolean to determine if the child is expandable
+  bool to determine if the child is expandable
 
 
 .. _hildon-caption-get-child-expand:
@@ -3241,14 +3241,14 @@ Sets child expandability.
 
 ::
 
-  gboolean            hildon_caption_get_child_expand     (const HildonCaption *caption);
+  bool            hildon_caption_get_child_expand     (const HildonCaption *caption);
 
 Gets childs expandability.
 
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 *Returns*:
@@ -3269,7 +3269,7 @@ Sets the label markup text that appears before the control. It acts like `hildon
 
 
 ``caption``:
-  a `HildonCaption <HildonCaption>`_
+  a :class:`HildonCaption`
 
 
 ``markup``:
@@ -3313,7 +3313,7 @@ The ``label`` property
 
 ::
 
-    label                    gchar*                : Read / Write
+    label                    str                : Read / Write
 
 Caption label.
 
@@ -3327,7 +3327,7 @@ The ``markup`` property
 
 ::
 
-    markup                   gchar*                : Write
+    markup                   str                : Write
 
 Caption markup. Mutually exclusive with label.
 
@@ -3341,7 +3341,7 @@ The ``separator`` property
 
 ::
 
-    separator                gchar*                : Read / Write
+    separator                str                : Read / Write
 
 The current separator.
 
@@ -3384,7 +3384,7 @@ The ``expand`` child property
 
 ::
 
-    expand                   gboolean              : Read / Write
+    expand                   bool              : Read / Write
 
 Same as GtkBox expand. Wheter the child should be expanded or not.
 
@@ -3442,7 +3442,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonBanner implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonBanner implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonBanner.properties:
 
@@ -3452,9 +3452,9 @@ Properties
 ::
 
   
-    is-timed                 gboolean              : Read / Write / Construct Only
+    is-timed                 bool              : Read / Write / Construct Only
     parent-window            GtkWindow*            : Read / Write / Construct Only
-    timeout                  guint                 : Read / Write / Construct Only
+    timeout                  int                 : Read / Write / Construct Only
   
 
 .. _HildonBanner.description:
@@ -3462,7 +3462,7 @@ Properties
 Description
 ===========
 
-`HildonBanner <HildonBanner>`_ is a small, pop-up window that can be used to display a short, timed notification or information to the user. It can communicate that a task has been finished or that the application state has changed.
+:class:`HildonBanner` is a small, pop-up window that can be used to display a short, timed notification or information to the user. It can communicate that a task has been finished or that the application state has changed.
 
 Hildon provides convenient funtions to create and show banners. To create and show information banners you can use `hildon_banner_show_information() <hildon-banner-show-information>`_ , `hildon_banner_show_informationf() <hildon-banner-show-informationf>`_ or `hildon_banner_show_information_with_markup() <hildon-banner-show-information-with-markup>`_ .
 
@@ -3470,7 +3470,7 @@ Two more kinds of banners are maintained for backward compatibility but are no l
 
 Information banners dissapear automatically after a certain period. This is stored in the `"timeout" <HildonBanner--timeout>`_ property (in miliseconds), and can be changed using `hildon_banner_set_timeout() <hildon-banner-set-timeout>`_ .
 
-Note that `HildonBanner <HildonBanner>`_ s should only be used to display non-critical pieces of information.
+Note that :class:`HildonBanner` s should only be used to display non-critical pieces of information.
 
 
 
@@ -3504,7 +3504,7 @@ This function creates and displays an information banner that automatically goes
 
 
 ``widget``:
-  the `GtkWidget <GtkWidget>`_ that is the owner of the banner
+  the :class:`GtkWidget` that is the owner of the banner
 
 
 ``icon_name``:
@@ -3535,7 +3535,7 @@ A helper function for `hildon_banner_show_information <hildon-banner-show-inform
 
 
 ``widget``:
-  the `GtkWidget <GtkWidget>`_ that is the owner of the banner
+  the :class:`GtkWidget` that is the owner of the banner
 
 
 ``icon_name``:
@@ -3570,7 +3570,7 @@ This function creates and displays an information banner that automatically goes
 
 
 ``widget``:
-  the `GtkWidget <GtkWidget>`_ that wants to display banner
+  the :class:`GtkWidget` that wants to display banner
 
 
 ``icon_name``:
@@ -3604,7 +3604,7 @@ Please note that banners are destroyed automatically once the window they are at
 
 
 ``widget``:
-  the `GtkWidget <GtkWidget>`_ that wants to display banner
+  the :class:`GtkWidget` that wants to display banner
 
 
 ``animation_name``:
@@ -3616,7 +3616,7 @@ Please note that banners are destroyed automatically once the window they are at
 
 
 *Returns*:
-  a `HildonBanner <HildonBanner>`_ widget. You must call `gtk_widget_destroy() <gtk-widget-destroy>`_ once you are done with the banner.
+  a :class:`HildonBanner` widget. You must call `gtk_widget_destroy() <gtk-widget-destroy>`_ once you are done with the banner.
 
 
 .. _hildon-banner-show-progress:
@@ -3636,7 +3636,7 @@ Shows progress notification. See `hildon_banner_show_animation <hildon-banner-sh
 
 
 ``widget``:
-  the `GtkWidget <GtkWidget>`_ that wants to display banner
+  the :class:`GtkWidget` that wants to display banner
 
 
 ``bar``:
@@ -3648,7 +3648,7 @@ Shows progress notification. See `hildon_banner_show_animation <hildon-banner-sh
 
 
 *Returns*:
-  a `HildonBanner <HildonBanner>`_ widget. You must call `gtk_widget_destroy <gtk-widget-destroy>`_ once you are done with the banner.
+  a :class:`HildonBanner` widget. You must call `gtk_widget_destroy <gtk-widget-destroy>`_ once you are done with the banner.
 
 
 .. _hildon-banner-set-text:
@@ -3665,7 +3665,7 @@ Sets the text that is displayed in the banner.
 
 
 ``self``:
-  a `HildonBanner <HildonBanner>`_ widget
+  a :class:`HildonBanner` widget
 
 
 ``text``:
@@ -3686,7 +3686,7 @@ Sets the text with markup that is displayed in the banner.
 
 
 ``self``:
-  a `HildonBanner <HildonBanner>`_ widget
+  a :class:`HildonBanner` widget
 
 
 ``markup``:
@@ -3709,7 +3709,7 @@ Note that this method only has effect if ``self`` was created with `hildon_banne
 
 
 ``self``:
-  a `HildonBanner <HildonBanner>`_ widget
+  a :class:`HildonBanner` widget
 
 
 ``fraction``:
@@ -3732,7 +3732,7 @@ Sets the icon to be used in the banner.
 
 
 ``self``:
-  a `HildonBanner <HildonBanner>`_ widget
+  a :class:`HildonBanner` widget
 
 
 ``icon_name``:
@@ -3755,7 +3755,7 @@ Sets the icon from its filename to be used in the banner.
 
 
 ``self``:
-  a `HildonBanner <HildonBanner>`_ widget
+  a :class:`HildonBanner` widget
 
 
 ``icon_file``:
@@ -3769,7 +3769,7 @@ Sets the icon from its filename to be used in the banner.
 ::
 
   void                hildon_banner_set_timeout           (HildonBanner *self,
-                                                           guint timeout);
+                                                           int timeout);
 
 Sets the timeout on the banner. After the given amount of miliseconds has elapsed the banner will go away. Note that settings this only makes sense on the banners that are timed and that have not been yet displayed on the screen.
 
@@ -3778,7 +3778,7 @@ Note that this method only has effect if ``self`` is an information banner (crea
 
 
 ``self``:
-  a `HildonBanner <HildonBanner>`_ widget
+  a :class:`HildonBanner` widget
 
 
 ``timeout``:
@@ -3796,7 +3796,7 @@ The ``is-timed`` property
 
 ::
 
-    is-timed                 gboolean              : Read / Write / Construct Only
+    is-timed                 bool              : Read / Write / Construct Only
 
 Whether the banner is timed and goes away automatically.
 
@@ -3822,7 +3822,7 @@ The ``timeout`` property
 
 ::
 
-    timeout                  guint                 : Read / Write / Construct Only
+    timeout                  int                 : Read / Write / Construct Only
 
 The time before making the banner banner go away. This needs to be adjusted before the banner is mapped to the screen.
 
@@ -3861,7 +3861,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonNote implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonNote implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonNote.properties:
 
@@ -3871,11 +3871,11 @@ Properties
 ::
 
   
-    description              gchar*                : Read / Write
-    icon                     gchar*                : Read / Write
+    description              str                : Read / Write
+    icon                     str                : Read / Write
     note-type                HildonNoteType        : Read / Write / Construct
     progressbar              GtkProgressBar*       : Read / Write
-    stock-icon               gchar*                : Read / Write
+    stock-icon               str                : Read / Write
   
 
 .. _HildonNote.description:
@@ -3883,7 +3883,7 @@ Properties
 Description
 ===========
 
-`HildonNote <HildonNote>`_ is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a progress bar.
+:class:`HildonNote` is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a progress bar.
 
 This widget provides convenient functions to create either information notes, confirmation notes or cancel notes, which are useful to show the progress of a requested task allowing the user to cancel it.
 
@@ -3891,7 +3891,7 @@ To create information notes you can use `hildon_note_new_information() <hildon-n
 
 To create a note with a text, a progress bar and cancel button, `hildon_note_new_cancel_with_progress_bar() <hildon-note-new-cancel-with-progress-bar>`_ can be used.
 
-HildonNote example ================== :: gboolean show_confirmation_note (GtkWindow *parent) { gint retcode; GtkWidget *note; note = hildon_note_new_confirmation (parent, "Confirmation message..."); retcode = gtk_dialog_run (GTK_DIALOG (note)); gtk_widget_destroy (note); if (retcode == GTK_RESPONSE_OK) { g_debug ("User pressed 'OK' button'"); return TRUE; } else { g_debug ("User pressed 'Cancel' button"); return FALSE; } }
+HildonNote example ================== :: bool show_confirmation_note (GtkWindow *parent) { int retcode; GtkWidget *note; note = hildon_note_new_confirmation (parent, "Confirmation message..."); retcode = gtk_dialog_run (GTK_DIALOG (note)); gtk_widget_destroy (note); if (retcode == GTK_RESPONSE_OK) { g_debug ("User pressed 'OK' button'"); return TRUE; } else { g_debug ("User pressed 'Cancel' button"); return FALSE; } }
 
 
 
@@ -3932,7 +3932,7 @@ Create a new confirmation note. Confirmation note has a text (description) that 
 
 
 *Returns*:
-  a `GtkWidget <GtkWidget>`_ pointer of the note
+  a :class:`GtkWidget` pointer of the note
 
 
 .. _hildon-note-new-confirmation-add-buttons:
@@ -3965,7 +3965,7 @@ FIXME: This doc seems to be wrong, the two buttons aren't added so it would only
 
 
 *Returns*:
-  A `GtkWidget <GtkWidget>`_ pointer of the note
+  A :class:`GtkWidget` pointer of the note
 
 
 .. _hildon-note-new-confirmation-with-icon-name:
@@ -3998,7 +3998,7 @@ Create a new confirmation note. Confirmation note has a text (description) that 
 
 
 *Returns*:
-  a `GtkWidget <GtkWidget>`_ pointer of the note
+  a :class:`GtkWidget` pointer of the note
 
 
 .. _hildon-note-new-cancel-with-progress-bar:
@@ -4025,11 +4025,11 @@ Create a new cancel note with a progress bar. Cancel note has text(description) 
 
 
 ``progressbar``:
-  a pointer to `GtkProgressBar <GtkProgressBar>`_ to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be ```NULL`` <NULL:CAPS>`_ as well, in which case plain text cancel note appears.
+  a pointer to :class:`GtkProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be ```NULL`` <NULL:CAPS>`_ as well, in which case plain text cancel note appears.
 
 
 *Returns*:
-  a `GtkDialog <GtkDialog>`_ . Use this to get rid of this note when you no longer need it.
+  a :class:`GtkDialog` . Use this to get rid of this note when you no longer need it.
 
 
 .. _hildon-note-new-information:
@@ -4054,7 +4054,7 @@ Create a new information note. Information note has a text (description) that yo
 
 
 *Returns*:
-  a `GtkWidget <GtkWidget>`_ pointer of the note
+  a :class:`GtkWidget` pointer of the note
 
 
 .. _hildon-note-new-information-with-icon-name:
@@ -4087,7 +4087,7 @@ Create a new information note. Information note has text(description) that you s
 
 
 *Returns*:
-  a `GtkWidget <GtkWidget>`_ pointer of the note
+  a :class:`GtkWidget` pointer of the note
 
 
 .. _hildon-note-set-button-text:
@@ -4104,7 +4104,7 @@ Sets the button text to be used by the hildon_note widget.
 
 
 ``note``:
-  a `HildonNote <HildonNote>`_
+  a :class:`HildonNote`
 
 
 ``text``:
@@ -4126,7 +4126,7 @@ Sets the button texts to be used by this hildon_note widget.
 
 
 ``note``:
-  a `HildonNote <HildonNote>`_
+  a :class:`HildonNote`
 
 
 ``text_ok``:
@@ -4166,7 +4166,7 @@ The ``description`` property
 
 ::
 
-    description              gchar*                : Read / Write
+    description              str                : Read / Write
 
 Description for the note.
 
@@ -4180,7 +4180,7 @@ The ``icon`` property
 
 ::
 
-    icon                     gchar*                : Read / Write
+    icon                     str                : Read / Write
 
 Icon for the note.
 
@@ -4218,7 +4218,7 @@ The ``stock-icon`` property
 
 ::
 
-    stock-icon               gchar*                : Read / Write
+    stock-icon               str                : Read / Write
 
 Stock icon name for the note.
 
@@ -4257,7 +4257,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonTouchSelector implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonTouchSelector implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonTouchSelector.properties:
 
@@ -4267,8 +4267,8 @@ Properties
 ::
 
   
-    has-multiple-selection   gboolean              : Read
-    initial-scroll           gboolean              : Read / Write / Construct
+    has-multiple-selection   bool              : Read
+    initial-scroll           bool              : Read / Write / Construct
   
 
 .. _HildonTouchSelector.signals:
@@ -4288,23 +4288,23 @@ Signals
 Description
 ===========
 
-`HildonTouchSelector <HildonTouchSelector>`_ is a selector widget, that allows users to select items from one to many predefined lists. It is very similar to `GtkComboBox <GtkComboBox>`_ , but with several individual pannable columns.
+:class:`HildonTouchSelector` is a selector widget, that allows users to select items from one to many predefined lists. It is very similar to :class:`GtkComboBox` , but with several individual pannable columns.
 
-Normally, you would use `HildonTouchSelector <HildonTouchSelector>`_ together with a `HildonPickerDialog <HildonPickerDialog>`_ activated from a button. For the most common cases, you should use `HildonPickerButton <HildonPickerButton>`_ .
+Normally, you would use :class:`HildonTouchSelector` together with a :class:`HildonPickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
 
-The composition of each column in the selector is represented by a `GtkTreeModel <GtkTreeModel>`_ . To add a new column to a `HildonTouchSelector <HildonTouchSelector>`_ , use `hildon_touch_selector_append_column() <hildon-touch-selector-append-column>`_ . If you want to add a text-only column, without special attributes, use `hildon_touch_selector_append_text_column() <hildon-touch-selector-append-text-column>`_ .
+The composition of each column in the selector is represented by a :class:`GtkTreeModel` . To add a new column to a :class:`HildonTouchSelector` , use `hildon_touch_selector_append_column() <hildon-touch-selector-append-column>`_ . If you want to add a text-only column, without special attributes, use `hildon_touch_selector_append_text_column() <hildon-touch-selector-append-text-column>`_ .
 
-It is highly recommended that you use only one column `HildonTouchSelector <HildonTouchSelector>`_ s. If you only need a text only, one column selector, you can create it with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ and populate with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
+It is highly recommended that you use only one column :class:`HildonTouchSelector` s. If you only need a text only, one column selector, you can create it with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ and populate with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
-If you need a selector widget that also accepts user inputs, you can use `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ .
+If you need a selector widget that also accepts user inputs, you can use :class:`HildonTouchSelectorEntry` .
 
-The current selection has a string representation. In the most common cases, each column model will contain a text column. You can configure which column in particular using the `HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ property `"text-column" <HildonTouchSelectorColumn--text-column>`_
+The current selection has a string representation. In the most common cases, each column model will contain a text column. You can configure which column in particular using the :class:`HildonTouchSelectorColumn` property `"text-column" <HildonTouchSelectorColumn--text-column>`_
 
-You can get this string representation using `hildon_touch_selector_get_current_text() <hildon-touch-selector-get-current-text>`_ . You can configure how the selection is printed with `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ , that sets the current hildon touch selector print function. The widget has a default print function, that uses the `"text-column" <HildonTouchSelectorColumn--text-column>`_ property on each `HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ to compose the final representation.
+You can get this string representation using `hildon_touch_selector_get_current_text() <hildon-touch-selector-get-current-text>`_ . You can configure how the selection is printed with `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ , that sets the current hildon touch selector print function. The widget has a default print function, that uses the `"text-column" <HildonTouchSelectorColumn--text-column>`_ property on each :class:`HildonTouchSelectorColumn` to compose the final representation.
 
 If you create the selector using `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ you don't need to take care of this property, as the model is created internally. If you create the selector using `hildon_touch_selector_new() <hildon-touch-selector-new>`_ , you need to specify properly the property for your custom model in order to get a non-empty string representation, or define your custom print function.
 
-Creating a HildonTouchSelector ============================== :: void selection_changed (HildonTouchSelector * selector, gpointer *user_data) { gchar *current_selection = NULL; current_selection = hildon_touch_selector_get_current_text (selector); g_debug ("Current selection : s", current_selection); } static GtkWidget * create_customized_selector () { GtkWidget *selector = NULL; GSList *icon_list = NULL; GtkListStore *store_icons = NULL; GSList *item = NULL; GtkCellRenderer *renderer = NULL; HildonTouchSelectorColumn *column = NULL; selector = hildon_touch_selector_new (); icon_list = gtk_stock_list_ids (); store_icons = gtk_list_store_new (1, G_TYPE_STRING); for (item = icon_list; item; item = g_slist_next (item)) { GtkTreeIter iter; gchar *label = item->data; gtk_list_store_append (store_icons, iter); gtk_list_store_set (store_icons, iter, 0, label, -1); g_free (label); } g_slist_free (icon_list); renderer = gtk_cell_renderer_pixbuf_new (); gtk_cell_renderer_set_fixed_size (renderer, -1, 100); column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR (selector), GTK_TREE_MODEL (store_icons), renderer, "stock-id", 0, NULL); g_object_set (G_OBJECT (column), "text-column", 0, NULL); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); return selector; } static GtkWidget * create_simple_selector () { GtkWidget *selector = NULL; gint i; selector = hildon_touch_selector_new_text (); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); for (i = 1; i = 10 ; i++) { gchar *label = g_strdup_printf ("Item percnt;d", i); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), label); g_free (label); } return selector; }
+Creating a HildonTouchSelector ============================== :: void selection_changed (HildonTouchSelector * selector, gpointer *user_data) { gchar *current_selection = NULL; current_selection = hildon_touch_selector_get_current_text (selector); g_debug ("Current selection : s", current_selection); } static GtkWidget * create_customized_selector () { GtkWidget *selector = NULL; GSList *icon_list = NULL; GtkListStore *store_icons = NULL; GSList *item = NULL; GtkCellRenderer *renderer = NULL; HildonTouchSelectorColumn *column = NULL; selector = hildon_touch_selector_new (); icon_list = gtk_stock_list_ids (); store_icons = gtk_list_store_new (1, G_TYPE_STRING); for (item = icon_list; item; item = g_slist_next (item)) { GtkTreeIter iter; gchar *label = item->data; gtk_list_store_append (store_icons, iter); gtk_list_store_set (store_icons, iter, 0, label, -1); g_free (label); } g_slist_free (icon_list); renderer = gtk_cell_renderer_pixbuf_new (); gtk_cell_renderer_set_fixed_size (renderer, -1, 100); column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR (selector), GTK_TREE_MODEL (store_icons), renderer, "stock-id", 0, NULL); g_object_set (G_OBJECT (column), "text-column", 0, NULL); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); return selector; } static GtkWidget * create_simple_selector () { GtkWidget *selector = NULL; int i; selector = hildon_touch_selector_new_text (); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); for (i = 1; i = 10 ; i++) { gchar *label = g_strdup_printf ("Item percnt;d", i); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), label); g_free (label); } return selector; }
 
 
 
@@ -4319,7 +4319,7 @@ Details
 
 ::
 
-  gchar*              (*HildonTouchSelectorPrintFunc)     (HildonTouchSelector *selector,
+  str              (*HildonTouchSelectorPrintFunc)     (HildonTouchSelector *selector,
                                                            gpointer user_data);
 
 
@@ -4359,7 +4359,7 @@ Details
   } HildonTouchSelectorSelectionMode;
   
 
-Describes the selection mode of a `HildonTouchSelector <HildonTouchSelector>`_ .
+Describes the selection mode of a :class:`HildonTouchSelector` .
 
 
 
@@ -4379,12 +4379,12 @@ Describes the selection mode of a `HildonTouchSelector <HildonTouchSelector>`_ .
 
   GtkWidget*          hildon_touch_selector_new           (void);
 
-Creates a new empty `HildonTouchSelector <HildonTouchSelector>`_ .
+Creates a new empty :class:`HildonTouchSelector` .
 
 
 
 *Returns*:
-  a new `HildonTouchSelector <HildonTouchSelector>`_ .
+  a new :class:`HildonTouchSelector` .
 
 
 Since 2.2
@@ -4397,12 +4397,12 @@ Since 2.2
 
   GtkWidget*          hildon_touch_selector_new_text      (void);
 
-Creates a `HildonTouchSelector <HildonTouchSelector>`_ with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
+Creates a :class:`HildonTouchSelector` with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
 
 
 *Returns*:
-  A new `HildonTouchSelector <HildonTouchSelector>`_
+  A new :class:`HildonTouchSelector`
 
 
 Since 2.2
@@ -4416,12 +4416,12 @@ Since 2.2
   void                hildon_touch_selector_append_text   (HildonTouchSelector *selector,
                                                            const gchar *text);
 
-Appends a new entry in a `HildonTouchSelector <HildonTouchSelector>`_ created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
+Appends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
 
 
 
 ``selector``:
-  A `HildonTouchSelector <HildonTouchSelector>`_ .
+  A :class:`HildonTouchSelector` .
 
 
 ``text``:
@@ -4439,12 +4439,12 @@ Since 2.2
   void                hildon_touch_selector_prepend_text  (HildonTouchSelector *selector,
                                                            const gchar *text);
 
-Prepends a new entry in a `HildonTouchSelector <HildonTouchSelector>`_ created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
+Prepends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
 
 
 
 ``selector``:
-  A `HildonTouchSelector <HildonTouchSelector>`_ .
+  A :class:`HildonTouchSelector` .
 
 
 ``text``:
@@ -4460,15 +4460,15 @@ Since 2.2
 ::
 
   void                hildon_touch_selector_insert_text   (HildonTouchSelector *selector,
-                                                           gint position,
+                                                           int position,
                                                            const gchar *text);
 
-Inserts a new entry in a particular position of a `HildonTouchSelector <HildonTouchSelector>`_ created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
+Inserts a new entry in a particular position of a :class:`HildonTouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_ .
+  a :class:`HildonTouchSelector` .
 
 
 ``position``:
@@ -4490,18 +4490,18 @@ Since 2.2
   HildonTouchSelectorColumn* hildon_touch_selector_append_text_column
                                                           (HildonTouchSelector *selector,
                                                            GtkTreeModel *model,
-                                                           gboolean center);
+                                                           bool center);
 
 Equivalent to `hildon_touch_selector_append_column() <hildon-touch-selector-append-column>`_ , but using a default text cell renderer. This is the most common use case of the widget.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``model``:
-  a `GtkTreeModel <GtkTreeModel>`_ with data for the column
+  a :class:`GtkTreeModel` with data for the column
 
 
 ``center``:
@@ -4528,24 +4528,24 @@ Since 2.2
 
 This functions adds a new column to the widget, whose data will be obtained from the model. Only widgets added this way should used on the selection logic, i.e., the print function, the `"changed" <HildonTouchPicker-changed>`_ signal, etc.
 
-You can optionally pass a `GtkCellRenderer <GtkCellRenderer>`_ in ``cell_renderer``, together with a ```NULL`` <NULL:CAPS>`_ -terminated list of pairs property/value, in the same way you would use `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . This will pack ``cell_renderer`` at the start of the column, expanded by default. If you prefer not to add it this way, you can simply pass ```NULL`` <NULL:CAPS>`_ to ``cell_renderer``\ and use the `GtkCellLayout <GtkCellLayout>`_ interface on the returned `HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ to set your renderers.
+You can optionally pass a :class:`GtkCellRenderer` in ``cell_renderer``, together with a ```NULL`` <NULL:CAPS>`_ -terminated list of pairs property/value, in the same way you would use `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . This will pack ``cell_renderer`` at the start of the column, expanded by default. If you prefer not to add it this way, you can simply pass ```NULL`` <NULL:CAPS>`_ to ``cell_renderer``\ and use the :class:`GtkCellLayout` interface on the returned :class:`HildonTouchSelectorColumn` to set your renderers.
 
 There is a prerequisite to be considered on models used: text data must be in the first column.
 
-This method basically adds a `GtkTreeView <GtkTreeView>`_ to the widget, using the model and the data received.
+This method basically adds a :class:`GtkTreeView` to the widget, using the model and the data received.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``model``:
-  the `GtkTreeModel <GtkTreeModel>`_ with the data of the column
+  the :class:`GtkTreeModel` with the data of the column
 
 
 ``cell_renderer``:
-  The `GtkCellRenderer <GtkCellRenderer>`_ where to draw each row contents.
+  The :class:`GtkCellRenderer` where to draw each row contents.
 
 
 ``...``:
@@ -4566,18 +4566,18 @@ Since 2.2
 
   void                hildon_touch_selector_set_column_attributes
                                                           (HildonTouchSelector *selector,
-                                                           gint num_column,
+                                                           int num_column,
                                                            GtkCellRenderer *cell_renderer,
                                                            ...);
 
-.. warning:: ``hildon_touch_selector_set_column_attributes`` is deprecated and should not be used in newly-written code. `HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ implements `GtkCellLayout <GtkCellLayout>`_ , use this interface instead. See `hildon_touch_selector_get_column() <hildon-touch-selector-get-column>`_ .
+.. warning:: ``hildon_touch_selector_set_column_attributes`` is deprecated and should not be used in newly-written code. :class:`HildonTouchSelectorColumn` implements :class:`GtkCellLayout` , use this interface instead. See `hildon_touch_selector_get_column() <hildon-touch-selector-get-column>`_ .
 
 Sets the attributes for the given column. The attributes must be given in attribute/column pairs, just like in `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . All existing attributes are removed and replaced with the new ones.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``num_column``:
@@ -4585,7 +4585,7 @@ Sets the attributes for the given column. The attributes must be given in attrib
 
 
 ``cell_renderer``:
-  the `GtkCellRendere <GtkCellRendere>`_ we're setting the attributes of
+  the :class:`GtkCellRendere` we're setting the attributes of
 
 
 ``...``:
@@ -4600,15 +4600,15 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_touch_selector_remove_column (HildonTouchSelector *selector,
-                                                           gint column);
+  bool            hildon_touch_selector_remove_column (HildonTouchSelector *selector,
+                                                           int column);
 
 Removes a column from ``selector``.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4627,15 +4627,15 @@ Since 2.2
 
 ::
 
-  gint                hildon_touch_selector_get_num_columns
+  int                hildon_touch_selector_get_num_columns
                                                           (HildonTouchSelector *selector);
 
-Gets the number of columns in the `HildonTouchSelector <HildonTouchSelector>`_ .
+Gets the number of columns in the :class:`HildonTouchSelector` .
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 *Returns*:
@@ -4654,16 +4654,16 @@ Since 2.2
                                                           (HildonTouchSelector *selector,
                                                            HildonTouchSelectorSelectionMode mode);
 
-Sets the selection mode for ``selector``. See `HildonTouchSelectorSelectionMode <HildonTouchSelectorSelectionMode>`_ .
+Sets the selection mode for ``selector``. See :class:`HildonTouchSelectorSelectionMode` .
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``mode``:
-  the `HildonTouchSelectorMode <HildonTouchSelectorMode>`_ for ``selector``\
+  the :class:`HildonTouchSelectorMode` for ``selector``\
 
 
 Since 2.2
@@ -4682,11 +4682,11 @@ Gets the selection mode of ``selector``.
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 *Returns*:
-  one of `HildonTouchSelectorSelectionMode <HildonTouchSelectorSelectionMode>`_
+  one of :class:`HildonTouchSelectorSelectionMode`
 
 
 Since 2.2
@@ -4699,14 +4699,14 @@ Since 2.2
 
   HildonTouchSelectorColumn* hildon_touch_selector_get_column
                                                           (HildonTouchSelector *selector,
-                                                           gint column);
+                                                           int column);
 
-Use this method to retrieve a `HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ . Then, you can use the `GtkCellLayout <GtkCellLayout>`_ interface to set up the layout of the column.
+Use this method to retrieve a :class:`HildonTouchSelectorColumn` . Then, you can use the :class:`GtkCellLayout` interface to set up the layout of the column.
 
 
 
 ``selector``:
-  A `HildonTouchSelector <HildonTouchSelector>`_
+  A :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4714,7 +4714,7 @@ Use this method to retrieve a `HildonTouchSelectorColumn <HildonTouchSelectorCol
 
 
 *Returns*:
-  the ``column``-th `HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ in ``selector``\
+  the ``column``-th :class:`HildonTouchSelectorColumn` in ``selector``\
 
 
 Since 2.2
@@ -4726,17 +4726,17 @@ Since 2.2
 ::
 
   void                hildon_touch_selector_set_active    (HildonTouchSelector *selector,
-                                                           gint column,
-                                                           gint index);
+                                                           int column,
+                                                           int index);
 
-Sets the active item of the `HildonTouchSelector <HildonTouchSelector>`_ to ``index``. The column number is taken from ``column``.
+Sets the active item of the :class:`HildonTouchSelector` to ``index``. The column number is taken from ``column``.
 
 ``selector`` must be in ```HILDON_TOUCH_SELECTOR_SELECTION_MODE_SINGLE`` <HILDON-TOUCH-SELECTOR-SELECTION-MODE-SINGLE:CAPS>`_
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4755,8 +4755,8 @@ Since 2.2
 
 ::
 
-  gint                hildon_touch_selector_get_active    (HildonTouchSelector *selector,
-                                                           gint column);
+  int                hildon_touch_selector_get_active    (HildonTouchSelector *selector,
+                                                           int column);
 
 Returns the index of the currently active item in column number ``column``, or -1 if there's no active item.
 
@@ -4765,7 +4765,7 @@ Returns the index of the currently active item in column number ``column``, or -
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4784,8 +4784,8 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_touch_selector_get_selected  (HildonTouchSelector *selector,
-                                                           gint column,
+  bool            hildon_touch_selector_get_selected  (HildonTouchSelector *selector,
+                                                           int column,
                                                            GtkTreeIter *iter);
 
 Sets ``iter`` to the currently selected node on the nth-column, if selection is set to ```HILDON_TOUCH_SELECTOR_SINGLE`` <HILDON-TOUCH-SELECTOR-SINGLE:CAPS>`_ or ```HILDON_TOUCH_SELECTOR_MULTIPLE`` <HILDON-TOUCH-SELECTOR-MULTIPLE:CAPS>`_ with a column different that the first one. ``iter`` may be ```NULL`` <NULL:CAPS>`_ if you just want to test if selection has any selected items.
@@ -4797,7 +4797,7 @@ See `gtk_tree_selection_get_selected() <gtk-tree-selection-get-selected>`_ for m
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4805,7 +4805,7 @@ See `gtk_tree_selection_get_selected() <gtk-tree-selection-get-selected>`_ for m
 
 
 ``iter``:
-  `GtkTreeIter <GtkTreeIter>`_ currently selected
+  :class:`GtkTreeIter` currently selected
 
 
 *Returns*:
@@ -4823,12 +4823,12 @@ Since 2.2
   void                hildon_touch_selector_center_on_selected
                                                           (HildonTouchSelector *selector);
 
-Ensures all the columns in a `HildonTouchSelector <HildonTouchSelector>`_ show a selected item. If one of the columns is in ```HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE`` <HILDON-TOUCH-SELECTOR-SELECTION-MODE-MULTIPLE:CAPS>`_ mode, that column will be scrolled to ensure the selected item that is closest to the currently visible area is shown.
+Ensures all the columns in a :class:`HildonTouchSelector` show a selected item. If one of the columns is in ```HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE`` <HILDON-TOUCH-SELECTOR-SELECTION-MODE-MULTIPLE:CAPS>`_ mode, that column will be scrolled to ensure the selected item that is closest to the currently visible area is shown.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 Since 2.2
@@ -4840,16 +4840,16 @@ Since 2.2
 ::
 
   void                hildon_touch_selector_select_iter   (HildonTouchSelector *selector,
-                                                           gint column,
+                                                           int column,
                                                            GtkTreeIter *iter,
-                                                           gboolean scroll_to);
+                                                           bool scroll_to);
 
 Sets the currently selected item in the column ``column`` to the one pointed by ``iter``, optionally smoothly scrolling to it.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4857,7 +4857,7 @@ Sets the currently selected item in the column ``column`` to the one pointed by 
 
 
 ``iter``:
-  the `GtkTreeIter <GtkTreeIter>`_ to be selected
+  the :class:`GtkTreeIter` to be selected
 
 
 ``scroll_to``:
@@ -4873,7 +4873,7 @@ Since 2.2
 ::
 
   void                hildon_touch_selector_unselect_iter (HildonTouchSelector *selector,
-                                                           gint column,
+                                                           int column,
                                                            GtkTreeIter *iter);
 
 Unselect the item pointed by ``iter`` in the column ``column``
@@ -4881,7 +4881,7 @@ Unselect the item pointed by ``iter`` in the column ``column``
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4889,7 +4889,7 @@ Unselect the item pointed by ``iter`` in the column ``column``
 
 
 ``iter``:
-  the `GtkTreeIter <GtkTreeIter>`_ to be unselected
+  the :class:`GtkTreeIter` to be unselected
 
 
 Since 2.2
@@ -4901,14 +4901,14 @@ Since 2.2
 ::
 
   void                hildon_touch_selector_unselect_all  (HildonTouchSelector *selector,
-                                                           gint column);
+                                                           int column);
 
 Unselects all the selected items in the column ``column``.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4925,16 +4925,16 @@ Since 2.2
 
   GList*              hildon_touch_selector_get_selected_rows
                                                           (HildonTouchSelector *selector,
-                                                           gint column);
+                                                           int column);
 
-Creates a list of `GtkTreePath <GtkTreePath>`_ s of all selected rows in a column. Additionally, if you to plan to modify the model after calling this function, you may want to convert the returned list into a list of GtkTreeRowReferences. To do this, you can use `gtk_tree_row_reference_new() <gtk-tree-row-reference-new>`_ .
+Creates a list of :class:`GtkTreePath` s of all selected rows in a column. Additionally, if you to plan to modify the model after calling this function, you may want to convert the returned list into a list of GtkTreeRowReferences. To do this, you can use `gtk_tree_row_reference_new() <gtk-tree-row-reference-new>`_ .
 
 See `gtk_tree_selection_get_selected_rows() <gtk-tree-selection-get-selected-rows>`_ for more information.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4942,7 +4942,7 @@ See `gtk_tree_selection_get_selected_rows() <gtk-tree-selection-get-selected-row
 
 
 *Returns*:
-  A new `GList <GList>`_ containing a `GtkTreePath <GtkTreePath>`_ for each selected row in the column ``column``.
+  A new :class:`GList` containing a :class:`GtkTreePath` for each selected row in the column ``column``.
 
 
 Since 2.2
@@ -4954,15 +4954,15 @@ Since 2.2
 ::
 
   void                hildon_touch_selector_set_model     (HildonTouchSelector *selector,
-                                                           gint column,
+                                                           int column,
                                                            GtkTreeModel *model);
 
-Sets the `GtkTreeModel <GtkTreeModel>`_ for a particular column in ``model``.
+Sets the :class:`GtkTreeModel` for a particular column in ``model``.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4970,7 +4970,7 @@ Sets the `GtkTreeModel <GtkTreeModel>`_ for a particular column in ``model``.
 
 
 ``model``:
-  a `GtkTreeModel <GtkTreeModel>`_
+  a :class:`GtkTreeModel`
 
 
 Since 2.2
@@ -4982,14 +4982,14 @@ Since 2.2
 ::
 
   GtkTreeModel*       hildon_touch_selector_get_model     (HildonTouchSelector *selector,
-                                                           gint column);
+                                                           int column);
 
 Gets the model of a column of ``selector``.
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``column``:
@@ -4997,7 +4997,7 @@ Gets the model of a column of ``selector``.
 
 
 *Returns*:
-  the `GtkTreeModel <GtkTreeModel>`_ for the column ``column`` of ``selector``.
+  the :class:`GtkTreeModel` for the column ``column`` of ``selector``.
 
 
 Since 2.2
@@ -5008,7 +5008,7 @@ Since 2.2
 
 ::
 
-  gchar*              hildon_touch_selector_get_current_text
+  str              hildon_touch_selector_get_current_text
                                                           (HildonTouchSelector *selector);
 
 Returns a string representing the currently selected items for each column of ``selector``. See `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ .
@@ -5016,7 +5016,7 @@ Returns a string representing the currently selected items for each column of ``
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 *Returns*:
@@ -5040,11 +5040,11 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``func``:
-  a `HildonTouchSelectorPrintFunc <HildonTouchSelectorPrintFunc>`_ function
+  a :class:`HildonTouchSelectorPrintFunc` function
 
 
 Since 2.2
@@ -5058,16 +5058,16 @@ Since 2.2
   HildonTouchSelectorPrintFunc hildon_touch_selector_get_print_func
                                                           (HildonTouchSelector *selector);
 
-Gets the `HildonTouchSelectorPrintFunc <HildonTouchSelectorPrintFunc>`_ currently used. See `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ .
+Gets the :class:`HildonTouchSelectorPrintFunc` currently used. See `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ .
 
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 *Returns*:
-  a `HildonTouchSelectorPrintFunc <HildonTouchSelectorPrintFunc>`_ or ```NULL`` <NULL:CAPS>`_ if the default one is currently used.
+  a :class:`HildonTouchSelectorPrintFunc` or ```NULL`` <NULL:CAPS>`_ if the default one is currently used.
 
 
 .. _hildon-touch-selector-set-print-func-full:
@@ -5087,11 +5087,11 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 ``func``:
-  a `HildonTouchSelectorPrintFunc <HildonTouchSelectorPrintFunc>`_ function
+  a :class:`HildonTouchSelectorPrintFunc` function
 
 
 ``user_data``:
@@ -5110,17 +5110,17 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_touch_selector_has_multiple_selection
+  bool            hildon_touch_selector_has_multiple_selection
                                                           (HildonTouchSelector *selector);
 
-Determines whether ``selector`` is complex enough to actually require an extra selection step than only picking an item. This is normally ```TRUE`` <TRUE:CAPS>`_ if ``selector`` has multiple columns, multiple selection, or when it is a more complex widget, like `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ .
+Determines whether ``selector`` is complex enough to actually require an extra selection step than only picking an item. This is normally ```TRUE`` <TRUE:CAPS>`_ if ``selector`` has multiple columns, multiple selection, or when it is a more complex widget, like :class:`HildonTouchSelectorEntry` .
 
-This information is useful for widgets containing a `HildonTouchSelector <HildonTouchSelector>`_ , like `HildonPickerDialog <HildonPickerDialog>`_ , that could need a "Done" button, in case that its internal `HildonTouchSelector <HildonTouchSelector>`_ has multiple columns, for instance.
+This information is useful for widgets containing a :class:`HildonTouchSelector` , like :class:`HildonPickerDialog` , that could need a "Done" button, in case that its internal :class:`HildonTouchSelector` has multiple columns, for instance.
 
 
 
 ``selector``:
-  A `HildonTouchSelector <HildonTouchSelector>`_
+  A :class:`HildonTouchSelector`
 
 
 *Returns*:
@@ -5140,7 +5140,7 @@ The ``has-multiple-selection`` property
 
 ::
 
-    has-multiple-selection   gboolean              : Read
+    has-multiple-selection   bool              : Read
 
 Whether the widget has multiple selection (like multiple columns, multiselection mode, or multiple internal widgets) and therefore it may need a confirmation button, for instance.
 
@@ -5152,7 +5152,7 @@ The ``initial-scroll`` property
 
 ::
 
-    initial-scroll           gboolean              : Read / Write / Construct
+    initial-scroll           bool              : Read / Write / Construct
 
 Whether to scroll to thecurrent selection whenthe selector is firstshown.
 
@@ -5170,7 +5170,7 @@ The ``changed`` signal
 ::
 
   void                user_function                      (HildonTouchSelector *widget,
-                                                          gint                 column,
+                                                          int                 column,
                                                           gpointer             user_data)      : Run Last
 
 The "changed" signal is emitted when the active item on any column is changed. This can be due to the user selecting a different item from the list, or due to a call to `hildon_touch_selector_select_iter() <hildon-touch-selector-select-iter>`_ on one of the columns.
@@ -5200,7 +5200,7 @@ The ``columns-changed`` signal
   void                user_function                      (HildonTouchSelector *selector,
                                                           gpointer             user_data)      : Run Last
 
-The "columns-changed" signal is emitted when the number of columns in the `HildonTouchSelector <HildonTouchSelector>`_ change.
+The "columns-changed" signal is emitted when the number of columns in the :class:`HildonTouchSelector` change.
 
 
 
@@ -5236,7 +5236,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonTouchSelectorColumn implements `GtkCellLayout <GtkCellLayout>`_ .
+HildonTouchSelectorColumn implements :class:`GtkCellLayout` .
 
 .. _HildonTouchSelectorColumn.properties:
 
@@ -5246,7 +5246,7 @@ Properties
 ::
 
   
-    text-column              gint                  : Read / Write
+    text-column              int                  : Read / Write
   
 
 .. _HildonTouchSelectorColumn.description:
@@ -5254,7 +5254,7 @@ Properties
 Description
 ===========
 
-`HildonTouchSelectorColumn <HildonTouchSelectorColumn>`_ object represents a visible column in `HildonTouchSelector <HildonTouchSelector>`_ . It allows to manage the cell renderers related to each column.
+:class:`HildonTouchSelectorColumn` object represents a visible column in :class:`HildonTouchSelector` . It allows to manage the cell renderers related to each column.
 
 
 
@@ -5284,7 +5284,7 @@ The ``text-column`` property
 
 ::
 
-    text-column              gint                  : Read / Write
+    text-column              int                  : Read / Write
 
 A column in the data source model to get the strings from.
 
@@ -5321,7 +5321,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonTouchSelectorEntry implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonTouchSelectorEntry implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonTouchSelectorEntry.properties:
 
@@ -5331,7 +5331,7 @@ Properties
 ::
 
   
-    text-column              gint                  : Read / Write
+    text-column              int                  : Read / Write
   
 
 .. _HildonTouchSelectorEntry.description:
@@ -5339,11 +5339,11 @@ Properties
 Description
 ===========
 
-`HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ is a selector widget with a text entry, similar in behaviour to `GtkComboBoxEntry <GtkComboBoxEntry>`_ , that allows user to select an item from a predefined list or to enter a different one in a `HildonEntry <HildonEntry>`_ . Items can also be searched and selected by typing in the entry. For more specific use cases, the `HildonEntry <HildonEntry>`_ can be accessed directly with `hildon_touch_selector_get_entry() <hildon-touch-selector-get-entry>`_ .
+:class:`HildonTouchSelectorEntry` is a selector widget with a text entry, similar in behaviour to :class:`GtkComboBoxEntry` , that allows user to select an item from a predefined list or to enter a different one in a :class:`HildonEntry` . Items can also be searched and selected by typing in the entry. For more specific use cases, the :class:`HildonEntry` can be accessed directly with `hildon_touch_selector_get_entry() <hildon-touch-selector-get-entry>`_ .
 
-The main difference between the `GtkTreeModel <GtkTreeModel>`_ used by `HildonTouchSelector <HildonTouchSelector>`_ and `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ , is that the latter must always include a text column. You should set it with `hildon_touch_selector_entry_set_text_column() <hildon-touch-selector-entry-set-text-column>`_ .
+The main difference between the :class:`GtkTreeModel` used by :class:`HildonTouchSelector` and :class:`HildonTouchSelectorEntry` , is that the latter must always include a text column. You should set it with `hildon_touch_selector_entry_set_text_column() <hildon-touch-selector-entry-set-text-column>`_ .
 
-Normally, you would use `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ together with a `HildonPickerDialog <HildonPickerDialog>`_ activated from a button. For the most common cases, you should use `HildonPickerButton <HildonPickerButton>`_ .
+Normally, you would use :class:`HildonTouchSelectorEntry` together with a :class:`HildonPickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
 
 If you only need a text only, one column selector, you can create it with `hildon_touch_selector_entry_new_text() <hildon-touch-selector-entry-new-text>`_ and populate it with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
@@ -5372,12 +5372,12 @@ Details
 
   GtkWidget*          hildon_touch_selector_entry_new     (void);
 
-Creates a `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+Creates a :class:`HildonTouchSelectorEntry`
 
 
 
 *Returns*:
-  A new `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+  A new :class:`HildonTouchSelectorEntry`
 
 
 Since 2.2
@@ -5391,12 +5391,12 @@ Since 2.2
   GtkWidget*          hildon_touch_selector_entry_new_text
                                                           (void);
 
-Creates a `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
+Creates a :class:`HildonTouchSelectorEntry` with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
 
 
 *Returns*:
-  A new `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+  A new :class:`HildonTouchSelectorEntry`
 
 
 Since 2.2
@@ -5409,14 +5409,14 @@ Since 2.2
 
   void                hildon_touch_selector_entry_set_text_column
                                                           (HildonTouchSelectorEntry *selector,
-                                                           gint text_column);
+                                                           int text_column);
 
 Sets the model column which touch selector box should use to get strings from to be ``text_column``.
 
 
 
 ``selector``:
-  A `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+  A :class:`HildonTouchSelectorEntry`
 
 
 ``text_column``:
@@ -5431,7 +5431,7 @@ Since 2.2
 
 ::
 
-  gint                hildon_touch_selector_entry_get_text_column
+  int                hildon_touch_selector_entry_get_text_column
                                                           (HildonTouchSelectorEntry *selector);
 
 Gets the text column that ``selector`` is using as a text column.
@@ -5439,7 +5439,7 @@ Gets the text column that ``selector`` is using as a text column.
 
 
 ``selector``:
-  A `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+  A :class:`HildonTouchSelectorEntry`
 
 
 *Returns*:
@@ -5458,18 +5458,18 @@ Since 2.2
                                                           (HildonTouchSelectorEntry *selector,
                                                            HildonGtkInputMode input_mode);
 
-Sets the input mode to be used in the `GtkEntry <GtkEntry>`_ in ``selector``. See `hildon_gtk_entry_set_input_mode() <hildon-gtk-entry-set-input-mode>`_ for details.
+Sets the input mode to be used in the :class:`GtkEntry` in ``selector``. See `hildon_gtk_entry_set_input_mode() <hildon-gtk-entry-set-input-mode>`_ for details.
 
-It must be noted that not all input modes are available for the entry in ``selector``. In particular, ```HILDON_GTK_INPUT_MODE_MULTILINE`` <HILDON-GTK-INPUT-MODE-MULTILINE:CAPS>`_ , ```HILDON_GTK_INPUT_MODE_INVISIBLE`` <HILDON-GTK-INPUT-MODE-INVISIBLE:CAPS>`_ , ```HILDON_GTK_INPUT_MODE_DICTIONARY`` <HILDON-GTK-INPUT-MODE-DICTIONARY:CAPS>`_ are disabled, since these are irrelevant for `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ .
+It must be noted that not all input modes are available for the entry in ``selector``. In particular, ```HILDON_GTK_INPUT_MODE_MULTILINE`` <HILDON-GTK-INPUT-MODE-MULTILINE:CAPS>`_ , ```HILDON_GTK_INPUT_MODE_INVISIBLE`` <HILDON-GTK-INPUT-MODE-INVISIBLE:CAPS>`_ , ```HILDON_GTK_INPUT_MODE_DICTIONARY`` <HILDON-GTK-INPUT-MODE-DICTIONARY:CAPS>`_ are disabled, since these are irrelevant for :class:`HildonTouchSelectorEntry` .
 
 
 
 ``selector``:
-  a `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+  a :class:`HildonTouchSelectorEntry`
 
 
 ``input_mode``:
-  `HildonGtkInputMode <HildonGtkInputMode>`_ mask
+  :class:`HildonGtkInputMode` mask
 
 
 Since 2.2
@@ -5483,16 +5483,16 @@ Since 2.2
   HildonGtkInputMode  hildon_touch_selector_entry_get_input_mode
                                                           (HildonTouchSelectorEntry *selector);
 
-Gets the input mode used in the `GtkEntry <GtkEntry>`_ in ``selector``. See `hildon_gtk_entry_get_input_mode() <hildon-gtk-entry-get-input-mode>`_ for details.
+Gets the input mode used in the :class:`GtkEntry` in ``selector``. See `hildon_gtk_entry_get_input_mode() <hildon-gtk-entry-get-input-mode>`_ for details.
 
 
 
 ``selector``:
-  a `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_
+  a :class:`HildonTouchSelectorEntry`
 
 
 *Returns*:
-  a mask of `HildonGtkInputMode <HildonGtkInputMode>`_
+  a mask of :class:`HildonGtkInputMode`
 
 
 Since 2.2
@@ -5506,16 +5506,16 @@ Since 2.2
   HildonEntry*        hildon_touch_selector_entry_get_entry
                                                           (HildonTouchSelectorEntry *selector);
 
-Provides access to the `HildonEntry <HildonEntry>`_ in ``selector``. Use to programmatically change the contents in entry or modify its behavior.
+Provides access to the :class:`HildonEntry` in ``selector``. Use to programmatically change the contents in entry or modify its behavior.
 
 
 
 ``selector``:
-  a `HildonTouchSelectorEntry <HildonTouchSelectorEntry>`_ .
+  a :class:`HildonTouchSelectorEntry` .
 
 
 *Returns*:
-  a `HildonEntry <HildonEntry>`_ .
+  a :class:`HildonEntry` .
 
 
 Since 2.2
@@ -5531,7 +5531,7 @@ The ``text-column`` property
 
 ::
 
-    text-column              gint                  : Read / Write
+    text-column              int                  : Read / Write
 
 
 
@@ -5548,7 +5548,7 @@ Since 2.2
 See Also
 ========
 
-`HildonTouchSelector <HildonTouchSelector>`_ `HildonPickerButton <HildonPickerButton>`_ .. _HildonDateSelector:
+:class:`HildonTouchSelector` :class:`HildonPickerButton` .. _HildonDateSelector:
 
 HildonDateSelector
 ******************
@@ -5577,7 +5577,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonDateSelector implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonDateSelector implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonDateSelector.properties:
 
@@ -5587,8 +5587,8 @@ Properties
 ::
 
   
-    max-year                 gint                  : Read / Write / Construct Only
-    min-year                 gint                  : Read / Write / Construct Only
+    max-year                 int                  : Read / Write / Construct Only
+    min-year                 int                  : Read / Write / Construct Only
   
 
 .. _HildonDateSelector.description:
@@ -5596,7 +5596,7 @@ Properties
 Description
 ===========
 
-`HildonDateSelector <HildonDateSelector>`_ is a date widget with multiple columns. Users can choose a date by selecting values in the day, month and year columns.
+:class:`HildonDateSelector` is a date widget with multiple columns. Users can choose a date by selecting values in the day, month and year columns.
 
 The currently selected month and year can be altered with `hildon_date_selector_select_month() <hildon-date-selector-select-month>`_ . The day can be selected from the active month using `hildon_date_selector_select_day() <hildon-date-selector-select-day>`_ .
 
@@ -5625,12 +5625,12 @@ Details
 
   GtkWidget*          hildon_date_selector_new            (void);
 
-Creates a new `HildonDateSelector <HildonDateSelector>`_
+Creates a new :class:`HildonDateSelector`
 
 
 
 *Returns*:
-  a new `HildonDateSelector <HildonDateSelector>`_
+  a new :class:`HildonDateSelector`
 
 
 Since 2.2
@@ -5642,10 +5642,10 @@ Since 2.2
 ::
 
   GtkWidget*          hildon_date_selector_new_with_year_range
-                                                          (gint min_year,
-                                                           gint max_year);
+                                                          (int min_year,
+                                                           int max_year);
 
-Creates a new `HildonDateSelector <HildonDateSelector>`_ with a specific year range. If ``min_year`` or ``max_year`` are set to -1, then the default upper or lower bound will be used, respectively.
+Creates a new :class:`HildonDateSelector` with a specific year range. If ``min_year`` or ``max_year`` are set to -1, then the default upper or lower bound will be used, respectively.
 
 
 
@@ -5658,7 +5658,7 @@ Creates a new `HildonDateSelector <HildonDateSelector>`_ with a specific year ra
 
 
 *Returns*:
-  a new `HildonDateSelector <HildonDateSelector>`_
+  a new :class:`HildonDateSelector`
 
 
 Since 2.2
@@ -5669,18 +5669,18 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_date_selector_select_month   (HildonDateSelector *selector,
-                                                           guint month,
-                                                           guint year);
+  bool            hildon_date_selector_select_month   (HildonDateSelector *selector,
+                                                           int month,
+                                                           int year);
 
 Modify the current month and year on the current active date
 
-Utility function to keep this API similar to the previously existing `HildonCalendar <HildonCalendar>`_ widget.
+Utility function to keep this API similar to the previously existing :class:`HildonCalendar` widget.
 
 
 
 ``selector``:
-  the `HildonDateSelector <HildonDateSelector>`_
+  the :class:`HildonDateSelector`
 
 
 ``month``:
@@ -5704,16 +5704,16 @@ Since 2.2
 ::
 
   void                hildon_date_selector_select_day     (HildonDateSelector *selector,
-                                                           guint day);
+                                                           int day);
 
 Modify the current day on the current active date
 
-Utility function to keep this API similar to the previously existing `HildonCalendar <HildonCalendar>`_ widget.
+Utility function to keep this API similar to the previously existing :class:`HildonCalendar` widget.
 
 
 
 ``selector``:
-  the `HildonDateSelector <HildonDateSelector>`_
+  the :class:`HildonDateSelector`
 
 
 ``day``:
@@ -5728,18 +5728,18 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_date_selector_select_current_date
+  bool            hildon_date_selector_select_current_date
                                                           (HildonDateSelector *selector,
-                                                           guint year,
-                                                           guint month,
-                                                           guint day);
+                                                           int year,
+                                                           int month,
+                                                           int day);
 
-Sets the current active date on the `HildonDateSelector <HildonDateSelector>`_ widget
+Sets the current active date on the :class:`HildonDateSelector` widget
 
 
 
 ``selector``:
-  the `HildonDateSelector <HildonDateSelector>`_
+  the :class:`HildonDateSelector`
 
 
 ``year``:
@@ -5767,16 +5767,16 @@ Since 2.2
 ::
 
   void                hildon_date_selector_get_date       (HildonDateSelector *selector,
-                                                           guint *year,
-                                                           guint *month,
-                                                           guint *day);
+                                                           int *year,
+                                                           int *month,
+                                                           int *day);
 
-Gets the current active date on the `HildonDateSelector <HildonDateSelector>`_ widget
+Gets the current active date on the :class:`HildonDateSelector` widget
 
 
 
 ``selector``:
-  the `HildonDateSelector <HildonDateSelector>`_
+  the :class:`HildonDateSelector`
 
 
 ``year``:
@@ -5804,7 +5804,7 @@ The ``max-year`` property
 
 ::
 
-    max-year                 gint                  : Read / Write / Construct Only
+    max-year                 int                  : Read / Write / Construct Only
 
 The maximum available year in the selector.
 
@@ -5818,7 +5818,7 @@ The ``min-year`` property
 
 ::
 
-    min-year                 gint                  : Read / Write / Construct Only
+    min-year                 int                  : Read / Write / Construct Only
 
 The minimum available year in the selector.
 
@@ -5855,7 +5855,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonTimeSelector implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonTimeSelector implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonTimeSelector.properties:
 
@@ -5865,7 +5865,7 @@ Properties
 ::
 
   
-    minutes-step             guint                 : Read / Write / Construct Only
+    minutes-step             int                 : Read / Write / Construct Only
   
 
 .. _HildonTimeSelector.description:
@@ -5873,7 +5873,7 @@ Properties
 Description
 ===========
 
-`HildonTimeSelector <HildonTimeSelector>`_ allows users to choose a time by selecting hour and minute. It also allows choosing between AM or PM format.
+:class:`HildonTimeSelector` allows users to choose a time by selecting hour and minute. It also allows choosing between AM or PM format.
 
 The currently selected time can be altered with `hildon_time_selector_set_time() <hildon-time-selector-set-time>`_ , and retrieved using `hildon_time_selector_get_time() <hildon-time-selector-get-time>`_ .
 
@@ -5904,12 +5904,12 @@ Details
 
   GtkWidget*          hildon_time_selector_new            (void);
 
-Creates a new `HildonTimeSelector <HildonTimeSelector>`_
+Creates a new :class:`HildonTimeSelector`
 
 
 
 *Returns*:
-  a new `HildonTimeSelector <HildonTimeSelector>`_
+  a new :class:`HildonTimeSelector`
 
 
 Since 2.2
@@ -5920,9 +5920,9 @@ Since 2.2
 
 ::
 
-  GtkWidget*          hildon_time_selector_new_step       (guint minutes_step);
+  GtkWidget*          hildon_time_selector_new_step       (int minutes_step);
 
-Creates a new `HildonTimeSelector <HildonTimeSelector>`_ ``minutes_step``: step between the minutes we are going to show in the selector
+Creates a new :class:`HildonTimeSelector` ``minutes_step``: step between the minutes we are going to show in the selector
 
 
 
@@ -5931,7 +5931,7 @@ Creates a new `HildonTimeSelector <HildonTimeSelector>`_ ``minutes_step``: step 
 
 
 *Returns*:
-  a new `HildonTimeSelector <HildonTimeSelector>`_
+  a new :class:`HildonTimeSelector`
 
 
 Since 2.2
@@ -5942,18 +5942,18 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_time_selector_set_time       (HildonTimeSelector *selector,
-                                                           guint hours,
-                                                           guint minutes);
+  bool            hildon_time_selector_set_time       (HildonTimeSelector *selector,
+                                                           int hours,
+                                                           int minutes);
 
-Sets the current active hour on the `HildonTimeSelector <HildonTimeSelector>`_ widget
+Sets the current active hour on the :class:`HildonTimeSelector` widget
 
 The format of the hours accepted is always 24h format, with a range (0-23):(0-59).
 
 
 
 ``selector``:
-  the `HildonTimeSelector <HildonTimeSelector>`_
+  the :class:`HildonTimeSelector`
 
 
 ``hours``:
@@ -5977,17 +5977,17 @@ Since 2.2
 ::
 
   void                hildon_time_selector_get_time       (HildonTimeSelector *selector,
-                                                           guint *hours,
-                                                           guint *minutes);
+                                                           int *hours,
+                                                           int *minutes);
 
-Gets the current active hour on the `HildonTimeSelector <HildonTimeSelector>`_ widget. Both ``year``\ and ``minutes`` can be NULL.
+Gets the current active hour on the :class:`HildonTimeSelector` widget. Both ``year``\ and ``minutes`` can be NULL.
 
 This method returns the date always in 24h format, with a range (0-23):(0-59)
 
 
 
 ``selector``:
-  the `HildonTimeSelector <HildonTimeSelector>`_
+  the :class:`HildonTimeSelector`
 
 
 ``hours``:
@@ -6011,7 +6011,7 @@ The ``minutes-step`` property
 
 ::
 
-    minutes-step             guint                 : Read / Write / Construct Only
+    minutes-step             int                 : Read / Write / Construct Only
 
 Step between the minutes in the list of options of the widget .
 
@@ -6046,7 +6046,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonPannableArea implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonPannableArea implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonPannableArea.properties:
 
@@ -6056,30 +6056,30 @@ Properties
 ::
 
   
-    bounce-steps             guint                 : Read / Write / Construct
+    bounce-steps             int                 : Read / Write / Construct
     deceleration             gdouble               : Read / Write / Construct
-    direction-error-margin   guint                 : Read / Write / Construct
+    direction-error-margin   int                 : Read / Write / Construct
     drag-inertia             gdouble               : Read / Write / Construct
-    enabled                  gboolean              : Read / Write / Construct
-    force                    guint                 : Read / Write / Construct
+    enabled                  bool              : Read / Write / Construct
+    force                    int                 : Read / Write / Construct
     hadjustment              GtkAdjustment*        : Read
-    hovershoot-max           gint                  : Read / Write / Construct
+    hovershoot-max           int                  : Read / Write / Construct
     hscrollbar-policy        GtkPolicyType         : Read / Write / Construct
-    initial-hint             gboolean              : Read / Write / Construct
-    low-friction-mode        gboolean              : Read / Write / Construct
+    initial-hint             bool              : Read / Write / Construct
+    low-friction-mode        bool              : Read / Write / Construct
     mode                     HildonPannableAreaMode  : Read / Write / Construct
     mov-mode                 HildonMovementMode    : Read / Write / Construct
-    panning-threshold        guint                 : Read / Write / Construct
+    panning-threshold        int                 : Read / Write / Construct
     scroll-time              gdouble               : Read / Write / Construct
-    scrollbar-fade-delay     guint                 : Read / Write / Construct
+    scrollbar-fade-delay     int                 : Read / Write / Construct
     size-request-policy      HildonSizeRequestPolicy  : Read / Write / Construct
-    sps                      guint                 : Read / Write / Construct
+    sps                      int                 : Read / Write / Construct
     vadjustment              GtkAdjustment*        : Read
     velocity-fast-factor     gdouble               : Read / Write / Construct
     velocity-max             gdouble               : Read / Write / Construct
     velocity-min             gdouble               : Read / Write / Construct
     velocity-overshooting-max gdouble               : Read / Write / Construct
-    vovershoot-max           gint                  : Read / Write / Construct
+    vovershoot-max           int                  : Read / Write / Construct
     vscrollbar-policy        GtkPolicyType         : Read / Write / Construct
   
 
@@ -6091,7 +6091,7 @@ Style Properties
 ::
 
   
-    indicator-width          guint                 : Read / Write
+    indicator-width          int                 : Read / Write
   
 
 .. _HildonPannableArea.signals:
@@ -6111,7 +6111,7 @@ Signals
 Description
 ===========
 
-`HildonPannableArea <HildonPannableArea>`_ is a container widget that can be "panned" (scrolled) up and down using the touchscreen with fingers. The widget has no scrollbars, but it rather shows small scroll indicators to give an idea of the part of the content that is visible at a time. The scroll indicators appear when a dragging motion is started on the pannable area.
+:class:`HildonPannableArea` is a container widget that can be "panned" (scrolled) up and down using the touchscreen with fingers. The widget has no scrollbars, but it rather shows small scroll indicators to give an idea of the part of the content that is visible at a time. The scroll indicators appear when a dragging motion is started on the pannable area.
 
 The scrolling is "kinetic", meaning the motion can be "flicked" and it will continue from the initial motion by gradually slowing down to an eventual stop. The motion can also be stopped immediately by pressing the touchscreen over the pannable area.
 
@@ -6235,7 +6235,7 @@ Create a new pannable area widget
 
 
 *Returns*:
-  the newly created `HildonPannableArea <HildonPannableArea>`_
+  the newly created :class:`HildonPannableArea`
 
 
 Since 2.2
@@ -6246,19 +6246,19 @@ Since 2.2
 
 ::
 
-  GtkWidget*          hildon_pannable_area_new_full       (gint mode,
-                                                           gboolean enabled,
+  GtkWidget*          hildon_pannable_area_new_full       (int mode,
+                                                           bool enabled,
                                                            gdouble vel_min,
                                                            gdouble vel_max,
                                                            gdouble decel,
-                                                           guint sps);
+                                                           int sps);
 
-Create a new `HildonPannableArea <HildonPannableArea>`_ widget and set various properties
+Create a new :class:`HildonPannableArea` widget and set various properties
 
 
 
 ``mode``:
-  `HildonPannableAreaMode <HildonPannableAreaMode>`_
+  :class:`HildonPannableAreaMode`
 
 
 ``enabled``:
@@ -6282,7 +6282,7 @@ Create a new `HildonPannableArea <HildonPannableArea>`_ widget and set various p
 
 
 *Returns*:
-  the newly create `HildonPannableArea <HildonPannableArea>`_
+  the newly create :class:`HildonPannableArea`
 
 
 Since 2.2
@@ -6297,12 +6297,12 @@ Since 2.2
                                                           (HildonPannableArea *area,
                                                            GtkWidget *child);
 
-Convenience function used to add a child to a `GtkViewport <GtkViewport>`_ , and add the viewport to the scrolled window.
+Convenience function used to add a child to a :class:`GtkViewport` , and add the viewport to the scrolled window.
 
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_
+  A :class:`HildonPannableArea`
 
 
 ``child``:
@@ -6318,12 +6318,12 @@ Since 2.2
 ::
 
   void                hildon_pannable_area_scroll_to      (HildonPannableArea *area,
-                                                           const gint x,
-                                                           const gint y);
+                                                           const int x,
+                                                           const int y);
 
 Smoothly scrolls ``area`` to ensure that (``x``, ``y``) is a visible point on the widget. To move in only one coordinate, you must set the other one to -1. Notice that, in ```HILDON_PANNABLE_AREA_MODE_PUSH`` <HILDON-PANNABLE-AREA-MODE-PUSH:CAPS>`_ mode, this function works just like `hildon_pannable_area_jump_to() <hildon-pannable-area-jump-to>`_ .
 
-This function is useful if you need to present the user with a particular element inside a scrollable widget, like `GtkTreeView <GtkTreeView>`_ . For instance, the following example shows how to scroll inside a `GtkTreeView <GtkTreeView>`_ to make visible an item, indicated by the `GtkTreeIter <GtkTreeIter>`_ ``iter``.
+This function is useful if you need to present the user with a particular element inside a scrollable widget, like :class:`GtkTreeView` . For instance, the following example shows how to scroll inside a :class:`GtkTreeView` to make visible an item, indicated by the :class:`GtkTreeIter` ``iter``.
 
 :: GtkTreePath *path; GdkRectangle *rect; path = gtk_tree_model_get_path (model, iter); gtk_tree_view_get_background_area (GTK_TREE_VIEW (treeview), path, NULL, rect); gtk_tree_view_convert_bin_window_to_tree_coords (GTK_TREE_VIEW (treeview), 0, rect.y, NULL, y); hildon_pannable_area_scroll_to (panarea, -1, y); gtk_tree_path_free (path);
 
@@ -6334,7 +6334,7 @@ There is a precondition to this function: the widget must be already realized. C
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 ``x``:
@@ -6354,17 +6354,17 @@ Since 2.2
 ::
 
   void                hildon_pannable_area_jump_to        (HildonPannableArea *area,
-                                                           const gint x,
-                                                           const gint y);
+                                                           const int x,
+                                                           const int y);
 
-Jumps the position of ``area`` to ensure that (``x``, ``y``) is a visible point in the widget. In order to move in only one coordinate, you must set the other one to -1. See `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ function for an example of how to calculate the position of children in scrollable widgets like `GtkTreeview <GtkTreeview>`_ .
+Jumps the position of ``area`` to ensure that (``x``, ``y``) is a visible point in the widget. In order to move in only one coordinate, you must set the other one to -1. See `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ function for an example of how to calculate the position of children in scrollable widgets like :class:`GtkTreeview` .
 
 There is a precondition to this function: the widget must be already realized. Check the `hildon_pannable_area_jump_to_child() <hildon-pannable-area-jump-to-child>`_ for more tips regarding how to call this function during initialization.
 
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 ``x``:
@@ -6387,18 +6387,18 @@ Since 2.2
                                                           (HildonPannableArea *area,
                                                            GtkWidget *child);
 
-Smoothly scrolls until ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you need to scroll inside a scrollable widget, e.g., `GtkTreeview <GtkTreeview>`_ , see `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ .
+Smoothly scrolls until ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you need to scroll inside a scrollable widget, e.g., :class:`GtkTreeview` , see `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ .
 
 There is a precondition to this function: the widget must be already realized. Check the `hildon_pannable_area_jump_to_child() <hildon-pannable-area-jump-to-child>`_ for more tips regarding how to call this function during initialization.
 
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 ``child``:
-  A `GtkWidget <GtkWidget>`_ , descendant of ``area``.
+  A :class:`GtkWidget` , descendant of ``area``.
 
 
 Since 2.2
@@ -6412,18 +6412,18 @@ Since 2.2
   void                hildon_pannable_area_jump_to_child  (HildonPannableArea *area,
                                                            GtkWidget *child);
 
-Jumps to make sure ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you want to move inside a scrollable widget, like, `GtkTreeview <GtkTreeview>`_ , see `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ .
+Jumps to make sure ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you want to move inside a scrollable widget, like, :class:`GtkTreeview` , see `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ .
 
 There is a precondition to this function: the widget must be already realized. You can control if the widget is ready with the GTK_WIDGET_REALIZED macro. If you want to call this function during the initialization process of the widget do it inside a callback to the ::realize signal, using `g_signal_connect_after() <g-signal-connect-after>`_ function.
 
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 ``child``:
-  A `GtkWidget <GtkWidget>`_ , descendant of ``area``.
+  A :class:`GtkWidget` , descendant of ``area``.
 
 
 Since 2.2
@@ -6443,7 +6443,7 @@ Get the widget at the point (x, y) inside the pannable area. In case no widget f
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 ``x``:
@@ -6455,7 +6455,7 @@ Get the widget at the point (x, y) inside the pannable area. In case no widget f
 
 
 *Returns*:
-  the `GtkWidget <GtkWidget>`_ if we find a widget, NULL in any other case
+  the :class:`GtkWidget` if we find a widget, NULL in any other case
 
 
 Since 2.2
@@ -6474,11 +6474,11 @@ This function returns the current size request policy of the widget. That policy
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 *Returns*:
-  the policy is currently being used in the widget `HildonSizeRequestPolicy <HildonSizeRequestPolicy>`_ .
+  the policy is currently being used in the widget :class:`HildonSizeRequestPolicy` .
 
 
 Since 2.2
@@ -6498,11 +6498,11 @@ This function sets the pannable area size request policy. That policy controls t
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 ``size_request_policy``:
-  One of the allowed `HildonSizeRequestPolicy <HildonSizeRequestPolicy>`_
+  One of the allowed :class:`HildonSizeRequestPolicy`
 
 
 Since 2.2
@@ -6521,11 +6521,11 @@ Returns the horizontal adjustment. This adjustment is the internal widget adjust
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 *Returns*:
-  The horizontal `GtkAdjustment <GtkAdjustment>`_
+  The horizontal :class:`GtkAdjustment`
 
 
 Since 2.2
@@ -6544,11 +6544,11 @@ Returns the vertical adjustment. This adjustment is the internal widget adjustme
 
 
 ``area``:
-  A `HildonPannableArea <HildonPannableArea>`_ .
+  A :class:`HildonPannableArea` .
 
 
 *Returns*:
-  The vertical `GtkAdjustment <GtkAdjustment>`_
+  The vertical :class:`GtkAdjustment`
 
 
 Since 2.2
@@ -6564,7 +6564,7 @@ The ``bounce-steps`` property
 
 ::
 
-    bounce-steps             guint                 : Read / Write / Construct
+    bounce-steps             int                 : Read / Write / Construct
 
 Number of steps that is going to be used to bounce when hitting theedge, the rubberband effect depends on it.
 
@@ -6590,7 +6590,7 @@ The ``direction-error-margin`` property
 
 ::
 
-    direction-error-margin   guint                 : Read / Write / Construct
+    direction-error-margin   int                 : Read / Write / Construct
 
 After detecting the direction of the movement (horizontal orvertical), we can add this margin of error to allow the movement inthe other direction even apparently it is not.
 
@@ -6616,7 +6616,7 @@ The ``enabled`` property
 
 ::
 
-    enabled                  gboolean              : Read / Write / Construct
+    enabled                  bool              : Read / Write / Construct
 
 Enable or disable finger-scroll.
 
@@ -6628,7 +6628,7 @@ The ``force`` property
 
 ::
 
-    force                    guint                 : Read / Write / Construct
+    force                    int                 : Read / Write / Construct
 
 Force applied to the movement, multiplies the calculated speed of theuser movement the cursor in the screen.
 
@@ -6650,7 +6650,7 @@ The ``hovershoot-max`` property
 
 ::
 
-    hovershoot-max           gint                  : Read / Write / Construct
+    hovershoot-max           int                  : Read / Write / Construct
 
 Space we allow the widget to pass over its horizontal limits whenhitting the edges, set 0 in order to deactivate overshooting.
 
@@ -6676,7 +6676,7 @@ The ``initial-hint`` property
 
 ::
 
-    initial-hint             gboolean              : Read / Write / Construct
+    initial-hint             bool              : Read / Write / Construct
 
 Whether to hint the user about the pannability of the container.
 
@@ -6688,7 +6688,7 @@ The ``low-friction-mode`` property
 
 ::
 
-    low-friction-mode        gboolean              : Read / Write / Construct
+    low-friction-mode        bool              : Read / Write / Construct
 
 Avoid decelerating the panning movement, like no friction, the widgetwill stop in the edges or if the user clicks.
 
@@ -6724,7 +6724,7 @@ The ``panning-threshold`` property
 
 ::
 
-    panning-threshold        guint                 : Read / Write / Construct
+    panning-threshold        int                 : Read / Write / Construct
 
 Amount of pixels to consider a motion event an scroll, if it is lessit is a click detected incorrectly by the touch screen.
 
@@ -6750,7 +6750,7 @@ The ``scrollbar-fade-delay`` property
 
 ::
 
-    scrollbar-fade-delay     guint                 : Read / Write / Construct
+    scrollbar-fade-delay     int                 : Read / Write / Construct
 
 Time the scrollbar is going to be visible if the widget is not inaction in miliseconds.
 
@@ -6774,7 +6774,7 @@ The ``sps`` property
 
 ::
 
-    sps                      guint                 : Read / Write / Construct
+    sps                      int                 : Read / Write / Construct
 
 Amount of scroll events to generate per second.
 
@@ -6852,7 +6852,7 @@ The ``vovershoot-max`` property
 
 ::
 
-    vovershoot-max           gint                  : Read / Write / Construct
+    vovershoot-max           int                  : Read / Write / Construct
 
 Space we allow the widget to pass over its vertical limits whenhitting the edges, set 0 in order to deactivate overshooting.
 
@@ -6883,7 +6883,7 @@ The ``indicator-width`` style property
 
 ::
 
-    indicator-width          guint                 : Read / Write
+    indicator-width          int                 : Read / Write
 
 Pixel width used to draw the scroll indicators.
 
@@ -6901,7 +6901,7 @@ The ``horizontal-movement`` signal
 ::
 
   void                user_function                      (HildonPannableArea *hildonpannable,
-                                                          gint                direction,
+                                                          int                direction,
                                                           gdouble             initial_x,
                                                           gdouble             initial_y,
                                                           gpointer            user_data)           : Run Last / Action
@@ -6939,7 +6939,7 @@ The ``vertical-movement`` signal
 ::
 
   void                user_function                      (HildonPannableArea *hildonpannable,
-                                                          gint                direction,
+                                                          int                direction,
                                                           gdouble             initial_x,
                                                           gdouble             initial_y,
                                                           gpointer            user_data)           : Run Last / Action
@@ -6975,7 +6975,7 @@ Since 2.2
 See Also
 ========
 
-`GtkScrolledWindow <GtkScrolledWindow>`_ .. _HildonEntry:
+:class:`GtkScrolledWindow` .. _HildonEntry:
 
 HildonEntry
 ***********
@@ -7001,18 +7001,18 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonEntry implements `AtkImplementorIface <AtkImplementorIface>`_ , `GtkBuildable <GtkBuildable>`_ , `GtkEditable <GtkEditable>`_ and `GtkCellEditable <GtkCellEditable>`_ .
+HildonEntry implements :class:`AtkImplementorIface` , :class:`GtkBuildable` , :class:`GtkEditable` and :class:`GtkCellEditable` .
 
 .. _HildonEntry.description:
 
 Description
 ===========
 
-The `HildonEntry <HildonEntry>`_ is a GTK widget which represents a text entry. It is derived from the `GtkEntry <GtkEntry>`_ widget and provides additional commodities specific to the Hildon framework.
+The :class:`HildonEntry` is a GTK widget which represents a text entry. It is derived from the :class:`GtkEntry` widget and provides additional commodities specific to the Hildon framework.
 
-Besides all the features inherited from `GtkEntry <GtkEntry>`_ , a `HildonEntry <HildonEntry>`_ can also have a placeholder text. This text will be shown if the entry is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_entry_get_text() <hildon-entry-get-text>`_ will never return the placeholder text, not even when it's being displayed.
+Besides all the features inherited from :class:`GtkEntry` , a :class:`HildonEntry` can also have a placeholder text. This text will be shown if the entry is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_entry_get_text() <hildon-entry-get-text>`_ will never return the placeholder text, not even when it's being displayed.
 
-Although `HildonEntry <HildonEntry>`_ is derived from `GtkEntry <GtkEntry>`_ , `gtk_entry_get_text() <gtk-entry-get-text>`_ and `gtk_entry_set_text() <gtk-entry-set-text>`_ must never be used to get/set the text in this widget. `hildon_entry_get_text() <hildon-entry-get-text>`_ and `hildon_entry_set_text() <hildon-entry-set-text>`_ must be used instead.
+Although :class:`HildonEntry` is derived from :class:`GtkEntry` , `gtk_entry_get_text() <gtk-entry-get-text>`_ and `gtk_entry_set_text() <gtk-entry-set-text>`_ must never be used to get/set the text in this widget. `hildon_entry_get_text() <hildon-entry-get-text>`_ and `hildon_entry_set_text() <hildon-entry-set-text>`_ must be used instead.
 
 Creating a HildonEntry with a placeholder ========================================= :: GtkWidget * create_entry (void) { GtkWidget *entry; entry = hildon_entry_new (HILDON_SIZE_AUTO); hildon_entry_set_placeholder (HILDON_ENTRY (entry), "First name"); return entry; }
 
@@ -7050,7 +7050,7 @@ Creates a new entry.
 
 
 *Returns*:
-  a new `HildonEntry <HildonEntry>`_
+  a new :class:`HildonEntry`
 
 
 Since 2.2
@@ -7066,12 +7066,12 @@ Since 2.2
 
 Sets the text in ``entry`` to ``text``, replacing its current contents.
 
-Note that you must never use `gtk_entry_set_text() <gtk-entry-set-text>`_ to set the text of a `HildonEntry <HildonEntry>`_ .
+Note that you must never use `gtk_entry_set_text() <gtk-entry-set-text>`_ to set the text of a :class:`HildonEntry` .
 
 
 
 ``entry``:
-  a `HildonEntry <HildonEntry>`_
+  a :class:`HildonEntry`
 
 
 ``text``:
@@ -7086,18 +7086,18 @@ Since 2.2
 
 ::
 
-  const gchar*        hildon_entry_get_text               (HildonEntry *entry);
+  const str        hildon_entry_get_text               (HildonEntry *entry);
 
 Gets the current text in ``entry``.
 
-Note that you must never use `gtk_entry_get_text() <gtk-entry-get-text>`_ to get the text from a `HildonEntry <HildonEntry>`_ .
+Note that you must never use `gtk_entry_get_text() <gtk-entry-get-text>`_ to get the text from a :class:`HildonEntry` .
 
 Also note that placeholder text (set using `hildon_entry_set_placeholder() <hildon-entry-set-placeholder>`_ ) is never returned. Only text set by `hildon_entry_set_text() <hildon-entry-set-text>`_ or typed by the user is considered.
 
 
 
 ``entry``:
-  a `HildonEntry <HildonEntry>`_
+  a :class:`HildonEntry`
 
 
 *Returns*:
@@ -7120,7 +7120,7 @@ Sets the placeholder text in ``entry`` to ``text``.
 
 
 ``entry``:
-  a `HildonEntry <HildonEntry>`_
+  a :class:`HildonEntry`
 
 
 ``text``:
@@ -7156,18 +7156,18 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonTextView implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonTextView implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonTextView.description:
 
 Description
 ===========
 
-The `HildonTextView <HildonTextView>`_ is a GTK widget which represents a text view. It is derived from the `GtkTextView <GtkTextView>`_ widget and provides additional commodities specific to the Hildon framework.
+The :class:`HildonTextView` is a GTK widget which represents a text view. It is derived from the :class:`GtkTextView` widget and provides additional commodities specific to the Hildon framework.
 
-Besides all the features inherited from `GtkTextView <GtkTextView>`_ , a `HildonTextView <HildonTextView>`_ can also have a placeholder text. This text will be shown if the text view is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ will never return the placeholder text, not even when it's being displayed.
+Besides all the features inherited from :class:`GtkTextView` , a :class:`HildonTextView` can also have a placeholder text. This text will be shown if the text view is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ will never return the placeholder text, not even when it's being displayed.
 
-Although `HildonTextView <HildonTextView>`_ is derived from `GtkTextView <GtkTextView>`_ , `gtk_text_view_get_buffer() <gtk-text-view-get-buffer>`_ and `gtk_text_view_set_buffer() <gtk-text-view-set-buffer>`_ must never be used to get/set the buffer in this widget. `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ and `hildon_text_view_set_buffer() <hildon-text-view-set-buffer>`_ must be used instead.
+Although :class:`HildonTextView` is derived from :class:`GtkTextView` , `gtk_text_view_get_buffer() <gtk-text-view-get-buffer>`_ and `gtk_text_view_set_buffer() <gtk-text-view-set-buffer>`_ must never be used to get/set the buffer in this widget. `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ and `hildon_text_view_set_buffer() <hildon-text-view-set-buffer>`_ must be used instead.
 
 Creating a HildonTextView with a placeholder ============================================ :: GtkWidget * create_text_view (void) { GtkWidget *text_view; text_view = hildon_text_view_new (); hildon_text_view_set_placeholder (HILDON_TEXT_VIEW (text_view), "Type some text here"); return text_view; }
 
@@ -7201,7 +7201,7 @@ Creates a new text view.
 
 
 *Returns*:
-  a new `HildonTextView <HildonTextView>`_
+  a new :class:`HildonTextView`
 
 
 Since 2.2
@@ -7217,16 +7217,16 @@ Since 2.2
 
 Sets ``buffer`` as the buffer being displayed by ``text_view``. The previous buffer displayed by the text view is unreferenced, and a reference is added to ``buffer``. If you owned a reference to ``buffer``\ before passing it to this function, you must remove that reference yourself
 
-Note that you must never use `gtk_text_view_set_buffer() <gtk-text-view-set-buffer>`_ to set the buffer of a `HildonTextView <HildonTextView>`_ .
+Note that you must never use `gtk_text_view_set_buffer() <gtk-text-view-set-buffer>`_ to set the buffer of a :class:`HildonTextView` .
 
 
 
 ``text_view``:
-  a `HildonTextView <HildonTextView>`_
+  a :class:`HildonTextView`
 
 
 ``buffer``:
-  a `GtkTextBuffer <GtkTextBuffer>`_
+  a :class:`GtkTextBuffer`
 
 
 Since 2.2
@@ -7241,18 +7241,18 @@ Since 2.2
 
 Returns the text buffer in ``text_view``. The reference count is not incremented; the caller of this function won't own a new reference.
 
-Note that you must never use `gtk_text_view_get_buffer() <gtk-text-view-get-buffer>`_ to get the buffer from a `HildonTextView <HildonTextView>`_ .
+Note that you must never use `gtk_text_view_get_buffer() <gtk-text-view-get-buffer>`_ to get the buffer from a :class:`HildonTextView` .
 
 Also note that placeholder text (set using `hildon_text_view_set_placeholder() <hildon-text-view-set-placeholder>`_ ) is never contained in this buffer.
 
 
 
 ``text_view``:
-  a `HildonTextView <HildonTextView>`_
+  a :class:`HildonTextView`
 
 
 *Returns*:
-  a `GtkTextBuffer <GtkTextBuffer>`_
+  a :class:`GtkTextBuffer`
 
 
 Since 2.2
@@ -7271,7 +7271,7 @@ Sets the placeholder text in ``text_view`` to ``text``.
 
 
 ``text_view``:
-  a `HildonTextView <HildonTextView>`_
+  a :class:`HildonTextView`
 
 
 ``text``:
@@ -7308,7 +7308,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonAppMenu implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonAppMenu implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonAppMenu.style-properties:
 
@@ -7318,11 +7318,11 @@ Style Properties
 ::
 
   
-    external-border          guint                 : Read
-    filter-vertical-spacing  guint                 : Read
-    horizontal-spacing       guint                 : Read
-    inner-border             guint                 : Read
-    vertical-spacing         guint                 : Read
+    external-border          int                 : Read
+    filter-vertical-spacing  int                 : Read
+    horizontal-spacing       int                 : Read
+    inner-border             int                 : Read
+    vertical-spacing         int                 : Read
   
 
 .. _HildonAppMenu.description:
@@ -7330,17 +7330,17 @@ Style Properties
 Description
 ===========
 
-The `HildonAppMenu <HildonAppMenu>`_ is a GTK widget which represents an application menu in the Hildon framework.
+The :class:`HildonAppMenu` is a GTK widget which represents an application menu in the Hildon framework.
 
-This menu opens from the top of the screen and contains a number of entries (`GtkButton <GtkButton>`_ ) organized in one or two columns, depending on the size of the screen (the number of columns changes automatically if the screen is resized). Entries are added left to right and top to bottom.
+This menu opens from the top of the screen and contains a number of entries (:class:`GtkButton` ) organized in one or two columns, depending on the size of the screen (the number of columns changes automatically if the screen is resized). Entries are added left to right and top to bottom.
 
-Besides that, the `HildonAppMenu <HildonAppMenu>`_ can contain a group of filter buttons (`GtkToggleButton <GtkToggleButton>`_ or `GtkRadioButton <GtkRadioButton>`_ ).
+Besides that, the :class:`HildonAppMenu` can contain a group of filter buttons (:class:`GtkToggleButton` or :class:`GtkRadioButton` ).
 
-To use a `HildonAppMenu <HildonAppMenu>`_ , add it to a `HildonWindow <HildonWindow>`_ using `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
+To use a :class:`HildonAppMenu` , add it to a :class:`HildonWindow` using `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
 
 The menu will be automatically hidden when one of its buttons is clicked. Use `g_signal_connect_after() <g-signal-connect-after>`_ when connecting callbacks to buttons to make sure that they're called after the menu disappears. Alternatively, you can add the button to the menu before connecting any callback.
 
-Although implemented with a `GtkWindow <GtkWindow>`_ , `HildonAppMenu <HildonAppMenu>`_ behaves like a normal ref-counted widget, so `g_object_ref() <g-object-ref>`_ , `g_object_unref() <g-object-unref>`_ , `g_object_ref_sink() <g-object-ref-sink>`_ and friends will behave just like with any other non-toplevel widget.
+Although implemented with a :class:`GtkWindow` , :class:`HildonAppMenu` behaves like a normal ref-counted widget, so `g_object_ref() <g-object-ref>`_ , `g_object_unref() <g-object-unref>`_ , `g_object_ref_sink() <g-object-ref-sink>`_ and friends will behave just like with any other non-toplevel widget.
 
 Creating a HildonAppMenu ======================== :: GtkWidget *win; HildonAppMenu *menu; GtkWidget *button; GtkWidget *filter; win = hildon_stackable_window_new (); menu = HILDON_APP_MENU (hildon_app_menu_new ()); // Create a button and add it to the menu button = gtk_button_new_with_label ("Menu command one"); g_signal_connect_after (button, "clicked", G_CALLBACK (button_one_clicked), userdata); hildon_app_menu_append (menu, GTK_BUTTON (button)); // Another button button = gtk_button_new_with_label ("Menu command two"); g_signal_connect_after (button, "clicked", G_CALLBACK (button_two_clicked), userdata); hildon_app_menu_append (menu, GTK_BUTTON (button)); // Create a filter and add it to the menu filter = gtk_radio_button_new_with_label (NULL, "Filter one"); gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE); g_signal_connect_after (filter, "clicked", G_CALLBACK (filter_one_clicked), userdata); hildon_app_menu_add_filter (menu, GTK_BUTTON (filter)); // Add a new filter filter = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (filter), "Filter two"); gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE); g_signal_connect_after (filter, "clicked", G_CALLBACK (filter_two_clicked), userdata); hildon_app_menu_add_filter (menu, GTK_BUTTON (filter)); // Show all menu items gtk_widget_show_all (GTK_WIDGET (menu)); // Add the menu to the window hildon_window_set_app_menu (HILDON_WINDOW (win), menu);
 
@@ -7369,12 +7369,12 @@ Details
 
   GtkWidget*          hildon_app_menu_new                 (void);
 
-Creates a new `HildonAppMenu <HildonAppMenu>`_ .
+Creates a new :class:`HildonAppMenu` .
 
 
 
 *Returns*:
-  A `HildonAppMenu <HildonAppMenu>`_ .
+  A :class:`HildonAppMenu` .
 
 
 Since 2.2
@@ -7393,11 +7393,11 @@ Adds ``item`` to the end of the menu's item list.
 
 
 ``menu``:
-  A `HildonAppMenu <HildonAppMenu>`_
+  A :class:`HildonAppMenu`
 
 
 ``item``:
-  A `GtkButton <GtkButton>`_ to add to the `HildonAppMenu <HildonAppMenu>`_
+  A :class:`GtkButton` to add to the :class:`HildonAppMenu`
 
 
 Since 2.2
@@ -7416,11 +7416,11 @@ Adds ``item`` to the beginning of the menu's item list.
 
 
 ``menu``:
-  A `HildonAppMenu <HildonAppMenu>`_
+  A :class:`HildonAppMenu`
 
 
 ``item``:
-  A `GtkButton <GtkButton>`_ to add to the `HildonAppMenu <HildonAppMenu>`_
+  A :class:`GtkButton` to add to the :class:`HildonAppMenu`
 
 
 Since 2.2
@@ -7433,18 +7433,18 @@ Since 2.2
 
   void                hildon_app_menu_insert              (HildonAppMenu *menu,
                                                            GtkButton *item,
-                                                           gint position);
+                                                           int position);
 
 Adds ``item`` to ``menu`` at the position indicated by ``position``.
 
 
 
 ``menu``:
-  A `HildonAppMenu <HildonAppMenu>`_
+  A :class:`HildonAppMenu`
 
 
 ``item``:
-  A `GtkButton <GtkButton>`_ to add to the `HildonAppMenu <HildonAppMenu>`_
+  A :class:`GtkButton` to add to the :class:`HildonAppMenu`
 
 
 ``position``:
@@ -7461,18 +7461,18 @@ Since 2.2
 
   void                hildon_app_menu_reorder_child       (HildonAppMenu *menu,
                                                            GtkButton *item,
-                                                           gint position);
+                                                           int position);
 
-Moves a `GtkButton <GtkButton>`_ to a new position within `HildonAppMenu <HildonAppMenu>`_ .
+Moves a :class:`GtkButton` to a new position within :class:`HildonAppMenu` .
 
 
 
 ``menu``:
-  A `HildonAppMenu <HildonAppMenu>`_
+  A :class:`HildonAppMenu`
 
 
 ``item``:
-  A `GtkButton <GtkButton>`_ to move
+  A :class:`GtkButton` to move
 
 
 ``position``:
@@ -7495,11 +7495,11 @@ Adds the ``filter`` to ``menu``.
 
 
 ``menu``:
-  A `HildonAppMenu <HildonAppMenu>`_
+  A :class:`HildonAppMenu`
 
 
 ``filter``:
-  A `GtkButton <GtkButton>`_ to add to the `HildonAppMenu <HildonAppMenu>`_ .
+  A :class:`GtkButton` to add to the :class:`HildonAppMenu` .
 
 
 Since 2.2
@@ -7517,7 +7517,7 @@ Returns a list of all items (regular items, not filters) contained in ``menu``.
 
 
 ``menu``:
-  a `HildonAppMenu <HildonAppMenu>`_
+  a :class:`HildonAppMenu`
 
 
 *Returns*:
@@ -7539,7 +7539,7 @@ Returns a list of all filters contained in ``menu``.
 
 
 ``menu``:
-  a `HildonAppMenu <HildonAppMenu>`_
+  a :class:`HildonAppMenu`
 
 
 *Returns*:
@@ -7562,11 +7562,11 @@ Displays a menu on top of a window and makes it available for selection.
 
 
 ``menu``:
-  a `HildonAppMenu <HildonAppMenu>`_
+  a :class:`HildonAppMenu`
 
 
 ``parent_window``:
-  a `GtkWindow <GtkWindow>`_
+  a :class:`GtkWindow`
 
 
 Since 2.2
@@ -7582,7 +7582,7 @@ The ``external-border`` style property
 
 ::
 
-    external-border          guint                 : Read
+    external-border          int                 : Read
 
 Border between the right and left edges of the menu and the screen edges (in horizontal mode).
 
@@ -7594,7 +7594,7 @@ The ``filter-vertical-spacing`` style property
 
 ::
 
-    filter-vertical-spacing  guint                 : Read
+    filter-vertical-spacing  int                 : Read
 
 Vertical spacing between filters and menu items.
 
@@ -7606,7 +7606,7 @@ The ``horizontal-spacing`` style property
 
 ::
 
-    horizontal-spacing       guint                 : Read
+    horizontal-spacing       int                 : Read
 
 Horizontal spacing between each menu item. Does not apply to filter buttons.
 
@@ -7618,7 +7618,7 @@ The ``inner-border`` style property
 
 ::
 
-    inner-border             guint                 : Read
+    inner-border             int                 : Read
 
 Border between menu edges and buttons.
 
@@ -7630,7 +7630,7 @@ The ``vertical-spacing`` style property
 
 ::
 
-    vertical-spacing         guint                 : Read
+    vertical-spacing         int                 : Read
 
 Vertical spacing between each menu item. Does not apply to filter buttons.
 
@@ -7663,7 +7663,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonFindToolbar implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonFindToolbar implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonFindToolbar.properties:
 
@@ -7673,12 +7673,12 @@ Properties
 ::
 
   
-    column                   gint                  : Read / Write
-    history-limit            gint                  : Read / Write / Construct
-    label                    gchar*                : Read / Write / Construct
+    column                   int                  : Read / Write
+    history-limit            int                  : Read / Write / Construct
+    label                    str                : Read / Write / Construct
     list                     GtkListStore*         : Read / Write
-    max-characters           gint                  : Read / Write / Construct
-    prefix                   gchar*                : Read / Write
+    max-characters           int                  : Read / Write / Construct
+    prefix                   str                : Read / Write
   
 
 .. _HildonFindToolbar.signals:
@@ -7700,7 +7700,7 @@ Signals
 Description
 ===========
 
-HildonFindToolbar is a toolbar that contains a search entry and a dropdown list with previously searched strings. The list is represented using a `GtkListStore <GtkListStore>`_ and can be accesed using a property 'list'. Entries are added automatically to the list when the search button is pressed.
+HildonFindToolbar is a toolbar that contains a search entry and a dropdown list with previously searched strings. The list is represented using a :class:`GtkListStore` and can be accesed using a property 'list'. Entries are added automatically to the list when the search button is pressed.
 
 
 
@@ -7747,7 +7747,7 @@ Creates a new HildonFindToolbar.
 
   GtkWidget*          hildon_find_toolbar_new_with_model  (const gchar *label,
                                                            GtkListStore *model,
-                                                           gint column);
+                                                           int column);
 
 Creates a new HildonFindToolbar with a model.
 
@@ -7766,7 +7766,7 @@ Creates a new HildonFindToolbar with a model.
 
 
 *Returns*:
-  a new `HildonFindToolbar <HildonFindToolbar>`_
+  a new :class:`HildonFindToolbar`
 
 
 .. _hildon-find-toolbar-highlight-entry:
@@ -7776,7 +7776,7 @@ Creates a new HildonFindToolbar with a model.
 ::
 
   void                hildon_find_toolbar_highlight_entry (HildonFindToolbar *ftb,
-                                                           gboolean get_focus);
+                                                           bool get_focus);
 
 Highlights the current entry in the find toolbar.
 
@@ -7797,7 +7797,7 @@ Highlights the current entry in the find toolbar.
 ::
 
   void                hildon_find_toolbar_set_active      (HildonFindToolbar *toolbar,
-                                                           gint index);
+                                                           int index);
 
 Sets the active item on the toolbar's combo-box. Simply calls gtk_combo_box_set_active on the HildonFindToolbar's combo.
 
@@ -7817,7 +7817,7 @@ Sets the active item on the toolbar's combo-box. Simply calls gtk_combo_box_set_
 
 ::
 
-  gint                hildon_find_toolbar_get_active      (HildonFindToolbar *toolbar);
+  int                hildon_find_toolbar_get_active      (HildonFindToolbar *toolbar);
 
 Gets the index of the currently active item, or -1 if there's no active item. Simply calls gtk_combo_box_get_active on the HildonFindToolbar's combo.
 
@@ -7858,7 +7858,7 @@ Sets the current active item to be the one referenced by iter. Simply calls gtk_
 
 ::
 
-  gboolean            hildon_find_toolbar_get_active_iter (HildonFindToolbar *toolbar,
+  bool            hildon_find_toolbar_get_active_iter (HildonFindToolbar *toolbar,
                                                            GtkTreeIter *iter);
 
 Sets iter to point to the current active item, if it exists. Simply calls gtk_combo_box_get_active_iter on the HildonFindToolbar's combo.
@@ -7883,7 +7883,7 @@ Sets iter to point to the current active item, if it exists. Simply calls gtk_co
 
 ::
 
-  gint32              hildon_find_toolbar_get_last_index  (HildonFindToolbar *toolbar);
+  int              hildon_find_toolbar_get_last_index  (HildonFindToolbar *toolbar);
 
 Returns the index of the last (most recently added) item in the toolbar. Can be used to set this item active in the history-append signal.
 
@@ -7908,7 +7908,7 @@ The ``column`` property
 
 ::
 
-    column                   gint                  : Read / Write
+    column                   int                  : Read / Write
 
 The column number in GtkListStore where strings of search history are kept.
 
@@ -7924,7 +7924,7 @@ The ``history-limit`` property
 
 ::
 
-    history-limit            gint                  : Read / Write / Construct
+    history-limit            int                  : Read / Write / Construct
 
 Maximum number of history items in the combobox.
 
@@ -7940,7 +7940,7 @@ The ``label`` property
 
 ::
 
-    label                    gchar*                : Read / Write / Construct
+    label                    str                : Read / Write / Construct
 
 The label to display before the search box.
 
@@ -7956,7 +7956,7 @@ The ``list`` property
 
     list                     GtkListStore*         : Read / Write
 
-A `GtkListStore <GtkListStore>`_ where the search history is kept.
+A :class:`GtkListStore` where the search history is kept.
 
 
 
@@ -7966,7 +7966,7 @@ The ``max-characters`` property
 
 ::
 
-    max-characters           gint                  : Read / Write / Construct
+    max-characters           int                  : Read / Write / Construct
 
 Maximum number of characters in search string.
 
@@ -7980,7 +7980,7 @@ The ``prefix`` property
 
 ::
 
-    prefix                   gchar*                : Read / Write
+    prefix                   str                : Read / Write
 
 Search string.
 
@@ -8018,7 +8018,7 @@ The ``history-append`` signal
 
 ::
 
-  gboolean            user_function                      (HildonFindToolbar *toolbar,
+  bool            user_function                      (HildonFindToolbar *toolbar,
                                                           gpointer           user_data)      : Run Last
 
 Gets emitted when the current search prefix should be added to history.
@@ -8080,7 +8080,7 @@ Gets emitted when the find button is pressed.
 See Also
 ========
 
-`HildonWindow <HildonWindow>`_ .. _HildonEditToolbar:
+:class:`HildonWindow` .. _HildonEditToolbar:
 
 HildonEditToolbar
 *****************
@@ -8108,7 +8108,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonEditToolbar implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonEditToolbar implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonEditToolbar.style-properties:
 
@@ -8118,8 +8118,8 @@ Style Properties
 ::
 
   
-    arrow-height             guint                 : Read
-    arrow-width              guint                 : Read
+    arrow-height             int                 : Read
+    arrow-width              int                 : Read
   
 
 .. _HildonEditToolbar.signals:
@@ -8139,13 +8139,13 @@ Signals
 Description
 ===========
 
-The `HildonEditToolbar <HildonEditToolbar>`_ is a toolbar which contains a label and two buttons, one of them being an arrow pointing backwards.
+The :class:`HildonEditToolbar` is a toolbar which contains a label and two buttons, one of them being an arrow pointing backwards.
 
 The label is a description of the action that the user is supposed to do. The button is to be pressed when the user completes the action. The arrow is used to go back to the previous view discarding any changes.
 
 Note that those widgets don't do anything themselves by default. To actually peform actions the developer must provide callbacks for them.
 
-To add a `HildonEditToolbar <HildonEditToolbar>`_ to a window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
+To add a :class:`HildonEditToolbar` to a window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
 
 HildonEditToolbar example ========================= :: GtkWidget *window; GtkWidget *toolbar; // Declare more widgets here ... window = hildon_stackable_window_new (); toolbar = hildon_edit_toolbar_new_with_text ("Choose items to delete", "Delete"); // Create more widgets here ... // Add toolbar to window hildon_window_set_edit_toolbar (HILDON_WINDOW (window), HILDON_EDIT_TOOLBAR (toolbar)); // Add other widgets ... g_signal_connect (toolbar, "button-clicked", G_CALLBACK (delete_button_clicked), someparameter); g_signal_connect_swapped (toolbar, "arrow-clicked", G_CALLBACK (gtk_widget_destroy), window); gtk_widget_show_all (window); gtk_window_fullscreen (GTK_WINDOW (window));
 
@@ -8174,12 +8174,12 @@ Details
 
   GtkWidget*          hildon_edit_toolbar_new             (void);
 
-Creates a new `HildonEditToolbar <HildonEditToolbar>`_ .
+Creates a new :class:`HildonEditToolbar` .
 
 
 
 *Returns*:
-  a new `HildonEditToolbar <HildonEditToolbar>`_
+  a new :class:`HildonEditToolbar`
 
 
 Since 2.2
@@ -8193,7 +8193,7 @@ Since 2.2
   GtkWidget*          hildon_edit_toolbar_new_with_text   (const gchar *label,
                                                            const gchar *button);
 
-Creates a new `HildonEditToolbar <HildonEditToolbar>`_ , with the toolbar label set to ``label`` and the button label set to ``button``.
+Creates a new :class:`HildonEditToolbar` , with the toolbar label set to ``label`` and the button label set to ``button``.
 
 
 
@@ -8206,7 +8206,7 @@ Creates a new `HildonEditToolbar <HildonEditToolbar>`_ , with the toolbar label 
 
 
 *Returns*:
-  a new `HildonEditToolbar <HildonEditToolbar>`_
+  a new :class:`HildonEditToolbar`
 
 
 Since 2.2
@@ -8225,7 +8225,7 @@ Sets the label of ``toolbar`` to ``label``. This will clear any previously set v
 
 
 ``toolbar``:
-  a `HildonEditToolbar <HildonEditToolbar>`_
+  a :class:`HildonEditToolbar`
 
 
 ``label``:
@@ -8249,7 +8249,7 @@ Sets the label of the toolbar button to ``label``. This will clear any previousl
 
 
 ``toolbar``:
-  a `HildonEditToolbar <HildonEditToolbar>`_
+  a :class:`HildonEditToolbar`
 
 
 ``label``:
@@ -8269,7 +8269,7 @@ The ``arrow-height`` style property
 
 ::
 
-    arrow-height             guint                 : Read
+    arrow-height             int                 : Read
 
 Height of the arrow button.
 
@@ -8281,7 +8281,7 @@ The ``arrow-width`` style property
 
 ::
 
-    arrow-width              guint                 : Read
+    arrow-width              int                 : Read
 
 Width of the arrow button.
 
@@ -8367,7 +8367,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonWizardDialog implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonWizardDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonWizardDialog.properties:
 
@@ -8377,8 +8377,8 @@ Properties
 ::
 
   
-    autotitle                gboolean              : Read / Write
-    wizard-name              gchar*                : Read / Write
+    autotitle                bool              : Read / Write
+    wizard-name              str                : Read / Write
     wizard-notebook          GtkNotebook*          : Read / Write
   
 
@@ -8387,13 +8387,13 @@ Properties
 Description
 ===========
 
-`HildonWizardDialog <HildonWizardDialog>`_ is a widget to create a guided installation process. The dialog has three standard buttons, previous, next, finish, and contains several pages.
+:class:`HildonWizardDialog` is a widget to create a guided installation process. The dialog has three standard buttons, previous, next, finish, and contains several pages.
 
 Response buttons are dimmed/undimmed automatically. The notebook widget provided by users contains the actual wizard pages.
 
 Usage of the API is very simple, it has only one function to create it and the rest of it is handled by developers notebook. Also, the response is returned, either cancel or finish. Next and previous buttons are handled by the wizard dialog it self, by switching the page either forward or backward in the notebook.
 
-It is possible to determinate whether users can go to the next page by setting a `HildonWizardDialogPageFunc <HildonWizardDialogPageFunc>`_ function with `hildon_wizard_dialog_set_forward_page_func() <hildon-wizard-dialog-set-forward-page-func>`_
+It is possible to determinate whether users can go to the next page by setting a :class:`HildonWizardDialogPageFunc` function with `hildon_wizard_dialog_set_forward_page_func() <hildon-wizard-dialog-set-forward-page-func>`_
 
 
 
@@ -8417,7 +8417,7 @@ Details
   }                                               HildonWizardDialogResponse;
   
 
-Predefined values for use as response ids for `HildonWizardDialog <HildonWizardDialog>`_ .
+Predefined values for use as response ids for :class:`HildonWizardDialog` .
 
 .. warning:: HILDON_WIZARD_DIALOG_CANCEL is deprecated and should not be used in newly-written code.
 
@@ -8455,8 +8455,8 @@ Predefined values for use as response ids for `HildonWizardDialog <HildonWizardD
 
 ::
 
-  gboolean            (*HildonWizardDialogPageFunc)       (GtkNotebook *notebook,
-                                                           gint current_page,
+  bool            (*HildonWizardDialogPageFunc)       (GtkNotebook *notebook,
+                                                           int current_page,
                                                            gpointer data);
 
 
@@ -8487,12 +8487,12 @@ Predefined values for use as response ids for `HildonWizardDialog <HildonWizardD
                                                            const char *wizard_name,
                                                            GtkNotebook *notebook);
 
-Creates a new `HildonWizardDialog <HildonWizardDialog>`_ .
+Creates a new :class:`HildonWizardDialog` .
 
 
 
 ``parent``:
-  a `GtkWindow <GtkWindow>`_
+  a :class:`GtkWindow`
 
 
 ``wizard_name``:
@@ -8504,7 +8504,7 @@ Creates a new `HildonWizardDialog <HildonWizardDialog>`_ .
 
 
 *Returns*:
-  a new `HildonWizardDialog <HildonWizardDialog>`_
+  a new :class:`HildonWizardDialog`
 
 
 .. _hildon-wizard-dialog-set-forward-page-func:
@@ -8524,11 +8524,11 @@ Sets the page forwarding function to be ``page_func``. This function will be use
 
 
 ``wizard_dialog``:
-  a `HildonWizardDialog <HildonWizardDialog>`_
+  a :class:`HildonWizardDialog`
 
 
 ``page_func``:
-  the `HildonWizardDialogPageFunc <HildonWizardDialogPageFunc>`_
+  the :class:`HildonWizardDialogPageFunc`
 
 
 ``data``:
@@ -8552,7 +8552,7 @@ The ``autotitle`` property
 
 ::
 
-    autotitle                gboolean              : Read / Write
+    autotitle                bool              : Read / Write
 
 If the wizard should automatically try to change the window title when changing steps. Set to FALSE if you'd like to override the default behaviour.
 
@@ -8568,7 +8568,7 @@ The ``wizard-name`` property
 
 ::
 
-    wizard-name              gchar*                : Read / Write
+    wizard-name              str                : Read / Write
 
 The name of the wizard.
 
@@ -8618,7 +8618,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonPickerDialog implements `AtkImplementorIface <AtkImplementorIface>`_ and `GtkBuildable <GtkBuildable>`_ .
+HildonPickerDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 .. _HildonPickerDialog.properties:
 
@@ -8628,8 +8628,8 @@ Properties
 ::
 
   
-    center-on-show           gboolean              : Read / Write / Construct
-    done-button-text         gchar*                : Read / Write / Construct
+    center-on-show           bool              : Read / Write / Construct
+    done-button-text         str                : Read / Write / Construct
   
 
 .. _HildonPickerDialog.description:
@@ -8637,11 +8637,11 @@ Properties
 Description
 ===========
 
-`HildonPickerDialog <HildonPickerDialog>`_ is a dialog that is used to show a `HildonTouchSelector <HildonTouchSelector>`_ widget and a 'Done' button to allow users to finish their selections.
+:class:`HildonPickerDialog` is a dialog that is used to show a :class:`HildonTouchSelector` widget and a 'Done' button to allow users to finish their selections.
 
-The `HildonPickerDialog <HildonPickerDialog>`_ will show a 'Done' button in case the `HildonTouchSelector <HildonTouchSelector>`_ allows multiple selection. The label of the button can be set using `hildon_picker_dialog_set_done_label() <hildon-picker-dialog-set-done-label>`_ and retrieved using `hildon_picker_dialog_get_done_label() <hildon-picker-dialog-get-done-label>`_
+The :class:`HildonPickerDialog` will show a 'Done' button in case the :class:`HildonTouchSelector` allows multiple selection. The label of the button can be set using `hildon_picker_dialog_set_done_label() <hildon-picker-dialog-set-done-label>`_ and retrieved using `hildon_picker_dialog_get_done_label() <hildon-picker-dialog-get-done-label>`_
 
-Note that in most cases developers don't need to deal directly with this widget. `HildonPickerButton <HildonPickerButton>`_ is designed to pop up a `HildonPickerDialog <HildonPickerDialog>`_ and manage the interaction with it.
+Note that in most cases developers don't need to deal directly with this widget. :class:`HildonPickerButton` is designed to pop up a :class:`HildonPickerDialog` and manage the interaction with it.
 
 
 
@@ -8683,7 +8683,7 @@ Since 2.2
 
   GtkWidget*          hildon_picker_dialog_new            (GtkWindow *parent);
 
-Creates a new `HildonPickerDialog <HildonPickerDialog>`_
+Creates a new :class:`HildonPickerDialog`
 
 
 
@@ -8692,7 +8692,7 @@ Creates a new `HildonPickerDialog <HildonPickerDialog>`_
 
 
 *Returns*:
-  a new `HildonPickerDialog <HildonPickerDialog>`_
+  a new :class:`HildonPickerDialog`
 
 
 Since 2.2
@@ -8703,19 +8703,19 @@ Since 2.2
 
 ::
 
-  gboolean            hildon_picker_dialog_set_selector   (HildonPickerDialog *dialog,
+  bool            hildon_picker_dialog_set_selector   (HildonPickerDialog *dialog,
                                                            HildonTouchSelector *selector);
 
-Sets ``selector`` as the `HildonTouchSelector <HildonTouchSelector>`_ to be shown in ``dialog``
+Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in ``dialog``
 
 
 
 ``dialog``:
-  a `HildonPickerDialog <HildonPickerDialog>`_
+  a :class:`HildonPickerDialog`
 
 
 ``selector``:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 *Returns*:
@@ -8738,7 +8738,7 @@ Sets a custom string to be used as the 'Done' button label in ``dialog``.
 
 
 ``dialog``:
-  a `HildonPickerDialog <HildonPickerDialog>`_
+  a :class:`HildonPickerDialog`
 
 
 ``label``:
@@ -8753,14 +8753,14 @@ Since 2.2
 
 ::
 
-  const gchar*        hildon_picker_dialog_get_done_label (HildonPickerDialog *dialog);
+  const str        hildon_picker_dialog_get_done_label (HildonPickerDialog *dialog);
 
 Retrieves current 'Done' button label.
 
 
 
 ``dialog``:
-  a `HildonPickerDialog <HildonPickerDialog>`_
+  a :class:`HildonPickerDialog`
 
 
 *Returns*:
@@ -8777,16 +8777,16 @@ Since 2.2
 
   HildonTouchSelector* hildon_picker_dialog_get_selector  (HildonPickerDialog *dialog);
 
-Retrieves the `HildonTouchSelector <HildonTouchSelector>`_ associated to ``dialog``.
+Retrieves the :class:`HildonTouchSelector` associated to ``dialog``.
 
 
 
 ``dialog``:
-  a `HildonPickerDialog <HildonPickerDialog>`_
+  a :class:`HildonPickerDialog`
 
 
 *Returns*:
-  a `HildonTouchSelector <HildonTouchSelector>`_
+  a :class:`HildonTouchSelector`
 
 
 Since 2.2
@@ -8802,7 +8802,7 @@ The ``center-on-show`` property
 
 ::
 
-    center-on-show           gboolean              : Read / Write / Construct
+    center-on-show           bool              : Read / Write / Construct
 
 If the dialog should center on the current selection when it is showed.
 
@@ -8814,7 +8814,7 @@ The ``done-button-text`` property
 
 ::
 
-    done-button-text         gchar*                : Read / Write / Construct
+    done-button-text         str                : Read / Write / Construct
 
 Done Button Label.
 
@@ -8858,12 +8858,12 @@ Details
 
   GtkWidget*          hildon_animation_actor_new          (void);
 
-Creates a new `HildonAnimationActor <HildonAnimationActor>`_ .
+Creates a new :class:`HildonAnimationActor` .
 
 
 
 *Returns*:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 Since 2.2
@@ -8875,12 +8875,12 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_send_message (HildonAnimationActor *self,
-                                                           guint32 message_type,
-                                                           guint32 l0,
-                                                           guint32 l1,
-                                                           guint32 l2,
-                                                           guint32 l3,
-                                                           guint32 l4);
+                                                           int message_type,
+                                                           int l0,
+                                                           int l1,
+                                                           int l2,
+                                                           int l3,
+                                                           int l4);
 
 Sends an X11 ClientMessage event to the window manager with the specified parameters -- id (``message_type``) and data (``l0``, ``l1``, ``l2``, ``l3``, ``l4``).
 
@@ -8889,7 +8889,7 @@ This is an internal utility function that application will not need to call dire
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``message_type``:
@@ -8925,8 +8925,8 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_anchor   (HildonAnimationActor *self,
-                                                           gint x,
-                                                           gint y);
+                                                           int x,
+                                                           int y);
 
 Send a message to the window manager setting the anchor point for the animation actor. The anchor point is the point to which the actor position within its parent it is relative.
 
@@ -8935,7 +8935,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``x``:
@@ -8956,7 +8956,7 @@ Since 2.2
 
   void                hildon_animation_actor_set_anchor_from_gravity
                                                           (HildonAnimationActor *self,
-                                                           guint gravity);
+                                                           int gravity);
 
 Send a message to the window manager setting the anchor point for the animation actor. The anchor point is the point to which the actor position within its parent it is relative. Instead of being defined in (x, y)-coordinates, the anchor point is defined in the relative "gravity" constant as:
 
@@ -8967,7 +8967,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``gravity``:
@@ -8983,14 +8983,14 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_depth    (HildonAnimationActor *self,
-                                                           gint depth);
+                                                           int depth);
 
 A shortcut for `hildon_animation_actor_set_position_full() <hildon-animation-actor-set-position-full>`_ , changing the window depth, but preserving it's position.
 
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``depth``:
@@ -9006,7 +9006,7 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_opacity  (HildonAnimationActor *self,
-                                                           gint opacity);
+                                                           int opacity);
 
 This function is a shortcut for `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-full>`_ , setting actor opacity without changing it's overall visibility.
 
@@ -9015,7 +9015,7 @@ See `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-ful
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``opacity``:
@@ -9044,11 +9044,11 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``parent``:
-  A `GtkWindow <GtkWindow>`_ that the actor will be parented to.
+  A :class:`GtkWindow` that the actor will be parented to.
 
 
 Since 2.2
@@ -9060,15 +9060,15 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_position (HildonAnimationActor *self,
-                                                           gint x,
-                                                           gint y);
+                                                           int x,
+                                                           int y);
 
 A shortcut for `hildon_animation_actor_set_position_full() <hildon-animation-actor-set-position-full>`_ , changing the window position, but preserving it's depth setting.
 
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``x``:
@@ -9089,9 +9089,9 @@ Since 2.2
 
   void                hildon_animation_actor_set_position_full
                                                           (HildonAnimationActor *self,
-                                                           gint x,
-                                                           gint y,
-                                                           gint depth);
+                                                           int x,
+                                                           int y,
+                                                           int depth);
 
 Send a message to the window manager setting the position of the animation actor. This will set the position of the animation actor off-screen bitmap as it is rendered to the screen. The position of the actor is relative to the parent window. The actor is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
 
@@ -9104,7 +9104,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``x``:
@@ -9128,11 +9128,11 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_rotation (HildonAnimationActor *self,
-                                                           gint axis,
+                                                           int axis,
                                                            double degrees,
-                                                           gint x,
-                                                           gint y,
-                                                           gint z);
+                                                           int x,
+                                                           int y,
+                                                           int z);
 
 Send a message to the window manager setting the animation actor rotation around one of the three axes. The rotation center coordinates depend on the axis of rotation:
 
@@ -9143,7 +9143,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``axis``:
@@ -9176,18 +9176,18 @@ Since 2.2
 
   void                hildon_animation_actor_set_rotationx
                                                           (HildonAnimationActor *self,
-                                                           gint axis,
-                                                           gint32 degrees,
-                                                           gint x,
-                                                           gint y,
-                                                           gint z);
+                                                           int axis,
+                                                           int degrees,
+                                                           int x,
+                                                           int y,
+                                                           int z);
 
 This function is just like `hildon_animation_actor_set_rotation() <hildon-animation-actor-set-rotation>`_ , but the rotation angle is given as 16-bit fixed-point number.
 
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``axis``:
@@ -9229,7 +9229,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``x_scale``:
@@ -9249,15 +9249,15 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_scalex   (HildonAnimationActor *self,
-                                                           gint32 x_scale,
-                                                           gint32 y_scale);
+                                                           int x_scale,
+                                                           int y_scale);
 
 This function is just like `hildon_animation_actor_set_scale() <hildon-animation-actor-set-scale>`_ , but the scale factors are given as 16-bit fixed-point number.
 
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``x_scale``:
@@ -9277,14 +9277,14 @@ Since 2.2
 ::
 
   void                hildon_animation_actor_set_show     (HildonAnimationActor *self,
-                                                           gint show);
+                                                           int show);
 
 This function is a shortcut for `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-full>`_ , setting the overall actor visibility without changing it's opacity setting.
 
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``show``:
@@ -9301,10 +9301,10 @@ Since 2.2
 
   void                hildon_animation_actor_set_show_full
                                                           (HildonAnimationActor *self,
-                                                           gint show,
-                                                           gint opacity);
+                                                           int show,
+                                                           int opacity);
 
-Send a message to the window manager setting the visibility of the animation actor. This will only affect the visibility of the animation actor set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the `HildonAnimationActor <HildonAnimationActor>`_ widget is not visible in X11 terms (i.e. realized and mapped).
+Send a message to the window manager setting the visibility of the animation actor. This will only affect the visibility of the animation actor set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonAnimationActor` widget is not visible in X11 terms (i.e. realized and mapped).
 
 Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
 
@@ -9315,7 +9315,7 @@ If the animation actor WM-counterpart is not ready, the show message will be que
 
 
 ``self``:
-  A `HildonAnimationActor <HildonAnimationActor>`_
+  A :class:`HildonAnimationActor`
 
 
 ``show``:
@@ -9470,7 +9470,7 @@ HildonRemoteTexture
 Description
 ===========
 
-The `HildonRemoteTexture <HildonRemoteTexture>`_ is a GTK+ widget which allows the rendering of a shared memory area within hildon-desktop. It allows the memory area to be positioned and scaled, without altering its' contents.
+The :class:`HildonRemoteTexture` is a GTK+ widget which allows the rendering of a shared memory area within hildon-desktop. It allows the memory area to be positioned and scaled, without altering its' contents.
 
 
 
@@ -9500,12 +9500,12 @@ Details
 
   GtkWidget*          hildon_remote_texture_new           (void);
 
-Creates a new `HildonRemoteTexture <HildonRemoteTexture>`_ .
+Creates a new :class:`HildonRemoteTexture` .
 
 
 
 *Returns*:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 Since 2.2
@@ -9517,12 +9517,12 @@ Since 2.2
 ::
 
   void                hildon_remote_texture_send_message  (HildonRemoteTexture *self,
-                                                           guint32 message_type,
-                                                           guint32 l0,
-                                                           guint32 l1,
-                                                           guint32 l2,
-                                                           guint32 l3,
-                                                           guint32 l4);
+                                                           int message_type,
+                                                           int l0,
+                                                           int l1,
+                                                           int l2,
+                                                           int l3,
+                                                           int l4);
 
 Sends an X11 ClientMessage event to the window manager with the specified parameters -- id (``message_type``) and data (``l0``, ``l1``, ``l2``, ``l3``, ``l4``).
 
@@ -9531,7 +9531,7 @@ This is an internal utility function that application will not need to call dire
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``message_type``:
@@ -9568,16 +9568,16 @@ Since 2.2
 
   void                hildon_remote_texture_set_image     (HildonRemoteTexture *self,
                                                            key_t key,
-                                                           guint width,
-                                                           guint height,
-                                                           guint bpp);
+                                                           int width,
+                                                           int height,
+                                                           int bpp);
 
 
 
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``key``:
@@ -9615,7 +9615,7 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``x``:
@@ -9635,7 +9635,7 @@ Since 2.2
 ::
 
   void                hildon_remote_texture_set_opacity   (HildonRemoteTexture *self,
-                                                           gint opacity);
+                                                           int opacity);
 
 This function is a shortcut for `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>`_ , setting actor opacity without changing it's overall visibility.
 
@@ -9644,7 +9644,7 @@ See `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``opacity``:
@@ -9673,11 +9673,11 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``parent``:
-  A `GtkWindow <GtkWindow>`_ that the actor will be parented to.
+  A :class:`GtkWindow` that the actor will be parented to.
 
 
 Since 2.2
@@ -9689,10 +9689,10 @@ Since 2.2
 ::
 
   void                hildon_remote_texture_set_position  (HildonRemoteTexture *self,
-                                                           gint x,
-                                                           gint y,
-                                                           gint width,
-                                                           gint height);
+                                                           int x,
+                                                           int y,
+                                                           int width,
+                                                           int height);
 
 Send a message to the window manager setting the offset of the remote texture in the window (in Remote texture's pixels). The texture is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
 
@@ -9701,7 +9701,7 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``x``:
@@ -9753,14 +9753,14 @@ Since 2.2
 ::
 
   void                hildon_remote_texture_set_show      (HildonRemoteTexture *self,
-                                                           gint show);
+                                                           int show);
 
 This function is a shortcut for `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>`_ , setting the overall actor visibility without changing it's opacity setting.
 
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``show``:
@@ -9776,10 +9776,10 @@ Since 2.2
 ::
 
   void                hildon_remote_texture_set_show_full (HildonRemoteTexture *self,
-                                                           gint show,
-                                                           gint opacity);
+                                                           int show,
+                                                           int opacity);
 
-Send a message to the window manager setting the visibility of the remote texture. This will only affect the visibility of the remote texture set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the `HildonRemoteTexture <HildonRemoteTexture>`_ widget is not visible in X11 terms (i.e. realized and mapped).
+Send a message to the window manager setting the visibility of the remote texture. This will only affect the visibility of the remote texture set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonRemoteTexture` widget is not visible in X11 terms (i.e. realized and mapped).
 
 Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
 
@@ -9790,7 +9790,7 @@ If the remote texture WM-counterpart is not ready, the show message will be queu
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``show``:
@@ -9810,17 +9810,17 @@ Since 2.2
 ::
 
   void                hildon_remote_texture_update_area   (HildonRemoteTexture *self,
-                                                           gint x,
-                                                           gint y,
-                                                           gint width,
-                                                           gint height);
+                                                           int x,
+                                                           int y,
+                                                           int width,
+                                                           int height);
 
 This signals to hildon-desktop that a specific region of the memory area has changed. This will trigger a redraw and will update the relevant tiles of the texture.
 
 
 
 ``self``:
-  A `HildonRemoteTexture <HildonRemoteTexture>`_
+  A :class:`HildonRemoteTexture`
 
 
 ``x``:
