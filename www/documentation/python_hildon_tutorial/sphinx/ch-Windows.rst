@@ -15,8 +15,6 @@ Main activities in tasks should be done and presented in separate application vi
 
 Views work in a tree-like hierarchy - there is a Root View that acts as a "root" for the tree, while the subsequent Sub Views are branching down the hierarchy.
 
-@@COMMENT@@ AN EXAMPLE OF VIEWS NAVIGATION (maybe an example of a real use case)
-
 The view concept is implemented by the widget hildon.StackableWindow. This widget allows to build a navigable hierarchy of windows with less code.
 
 Stackable windows
@@ -229,7 +227,7 @@ Here, an example of using a hildon.WizardDialog
 Example of a Hildon wizard dialog
 =================================
 
-.. literalinclude:: ../examples/2.5
+.. literalinclude:: ../examples/hildon-wizard-dialog-example.py
   
           
 Apart from how to create and use a wizard dialog, this example also sets up a handler to catch the signal "switch-page" from the notepad. This signal is emitted by the widget gtk.Notebook when the user or a function changes the current page.
@@ -247,5 +245,5 @@ Here an example which create a task-modal dialog.
 Application modal dialog example
 ================================
 
-.. literalinclude:: ../examples/2.6
+.. literalinclude:: ../examples/hildon-task-modal-dialog-example.py
 
