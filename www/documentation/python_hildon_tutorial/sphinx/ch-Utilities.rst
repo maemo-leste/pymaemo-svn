@@ -3,7 +3,7 @@
 Utilities
 #########
 
-Apart from the widgets, Hildon provides a set of helper functions and objects to make easier the development of applications. This chapter will review them and explain how they can you help.
+Apart from the widgets, Hildon provides a set of helper functions and objects to make easier the development of applications. This chapter will review them and explain how they can help you.
 
 The Program object
 ******************
@@ -41,8 +41,6 @@ The following convenience functions are provided to set and retrieve the value o
   def get_can_hibernate(self)
   
       
-@@COMMENT@@[Here a simple example of use of the HildonProgram object.]
-
 Sound utilities
 ***************
 
