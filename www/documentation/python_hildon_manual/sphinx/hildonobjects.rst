@@ -3767,7 +3767,7 @@ You can get this string representation using `hildon_touch_selector_get_current_
 
 If you create the selector using `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ you don't need to take care of this property, as the model is created internally. If you create the selector using `hildon_touch_selector_new() <hildon-touch-selector-new>`_ , you need to specify properly the property for your custom model in order to get a non-empty string representation, or define your custom print function.
 
-Creating a HildonTouchSelector ============================== :: void selection_changed (HildonTouchSelector * selector, gpointer *user_data) { gchar *current_selection = NULL; current_selection = hildon_touch_selector_get_current_text (selector); g_debug ("Current selection : s", current_selection); } static GtkWidget * create_customized_selector () { GtkWidget *selector = NULL; GSList *icon_list = NULL; GtkListStore *store_icons = NULL; GSList *item = NULL; GtkCellRenderer *renderer = NULL; HildonTouchSelectorColumn *column = NULL; selector = hildon_touch_selector_new (); icon_list = gtk_stock_list_ids (); store_icons = gtk_list_store_new (1, G_TYPE_STRING); for (item = icon_list; item; item = g_slist_next (item)) { GtkTreeIter iter; gchar *label = item->data; gtk_list_store_append (store_icons, iter); gtk_list_store_set (store_icons, iter, 0, label, -1); g_free (label); } g_slist_free (icon_list); renderer = gtk_cell_renderer_pixbuf_new (); gtk_cell_renderer_set_fixed_size (renderer, -1, 100); column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR (selector), GTK_TREE_MODEL (store_icons), renderer, "stock-id", 0, NULL); g_object_set (G_OBJECT (column), "text-column", 0, NULL); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); return selector; } static GtkWidget * create_simple_selector () { GtkWidget *selector = NULL; int i; selector = hildon_touch_selector_new_text (); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); for (i = 1; i = 10 ; i++) { gchar *label = g_strdup_printf ("Item percnt;d", i); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), label); g_free (label); } return selector; }
+Creating a HildonTouchSelector ============================== :: void selection_changed (HildonTouchSelector * selector, gpointer *user_data) { gchar *current_selection = NULL; current_selection = hildon_touch_selector_get_current_text (selector); g_debug ("Current selection : s", current_selection); } static GtkWidget * create_customized_selector () { GtkWidget *selector = NULL; GSList *icon_list = NULL; gtk.ListStore *store_icons = NULL; GSList *item = NULL; GtkCellRenderer *renderer = NULL; HildonTouchSelectorColumn *column = NULL; selector = hildon_touch_selector_new (); icon_list = gtk_stock_list_ids (); store_icons = gtk_list_store_new (1, G_TYPE_STRING); for (item = icon_list; item; item = g_slist_next (item)) { GtkTreeIter iter; gchar *label = item->data; gtk_list_store_append (store_icons, iter); gtk_list_store_set (store_icons, iter, 0, label, -1); g_free (label); } g_slist_free (icon_list); renderer = gtk_cell_renderer_pixbuf_new (); gtk_cell_renderer_set_fixed_size (renderer, -1, 100); column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR (selector), GTK_TREE_MODEL (store_icons), renderer, "stock-id", 0, NULL); g_object_set (G_OBJECT (column), "text-column", 0, NULL); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); return selector; } static GtkWidget * create_simple_selector () { GtkWidget *selector = NULL; int i; selector = hildon_touch_selector_new_text (); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); for (i = 1; i = 10 ; i++) { gchar *label = g_strdup_printf ("Item percnt;d", i); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), label); g_free (label); } return selector; }
 
 
 
@@ -5869,18 +5869,13 @@ Name                            type    Access              Default     Meaning
 =============================== ======= =================== =========== ================================================================================================
 
 
-.. _HildonFindToolbar:
-
-HildonFindToolbar
+FindToolbar
 *****************
-
-.. _HildonFindToolbar.object-hierarchy:
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -5888,427 +5883,128 @@ Object Hierarchy
                  +----GtkWidget
                        +----GtkContainer
                              +----GtkToolbar
-                                   +----HildonFindToolbar
+                                   +----FindToolbar
   
-
-.. _HildonFindToolbar.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
-HildonFindToolbar implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonFindToolbar.properties:
-
-Properties
-==========
-
-::
-
-  
-    column                   int                  : Read / Write
-    history-limit            int                  : Read / Write / Construct
-    label                    str                : Read / Write / Construct
-    list                     GtkListStore*         : Read / Write
-    max-characters           int                  : Read / Write / Construct
-    prefix                   str                : Read / Write
-  
-
-.. _HildonFindToolbar.signals:
-
-Signals
-=======
-
-::
-
-  
-    close                                          : Run Last
-    history-append                                 : Run Last
-    invalid-input                                  : Run Last
-    search                                         : Run Last
-  
-
-.. _HildonFindToolbar.description:
+FindToolbar implements :class:`AtkImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
 
-HildonFindToolbar is a toolbar that contains a search entry and a dropdown list with previously searched strings. The list is represented using a :class:`GtkListStore` and can be accesed using a property 'list'. Entries are added automatically to the list when the search button is pressed.
-
-
-
-.. _HildonFindToolbar.details:
+FindToolbar is a toolbar that contains a search entry and a dropdown list with previously searched strings. The list is represented using a :class:`gtk.ListStore` and can be accesed using a property 'list'. Entries are added automatically to the list when the search button is pressed.
 
 Details
 =======
 
-.. _HildonFindToolbar-struct:
+.. class:: FindToolbar
 
-.. class:: HildonFindToolbar
+    .. method:: __init__ (label, [model, [column]])
 
-::
+        Creates a new FindToolbar with a model.
 
-  typedef struct _HildonFindToolbar HildonFindToolbar;
+        :param label: label for the find_toolbar, NULL to set the label to default "Find"
+        :param model: a ``gtk.ListStore``
+        :param column: indicating which column the search histry list will retreive string from
+        :returns: a new :class:`FindToolbar`
 
+    .. method:: highlight_entry (get_focus)
 
+        Highlights the current entry in the find toolbar.
 
-.. _hildon-find-toolbar-new:
+        :param ftb: find Toolbar whose entry is to be highlighted
+        :param get_focus: if user passes TRUE to this value, then the text in the entry will not only get highlighted, but also get focused.
 
-.. function:: hildon_find_toolbar_new ()
+    .. method:: set_active (index)
 
-::
+        Sets the active item on the toolbar's combo-box. Simply calls gtk_combo_box_set_active on the FindToolbar's combo.
 
-  GtkWidget*          hildon_find_toolbar_new             (const gchar *label);
+        :param toolbar: A find toolbar to operate on
+        :param index: An index in the model passed during construction, or -1 to have no active item
 
-Creates a new HildonFindToolbar.
+    .. method:: get_active ()
 
+        Gets the index of the currently active item, or -1 if there's no active item. Simply calls gtk_combo_box_get_active on the FindToolbar's combo.
 
+        :returns: An integer which is the index of the currently active item, or -1 if there's no active item.
 
-``label``:
-  label for the find_toolbar, NULL to set the label to default "Find"
+    .. method:: set_active_iter (iter)
 
+        Sets the current active item to be the one referenced by iter. Simply calls gtk_combo_box_set_active_iter on the FindToolbar's combo.
 
-:returns: 
-  a new HildonFindToolbar
+        :param iter: An iter to make active
 
+    .. method:: get_active_iter (iter)
 
-.. _hildon-find-toolbar-new-with-model:
+        Sets iter to point to the current active item, if it exists. Simply calls :meth:`gtk.comboBox.get_active_iter` on the FindToolbar's combo.
 
-.. function:: hildon_find_toolbar_new_with_model ()
+        :param iter: The uninitialized GtkTreeIter
+        :returns: True, if iter was set
 
-::
+    .. method:: get_last_index ()
 
-  GtkWidget*          hildon_find_toolbar_new_with_model  (const gchar *label,
-                                                           GtkListStore *model,
-                                                           int column);
+        Returns the index of the last (most recently added) item in the toolbar. Can be used to set this item active in the history-append signal.
 
-Creates a new HildonFindToolbar with a model.
-
-
-
-``label``:
-  label for the find_toolbar, NULL to set the label to default "Find"
-
-
-``model``:
-  a ``GtkListStore``\
-
-
-``column``:
-  indicating which column the search histry list will retreive string from
-
-
-:returns: 
-  a new :class:`HildonFindToolbar`
-
-
-.. _hildon-find-toolbar-highlight-entry:
-
-.. function:: hildon_find_toolbar_highlight_entry ()
-
-::
-
-  void                hildon_find_toolbar_highlight_entry (HildonFindToolbar *ftb,
-                                                           bool get_focus);
-
-Highlights the current entry in the find toolbar.
-
-
-
-``ftb``:
-  find Toolbar whose entry is to be highlighted
-
-
-``get_focus``:
-  if user passes TRUE to this value, then the text in the entry will not only get highlighted, but also get focused.
-
-
-.. _hildon-find-toolbar-set-active:
-
-.. function:: hildon_find_toolbar_set_active ()
-
-::
-
-  void                hildon_find_toolbar_set_active      (HildonFindToolbar *toolbar,
-                                                           int index);
-
-Sets the active item on the toolbar's combo-box. Simply calls gtk_combo_box_set_active on the HildonFindToolbar's combo.
-
-
-
-``toolbar``:
-  A find toolbar to operate on
-
-
-``index``:
-  An index in the model passed during construction, or -1 to have no active item
-
-
-.. _hildon-find-toolbar-get-active:
-
-.. function:: hildon_find_toolbar_get_active ()
-
-::
-
-  int                hildon_find_toolbar_get_active      (HildonFindToolbar *toolbar);
-
-Gets the index of the currently active item, or -1 if there's no active item. Simply calls gtk_combo_box_get_active on the HildonFindToolbar's combo.
-
-
-
-``toolbar``:
-  A find toolbar to query
-
-
-:returns: 
-  An integer which is the index of the currently active item, or -1 if there's no active item.
-
-
-.. _hildon-find-toolbar-set-active-iter:
-
-.. function:: hildon_find_toolbar_set_active_iter ()
-
-::
-
-  void                hildon_find_toolbar_set_active_iter (HildonFindToolbar *toolbar,
-                                                           GtkTreeIter *iter);
-
-Sets the current active item to be the one referenced by iter. Simply calls gtk_combo_box_set_active_iter on the HildonFindToolbar's combo.
-
-
-
-``toolbar``:
-  A find toolbar to operate on
-
-
-``iter``:
-  An iter to make active
-
-
-.. _hildon-find-toolbar-get-active-iter:
-
-.. function:: hildon_find_toolbar_get_active_iter ()
-
-::
-
-  bool            hildon_find_toolbar_get_active_iter (HildonFindToolbar *toolbar,
-                                                           GtkTreeIter *iter);
-
-Sets iter to point to the current active item, if it exists. Simply calls gtk_combo_box_get_active_iter on the HildonFindToolbar's combo.
-
-
-
-``toolbar``:
-  A find toolbar to query
-
-
-``iter``:
-  The uninitialized GtkTreeIter
-
-
-:returns: 
-  TRUE, if iter was set
-
-
-.. _hildon-find-toolbar-get-last-index:
-
-.. function:: hildon_find_toolbar_get_last_index ()
-
-::
-
-  int              hildon_find_toolbar_get_last_index  (HildonFindToolbar *toolbar);
-
-Returns the index of the last (most recently added) item in the toolbar. Can be used to set this item active in the history-append signal.
-
-
-
-``toolbar``:
-  A find toolbar to query
-
-
-:returns: 
-  Index of the last entry
-
-
-.. _HildonFindToolbar.property-details:
+        :returns: Index of the last entry
 
 Property Details
 ================
 
-.. _HildonFindToolbar--column:
-
-The ``column`` property
-
-::
-
-    column                   int                  : Read / Write
-
-The column number in GtkListStore where strings of search history are kept.
-
-
-
-Allowed values: = 0
-
-Default value: 0
-
-.. _HildonFindToolbar--history-limit:
-
-The ``history-limit`` property
-
-::
-
-    history-limit            int                  : Read / Write / Construct
-
-Maximum number of history items in the combobox.
-
-
-
-Allowed values: = 0
-
-Default value: 5
-
-.. _HildonFindToolbar--label:
-
-The ``label`` property
-
-::
-
-    label                    str                : Read / Write / Construct
-
-The label to display before the search box.
-
-
-
-Default value: "ecdg_ti_find_toolbar_label"
-
-.. _HildonFindToolbar--list:
-
-The ``list`` property
-
-::
-
-    list                     GtkListStore*         : Read / Write
-
-A :class:`GtkListStore` where the search history is kept.
-
-
-
-.. _HildonFindToolbar--max-characters:
-
-The ``max-characters`` property
-
-::
-
-    max-characters           int                  : Read / Write / Construct
-
-Maximum number of characters in search string.
-
-Allowed values: [0,65535]
-
-Default value: 0
-
-.. _HildonFindToolbar--prefix:
-
-The ``prefix`` property
-
-::
-
-    prefix                   str                : Read / Write
-
-Search string.
-
-Default value: NULL
-
-.. _HildonFindToolbar.signal-details:
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+| Name                      | type                      | Access                   | Default                      | Meaning                                                                      |
++===========================+===========================+==========================+==============================+==============================================================================+
+| ``column``                | int                       | Read / Write             | 0                            | The column number in gtk.ListStore where strings of search history are kept. |
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+| ``history-limit``         | int                       | Read / Write / Construct | 5                            | Maximum number of history items in the combobox.                             |
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+| ``labe``                  | str                       | Read / Write / Construct | "ecdg_ti_find_toolbar_label" | The label to display before the search box.                                  |
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+| ``list``                  | :class:`gtk.ListStore`    | Read / Write             |                              | A :class:`gtk.ListStore` where the search history is kept.                   |
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+| ``max-characters``        | int                       | Read / Write / Construct | 0                            | Maximum number of characters in search string.                               |
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+| ``prefix``                | str                       | Read / Write / Construct | None                         | Search string.                                                               |
++---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
 
 Signal Details
 ==============
 
-.. _HildonFindToolbar-close:
-
 The ``close`` signal
 
-::
+.. function:: user_function(toolbar, user_data)
 
-  void                user_function                      (HildonFindToolbar *toolbar,
-                                                          gpointer           user_data)      : Run Last
+    Gets emitted when the close button is pressed.
 
-Gets emitted when the close button is pressed.
-
-
-
-``toolbar``:
-  the toolbar which received the signal
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. _HildonFindToolbar-history-append:
+    :param toolbar: the toolbar which received the signal
+    :param user_data: user data set when the signal handler was connected.
 
 The ``history-append`` signal
 
-::
+.. function:: user_function(toolbar, user_data)
 
-  bool            user_function                      (HildonFindToolbar *toolbar,
-                                                          gpointer           user_data)      : Run Last
+    Gets emitted when the current search prefix should be added to history.
 
-Gets emitted when the current search prefix should be added to history.
-
-
-
-``toolbar``:
-  the toolbar which received the signal
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. _HildonFindToolbar-invalid-input:
+    :param toolbar: the toolbar which received the signal
+    :param user_data: user data set when the signal handler was connected.
 
 The ``invalid-input`` signal
 
-::
+.. function user_function(toolbar, user_data)
 
-  void                user_function                      (HildonFindToolbar *toolbar,
-                                                          gpointer           user_data)      : Run Last
+    Gets emitted when the maximum search prefix length is reached and user tries to type more.
 
-Gets emitted when the maximum search prefix length is reached and user tries to type more.
-
-
-
-``toolbar``:
-  the toolbar which received the signal
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. _HildonFindToolbar-search:
+    :param toolbar: the toolbar which received the signal
+    :param user_data: user data set when the signal handler was connected.
 
 The ``search`` signal
 
-::
+.. function:: user_function(toolbar, user_data)
 
-  void                user_function                      (HildonFindToolbar *toolbar,
-                                                          gpointer           user_data)      : Run Last
+    Gets emitted when the find button is pressed.
 
-Gets emitted when the find button is pressed.
-
-
-
-``toolbar``:
-  the toolbar which received the signal
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. _HildonFindToolbar.see-also:
+    :param toolbar: the toolbar which received the signal
+    :param user_data: user data set when the signal handler was connected.
 
 See Also
 ========
