@@ -18,4 +18,13 @@
   )
 )
 
+(define-function hildon_file_system_voldev_is_visible
+  (c-name "hildon_file_system_voldev_is_visible")
+  (return-type "gboolean")
+  (parameters
+    '("HildonFileSystemSpecialLocation*" "location")
+    '("gboolean" "has_children")
+  )
+)
+
 

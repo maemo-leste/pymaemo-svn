@@ -1,3 +1,25 @@
+python-hildon (0.9.0-1maemo8) unstable; urgency=low
+
+  [ Lauro Moura ]
+  * Add hildon.GtkRadioButton class and hildon.WindowStack.get_default()
+    static method.
+
+  [ Anderson Lizardo ]
+  * Update .defs using hildon_gen_defs.sh.
+  * hildon-ignore.defs: remove file. It was not necessary, and the only entry
+    there was added as a ignore in the .override file.
+  * hildon_gen_defs.sh: add to_method() transformation that turns a function
+    into a method.
+  * hildon_gen_defs.sh: hildon_edit_toolbar_new_with_text and
+    hildon_gtk_radio_button_new_from_widget as constructors, and
+    hildon_window_stack_get_default as method.
+  * hildon.override: add ignores for hildon_gtk_init,
+    hildon_gtk_radio_button_new and hildon_file_system_voldev_is_visible.
+  * hildon-extras.defs: fix hildon_gtk_radio_button_new_from_widget
+    definition.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 09 Jun 2009 10:52:08 -0400
+
 python-hildon (0.9.0-1maemo7) unstable; urgency=low
 
   * Add support for hildon.FindToolbar model/column parameters.

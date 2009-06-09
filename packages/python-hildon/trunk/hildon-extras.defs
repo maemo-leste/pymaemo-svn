@@ -47,11 +47,11 @@
 
 (define-function hildon_gtk_radio_button_new_from_widget
   (c-name "hildon_gtk_radio_button_new_from_widget")
-  (is-constructor-of "HildonGtkRadioButton")
+  (is-constructor-of "GtkRadioButton")
   (return-type "GtkWidget*")
   (parameters
     '("HildonSizeType" "size")
-    '("GSList *" "group")
+    '("GtkRadioButton*" "radio_group_member")
   )
 )
 

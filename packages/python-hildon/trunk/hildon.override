@@ -38,7 +38,6 @@ import gtk.Dialog as PyGtkDialog_Type
 import gtk.Entry as PyGtkEntry_Type
 import gtk.EventBox as PyGtkEventBox_Type
 import gtk.FileFilter as PyGtkFileFilter_Type
-//import gtk.FileSystem as PyGtkFileSystem_Type
 import gtk.HBox as PyGtkHBox_Type
 import gtk.IconView as PyGtkIconView_Type
 import gtk.Label as PyGtkLabel_Type
@@ -61,17 +60,19 @@ import gtk.Window as PyGtkWindow_Type
 
 %%
 ignore-glob *_get_type
+ignore hildon_gtk_init
 
-ignore hildon_find_toolbar_new
 ignore hildon_button_new
 ignore hildon_edit_toolbar_new
+ignore hildon_find_toolbar_new
+ignore hildon_gtk_radio_button_new
 ignore hildon_gtk_tree_view_new
 
-/* gtk.FileSystem is not exported by current PyGTK */
 ignore hildon_file_system_special_location_get_display_name
 ignore hildon_file_system_special_location_get_icon
-ignore hildon_file_system_special_location_volumes_changed
 ignore hildon_file_system_special_location_rewrite_path
+ignore hildon_file_system_special_location_volumes_changed
+ignore hildon_file_system_voldev_is_visible
 
 %%
 override hildon_calendar_popup_get_date noargs

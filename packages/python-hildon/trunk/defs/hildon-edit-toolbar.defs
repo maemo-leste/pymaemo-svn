@@ -28,8 +28,8 @@
   (is-constructor-of "HildonEditToolbar")
   (return-type "GtkWidget*")
   (parameters
-    '("const-gchar*" "label" (null-ok) (default "NULL"))
-    '("const-gchar*" "button" (null-ok) (default "NULL"))
+    '("const-gchar*" "label")
+    '("const-gchar*" "button")
   )
 )
 

@@ -19,7 +19,7 @@ echo Parsing .h files and creating .defs...
 # Create empty hildon-includes.h (or empty existing one)
 > hildon-includes.h
 for h in $headers; do
-	$codegen_dir/h2def.py -f hildon-ignore.defs $h > defs/$(basename $h .h).defs
+	$codegen_dir/h2def.py $h > defs/$(basename $h .h).defs
 	echo "#include \"$h\"" >> hildon-includes.h
 done
 $codegen_dir/createdefs.py hildon.defs hildon-extras.defs defs/*.defs
@@ -43,6 +43,16 @@ function set_constructor()
 	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
 	rm $defs_file.bak
 }
+function to_method()
+{
+	defs_file=$1
+	fn=$2
+	meth=$3
+	module=$4
+	sed -i.bak "s/^(define-function $fn$/(define-method $meth\n  (of-object \"$module\")/" $defs_file
+	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
+	rm $defs_file.bak
+}
 
 set_null_ok defs/hildon-window.defs set_main_menu menu
 set_null_ok defs/hildon-window.defs set_app_menu menu
@@ -53,6 +63,9 @@ set_null_ok defs/hildon-caption.defs hildon_caption_new icon
 set_null_ok defs/hildon-button.defs hildon_button_new_with_text title
 set_null_ok defs/hildon-button.defs hildon_button_new_with_text value
 set_constructor defs/hildon-button.defs hildon_button_new_with_text HildonButton
+set_constructor defs/hildon-edit-toolbar.defs hildon_edit_toolbar_new_with_text HildonEditToolbar
+set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget HildonGtkRadioButton
+to_method defs/hildon-window-stack.defs hildon_window_stack_get_default get_default HildonWindowStack
 
 echo Generating hildon-types.c and hildon-types.h...
 glib-mkenums --template hildon-types-template.h $headers $extra_headers > hildon-types.h
