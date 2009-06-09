@@ -381,321 +381,139 @@ Details
 
 .. class:: WindowStack
 
-::
+    .. method:: get_default ()
 
-  typedef struct _WindowStack WindowStack;
+        Returns the default window stack. This stack always exists and doesn't need to be created by the application.
 
+        :returns: the default :class:`WindowStack`
 
+        .. versionadded 2.2
 
-.. function:: hildon_window_stack_get_default ()
+    .. method:: __init__ ()
 
-::
+        Creates a new :class:`WindowStack` . The stack is initially empty.
 
-  WindowStack*  hildon_window_stack_get_default     (void);
+        :returns: a new :class:`WindowStack`
 
-Returns the default window stack. This stack always exists and doesn't need to be created by the application.
+        .. versionadded 2.2
 
+    .. method:: size ()
 
-:returns: 
-  the default :class:`WindowStack`
+        Returns the number of windows in ``stack``
 
+        :returns: Number of windows in ``stack``
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
-.. function:: hildon_window_stack_new ()
+    .. method:: get_windows ()
 
-::
+        Returns the list of windows on this stack (topmost first). The widgets in the list are not individually referenced.
 
-  WindowStack*  hildon_window_stack_new             (void);
+        :returns: a newly-allocated list of :class:`HildonStackableWindow` s
 
-Creates a new :class:`WindowStack` . The stack is initially empty.
+        .. versionadded 2.2
 
+    .. method:: peek ()
 
+        Returns the window on top of ``stack``. The stack is never modified.
 
-:returns: 
-  a new :class:`WindowStack`
+        :returns: the window on top of the stack, or None if the stack is empty.
 
+        .. versionadded 2.2
 
-.. versionadded 2.2
+    .. method:: push (win1, ...)
 
+        Pushes all windows to the top of ``stack``, and shows them. Everything is done in a single transition, so the user will only see the last window. None of the windows must be already stacked.
 
-.. function:: hildon_window_stack_size ()
+        :param win1: The first window to push
 
-::
+        :param ...: A None -terminated list of additional :class:`HildonStackableWindow` s to push.
 
-  int                hildon_window_stack_size            (WindowStack *stack);
+        .. versionadded 2.2
 
-Returns the number of windows in ``stack``
+    .. method:: push_list (list)
 
+        Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everything is done in a single transition, so the user will only see the last window in ``list`` during this operation. None of the windows must be already stacked.
 
+        :param list: A list of :class:`HildonStackableWindow` s to push
 
-``stack``:
-  A :class:`WindowStack`
+        .. versionadded 2.2
 
+    .. method:: push_1 (win)
 
-:returns: 
-  Number of windows in ``stack``\
+        Adds ``win`` to the top of ``stack``, and shows it. The window must not be already stacked.
 
+        ``win``: A :class:`HildonStackableWindow`
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
+    .. method:: pop (nwindows, popped_windows)
 
-.. function:: hildon_window_stack_get_windows ()
+        Pops ``nwindows`` windows from ``stack``, and hides them. Everything is done in a single transition, so the user will not see any of the windows being popped in this operation.
 
-::
+        If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
 
-  GList*              hildon_window_stack_get_windows     (WindowStack *stack);
+        ``nwindows``: Number of windows to pop
 
-Returns the list of windows on this stack (topmost first). The widgets in the list are not individually referenced. Once you are done with the list you must call `g_list_free() <g-list-free>`_ .
+        ``popped_windows``: if non-None , the list of popped windows is stored here
 
+        .. versionadded 2.2
 
+    .. method:: pop_1 ()
 
-``stack``:
-  a :class:`WindowStack`
+        Removes the window on top of ``stack``, and hides it. If the stack is empty nothing happens.
 
+        :returns: the window on top of the stack, or None if the stack is empty.
 
-:returns: 
-  a newly-allocated list of :class:`HildonStackableWindow` s
+        .. versionadded 2.2
 
+    .. method:: pop_and_push (nwindows, popped_windows, win1, ...)
 
-.. versionadded 2.2
+        Pops ``nwindows`` windows from ``stack`` (and hides them), then pushes all passed windows (and shows them). Everything is done in a single transition, so the user will only see the last pushed window. None of the pushed windows must be already stacked.
 
+        If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
 
-.. function:: hildon_window_stack_peek ()
+        ``nwindows``: Number of windows to pop.
 
-::
+        ``popped_windows``: if non-None , the list of popped windows is stored here
 
-  GtkWidget*          hildon_window_stack_peek            (WindowStack *stack);
+        ``win1``: The first window to push
 
-Returns the window on top of ``stack``. The stack is never modified.
+        ``...``: A None -terminated list of additional :class:`HildonStackableWindow` s to push.
 
+        .. versionadded 2.2
 
+    .. method:: pop_and_push_list (nwindows, popped_windows, list)
 
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
+        Pops ``nwindows`` windows from ``stack`` (and hides them), then pushes all windows in ``list`` (and shows them). Everything is done in a single transition, so the user will only see the last window from ``list``. None of the pushed windows must be already stacked.
 
+        If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
 
-:returns: 
-  the window on top of the stack, or None if the stack is empty.
+        ``nwindows``: Number of windows to pop.
 
+        ``popped_windows``: if non-None , the list of popped windows is stored here
 
-.. versionadded 2.2
+        ``list``: A list of :class:`HildonStackableWindow` s to push
 
-.. function:: hildon_window_stack_push ()
-
-::
-
-  void                hildon_window_stack_push            (WindowStack *stack,
-                                                           HildonStackableWindow *win1,
-                                                           ...);
-
-Pushes all windows to the top of ``stack``, and shows them. Everything is done in a single transition, so the user will only see the last window. None of the windows must be already stacked.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-``win1``:
-  The first window to push
-
-
-``...``:
-  A None -terminated list of additional :class:`HildonStackableWindow` s to push.
-
-
-.. versionadded 2.2
-
-
-.. function:: hildon_window_stack_push_list ()
-
-::
-
-  void                hildon_window_stack_push_list       (WindowStack *stack,
-                                                           GList *list);
-
-Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everything is done in a single transition, so the user will only see the last window in ``list`` during this operation. None of the windows must be already stacked.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-``list``:
-  A list of ```HildonStackableWindow`` <HildonStackableWindow>`_ s to push
-
-
-.. versionadded 2.2
-
-
-.. function:: hildon_window_stack_push_1 ()
-
-::
-
-  void                hildon_window_stack_push_1          (WindowStack *stack,
-                                                           HildonStackableWindow *win);
-
-Adds ``win`` to the top of ``stack``, and shows it. The window must not be already stacked.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-``win``:
-  A ```HildonStackableWindow`` <HildonStackableWindow>`_
-
-
-.. versionadded 2.2
-
-
-.. function:: hildon_window_stack_pop ()
-
-::
-
-  void                hildon_window_stack_pop             (WindowStack *stack,
-                                                           int nwindows,
-                                                           GList **popped_windows);
-
-Pops ``nwindows`` windows from ``stack``, and hides them. Everything is done in a single transition, so the user will not see any of the windows being popped in this operation.
-
-If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-``nwindows``:
-  Number of windows to pop
-
-
-``popped_windows``:
-  if non-None , the list of popped windows is stored here
-
-
-.. versionadded 2.2
-
-
-.. function:: hildon_window_stack_pop_1 ()
-
-::
-
-  GtkWidget*          hildon_window_stack_pop_1           (WindowStack *stack);
-
-Removes the window on top of ``stack``, and hides it. If the stack is empty nothing happens.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-:returns: 
-  the window on top of the stack, or None if the stack is empty.
-
-
-.. versionadded 2.2
-
-
-.. function:: hildon_window_stack_pop_and_push ()
-
-::
-
-  void                hildon_window_stack_pop_and_push    (WindowStack *stack,
-                                                           int nwindows,
-                                                           GList **popped_windows,
-                                                           HildonStackableWindow *win1,
-                                                           ...);
-
-Pops ``nwindows`` windows from ``stack`` (and hides them), then pushes all passed windows (and shows them). Everything is done in a single transition, so the user will only see the last pushed window. None of the pushed windows must be already stacked.
-
-If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-``nwindows``:
-  Number of windows to pop.
-
-
-``popped_windows``:
-  if non-None , the list of popped windows is stored here
-
-
-``win1``:
-  The first window to push
-
-
-``...``:
-  A None -terminated list of additional :class:`HildonStackableWindow` s to push.
-
-
-.. versionadded 2.2
-
-
-.. function:: hildon_window_stack_pop_and_push_list ()
-
-::
-
-  void                hildon_window_stack_pop_and_push_list
-                                                          (WindowStack *stack,
-                                                           int nwindows,
-                                                           GList **popped_windows,
-                                                           GList *list);
-
-Pops ``nwindows`` windows from ``stack`` (and hides them), then pushes all windows in ``list`` (and shows them). Everything is done in a single transition, so the user will only see the last window from ``list``. None of the pushed windows must be already stacked.
-
-If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
-
-
-
-``stack``:
-  A ```WindowStack`` <WindowStack>`_
-
-
-``nwindows``:
-  Number of windows to pop.
-
-
-``popped_windows``:
-  if non-None , the list of popped windows is stored here
-
-
-``list``:
-  A list of ```HildonStackableWindow`` <HildonStackableWindow>`_ s to push
-
-
-.. versionadded 2.2
-
-.. _WindowStack.property-details:
+        .. versionadded 2.2
 
 Property Details
 ================
 
-.. _WindowStack--window-group:
-
 The ``window-group`` property
 
-::
-
-    window-group             GtkWindowGroup*       : Read / Write / Construct Only
+============= =============== ============================= ======= =======
+Name          type            Access                        Default Meaning
+============= =============== ============================= ======= =======
+window-group  gtk.WindowGroup Read / Write / Construct Only
+============= =============== ============================= ======= =======
 
 GtkWindowGroup that all windows on this stack belong to.
-
-.. _WindowStack.see-also:
 
 See Also
 ========
 
-:class:`HildonStackableWindow` .. _HildonButton:
+:class:`HildonStackableWindow`
 
 HildonButton
 ************
