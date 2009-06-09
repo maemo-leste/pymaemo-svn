@@ -34,16 +34,16 @@ Hildon widgets allows to set their sizes in their construction functions, but in
 
 ::
 
-  GtkButton(size)
-  GtkToggleButton(size)
-  GtkRadioButton(type_size, group)
+  gtk.Button(size)
+  gtk.ToggleButton(size)
+  gtk.RadioButton(type_size, group)
   def hildon_gtk_radio_button_new_from_widget(size, radio_group_member):
   
       
 UI Modes
 ********
 
-Hildon defines two modes in the UI that change the way user interacts with certain widgets. The main purpose of these modes is to enable direct manipulation of items, while still allowing user to select single or multiple items, when it is necessary. Thw following modes are supported:
+Hildon defines two modes in the UI that change the way user interacts with certain widgets. The main purpose of these modes is to enable direct manipulation of items, while still allowing user to select single or multiple items, when it is necessary. The following modes are supported:
 
 Normal mode
   It is the default mode. In lists and grids, tapping on an item causes a direct action. In views, this direct action could open a new subview to perform a certain action with the item.
@@ -57,12 +57,12 @@ Hildon provides the following functions to set mode for a treeview or icon view.
 
 ::
 
-  GtkTreeView(mode)
-  GtkTreeView(mode, model)
+  gtk.TreeView(mode)
+  gtk.TreeView(mode, model)
   def hildon_gtk_tree_view_set_ui_mode(treeview, mode):
 
-  GtkIconView(mode)
-  GtkIconView(mode, model)
+  gtk.IconView(mode)
+  gtk.IconView(mode, model)
   def hildon_gtk_icon_view_set_ui_mode(iconview, mode):
   
       
@@ -78,12 +78,12 @@ When you use a list or grid in edit mode inside a window you should use a hildon
 Seek bars
 *********
 
-The seek bars are useful to select a value from a range of predetermined values by adjusting the slider with a finger. These seek bars could be horizontal or vertical and are implemented using GtkVScale and GtkHScale. Thus, you can use this GTK+ widget in your Hildon application as seek bar but you should use following creation function instead of the GTK ones:
+The seek bars are useful to select a value from a range of predetermined values by adjusting the slider with a finger. These seek bars could be horizontal or vertical and are implemented using gtk.VScale and gtk.HScale. Thus, you can use this GTK+ widget in your Hildon application as seek bar but you should use following creation function instead of the GTK ones:
 
 ::
 
-  GtkHScale()
-  GtkVScale()  
+  gtk.HScale()
+  gtk.VScale()  
   
       
 Scales created by using these constructors has a hildonized behavior, meaning that when user tap or click in a point of the bar immediately jumps to the desired position.
@@ -102,7 +102,7 @@ Hildon provides the following function to show a progress icon. This function ap
       
 The argument state should be 1 to show the indicator and 0 to hide it.
 
-Here, a little example that sets a progress indicator in a GtkDialog.
+Here, a little example that sets a progress indicator in a gtk.Dialog.
 
 Adding a progress indicator to a dialog
 =======================================
