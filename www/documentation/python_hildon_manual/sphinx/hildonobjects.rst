@@ -153,7 +153,7 @@ Adds ``child`` to the :class:`HildonWindow` and creates a scrollbar for it. Simi
   void                hildon_window_set_main_menu         (HildonWindow *self,
                                                            GtkMenu *menu);
 
-Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass None to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
 Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.set_app_menu` instead.
 
@@ -200,7 +200,7 @@ Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu
   void                hildon_window_set_app_menu          (HildonWindow *self,
                                                            HildonAppMenu *menu);
 
-Sets the menu to be used for this window. Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. Any reference to a previous menu will be dropped. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+Sets the menu to be used for this window. Pass None to remove the current menu. Any reference to a previous menu will be dropped. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
 Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ instead.
 
@@ -224,7 +224,7 @@ Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu
 
   HildonAppMenu*      hildon_window_get_app_menu          (HildonWindow *self);
 
-Returns the :class:`HildonAppMenu` assigned to ``self``, or ```NULL`` <NULL:CAPS>`_ if it's unset. Note that the window is still the owner of the menu.
+Returns the :class:`HildonAppMenu` assigned to ``self``, or None if it's unset. Note that the window is still the owner of the menu.
 
 Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use `hildon_window_get_main_menu() <hildon-window-get-main-menu>`_ instead.
 
@@ -251,7 +251,7 @@ Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu
 
 .. warning:: ``hildon_window_set_menu`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_
 
-Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass None to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
 Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_show_all() <gtk-widget-show-all>`_ for the :class:`GtkMenu` . To pass control about visibility to the application developer, `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ was introduced, which doesn't do this.
 
@@ -349,7 +349,7 @@ A window can only have at most one edit toolbar at a time, so the previous toolb
 
 
 ``toolbar``:
-  A :class:`HildonEditToolbar` , or ```NULL`` <NULL:CAPS>`_ to remove the current one.
+  A :class:`HildonEditToolbar` , or None to remove the current one.
 
 
 .. versionadded 2.2
@@ -394,7 +394,7 @@ Note that you need support from the window manager for this title to be used. Se
 
 
 ``markup``:
-  the marked up title of the window, or ```NULL`` <NULL:CAPS>`_ to unset the current one
+  the marked up title of the window, or None to unset the current one
 
 
 .. versionadded 2.2
@@ -416,7 +416,7 @@ Gets the marked up title of the window title. See `hildon_window_set_markup() <h
 
 
 :returns: 
-  the marked up title of the window, or ```NULL`` <NULL:CAPS>`_ if none has been set explicitely. The returned string is owned by the widget and must not be modified or freed.
+  the marked up title of the window, or None if none has been set explicitely. The returned string is owned by the widget and must not be modified or freed.
 
 
 .. versionadded 2.2
@@ -600,7 +600,7 @@ Creates a new :class:`HildonStackableWindow` .
 
   HildonWindowStack*  hildon_stackable_window_get_stack   (HildonStackableWindow *self);
 
-Returns the stack where window ``self`` is on, or ```NULL`` <NULL:CAPS>`_ if the window is not stacked.
+Returns the stack where window ``self`` is on, or None if the window is not stacked.
 
 
 
@@ -609,7 +609,7 @@ Returns the stack where window ``self`` is on, or ```NULL`` <NULL:CAPS>`_ if the
 
 
 :returns: 
-  a :class:`HildonWindowStack` , or ```NULL`` <NULL:CAPS>`_
+  a :class:`HildonWindowStack` , or None
 
 
 .. versionadded 2.2
@@ -804,7 +804,7 @@ Returns the window on top of ``stack``. The stack is never modified.
 
 
 :returns: 
-  the window on top of the stack, or ```NULL`` <NULL:CAPS>`_ if the stack is empty.
+  the window on top of the stack, or None if the stack is empty.
 
 
 .. versionadded 2.2
@@ -832,7 +832,7 @@ Pushes all windows to the top of ``stack``, and shows them. Everything is done i
 
 
 ``...``:
-  A ```NULL`` <NULL:CAPS>`_ -terminated list of additional :class:`HildonStackableWindow` s to push.
+  A None -terminated list of additional :class:`HildonStackableWindow` s to push.
 
 
 .. versionadded 2.2
@@ -895,7 +895,7 @@ Adds ``win`` to the top of ``stack``, and shows it. The window must not be alrea
 
 Pops ``nwindows`` windows from ``stack``, and hides them. Everything is done in a single transition, so the user will not see any of the windows being popped in this operation.
 
-If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
+If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
 
 
 
@@ -908,7 +908,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
 
 
 ``popped_windows``:
-  if non-```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored here
+  if non-None , the list of popped windows is stored here
 
 
 .. versionadded 2.2
@@ -930,7 +930,7 @@ Removes the window on top of ``stack``, and hides it. If the stack is empty noth
 
 
 :returns: 
-  the window on top of the stack, or ```NULL`` <NULL:CAPS>`_ if the stack is empty.
+  the window on top of the stack, or None if the stack is empty.
 
 
 .. versionadded 2.2
@@ -949,7 +949,7 @@ Removes the window on top of ``stack``, and hides it. If the stack is empty noth
 
 Pops ``nwindows`` windows from ``stack`` (and hides them), then pushes all passed windows (and shows them). Everything is done in a single transition, so the user will only see the last pushed window. None of the pushed windows must be already stacked.
 
-If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
+If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
 
 
 
@@ -962,7 +962,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
 
 
 ``popped_windows``:
-  if non-```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored here
+  if non-None , the list of popped windows is stored here
 
 
 ``win1``:
@@ -970,7 +970,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
 
 
 ``...``:
-  A ```NULL`` <NULL:CAPS>`_ -terminated list of additional :class:`HildonStackableWindow` s to push.
+  A None -terminated list of additional :class:`HildonStackableWindow` s to push.
 
 
 .. versionadded 2.2
@@ -989,7 +989,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
 
 Pops ``nwindows`` windows from ``stack`` (and hides them), then pushes all windows in ``list`` (and shows them). Everything is done in a single transition, so the user will only see the last window from ``list``. None of the pushed windows must be already stacked.
 
-If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
+If ``popped_windows`` is not None , the list of popped windows is stored there (ordered bottom-up). That list must be freed by the user.
 
 
 
@@ -1002,7 +1002,7 @@ If ``popped_windows`` is not ```NULL`` <NULL:CAPS>`_ , the list of popped window
 
 
 ``popped_windows``:
-  if non-```NULL`` <NULL:CAPS>`_ , the list of popped windows is stored here
+  if non-None , the list of popped windows is stored here
 
 
 ``list``:
@@ -1217,7 +1217,7 @@ Creates a new :class:`HildonButton` . To set text in the labels, use `hildon_but
 
 Creates a new :class:`HildonButton` with two labels, ``title`` and ``value``.
 
-If you just don't want to use one of the labels, set it to ```NULL`` <NULL:CAPS>`_ . You can set it to a non-```NULL`` <NULL:CAPS>`_ value at any time later using `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_value() <hildon-button-set-value>`_ .
+If you just don't want to use one of the labels, set it to None . You can set it to a non-None value at any time later using `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_value() <hildon-button-set-value>`_ .
 
 
 
@@ -1230,11 +1230,11 @@ If you just don't want to use one of the labels, set it to ```NULL`` <NULL:CAPS>
 
 
 ``title``:
-  Title of the button (main label), or ```NULL`` <NULL:CAPS>`_
+  Title of the button (main label), or None
 
 
 ``value``:
-  Value of the button (secondary label), or ```NULL`` <NULL:CAPS>`_
+  Value of the button (secondary label), or None
 
 
 :returns: 
@@ -1256,7 +1256,7 @@ Sets the title (main label) of ``button`` to ``title``.
 
 This will clear any previously set title.
 
-If ``title`` is set to ```NULL`` <NULL:CAPS>`_ , the title label will be hidden and the value label will be realigned.
+If ``title`` is set to None , the title label will be hidden and the value label will be realigned.
 
 
 
@@ -1265,7 +1265,7 @@ If ``title`` is set to ```NULL`` <NULL:CAPS>`_ , the title label will be hidden 
 
 
 ``title``:
-  a new title (main label) for the button, or ```NULL`` <NULL:CAPS>`_
+  a new title (main label) for the button, or None
 
 
 .. versionadded 2.2
@@ -1283,7 +1283,7 @@ Sets the value (secondary label) of ``button`` to ``value``.
 
 This will clear any previously set value.
 
-If ``value`` is set to ```NULL`` <NULL:CAPS>`_ , the value label will be hidden and the title label will be realigned.
+If ``value`` is set to None , the value label will be hidden and the title label will be realigned.
 
 
 
@@ -1292,7 +1292,7 @@ If ``value`` is set to ```NULL`` <NULL:CAPS>`_ , the value label will be hidden 
 
 
 ``value``:
-  a new value (secondary label) for the button, or ```NULL`` <NULL:CAPS>`_
+  a new value (secondary label) for the button, or None
 
 
 .. versionadded 2.2
@@ -1305,7 +1305,7 @@ If ``value`` is set to ```NULL`` <NULL:CAPS>`_ , the value label will be hidden 
 
   const str        hildon_button_get_title             (HildonButton *button);
 
-Fetches the text from the main label (title) of ``button``, as set by `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be ```NULL`` <NULL:CAPS>`_ . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
+Fetches the text from the main label (title) of ``button``, as set by `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
 
 
 
@@ -1327,7 +1327,7 @@ Fetches the text from the main label (title) of ``button``, as set by `hildon_bu
 
   const str        hildon_button_get_value             (HildonButton *button);
 
-Fetches the text from the secondary label (value) of ``button``, as set by `hildon_button_set_value() <hildon-button-set-value>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be ```NULL`` <NULL:CAPS>`_ . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
+Fetches the text from the secondary label (value) of ``button``, as set by `hildon_button_set_value() <hildon-button-set-value>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
 
 
 
@@ -1409,7 +1409,7 @@ Gets the widget that is currenty set as the image of ``button``, previously set 
 
 
 :returns: 
-  a :class:`GtkWidget` or ```NULL`` <NULL:CAPS>`_ in case there is no image
+  a :class:`GtkWidget` or None in case there is no image
 
 
 .. versionadded 2.2
@@ -1641,7 +1641,7 @@ Adds the image of ``button`` to ``size_group``. You must add an image using `hil
                                                            GtkSizeGroup *value_size_group,
                                                            GtkSizeGroup *image_size_group);
 
-Convenience function to add title, value and image to size groups. ```NULL`` <NULL:CAPS>`_ size groups will be ignored.
+Convenience function to add title, value and image to size groups. None size groups will be ignored.
 
 
 
@@ -1650,15 +1650,15 @@ Convenience function to add title, value and image to size groups. ```NULL`` <NU
 
 
 ``title_size_group``:
-  A :class:`GtkSizeGroup` for the button title (main label), or ```NULL`` <NULL:CAPS>`_
+  A :class:`GtkSizeGroup` for the button title (main label), or None
 
 
 ``value_size_group``:
-  A :class:`GtkSizeGroup` group for the button value (secondary label), or ```NULL`` <NULL:CAPS>`_
+  A :class:`GtkSizeGroup` group for the button value (secondary label), or None
 
 
 ``image_size_group``:
-  A :class:`GtkSizeGroup` group for the button image, or ```NULL`` <NULL:CAPS>`_
+  A :class:`GtkSizeGroup` group for the button image, or None
 
 
 .. versionadded 2.2
@@ -2220,7 +2220,7 @@ Returns the index of the currently active item, or -1 if there's no active item.
   const str        hildon_picker_button_get_done_button_text
                                                           (HildonPickerButton *button);
 
-Gets the text used in the :class:`HildonPickerDialog` that is launched by ``button``. If no custom text is set, then ```NULL`` <NULL:CAPS>`_ is returned.
+Gets the text used in the :class:`HildonPickerDialog` that is launched by ``button``. If no custom text is set, then None is returned.
 
 
 
@@ -2229,7 +2229,7 @@ Gets the text used in the :class:`HildonPickerDialog` that is launched by ``butt
 
 
 :returns: 
-  the custom string to be used, or ```NULL`` <NULL:CAPS>`_ if the default `"done-button-text" <HildonPickerDialog-done-button-text>`_ is to be used.
+  the custom string to be used, or None if the default `"done-button-text" <HildonPickerDialog-done-button-text>`_ is to be used.
 
 
 .. versionadded 2.2
@@ -3621,7 +3621,7 @@ Shows progress notification. See `hildon_banner_show_animation <hildon-banner-sh
 
 
 ``bar``:
-  Progressbar to use. You usually can just pass ```NULL`` <NULL:CAPS>`_ , unless you want somehow customized progress bar.
+  Progressbar to use. You usually can just pass None , unless you want somehow customized progress bar.
 
 
 ``text``:
@@ -3717,7 +3717,7 @@ Sets the icon to be used in the banner.
 
 
 ``icon_name``:
-  the name of icon to use. Can be ```NULL`` <NULL:CAPS>`_ for default icon
+  the name of icon to use. Can be None for default icon
 
 
 .. _hildon-banner-set-icon-from-file:
@@ -3740,7 +3740,7 @@ Sets the icon from its filename to be used in the banner.
 
 
 ``icon_file``:
-  the filename of icon to use. Can be ```NULL`` <NULL:CAPS>`_ for default icon
+  the filename of icon to use. Can be None for default icon
 
 
 .. _hildon-banner-set-timeout:
@@ -3942,7 +3942,7 @@ FIXME: This doc seems to be wrong, the two buttons aren't added so it would only
 
 
 ``...``:
-  arguments pairs for new buttons(label and return value). Terminate the list with ```NULL`` <NULL:CAPS>`_ value.
+  arguments pairs for new buttons(label and return value). Terminate the list with None value.
 
 
 :returns: 
@@ -4006,7 +4006,7 @@ Create a new cancel note with a progress bar. Cancel note has text(description) 
 
 
 ``progressbar``:
-  a pointer to :class:`GtkProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be ```NULL`` <NULL:CAPS>`_ as well, in which case plain text cancel note appears.
+  a pointer to :class:`GtkProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.
 
 
 :returns: 
@@ -4406,7 +4406,7 @@ Appends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch
 
 
 ``text``:
-  a non ```NULL`` <NULL:CAPS>`_ text string.
+  a non None text string.
 
 
 .. versionadded 2.2
@@ -4429,7 +4429,7 @@ Prepends a new entry in a :class:`HildonTouchSelector` created with `hildon_touc
 
 
 ``text``:
-  a non ```NULL`` <NULL:CAPS>`_ text string.
+  a non None text string.
 
 
 .. versionadded 2.2
@@ -4457,7 +4457,7 @@ Inserts a new entry in a particular position of a :class:`HildonTouchSelector` c
 
 
 ``text``:
-  A non ```NULL`` <NULL:CAPS>`_ text string.
+  A non None text string.
 
 
 .. versionadded 2.2
@@ -4509,7 +4509,7 @@ Equivalent to `hildon_touch_selector_append_column() <hildon-touch-selector-appe
 
 This functions adds a new column to the widget, whose data will be obtained from the model. Only widgets added this way should used on the selection logic, i.e., the print function, the `"changed" <HildonTouchPicker-changed>`_ signal, etc.
 
-You can optionally pass a :class:`GtkCellRenderer` in ``cell_renderer``, together with a ```NULL`` <NULL:CAPS>`_ -terminated list of pairs property/value, in the same way you would use `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . This will pack ``cell_renderer`` at the start of the column, expanded by default. If you prefer not to add it this way, you can simply pass ```NULL`` <NULL:CAPS>`_ to ``cell_renderer``\ and use the :class:`GtkCellLayout` interface on the returned :class:`HildonTouchSelectorColumn` to set your renderers.
+You can optionally pass a :class:`GtkCellRenderer` in ``cell_renderer``, together with a None -terminated list of pairs property/value, in the same way you would use `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . This will pack ``cell_renderer`` at the start of the column, expanded by default. If you prefer not to add it this way, you can simply pass None to ``cell_renderer``\ and use the :class:`GtkCellLayout` interface on the returned :class:`HildonTouchSelectorColumn` to set your renderers.
 
 There is a prerequisite to be considered on models used: text data must be in the first column.
 
@@ -4530,11 +4530,11 @@ This method basically adds a :class:`GtkTreeView` to the widget, using the model
 
 
 ``...``:
-  a ```NULL`` <NULL:CAPS>`_ -terminated pair of attributes and column numbers.
+  a None -terminated pair of attributes and column numbers.
 
 
 :returns: 
-  the new column added added, ```NULL`` <NULL:CAPS>`_ otherwise.
+  the new column added added, None otherwise.
 
 
 .. versionadded 2.2
@@ -4570,7 +4570,7 @@ Sets the attributes for the given column. The attributes must be given in attrib
 
 
 ``...``:
-  A ```NULL`` <NULL:CAPS>`_ -terminated list of attributes.
+  A None -terminated list of attributes.
 
 
 .. versionadded 2.2
@@ -4769,7 +4769,7 @@ Returns the index of the currently active item in column number ``column``, or -
                                                            int column,
                                                            GtkTreeIter *iter);
 
-Sets ``iter`` to the currently selected node on the nth-column, if selection is set to ```HILDON_TOUCH_SELECTOR_SINGLE`` <HILDON-TOUCH-SELECTOR-SINGLE:CAPS>`_ or ```HILDON_TOUCH_SELECTOR_MULTIPLE`` <HILDON-TOUCH-SELECTOR-MULTIPLE:CAPS>`_ with a column different that the first one. ``iter`` may be ```NULL`` <NULL:CAPS>`_ if you just want to test if selection has any selected items.
+Sets ``iter`` to the currently selected node on the nth-column, if selection is set to ```HILDON_TOUCH_SELECTOR_SINGLE`` <HILDON-TOUCH-SELECTOR-SINGLE:CAPS>`_ or ```HILDON_TOUCH_SELECTOR_MULTIPLE`` <HILDON-TOUCH-SELECTOR-MULTIPLE:CAPS>`_ with a column different that the first one. ``iter`` may be None if you just want to test if selection has any selected items.
 
 This function will not work if selection is in ```HILDON_TOUCH_SELECTOR_MULTIPLE`` <HILDON-TOUCH-SELECTOR-MULTIPLE:CAPS>`_ mode and the column is the first one.
 
@@ -5048,7 +5048,7 @@ Gets the :class:`HildonTouchSelectorPrintFunc` currently used. See `hildon_touch
 
 
 :returns: 
-  a :class:`HildonTouchSelectorPrintFunc` or ```NULL`` <NULL:CAPS>`_ if the default one is currently used.
+  a :class:`HildonTouchSelectorPrintFunc` or None if the default one is currently used.
 
 
 .. _hildon-touch-selector-set-print-func-full:
@@ -5076,11 +5076,11 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 
 ``user_data``:
-  a pointer to user data or ```NULL`` <NULL:CAPS>`_
+  a pointer to user data or None
 
 
 ``destroy_func``:
-  a callback for freeing the user data or ```NULL`` <NULL:CAPS>`_
+  a callback for freeing the user data or None
 
 
 .. versionadded 2.2
@@ -8500,7 +8500,7 @@ Creates a new :class:`HildonWizardDialog` .
                                                            gpointer data,
                                                            GDestroyNotify destroy);
 
-Sets the page forwarding function to be ``page_func``. This function will be used to determine whether it is possible to go to the next page when the user presses the forward button. Setting ``page_func`` to ```NULL`` <NULL:CAPS>`_ wil make the wizard to simply go always to the next page.
+Sets the page forwarding function to be ``page_func``. This function will be used to determine whether it is possible to go to the next page when the user presses the forward button. Setting ``page_func`` to None wil make the wizard to simply go always to the next page.
 
 
 
@@ -9018,7 +9018,7 @@ Send a message to the window manager setting the parent window for the animation
 
 Parenting an animation actor will affect its visibility as set by the `gtk_widget_show() <gtk-widget-show>`_ , `gtk_widget_hide() <gtk-widget-hide>`_ and `hildon_animation_actor_set_show() <hildon-animation-actor-set-show>`_ . The animation actor will only be visible when the top-level window it is parented is visible.
 
-Passing ```NULL`` <NULL:CAPS>`_ as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
+Passing None as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
 If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
@@ -9456,340 +9456,117 @@ Details
 
         Creates a new :class:`HildonRemoteTexture` .
 
-:returns: 
-  A :class:`HildonRemoteTexture`
+        :returns: A :class:`HildonRemoteTexture`
 
+        .. versionadded 2.2
 
-.. versionadded 2.2
+    .. method:: send_message (message_type, l0, l1, l2, l3, l4)
 
-.. _hildon-remote-texture-send-message:
+        Sends an X11 ClientMessage event to the window manager with the specified parameters --- id (``message_type``) and data (``l0``, ``l1``, ``l2``, ``l3``, ``l4``).
 
-.. method:: send_message ()
+        This is an internal utility function that application will not need to call directly.
 
-::
+        :param message_type: Message id for the remote texture message.
+        :param l0: 1st remote texture message parameter.
+        :param l1: 2nd remote texture message parameter.
+        :param l2: 3rd remote texture message parameter.
+        :param l3: 4th remote texture message parameter.
+        :param l4: 5th remote texture message parameter.
 
-  void                hildon_remote_texture_send_message  (HildonRemoteTexture *self,
-                                                           int message_type,
-                                                           int l0,
-                                                           int l1,
-                                                           int l2,
-                                                           int l3,
-                                                           int l4);
+        .. versionadded 2.2
 
-Sends an X11 ClientMessage event to the window manager with the specified parameters -- id (``message_type``) and data (``l0``, ``l1``, ``l2``, ``l3``, ``l4``).
+    .. method:: set_image (key, width, height, bpp)
 
-This is an internal utility function that application will not need to call directly.
+        :param key: The key that would be used with shmget in hildon-desktop. The key should probably be created with ftok, and the relevant shared memory area should be created before this call.
+        :param width: width of image in pixels
+        :param height: height of image in pixels
+        :param bpp: BYTES per pixel - usually 2,3 or 4
 
+        .. versionadded 2.2
 
 
-``self``:
-  A :class:`HildonRemoteTexture`
+    .. method:: set_offset (x, y)
 
+        Send a message to the window manager setting the offset of the remote texture in the window (in Remote texture's pixels). The texture is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
 
-``message_type``:
-  Message id for the remote texture message.
+        If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
+        :param x: Desired X offset
+        :param y: Desired Y offset
 
-``l0``:
-  1st remote texture message parameter.
+        .. versionadded 2.2
 
+    .. method:: set_opacity (opacity)
 
-``l1``:
-  2nd remote texture message parameter.
+        This function is a shortcut for :meth:`HildonRemoteTexture.set_show_full` , setting actor opacity without changing it's overall visibility.
 
+        See :meth:`HildonRemoteTexture.set_show_full` for description of the range of values ``opacity`` argument takes.
 
-``l2``:
-  3rd remote texture message parameter.
+        :param opacity: Desired opacity setting
 
+        .. versionadded 2.2
 
-``l3``:
-  4th remote texture message parameter.
 
+    .. method:: set_parent (parent)
 
-``l4``:
-  5th remote texture message parameter.
+        Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the HildonRemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
+        Parenting an remote texture will affect its visibility as set by the `gtk_widget_show() <gtk-widget-show>`_ , `gtk_widget_hide() <gtk-widget-hide>`_ and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
 
-.. versionadded 2.2
+        Passing None as a ``parent`` argument will unparent the remote texture. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
-.. _hildon-remote-texture-set-image:
+        If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-.. method:: set_image ()
+        :param parent: A :class:`GtkWindow` that the actor will be parented to.
 
-::
+        .. versionadded 2.2
 
-  void                hildon_remote_texture_set_image     (HildonRemoteTexture *self,
-                                                           key_t key,
-                                                           int width,
-                                                           int height,
-                                                           int bpp);
+    .. method:: set_position (x, y, width, height)
 
+        Send a message to the window manager setting the offset of the remote texture in the window (in Remote texture's pixels). The texture is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
 
+        If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
+        :param x: Desired X coordinate
+        :param y: Desired Y coordinate
+        :param width: Desired width
+        :param height: Desired height
 
+        .. versionadded 2.2
 
-``self``:
-  A :class:`HildonRemoteTexture`
+    .. method:: set_scale (x_scale, y_scale)
 
+    .. method:: set_show (show)
 
-``key``:
-  The key that would be used with shmget in hildon-desktop. The key should probably be created with ftok, and the relevant shared memory area should be created before this call.
+        This function is a shortcut for :meth:`HildonRemoteTexture.set_show_full` , setting the overall actor visibility without changing it's opacity setting.
 
+        :param show: A boolean flag setting the visibility of the remote texture.
 
-``width``:
-  width of image in pixels
+        .. versionadded 2.2
 
+    .. method:: set_show_full (show, opacity)
 
-``height``:
-  height of image in pixels
+        Send a message to the window manager setting the visibility of the remote texture. This will only affect the visibility of the remote texture set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonRemoteTexture` widget is not visible in X11 terms (i.e. realized and mapped).
 
+        Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
 
-``bpp``:
-  BYTES per pixel - usually 2,3 or 4
+        The opacity setting ranges from zero (0), being completely transparent to 255 (0xff) being fully opaque.
 
+        If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-.. versionadded 2.2
+        :param show: A boolean flag setting the visibility of the remote texture.
+        :param opacity: Desired opacity setting
 
-.. _hildon-remote-texture-set-offset:
+        .. versionadded 2.2
 
-.. method:: set_offset ()
+    .. method:: update_area (x, y, width, height)
 
-::
+        This signals to hildon-desktop that a specific region of the memory area has changed. This will trigger a redraw and will update the relevant tiles of the texture.
 
-  void                hildon_remote_texture_set_offset    (HildonRemoteTexture *self,
-                                                           double x,
-                                                           double y);
+        :param x: offset of damaged area in pixels
+        :param y: offset of damaged area in pixels
+        :param width: width of damaged area in pixels
+        :param height: height of damaged area in pixels
 
-Send a message to the window manager setting the offset of the remote texture in the window (in Remote texture's pixels). The texture is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
-
-If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``x``:
-  Desired X offset
-
-
-``y``:
-  Desired Y offset
-
-
-.. versionadded 2.2
-
-.. _hildon-remote-texture-set-opacity:
-
-.. method:: set_opacity ()
-
-::
-
-  void                hildon_remote_texture_set_opacity   (HildonRemoteTexture *self,
-                                                           int opacity);
-
-This function is a shortcut for `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>`_ , setting actor opacity without changing it's overall visibility.
-
-See `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>`_ for description of the range of values ``opacity`` argument takes.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``opacity``:
-  Desired opacity setting
-
-
-.. versionadded 2.2
-
-.. _hildon-remote-texture-set-parent:
-
-.. method:: set_parent ()
-
-::
-
-  void                hildon_remote_texture_set_parent    (HildonRemoteTexture *self,
-                                                           GtkWindow *parent);
-
-Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the HildonRemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
-
-Parenting an remote texture will affect its visibility as set by the `gtk_widget_show() <gtk-widget-show>`_ , `gtk_widget_hide() <gtk-widget-hide>`_ and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
-
-Passing ```NULL`` <NULL:CAPS>`_ as a ``parent`` argument will unparent the remote texture. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
-
-If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``parent``:
-  A :class:`GtkWindow` that the actor will be parented to.
-
-
-.. versionadded 2.2
-
-.. _hildon-remote-texture-set-position:
-
-.. method:: set_position ()
-
-::
-
-  void                hildon_remote_texture_set_position  (HildonRemoteTexture *self,
-                                                           int x,
-                                                           int y,
-                                                           int width,
-                                                           int height);
-
-Send a message to the window manager setting the offset of the remote texture in the window (in Remote texture's pixels). The texture is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
-
-If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``x``:
-  Desired X coordinate
-
-
-``y``:
-  Desired Y coordinate
-
-
-``width``:
-  Desired width
-
-
-``height``:
-  Desired height
-
-
-.. versionadded 2.2
-
-.. _hildon-remote-texture-set-scale:
-
-.. method:: set_scale ()
-
-::
-
-  void                hildon_remote_texture_set_scale     (HildonRemoteTexture *self,
-                                                           double x_scale,
-                                                           double y_scale);
-
-
-
-``self``:
-  
-
-
-``x_scale``:
-  
-
-
-``y_scale``:
-  
-
-
-.. _hildon-remote-texture-set-show:
-
-.. method:: set_show ()
-
-::
-
-  void                hildon_remote_texture_set_show      (HildonRemoteTexture *self,
-                                                           int show);
-
-This function is a shortcut for `hildon_remote_texture_set_show_full() <hildon-remote-texture-set-show-full>`_ , setting the overall actor visibility without changing it's opacity setting.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``show``:
-  A boolean flag setting the visibility of the remote texture.
-
-
-.. versionadded 2.2
-
-.. _hildon-remote-texture-set-show-full:
-
-.. method:: set_show_full ()
-
-::
-
-  void                hildon_remote_texture_set_show_full (HildonRemoteTexture *self,
-                                                           int show,
-                                                           int opacity);
-
-Send a message to the window manager setting the visibility of the remote texture. This will only affect the visibility of the remote texture set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonRemoteTexture` widget is not visible in X11 terms (i.e. realized and mapped).
-
-Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
-
-The opacity setting ranges from zero (0), being completely transparent to 255 (0xff) being fully opaque.
-
-If the remote texture WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``show``:
-  A boolean flag setting the visibility of the remote texture.
-
-
-``opacity``:
-  Desired opacity setting
-
-
-.. versionadded 2.2
-
-.. _hildon-remote-texture-update-area:
-
-.. method:: update_area ()
-
-::
-
-  void                hildon_remote_texture_update_area   (HildonRemoteTexture *self,
-                                                           int x,
-                                                           int y,
-                                                           int width,
-                                                           int height);
-
-This signals to hildon-desktop that a specific region of the memory area has changed. This will trigger a redraw and will update the relevant tiles of the texture.
-
-
-
-``self``:
-  A :class:`HildonRemoteTexture`
-
-
-``x``:
-  offset of damaged area in pixels
-
-
-``y``:
-  offset of damaged area in pixels
-
-
-``width``:
-  width of damaged area in pixels
-
-
-``height``:
-  height of damaged area in pixels
-
-
-.. versionadded 2.2
+        .. versionadded 2.2
 
