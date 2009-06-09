@@ -6025,8 +6025,6 @@ Style Property Details
 Signal Details
 ==============
 
-.. _HildonPannableArea-horizontal-movement:
-
 The ``horizontal-movement`` signal
 
 .. function:: user_function(hildonpannable, direction, initial_x, initial_y, user_data)
@@ -6062,10 +6060,8 @@ See Also
 :class:`GtkScrolledWindow` 
 
 
-HildonEntry
-***********
-
-.. _HildonEntry.object-hierarchy:
+Entry
+*****
 
 Object Hierarchy
 ================
@@ -6081,140 +6077,62 @@ Object Hierarchy
                              +----HildonEntry
   
 
-.. _HildonEntry.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonEntry implements :class:`AtkImplementorIface` , :class:`GtkBuildable` , :class:`GtkEditable` and :class:`GtkCellEditable` .
+Entry implements :class:`AtkImplementorIface` , :class:`GtkBuildable` , :class:`GtkEditable` and :class:`GtkCellEditable` .
 
-.. _HildonEntry.description:
 
 Description
 ===========
 
-The :class:`HildonEntry` is a GTK widget which represents a text entry. It is derived from the :class:`GtkEntry` widget and provides additional commodities specific to the Hildon framework.
+The :class:`Entry` is a GTK widget which represents a text entry. It is derived from the :class:`gtk.Entry` widget and provides additional commodities specific to the Hildon framework.
 
-Besides all the features inherited from :class:`GtkEntry` , a :class:`HildonEntry` can also have a placeholder text. This text will be shown if the entry is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_entry_get_text() <hildon-entry-get-text>`_ will never return the placeholder text, not even when it's being displayed.
+Besides all the features inherited from :class:`gtk.Entry` , a :class:`Entry` can also have a placeholder text. This text will be shown if the entry is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_entry_get_text() <hildon-entry-get-text>`_ will never return the placeholder text, not even when it's being displayed.
 
-Although :class:`HildonEntry` is derived from :class:`GtkEntry` , `gtk_entry_get_text() <gtk-entry-get-text>`_ and `gtk_entry_set_text() <gtk-entry-set-text>`_ must never be used to get/set the text in this widget. `hildon_entry_get_text() <hildon-entry-get-text>`_ and `hildon_entry_set_text() <hildon-entry-set-text>`_ must be used instead.
+Although :class:`Entry` is derived from :class:`gtk.Entry` , `get_text`_ and `set_text` must never be used to get/set the text in this widget. `get_text` and `set_text` must be used instead.
 
-Creating a HildonEntry with a placeholder ========================================= :: GtkWidget * create_entry (void) { GtkWidget *entry; entry = hildon_entry_new (HILDON_SIZE_AUTO); hildon_entry_set_placeholder (HILDON_ENTRY (entry), "First name"); return entry; }
+Creating a Entry with a placeholder 
 
+::
 
-
-.. _HildonEntry.details:
+    def create_entry():
+        entry = hildon.Entry(hildon.SIZE_AUTO)
+        entry.set_placeholder("First name")
+        return entry
 
 Details
 =======
 
-.. _HildonEntry-struct:
+.. class:: Entry
 
-.. class:: HildonEntry
+    .. method:: __init__(size = 0)
+        Creates a new entry.
 
-::
-
-  typedef struct _HildonEntry HildonEntry;
-
-
-
-.. _hildon-entry-new:
-
-.. function:: hildon_entry_new ()
-
-::
-
-  GtkWidget*          hildon_entry_new                    (HildonSizeType size);
-
-Creates a new entry.
+        :param size: The size of the entry
+        :returns:  a new :class:`Entry`
 
 
+    .. mehtod:: set_text(text)
+        Sets the text in ``entry`` to ``text``, replacing its current contents.
+        Note that you must never use :meth:`set_text()`_ to set the text of a :class:`Entry` .
 
-``size``:
-  The size of the entry
-
-
-:returns: 
-  a new :class:`HildonEntry`
+        :param text: the new text
 
 
-.. versionadded 2.2
+    .. method:: get_text()
+        Gets the current text in ``entry``.
+        Note that you must never use :meth:`get_text()` to get the text from a :class:`Entry` .
+        Also note that placeholder text (set using :meth:`set_placeholder()` is never returned. Only text set by :meth:`set_text` or typed by the user is considered.
 
-.. _hildon-entry-set-text:
+        :returns:  the text in ``entry``. This text must not be modified or freed.
 
-.. function:: hildon_entry_set_text ()
+    .. method:: set_placeholder(text)
+        Sets the placeholder text in ``entry`` to ``text``.
+    
+        :param text: the new text
 
-::
-
-  void                hildon_entry_set_text               (HildonEntry *entry,
-                                                           const gchar *text);
-
-Sets the text in ``entry`` to ``text``, replacing its current contents.
-
-Note that you must never use `gtk_entry_set_text() <gtk-entry-set-text>`_ to set the text of a :class:`HildonEntry` .
-
-
-
-``entry``:
-  a :class:`HildonEntry`
-
-
-``text``:
-  the new text
-
-
-.. versionadded 2.2
-
-.. _hildon-entry-get-text:
-
-.. function:: hildon_entry_get_text ()
-
-::
-
-  const str        hildon_entry_get_text               (HildonEntry *entry);
-
-Gets the current text in ``entry``.
-
-Note that you must never use `gtk_entry_get_text() <gtk-entry-get-text>`_ to get the text from a :class:`HildonEntry` .
-
-Also note that placeholder text (set using `hildon_entry_set_placeholder() <hildon-entry-set-placeholder>`_ ) is never returned. Only text set by `hildon_entry_set_text() <hildon-entry-set-text>`_ or typed by the user is considered.
-
-
-
-``entry``:
-  a :class:`HildonEntry`
-
-
-:returns: 
-  the text in ``entry``. This text must not be modified or freed.
-
-
-.. versionadded 2.2
-
-.. _hildon-entry-set-placeholder:
-
-.. function:: hildon_entry_set_placeholder ()
-
-::
-
-  void                hildon_entry_set_placeholder        (HildonEntry *entry,
-                                                           const gchar *text);
-
-Sets the placeholder text in ``entry`` to ``text``.
-
-
-
-``entry``:
-  a :class:`HildonEntry`
-
-
-``text``:
-  the new text
-
-
-.. versionadded 2.2
-
-.. _HildonTextView:
 
 HildonTextView
 **************
