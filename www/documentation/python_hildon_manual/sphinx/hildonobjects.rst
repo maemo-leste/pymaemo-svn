@@ -5793,63 +5793,6 @@ Implemented Interfaces
 
 HildonPannableArea implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
-.. _HildonPannableArea.properties:
-
-Properties
-==========
-
-::
-
-  
-    bounce-steps             int                 : Read / Write / Construct
-    deceleration             gdouble               : Read / Write / Construct
-    direction-error-margin   int                 : Read / Write / Construct
-    drag-inertia             gdouble               : Read / Write / Construct
-    enabled                  bool              : Read / Write / Construct
-    force                    int                 : Read / Write / Construct
-    hadjustment              GtkAdjustment*        : Read
-    hovershoot-max           int                  : Read / Write / Construct
-    hscrollbar-policy        GtkPolicyType         : Read / Write / Construct
-    initial-hint             bool              : Read / Write / Construct
-    low-friction-mode        bool              : Read / Write / Construct
-    mode                     HildonPannableAreaMode  : Read / Write / Construct
-    mov-mode                 HildonMovementMode    : Read / Write / Construct
-    panning-threshold        int                 : Read / Write / Construct
-    scroll-time              gdouble               : Read / Write / Construct
-    scrollbar-fade-delay     int                 : Read / Write / Construct
-    size-request-policy      HildonSizeRequestPolicy  : Read / Write / Construct
-    sps                      int                 : Read / Write / Construct
-    vadjustment              GtkAdjustment*        : Read
-    velocity-fast-factor     gdouble               : Read / Write / Construct
-    velocity-max             gdouble               : Read / Write / Construct
-    velocity-min             gdouble               : Read / Write / Construct
-    velocity-overshooting-max gdouble               : Read / Write / Construct
-    vovershoot-max           int                  : Read / Write / Construct
-    vscrollbar-policy        GtkPolicyType         : Read / Write / Construct
-  
-
-.. _HildonPannableArea.style-properties:
-
-Style Properties
-================
-
-::
-
-  
-    indicator-width          int                 : Read / Write
-  
-
-.. _HildonPannableArea.signals:
-
-Signals
-=======
-
-::
-
-  
-    horizontal-movement                            : Run Last / Action
-    vertical-movement                              : Run Last / Action
-  
 
 .. _HildonPannableArea.description:
 
@@ -5861,7 +5804,6 @@ Description
 The scrolling is "kinetic", meaning the motion can be "flicked" and it will continue from the initial motion by gradually slowing down to an eventual stop. The motion can also be stopped immediately by pressing the touchscreen over the pannable area.
 
 
-
 .. _HildonPannableArea.details:
 
 Details
@@ -5869,432 +5811,183 @@ Details
 
 .. _HildonPannableAreaMode:
 
-.. :: enum HildonPannableAreaMode
+.. data:: HildonPannableAreaMode
 
-::
-
-  typedef enum {
-    HILDON_PANNABLE_AREA_MODE_PUSH,
-    HILDON_PANNABLE_AREA_MODE_ACCEL,
-    HILDON_PANNABLE_AREA_MODE_AUTO
-  } HildonPannableAreaMode;
-  
-
-Used to change the behaviour of the pannable areaing
-
-
-
-``HILDON_PANNABLE_AREA_MODE_PUSH``
-  Areaing follows pointer
-
-
-``HILDON_PANNABLE_AREA_MODE_ACCEL``
-  Areaing uses physics to "spin" the widget
-
-
-``HILDON_PANNABLE_AREA_MODE_AUTO``
-  Automatically chooses between push and accel modes, depending on input.
++------------------------------+-----------------------------------------------------+
+| Value                        | Meaning                                             |
++==============================+=====================================================+
+| ``PANNABLE_AREA_MODE_PUSH``  | Areaing follows pointer                             |
++------------------------------+-----------------------------------------------------+
+| ``PANNABLE_AREA_MODE_ACCEL`` | Areaing uses physics to "spin" the widget           |
++------------------------------+-----------------------------------------------------+
+| ``PANNABLE_AREA_MODE_AUTO``  | Automatically chooses between push and accel modes, |
+|                              | depending on input.                                 |
++------------------------------+-----------------------------------------------------+
 
 
 .. _HildonMovementMode:
 
-.. :: enum HildonMovementMode
-
-::
-
-  typedef enum {
-    HILDON_MOVEMENT_MODE_HORIZ = 1  1,
-    HILDON_MOVEMENT_MODE_VERT = 1  2,
-    HILDON_MOVEMENT_MODE_BOTH = 0x000006
-  } HildonMovementMode;
-  
-
-Used to control the movement of the pannable, we can allow or disallow horizontal or vertical movement. This way the applications can control the movement using scroll_to and jump_to functions
+.. data:: HildonMovementMode
+    Used to control the movement of the pannable, we can allow or disallow horizontal or vertical movement. This way the applications can control the movement using scroll_to and jump_to functions
 
 
++------------------------------------+---------------------+
+| Value                              | Meaning             |
++====================================+=====================+
+| ``MOVEMENT_MODE_HORIZ``            | 1  1                |
++------------------------------------+---------------------+
+| ``MOVEMENT_MODE_VERT``             | 1  2                |
++------------------------------------+---------------------+
+| ``MOVEMENT_MODE_BOTH``             | 0x000006            |
++------------------------------------+---------------------+
+ 
 
 .. _HildonMovementDirection:
 
-.. :: enum HildonMovementDirection
+.. data:: HildonMovementDirection
+    Used to point out the direction of the movement
 
-::
-
-  typedef enum {
-    HILDON_MOVEMENT_UP,
-    HILDON_MOVEMENT_DOWN,
-    HILDON_MOVEMENT_LEFT,
-    HILDON_MOVEMENT_RIGHT
-  } HildonMovementDirection;
-  
-
-Used to point out the direction of the movement
-
++--------------------------+---------------------+
+| Value                    | Meaning             |
++==========================+=====================+
+| ``MOVEMENT_UP``          |                     |
++--------------------------+---------------------+
+| ``MOVEMENT_DOWN``        |                     |
++--------------------------+---------------------+
+| ``MOVEMENT_LEFT``        |                     |
++--------------------------+---------------------+
+| ``HILDON_MOVEMENT_RIGHT``|                     |
++--------------------------+---------------------+
 
 
 .. _HildonSizeRequestPolicy:
 
-.. :: enum HildonSizeRequestPolicy
+.. data:: HildonSizeRequestPolicy
+    Used to control the size request policy of the widget
 
-::
-
-  typedef enum {
-    HILDON_SIZE_REQUEST_MINIMUM,
-    HILDON_SIZE_REQUEST_CHILDREN
-  } HildonSizeRequestPolicy;
-  
-
-Used to control the size request policy of the widget
-
++---------------------------+--------------------------------------------------------+
+| Value                     | Meaning                                                |
++===========================+========================================================+
+| ``SIZE_REQUEST_MINIMUM``  | The minimum size the widget could use to paint itself  |
++---------------------------+--------------------------------------------------------+
+| ``SIZE_REQUEST_CHILDREN`` | The minimum size of the children of the widget         |
++---------------------------+--------------------------------------------------------+
 
 
-``HILDON_SIZE_REQUEST_MINIMUM``
-  The minimum size the widget could use to paint itself
 
-
-``HILDON_SIZE_REQUEST_CHILDREN``
-  The minimum size of the children of the widget
-
-
-.. _HildonPannableArea-struct:
+Ctors:
 
 .. class:: HildonPannableArea
 
-::
+    .. method:: __init__()
 
-  typedef struct _HildonPannableArea HildonPannableArea;
+        Create a new pannable area widget
 
-HildonPannableArea has no publicly accessible fields
+    .. method:: add_with_viewport(child)
+        
+        Convenience function used to add a child to a :class:`GtkViewport` , and add the viewport to the scrolled window.
 
+        :param child: Child widget to add to the viewport
 
 
-.. _hildon-pannable-area-new:
 
-.. function:: hildon_pannable_area_new ()
+    .. method:: scroll_to(x, y)
 
-::
+        Smoothly scrolls ``area`` to ensure that (``x``, ``y``) is a visible point on the widget. To move in only one coordinate, you must set the other one to -1. Notice that, in ```PANNABLE_AREA_MODE_PUSH``, this function works just like :meth:`jump_to'.
 
-  GtkWidget*          hildon_pannable_area_new            (void);
+        This function is useful if you need to present the user with a particular element inside a scrollable widget, like :class:`GtkTreeView` . For instance, the following example shows how to scroll inside a :class:`GtkTreeView` to make visible an item, indicated by the :class:`GtkTreeIter` ``iter``.
 
-Create a new pannable area widget
+        :: 
+            path = model.get_pah(model)
+            rect = treeview.get_background_area(path, None)
+            (x, y) = treeview.convert_bin_window_to_tree_coords(0, rect.y)
+            panarea.scroll_to(-1, y)
 
 
+        If you want to present a child widget in simpler scenarios, use :meth:`scroll_to_child` instead.
 
-:returns: 
-  the newly created :class:`HildonPannableArea`
+        There is a precondition to this function: the widget must be already realized. Check the :meth:`jump_to_child` for more tips regarding how to call this function during initialization.
 
+        :param x: The x coordinate of the destination point or -1 to ignore this axis.
+        :param y: The y coordinate of the destination point or -1 to ignore this axis.
 
-.. versionadded 2.2
 
-.. _hildon-pannable-area-new-full:
+    .. method:: jump_to(x, y)
 
-.. function:: hildon_pannable_area_new_full ()
+        Jumps the position of ``area`` to ensure that (``x``, ``y``) is a visible point in the widget. In order to move in only one coordinate, you must set the other one to -1. See :meth:`scroll_to` function for an example of how to calculate the position of children in scrollable widgets like :class:`GtkTreeview` .
+        There is a precondition to this function: the widget must be already realized. Check the :meth:`jump_to_child` for more tips regarding how to call this function during initialization.
 
-::
+        :param x: The x coordinate of the destination point or -1 to ignore this axis.
+        :param y: The y coordinate of the destination point or -1 to ignore this axis.
 
-  GtkWidget*          hildon_pannable_area_new_full       (int mode,
-                                                           bool enabled,
-                                                           gdouble vel_min,
-                                                           gdouble vel_max,
-                                                           gdouble decel,
-                                                           int sps);
+    .. method:: scroll_to_child(child)
 
-Create a new :class:`HildonPannableArea` widget and set various properties
+        Smoothly scrolls until ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you need to scroll inside a scrollable widget, e.g., :class:`GtkTreeview` , see :meth:`scroll_to`.
 
+        There is a precondition to this function: the widget must be already realized. Check the :meth:`jump_to_child` for more tips regarding how to call this function during initialization.
 
+        :param child: A :class:`GtkWidget` , descendant of ``area``.
 
-``mode``:
-  :class:`HildonPannableAreaMode`
+    .. method:: jump_to_child(child)
 
+        Jumps to make sure ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you want to move inside a scrollable widget, like, :class:`GtkTreeview` , see :meth:`scroll_to`.
+        
+        There is a precondition to this function: the widget must be already realized. You can control if the widget is ready with the GTK_WIDGET_REALIZED macro. If you want to call this function during the initialization process of the widget do it inside a callback to the ::realize signal, using `g_signal_connect_after() <g-signal-connect-after>`_ function.
 
-``enabled``:
-  Value for the enabled property
+        :param child: A :class:`GtkWidget` , descendant of ``area``.
 
 
-``vel_min``:
-  Value for the velocity-min property
+    .. method:: get_child_widget_at(x, y)
 
+        Get the widget at the point (x, y) inside the pannable area. In case no widget found it returns None.
 
-``vel_max``:
-  Value for the velocity-max property
+        :param x: horizontal coordinate of the point
+        :param y: vertical coordinate of the point
+        :returns: the :class:`GtkWidget` if we find a widget, NULL in any other case
 
 
-``decel``:
-  Value for the deceleration property
+    .. method:: get_size_request_policy()
 
+        This function returns the current size request policy of the widget. That policy controls the way the size_request is done in the pannable area. Check  :meth:`set_size_request_policy` for a more detailed explanation.
 
-``sps``:
-  Value for the sps property
+        :returns:  the policy is currently being used in the widget :class:`HildonSizeRequestPolicy` .
 
+    .. method: set_size_request_policy(size_request_policy)
 
-:returns: 
-  the newly create :class:`HildonPannableArea`
+        This function sets the pannable area size request policy. That policy controls the way the size_request is done in the pannable area. Pannable can use the size request of its children hildon.SIZE_REQUEST_CHILDREN or the minimum size required for the area itself hildon.SIZE_REQUEST_MINIMUM, the latter is the default. Recall this size depends on the scrolling policy you are requesting to the pannable area, if you set gtk.POLICY_NEVER this parameter will not have any effect with hildon.SIZE_REQUEST_MINIMUM set.
 
+        :param size_request_policy: One of the allowed :class:`HildonSizeRequestPolicy`
 
-.. versionadded 2.2
 
-.. _hildon-pannable-area-add-with-viewport:
+    .. method:: get_hadjustment()
 
-.. function:: hildon_pannable_area_add_with_viewport ()
+        Returns the horizontal adjustment. This adjustment is the internal widget adjustment used to control the animations. Do not modify it directly to change the position of the pannable, to do that use the pannable API. If you modify the object directly it could cause artifacts in the animations.
 
-::
+        :returns: The horizontal :class:`GtkAdjustment`
 
-  void                hildon_pannable_area_add_with_viewport
-                                                          (HildonPannableArea *area,
-                                                           GtkWidget *child);
+    
+    .. method: get_vadjustment()
 
-Convenience function used to add a child to a :class:`GtkViewport` , and add the viewport to the scrolled window.
+        Returns the vertical adjustment. This adjustment is the internal widget adjustment used to control the animations. Do not modify it directly to change the position of the pannable, to do that use the pannable API. If you modify the object directly it could cause artifacts in the animations.
 
+        :returns:  The vertical :class:`GtkAdjustment`
 
 
-``area``:
-  A :class:`HildonPannableArea`
+Functions
+=========
 
+.. function:: hildon_pannable_area_new_full(mode, enabled, vel_min, vel_max, decel, sps)
 
-``child``:
-  Child widget to add to the viewport
+    Create a new :class:`HildonPannableArea` widget and set various properties
 
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-scroll-to:
-
-.. function:: hildon_pannable_area_scroll_to ()
-
-::
-
-  void                hildon_pannable_area_scroll_to      (HildonPannableArea *area,
-                                                           const int x,
-                                                           const int y);
-
-Smoothly scrolls ``area`` to ensure that (``x``, ``y``) is a visible point on the widget. To move in only one coordinate, you must set the other one to -1. Notice that, in ```HILDON_PANNABLE_AREA_MODE_PUSH`` <HILDON-PANNABLE-AREA-MODE-PUSH:CAPS>`_ mode, this function works just like `hildon_pannable_area_jump_to() <hildon-pannable-area-jump-to>`_ .
-
-This function is useful if you need to present the user with a particular element inside a scrollable widget, like :class:`GtkTreeView` . For instance, the following example shows how to scroll inside a :class:`GtkTreeView` to make visible an item, indicated by the :class:`GtkTreeIter` ``iter``.
-
-:: GtkTreePath *path; GdkRectangle *rect; path = gtk_tree_model_get_path (model, iter); gtk_tree_view_get_background_area (GTK_TREE_VIEW (treeview), path, NULL, rect); gtk_tree_view_convert_bin_window_to_tree_coords (GTK_TREE_VIEW (treeview), 0, rect.y, NULL, y); hildon_pannable_area_scroll_to (panarea, -1, y); gtk_tree_path_free (path);
-
-If you want to present a child widget in simpler scenarios, use `hildon_pannable_area_scroll_to_child() <hildon-pannable-area-scroll-to-child>`_ instead.
-
-There is a precondition to this function: the widget must be already realized. Check the `hildon_pannable_area_jump_to_child() <hildon-pannable-area-jump-to-child>`_ for more tips regarding how to call this function during initialization.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-``x``:
-  The x coordinate of the destination point or -1 to ignore this axis.
-
-
-``y``:
-  The y coordinate of the destination point or -1 to ignore this axis.
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-jump-to:
-
-.. function:: hildon_pannable_area_jump_to ()
-
-::
-
-  void                hildon_pannable_area_jump_to        (HildonPannableArea *area,
-                                                           const int x,
-                                                           const int y);
-
-Jumps the position of ``area`` to ensure that (``x``, ``y``) is a visible point in the widget. In order to move in only one coordinate, you must set the other one to -1. See `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ function for an example of how to calculate the position of children in scrollable widgets like :class:`GtkTreeview` .
-
-There is a precondition to this function: the widget must be already realized. Check the `hildon_pannable_area_jump_to_child() <hildon-pannable-area-jump-to-child>`_ for more tips regarding how to call this function during initialization.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-``x``:
-  The x coordinate of the destination point or -1 to ignore this axis.
-
-
-``y``:
-  The y coordinate of the destination point or -1 to ignore this axis.
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-scroll-to-child:
-
-.. function:: hildon_pannable_area_scroll_to_child ()
-
-::
-
-  void                hildon_pannable_area_scroll_to_child
-                                                          (HildonPannableArea *area,
-                                                           GtkWidget *child);
-
-Smoothly scrolls until ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you need to scroll inside a scrollable widget, e.g., :class:`GtkTreeview` , see `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ .
-
-There is a precondition to this function: the widget must be already realized. Check the `hildon_pannable_area_jump_to_child() <hildon-pannable-area-jump-to-child>`_ for more tips regarding how to call this function during initialization.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-``child``:
-  A :class:`GtkWidget` , descendant of ``area``.
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-jump-to-child:
-
-.. function:: hildon_pannable_area_jump_to_child ()
-
-::
-
-  void                hildon_pannable_area_jump_to_child  (HildonPannableArea *area,
-                                                           GtkWidget *child);
-
-Jumps to make sure ``child`` is visible inside ``area``. ``child`` must be a descendant of ``area``. If you want to move inside a scrollable widget, like, :class:`GtkTreeview` , see `hildon_pannable_area_scroll_to() <hildon-pannable-area-scroll-to>`_ .
-
-There is a precondition to this function: the widget must be already realized. You can control if the widget is ready with the GTK_WIDGET_REALIZED macro. If you want to call this function during the initialization process of the widget do it inside a callback to the ::realize signal, using `g_signal_connect_after() <g-signal-connect-after>`_ function.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-``child``:
-  A :class:`GtkWidget` , descendant of ``area``.
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-get-child-widget-at:
-
-.. function:: hildon_pannable_get_child_widget_at ()
-
-::
-
-  GtkWidget*          hildon_pannable_get_child_widget_at (HildonPannableArea *area,
-                                                           gdouble x,
-                                                           gdouble y);
-
-Get the widget at the point (x, y) inside the pannable area. In case no widget found it returns NULL.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-``x``:
-  horizontal coordinate of the point
-
-
-``y``:
-  vertical coordinate of the point
-
-
-:returns: 
-  the :class:`GtkWidget` if we find a widget, NULL in any other case
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-get-size-request-policy:
-
-.. function:: hildon_pannable_area_get_size_request_policy ()
-
-::
-
-  HildonSizeRequestPolicy hildon_pannable_area_get_size_request_policy
-                                                          (HildonPannableArea *area);
-
-This function returns the current size request policy of the widget. That policy controls the way the size_request is done in the pannable area. Check `hildon_pannable_area_set_size_request_policy() <hildon-pannable-area-set-size-request-policy>`_ for a more detailed explanation.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-:returns: 
-  the policy is currently being used in the widget :class:`HildonSizeRequestPolicy` .
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-set-size-request-policy:
-
-.. function:: hildon_pannable_area_set_size_request_policy ()
-
-::
-
-  void                hildon_pannable_area_set_size_request_policy
-                                                          (HildonPannableArea *area,
-                                                           HildonSizeRequestPolicy size_request_policy);
-
-This function sets the pannable area size request policy. That policy controls the way the size_request is done in the pannable area. Pannable can use the size request of its children (`HILDON_SIZE_REQUEST_CHILDREN <HILDON-SIZE-REQUEST-CHILDREN:CAPS>`_ ) or the minimum size required for the area itself (`HILDON_SIZE_REQUEST_MINIMUM <HILDON-SIZE-REQUEST-MINIMUM:CAPS>`_ ), the latter is the default. Recall this size depends on the scrolling policy you are requesting to the pannable area, if you set `GTK_POLICY_NEVER <GTK-POLICY-NEVER:CAPS>`_ this parameter will not have any effect with `HILDON_SIZE_REQUEST_MINIMUM <HILDON-SIZE-REQUEST-MINIMUM:CAPS>`_ set.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-``size_request_policy``:
-  One of the allowed :class:`HildonSizeRequestPolicy`
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-get-hadjustment:
-
-.. function:: hildon_pannable_area_get_hadjustment ()
-
-::
-
-  GtkAdjustment*      hildon_pannable_area_get_hadjustment
-                                                          (HildonPannableArea *area);
-
-Returns the horizontal adjustment. This adjustment is the internal widget adjustment used to control the animations. Do not modify it directly to change the position of the pannable, to do that use the pannable API. If you modify the object directly it could cause artifacts in the animations.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-:returns: 
-  The horizontal :class:`GtkAdjustment`
-
-
-.. versionadded 2.2
-
-.. _hildon-pannable-area-get-vadjustment:
-
-.. function:: hildon_pannable_area_get_vadjustment ()
-
-::
-
-  GtkAdjustment*      hildon_pannable_area_get_vadjustment
-                                                          (HildonPannableArea *area);
-
-Returns the vertical adjustment. This adjustment is the internal widget adjustment used to control the animations. Do not modify it directly to change the position of the pannable, to do that use the pannable API. If you modify the object directly it could cause artifacts in the animations.
-
-
-
-``area``:
-  A :class:`HildonPannableArea` .
-
-
-:returns: 
-  The vertical :class:`GtkAdjustment`
-
+    :param mode: :class:`HildonPannableAreaMode`
+    :param enabled: Value for the enabled property
+    :param vel_min: Value for the velocity-min property
+    :param vel_max: Value for the velocity-max property
+    :param decel: Value for the deceleration property
+    :param sps: Value for the sps property
+    :returns: the newly create :class:`HildonPannableArea`
+        
 
 .. versionadded 2.2
 
@@ -6303,338 +5996,79 @@ Returns the vertical adjustment. This adjustment is the internal widget adjustme
 Property Details
 ================
 
-.. _HildonPannableArea--bounce-steps:
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| Name                             | type          | Access                   | Default                  | Meaning                                                                                                                                    |
++==================================+===============+==========================+==========================+============================================================================================================================================+
+| ``bounce-steps``                 | int           | Read / Write / Construct | 3                        | Number of steps that is going to be used to bounce when hitting theedge, the rubberband effect depends on it.                              |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``deceleration``                 | float         | Read / Write / Construct | 0.93                     | The multiplier used when decelerating when in acceleration scrolling mode.                                                                 |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``direction-error-margin``       | int           | Read / Write / Construct | 10                       | After detecting the direction of the movement (horizontal orvertical), we can add this margin of error to allow the movement inthe other   |
+|                                  |               |                          |                          | direction even apparently it is not.                                                                                                       |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``drag-inertia``                 | float         | Read / Write / Construct | 0.85                     | Percentage of the calculated speed in each moment we are are going to useto calculate the launch speed, the other part would be the        |
+|                                  |               |                          |                          | speedcalculated previously.                                                                                                                |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``enabled``                      | bool          | Read / Write / Construct | True                     | Enable or disable finger-scroll.                                                                                                           |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``force``                        | int           | Read / Write / Construct | 120                      | Force applied to the movement,                                                                                                             |
+|                                  |               |                          |                          | multiplies the calculated speed of                                                                                                         | 
+|                                  |               |                          |                          | theuser movement the cursor in the                                                                                                         |
+|                                  |               |                          |                          | screen.                                                                                                                                    |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``hadjustment``                  | gtk.Adjustment| Read                     |                          | The GtkAdjustment for the horizontal                                                                                                       |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+|``hovershoot-max``                | int           | Read / Write / Construct | 150                      | Space we allow the widget to pass                                                                                                          |
+|                                  |               |                          |                          | over its horizontal limits                                                                                                                 |
+|                                  |               |                          |                          | whenhitting the edges, set 0 in order                                                                                                      |
+|                                  |               |                          |                          |  to deactivate overshooting.                                                                                                               |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``hscrollbar-policy``            | GtkPolicyType | Read / Write / Construct | gtk.POLICY_AUTOMATIC     | Visual policy of the horizontal scrollbar.                                                                                                 |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``initial-hint``                 | bool          | Read / Write / Construct | True                     | Whether to hint the user about the pannability of the container.                                                                           |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``low-friction-mode``            | bool          | Read / Write / Construct | False                    | Change the finger-scrolling mode.                                                                                                          |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``mode``                         | Mode          | Read / Write / Construct | PANNABLE_AREA_MODE_AUTO  | Change the finger-scrolling mode.                                                                                                          |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``mov-mode``                     | MovementMode  | Read / Write / Construct | hildon.MOVEMENT_MODE_VERT| Controls if the widget can scroll vertically, horizontally or both.                                                                        |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``panning-threshold``            | int           | Read / Write / Construct | 6                        | Amount of pixels to consider a motion event an scroll, if it is lessit is a click detected incorrectly by the touch screen.                |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``scroll-time``                  | float         | Read / Write / Construct | 10                       | The time to scroll to a position when calling the hildon_pannable_scroll_to function.                                                      |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``scrollbar-fade-delay``         | int           | Read / Write / Construct | 3000                     | Time the scrollbar is going to be visible if the widget is not inaction in miliseconds.                                                    |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``size-request-policy``          | SizeRequestPol| Read / Write / Construct | SIZE_REQUEST_MINIMUM     | Controls the size request policy of the widget.                                                                                            |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``sps``                          | int           | Read / Write / Construct | 20                       | Amount of scroll events to generate per second.                                                                                            |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``vadjustment``                  | gtk.Adjustment| Read                     |                          | The GtkAdjustment for the vertical position.                                                                                               |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``velocity-fast-factor``         | float         | Read / Write / Construct | 0.02                     | Minimum velocity that is considered 'fast': children widgets won't receive button presses. Expressed as a fraction of the maximum velocity.|
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``velocity-max``                 | float         | Read / Write / Construct | 500                      | Maximum distance the child widget should scroll per 'frame', in pixels per frame.                                                          |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``velocity-min``                 | float         | Read / Write / Construct | 20                       | Minimum distance the child widget should scroll per 'frame', in pixels per frame.                                                          |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``velocity-overshooting-max``    | float         | Read / Write / Construct | 20                       | Maximum distance the child widget should scroll per 'frame', in pixels per frame when it overshoots after hitting the edge.                |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``vovershoot-max``               | int           | Read / Write / Construct | 150                      | Space we allow the widget to pass over its vertical limits whenhitting the edges, set 0 in order to deactivate overshooting.               |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ``vscrollbar-policy``            | PolicyType    | Read / Write / Construct | gtk.POLICY_AUTOMATIC     | Visual policy of the vertical scrollbar.                                                                                                   |
++----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 
-The ``bounce-steps`` property
 
-::
-
-    bounce-steps             int                 : Read / Write / Construct
-
-Number of steps that is going to be used to bounce when hitting theedge, the rubberband effect depends on it.
-
-Default value: 3
-
-.. _HildonPannableArea--deceleration:
-
-The ``deceleration`` property
-
-::
-
-    deceleration             gdouble               : Read / Write / Construct
-
-The multiplier used when decelerating when in acceleration scrolling mode.
-
-Allowed values: [0,1]
-
-Default value: 0.93
-
-.. _HildonPannableArea--direction-error-margin:
-
-The ``direction-error-margin`` property
-
-::
-
-    direction-error-margin   int                 : Read / Write / Construct
-
-After detecting the direction of the movement (horizontal orvertical), we can add this margin of error to allow the movement inthe other direction even apparently it is not.
-
-Default value: 10
-
-.. _HildonPannableArea--drag-inertia:
-
-The ``drag-inertia`` property
-
-::
-
-    drag-inertia             gdouble               : Read / Write / Construct
-
-Percentage of the calculated speed in each moment we are are going to useto calculate the launch speed, the other part would be the speedcalculated previously.
-
-Allowed values: [0,1]
-
-Default value: 0.85
-
-.. _HildonPannableArea--enabled:
-
-The ``enabled`` property
-
-::
-
-    enabled                  bool              : Read / Write / Construct
-
-Enable or disable finger-scroll.
-
-Default value: TRUE
-
-.. _HildonPannableArea--force:
-
-The ``force`` property
-
-::
-
-    force                    int                 : Read / Write / Construct
-
-Force applied to the movement, multiplies the calculated speed of theuser movement the cursor in the screen.
-
-Default value: 120
-
-.. _HildonPannableArea--hadjustment:
-
-The ``hadjustment`` property
-
-::
-
-    hadjustment              GtkAdjustment*        : Read
-
-The GtkAdjustment for the horizontal position.
-
-.. _HildonPannableArea--hovershoot-max:
-
-The ``hovershoot-max`` property
-
-::
-
-    hovershoot-max           int                  : Read / Write / Construct
-
-Space we allow the widget to pass over its horizontal limits whenhitting the edges, set 0 in order to deactivate overshooting.
-
-Allowed values: = 0
-
-Default value: 150
-
-.. _HildonPannableArea--hscrollbar-policy:
-
-The ``hscrollbar-policy`` property
-
-::
-
-    hscrollbar-policy        GtkPolicyType         : Read / Write / Construct
-
-Visual policy of the horizontal scrollbar.
-
-Default value: GTK_POLICY_AUTOMATIC
-
-.. _HildonPannableArea--initial-hint:
-
-The ``initial-hint`` property
-
-::
-
-    initial-hint             bool              : Read / Write / Construct
-
-Whether to hint the user about the pannability of the container.
-
-Default value: TRUE
-
-.. _HildonPannableArea--low-friction-mode:
-
-The ``low-friction-mode`` property
-
-::
-
-    low-friction-mode        bool              : Read / Write / Construct
-
-Avoid decelerating the panning movement, like no friction, the widgetwill stop in the edges or if the user clicks.
-
-Default value: FALSE
-
-.. _HildonPannableArea--mode:
-
-The ``mode`` property
-
-::
-
-    mode                     HildonPannableAreaMode  : Read / Write / Construct
-
-Change the finger-scrolling mode.
-
-Default value: HILDON_PANNABLE_AREA_MODE_AUTO
-
-.. _HildonPannableArea--mov-mode:
-
-The ``mov-mode`` property
-
-::
-
-    mov-mode                 HildonMovementMode    : Read / Write / Construct
-
-Controls if the widget can scroll vertically, horizontally or both.
-
-Default value: HILDON_MOVEMENT_MODE_VERT
-
-.. _HildonPannableArea--panning-threshold:
-
-The ``panning-threshold`` property
-
-::
-
-    panning-threshold        int                 : Read / Write / Construct
-
-Amount of pixels to consider a motion event an scroll, if it is lessit is a click detected incorrectly by the touch screen.
-
-Default value: 6
-
-.. _HildonPannableArea--scroll-time:
-
-The ``scroll-time`` property
-
-::
-
-    scroll-time              gdouble               : Read / Write / Construct
-
-The time to scroll to a position when calling the hildon_pannable_scroll_to function.
-
-Allowed values: [1,20]
-
-Default value: 10
-
-.. _HildonPannableArea--scrollbar-fade-delay:
-
-The ``scrollbar-fade-delay`` property
-
-::
-
-    scrollbar-fade-delay     int                 : Read / Write / Construct
-
-Time the scrollbar is going to be visible if the widget is not inaction in miliseconds.
-
-Default value: 3000
-
-.. _HildonPannableArea--size-request-policy:
-
-The ``size-request-policy`` property
-
-::
-
-    size-request-policy      HildonSizeRequestPolicy  : Read / Write / Construct
-
-Controls the size request policy of the widget.
-
-Default value: HILDON_SIZE_REQUEST_MINIMUM
-
-.. _HildonPannableArea--sps:
-
-The ``sps`` property
-
-::
-
-    sps                      int                 : Read / Write / Construct
-
-Amount of scroll events to generate per second.
-
-Default value: 20
-
-.. _HildonPannableArea--vadjustment:
-
-The ``vadjustment`` property
-
-::
-
-    vadjustment              GtkAdjustment*        : Read
-
-The GtkAdjustment for the vertical position.
-
-.. _HildonPannableArea--velocity-fast-factor:
-
-The ``velocity-fast-factor`` property
-
-::
-
-    velocity-fast-factor     gdouble               : Read / Write / Construct
-
-Minimum velocity that is considered 'fast': children widgets won't receive button presses. Expressed as a fraction of the maximum velocity.
-
-Allowed values: [0,1]
-
-Default value: 0.02
-
-.. _HildonPannableArea--velocity-max:
-
-The ``velocity-max`` property
-
-::
-
-    velocity-max             gdouble               : Read / Write / Construct
-
-Maximum distance the child widget should scroll per 'frame', in pixels per frame.
-
-Allowed values: = 0
-
-Default value: 500
-
-.. _HildonPannableArea--velocity-min:
-
-The ``velocity-min`` property
-
-::
-
-    velocity-min             gdouble               : Read / Write / Construct
-
-Minimum distance the child widget should scroll per 'frame', in pixels per frame.
-
-Allowed values: = 0
-
-Default value: 20
-
-.. _HildonPannableArea--velocity-overshooting-max:
-
-The ``velocity-overshooting-max`` property
-
-::
-
-    velocity-overshooting-max gdouble               : Read / Write / Construct
-
-Maximum distance the child widget should scroll per 'frame', in pixels per frame when it overshoots after hitting the edge.
-
-Allowed values: = 0
-
-Default value: 20
-
-.. _HildonPannableArea--vovershoot-max:
-
-The ``vovershoot-max`` property
-
-::
-
-    vovershoot-max           int                  : Read / Write / Construct
-
-Space we allow the widget to pass over its vertical limits whenhitting the edges, set 0 in order to deactivate overshooting.
-
-Allowed values: = 0
-
-Default value: 150
-
-.. _HildonPannableArea--vscrollbar-policy:
-
-The ``vscrollbar-policy`` property
-
-::
-
-    vscrollbar-policy        GtkPolicyType         : Read / Write / Construct
-
-Visual policy of the vertical scrollbar.
-
-Default value: GTK_POLICY_AUTOMATIC
-
-.. _HildonPannableArea.style-property-details:
 
 Style Property Details
 ======================
 
-.. _HildonPannableArea--indicator-width:
++----------------------+------+--------------+----------+-------------------------------------------------+
+| Name                 | type | Access       | Default  | Meaning                                         |
++======================+======+==============+==========+=================================================+
+| ``indicator-width``  | int  | Read / Write | 8        | Pixel width used to draw the scroll indicators. |
++----------------------+------+--------------+----------+-------------------------------------------------+
 
-The ``indicator-width`` style property
-
-::
-
-    indicator-width          int                 : Read / Write
-
-Pixel width used to draw the scroll indicators.
-
-Default value: 8
-
-.. _HildonPannableArea.signal-details:
 
 Signal Details
 ==============
@@ -6643,84 +6077,38 @@ Signal Details
 
 The ``horizontal-movement`` signal
 
-::
+.. function:: user_function(hildonpannable, direction, initial_x, initial_y, user_data)
 
-  void                user_function                      (HildonPannableArea *hildonpannable,
-                                                          int                direction,
-                                                          gdouble             initial_x,
-                                                          gdouble             initial_y,
-                                                          gpointer            user_data)           : Run Last / Action
-
-The horizontal-movement signal is emitted when the pannable area starts a horizontal movement.
+    The horizontal-movement signal is emitted when the pannable area starts a horizontal movement.
 
 
+    :param hildonpannable: the object which received the signal
+    :param direction: the direction of the movement hildon.MOVEMENT_UP or hildon.MOVEMENT_DOWN
+    :param initial_x: the x value of the touched point in the area when the motion started
+    :param initial_y: the y value of the touched point in the area when the motion started
+    :param user_data: user data set when the signal handler was connected.
 
-``hildonpannable``:
-  the object which received the signal
-
-
-``direction``:
-  the direction of the movement `HILDON_MOVEMENT_UP <HILDON-MOVEMENT-UP:CAPS>`_ or `HILDON_MOVEMENT_DOWN <HILDON-MOVEMENT-DOWN:CAPS>`_
-
-
-``initial_x``:
-  the x value of the touched point in the area when the motion started
-
-
-``initial_y``:
-  the y value of the touched point in the area when the motion started
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. versionadded 2.2
 
 .. _HildonPannableArea-vertical-movement:
 
 The ``vertical-movement`` signal
 
-::
+.. function:: user_function(hildonpannable, direction, initial_x, initial_y, user_data)
 
-  void                user_function                      (HildonPannableArea *hildonpannable,
-                                                          int                direction,
-                                                          gdouble             initial_x,
-                                                          gdouble             initial_y,
-                                                          gpointer            user_data)           : Run Last / Action
+    The vertical-movement signal is emitted when the pannable area starts a vertical movement.
 
-The vertical-movement signal is emitted when the pannable area starts a vertical movement.
+    :param hildonpannable: the object which received the signal
+    :param direction: the direction of the movement hildon.MOVEMENT_LEFT or hildon.MOVEMENT_RIGHT
+    :param initial_x: the x value when the motion started
+    :param initial_y: the y value when the motion started
+    :param user_data: user data set when the signal handler was connected.
 
-
-
-``hildonpannable``:
-  the object which received the signal
-
-
-``direction``:
-  the direction of the movement `HILDON_MOVEMENT_LEFT <HILDON-MOVEMENT-LEFT:CAPS>`_ or `HILDON_MOVEMENT_RIGHT <HILDON-MOVEMENT-RIGHT:CAPS>`_
-
-
-``initial_x``:
-  the x value when the motion started
-
-
-``initial_y``:
-  the y value when the motion started
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. versionadded 2.2
-
-.. _HildonPannableArea.see-also:
 
 See Also
 ========
 
-:class:`GtkScrolledWindow` .. _HildonEntry:
+:class:`GtkScrolledWindow` 
+
 
 HildonEntry
 ***********
