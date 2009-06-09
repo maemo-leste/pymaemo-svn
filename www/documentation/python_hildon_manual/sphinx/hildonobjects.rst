@@ -257,7 +257,7 @@ Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_sho
   void                hildon_window_add_toolbar           (HildonWindow *self,
                                                            GtkToolbar *toolbar);
 
-Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call `gtk_widget_show_all() <gtk-widget-show-all>`_ on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling `gtk_widget_hide() <gtk-widget-hide>`_
+Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call `gtk_widget_show_all() <gtk-widget-show-all>`_ on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide`
 
 
 
@@ -299,7 +299,7 @@ Removes a toolbar from the window. Note that this decreases the refference count
   void                hildon_window_set_edit_toolbar      (HildonWindow *self,
                                                            HildonEditToolbar *toolbar);
 
-Adds a :class:`HildonEditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call `gtk_widget_show() <gtk-widget-show>`_ on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling `gtk_widget_hide() <gtk-widget-hide>`_ .
+Adds a :class:`HildonEditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide` .
 
 A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
 
@@ -510,7 +510,7 @@ The :class:`HildonStackableWindow` is a GTK+ widget which represents a top-level
 
 The user can only see and interact with the window on top of the stack. Although all other windows are mapped and visible, they are obscured by the topmost one so in practice they appear as if they were hidden.
 
-To add a window to the stack, just use `gtk_widget_show() <gtk-widget-show>`_ . The previous one will be obscured by the new one. When the new window is destroyed, the previous one will appear again.
+To add a window to the stack, just use :meth:`GtkWidget.show` . The previous one will be obscured by the new one. When the new window is destroyed, the previous one will appear again.
 
 Alternatively, you can remove a window from the top of the stack without destroying it by using `hildon_window_stack_pop() <hildon-window-stack-pop>`_ . The window will be automatically hidden and the previous one will appear.
 
@@ -643,11 +643,11 @@ Stacks contain all :class:`HildonStackableWindow` s that are being shown. The us
 
 Each window can only be in one stack at a time. All stacked windows are visible and all visible windows are stacked.
 
-Each application has a default stack, and windows are automatically added to it when they are shown with `gtk_widget_show() <gtk-widget-show>`_ .
+Each application has a default stack, and windows are automatically added to it when they are shown with :meth:`GtkWidget.show` .
 
-Additional stacks can be created at any time using `hildon_window_stack_new() <hildon-window-stack-new>`_ . To add a window to a specific stack, use `hildon_window_stack_push_1() <hildon-window-stack-push-1>`_ (remember that, for the default stack, `gtk_widget_show() <gtk-widget-show>`_ can be used instead).
+Additional stacks can be created at any time using `hildon_window_stack_new() <hildon-window-stack-new>`_ . To add a window to a specific stack, use `hildon_window_stack_push_1() <hildon-window-stack-push-1>`_ (remember that, for the default stack, :meth:`GtkWidget.show` can be used instead).
 
-To remove a window from a stack use `hildon_window_stack_pop_1() <hildon-window-stack-pop-1>`_ , or simply `gtk_widget_hide() <gtk-widget-hide>`_ .
+To remove a window from a stack use `hildon_window_stack_pop_1() <hildon-window-stack-pop-1>`_ , or simply :meth:`GtkWidget.hide` .
 
 For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See `hildon_window_stack_push() <hildon-window-stack-push>`_ , `hildon_window_stack_pop() <hildon-window-stack-pop>`_ and `hildon_window_stack_pop_and_push() <hildon-window-stack-pop-and-push>`_ for more details.
 
@@ -8767,638 +8767,254 @@ Default value: "wdgt_bd_done"
 HildonAnimationActor
 ********************
 
-.. _hildon-HildonAnimationActor.description:
-
-Description
-===========
-
-
-
-.. _hildon-HildonAnimationActor.details:
-
 Details
 =======
 
-.. _HildonAnimationActor:
-
 .. class:: HildonAnimationActor
 
-::
+    .. method:: __init__ ()
 
-  typedef struct {
-      GtkWindow parent;
-  } HildonAnimationActor;
-  
+        Creates a new :class:`HildonAnimationActor` .
 
+        :returns: A :class:`HildonAnimationActor`
 
+        .. versionadded 2.2
 
-.. _hildon-animation-actor-new:
+    .. method:: send_message (message_type, l0, l1, l2, l3, l4)
 
-.. function:: hildon_animation_actor_new ()
+        Sends an X11 ClientMessage event to the window manager with the specified parameters -- id (``message_type``) and data (``l0``, ``l1``, ``l2``, ``l3``, ``l4``).
 
-::
+        This is an internal utility function that application will not need to call directly.
 
-  GtkWidget*          hildon_animation_actor_new          (void);
+        :param message_type: Message id for the animation actor message.
+        :param l0: 1st animation actor message parameter.
+        :param l1: 2nd animation actor message parameter.
+        :param l2: 3rd animation actor message parameter.
+        :param l3: 4th animation actor message parameter.
+        :param l4: 5th animation actor message parameter.
 
-Creates a new :class:`HildonAnimationActor` .
+        .. versionadded 2.2
 
+    .. method:: set_anchor (x, y)
 
+        Send a message to the window manager setting the anchor point for the animation actor. The anchor point is the point to which the actor position within its parent it is relative.
 
-:returns: 
-  A :class:`HildonAnimationActor`
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
+        :param x: The X coordinate of the anchor point.
+        :param y: The Y coordinate of the anchor point.
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
-.. _hildon-animation-actor-send-message:
+    .. method:: set_anchor_from_gravity (gravity)
 
-.. function:: hildon_animation_actor_send_message ()
+        Send a message to the window manager setting the anchor point for the animation actor. The anchor point is the point to which the actor position within its parent it is relative. Instead of being defined in (x, y)-coordinates, the anchor point is defined in the relative "gravity" constant as:
 
-::
+        :const:`HILDON_AA_N_GRAVITY`
+            translates to (width / 2, 0) coordinate 
+        :const:`HILDON_AA_NE_GRAVITY`
+            translates to (width, 0) coordinate 
+        :const:`HILDON_AA_E_GRAVITY`
+            translates to (width, height / 2) coordinate 
+        :const:`HILDON_AA_SE_GRAVITY`
+            translates to (width, height) coordinate 
+        :const:`HILDON_AA_S_GRAVITY`
+            translates to (width / 2, height) coordinate 
+        :const:`HILDON_AA_SW_GRAVITY`
+            translates to (0, height) coordinate 
+        :const:`HILDON_AA_W_GRAVITY`
+            translates to (0, height / 2) coordinate 
+        :const:`HILDON_AA_NW_GRAVITY`
+            translates to (0, 0) coordinate 
+        :const:`HILDON_AA_CENTER_GRAVITY`
+            translates to (width / 2, height / 2) coordinate
 
-  void                hildon_animation_actor_send_message (HildonAnimationActor *self,
-                                                           int message_type,
-                                                           int l0,
-                                                           int l1,
-                                                           int l2,
-                                                           int l3,
-                                                           int l4);
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-Sends an X11 ClientMessage event to the window manager with the specified parameters -- id (``message_type``) and data (``l0``, ``l1``, ``l2``, ``l3``, ``l4``).
+        :param gravity: The gravity constant.
 
-This is an internal utility function that application will not need to call directly.
+        .. versionadded 2.2
 
+    .. method:: set_depth (depth)
 
+        A shortcut for :meth:`HildonAnimationActor.set_position_full` , changing the window depth, but preserving it's position.
 
-``self``:
-  A :class:`HildonAnimationActor`
+        :param depth: Desired window depth (Z coordinate)
 
+        .. versionadded 2.2
 
-``message_type``:
-  Message id for the animation actor message.
+    .. method:: set_opacity (opacity)
 
+        This function is a shortcut for :meth:`HildonAnimationActor.set_show_full` , setting actor opacity without changing it's overall visibility.
 
-``l0``:
-  1st animation actor message parameter.
+        See :meth:`HildonAnimationActor.set_show_full` for description of the range of values ``opacity`` argument takes.
 
+        :param opacity: Desired opacity setting
 
-``l1``:
-  2nd animation actor message parameter.
+        .. versionadded 2.2
 
+    .. method:: set_parent (parent)
 
-``l2``:
-  3rd animation actor message parameter.
+        Send a message to the window manager setting the parent window for the animation actor. Parenting an actor will not affect the X window that the HildonAnimationActor represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
+        Parenting an animation actor will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and :meth:`HildonAnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
 
-``l3``:
-  4th animation actor message parameter.
+        Passing None as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-``l4``:
-  5th animation actor message parameter.
+        :param parent: A :class:`GtkWindow` that the actor will be parented to.
 
+        .. versionadded 2.2
 
-.. versionadded 2.2
+    .. method:: set_position (x, y)
 
-.. _hildon-animation-actor-set-anchor:
+        A shortcut for :meth:`HildonAnimationActor.set_position_full` , changing the window position, but preserving it's depth setting.
 
-.. function:: hildon_animation_actor_set_anchor ()
+        :param x: Desired window X coordinate
+        :param y: Desired window Y coordinate
 
-::
+        .. versionadded 2.2
 
-  void                hildon_animation_actor_set_anchor   (HildonAnimationActor *self,
-                                                           int x,
-                                                           int y);
+    .. method:: set_position_full (x, y, depth)
 
-Send a message to the window manager setting the anchor point for the animation actor. The anchor point is the point to which the actor position within its parent it is relative.
+        Send a message to the window manager setting the position of the animation actor. This will set the position of the animation actor off-screen bitmap as it is rendered to the screen. The position of the actor is relative to the parent window. The actor is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
 
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
+        The window depth affects the stacking of animation actors within a parent window and, more generally, the stacking of clutter actors within a stage/container. The default depth is 0 and a parent window's container will have it's window texture stacked at that level. The stacking at any depth level is sequential -- animation actor B created/parented after animation actor A will obscure the latter if they overlap.
 
+        Animation actors with non-zero depth settings are subject to scaling as per the global scene perspective setup, which limits the depth setting as the primary parameter to control the stacking order. Since the stacking order follows the parenting order, it may be better to use :meth:`HildonAnimationActor.set_parent` for setting the stacking.
 
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-``self``:
-  A :class:`HildonAnimationActor`
+        :param x: Desired X coordinate
+        :param y: Desired Y coordinate
+        :param depth: Desired window depth (Z coordinate)
 
+        .. versionadded 2.2
 
-``x``:
-  The X coordinate of the anchor point.
+    .. method:: set_rotation (axis, degrees, x, y, z)
 
+        Send a message to the window manager setting the animation actor rotation around one of the three axes. The rotation center coordinates depend on the axis of rotation:
 
-``y``:
-  The Y coordinate of the anchor point.
+        :const:`HILDON_AA_X_AXIS`
+            requires ``y`` and ``z`` coordinates.
+        :const:`HILDON_AA_Y_AXIS`
+            requires ``x`` and ``z`` coordinates. 
+        :const:`HILDON_AA_Z_AXIS`
+            requires ``x`` and ``y`` coordinates.
 
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-.. versionadded 2.2
+        :param axis: The rotation axis.
+        :param degrees: The rotation angle in degrees.
+        :param x: Center of the rotation, X coordinate.
+        :param y: Center of the rotation, Y coordinate.
+        :param z: Center of the rotation, Z coordinate.
 
-.. _hildon-animation-actor-set-anchor-from-gravity:
+        .. versionadded 2.2
 
-.. function:: hildon_animation_actor_set_anchor_from_gravity ()
+    .. method:: set_rotationx (axis, degrees, x, y, z)
 
-::
+        This function is just like :meth:`HildonAnimationActor.set_rotation` , but the rotation angle is given as 16-bit fixed-point number.
 
-  void                hildon_animation_actor_set_anchor_from_gravity
-                                                          (HildonAnimationActor *self,
-                                                           int gravity);
+        :param axis: The rotation axis.
+        :parma degrees: The rotation angle in degrees.
+        :param x: Center of the rotation, X coordinate.
+        :param y: Center of the rotation, Y coordinate.
+        :param z: Center of the rotation, Z coordinate.
 
-Send a message to the window manager setting the anchor point for the animation actor. The anchor point is the point to which the actor position within its parent it is relative. Instead of being defined in (x, y)-coordinates, the anchor point is defined in the relative "gravity" constant as:
+        .. versionadded 2.2
 
-\* ```HILDON_AA_N_GRAVITY`` <HILDON-AA-N-GRAVITY:CAPS>`_ translates to (width / 2, 0) coordinate \* ```HILDON_AA_NE_GRAVITY`` <HILDON-AA-NE-GRAVITY:CAPS>`_ translates to (width, 0) coordinate \* ```HILDON_AA_E_GRAVITY`` <HILDON-AA-E-GRAVITY:CAPS>`_ translates to (width, height / 2) coordinate \* ```HILDON_AA_SE_GRAVITY`` <HILDON-AA-SE-GRAVITY:CAPS>`_ translates to (width, height) coordinate \* ```HILDON_AA_S_GRAVITY`` <HILDON-AA-S-GRAVITY:CAPS>`_ translates to (width / 2, height) coordinate \* ```HILDON_AA_SW_GRAVITY`` <HILDON-AA-SW-GRAVITY:CAPS>`_ translates to (0, height) coordinate \* ```HILDON_AA_W_GRAVITY`` <HILDON-AA-W-GRAVITY:CAPS>`_ translates to (0, height / 2) coordinate \* ```HILDON_AA_NW_GRAVITY`` <HILDON-AA-NW-GRAVITY:CAPS>`_ translates to (0, 0) coordinate \* ```HILDON_AA_CENTER_GRAVITY`` <HILDON-AA-CENTER-GRAVITY:CAPS>`_ translates to (width / 2, height / 2) coordinate
+    .. method:: set_scale (x_scale, y_scale)
 
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
+        Send a message to the window manager setting the scale factors of the animation actor. This will set the scale factors on the animation actor off-screen bitmap as it is rendered to the screen. If the animation actor is parented to another top-level window, the animation effects rendered by the compositing window manager on that top-level window (like those by task switcher) will also affect the animation actor.
 
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
+        :param x_scale: Window's desired scale factor along the X-axis
+        :param y_scale: Window's desired scale factor along the Y-axis
 
-``self``:
-  A :class:`HildonAnimationActor`
+        .. versionadded 2.2
 
+    .. method:: set_scalex (x_scale, y_scale)
 
-``gravity``:
-  The gravity constant.
+        This function is just like :meth:`HildonAnimationActor.set_scale` , but the scale factors are given as 16-bit fixed-point number.
 
+        :param x_scale: Window's desired scale factor along the X-axis
+        :param y_scale: Window's desired scale factor along the Y-axis
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
-.. _hildon-animation-actor-set-depth:
+    .. method:: set_show (show)
 
-.. function:: hildon_animation_actor_set_depth ()
+        This function is a shortcut for :meth:`HildonAnimationActor.set_show_full` , setting the overall actor visibility without changing it's opacity setting.
 
-::
+        :param show: A boolean flag setting the visibility of the animation actor.
 
-  void                hildon_animation_actor_set_depth    (HildonAnimationActor *self,
-                                                           int depth);
+        .. versionadded 2.2
 
-A shortcut for `hildon_animation_actor_set_position_full() <hildon-animation-actor-set-position-full>`_ , changing the window depth, but preserving it's position.
+    .. method:: set_show_full (show, opacity)
 
+        Send a message to the window manager setting the visibility of the animation actor. This will only affect the visibility of the animation actor set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonAnimationActor` widget is not visible in X11 terms (i.e. realized and mapped).
 
+        Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
 
-``self``:
-  A :class:`HildonAnimationActor`
+        The opacity setting ranges from zero (0), being completely transparent to 255 (0xff) being fully opaque.
 
+        If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
-``depth``:
-  Desired window depth (Z coordinate)
+        :param show: A boolean flag setting the visibility of the animation actor.
+        :param opacity: Desired opacity setting
 
+        .. versionadded 2.2
 
-.. versionadded 2.2
+.. data:: HILDON_AA_CENTER_GRAVITY
 
-.. _hildon-animation-actor-set-opacity:
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
-.. function:: hildon_animation_actor_set_opacity ()
+.. data:: HILDON_AA_E_GRAVITY
 
-::
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
-  void                hildon_animation_actor_set_opacity  (HildonAnimationActor *self,
-                                                           int opacity);
+.. data:: HILDON_AA_NE_GRAVITY
 
-This function is a shortcut for `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-full>`_ , setting actor opacity without changing it's overall visibility.
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
-See `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-full>`_ for description of the range of values ``opacity`` argument takes.
+.. data:: HILDON_AA_NW_GRAVITY
 
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
+.. data:: HILDON_AA_N_GRAVITY
 
-``self``:
-  A :class:`HildonAnimationActor`
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
+.. data:: HILDON_AA_SE_GRAVITY
 
-``opacity``:
-  Desired opacity setting
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
+.. data:: HILDON_AA_SW_GRAVITY
 
-.. versionadded 2.2
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
-.. _hildon-animation-actor-set-parent:
+.. data:: HILDON_AA_S_GRAVITY
 
-.. function:: hildon_animation_actor_set_parent ()
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
-::
+.. data:: HILDON_AA_W_GRAVITY
 
-  void                hildon_animation_actor_set_parent   (HildonAnimationActor *self,
-                                                           GtkWindow *parent);
+    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
 
-Send a message to the window manager setting the parent window for the animation actor. Parenting an actor will not affect the X window that the HildonAnimationActor represents, but it's off-screen bitmap as it is handled by the compositing window manager.
+.. data:: HILDON_AA_X_AXIS
 
-Parenting an animation actor will affect its visibility as set by the `gtk_widget_show() <gtk-widget-show>`_ , `gtk_widget_hide() <gtk-widget-hide>`_ and `hildon_animation_actor_set_show() <hildon-animation-actor-set-show>`_ . The animation actor will only be visible when the top-level window it is parented is visible.
+    .. seealso:: :meth:`HildonAnimationActor.set_rotation`
 
-Passing None as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
+.. data:: HILDON_AA_Y_AXIS
 
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
+    .. seealso:: :meth:`HildonAnimationActor.set_rotation`
 
+.. data:: HILDON_AA_Z_AXIS
 
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``parent``:
-  A :class:`GtkWindow` that the actor will be parented to.
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-position:
-
-.. function:: hildon_animation_actor_set_position ()
-
-::
-
-  void                hildon_animation_actor_set_position (HildonAnimationActor *self,
-                                                           int x,
-                                                           int y);
-
-A shortcut for `hildon_animation_actor_set_position_full() <hildon-animation-actor-set-position-full>`_ , changing the window position, but preserving it's depth setting.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``x``:
-  Desired window X coordinate
-
-
-``y``:
-  Desired window Y coordinate
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-position-full:
-
-.. function:: hildon_animation_actor_set_position_full ()
-
-::
-
-  void                hildon_animation_actor_set_position_full
-                                                          (HildonAnimationActor *self,
-                                                           int x,
-                                                           int y,
-                                                           int depth);
-
-Send a message to the window manager setting the position of the animation actor. This will set the position of the animation actor off-screen bitmap as it is rendered to the screen. The position of the actor is relative to the parent window. The actor is also subject to the animation effects rendered by the compositing window manager on that window (like those by task switcher).
-
-The window depth affects the stacking of animation actors within a parent window and, more generally, the stacking of clutter actors within a stage/container. The default depth is 0 and a parent window's container will have it's window texture stacked at that level. The stacking at any depth level is sequential -- animation actor B created/parented after animation actor A will obscure the latter if they overlap.
-
-Animation actors with non-zero depth settings are subject to scaling as per the global scene perspective setup, which limits the depth setting as the primary parameter to control the stacking order. Since the stacking order follows the parenting order, it may be better to use `hildon_animation_actor_set_parent() <hildon-animation-actor-set-parent>`_ for setting the stacking.
-
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``x``:
-  Desired X coordinate
-
-
-``y``:
-  Desired Y coordinate
-
-
-``depth``:
-  Desired window depth (Z coordinate)
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-rotation:
-
-.. function:: hildon_animation_actor_set_rotation ()
-
-::
-
-  void                hildon_animation_actor_set_rotation (HildonAnimationActor *self,
-                                                           int axis,
-                                                           double degrees,
-                                                           int x,
-                                                           int y,
-                                                           int z);
-
-Send a message to the window manager setting the animation actor rotation around one of the three axes. The rotation center coordinates depend on the axis of rotation:
-
-\* ```HILDON_AA_X_AXIS`` <HILDON-AA-X-AXIS:CAPS>`_ requires ``y`` and ``z`` coordinates. \* ```HILDON_AA_Y_AXIS`` <HILDON-AA-Y-AXIS:CAPS>`_ requires ``x`` and ``z`` coordinates. \* ```HILDON_AA_Z_AXIS`` <HILDON-AA-Z-AXIS:CAPS>`_ requires ``x`` and ``y`` coordinates.
-
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``axis``:
-  The rotation axis.
-
-
-``degrees``:
-  The rotation angle in degrees.
-
-
-``x``:
-  Center of the rotation, X coordinate.
-
-
-``y``:
-  Center of the rotation, Y coordinate.
-
-
-``z``:
-  Center of the rotation, Z coordinate.
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-rotationx:
-
-.. function:: hildon_animation_actor_set_rotationx ()
-
-::
-
-  void                hildon_animation_actor_set_rotationx
-                                                          (HildonAnimationActor *self,
-                                                           int axis,
-                                                           int degrees,
-                                                           int x,
-                                                           int y,
-                                                           int z);
-
-This function is just like `hildon_animation_actor_set_rotation() <hildon-animation-actor-set-rotation>`_ , but the rotation angle is given as 16-bit fixed-point number.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``axis``:
-  The rotation axis.
-
-
-``degrees``:
-  The rotation angle in degrees.
-
-
-``x``:
-  Center of the rotation, X coordinate.
-
-
-``y``:
-  Center of the rotation, Y coordinate.
-
-
-``z``:
-  Center of the rotation, Z coordinate.
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-scale:
-
-.. function:: hildon_animation_actor_set_scale ()
-
-::
-
-  void                hildon_animation_actor_set_scale    (HildonAnimationActor *self,
-                                                           double x_scale,
-                                                           double y_scale);
-
-Send a message to the window manager setting the scale factors of the animation actor. This will set the scale factors on the animation actor off-screen bitmap as it is rendered to the screen. If the animation actor is parented to another top-level window, the animation effects rendered by the compositing window manager on that top-level window (like those by task switcher) will also affect the animation actor.
-
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``x_scale``:
-  Window's desired scale factor along the X-axis
-
-
-``y_scale``:
-  Window's desired scale factor along the Y-axis
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-scalex:
-
-.. function:: hildon_animation_actor_set_scalex ()
-
-::
-
-  void                hildon_animation_actor_set_scalex   (HildonAnimationActor *self,
-                                                           int x_scale,
-                                                           int y_scale);
-
-This function is just like `hildon_animation_actor_set_scale() <hildon-animation-actor-set-scale>`_ , but the scale factors are given as 16-bit fixed-point number.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``x_scale``:
-  Window's desired scale factor along the X-axis
-
-
-``y_scale``:
-  Window's desired scale factor along the Y-axis
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-show:
-
-.. function:: hildon_animation_actor_set_show ()
-
-::
-
-  void                hildon_animation_actor_set_show     (HildonAnimationActor *self,
-                                                           int show);
-
-This function is a shortcut for `hildon_animation_actor_set_show_full() <hildon-animation-actor-set-show-full>`_ , setting the overall actor visibility without changing it's opacity setting.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``show``:
-  A boolean flag setting the visibility of the animation actor.
-
-
-.. versionadded 2.2
-
-.. _hildon-animation-actor-set-show-full:
-
-.. function:: hildon_animation_actor_set_show_full ()
-
-::
-
-  void                hildon_animation_actor_set_show_full
-                                                          (HildonAnimationActor *self,
-                                                           int show,
-                                                           int opacity);
-
-Send a message to the window manager setting the visibility of the animation actor. This will only affect the visibility of the animation actor set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonAnimationActor` widget is not visible in X11 terms (i.e. realized and mapped).
-
-Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
-
-The opacity setting ranges from zero (0), being completely transparent to 255 (0xff) being fully opaque.
-
-If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
-
-
-
-``self``:
-  A :class:`HildonAnimationActor`
-
-
-``show``:
-  A boolean flag setting the visibility of the animation actor.
-
-
-``opacity``:
-  Desired opacity setting
-
-
-.. versionadded 2.2
-
-.. _HILDON-AA-CENTER-GRAVITY:CAPS:
-
-.. :: HILDON_AA_CENTER_GRAVITY
-
-::
-
-  #define HILDON_AA_CENTER_GRAVITY    9
-  
-
-
-
-.. _HILDON-AA-E-GRAVITY:CAPS:
-
-.. :: HILDON_AA_E_GRAVITY
-
-::
-
-  #define HILDON_AA_E_GRAVITY	    3
-  
-
-
-
-.. _HILDON-AA-NE-GRAVITY:CAPS:
-
-.. :: HILDON_AA_NE_GRAVITY
-
-::
-
-  #define HILDON_AA_NE_GRAVITY	    2
-  
-
-
-
-.. _HILDON-AA-NW-GRAVITY:CAPS:
-
-.. :: HILDON_AA_NW_GRAVITY
-
-::
-
-  #define HILDON_AA_NW_GRAVITY	    8
-  
-
-
-
-.. _HILDON-AA-N-GRAVITY:CAPS:
-
-.. :: HILDON_AA_N_GRAVITY
-
-::
-
-  #define HILDON_AA_N_GRAVITY	    1
-  
-
-
-
-.. _HILDON-AA-SE-GRAVITY:CAPS:
-
-.. :: HILDON_AA_SE_GRAVITY
-
-::
-
-  #define HILDON_AA_SE_GRAVITY	    4
-  
-
-
-
-.. _HILDON-AA-SW-GRAVITY:CAPS:
-
-.. :: HILDON_AA_SW_GRAVITY
-
-::
-
-  #define HILDON_AA_SW_GRAVITY	    6
-  
-
-
-
-.. _HILDON-AA-S-GRAVITY:CAPS:
-
-.. :: HILDON_AA_S_GRAVITY
-
-::
-
-  #define HILDON_AA_S_GRAVITY	    5
-  
-
-
-
-.. _HILDON-AA-W-GRAVITY:CAPS:
-
-.. :: HILDON_AA_W_GRAVITY
-
-::
-
-  #define HILDON_AA_W_GRAVITY	    7
-  
-
-
-
-.. _HILDON-AA-X-AXIS:CAPS:
-
-.. :: HILDON_AA_X_AXIS
-
-::
-
-  #define HILDON_AA_X_AXIS	    0
-  
-
-
-
-.. _HILDON-AA-Y-AXIS:CAPS:
-
-.. :: HILDON_AA_Y_AXIS
-
-::
-
-  #define HILDON_AA_Y_AXIS	    1
-  
-
-
-
-.. _HILDON-AA-Z-AXIS:CAPS:
-
-.. :: HILDON_AA_Z_AXIS
-
-::
-
-  #define HILDON_AA_Z_AXIS	    2
-  
+    .. seealso:: :meth:`HildonAnimationActor.set_rotation`
 
 HildonRemoteTexture
 *******************
@@ -9472,7 +9088,7 @@ Details
 
         Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the HildonRemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an remote texture will affect its visibility as set by the `gtk_widget_show() <gtk-widget-show>`_ , `gtk_widget_hide() <gtk-widget-hide>`_ and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
+        Parenting an remote texture will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the remote texture. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
