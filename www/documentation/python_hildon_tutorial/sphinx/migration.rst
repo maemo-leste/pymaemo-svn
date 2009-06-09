@@ -53,7 +53,7 @@ The following example shows the implementation of the menu following the above d
 Migrating a menu
 ================
 
-.. literalinclude:: ../examples/hildon-migration-example1.py
+.. literalinclude:: ../examples/hildon-migration-menus.py
 
 .. _migration-choices:
 
@@ -74,7 +74,7 @@ Consider a dialog where, among other widgets, there's a frame labeled "Proxy Pre
 Migrating choice widgets
 ========================
 
-.. literalinclude:: ../examples/hildon-migration-example2.py
+.. literalinclude:: ../examples/hildon-migration-choices.py
  
               
 .. _migration-notebooks:
@@ -98,6 +98,6 @@ The example shows the code to produce a replacement for the notebook (see @@IMAG
 Migrating a notebook
 ====================
 
-.. literalinclude:: ../examples/hildon-migration-example3.py
+.. literalinclude:: ../examples/hildon-migration-notebooks.py
  
               
