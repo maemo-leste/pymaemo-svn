@@ -125,260 +125,101 @@ Details
 
         :param: menu: The :class:`GtkMenu` to be used for this :class:`HildonWindow`
 
+    .. method:: get_main_menu ()
 
-.. _hildon-window-get-main-menu:
+        Gets the :class:`GtkMenu` assigned to the :class:`HildonAppview` . Note that the window is still the owner of the menu.
 
-.. function:: hildon_window_get_main_menu ()
+        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.get_app_menu` instead.
 
-::
+        :returns: The :class:`GtkMenu` assigned to this application view.
 
-  GtkMenu*            hildon_window_get_main_menu         (HildonWindow *self);
+        .. versionadded 2.2
 
-Gets the :class:`GtkMenu` assigned to the :class:`HildonAppview` . Note that the window is still the owner of the menu.
+    .. method:: set_app_menu (menu)
 
-Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use `hildon_window_get_app_menu() <hildon-window-get-app-menu>`_ instead.
+        Sets the menu to be used for this window. Pass None to remove the current menu. Any reference to a previous menu will be dropped. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
+        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`HildonWindow.set_main_menu` instead.
 
+        :param: menu: a :class:`HildonAppMenu` to be used for this window
 
-``self``:
-  a :class:`HildonWindow`
+        .. versionadded 2.2
 
+    .. method:: get_app_menu ()
 
-:returns: 
-  The :class:`GtkMenu` assigned to this application view.
+        Returns the :class:`HildonAppMenu` assigned to ``self``, or None if it's unset. Note that the window is still the owner of the menu.
 
+        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`HildonWindow.get_main_menu` instead.
 
-.. versionadded 2.2
 
-.. _hildon-window-set-app-menu:
+        :returns: a :class:`HildonAppMenu`
 
-.. function:: hildon_window_set_app_menu ()
+        .. versionadded 2.2
 
-::
+    .. method:: set_menu (menu)
 
-  void                hildon_window_set_app_menu          (HildonWindow *self,
-                                                           HildonAppMenu *menu);
+        .. warning:: :meth:`HildonWindow.set_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`HildonWindow.set_main_menu`
 
-Sets the menu to be used for this window. Pass None to remove the current menu. Any reference to a previous menu will be dropped. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+        Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ instead.
+        Note: :meth:`HildonWindow.set_menu` calls :meth:`GtkWidget.show_all()` for the :class:`GtkMenu` . To pass control about visibility to the application developer, :meth:`HildonWindow.set_main_menu` was introduced, which doesn't do this.
 
+        :param: menu: The :class:`GtkMenu` to be used for this :class:`HildonWindow`
 
+    .. method:: get_menu ()
 
-``self``:
-  a :class:`HildonWindow`
+        .. warning:: :meth:`HildonWindow.get_menu` is deprecated and should not be used in newly-written code. In Hildon 2.2 this function has been renamed to :meth:`HildonWindow.get_main_menu` for consistency
 
+        :returns:  a :class:`GtkMenu`
 
-``menu``:
-  a :class:`HildonAppMenu` to be used for this window
 
+    .. method:: add_toolbar (toolbar)
 
-.. versionadded 2.2
+        Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show_all` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide`
 
-.. _hildon-window-get-app-menu:
+        :param: toolbar: A :class:`GtkToolbar` to add to the :class:`HildonWindow`
 
-.. function:: hildon_window_get_app_menu ()
+    .. method:: remove_toolbar (toolbar)
 
-::
+        Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call :meth:`GObject.ref`before calling this function.
 
-  HildonAppMenu*      hildon_window_get_app_menu          (HildonWindow *self);
+        :param: toolbar: A :class:`GtkToolbar` to remove from the :class:`HildonWindow`
 
-Returns the :class:`HildonAppMenu` assigned to ``self``, or None if it's unset. Note that the window is still the owner of the menu.
 
-Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use `hildon_window_get_main_menu() <hildon-window-get-main-menu>`_ instead.
+    .. method:: set_edit_toolbar (toolbar)
 
+        Adds a :class:`HildonEditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide` .
 
+        A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
 
-``self``:
-  a :class:`HildonWindow`
+        :param: toolbar: A :class:`HildonEditToolbar` , or None to remove the current one.
 
+        .. versionadded 2.2
 
-:returns: 
-  a :class:`HildonAppMenu`
+    .. method:: get_is_topmost ()
 
+        Returns whether the :class:`HildonWindow` is currenty activated by the window manager.
 
-.. versionadded 2.2
+        :returns:  True ``self`` is currently activated, False otherwise.
 
-.. _hildon-window-set-menu:
 
-.. function:: hildon_window_set_menu ()
+    .. method:: set_markup (markup)
 
-::
+        Sets the marked up title of ``window``. The accepted format is the one used in Pango (see :class:`PangoMarkupFormat` ) with the exception of span.
 
-  void                hildon_window_set_menu              (HildonWindow *self,
-                                                           GtkMenu *menu);
+        Note that you need support from the window manager for this title to be used. See :meth:`GtkWindow.set_title` for the standard way of setting the title of a window.
 
-.. warning:: ``hildon_window_set_menu`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_
+        :param: markup: the marked up title of the window, or None to unset the current one
 
-Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. HildonWindow takes ownership of the passed menu and you're not supposed to free it yourself anymore.
+        .. versionadded 2.2
 
-Note: `hildon_window_set_menu() <hildon-window-set-menu>`_ calls `gtk_widget_show_all() <gtk-widget-show-all>`_ for the :class:`GtkMenu` . To pass control about visibility to the application developer, `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ was introduced, which doesn't do this.
+    .. method:: hildon_window_get_markup ()
 
+        Gets the marked up title of the window title. See :meth:`HildonWindow.set_markup`
 
+        :returns: the marked up title of the window, or None if none has been set explicitely. The returned string is owned by the widget and must not be modified or freed.
 
-``self``:
-  A :class:`HildonWindow`
-
-
-``menu``:
-  The :class:`GtkMenu` to be used for this :class:`HildonWindow`
-
-
-.. _hildon-window-get-menu:
-
-.. function:: hildon_window_get_menu ()
-
-::
-
-  GtkMenu*            hildon_window_get_menu              (HildonWindow *self);
-
-.. warning:: ``hildon_window_get_menu`` is deprecated and should not be used in newly-written code. In Hildon 2.2 this function has been renamed to `hildon_window_get_main_menu() <hildon-window-get-main-menu>`_ for consistency
-
-
-
-
-
-``self``:
-  a :class:`HildonWindow`
-
-
-:returns: 
-  a :class:`GtkMenu`
-
-
-.. _hildon-window-add-toolbar:
-
-.. function:: hildon_window_add_toolbar ()
-
-::
-
-  void                hildon_window_add_toolbar           (HildonWindow *self,
-                                                           GtkToolbar *toolbar);
-
-Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call `gtk_widget_show_all() <gtk-widget-show-all>`_ on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide`
-
-
-
-``self``:
-  A :class:`HildonWindow`
-
-
-``toolbar``:
-  A :class:`GtkToolbar` to add to the :class:`HildonWindow`
-
-
-.. _hildon-window-remove-toolbar:
-
-.. function:: hildon_window_remove_toolbar ()
-
-::
-
-  void                hildon_window_remove_toolbar        (HildonWindow *self,
-                                                           GtkToolbar *toolbar);
-
-Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call `g_object_ref() <g-object-ref>`_ before calling this function.
-
-
-
-``self``:
-  A :class:`HildonWindow`
-
-
-``toolbar``:
-  A :class:`GtkToolbar` to remove from the :class:`HildonWindow`
-
-
-.. _hildon-window-set-edit-toolbar:
-
-.. function:: hildon_window_set_edit_toolbar ()
-
-::
-
-  void                hildon_window_set_edit_toolbar      (HildonWindow *self,
-                                                           HildonEditToolbar *toolbar);
-
-Adds a :class:`HildonEditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide` .
-
-A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
-
-
-
-``self``:
-  A :class:`HildonWindow`
-
-
-``toolbar``:
-  A :class:`HildonEditToolbar` , or None to remove the current one.
-
-
-.. versionadded 2.2
-
-.. _hildon-window-get-is-topmost:
-
-.. function:: hildon_window_get_is_topmost ()
-
-::
-
-  bool            hildon_window_get_is_topmost        (HildonWindow *self);
-
-Returns whether the :class:`HildonWindow` is currenty activated by the window manager.
-
-
-
-``self``:
-  A :class:`HildonWindow`
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ if ``self`` is currently activated, ```FALSE`` <FALSE:CAPS>`_ otherwise.
-
-
-.. _hildon-window-set-markup:
-
-.. function:: hildon_window_set_markup ()
-
-::
-
-  void                hildon_window_set_markup            (HildonWindow *window,
-                                                           const gchar *markup);
-
-Sets the marked up title of ``window``. The accepted format is the one used in Pango (see :class:`PangoMarkupFormat` ) with the exception of span.
-
-Note that you need support from the window manager for this title to be used. See `gtk_window_set_title() <gtk-window-set-title>`_ for the standard way of setting the title of a window.
-
-
-
-``window``:
-  a :class:`HildonWindow`
-
-
-``markup``:
-  the marked up title of the window, or None to unset the current one
-
-
-.. versionadded 2.2
-
-.. _hildon-window-get-markup:
-
-.. function:: hildon_window_get_markup ()
-
-::
-
-  const str        hildon_window_get_markup            (HildonWindow *window);
-
-Gets the marked up title of the window title. See `hildon_window_set_markup() <hildon-window-set-markup>`_
-
-
-
-``window``:
-  a :class:`HildonWindow`
-
-
-:returns: 
-  the marked up title of the window, or None if none has been set explicitely. The returned string is owned by the widget and must not be modified or freed.
-
-
-.. versionadded 2.2
+        .. versionadded 2.2
 
 .. _HildonWindow.property-details:
 
