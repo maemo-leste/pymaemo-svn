@@ -367,13 +367,13 @@ Stacks contain all :class:`HildonStackableWindow` s that are being shown. The us
 
 Each window can only be in one stack at a time. All stacked windows are visible and all visible windows are stacked.
 
-Each application has a default stack, and windows are automatically added to it when they are shown with :function:`gtk.Widget.show_all` .
+Each application has a default stack, and windows are automatically added to it when they are shown with :meth:`gtk.Widget.show_all` .
 
-Additional stacks can be created at any time using :function:`hildon.WindowStack()` . To add a window to a specific stack, use :function:`hildon.WindowStack.push_1()` (remember that, for the default stack, :function:`gtk.Widget.show_all` can be used instead).
+Additional stacks can be created at any time using :meth:`hildon.WindowStack` . To add a window to a specific stack, use :meth:`hildon.WindowStack.push_1` (remember that, for the default stack, :meth:`gtk.Widget.show_all` can be used instead).
 
-To remove a window from a stack use :function:`hildon.WindowStack.pop_1()` , or simply :function:`gtk.Widget.hide` .
+To remove a window from a stack use :meth:`hildon.WindowStack.pop_1` , or simply :meth:`gtk.Widget.hide` .
 
-For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See :function:`hildon.WindowStack.push()` , `hildon.WindowStack.pop()` and `hildon.WindowStack.pop_and_push()` for more details.
+For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See :meth:`hildon.WindowStack.push` , :meth:`hildon.WindowStack.pop` and :meth:`hildon.WindowStack.pop_and_push` for more details.
 
 
 Details
