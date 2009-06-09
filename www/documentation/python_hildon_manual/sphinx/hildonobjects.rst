@@ -5013,10 +5013,9 @@ See Also
 
 :class:`HildonTouchSelector` :class:`HildonPickerButton` .. _HildonDateSelector:
 
-HildonDateSelector
-******************
 
-.. _HildonDateSelector.object-hierarchy:
+DateSelector
+******************
 
 Object Hierarchy
 ================
@@ -5035,259 +5034,91 @@ Object Hierarchy
                                                +----HildonDateSelector
   
 
-.. _HildonDateSelector.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonDateSelector implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonDateSelector.properties:
-
-Properties
-==========
-
-::
-
-  
-    max-year                 int                  : Read / Write / Construct Only
-    min-year                 int                  : Read / Write / Construct Only
-  
-
-.. _HildonDateSelector.description:
+DateSelector implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
 
-:class:`HildonDateSelector` is a date widget with multiple columns. Users can choose a date by selecting values in the day, month and year columns.
+:class:`DateSelector` is a date widget with multiple columns. Users can choose a date by selecting values in the day, month and year columns.
 
-The currently selected month and year can be altered with `hildon_date_selector_select_month() <hildon-date-selector-select-month>`_ . The day can be selected from the active month using `hildon_date_selector_select_day() <hildon-date-selector-select-day>`_ .
+The currently selected month and year can be altered with :meth:`select_month()`. The day can be selected from the active month using :meth:`select_day`.
 
-
-
-.. _HildonDateSelector.details:
 
 Details
 =======
 
-.. _HildonDateSelector-struct:
-
 .. class:: HildonDateSelector
 
-::
+    .. method:: __init__()
 
-  typedef struct _HildonDateSelector HildonDateSelector;
+        Creates a new :class:`DateSelector`
+    
+        :returns:  a new :class:`DateSelector`
 
 
+    .. method:: select_month(month, year)
 
-.. _hildon-date-selector-new:
+        Modify the current month and year on the current active date
+        Ytility function to keep this API similar to the previously existing :class:`Calendar` widget.
 
-.. function:: hildon_date_selector_new ()
+        :param month: the current month (0-11)
+        :param year: the current year
+        :returns:  True on success, False otherwise
 
-::
 
-  GtkWidget*          hildon_date_selector_new            (void);
+    .. method:: select_day(day)
 
-Creates a new :class:`HildonDateSelector`
+        Modify the current day on the current active date
+        Utility function to keep this API similar to the previously existing :class:`Calendar` widget.
 
+        :param day: the current day (1-31, 1-30, 1-29, 1-28) depends on the month
 
 
-:returns: 
-  a new :class:`HildonDateSelector`
+    .. method:: select_current_date(year, month, day)
 
+        Sets the current active date on the :class:`DateSelector` widget
+        
+        :param year: the current year
+        :param month: the current month (0-11)
+        :param day: the current day (1-31, 1-30, 1-29, 1-28) depends on the month
+        :returns:  True on success, False otherwise
 
-.. versionadded 2.2
 
-.. _hildon-date-selector-new-with-year-range:
+    .. method:: get_date()
 
-.. function:: hildon_date_selector_new_with_year_range ()
+        Gets the current active date on the :class:`DateSelector` widget
 
-::
+        :returns: a tuple with (year, month, day)
 
-  GtkWidget*          hildon_date_selector_new_with_year_range
-                                                          (int min_year,
-                                                           int max_year);
 
-Creates a new :class:`HildonDateSelector` with a specific year range. If ``min_year`` or ``max_year`` are set to -1, then the default upper or lower bound will be used, respectively.
+Related Functions
+=================
 
+    .. functions:: hildon_date_selector_new_with_year_range (min_year, max_year)
 
+        Creates a new :class:`DateSelector` with a specific year range. If ``min_year`` or ``max_year`` are set to -1, then the default upper or lower bound will be used, respectively.
 
-``min_year``:
-  the minimum available year or -1 to ignore
+        :param min_year: the minimum available year or -1 to ignore
+        :param max_year: the maximum available year or -1 to ignore
+        :returns:  a new :class:`DateSelector`
 
 
-``max_year``:
-  the maximum available year or -1 to ignore
-
-
-:returns: 
-  a new :class:`HildonDateSelector`
-
-
-.. versionadded 2.2
-
-.. _hildon-date-selector-select-month:
-
-.. function:: hildon_date_selector_select_month ()
-
-::
-
-  bool            hildon_date_selector_select_month   (HildonDateSelector *selector,
-                                                           int month,
-                                                           int year);
-
-Modify the current month and year on the current active date
-
-Utility function to keep this API similar to the previously existing :class:`HildonCalendar` widget.
-
-
-
-``selector``:
-  the :class:`HildonDateSelector`
-
-
-``month``:
-  the current month (0-11)
-
-
-``year``:
-  the current year
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ on success, ```FALSE`` <FALSE:CAPS>`_ otherwise
-
-
-.. versionadded 2.2
-
-.. _hildon-date-selector-select-day:
-
-.. function:: hildon_date_selector_select_day ()
-
-::
-
-  void                hildon_date_selector_select_day     (HildonDateSelector *selector,
-                                                           int day);
-
-Modify the current day on the current active date
-
-Utility function to keep this API similar to the previously existing :class:`HildonCalendar` widget.
-
-
-
-``selector``:
-  the :class:`HildonDateSelector`
-
-
-``day``:
-  the current day (1-31, 1-30, 1-29, 1-28) depends on the month
-
-
-.. versionadded 2.2
-
-.. _hildon-date-selector-select-current-date:
-
-.. function:: hildon_date_selector_select_current_date ()
-
-::
-
-  bool            hildon_date_selector_select_current_date
-                                                          (HildonDateSelector *selector,
-                                                           int year,
-                                                           int month,
-                                                           int day);
-
-Sets the current active date on the :class:`HildonDateSelector` widget
-
-
-
-``selector``:
-  the :class:`HildonDateSelector`
-
-
-``year``:
-  the current year
-
-
-``month``:
-  the current month (0-11)
-
-
-``day``:
-  the current day (1-31, 1-30, 1-29, 1-28) depends on the month
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ on success, ```FALSE`` <FALSE:CAPS>`_ otherwise
-
-
-.. versionadded 2.2
-
-.. _hildon-date-selector-get-date:
-
-.. function:: hildon_date_selector_get_date ()
-
-::
-
-  void                hildon_date_selector_get_date       (HildonDateSelector *selector,
-                                                           int *year,
-                                                           int *month,
-                                                           int *day);
-
-Gets the current active date on the :class:`HildonDateSelector` widget
-
-
-
-``selector``:
-  the :class:`HildonDateSelector`
-
-
-``year``:
-  to set the current year
-
-
-``month``:
-  to set the current month (0-11)
-
-
-``day``:
-  to the current day (1-31, 1-30, 1-29, 1-28) depends on the month
-
-
-.. versionadded 2.2
-
-.. _HildonDateSelector.property-details:
 
 Property Details
 ================
 
-.. _HildonDateSelector--max-year:
 
-The ``max-year`` property
+=============================== =========== =============================== =============== ===========================================
+Name                            type         Access                         Default         Meaning
+=============================== =========== =============================== =============== ===========================================
+``max-year``                    int         Read / Write / Construct Only   2037            The maximum available year in the selector.    
+``min-year``                    int         Read / Write / Construct Only   1970            The minimum available year in the selector.
+=============================== =========== =============================== =============== ===========================================
 
-::
-
-    max-year                 int                  : Read / Write / Construct Only
-
-The maximum available year in the selector.
-
-Allowed values: [1900,2100]
-
-Default value: 2037
-
-.. _HildonDateSelector--min-year:
-
-The ``min-year`` property
-
-::
-
-    min-year                 int                  : Read / Write / Construct Only
-
-The minimum available year in the selector.
-
-Allowed values: [1900,2100]
-
-Default value: 1970
 
 TimeSelector
 ************
