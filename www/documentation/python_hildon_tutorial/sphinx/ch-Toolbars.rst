@@ -62,7 +62,7 @@ In case you need to add a common toolbar to all windows in your program, hildon.
   def get_common_toolbar(self)
   
       
-Here a simple example that shows how to deal with a HildonFindToolbar.
+Here a simple example that shows how to deal with a hildon.FindToolbar.
 
 Using a Find Toolbar
 ====================
@@ -98,7 +98,7 @@ The creation function allows to set the two labels of the widget. If you use the
 ::
 
   
-  def set_labe(self, label)
+  def set_label(self, label)
   def set_button_label(self, label) 
   
       

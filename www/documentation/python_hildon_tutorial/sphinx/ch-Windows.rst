@@ -70,9 +70,9 @@ There are several function to push and/or pop windows on a stack. Below, you can
   def hildon_window_stack_push_list(windows_list)
   def hildon_window_stack_push_1(stackablewindow)
   def hildon_window_stack_pop(nwindows, popped_windows_list)
-  def hildon_window_stack_pop_1();
-  def hildon_window_stack_pop_and_push(nwindows, popped_windows_list, stackablewindow, ...);
-  def hildon_window_stack_pop_and_push_list(nwindows, popped_windows_list, windows_list);
+  def hildon_window_stack_pop_1()
+  def hildon_window_stack_pop_and_push(nwindows, popped_windows_list, stackablewindow, ...)
+  def hildon_window_stack_pop_and_push_list(nwindows, popped_windows_list, windows_list)
 
 The example shows how to get the default stack and push a newly created window on the stack. (Note that you also can do the same in a single stack by calling show_all()).
 
@@ -187,9 +187,7 @@ To create a new wizard dialog you should call:
 
   
   
-  hildon.WizardDialog(parent_window,
-                      wizard_name,
-                      gtk_notebook);
+  hildon.WizardDialog(parent_window, wizard_name, gtk_notebook)
   
         
 The parent window is usually the current visible view. The wizard name will be displayed as title in the wizard dialog.
@@ -200,9 +198,7 @@ Usually, you will want to validate user input to decide whether it should move t
 
   
   
-  hildon.WizardDialog.set_forward_page_func(page_func,
-                                            data,
-                                            destroy_notify)
+  hildon.WizardDialog.set_forward_page_func(page_func, data, destroy_notify)
   
         
 The function above sets the function "page_func" to be used to decide whether users can go to the next page when they press the forward button. The function should have the following signature:
@@ -210,9 +206,7 @@ The function above sets the function "page_func" to be used to decide whether us
 ::
 
  
-  def some_page_func(notebook,
-                     current_page_number,
-                     user_data)
+  def some_page_func(notebook, current_page_number, user_data)
   
         
 Here, an example of using a hildon.WizardDialog
