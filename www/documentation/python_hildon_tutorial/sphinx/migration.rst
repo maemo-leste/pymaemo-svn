@@ -66,7 +66,7 @@ Consider a dialog where, among other widgets, there's a frame labeled "Proxy Pre
 
 .. _example-choices:
 
-.. figure:: ../../tutorial/images/choices.png
+.. figure:: ./images/choices.png
   :align: center
 
   Three radio buttons
@@ -88,7 +88,7 @@ Imagine a preferences dialog that has a notebook to divide the preferences in "G
 
 .. _example-notebook:
 
-.. figure:: ../../tutorial/images/notebook.png
+.. figure:: ./images/notebook.png
   :align: center
 
   Typical Notebook

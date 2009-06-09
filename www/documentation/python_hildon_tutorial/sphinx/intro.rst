@@ -32,7 +32,7 @@ This section gives a brief overview of the Hildon desktop area so you have a bet
 
 .. _desktop-overview-general-figure:
 
-.. figure:: ../../tutorial/images/desktop_view.png
+.. figure:: ./images/desktop_view.png
   :align: center
 
   Three radio buttons
