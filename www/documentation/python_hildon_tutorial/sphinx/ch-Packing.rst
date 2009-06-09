@@ -24,12 +24,7 @@ To create a new pannable area you can choose either of the following functions:
 
   
   hildon.PannableArea()
-  hildon.hildon_pannable_area_new_full(mode,
-                                       enabled,
-                                       vel_min,
-                                       vel_max,
-                                       decel,
-                                       sps)  
+  hildon.hildon_pannable_area_new_full(mode, enabled, vel_min, vel_max, decel, sps)  
       
 The first one creates a new pannable area with the properties set to the default values. The second one allows you to set the value of the most important properties of this widget:
 
@@ -110,5 +105,5 @@ The example used a global variable to store a reference to the last clicked butt
 
 You can test the different navigation functions by just changing the call in the mentioned callback.
 
-When you use the navigation functions that allow to navigate to a certain child, the widget must be already realized. You can check it with the GTK_WIDGET_REALIZED macro. If you want to call it during the initialization process you can use the navigation function inside a callback to the "realized" signal.
+When you use the navigation functions that allow to navigate to a certain child, the widget must be already realized. You can check it with gtk.WidgetFlags.realized. If you want to call it during the initialization process you can use the navigation function inside a callback to the "realized" signal.
 

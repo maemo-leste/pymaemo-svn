@@ -12,7 +12,7 @@ In addition, Hildon also provides a specialized dialog and a specialized button 
 Touch selector
 **************
 
-hildon.TouchSelector is the mentioned selector widget. This widget can display several pannable columns. Each column is represented by a GtkTreeModel and single or multiple selection is allowed.
+hildon.TouchSelector is the mentioned selector widget. This widget can display several pannable columns. Each column is represented by a gtk.TreeModel and single or multiple selection is allowed.
 
 [ SCREENSHOT ]
 
@@ -98,7 +98,7 @@ In this case, the model stores a list of GTK+ stock icons identifiers. The follo
     store_icons = gtk.ListStore(G_TYPE_STRING);
   
         
-The following loop appends all stock identifiers in the newly created model. The identifiers were previously retrieved using gtk_stock_list_ids().
+The following loop appends all stock identifiers in the newly created model. The identifiers were previously retrieved using gtk.stock_list_ids().
 
 ::
 
@@ -120,7 +120,7 @@ This call also sets the property "stock-id" of the gtk.CellrendererPixbuf. The v
 
 ::
   
-    column = column = selector.append_column(store_icons, renderer, "stock-id", 0)
+    column = selector.append_column(store_icons, renderer, "stock-id", 0)
   
         
 Summarizing, setting a new custom column in a touchable selector is quite similar to setting a new column in a normal gtk.Treeview. It is necessary to create a model to store the data and a cell renderer to properly show this data in each row, and finally add the new column.
