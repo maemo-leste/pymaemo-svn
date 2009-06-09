@@ -7038,23 +7038,23 @@ Details
 
         .. versionadded 2.2
 
-.. method:: set_label (label)
+    .. method:: set_label (label)
 
-    Sets the label of ``toolbar`` to ``label``. This will clear any previously set value.
+        Sets the label of ``toolbar`` to ``label``. This will clear any previously set value.
 
-    :param toolbar: a :class:`EditToolbar`
-    :param label: a new text for the toolbar label
+        :param toolbar: a :class:`EditToolbar`
+        :param label: a new text for the toolbar label
 
-    .. versionadded 2.2
+        .. versionadded 2.2
 
-.. method:: set_button_label (label)
+    .. method:: set_button_label (label)
 
-Sets the label of the toolbar button to ``label``. This will clear any previously set value.
+        Sets the label of the toolbar button to ``label``. This will clear any previously set value.
 
-:param toolbar: a :class:`EditToolbar`
-:param label: a new text for the label of the toolbar button
+        :param toolbar: a :class:`EditToolbar`
+        :param label: a new text for the label of the toolbar button
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
 Style Property Details
 ======================
@@ -7062,83 +7062,35 @@ Style Property Details
 +---------------------------+--------+--------------------------+--------------+--------------------------------------+
 | Name                      | type   | Access                   | Default      | Meaning                              |
 +===========================+========+==========================+==============+======================================+
-| ``arrow-height``          | int    | Read                     | 56           | Number of steps that is going to be  |
+| ``arrow-height``          | int    | Read                     | 56           | Height of the arrow button.          |
 +---------------------------+--------+--------------------------+--------------+--------------------------------------+
-| ``arrow-width``           | int    | Read                     | 112          | The multiplier used when decelerating|
+| ``arrow-width``           | int    | Read                     | 112          | Width of the arrow button.           |
 +---------------------------+--------+--------------------------+--------------+--------------------------------------+
-
-::
-
-    arrow-height             int                 : Read
-
-Height of the arrow button.
-
-Default value: 56
-
-.. _EditToolbar--arrow-width:
-
-The ``arrow-width`` style property
-
-::
-
-    arrow-width              int                 : Read
-
-Width of the arrow button.
-
-Default value: 112
-
-.. _EditToolbar.signal-details:
 
 Signal Details
 ==============
 
-.. _EditToolbar-arrow-clicked:
-
 The ``arrow-clicked`` signal
 
-::
+.. function:: user_function(widget, user_data)
 
-  void                user_function                      (EditToolbar *widget,
-                                                          gpointer           user_data)      : Run First
+    Emitted when the toolbar back button (arrow) has been activated (pressed and released).
 
-Emitted when the toolbar back button (arrow) has been activated (pressed and released).
+    :param widget: the object which received the signal.
+    :param user_data: user data set when the signal handler was connected.
 
-
-
-``widget``:
-  the object which received the signal.
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. versionadded 2.2
-
-.. _EditToolbar-button-clicked:
+    .. versionadded 2.2
 
 The ``button-clicked`` signal
 
-::
+.. function:: user_function(widget, user_data)
 
-  void                user_function                      (EditToolbar *widget,
-                                                          gpointer           user_data)      : Run First
+    Emitted when the toolbar button has been activated (pressed and released).
 
-Emitted when the toolbar button has been activated (pressed and released).
+    :param widget: the object which received the signal.
+    :param user_data: user data set when the signal handler was connected.
 
-
-
-``widget``:
-  the object which received the signal.
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. versionadded 2.2
-
-.. _HildonWizardDialog:
+    .. versionadded 2.2
 
 HildonWizardDialog
 ******************
