@@ -311,16 +311,13 @@ See Also
 
 :class:`HildonProgram` :class:`HildonStackableWindow` .. _HildonStackableWindow:
 
-HildonStackableWindow
+hildon.StackableWindow
 *********************
-
-.. _HildonStackableWindow.object-hierarchy:
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -330,120 +327,87 @@ Object Hierarchy
                              +----GtkBin
                                    +----GtkWindow
                                          +----HildonWindow
-                                               +----HildonStackableWindow
-  
-
-.. _HildonStackableWindow.implemented-interfaces:
+                                               +----StackableWindow
 
 Implemented Interfaces
 ======================
 
-HildonStackableWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonStackableWindow.description:
+hildon.StackableWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 Description
 ===========
 
-The :class:`HildonStackableWindow` is a GTK+ widget which represents a top-level window in the Hildon framework. It is derived from :class:`HildonWindow` . Applications that use stackable windows are organized in a hierarchical way so users can go from any window back to the application's root window.
+The :class:`hildon.StackableWindow` is a GTK+ widget which represents a top-level window in the Hildon framework. It is derived from :class:`hildon.Window` . Applications that use stackable windows are organized in a hierarchical way so users can go from any window back to the application's root window.
 
 The user can only see and interact with the window on top of the stack. Although all other windows are mapped and visible, they are obscured by the topmost one so in practice they appear as if they were hidden.
 
-To add a window to the stack, just use :meth:`GtkWidget.show` . The previous one will be obscured by the new one. When the new window is destroyed, the previous one will appear again.
+To add a window to the stack, just use :meth:`gtk.Widget.show_all` . The previous one will be obscured by the new one. When the new window is destroyed, the previous one will appear again.
 
-Alternatively, you can remove a window from the top of the stack without destroying it by using `hildon_window_stack_pop() <hildon-window-stack-pop>`_ . The window will be automatically hidden and the previous one will appear.
+Alternatively, you can remove a window from the top of the stack without destroying it by using :meth:`hildon.WindowStack.pop`. The window will be automatically hidden and the previous one will appear.
 
 For advanced details on stack handling, see :class:`HildonWindowStack`
 
-Basic HildonStackableWindow example =================================== :: static void show_new_window (void) { GtkWidget *win; win = hildon_stackable_window_new (); // ... configure new window gtk_widget_show (win); } int main (int argc, char **argv) { GtkWidget *win; GtkWidget *button; gtk_init (argc, args); win = hildon_stackable_window_new (); gtk_window_set_title (GTK_WINDOW (win), "Main window); // ... add some widgets to the window g_signal_connect (button, "clicked", G_CALLBACK (show_new_window), NULL); g_signal_connect (win, "destroy", G_CALLBACK (gtk_main_quit), NULL); gtk_widget_show_all (win); gtk_main (); return 0; }
+Basic hildon.StackableWindow example
+====================================
+::
 
+  import gtk
+  import hildon
 
+  def show_new_window(widget):
+    win = hildon.StackableWindow()
+    # ... configure new window
+    win.show_all()
 
-.. _HildonStackableWindow.details:
+  def main():
+    program = hildon.hildon_program_get_instance()
+
+    win = hildon.StackableWindow()
+    win.set_title("Main window")
+
+    # ... add some widgets to the window
+
+    button.connect("clicked", show_new_window, None);
+    win.connect("destroy", gtk.main_quit, None)
+
+    # This call show the window and also add the window to the stack
+    win.show_all()
+    gtk.main()
+
+  if __name__ == "__main__":
+    main()
 
 Details
 =======
 
-.. _HildonStackableWindow-struct:
+.. class:: StackableWindow
 
-.. class:: HildonStackableWindow
+    .. method:: __init__()
 
-::
+        Creates a new :class:`StackableWindow` .
 
-  typedef struct _HildonStackableWindow HildonStackableWindow;
+        :returns: A :class:`StackableWindow`
 
+        .. versionadded 2.2
 
+    .. method:: get_stack ()
 
-.. _hildon-stackable-window-new:
+        Returns the stack where window ``self`` is on, or None if the window is not stacked.
 
-.. function:: hildon_stackable_window_new ()
+        :returns: a :class:`HildonWindowStack` , or None
 
-::
+        .. versionadded 2.2
 
-  GtkWidget*          hildon_stackable_window_new         (void);
+    .. method:: set_main_menu (menu)
 
-Creates a new :class:`HildonStackableWindow` .
+        .. warning:: :meth:`StackableWindow.set_main_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`HildonWindow.set_app_menu`
 
-
-
-:returns: 
-  A :class:`HildonStackableWindow`
-
-
-.. versionadded 2.2
-
-.. _hildon-stackable-window-get-stack:
-
-.. function:: hildon_stackable_window_get_stack ()
-
-::
-
-  HildonWindowStack*  hildon_stackable_window_get_stack   (HildonStackableWindow *self);
-
-Returns the stack where window ``self`` is on, or None if the window is not stacked.
-
-
-
-``self``:
-  a :class:`HildonStackableWindow`
-
-
-:returns: 
-  a :class:`HildonWindowStack` , or None
-
-
-.. versionadded 2.2
-
-.. _hildon-stackable-window-set-main-menu:
-
-.. function:: hildon_stackable_window_set_main_menu ()
-
-::
-
-  void                hildon_stackable_window_set_main_menu
-                                                          (HildonStackableWindow *self,
-                                                           HildonAppMenu *menu);
-
-.. warning:: ``hildon_stackable_window_set_main_menu`` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`HildonWindow.set_app_menu`
-
-
-
-
-
-``self``:
-  a :class:`HildonStackableWindow`
-
-
-``menu``:
-  a :class:`HildonAppMenu` to be used for this window
-
-
-.. _HildonStackableWindow.see-also:
+        :param menu: a :class:`HildonAppMenu` to be used for this window
 
 See Also
 ========
 
-:class:`HildonWindowStack` :class:`HildonProgram` :class:`HildonWindow` .. _HildonWindowStack:
+:class:`WindowStack` :class:`Program` :class:`Window`
 
 HildonWindowStack
 *****************
