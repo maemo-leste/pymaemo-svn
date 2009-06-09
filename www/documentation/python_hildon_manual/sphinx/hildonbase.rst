@@ -1,5 +1,3 @@
-.. _hildonbase:
-
 Hildon Core Reference
 #####################
 
@@ -65,9 +63,9 @@ Details
 
 .. function:: hildon_gtk_menu_new ()
 
-    This is a convenience function to create a :class:`GtkMenu` setting its widget name to allow Hildon specific styling.
+    This is a convenience function to create a :class:`gtk.Menu` setting its widget name to allow Hildon specific styling.
 
-    :returns: A newly created :class:`GtkMenu` widget.
+    :returns: A newly created :class:`gtk.Menu` widget.
 
     .. versionadded 2.2
 
@@ -185,7 +183,7 @@ Details
 
 .. function:: hildon_gtk_window_set_progress_indicator (window, state)
 
-    This functions tells the window manager to show/hide a progress indicator in the window title. It applies to :class:`HildonDialog` and :class:`HildonWindow` (including subclasses).
+    This functions tells the window manager to show/hide a progress indicator in the window title. It applies to :class:`HildonDialog` and :class:`hildon.Window` (including subclasses).
 
     Note that ``window`` must be realized for this to work.
 
@@ -224,27 +222,27 @@ Constants
 
 .. data:: HILDON_ICON_SIZE_XSMALL
 
-    gtk_icon_size_from_name ("hildon-small")
+    gtk.icon_size_from_name ("hildon-small")
 
 .. data:: HILDON_ICON_SIZE_STYLUS
 
-    gtk_icon_size_from_name ("hildon-stylus")
+    gtk.icon_size_from_name ("hildon-stylus")
 
 .. data:: HILDON_ICON_SIZE_FINGER
 
-    gtk_icon_size_from_name ("hildon-finger")
+    gtk.icon_size_from_name ("hildon-finger")
 
 .. data:: HILDON_ICON_SIZE_THUMB
 
-    gtk_icon_size_from_name ("hildon-thumb")
+    gtk.icon_size_from_name ("hildon-thumb")
 
 .. data:: HILDON_ICON_SIZE_LARGE
     
-    gtk_icon_size_from_name ("hildon-large")
+    gtk.icon_size_from_name ("hildon-large")
 
 .. data:: HILDON_ICON_SIZE_XLARGE                  
     
-    gtk_icon_size_from_name ("hildon-xlarge")
+    gtk.icon_size_from_name ("hildon-xlarge")
 
 .. data:: HILDON_ICON_SIZE_TOOLBAR
 .. data:: HILDON_ICON_PIXEL_SIZE_XSMALL
@@ -261,47 +259,47 @@ Constants
 .. data:: HILDON_MARGIN_TRIPLE
 .. data:: HILDON_HARDKEY_UP
 
-    :data:`GDK_Up`
+    :data:`gtk.GDK_Up`
 
 .. data:: HILDON_HARDKEY_LEFT
 
-    :data:`GDK_Left`
+    :data:`gtk.GDK_Left`
 
 .. data:: HILDON_HARDKEY_RIGHT
 
-    :data:`GDK_Right`
+    :data:`gtk.GDK_Right`
 
 .. data:: HILDON_HARDKEY_DOWN
 
-    :data:`GDK_Down`
+    :data:`gtk.GDK_Down`
 
 .. data:: HILDON_HARDKEY_SELECT
 
-    :data:`GDK_Return`
+    :data:`gtk.GDK_Return`
 
 .. data:: HILDON_HARDKEY_MENU
 
-    :data:`GDK_F4`
+    :data:`gtk.GDK_F4`
 
 .. data:: HILDON_HARDKEY_HOME
 
-    :data:`GDK_F5`
+    :data:`gtk.GDK_F5`
 
 .. data:: HILDON_HARDKEY_ESC
 
-    :data:`GDK_Escape`
+    :data:`gtk.GDK_Escape`
 
 .. data:: HILDON_HARDKEY_FULLSCREEN
 
-    :data:`GDK_F6`
+    :data:`gtk.GDK_F6`
 
 .. data:: HILDON_HARDKEY_INCREASE
 
-    :data:`GDK_F7`
+    :data:`gtk.GDK_F7`
 
 .. data:: HILDON_HARDKEY_DECREASE
 
-    :data:`GDK_F8`
+    :data:`gtk.GDK_F8`
 
 .. data:: HILDON_WINDOW_TITLEBAR_HEIGHT
   
@@ -390,8 +388,8 @@ Details
 
     :param sample: sound file to play
 
-HildonProgram
-*************
+Program
+*******
 
 Object Hierarchy
 ================
@@ -399,37 +397,25 @@ Object Hierarchy
 ::
   
     GObject
-     +----HildonProgram
+     +----Program
   
-
-Properties
-==========
-
-    .. data:: "can-hibernate"
-
-        Read/Write
-    
-    .. data:: "is-topmost"
-
-        Read
-
 Description
 ===========
 
-:class:`HildonProgram` is an object used to represent an application running in the Hildon framework.
+:class:`Program` is an object used to represent an application running in the Hildon framework.
 
-Applications can have one or more :class:`HildonWindow` s. These can be registered in the :class:`HildonProgram` with :meth:`HildonProgram.add_window` , and can be unregistered similarly with :meth:`HildonProgram.remove_window` .
+Applications can have one or more :class:`hildon.Window` s. These can be registered in the :class:`Program` with :meth:`Program.add_window` , and can be unregistered similarly with :meth:`Program.remove_window` .
 
-:class:`HildonProgram` provides the programmer with commodities such as applying a common toolbar and menu to all registered :class:`HildonWindow` s. This is done with :meth:`HildonProgram.set_common_menu` , :meth:`HildonProgram.set_common_app_menu` and :meth:`HildonProgram.set_common_toolbar`.
+:class:`Program` provides the programmer with commodities such as applying a common toolbar and menu to all registered :class:`hildon.Window` s. This is done with :meth:`Program.set_common_menu` , :meth:`Program.set_common_app_menu` and :meth:`Program.set_common_toolbar`.
 
-:class:`HildonProgram` is also used to apply program-wide properties that are specific to the Hildon framework. For instance :meth:`HildonProgram.set_can_hibernate` sets whether or not an application can be set to hibernate by the Hildon task navigator, in situations of low memory.
+:class:`Program` is also used to apply program-wide properties that are specific to the Hildon framework. For instance :meth:`Program.set_can_hibernate` sets whether or not an application can be set to hibernate by the Hildon task navigator, in situations of low memory.
 
 :: 
 
-    program = HildonProgram.get_instance()
+    program = hildon.Program.get_instance()
 
-    window1 = hildon_window_new()
-    window2 = hildon_window_new()
+    window1 = hildon.Window()
+    window2 = hildon.Window()
 
     common_toolbar = create_common_toolbar()
     window_specific_toolbar = create_window_specific_toolbar()
@@ -450,61 +436,61 @@ Applications can have one or more :class:`HildonWindow` s. These can be register
 Details
 =======
 
-.. class:: HildonProgram
+.. class:: Program
 
     .. method:: get_instance()
 
-        Returns the :class:`HildonProgram` for the current process. The object is created on the first call. Note that you're not supposed to unref the returned object since it's not reffed in the first place.
+        Returns the :class:`Program` for the current process. The object is created on the first call. Note that you're not supposed to unref the returned object since it's not reffed in the first place.
 
-        :returns: the :class:`HildonProgram` .
+        :returns: the :class:`Program` .
 
     .. method:: add_window (window)
 
-        Registers a :class:`HildonWindow` as belonging to a given :class:`HildonProgram` . This allows to apply program-wide settings as all the registered windows, such as :meth:`HildonProgram.set_common_menu` , :meth:`HildonProgram.set_common_app_menu` and :meth:`HildonProgram.set_common_toolbar`.
+        Registers a :class:`hildon.Window` as belonging to a given :class:`Program` . This allows to apply program-wide settings as all the registered windows, such as :meth:`Program.set_common_menu` , :meth:`Program.set_common_app_menu` and :meth:`Program.set_common_toolbar`.
 
-        :param window: A :class:`HildonWindow` to be added
+        :param window: A :class:`hildon.Window` to be added
 
 
     .. method:: remove_window (window)
 
-        Used to unregister a window from the program. Subsequent calls to :meth:`HildonProgram.set_common_menu` , :meth:`HildonProgram.set_common_app_menu` and :meth:`HildonProgram.set_common_toolbar` will not affect the window.
+        Used to unregister a window from the program. Subsequent calls to :meth:`Program.set_common_menu` , :meth:`Program.set_common_app_menu` and :meth:`Program.set_common_toolbar` will not affect the window.
 
-        :param window: The :class:`HildonWindow` to unregister
+        :param window: The :class:`hildon.Window` to unregister
 
     .. method:: set_can_hibernate (can_hibernate)
 
         Used to set whether or not the Hildon task navigator should be able to set the program to hibernation in case of low memory
 
-        :param can_hibernate: whether or not the :class:`HildonProgram` can hibernate
+        :param can_hibernate: whether or not the :class:`Program` can hibernate
 
     .. method:: get_can_hibernate ()
 
-        Returns whether the :class:`HildonProgram` is set to be support hibernation from the Hildon task navigator
+        Returns whether the :class:`Program` is set to be support hibernation from the Hildon task navigator
 
         :returns: True if the program can hibernate, False otherwise.
 
 
     .. method:: set_common_menu (menu)
 
-        Sets a :class:`GtkMenu` that will appear in all :class:`HildonWindow` s registered with the :class:`HildonProgram` . Only one common :class:`GtkMenu` can be set, further calls will detach the previous common :class:`GtkMenu` . A :class:`HildonWindow` can use its own :class:`GtkMenu` with :meth:`HildonWindow.set_menu`
+        Sets a :class:`gtk.Menu` that will appear in all :class:`hildon.Window` s registered with the :class:`Program` . Only one common :class:`gtk.Menu` can be set, further calls will detach the previous common :class:`gtk.Menu` . A :class:`hildon.Window` can use its own :class:`gtk.Menu` with :meth:`hildon.Window.set_menu`
 
-        This method does not support :class:`HildonAppMenu` s. See :meth:`HildonProgram.set_common_app_menu` for that.
+        This method does not support :class:`HildonAppMenu` s. See :meth:`Program.set_common_app_menu` for that.
 
-        :param menu: A :class:`GtkMenu` to use as common menu for the program
+        :param menu: A :class:`gtk.Menu` to use as common menu for the program
 
         .. versionadded 2.2
 
     .. method:: get_common_menu ()
 
-        Returns the :class:`GtkMenu` that was set as common menu for this :class:`HildonProgram` .
+        Returns the :class:`gtk.Menu` that was set as common menu for this :class:`Program` .
 
-        :returns: the :class:`GtkMenu` or ``NULL`` of no common menu was set.
+        :returns: the :class:`gtk.Menu` or ``NULL`` of no common menu was set.
 
     .. method:: set_common_app_menu (menu)
 
-        Sets a :class:`HildonAppMenu` that will appear in all :class:`HildonWindow` s registered with the :class:`HildonProgram` . Only one common :class:`HildonAppMenu` can be set, further calls will detach the previous common :class:`HildonAppMenu` . A :class:`HildonWindow` can use its own :class:`HildonAppMenu` with :meth:`HildonWindow.set_app_menu`
+        Sets a :class:`HildonAppMenu` that will appear in all :class:`hildon.Window` s registered with the :class:`Program` . Only one common :class:`HildonAppMenu` can be set, further calls will detach the previous common :class:`HildonAppMenu` . A :class:`hildon.Window` can use its own :class:`HildonAppMenu` with :meth:`hildon.Window.set_app_menu`
 
-        This method does not support :class:`GtkMenu` s. See :meth:`HildonProgram.set_common_menu` for that.
+        This method does not support :class:`gtk.Menu` s. See :meth:`Program.set_common_menu` for that.
 
         :param menu: A :class:`HildonAppMenu` to use as common menu for the program
 
@@ -512,7 +498,7 @@ Details
 
     .. method:: get_common_app_menu ()
 
-        Returns the :class:`HildonAppMenu` that was set as common menu for this :class:`HildonProgram` .
+        Returns the :class:`HildonAppMenu` that was set as common menu for this :class:`Program` .
 
         :returns: the :class:`HildonAppMenu` or ``NULL`` of no common app menu was set.
 
@@ -520,15 +506,15 @@ Details
 
     .. method:: set_common_toolbar (toolbar)
 
-        Sets a :class:`GtkToolbar` that will appear in all the :class:`HildonWindow` registered to the :class:`HildonProgram` . Only one common :class:`GtkToolbar` can be set, further call will detach the previous common :class:`GtkToolbar` . A :class:`HildonWindow` can use its own :class:`GtkToolbar` with :meth:`HildonWindow.add_toolbar` . Both :class:`HildonProgram` and :class:`HildonWindow` specific toolbars will be shown
+        Sets a :class:`gtk.Toolbar` that will appear in all the :class:`hildon.Window` registered to the :class:`Program` . Only one common :class:`gtk.Toolbar` can be set, further call will detach the previous common :class:`gtk.Toolbar` . A :class:`hildon.Window` can use its own :class:`gtk.Toolbar` with :meth:`hildon.Window.add_toolbar` . Both :class:`Program` and :class:`hildon.Window` specific toolbars will be shown
 
-        :param toolbar: A :class:`GtkToolbar` to use as common toolbar for the program
+        :param toolbar: A :class:`gtk.Toolbar` to use as common toolbar for the program
 
     .. method:: get_common_toolbar ()
 
-        Returns the :class:`GtkToolbar` that was set as common toolbar for this :class:`HildonProgram` .
+        Returns the :class:`gtk.Toolbar` that was set as common toolbar for this :class:`Program` .
 
-        :returns: the :class:`GtkToolbar` or ``NULL`` of no common toolbar was set.
+        :returns: the :class:`gtk.Toolbar` or ``NULL`` of no common toolbar was set.
 
     .. method:: get_is_topmost ()
 
@@ -539,7 +525,7 @@ Details
 
     .. method:: pop_window_stack ()
 
-        .. warning:: :meth:`HildonProgram.pop_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`HildonWindow.stack_pop` instead
+        .. warning:: :meth:`Program.pop_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`hildon.Window.stack_pop` instead
 
         Pops a window from the stack.
 
@@ -549,7 +535,7 @@ Details
 
     .. method:: peek_window_stack ()
 
-        .. warning:: :meth:`HildonProgram.peek_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`HildonWindow.stack_peek` instead
+        .. warning:: :meth:`Program.peek_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`hildon.Window.stack_peek` instead
 
         :returns: A :class:`HildonStackableWindow` , or ``NULL``
 
@@ -558,7 +544,7 @@ Details
 
     .. method:: go_to_root_window ()
 
-        .. warning:: :meth:`HildonProgram.go_to_root_window` is deprecated and should not be used in newly-written code. See :class:`HildonWindowStack`
+        .. warning:: :meth:`Program.go_to_root_window` is deprecated and should not be used in newly-written code. See :class:`hildon.WindowStack`
 
         Goes to the root window of the stack.
 
@@ -567,19 +553,15 @@ Details
 Property Details
 ================
 
-.. data:: "can-hibernate"
-
-    Whether the program should be set to hibernate by the Task Navigator in low memory situation.
-
-    Default value: False
-
-.. data:: "is-topmost: 
-
-    Whether one of the program's window or dialog currently is activated by window manager.
-
-    Default value: False
++---------------------------+--------+--------------------------+--------------+-----------------------------------------------------------------------------------------------+
+| Name                      | type   | Access                   | Default      | Meaning                                                                                       |
++===========================+========+==========================+==============+===============================================================================================+
+| ``can-hibernate``         | bool   | Read / Write             | False        | Whether the program should be set to hibernate by the Task Navigator in low memory situation. |
++---------------------------+--------+--------------------------+--------------+-----------------------------------------------------------------------------------------------+
+| ``is-topmost``            | bool   | Read                     | False        | Whether one of the program's window or dialog currently is activated by window manager.       |
++---------------------------+--------+--------------------------+--------------+-----------------------------------------------------------------------------------------------+
 
 See Also
 ========
 
-:class:`HildonWindow` :class:`HildonStackableWindow` 
+:class:`hildon.Window` :class:`HildonStackableWindow` 
