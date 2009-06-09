@@ -1,0 +1,138 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemSpecialLocation
+  (in-module "Hildon")
+  (parent "GObject")
+  (c-name "HildonFileSystemSpecialLocation")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_SPECIAL_LOCATION")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-special-location.h
+
+(define-function hildon_file_system_special_location_get_type
+  (c-name "hildon_file_system_special_location_get_type")
+  (return-type "GType")
+)
+
+(define-method get_display_name
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_get_display_name")
+  (return-type "gchar*")
+  (parameters
+    '("GtkFileSystem*" "fs")
+  )
+)
+
+(define-method get_extra_info
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_get_extra_info")
+  (return-type "gchar*")
+)
+
+(define-method get_icon
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_get_icon")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("GtkFileSystem*" "fs")
+    '("GtkWidget*" "ref_widget")
+    '("int" "size")
+  )
+)
+
+(define-method is_available
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_is_available")
+  (return-type "gboolean")
+)
+
+(define-method is_visible
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_is_visible")
+  (return-type "gboolean")
+  (parameters
+    '("gboolean" "has_children")
+  )
+)
+
+(define-method get_unavailable_reason
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_get_unavailable_reason")
+  (return-type "gchar*")
+)
+
+(define-method requires_access
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_requires_access")
+  (return-type "gboolean")
+)
+
+(define-method failed_access
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_failed_access")
+  (return-type "gboolean")
+)
+
+(define-method create_child_location
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_create_child_location")
+  (return-type "HildonFileSystemSpecialLocation*")
+  (parameters
+    '("gchar*" "uri")
+  )
+)
+
+(define-method volumes_changed
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_volumes_changed")
+  (return-type "none")
+  (parameters
+    '("GtkFileSystem*" "fs")
+  )
+)
+
+(define-method get_folder
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_get_folder")
+  (return-type "GtkFileSystemHandle*")
+  (parameters
+    '("GtkFileSystem*" "file_system")
+    '("const-GtkFilePath*" "path")
+    '("GtkFileInfoType" "types")
+    '("GtkFileSystemGetFolderCallback" "callback")
+    '("gpointer" "data")
+  )
+)
+
+(define-method set_display_name
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_set_display_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method set_icon
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_set_icon")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "icon_name")
+  )
+)
+
+(define-method rewrite_path
+  (of-object "HildonFileSystemSpecialLocation")
+  (c-name "hildon_file_system_special_location_rewrite_path")
+  (return-type "GtkFilePath*")
+  (parameters
+    '("GtkFileSystem*" "file_system")
+    '("const-GtkFilePath*" "path")
+  )
+)
+
+

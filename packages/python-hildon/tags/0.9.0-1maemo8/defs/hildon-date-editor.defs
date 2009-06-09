@@ -1,0 +1,88 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object DateEditor
+  (in-module "Hildon")
+  (parent "GtkContainer")
+  (c-name "HildonDateEditor")
+  (gtype-id "HILDON_TYPE_DATE_EDITOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-date-editor.h
+
+(define-function hildon_date_editor_new
+  (c-name "hildon_date_editor_new")
+  (is-constructor-of "HildonDateEditor")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_date
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_set_date")
+  (return-type "none")
+  (parameters
+    '("guint" "year")
+    '("guint" "month")
+    '("guint" "day")
+  )
+)
+
+(define-method get_date
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_get_date")
+  (return-type "none")
+  (parameters
+    '("guint*" "year")
+    '("guint*" "month")
+    '("guint*" "day")
+  )
+)
+
+(define-method set_year
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_set_year")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "year")
+  )
+)
+
+(define-method set_month
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_set_month")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "month")
+  )
+)
+
+(define-method set_day
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_set_day")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "day")
+  )
+)
+
+(define-method get_year
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_get_year")
+  (return-type "guint")
+)
+
+(define-method get_month
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_get_month")
+  (return-type "guint")
+)
+
+(define-method get_day
+  (of-object "HildonDateEditor")
+  (c-name "hildon_date_editor_get_day")
+  (return-type "guint")
+)
+
+

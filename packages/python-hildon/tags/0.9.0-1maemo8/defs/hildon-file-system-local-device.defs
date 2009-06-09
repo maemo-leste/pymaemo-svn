@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemLocalDevice
+  (in-module "Hildon")
+  (parent "HildonFileSystemSpecialLocation")
+  (c-name "HildonFileSystemLocalDevice")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_LOCAL_DEVICE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-local-device.h
+
+(define-function hildon_file_system_local_device_get_type
+  (c-name "hildon_file_system_local_device_get_type")
+  (return-type "GType")
+)
+
+
