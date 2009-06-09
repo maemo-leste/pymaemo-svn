@@ -66,20 +66,13 @@ There are several function to push and/or pop windows on a stack. Below, you can
 
   
   
-  hildon.WindowStack.hildon_window_stack_push(stackablewindow,
-                                              ...)
-  hildon.WindowStack.hildon_window_stack_push_list(windows_list)
-  hildon.WindowStack.hildon_window_stack_push_1(stackablewindow)
-  hildon.WindowStack.hildon_window_stack_pop(nwindows,
-                                             popped_windows_list)
-  hildon.WindowStack.hildon_window_stack_pop_1();
-  hildon.WindowStack.hildon_window_stack_pop_and_push(nwindows,
-                                                      popped_windows_list,
-                                                      stackablewindow,
-                                                      ...);
-  hildon.WindowStack.hildon_window_stack_pop_and_push_list(nwindows,
-                                                           popped_windows_list,
-                                                           windows_list);
+  def hildon_window_stack_push(stackablewindow, ...)
+  def hildon_window_stack_push_list(windows_list)
+  def hildon_window_stack_push_1(stackablewindow)
+  def hildon_window_stack_pop(nwindows, popped_windows_list)
+  def hildon_window_stack_pop_1();
+  def hildon_window_stack_pop_and_push(nwindows, popped_windows_list, stackablewindow, ...);
+  def hildon_window_stack_pop_and_push_list(nwindows, popped_windows_list, windows_list);
 
 The example shows how to get the default stack and push a newly created window on the stack. (Note that you also can do the same in a single stack by calling show_all()).
 
