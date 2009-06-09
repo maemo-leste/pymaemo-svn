@@ -314,11 +314,11 @@ The hildon.Note widget provides functions to create and show different types of 
 
 ::
   
-  hildon.hildon_note_new_information(parent, description)
-  hildon.hildon_note_new_information_with_icon_name(parent, description, icon_name)
-  hildon.hildon_note_new_confirmation(parent, description)
-  hildon.hildon_note_new_confirmation_with_icon_name(parent, description, icon_name)
-  hildon.hildon_note_new_cancel_with_progress_bar(parent, description, progressbar)
+  def hildon_note_new_information(parent, description)
+  def hildon_note_new_information_with_icon_name(parent, description, icon_name)
+  def hildon_note_new_confirmation(parent, description)
+  def hildon_note_new_confirmation_with_icon_name(parent, description, icon_name)
+  def hildon_note_new_cancel_with_progress_bar(parent, description, progressbar)
   
 
 Every function to create notes receives as a parameter the parent window of the newly created note. This is important so that the window manager can handle the windows properly.
