@@ -7762,7 +7762,7 @@ Details
 
         Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the RemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an remote texture will affect its visibility as set by the :function:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
+        Parenting an remote texture will affect its visibility as set by the :function:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and :meth:`RemoteTexture.set_show` . The remote texture will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the remote texture. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
