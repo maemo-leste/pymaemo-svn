@@ -4,7 +4,7 @@ Hildon Widgets and Objects
 ##########################
 
 Window
-************
+******
 
 Object Hierarchy
 ================
@@ -263,8 +263,8 @@ See Also
 
 :class:`HildonProgram` :class:`HildonStackableWindow` .. _HildonStackableWindow:
 
-hildon.StackableWindow
-*********************
+StackableWindow
+***************
 
 Object Hierarchy
 ================
@@ -362,32 +362,16 @@ See Also
 :class:`WindowStack` :class:`Program` :class:`Window`
 
 WindowStack
-*****************
-
-.. _WindowStack.object-hierarchy:
+***********
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----WindowStack
   
-
-.. _WindowStack.properties:
-
-Properties
-==========
-
-::
-
-  
-    window-group             GtkWindowGroup*       : Read / Write / Construct Only
-  
-
-.. _WindowStack.description:
 
 Description
 ===========
@@ -398,22 +382,17 @@ Stacks contain all :class:`HildonStackableWindow` s that are being shown. The us
 
 Each window can only be in one stack at a time. All stacked windows are visible and all visible windows are stacked.
 
-Each application has a default stack, and windows are automatically added to it when they are shown with :meth:`GtkWidget.show` .
+Each application has a default stack, and windows are automatically added to it when they are shown with :function:`gtk.Widget.show_all` .
 
-Additional stacks can be created at any time using `hildon_window_stack_new() <hildon-window-stack-new>`_ . To add a window to a specific stack, use `hildon_window_stack_push_1() <hildon-window-stack-push-1>`_ (remember that, for the default stack, :meth:`GtkWidget.show` can be used instead).
+Additional stacks can be created at any time using :function:`hildon.WindowStack()` . To add a window to a specific stack, use :function:`hildon.WindowStack.push_1()` (remember that, for the default stack, :function:`gtk.Widget.show_all` can be used instead).
 
-To remove a window from a stack use `hildon_window_stack_pop_1() <hildon-window-stack-pop-1>`_ , or simply :meth:`GtkWidget.hide` .
+To remove a window from a stack use :function:`hildon.WindowStack.pop_1()` , or simply :function:`gtk.Widget.hide` .
 
-For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See `hildon_window_stack_push() <hildon-window-stack-push>`_ , `hildon_window_stack_pop() <hildon-window-stack-pop>`_ and `hildon_window_stack_pop_and_push() <hildon-window-stack-pop-and-push>`_ for more details.
+For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See :function:`hildon.WindowStack.push()` , `hildon.WindowStack.pop()` and `hildon.WindowStack.pop_and_push()` for more details.
 
-
-
-.. _WindowStack.details:
 
 Details
 =======
-
-.. _WindowStack-struct:
 
 .. class:: WindowStack
 
@@ -422,8 +401,6 @@ Details
   typedef struct _WindowStack WindowStack;
 
 
-
-.. _hildon-window-stack-get-default:
 
 .. function:: hildon_window_stack_get_default ()
 
@@ -434,14 +411,11 @@ Details
 Returns the default window stack. This stack always exists and doesn't need to be created by the application.
 
 
-
 :returns: 
   the default :class:`WindowStack`
 
 
 .. versionadded 2.2
-
-.. _hildon-window-stack-new:
 
 .. function:: hildon_window_stack_new ()
 
@@ -459,7 +433,6 @@ Creates a new :class:`WindowStack` . The stack is initially empty.
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-size:
 
 .. function:: hildon_window_stack_size ()
 
@@ -481,7 +454,6 @@ Returns the number of windows in ``stack``
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-get-windows:
 
 .. function:: hildon_window_stack_get_windows ()
 
@@ -503,7 +475,6 @@ Returns the list of windows on this stack (topmost first). The widgets in the li
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-peek:
 
 .. function:: hildon_window_stack_peek ()
 
@@ -524,8 +495,6 @@ Returns the window on top of ``stack``. The stack is never modified.
 
 
 .. versionadded 2.2
-
-.. _hildon-window-stack-push:
 
 .. function:: hildon_window_stack_push ()
 
@@ -553,7 +522,6 @@ Pushes all windows to the top of ``stack``, and shows them. Everything is done i
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-push-list:
 
 .. function:: hildon_window_stack_push_list ()
 
@@ -576,7 +544,6 @@ Pushes all windows in ``list`` to the top of ``stack``, and shows them. Everythi
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-push-1:
 
 .. function:: hildon_window_stack_push_1 ()
 
@@ -599,7 +566,6 @@ Adds ``win`` to the top of ``stack``, and shows it. The window must not be alrea
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-pop:
 
 .. function:: hildon_window_stack_pop ()
 
@@ -629,7 +595,6 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-pop-1:
 
 .. function:: hildon_window_stack_pop_1 ()
 
@@ -651,7 +616,6 @@ Removes the window on top of ``stack``, and hides it. If the stack is empty noth
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-pop-and-push:
 
 .. function:: hildon_window_stack_pop_and_push ()
 
@@ -691,7 +655,6 @@ If ``popped_windows`` is not None , the list of popped windows is stored there (
 
 .. versionadded 2.2
 
-.. _hildon-window-stack-pop-and-push-list:
 
 .. function:: hildon_window_stack_pop_and_push_list ()
 
@@ -7696,7 +7659,7 @@ Details
 
         Send a message to the window manager setting the parent window for the animation actor. Parenting an actor will not affect the X window that the AnimationActor represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an animation actor will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and :meth:`AnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
+        Parenting an animation actor will affect its visibility as set by the :function:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and :meth:`AnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
@@ -7927,7 +7890,7 @@ Details
 
         Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the RemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an remote texture will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
+        Parenting an remote texture will affect its visibility as set by the :function:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the remote texture. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
