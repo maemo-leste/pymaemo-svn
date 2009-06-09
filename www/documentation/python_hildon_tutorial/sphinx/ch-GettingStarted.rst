@@ -5,7 +5,7 @@ Getting Started
 
 Before starting to develop your Hildon applications you need to get and properly install and configure a Maemo SDK. You can download and learn how to use the latest SDK in `Maemo SDK Releases <Maemo SDK Releases>`_ .
 
-To begin our introduction to Hildon, we will start with the simplest program possible -- base.c. This program creates a window and has no way of exiting except to be killed by using the shell.
+To begin our introduction to Hildon, we will start with the simplest program possible. This program creates a window and has no way of exiting except to be killed by using the shell.
 
 Simple Hildon program
 =====================
@@ -31,7 +31,7 @@ The next two lines of code create and display a window.
     window.show()
   
     
-The hildon.Window used in this example represents a top-level window in the Hildon framework. It is derived from GtkWindow and provides additional commodities specific to the Hildon framework.
+The hildon.Window used in this example represents a top-level window in the Hildon framework. It is derived from gtk.Window and provides additional commodities specific to the Hildon framework.
 
 In very simple applications, hildon.Window could be enough. However, in most of the applications a hildon.StackableWindow should be used. Next chapters will clarify this.
 
@@ -117,7 +117,7 @@ This call registers a window as belonging to the program. This allows to apply p
     program.add_window(window)
   
       
-The following code is an example of connecting a signal handler to an object, in this case, the window. The function gtk_main_quit () is set as a handler to the "delete_event" signal. This function tells GTK+ that it must exit from gtk_main when control is returned to it, making the program terminate.
+The following code is an example of connecting a signal handler to an object, in this case, the window. The function gtk.main_quit() is set as a handler to the "delete_event" signal. This function tells GTK+ that it must exit from gtk.main() when control is returned to it, making the program terminate.
 
 ::
 
