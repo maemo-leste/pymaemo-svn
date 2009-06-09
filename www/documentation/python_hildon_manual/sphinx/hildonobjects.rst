@@ -1,4 +1,4 @@
-.. _hildonobjects:
+.. module:: hildon
 
 Hildon Widgets and Objects
 ##########################
@@ -6,12 +6,10 @@ Hildon Widgets and Objects
 HildonWindow
 ************
 
-
 Object Hierarchy
 ================
 
 ::
-
 
     GObject
      +----GInitiallyUnowned
@@ -8628,19 +8626,19 @@ Property Details
 | ``done-button-text``      | str    | Read / Write / Construct | "wdgt_bd_done" | Done Button Label.                                                     |
 +---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
 
-HildonAnimationActor
-********************
+AnimationActor
+**************
 
 Details
 =======
 
-.. class:: HildonAnimationActor
+.. class:: AnimationActor
 
     .. method:: __init__ ()
 
-        Creates a new :class:`HildonAnimationActor` .
+        Creates a new :class:`AnimationActor` .
 
-        :returns: A :class:`HildonAnimationActor`
+        :returns: A :class:`AnimationActor`
 
         .. versionadded 2.2
 
@@ -8701,7 +8699,7 @@ Details
 
     .. method:: set_depth (depth)
 
-        A shortcut for :meth:`HildonAnimationActor.set_position_full` , changing the window depth, but preserving it's position.
+        A shortcut for :meth:`AnimationActor.set_position_full` , changing the window depth, but preserving it's position.
 
         :param depth: Desired window depth (Z coordinate)
 
@@ -8709,9 +8707,9 @@ Details
 
     .. method:: set_opacity (opacity)
 
-        This function is a shortcut for :meth:`HildonAnimationActor.set_show_full` , setting actor opacity without changing it's overall visibility.
+        This function is a shortcut for :meth:`AnimationActor.set_show_full` , setting actor opacity without changing it's overall visibility.
 
-        See :meth:`HildonAnimationActor.set_show_full` for description of the range of values ``opacity`` argument takes.
+        See :meth:`AnimationActor.set_show_full` for description of the range of values ``opacity`` argument takes.
 
         :param opacity: Desired opacity setting
 
@@ -8719,9 +8717,9 @@ Details
 
     .. method:: set_parent (parent)
 
-        Send a message to the window manager setting the parent window for the animation actor. Parenting an actor will not affect the X window that the HildonAnimationActor represents, but it's off-screen bitmap as it is handled by the compositing window manager.
+        Send a message to the window manager setting the parent window for the animation actor. Parenting an actor will not affect the X window that the AnimationActor represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an animation actor will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and :meth:`HildonAnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
+        Parenting an animation actor will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and :meth:`AnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
@@ -8733,7 +8731,7 @@ Details
 
     .. method:: set_position (x, y)
 
-        A shortcut for :meth:`HildonAnimationActor.set_position_full` , changing the window position, but preserving it's depth setting.
+        A shortcut for :meth:`AnimationActor.set_position_full` , changing the window position, but preserving it's depth setting.
 
         :param x: Desired window X coordinate
         :param y: Desired window Y coordinate
@@ -8746,7 +8744,7 @@ Details
 
         The window depth affects the stacking of animation actors within a parent window and, more generally, the stacking of clutter actors within a stage/container. The default depth is 0 and a parent window's container will have it's window texture stacked at that level. The stacking at any depth level is sequential -- animation actor B created/parented after animation actor A will obscure the latter if they overlap.
 
-        Animation actors with non-zero depth settings are subject to scaling as per the global scene perspective setup, which limits the depth setting as the primary parameter to control the stacking order. Since the stacking order follows the parenting order, it may be better to use :meth:`HildonAnimationActor.set_parent` for setting the stacking.
+        Animation actors with non-zero depth settings are subject to scaling as per the global scene perspective setup, which limits the depth setting as the primary parameter to control the stacking order. Since the stacking order follows the parenting order, it may be better to use :meth:`AnimationActor.set_parent` for setting the stacking.
 
         If the animation actor WM-counterpart is not ready, the show message will be queued until the WM is ready for it.
 
@@ -8779,7 +8777,7 @@ Details
 
     .. method:: set_rotationx (axis, degrees, x, y, z)
 
-        This function is just like :meth:`HildonAnimationActor.set_rotation` , but the rotation angle is given as 16-bit fixed-point number.
+        This function is just like :meth:`AnimationActor.set_rotation` , but the rotation angle is given as 16-bit fixed-point number.
 
         :param axis: The rotation axis.
         :parma degrees: The rotation angle in degrees.
@@ -8802,7 +8800,7 @@ Details
 
     .. method:: set_scalex (x_scale, y_scale)
 
-        This function is just like :meth:`HildonAnimationActor.set_scale` , but the scale factors are given as 16-bit fixed-point number.
+        This function is just like :meth:`AnimationActor.set_scale` , but the scale factors are given as 16-bit fixed-point number.
 
         :param x_scale: Window's desired scale factor along the X-axis
         :param y_scale: Window's desired scale factor along the Y-axis
@@ -8811,7 +8809,7 @@ Details
 
     .. method:: set_show (show)
 
-        This function is a shortcut for :meth:`HildonAnimationActor.set_show_full` , setting the overall actor visibility without changing it's opacity setting.
+        This function is a shortcut for :meth:`AnimationActor.set_show_full` , setting the overall actor visibility without changing it's opacity setting.
 
         :param show: A boolean flag setting the visibility of the animation actor.
 
@@ -8819,7 +8817,7 @@ Details
 
     .. method:: set_show_full (show, opacity)
 
-        Send a message to the window manager setting the visibility of the animation actor. This will only affect the visibility of the animation actor set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonAnimationActor` widget is not visible in X11 terms (i.e. realized and mapped).
+        Send a message to the window manager setting the visibility of the animation actor. This will only affect the visibility of the animation actor set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`AnimationActor` widget is not visible in X11 terms (i.e. realized and mapped).
 
         Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
 
@@ -8834,70 +8832,70 @@ Details
 
 .. data:: HILDON_AA_CENTER_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_E_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_NE_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_NW_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_N_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_SE_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_SW_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_S_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_W_GRAVITY
 
-    .. seealso:: :meth:`HildonAnimationActor.set_anchor_from_gravity`
+    .. seealso:: :meth:`AnimationActor.set_anchor_from_gravity`
 
 .. data:: HILDON_AA_X_AXIS
 
-    .. seealso:: :meth:`HildonAnimationActor.set_rotation`
+    .. seealso:: :meth:`AnimationActor.set_rotation`
 
 .. data:: HILDON_AA_Y_AXIS
 
-    .. seealso:: :meth:`HildonAnimationActor.set_rotation`
+    .. seealso:: :meth:`AnimationActor.set_rotation`
 
 .. data:: HILDON_AA_Z_AXIS
 
-    .. seealso:: :meth:`HildonAnimationActor.set_rotation`
+    .. seealso:: :meth:`AnimationActor.set_rotation`
 
-HildonRemoteTexture
+RemoteTexture
 *******************
 
 Description
 ===========
 
-The :class:`HildonRemoteTexture` is a GTK+ widget which allows the rendering of a shared memory area within hildon-desktop. It allows the memory area to be positioned and scaled, without altering its' contents.
+The :class:`RemoteTexture` is a GTK+ widget which allows the rendering of a shared memory area within hildon-desktop. It allows the memory area to be positioned and scaled, without altering its' contents.
 
 Details
 =======
 
-.. class:: HildonRemoteTexture
+.. class:: RemoteTexture
 
     .. method:: __init__ ()
 
-        Creates a new :class:`HildonRemoteTexture` .
+        Creates a new :class:`RemoteTexture` .
 
-        :returns: A :class:`HildonRemoteTexture`
+        :returns: A :class:`RemoteTexture`
 
         .. versionadded 2.2
 
@@ -8939,9 +8937,9 @@ Details
 
     .. method:: set_opacity (opacity)
 
-        This function is a shortcut for :meth:`HildonRemoteTexture.set_show_full` , setting actor opacity without changing it's overall visibility.
+        This function is a shortcut for :meth:`RemoteTexture.set_show_full` , setting actor opacity without changing it's overall visibility.
 
-        See :meth:`HildonRemoteTexture.set_show_full` for description of the range of values ``opacity`` argument takes.
+        See :meth:`RemoteTexture.set_show_full` for description of the range of values ``opacity`` argument takes.
 
         :param opacity: Desired opacity setting
 
@@ -8950,7 +8948,7 @@ Details
 
     .. method:: set_parent (parent)
 
-        Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the HildonRemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
+        Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the RemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
         Parenting an remote texture will affect its visibility as set by the :meth:`GtkWidget.show` , :meth:`GtkWidget.hide` and `hildon_remote_texture_set_show() <hildon-remote-texture-set-show>`_ . The remote texture will only be visible when the top-level window it is parented is visible.
 
@@ -8979,7 +8977,7 @@ Details
 
     .. method:: set_show (show)
 
-        This function is a shortcut for :meth:`HildonRemoteTexture.set_show_full` , setting the overall actor visibility without changing it's opacity setting.
+        This function is a shortcut for :meth:`RemoteTexture.set_show_full` , setting the overall actor visibility without changing it's opacity setting.
 
         :param show: A boolean flag setting the visibility of the remote texture.
 
@@ -8987,7 +8985,7 @@ Details
 
     .. method:: set_show_full (show, opacity)
 
-        Send a message to the window manager setting the visibility of the remote texture. This will only affect the visibility of the remote texture set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`HildonRemoteTexture` widget is not visible in X11 terms (i.e. realized and mapped).
+        Send a message to the window manager setting the visibility of the remote texture. This will only affect the visibility of the remote texture set by the compositing window manager in its own rendering pipeline, after X has drawn the window to the off-screen buffer. This setting, naturally, has no effect if the :class:`RemoteTexture` widget is not visible in X11 terms (i.e. realized and mapped).
 
         Furthermore, if a widget is parented, its final visibility will be affected by that of the parent window.
 
