@@ -15,9 +15,9 @@ Control Bar
 Migrating Control Bars
 ======================
 
-ControlBar widgets are deprecated since Hildon 2.2 and a GtkScale should be used to accomplish the same functionality.
+ControlBar widgets are deprecated since Hildon 2.2 and a gtk.Scale should be used to accomplish the same functionality.
 
-To make a GtkScale have the same functionality as a control bar you'll need to change some properties of the widget's Adjustment so it has a range equal to the control bar's as well as the step increment.
+To make a gtk.Scale have the same functionality as a control bar you'll need to change some properties of the widget's Adjustment so it has a range equal to the control bar's as well as the step increment.
 
 The following example shows a control bar with the range of 0 to 4.
 
@@ -26,14 +26,11 @@ A Typical Control Bar
 
 ::
 
+  bar = hildon.ControlBar()
+  bar.set_range(1, 4)
+  bar.set_value(2)
   
-  
-  HildonControlbar *bar = HILDON_CONTROLBAR (hildon_controlbar_new ());
-  hildon_controlbar_set_range (bar, 1, 4);
-  hildon_controlbar_set_value (bar, 2);
-  
-          
-
+        
 To accomplish the same functionality as the previous control bar example, one could use something like in the following example.
 
 A Replacement for the Control Bar
@@ -41,15 +38,12 @@ A Replacement for the Control Bar
 
 ::
 
-  
-  
-  GtkHScale *scale = GTK_HSCALE (hildon_gtk_hscale_new ());
-  GtkAdjustment *adjustment = GTK_ADJUSTMENT (
-                          gtk_range_get_adjustment (GTK_RANGE (scale)));
-  g_object_set (adjustment, "step-increment", 1, "lower", 0, NULL);
-  g_object_set (adjustment, "upper", 4, NULL);
-  g_object_set (adjustment, "value", 2, NULL);
-  
+  scale = hildon.GtkHScale()
+  adjustment = scale.get_adjustment()
+  adjustment.set_property("step-increment", 1)
+  adjustment.set_property("lower", 0)
+  adjustment.set_property("upper", 4)
+  adjustment.set_property("value", 2) 
           
 
 .. _hildon-migration-volume-bar:
@@ -62,7 +56,7 @@ Volume Bar
 Migrating Volume Bars
 =====================
 
-VolumeBar widgets are deprecated since Hildon 2.2 and the way to exactly reproduce their functionality is to use a GtkScale together with a toggle button. Instead of the toggle button, a Hildon picker button could be used or two radio buttons or any other widgets that allow the user to choose from two options. The toggle button is used in this example since it is the very similar with the deprecated volume bar's button.
+VolumeBar widgets are deprecated since Hildon 2.2 and the way to exactly reproduce their functionality is to use a gtk.Scale together with a toggle button. Instead of the toggle button, a Hildon picker button could be used or two radio buttons or any other widgets that allow the user to choose from two options. The toggle button is used in this example since it is the very similar with the deprecated volume bar's button.
 
 The deprecated volume bar is shown on the example bellow.
 
@@ -70,13 +64,10 @@ A Typical Volume Bar
 ====================
 
 ::
-
   
-  
-  HildonVVolumebar *bar = HILDON_VVOLUMEBAR (hildon_vvolumebar_new ());
-  gtk_widget_set_size_request (GTK_WIDGET (bar), -1, 300);
-  
-          
+  bar = hildon.VVolumebar()
+  bar.set_size_request(-1, 300)
+           
 
 A very similar widget can be done like the following example shows.
 
@@ -84,30 +75,23 @@ A Replacement for the Volume Bar
 ================================
 
 ::
+  
+  def toggle_volume_state_cb (toggle, bar)
+      mute = toggle.get_active()
+      bar.set_sensitive(!mute)
 
+  bar = hildon.GtkVScale()
+  bar.set_size_request(-1, 300)
+  bar.set_restrict_to_fill_level(True)
   
-  
-  void
-  toggle_volume_state_cb (GtkToggleButton *toggle, gpointer data)
-  {
-      GtkVScale *bar = GTK_VSCALE (data);
-      gboolean mute = gtk_toggle_button_get_active (toggle);
-      gtk_widget_set_sensitive (GTK_WIDGET (bar), !mute);
-  }
-  
-  GtkVScale *bar = GTK_VSCALE (hildon_gtk_vscale_new ());
-  gtk_widget_set_size_request (GTK_WIDGET (bar), -1, 300);
-  gtk_range_set_restrict_to_fill_level (GTK_RANGE (bar), TRUE);
-  GtkToggleButton *toggle_volume = GTK_TOGGLE_BUTTON (hildon_gtk_toggle_button_new (
-                                          HILDON_SIZE_FINGER_HEIGHT));
-  gtk_button_set_label (GTK_BUTTON (toggle_volume), "Mute");
-  g_signal_connect (toggle_volume, "toggled",
-                      G_CALLBACK (toggle_volume_state_cb), bar);
-  GtkVBox *volume = GTK_VBOX (gtk_vbox_new (0, FALSE));
-  gtk_container_add (GTK_CONTAINER (volume), GTK_WIDGET (bar));
-  gtk_box_pack_end (GTK_BOX (volume), GTK_WIDGET (toggle_volume), FALSE, FALSE, 0);
-  
-          
+  toggle_volume = hildon.GtkToggleButton(gtk.HILDON_SIZE_FINGER_HEIGHT)
+  toggle_volume.set_label("Mute")
+  toggle_volume.connect("toggled", toggle_volume_state_cb, bar)
+
+  volume = gtk.VBox(0, False)
+  volume.add(bar)
+  volume.pack_end(toggle_volume, False, False, 0)
+           
 
 .. _hildon-migration-date-widgets:
 
@@ -119,7 +103,7 @@ Date Widgets
 Migrating Date Widgets
 ======================
 
-Being deprecated since Hildon 2.2, the calendar popup and date editor can be substituded by a HildonDateButton.
+Being deprecated since Hildon 2.2, the calendar popup and date editor can be substituded by a hildon.DateButton.
 
 Examples of a typical calendar popup and a date editor are presented bellow.
 
@@ -128,15 +112,13 @@ A Typical Calendar Popup
 
 ::
 
-  
-  
-  guint y = 2009, m = 4, d = 25;
-  GtkWidget *parent, *popup;
-  popup = hildon_calendar_popup_new (GTK_WINDOW (parent), y, m, d);
-  gtk_dialog_run (GTK_DIALOG (popup));
-  hildon_calendar_popup_get_date (HILDON_CALENDAR_POPUP (popup),
-                                          &y, &m, &d);
-  
+  y = 2009
+  m = 4
+  d = 25
+
+  popup = hildon.CalendarPopup(parent, y, m, d)
+  popup.run()
+  (y, m, d) = popup.get_date()
           
 
 A Typical Date Editor
@@ -144,54 +126,46 @@ A Typical Date Editor
 
 ::
 
-  
-  
-  gboolean
-  on_error (GtkWidget *widget, HildonDateTimeError error_type);
-  
-  gboolean
-  on_error (GtkWidget *widget, HildonDateTimeError error_type)
-  {
-      g_debug ("Error: %d", error_type);
-      return FALSE;
-  }
-  
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  HildonDateEditor *date_editor = HILDON_DATE_EDITOR (hildon_date_editor_new ());
-  
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), gtk_label_new ("Choose a date"), FALSE, FALSE, 10);
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), GTK_WIDGET (date_editor), FALSE, FALSE, 10);
-  gtk_dialog_add_button (dialog, "Close", GTK_RESPONSE_CANCEL);
-  
-  g_signal_connect (G_OBJECT (date_editor), "date_error", G_CALLBACK (on_error), NULL);
-  
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
-  
-  hildon_date_editor_get_date (date_editor, &y, &m, &d);
-  
-          
+  def on_error (widget, error_type):
+      print "Error: %d" % error_type
+      return False  
 
-The following example accomplishes equivalent functionality using a HildonDateButton.
+  dialog = gtk.Dialog()
+  date_editor = hildon.DateEditor()
+  dialog.vbox.pack_start(gtk.Label("Choose a date"), False, False, 10)
+  doalog.vbox.pack_start(date_editor, False, False, 10)
+  dialog.add_button("Close", gtk.RESPONSE_CANCEL)
+
+  date_editor.connect("date_error", on_error)
+
+  dialog.show_all()  
+  dialog.run()
+
+  (y, m, d) = date_editor.get_date()  
+           
+
+The following example accomplishes equivalent functionality using a hildon.DateButton.
 
 A Replacement for the Calendar Popup
 ====================================
 
 ::
 
-  
-  
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  guint y = 2009, m = 3, d = 25;
-  HildonDateButton *date_button = HILDON_DATE_BUTTON (hildon_date_button_new (
-              HILDON_SIZE_THUMB_HEIGHT, HILDON_BUTTON_ARRANGEMENT_VERTICAL));
-  hildon_date_button_set_date (date_button, y, m, d);
-  gtk_box_pack_end (GTK_BOX (dialog->vbox), GTK_WIDGET (date_button), FALSE, FALSE, 0);
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
-  hildon_date_button_get_date (date_button, &y, &m, &d);
-  
-          
+    
+  dialog = gtk.Dialog()
+  y = 2009
+  m = 3
+  d = 25
+
+  date_button = hildon.DateButton(gtk.HILDON_SIZE_THUMB_HEIGHT,
+                                  gtk.HILDON_BUTTON_ARRANGEMENT_VERTICAL)
+  date_button.set_date(y, m, d)
+  dialog.vbox.pack_end(date_button, False, False, 0)
+
+  dialog.show_all()
+  dialog.run()
+  (y, m, d) = date_button.get_date()
+           
 
 Weekday Picker
 ==============
@@ -205,18 +179,17 @@ A Typical Weekday Picker
 
 ::
 
+  dialog = gtk.Dialog()    
+  picker = hildon.WeekdayPicker()
+  dialog.pack_start(picker, True, True, 0)
   
-  
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  GtkWidget *picker = hildon_weekday_picker_new ();
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), picker, TRUE, TRUE, 0);
-  gtk_dialog_add_button (dialog, "Close", GTK_RESPONSE_CLOSE);
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
-  
-          
+  dialog.add_button("Close", gtk.RESPONSE_CLOSE)
 
-With a HildonPickerButton it is easy to add the weekdays to its TouchSelector and thus having the same functionality.
+  dialog.show_all()
+  dialog.run()
+  
+
+With a hildon.PickerButton it is easy to add the weekdays to its TouchSelector and thus having the same functionality.
 
 A Replacement for the Weekday Picker
 ====================================
@@ -225,28 +198,24 @@ A Replacement for the Weekday Picker
 
   
   
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  GtkWidget *picker = hildon_picker_button_new (HILDON_SIZE_THUMB_HEIGHT,
-                                  HILDON_BUTTON_ARRANGEMENT_VERTICAL);
-  hildon_button_set_title (HILDON_BUTTON (picker), "Weekday:");
-  HildonTouchSelector *selector = HILDON_TOUCH_SELECTOR (
-                                  hildon_touch_selector_new_text ());
-  hildon_touch_selector_append_text (selector, "Sunday");
-  hildon_touch_selector_append_text (selector, "Monday");
-  hildon_touch_selector_append_text (selector, "Tuesday");
-  hildon_touch_selector_append_text (selector, "Thursday");
-  hildon_touch_selector_append_text (selector, "Friday");
-  hildon_touch_selector_append_text (selector, "Saturday");
-  hildon_touch_selector_set_column_selection_mode (selector,
-                      HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE);
-                      
-  hildon_picker_button_set_selector (HILDON_PICKER_BUTTON (picker), selector);
-  hildon_picker_button_set_active (HILDON_PICKER_BUTTON (picker), 0);
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), picker, TRUE, TRUE, 0);
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
+  dialog = gtk.Dialog()    
+  picker = hildon.PickerButton(gtk.HILDON_SIZE_THUMB_HEIGHT,
+                               gtk.HILDON_BUTTON_ARRANGEMENT_VERTICAL)
+  picker.set_title("Weekday:")
+  selector = hildon.hildon_touch_selector_new_text()
+
+  weekdays = ["Sunday", "Monday", "Tuesday", "Thursday", "Friday", "Saturday"]
+  for day_name in weekdays:
+    selector.append_text(day_name)
+
+  selector.set_column_selection_mode(hildon.SELECTION_MODE_MULTIPLE)
+  picker.set_selector(selector)
+  picker.set_active(0)
   
-          
+  dialog->vbox->pack_start(picker, True, True, 0)
+  dialog.show_all()
+  dialog.run()
+  
 
 .. _hildon-migration-time-widgets:
 
@@ -258,7 +227,7 @@ Time Widgets
 Migrating Time Widgets
 ======================
 
-A HildonTimeButton is the way to replace the time picker and time editor widgets (deprecated since Hildon version 2.2).
+A hildon.TimeButton is the way to replace the time picker and time editor widgets (deprecated since Hildon version 2.2).
 
 A time picker and time editor are shown in the examples bellow.
 
@@ -268,11 +237,10 @@ A Typical Time Picker
 ::
 
   
+  dialog = hildon.TimePicker(None)
   
-  GtkDialog *dialog = GTK_DIALOG (hildon_time_picker_new (NULL));
-  
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
+  dialog.show_all()
+  dialog.run()
   
           
 
@@ -281,16 +249,14 @@ A Typical Time Editor
 
 ::
 
+  dialog = gtk.Dialog()
+  time_editor = hildon.TimeEditor()
   
+  dialog->vbox->pack_start(timer_editor, False, False, 0)
+  dialog.add_button("Close", gtk.RESPONSE_CANCEL)
   
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  HildonTimeEditor *time_editor = HILDON_TIME_EDITOR (hildon_time_editor_new ());
-  
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), GTK_WIDGET (time_editor), FALSE, FALSE, 0);
-  gtk_dialog_add_button (dialog, "Close", GTK_RESPONSE_CANCEL);
-  
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
+  dialog.show_all()
+  dialog.run()
   
           
 
@@ -301,16 +267,12 @@ A Replacement for the Time Picker
 
 ::
 
-  
-  
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  HildonTimeButton *time_button = HILDON_TIME_BUTTON (hildon_time_button_new (
-              HILDON_SIZE_THUMB_HEIGHT, HILDON_BUTTON_ARRANGEMENT_VERTICAL));
-  gtk_box_pack_end (GTK_BOX (dialog->vbox), GTK_WIDGET (time_button), FALSE, FALSE, 0);
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
-  
-          
+  dialog = gtk.Dialog()
+  time_button = hildon.TimeButton(gtk.HILDON_SIZE_THUMB_HEIGHT,
+                                  gtk.HILDON_BUTTON_ARRANGEMENT_VERTICAL)
+  dialog.vbox.pack_end(time_button, False, False, 0)
+  dialog.show_all()
+  dialog.run()
 
 .. _hildon-migration-number-widgets:
 
@@ -322,7 +284,7 @@ Number Widgets
 Migrating Number Widgets
 ========================
 
-To achieve the same functionlity of HildonNumberEditor you can use a HildonPickerButton with a HildonTouchSelectorEntry assigned to it. With these widgets you can also easily have the functionality of a HildonRangeEditor (not covered in this example). Both the HildonNumberEditor and the HildonRangeEditor are deprecated since Hildon 2.2.
+To achieve the same functionlity of hildon.NumberEditor you can use a hildon.PickerButton with a hildon.TouchSelectorEntry assigned to it. With these widgets you can also easily have the functionality of a hildon.RangeEditor (not covered in this example). Both the hildon.NumberEditor and the hildon.RangeEditor are deprecated since Hildon 2.2.
 
 The following example shows a typical NumberEditor.
 
@@ -331,60 +293,50 @@ A Typical Number Editor
 
 ::
 
+
+  dialog = gtk.Dialog()
+  editor = hildon.NumberEditor(0, 30)
+  label = gtk.Label("Number:")
+  hbox = gtk.HBox(False, 12)
   
+  hbox.pack_start(label, True, True, 0)
+  hbox.pack_start(label, editor, False, False, 0)
+  dialog.vbox.pack_start(hbox, True, True, 0)
   
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  GtkWidget *editor = hildon_number_editor_new (0, 30);
-  GtkWidget *label = gtk_label_new ("Number:");
-  GtkWidget *hbox = gtk_hbox_new (FALSE, 12);
-  
-  gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), editor, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), hbox, TRUE, TRUE, 0);
-  
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
+  dialog.show_all()
+  dialog.run()
   
           
 
-The functionality of the example above is shown on the example bellow using by validating the HildonPickerButton's value every time it's changed. The choices given in the HildonTouchSelectorShould be the most common choices.
+The functionality of the example above is shown on the example bellow using by validating the HildonPickerButton's value every time it's changed. The choices given in the hildon.TouchSelectorShould be the most common choices.
 
 A Replacement for the Number Editor
 ===================================
 
 ::
 
+  def changed_value_cb (picker, data):
+      choice = picker.get_value()
+      picker.set_value(str(number))
   
-  
-  void
-  changed_value_cb (HildonPickerButton *picker, gpointer data)
-  {
-      gdouble number = 0;
-      const gchar *choice = hildon_button_get_value(HILDON_BUTTON (picker));
-      number = CLAMP(g_ascii_strtod (choice, NULL), 0, 30);
-      hildon_button_set_value(HILDON_BUTTON (picker), g_strdup_printf ("%d", (int) number));
-  }
-  
-  GtkDialog *dialog = GTK_DIALOG (gtk_dialog_new ());
-  GtkWidget *picker = hildon_picker_button_new (HILDON_SIZE_THUMB_HEIGHT,
-                                  HILDON_BUTTON_ARRANGEMENT_VERTICAL);
-  hildon_button_set_title (HILDON_BUTTON (picker), "Number:");
-  HildonTouchSelector *selector = HILDON_TOUCH_SELECTOR (
-                                  hildon_touch_selector_entry_new_text ());
-  hildon_touch_selector_append_text (selector, "0");
-  hildon_touch_selector_append_text (selector, "5");
-  hildon_touch_selector_append_text (selector, "10");
-  hildon_touch_selector_append_text (selector, "15");
-  hildon_touch_selector_append_text (selector, "20");
-  hildon_touch_selector_append_text (selector, "25");
-  hildon_touch_selector_append_text (selector, "30");
-  hildon_picker_button_set_selector (HILDON_PICKER_BUTTON (picker), selector);
-  hildon_picker_button_set_active (HILDON_PICKER_BUTTON (picker), 0);
-  g_signal_connect (G_OBJECT (picker), "value-changed",
-                                  G_CALLBACK (changed_value_cb), NULL);
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), picker, TRUE, TRUE, 0);
-  gtk_widget_show_all (GTK_WIDGET (dialog));
-  gtk_dialog_run (dialog);
+  dialog = gtk.Dialog()
+  picker = hildon.PickerButton(gtk.HILDON_SIZE_THUMB_HEIGHT,
+                               gtk.HILDON_BUTTON_ARRANGEMENT_VERTICAL)
+
+  picker.set_title("Number:")
+  selector = hildon.hildon_touch_selector_entry_new_text()
+
+  values = ["0", "5", "10", "15", "20", "25", "30"]
+  for txt in values:
+    selector.append_text(txt)
+
+  picker.set_selector(selector)
+  picker.set_active(0)
+  picker.connect("value-changed", changed_value_cb)
+  dialog.vbox.pack_start(picker, True, True, 0)
+
+  dialog.show_all()
+  dialog.run()
   
           
 
@@ -398,7 +350,7 @@ Hildon Dialogs
 Migrating Hildon Dialogs
 ========================
 
-The substitution of a HildonDialog should be easy. Since version 2.2, dialogs in Hildon should be used as normal GtkDialog objects.
+The substitution of a hildon.Dialog should be easy. Since version 2.2, dialogs in Hildon should be used as normal gtk.Dialog objects.
 
 .. _hildon-migration-sort-dialogs:
 
@@ -410,7 +362,7 @@ Sort Dialogs
 Migrating Sort Dialogs
 ======================
 
-HildonSortDialog is deprecated since Hildon 2.2. The correct way to let the user sort contents is with menu filters.
+hildon.SortDialog is deprecated since Hildon 2.2. The correct way to let the user sort contents is with menu filters.
 
 The following example shows a typical NumberEditor.
 
@@ -418,17 +370,14 @@ A Typical Number Editor
 =======================
 
 ::
-
   
-  
-  GtkDialog *dialog = GTK_DIALOG (hildon_sort_dialog_new (NULL));
-  
-  hildon_sort_dialog_add_sort_key (HILDON_SORT_DIALOG (dialog), "First key");
-  hildon_sort_dialog_add_sort_key_reversed (HILDON_SORT_DIALOG (dialog), "Second, key");
+  dialog = hildon.SortDialog(None)
+  dialog.add_sort_key("First key")
+  dialog.add_sort_key_reversed("Second, key")
   
           
 
-The functionality of the example above is shown on the example bellow using by validating the HildonPickerButton's value every time it's changed. The choices given in the HildonTouchSelectorShould be the most common choices.
+The functionality of the example above is shown on the example bellow using by validating the hildon.PickerButton's value every time it's changed. The choices given in the hildon.TouchSelectorShould be the most common choices.
 
 A Replacement for the Number Editor
 ===================================
@@ -436,39 +385,36 @@ A Replacement for the Number Editor
 ::
 
   
+  window = hildon.StackableWindow()
+  window.set_title("Sort Example")
   
-  GtkRadioButton *filter;
-  GtkWidget *window = hildon_stackable_window_new ();
-  gtk_window_set_title (GTK_WINDOW (window), "Sort Example");
+  menu = hildon.AppMenu()
   
-  HildonAppMenu *menu = HILDON_APP_MENU (hildon_app_menu_new ());
+  filter = hildon.GtkRadioButton(gtk.HILDON_SIZE_THUMB_HEIGHT, None)
+  filter.set_label( "1st Key");
+  menu.add_filter(filter)
+  filter.set_mode(False)
+  filter.set_active(True)
   
-  filter = GTK_RADIO_BUTTON (hildon_gtk_radio_button_new (
-                                  HILDON_SIZE_THUMB_HEIGHT, NULL));
-  gtk_button_set_label (GTK_BUTTON (filter), "1st Key");
-  hildon_app_menu_add_filter (menu, GTK_BUTTON (filter));
-  gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (filter), TRUE);
+  filter = hildon.hildon_gtk_radio_button_new_from_widget(
+                              gtk.HILDON_SIZE_FINGER_HEIGHT, filter)
+  filter.set_label("2nd Key")
+  menu.add_filter(filter)
+  filter.set_mode(False)
   
-  filter = GTK_RADIO_BUTTON (hildon_gtk_radio_button_new_from_widget (
-                              HILDON_SIZE_FINGER_HEIGHT, filter));
-  gtk_button_set_label (GTK_BUTTON (filter), "2nd Key");
-  hildon_app_menu_add_filter (menu, GTK_BUTTON (filter));
-  gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE);
+  filter = hildon.GtkRadioButton(gtk.HILDON_SIZE_THUMB_HEIGHT, None)
+  filter.set_label(filter, "A-Z")
+  menu.add_filter(filter)
+  filter.set_mode(False)
   
-  filter = GTK_RADIO_BUTTON (hildon_gtk_radio_button_new (
-                                  HILDON_SIZE_THUMB_HEIGHT, NULL));
-  gtk_button_set_label (GTK_BUTTON (filter), "A-Z");
-  hildon_app_menu_add_filter (menu, GTK_BUTTON (filter));
-  gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE);
+  filter = hildon.hildon_gtk_radio_button_new_from_widget(
+                              gtk.HILDON_SIZE_FINGER_HEIGHT, filter)
+
+  filter.set_label(filter, "Z-A")
+  menu.add_filter(filter)
+  filter.set_mode(False)
   
-  filter = GTK_RADIO_BUTTON (hildon_gtk_radio_button_new_from_widget (
-                              HILDON_SIZE_FINGER_HEIGHT, filter));
-  gtk_button_set_label (GTK_BUTTON (filter), "Z-A");
-  hildon_app_menu_add_filter (menu, GTK_BUTTON (filter));
-  gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE);
-  
-  hildon_stackable_window_set_main_menu (HILDON_STACKABLE_WINDOW (window), menu);
+  window.set_main_menu(menu)
   
           
 
