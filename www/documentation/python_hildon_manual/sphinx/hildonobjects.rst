@@ -26,23 +26,6 @@ Implemented Interfaces
 
 HildonWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
-Properties
-==========
-
-::
-
-    is-topmost               bool                  : Read
-    markup                   str                   : Read / Write
-
-Style Properties
-================
-
-::
-
-    borders                  GtkBorder*            : Read
-    toolbar-borders          GtkBorder*            : Read
-
-
 Signals
 =======
 
@@ -221,59 +204,28 @@ Details
 
         .. versionadded 2.2
 
-.. _HildonWindow.property-details:
-
 Property Details
 ================
 
-.. _HildonWindow--is-topmost:
-
-The ``is-topmost`` property
-
-::
-
-    is-topmost               bool              : Read
-
-Whether the window is currently activated by the window manager.
-
-Default value: FALSE
-
-.. _HildonWindow--markup:
-
-The ``markup`` property
-
-::
-
-    markup                   str                : Read / Write
-
-Marked up text for the window title.
-
-Default value: NULL
-
-.. _HildonWindow.style-property-details:
++---------------------------+--------+--------------------------+--------------+--------------------------------------+
+| Name                      | type   | Access                   | Default      | Meaning                              |
++===========================+========+==========================+==============+======================================+
+| ``is-topmost``            | bool   | Read                     | False        | Whether the window is currently      |
+|                           |        |                          |              | activated by the window manager.     |
++---------------------------+--------+--------------------------+--------------+--------------------------------------+
+| ``markup``                | str    | Read / Write             | None         | The Markup Text for the window title.|
++---------------------------+--------+--------------------------+--------------+--------------------------------------+
 
 Style Property Details
 ======================
 
-.. _HildonWindow--borders:
-
-The ``borders`` style property
-
-::
-
-    borders                  GtkBorder*            : Read
-
-Size of graphical window borders.
-
-.. _HildonWindow--toolbar-borders:
-
-The ``toolbar-borders`` style property
-
-::
-
-    toolbar-borders          GtkBorder*            : Read
-
-Size of graphical toolbar borders.
++---------------------------+-------------+--------------------------+--------------+--------------------------------------+
+| Name                      | type        | Access                   | Default      | Meaning                              |
++===========================+=============+==========================+==============+======================================+
+| ``borders``               | GtkBorder   | Read                     |              | Size of graphical window borders.    |
++---------------------------+-------------+--------------------------+--------------+--------------------------------------+
+| ``toolbar-borders``       | GtkBorder   | Read                     |              | Size of graphical toolbar borders.   |
++---------------------------+-------------+--------------------------+--------------+--------------------------------------+
 
 .. _HildonWindow.signal-details:
 
