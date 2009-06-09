@@ -1,16 +1,40 @@
 Abstract
 ########
 
-This is a tutorial on how to use Hildon through its C interface.
+This is a tutorial on how to use Hildon through its Python interface.
 
-Authors
-=======
+Original Authors
+================
 
 Iván Gómez
   igomez@igalia.com
 
 Joaquim Rocha
   jrocha@igalia.com
+
+Translation to Python by:
+=========================
+
+Anderson Lizardo
+  anderson.lizardo@indt.org.br
+
+Bruno Araujo
+  bruno.araujo@indt.org.br
+
+Hugo Parente
+  hugo.lima@indt.org.br
+
+Lauro Moura
+  lauro.neto@indt.org.br
+
+Luciano Wolf
+  luciano.wolf@indt.org.br
+
+Marcelo Lira
+  marcelo.lira@indt.org.br
+
+Renato Araujo
+  renato.filho@indt.org.br
 
 Table of contents
 -----------------
