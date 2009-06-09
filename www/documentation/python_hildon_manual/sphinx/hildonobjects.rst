@@ -6057,6 +6057,7 @@ Besides all the features inherited from :class:`gtk.Entry` , a :class:`Entry` ca
 Although :class:`Entry` is derived from :class:`gtk.Entry` , `get_text`_ and `set_text` must never be used to get/set the text in this widget. `get_text` and `set_text` must be used instead.
 
 Creating a Entry with a placeholder 
+===================================
 
 ::
 
@@ -6071,6 +6072,7 @@ Details
 .. class:: Entry
 
     .. method:: __init__(size = 0)
+
         Creates a new entry.
 
         :param size: The size of the entry
@@ -6078,6 +6080,7 @@ Details
 
 
     .. method:: set_text(text)
+
         Sets the text in ``entry`` to ``text``, replacing its current contents.
         Note that you must never use :meth:`set_text()`_ to set the text of a :class:`Entry` .
 
@@ -6085,6 +6088,7 @@ Details
 
 
     .. method:: get_text()
+
         Gets the current text in ``entry``.
         Note that you must never use :meth:`get_text()` to get the text from a :class:`Entry` .
         Also note that placeholder text (set using :meth:`set_placeholder()` is never returned. Only text set by :meth:`set_text` or typed by the user is considered.
@@ -6092,15 +6096,14 @@ Details
         :returns:  the text in ``entry``. This text must not be modified or freed.
 
     .. method:: set_placeholder(text)
+
         Sets the placeholder text in ``entry`` to ``text``.
     
         :param text: the new text
 
 
-HildonTextView
-**************
-
-.. _HildonTextView.object-hierarchy:
+TextView
+********
 
 Object Hierarchy
 ================
@@ -6117,134 +6120,66 @@ Object Hierarchy
                                    +----HildonTextView
   
 
-.. _HildonTextView.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonTextView implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonTextView.description:
+TextView implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 Description
 ===========
 
-The :class:`HildonTextView` is a GTK widget which represents a text view. It is derived from the :class:`GtkTextView` widget and provides additional commodities specific to the Hildon framework.
+The :class:`TextView` is a GTK widget which represents a text view. It is derived from the :class:`gtk.TextView` widget and provides additional commodities specific to the Hildon framework.
 
-Besides all the features inherited from :class:`GtkTextView` , a :class:`HildonTextView` can also have a placeholder text. This text will be shown if the text view is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ will never return the placeholder text, not even when it's being displayed.
+Besides all the features inherited from :class:`gtk.TextView` , a :class:`TextView` can also have a placeholder text. This text will be shown if the text view is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ will never return the placeholder text, not even when it's being displayed.
 
-Although :class:`HildonTextView` is derived from :class:`GtkTextView` , `gtk_text_view_get_buffer() <gtk-text-view-get-buffer>`_ and `gtk_text_view_set_buffer() <gtk-text-view-set-buffer>`_ must never be used to get/set the buffer in this widget. `hildon_text_view_get_buffer() <hildon-text-view-get-buffer>`_ and `hildon_text_view_set_buffer() <hildon-text-view-set-buffer>`_ must be used instead.
+Although :class:`TextView` is derived from :class:`gtk.TextView` , :meth:`get_buffer()` and :meth:`set_buffer()` must never be used to get/set the buffer in this widget. :meth:`get_buffer()` and :meth:`set_buffer` must be used instead.
 
-Creating a HildonTextView with a placeholder ============================================ :: GtkWidget * create_text_view (void) { GtkWidget *text_view; text_view = hildon_text_view_new (); hildon_text_view_set_placeholder (HILDON_TEXT_VIEW (text_view), "Type some text here"); return text_view; }
+Creating a TextView with a placeholder
+======================================
 
+::
 
+    def create_text_view ():
+        text_view = hildon.TextView()
+        text_view.set_placeholder("Type some text here")
+        return text_view
 
-.. _HildonTextView.details:
 
 Details
 =======
 
-.. _HildonTextView-struct:
+.. class:: TextView
 
-.. class:: HildonTextView
+    .. method:: __init__()
 
-::
+        Creates a new text view.
 
-  typedef struct _HildonTextView HildonTextView;
-
-
-
-.. _hildon-text-view-new:
-
-.. function:: hildon_text_view_new ()
-
-::
-
-  GtkWidget*          hildon_text_view_new                (void);
-
-Creates a new text view.
+        :returns:  a new :class:`TextView`
 
 
+    .. method:: set_buffer(buffer)
 
-:returns: 
-  a new :class:`HildonTextView`
+        Sets ``buffer`` as the buffer being displayed by ``text_view``. The previous buffer displayed by the text view is unreferenced, and a reference is added to ``buffer``. If you owned a reference to ``buffer``\ before passing it to this function, you must remove that reference yourself
+        Note that you must never use :meth:`set_buffer` to set the buffer of a :class:`TextView` .
 
-
-.. versionadded 2.2
-
-.. _hildon-text-view-set-buffer:
-
-.. function:: hildon_text_view_set_buffer ()
-
-::
-
-  void                hildon_text_view_set_buffer         (HildonTextView *text_view,
-                                                           GtkTextBuffer *buffer);
-
-Sets ``buffer`` as the buffer being displayed by ``text_view``. The previous buffer displayed by the text view is unreferenced, and a reference is added to ``buffer``. If you owned a reference to ``buffer``\ before passing it to this function, you must remove that reference yourself
-
-Note that you must never use `gtk_text_view_set_buffer() <gtk-text-view-set-buffer>`_ to set the buffer of a :class:`HildonTextView` .
+        :param buffer: a :class:`gtk.TextBuffer`
 
 
+    .. method:: get_buffer()
 
-``text_view``:
-  a :class:`HildonTextView`
+        Returns the text buffer in ``text_view``. The reference count is not incremented; the caller of this function won't own a new reference.
+        Note that you must never use :meth:`get_buffer` to get the buffer from a :class:`TextView` .
+        Also note that placeholder text (set using :meth:`set_placeholder` is never contained in this buffer.
 
+        :returns:  a :class:`gtk.TextBuffer`
 
-``buffer``:
-  a :class:`GtkTextBuffer`
+    .. method:: set_placeholder(text)
 
+        Sets the placeholder text in ``text_view`` to ``text``.
+        
+        :param text: the new text
 
-.. versionadded 2.2
-
-.. _hildon-text-view-get-buffer:
-
-.. function:: hildon_text_view_get_buffer ()
-
-::
-
-  GtkTextBuffer*      hildon_text_view_get_buffer         (HildonTextView *text_view);
-
-Returns the text buffer in ``text_view``. The reference count is not incremented; the caller of this function won't own a new reference.
-
-Note that you must never use `gtk_text_view_get_buffer() <gtk-text-view-get-buffer>`_ to get the buffer from a :class:`HildonTextView` .
-
-Also note that placeholder text (set using `hildon_text_view_set_placeholder() <hildon-text-view-set-placeholder>`_ ) is never contained in this buffer.
-
-
-
-``text_view``:
-  a :class:`HildonTextView`
-
-
-:returns: 
-  a :class:`GtkTextBuffer`
-
-
-.. versionadded 2.2
-
-.. _hildon-text-view-set-placeholder:
-
-.. function:: hildon_text_view_set_placeholder ()
-
-::
-
-  void                hildon_text_view_set_placeholder    (HildonTextView *text_view,
-                                                           const gchar *text);
-
-Sets the placeholder text in ``text_view`` to ``text``.
-
-
-
-``text_view``:
-  a :class:`HildonTextView`
-
-
-``text``:
-  the new text
-
-
-.. versionadded 2.2
 
 .. _HildonAppMenu:
 
