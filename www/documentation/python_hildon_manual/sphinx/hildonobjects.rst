@@ -2032,7 +2032,7 @@ Signals
 Description
 ===========
 
-:class:`HildonPickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`HildonPickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
+:class:`HildonPickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`PickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
 
 You should create your own :class:`HildonTouchSelector` at convenience and set it to the :class:`HildonPickerButton` with `hildon_picker_button_set_selector() <hildon-picker-button-set-selector>`_ . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
 
@@ -2091,7 +2091,7 @@ Creates a new :class:`HildonPickerButton` . See `hildon_button_new() <hildon-but
   void                hildon_picker_button_set_selector   (HildonPickerButton *button,
                                                            HildonTouchSelector *selector);
 
-Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:`HildonPickerDialog` that ``button`` brings up.
+Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:`PickerDialog` that ``button`` brings up.
 
 
 
@@ -2181,7 +2181,7 @@ Returns the index of the currently active item, or -1 if there's no active item.
   const str        hildon_picker_button_get_done_button_text
                                                           (HildonPickerButton *button);
 
-Gets the text used in the :class:`HildonPickerDialog` that is launched by ``button``. If no custom text is set, then None is returned.
+Gets the text used in the :class:`PickerDialog` that is launched by ``button``. If no custom text is set, then None is returned.
 
 
 
@@ -2190,7 +2190,7 @@ Gets the text used in the :class:`HildonPickerDialog` that is launched by ``butt
 
 
 :returns: 
-  the custom string to be used, or None if the default `"done-button-text" <HildonPickerDialog-done-button-text>`_ is to be used.
+  the custom string to be used, or None if the default `"done-button-text" <PickerDialog-done-button-text>`_ is to be used.
 
 
 .. versionadded 2.2
@@ -2205,7 +2205,7 @@ Gets the text used in the :class:`HildonPickerDialog` that is launched by ``butt
                                                           (HildonPickerButton *button,
                                                            const gchar *done_button_text);
 
-Sets a custom string to be used in the "done" button in :class:`HildonPickerDialog` . If unset, the default HildonPickerButton::done-button-text property value will be used.
+Sets a custom string to be used in the "done" button in :class:`PickerDialog` . If unset, the default HildonPickerButton::done-button-text property value will be used.
 
 
 
@@ -2297,7 +2297,7 @@ The ::value-changed signal is emitted each time the user chooses a different ite
 See Also
 ========
 
-:class:`HildonTouchSelector` :class:`HildonPickerDialog` .. _HildonDateButton:
+:class:`HildonTouchSelector` :class:`PickerDialog` .. _HildonDateButton:
 
 HildonDateButton
 ****************
@@ -2334,7 +2334,7 @@ HildonDateButton implements :class:`AtkImplementorIface` and :class:`GtkBuildabl
 Description
 ===========
 
-:class:`HildonDateButton` is a widget that shows a text label and a date, and allows the user to select a different date. Visually, it's a button that, once clicked, presents a :class:`HildonPickerDialog` containing a :class:`HildonDateSelector` . Once the user selects a different date from the selector, this will be shown in the button.
+:class:`HildonDateButton` is a widget that shows a text label and a date, and allows the user to select a different date. Visually, it's a button that, once clicked, presents a :class:`PickerDialog` containing a :class:`HildonDateSelector` . Once the user selects a different date from the selector, this will be shown in the button.
 
 
 
@@ -2526,7 +2526,7 @@ HildonTimeButton implements :class:`AtkImplementorIface` and :class:`GtkBuildabl
 Description
 ===========
 
-:class:`HildonTimeButton` is a widget that shows a text label and a time, and allows the user to select a different time. Visually, it's a button that, once clicked, presents a :class:`HildonPickerDialog` containing a :class:`HildonTimeSelector` . Once the user selects a different time from the selector, this will be shown in the button.
+:class:`HildonTimeButton` is a widget that shows a text label and a time, and allows the user to select a different time. Visually, it's a button that, once clicked, presents a :class:`PickerDialog` containing a :class:`HildonTimeSelector` . Once the user selects a different time from the selector, this will be shown in the button.
 
 
 
@@ -4232,7 +4232,7 @@ Description
 
 :class:`HildonTouchSelector` is a selector widget, that allows users to select items from one to many predefined lists. It is very similar to :class:`GtkComboBox` , but with several individual pannable columns.
 
-Normally, you would use :class:`HildonTouchSelector` together with a :class:`HildonPickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
+Normally, you would use :class:`HildonTouchSelector` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
 
 The composition of each column in the selector is represented by a :class:`GtkTreeModel` . To add a new column to a :class:`HildonTouchSelector` , use `hildon_touch_selector_append_column() <hildon-touch-selector-append-column>`_ . If you want to add a text-only column, without special attributes, use `hildon_touch_selector_append_text_column() <hildon-touch-selector-append-text-column>`_ .
 
@@ -5057,7 +5057,7 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 Determines whether ``selector`` is complex enough to actually require an extra selection step than only picking an item. This is normally ```TRUE`` <TRUE:CAPS>`_ if ``selector`` has multiple columns, multiple selection, or when it is a more complex widget, like :class:`HildonTouchSelectorEntry` .
 
-This information is useful for widgets containing a :class:`HildonTouchSelector` , like :class:`HildonPickerDialog` , that could need a "Done" button, in case that its internal :class:`HildonTouchSelector` has multiple columns, for instance.
+This information is useful for widgets containing a :class:`HildonTouchSelector` , like :class:`PickerDialog` , that could need a "Done" button, in case that its internal :class:`HildonTouchSelector` has multiple columns, for instance.
 
 
 
@@ -5285,7 +5285,7 @@ Description
 
 The main difference between the :class:`GtkTreeModel` used by :class:`HildonTouchSelector` and :class:`HildonTouchSelectorEntry` , is that the latter must always include a text column. You should set it with `hildon_touch_selector_entry_set_text_column() <hildon-touch-selector-entry-set-text-column>`_ .
 
-Normally, you would use :class:`HildonTouchSelectorEntry` together with a :class:`HildonPickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
+Normally, you would use :class:`HildonTouchSelectorEntry` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
 
 If you only need a text only, one column selector, you can create it with `hildon_touch_selector_entry_new_text() <hildon-touch-selector-entry-new-text>`_ and populate it with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
@@ -8530,18 +8530,13 @@ The notebook object, which is used by the HildonWizardDialog.
 
 
 
-.. _HildonPickerDialog:
-
-HildonPickerDialog
-******************
-
-.. _HildonPickerDialog.object-hierarchy:
+PickerDialog
+************
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -8552,217 +8547,86 @@ Object Hierarchy
                                    +----GtkWindow
                                          +----GtkDialog
                                                +----HildonDialog
-                                                     +----HildonPickerDialog
-  
-
-.. _HildonPickerDialog.implemented-interfaces:
+                                                     +----PickerDialog
 
 Implemented Interfaces
 ======================
 
-HildonPickerDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonPickerDialog.properties:
-
-Properties
-==========
-
-::
-
-  
-    center-on-show           bool              : Read / Write / Construct
-    done-button-text         str                : Read / Write / Construct
-  
-
-.. _HildonPickerDialog.description:
+PickerDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 Description
 ===========
 
-:class:`HildonPickerDialog` is a dialog that is used to show a :class:`HildonTouchSelector` widget and a 'Done' button to allow users to finish their selections.
+:class:`PickerDialog` is a dialog that is used to show a :class:`HildonTouchSelector` widget and a 'Done' button to allow users to finish their selections.
 
-The :class:`HildonPickerDialog` will show a 'Done' button in case the :class:`HildonTouchSelector` allows multiple selection. The label of the button can be set using `hildon_picker_dialog_set_done_label() <hildon-picker-dialog-set-done-label>`_ and retrieved using `hildon_picker_dialog_get_done_label() <hildon-picker-dialog-get-done-label>`_
+The :class:`PickerDialog` will show a 'Done' button in case the :class:`HildonTouchSelector` allows multiple selection. The label of the button can be set using :meth:`PickerDialog.set_done_label` and retrieved using :meth:`PickerDialog.get_done_label`
 
-Note that in most cases developers don't need to deal directly with this widget. :class:`HildonPickerButton` is designed to pop up a :class:`HildonPickerDialog` and manage the interaction with it.
-
-
-
-.. _HildonPickerDialog.details:
+Note that in most cases developers don't need to deal directly with this widget. :class:`HildonPickerButton` is designed to pop up a :class:`PickerDialog` and manage the interaction with it.
 
 Details
 =======
 
-.. _HILDON-DISABLE-DEPRECATED:CAPS:
+.. data:: HILDON_DISABLE_DEPRECATED
 
-.. :: HILDON_DISABLE_DEPRECATED
+.. class:: PickerDialog
 
-::
+    Button label
 
-    #define HILDON_DISABLE_DEPRECATED
-  
+    .. versionadded 2.2
 
+    .. method:: __init__(parent)
 
+        Creates a new :class:`PickerDialog`
 
-.. _HildonPickerDialog-struct:
+        :param parent: the parent window
+        :returns: a new :class:`PickerDialog`
 
-.. class:: HildonPickerDialog
+        .. versionadded 2.2
 
-::
+    .. method:: set_selector (selector)
 
-  typedef struct _HildonPickerDialog HildonPickerDialog;
+        Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in ``dialog``
 
-Button label
+        :param selector: a :class:`HildonTouchSelector`
+        :returns: True if ``selector`` was set, False otherwise
 
+        .. versionadded 2.2
 
+    .. method:: set_done_label (label)
 
-.. versionadded 2.2
+        Sets a custom string to be used as the 'Done' button label in ``dialog``.
 
-.. _hildon-picker-dialog-new:
+        :param dialog: a :class:`PickerDialog`
+        :param label: a string
 
-.. function:: hildon_picker_dialog_new ()
+        .. versionadded 2.2
 
-::
+    .. method:: get_done_label ()
 
-  GtkWidget*          hildon_picker_dialog_new            (GtkWindow *parent);
+        Retrieves current 'Done' button label.
 
-Creates a new :class:`HildonPickerDialog`
+        :returns: the custom string to be used.
 
+        .. versionadded 2.2
 
+    .. method:: get_selector ()
 
-``parent``:
-  the parent window
+        Retrieves the :class:`HildonTouchSelector` associated to ``dialog``.
 
+        :returns: a :class:`HildonTouchSelector`
 
-:returns: 
-  a new :class:`HildonPickerDialog`
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-dialog-set-selector:
-
-.. function:: hildon_picker_dialog_set_selector ()
-
-::
-
-  bool            hildon_picker_dialog_set_selector   (HildonPickerDialog *dialog,
-                                                           HildonTouchSelector *selector);
-
-Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in ``dialog``
-
-
-
-``dialog``:
-  a :class:`HildonPickerDialog`
-
-
-``selector``:
-  a :class:`HildonTouchSelector`
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ if ``selector`` was set, ```FALSE`` <FALSE:CAPS>`_ otherwise
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-dialog-set-done-label:
-
-.. function:: hildon_picker_dialog_set_done_label ()
-
-::
-
-  void                hildon_picker_dialog_set_done_label (HildonPickerDialog *dialog,
-                                                           const gchar *label);
-
-Sets a custom string to be used as the 'Done' button label in ``dialog``.
-
-
-
-``dialog``:
-  a :class:`HildonPickerDialog`
-
-
-``label``:
-  a string
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-dialog-get-done-label:
-
-.. function:: hildon_picker_dialog_get_done_label ()
-
-::
-
-  const str        hildon_picker_dialog_get_done_label (HildonPickerDialog *dialog);
-
-Retrieves current 'Done' button label.
-
-
-
-``dialog``:
-  a :class:`HildonPickerDialog`
-
-
-:returns: 
-  the custom string to be used.
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-dialog-get-selector:
-
-.. function:: hildon_picker_dialog_get_selector ()
-
-::
-
-  HildonTouchSelector* hildon_picker_dialog_get_selector  (HildonPickerDialog *dialog);
-
-Retrieves the :class:`HildonTouchSelector` associated to ``dialog``.
-
-
-
-``dialog``:
-  a :class:`HildonPickerDialog`
-
-
-:returns: 
-  a :class:`HildonTouchSelector`
-
-
-.. versionadded 2.2
-
-.. _HildonPickerDialog.property-details:
+        .. versionadded 2.2
 
 Property Details
 ================
 
-.. _HildonPickerDialog--center-on-show:
-
-The ``center-on-show`` property
-
-::
-
-    center-on-show           bool              : Read / Write / Construct
-
-If the dialog should center on the current selection when it is showed.
-
-Default value: TRUE
-
-.. _HildonPickerDialog--done-button-text:
-
-The ``done-button-text`` property
-
-::
-
-    done-button-text         str                : Read / Write / Construct
-
-Done Button Label.
-
-Default value: "wdgt_bd_done"
-
-.. _hildon-HildonAnimationActor:
++---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
+| Name                      | type   | Access                   | Default        | Meaning                                                                |
++===========================+========+==========================+================+========================================================================+
+| ``center-on-show``        | bool   | Read / Write / Construct | True           | If the dialog should center on the current selection when it is showed.|
++---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
+| ``done-button-text``      | str    | Read / Write / Construct | "wdgt_bd_done" | Done Button Label.                                                     |
++---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
 
 HildonAnimationActor
 ********************
