@@ -13,7 +13,7 @@ GTK is a library for creating user interfaces that is used in a number of import
 
 This book is intended for developers and covers the usage of Hildon to create graphical user interfaces. From a simple "Hello World" program to more complex examples, a number of widgets will be presented and their usage to accomplish some tasks will be explained from a technical point of view. After reading and understanding the contents of this document, you will be able to understand the process of graphical user interfaces programming and build effective touch interfaces for mobile devices with Hildon.
 
-This document is not a C tutorial, it assumes that readers already have a good knowledge of the C programming language. Previous experience on creating graphical user interfaces with GTK would surely be helpful but is not mandatory. This book targets the development of graphical user interfaces, not the design of such. For guidelines about designing interfaces thinking in usability and user experience, please consult the Hildon Human Interface Guidelines.
+This document is not a Python tutorial, it assumes that readers already have a good knowledge of the Python programming language. Previous experience on creating graphical user interfaces with GTK would surely be helpful but is not mandatory. This book targets the development of graphical user interfaces, not the design of such. For guidelines about designing interfaces thinking in usability and user experience, please consult the Hildon Human Interface Guidelines.
 
 .. _desktop-overview:
 

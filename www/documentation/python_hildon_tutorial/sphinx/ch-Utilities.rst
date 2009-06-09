@@ -8,9 +8,9 @@ Apart from the widgets, Hildon provides a set of helper functions and objects to
 The Program object
 ******************
 
-Hildon provides an object to represent a whole application, the HildonProgramObject. This object provides several convenience functions that make it easier to develop Hildon applications.
+Hildon provides an object to represent a whole application, the hildon.ProgramObject. This object provides several convenience functions that make it easier to develop Hildon applications.
 
-The HildonProgram provides the programmer with commodities such as applying a common menu or toolbar to every HildonWindow registered to it.
+The hildon.Program provides the programmer with commodities such as applying a common menu or toolbar to every hildon.Window registered to it.
 
 It is necessary to register all the windows as belonging to the program in order to apply a common menu and toolbar.
 
@@ -18,40 +18,27 @@ To register or unregister windows you should use the following functions:
 
 ::
 
-  
-  void        hildon_program_add_window       (HildonProgram *self,
-                                               HildonWindow *window);
-  void        hildon_program_remove_window    (HildonProgram *self,
-                                               HildonWindow *window);
-      
+  def add_window(self, window)
+  def remove_window(self, window)
+     
 And the following functions will take effect over each registered window. This is a convenient way to setup common elements for each registered window in your application.
 
 ::
 
-  
-  
-  void           hildon_program_set_common_menu        (HildonProgram *self,
-                                                        GtkMenu *menu);
-  GtkMenu*       hildon_program_get_common_menu        (HildonProgram *self);
-  void           hildon_program_set_common_app_menu    (HildonProgram *self,
-                                                        HildonAppMenu *menu);
-  HildonAppMenu* hildon_program_get_common_app_menu    (HildonProgram *self);
-  void           hildon_program_set_common_toolbar     (HildonProgram *self,
-                                                        GtkToolbar *toolbar);
-  GtkToolbar*    hildon_program_get_common_toolbar     (HildonProgram *self);
+  def set_common_menu(self, menu)
+  def get_common_menu(self)
+  def set_common_toolbar(self, toolbar)
+  def get_common_toolbar(self)
   
       
-HildonProgram also allows users to apply program-wide properties. For example, the property "can-hibernate" that specify whether the program should be set to hibernate by the Task Navigator in a low memory situation or not.
+hildon.Program also allows users to apply program-wide properties. For example, the property "can-hibernate" that specify whether the program should be set to hibernate by the Task Navigator in a low memory situation or not.
 
 The following convenience functions are provided to set and retrieve the value of the property "can-hibernate".
 
 ::
 
-  
-  
-  void        hildon_program_set_can_hibernate      (HildonProgram *self,
-                                                     gboolean can_hibernate);
-  gboolean    hildon_program_get_can_hibernate      (HildonProgram *self);
+  def set_can_hibernat(self, can_hibernate) 
+  def get_can_hibernate(self)
   
       
 @@COMMENT@@[Here a simple example of use of the HildonProgram object.]
@@ -63,9 +50,7 @@ Hildon provides the following function to play a sample. The function receives t
 
 ::
 
-  
-  
-  void        hildon_play_system_sound        (const gchar *sample);
+  def hildon_play_system_sound (sample)
   
       
 Miscellaneous Helper Functions
@@ -81,18 +66,13 @@ Since logical names are used to identify the colors and font, they are independe
 ::
 
   
-  
-  gulong      hildon_helper_set_logical_font  (GtkWidget *widget,
-                                               const gchar *logicalfontname);
-  gulong      hildon_helper_set_logical_color (GtkWidget *widget,
-                                               GtkRcFlags rcflags,
-                                               GtkStateType state,
-                                               const gchar *logicalcolorname);
+  def set_logical_font(widget, logicalfontname)
+  def set_logical_color(widget, rcflags, state, logicalcolorname)
           
         
 These functions achieve to keep the set logical font or color by connecting to "style-set" signal. The returned signal identifier can be used to disconnect the signal.
 
-To set a logical color is necessary to pass in the GtkRcFlags and GtkStateType to indicate which color you want to modify. For example, to modify the foreground color of the widget during normal operations then set rcflags to GTK_RC_BG and state to GTK_STATE_NORMAL.
+To set a logical color is necessary to pass in the gtk.RcFlags and gtk.StateType to indicate which color you want to modify. For example, to modify the foreground color of the widget during normal operations then set rcflags to gtk.RC_BG and state to gtk.STATE_NORMAL.
 
 Finger Events
 =============
@@ -101,9 +81,7 @@ The following function can be in callbacks that handle button events to check if
 
 ::
 
-  
-  
-  gboolean    hildon_helper_event_button_is_finger (GdkEventButton *event);
+  def hildon_helper_event_button_is_finger(event)
   
         
 This function is rarely used in applications development.
@@ -115,9 +93,6 @@ The function showed bellow enables a thumb scrollbar on a given scrolled window,
 
 ::
 
-  
-  
-  void        hildon_helper_set_thumb_scrollbar (GtkScrolledWindow *win,
-                                                 gboolean thumb);
+  def hildon_helper_set_thumb_scrollbar(win, thumb) 
   
         
