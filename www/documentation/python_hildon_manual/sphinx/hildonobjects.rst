@@ -6166,12 +6166,8 @@ Details
         :param text: the new text
 
 
-.. _HildonAppMenu:
-
-HildonAppMenu
-*************
-
-.. _HildonAppMenu.object-hierarchy:
+AppMenu
+*******
 
 Object Hierarchy
 ================
@@ -6189,338 +6185,148 @@ Object Hierarchy
                                          +----HildonAppMenu
   
 
-.. _HildonAppMenu.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
-HildonAppMenu implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+AppMenu implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
-.. _HildonAppMenu.style-properties:
-
-Style Properties
-================
-
-::
-
-  
-    external-border          int                 : Read
-    filter-vertical-spacing  int                 : Read
-    horizontal-spacing       int                 : Read
-    inner-border             int                 : Read
-    vertical-spacing         int                 : Read
-  
-
-.. _HildonAppMenu.description:
 
 Description
 ===========
 
-The :class:`HildonAppMenu` is a GTK widget which represents an application menu in the Hildon framework.
+The :class:`AppMenu` is a GTK widget which represents an application menu in the Hildon framework.
 
-This menu opens from the top of the screen and contains a number of entries (:class:`GtkButton` ) organized in one or two columns, depending on the size of the screen (the number of columns changes automatically if the screen is resized). Entries are added left to right and top to bottom.
+This menu opens from the top of the screen and contains a number of entries (:class:`gtk.Button` ) organized in one or two columns, depending on the size of the screen (the number of columns changes automatically if the screen is resized). Entries are added left to right and top to bottom.
 
-Besides that, the :class:`HildonAppMenu` can contain a group of filter buttons (:class:`GtkToggleButton` or :class:`GtkRadioButton` ).
+Besides that, the :class:`AppMenu` can contain a group of filter buttons (:class:`gtk.ToggleButton` or :class:`gtk.RadioButton` ).
 
-To use a :class:`HildonAppMenu` , add it to a :class:`Window` using :meth:`Window.set_app_menu` . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
+To use a :class:`AppMenu` , add it to a :class:`Window` using :meth:`Window.set_app_menu` . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using :meth:`popup`.
 
-The menu will be automatically hidden when one of its buttons is clicked. Use `g_signal_connect_after() <g-signal-connect-after>`_ when connecting callbacks to buttons to make sure that they're called after the menu disappears. Alternatively, you can add the button to the menu before connecting any callback.
+The menu will be automatically hidden when one of its buttons is clicked. Use `g_signal_connect_after()` when connecting callbacks to buttons to make sure that they're called after the menu disappears. Alternatively, you can add the button to the menu before connecting any callback.
 
-Although implemented with a :class:`gtk.Window` , :class:`HildonAppMenu` behaves like a normal ref-counted widget, so `g_object_ref() <g-object-ref>`_ , `g_object_unref() <g-object-unref>`_ , `g_object_ref_sink() <g-object-ref-sink>`_ and friends will behave just like with any other non-toplevel widget.
+Although implemented with a :class:`gtk.Window` , :class:`AppMenu` behaves like a normal ref-counted widget, so :meth:`ref()`_ , :meth:`unref` , :meth:`ref_sink` and friends will behave just like with any other non-toplevel widget.
 
-Creating a HildonAppMenu ======================== :: GtkWidget *win; HildonAppMenu *menu; GtkWidget *button; GtkWidget *filter; win = hildon_stackable_window_new (); menu = HILDON_APP_MENU (hildon_app_menu_new ()); // Create a button and add it to the menu button = gtk_button_new_with_label ("Menu command one"); g_signal_connect_after (button, "clicked", G_CALLBACK (button_one_clicked), userdata); hildon_app_menu_append (menu, GTK_BUTTON (button)); // Another button button = gtk_button_new_with_label ("Menu command two"); g_signal_connect_after (button, "clicked", G_CALLBACK (button_two_clicked), userdata); hildon_app_menu_append (menu, GTK_BUTTON (button)); // Create a filter and add it to the menu filter = gtk_radio_button_new_with_label (NULL, "Filter one"); gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE); g_signal_connect_after (filter, "clicked", G_CALLBACK (filter_one_clicked), userdata); hildon_app_menu_add_filter (menu, GTK_BUTTON (filter)); // Add a new filter filter = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (filter), "Filter two"); gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (filter), FALSE); g_signal_connect_after (filter, "clicked", G_CALLBACK (filter_two_clicked), userdata); hildon_app_menu_add_filter (menu, GTK_BUTTON (filter)); // Show all menu items gtk_widget_show_all (GTK_WIDGET (menu)); // Add the menu to the window hildon_window_set_app_menu (HILDON_WINDOW (win), menu);
+Creating a AppMenu
+==================
 
+::
 
+    win = hildon.StackableWindow()
+    menu = hildon.AppMenu() 
 
-.. _HildonAppMenu.details:
+    # Create a button and add it to the menu
+    button = gtk.Button("Menu command one")
+    button.connect("clicked", button_one_clicked, userdata)
+    menu.append(button)
+
+    # Another button
+    button = gtk.Button("Menu command two")
+    button.connect("clicked", button_two_clicked, userdata)
+    menu.append(button)
+
+    # Create a filter and add it to the menu
+    filter = gtk.RadioButton(None, "Filter one")
+    filter.set_mode(False)
+    filter.connect("clicked", filter_one_clicked, userdata)
+    menu.add_filter(filter)
+
+    # Add a new filter
+    filter = gtk.RadioButton(None, "Filter two")
+    filter.set_mode(False)
+    filter.connect("clicked", filter_two_clicked, userdata)
+    menu.add_filter(filter)
+
+    # Show all menu items
+    menu.show_all()
+
+    # Add the menu to the window
+    window.set_app_menu(menu)
+
 
 Details
 =======
 
-.. _HildonAppMenu-struct:
+.. class:: AppMenu
 
-.. class:: HildonAppMenu
+    .. method:: __init_ ()
 
-::
+        Creates a new :class:`AppMenu` .
 
-  typedef struct _HildonAppMenu HildonAppMenu;
+        :returns:  A :class:`AppMenu` .
 
 
+    .. method:: append(item)
 
-.. _hildon-app-menu-new:
+        Adds ``item`` to the end of the menu's item list.
 
-.. function:: hildon_app_menu_new ()
+        :param item: A :class:`gtk.Button` to add to the :class:`AppMenu`
 
-::
 
-  GtkWidget*          hildon_app_menu_new                 (void);
+    .. method:: prepend(item)
 
-Creates a new :class:`HildonAppMenu` .
+        Adds ``item`` to the beginning of the menu's item list.
 
+        :param item: A :class:`gtk.Button` to add to the :class:`AppMenu`
 
 
-:returns: 
-  A :class:`HildonAppMenu` .
+    .. method:: menu_insert(item, positon)
 
+        Adds ``item`` to ``menu`` at the position indicated by ``position``.
 
-.. versionadded 2.2
+        :param item: A :class:`gtk.Button` to add to the :class:`AppMenu`
+        :param position: The position in the item list where ``item`` is added (from 0 to n-1).
 
-.. _hildon-app-menu-append:
 
-.. function:: hildon_app_menu_append ()
+    .. method:: reorder_child(item, position)
 
-::
+        Moves a :class:`GtkButton` to a new position within :class:`AppMenu` .
 
-  void                hildon_app_menu_append              (HildonAppMenu *menu,
-                                                           GtkButton *item);
+        :param item: A :class:`gtk.Button` to move
+        :param position: The new position to place ``item`` (from 0 to n-1).
 
-Adds ``item`` to the end of the menu's item list.
 
+    .. method:: add_filter(filter)
 
+        Adds the ``filter`` to ``menu``.
 
-``menu``:
-  A :class:`HildonAppMenu`
+        :param filter: A :class:`gtk.Button` to add to the :class:`AppMenu` .
 
 
-``item``:
-  A :class:`GtkButton` to add to the :class:`HildonAppMenu`
+    .. method:: get_items()
 
+        Returns a list of all items (regular items, not filters) contained in ``menu``.
 
-.. versionadded 2.2
+        :returns:  a newly-allocated list containing the items in ``menu``
 
-.. _hildon-app-menu-prepend:
 
-.. function:: hildon_app_menu_prepend ()
+    .. method:: get_filters()
 
-::
+        Returns a list of all filters contained in ``menu``.
 
-  void                hildon_app_menu_prepend             (HildonAppMenu *menu,
-                                                           GtkButton *item);
+        :returns: a newly-allocated list containing the filters in ``menu``
 
-Adds ``item`` to the beginning of the menu's item list.
 
+    .. method:: menu_popup(parent_window)
 
+        Displays a menu on top of a window and makes it available for selection.
 
-``menu``:
-  A :class:`HildonAppMenu`
+        :param parent_window: a :class:`gtk.Window`
 
 
-``item``:
-  A :class:`GtkButton` to add to the :class:`HildonAppMenu`
-
-
-.. versionadded 2.2
-
-.. _hildon-app-menu-insert:
-
-.. function:: hildon_app_menu_insert ()
-
-::
-
-  void                hildon_app_menu_insert              (HildonAppMenu *menu,
-                                                           GtkButton *item,
-                                                           int position);
-
-Adds ``item`` to ``menu`` at the position indicated by ``position``.
-
-
-
-``menu``:
-  A :class:`HildonAppMenu`
-
-
-``item``:
-  A :class:`GtkButton` to add to the :class:`HildonAppMenu`
-
-
-``position``:
-  The position in the item list where ``item`` is added (from 0 to n-1).
-
-
-.. versionadded 2.2
-
-.. _hildon-app-menu-reorder-child:
-
-.. function:: hildon_app_menu_reorder_child ()
-
-::
-
-  void                hildon_app_menu_reorder_child       (HildonAppMenu *menu,
-                                                           GtkButton *item,
-                                                           int position);
-
-Moves a :class:`GtkButton` to a new position within :class:`HildonAppMenu` .
-
-
-
-``menu``:
-  A :class:`HildonAppMenu`
-
-
-``item``:
-  A :class:`GtkButton` to move
-
-
-``position``:
-  The new position to place ``item`` (from 0 to n-1).
-
-
-.. versionadded 2.2
-
-.. _hildon-app-menu-add-filter:
-
-.. function:: hildon_app_menu_add_filter ()
-
-::
-
-  void                hildon_app_menu_add_filter          (HildonAppMenu *menu,
-                                                           GtkButton *filter);
-
-Adds the ``filter`` to ``menu``.
-
-
-
-``menu``:
-  A :class:`HildonAppMenu`
-
-
-``filter``:
-  A :class:`GtkButton` to add to the :class:`HildonAppMenu` .
-
-
-.. versionadded 2.2
-
-.. _hildon-app-menu-get-items:
-
-.. function:: hildon_app_menu_get_items ()
-
-::
-
-  GList*              hildon_app_menu_get_items           (HildonAppMenu *menu);
-
-Returns a list of all items (regular items, not filters) contained in ``menu``.
-
-
-
-``menu``:
-  a :class:`HildonAppMenu`
-
-
-:returns: 
-  a newly-allocated list containing the items in ``menu``\
-
-
-.. versionadded 2.2
-
-.. _hildon-app-menu-get-filters:
-
-.. function:: hildon_app_menu_get_filters ()
-
-::
-
-  GList*              hildon_app_menu_get_filters         (HildonAppMenu *menu);
-
-Returns a list of all filters contained in ``menu``.
-
-
-
-``menu``:
-  a :class:`HildonAppMenu`
-
-
-:returns: 
-  a newly-allocated list containing the filters in ``menu``\
-
-
-.. versionadded 2.2
-
-.. _hildon-app-menu-popup:
-
-.. function:: hildon_app_menu_popup ()
-
-::
-
-  void                hildon_app_menu_popup               (HildonAppMenu *menu,
-                                                           gtk.Window *parent_window);
-
-Displays a menu on top of a window and makes it available for selection.
-
-
-
-``menu``:
-  a :class:`HildonAppMenu`
-
-
-``parent_window``:
-  a :class:`gtk.Window`
-
-
-.. versionadded 2.2
-
-.. _HildonAppMenu.style-property-details:
 
 Style Property Details
 ======================
 
-.. _HildonAppMenu--external-border:
 
-The ``external-border`` style property
+=============================== ======= =================== =========== ================================================================================================
+Name                            type    Access              Default     Meaning                                         
+=============================== ======= =================== =========== ================================================================================================
+``external-border``             int     Read                50          Border between the right and left edges of the menu and the screen edges (in horizontal mode).
+``filter-vertical-spacing``     int     Read                8           Vertical spacing between filters and menu items.
+``horizontal-spacing``          int     Read                16          Horizontal spacing between each menu item. Does not apply to filter buttons.
+``inner-border``                int     Read                16          Border between menu edges and buttons.
+``vertical-spacing``            int     Read                16          Vertical spacing between each menu item. Does not apply to filter buttons.
 
-::
-
-    external-border          int                 : Read
-
-Border between the right and left edges of the menu and the screen edges (in horizontal mode).
-
-Default value: 50
-
-.. _HildonAppMenu--filter-vertical-spacing:
-
-The ``filter-vertical-spacing`` style property
-
-::
-
-    filter-vertical-spacing  int                 : Read
-
-Vertical spacing between filters and menu items.
-
-Default value: 8
-
-.. _HildonAppMenu--horizontal-spacing:
-
-The ``horizontal-spacing`` style property
-
-::
-
-    horizontal-spacing       int                 : Read
-
-Horizontal spacing between each menu item. Does not apply to filter buttons.
-
-Default value: 16
-
-.. _HildonAppMenu--inner-border:
-
-The ``inner-border`` style property
-
-::
-
-    inner-border             int                 : Read
-
-Border between menu edges and buttons.
-
-Default value: 16
-
-.. _HildonAppMenu--vertical-spacing:
-
-The ``vertical-spacing`` style property
-
-::
-
-    vertical-spacing         int                 : Read
-
-Vertical spacing between each menu item. Does not apply to filter buttons.
-
-Default value: 16
 
 .. _HildonFindToolbar:
 
