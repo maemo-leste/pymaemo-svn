@@ -82,7 +82,7 @@ Details
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to ``FALSE`` by default.
+    Buttons created using this function have "focus-on-click" set to False by default.
 
     :param size: Flags indicating the size of the new button
 
@@ -96,7 +96,7 @@ Details
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to ``FALSE`` by default.
+    Buttons created using this function have "focus-on-click" set to False by default.
 
     :param size: Flags indicating the size of the new button
 
@@ -110,7 +110,7 @@ Details
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to ``FALSE`` by default.
+    Buttons created using this function have "focus-on-click" set to False by default.
 
     :param size: Flags indicating the size of the new button
     :param group: An existing radio button group, or ``NULL`` if you are creating a new group
@@ -124,7 +124,7 @@ Details
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to ``FALSE`` by default.
+    Buttons created using this function have "focus-on-click" set to False by default.
 
     :param size: Flags indicating the size of the new button
     :param radio_group_member: widget to get radio group from or ``NULL``
@@ -336,179 +336,67 @@ Details
     :param logicalfontname: a gchar\* with the logical font name to assign to the widget.
     :returns: the signal id that is triggered every time theme is changed. 0 if font set failed.
 
-.. function:: hildon_helper_set_logical_color ()
+.. function:: hildon_helper_set_logical_color (widget, rcflags, state, logicalcolorname)
 
-::
+    This function assigns a defined logical color to the ``widget`` and all it's child widgets. It also connects to the "style_set" signal which will retrieve assign the new color for the given logical name each time the theme is changed. The returned signal id can be used to disconnect the signal. When calling multiple times the previous signal (obtained by calling this function) is disconnected automatically and should not be used.
 
-  gulong              hildon_helper_set_logical_color     (GtkWidget *widget,
-                                                           GtkRcFlags rcflags,
-                                                           GtkStateType state,
-                                                           const gchar *logicalcolorname);
+    Example: If the style you want to modify is bg[NORMAL] then set rcflags to GTK_RC_BG and state to GTK_STATE_NORMAL.
 
-This function assigns a defined logical color to the ``widget`` and all it's child widgets. It also connects to the "style_set" signal which will retrieve assign the new color for the given logical name each time the theme is changed. The returned signal id can be used to disconnect the signal. When calling multiple times the previous signal (obtained by calling this function) is disconnected automatically and should not be used.
+    :param widget: A :class:`GtkWidget` to assign this logical font for.
+    :param rcflags: :class:`GtkRcFlags` enumeration defining whether to assign to FG, BG, TEXT or BASE style.
+    :param state: :class:`GtkStateType` indicating to which state to assign the logical color
+    :param logicalcolorname: A string with the logical font name to assign to the widget.
+    :returns: The signal id that is triggered every time theme is changed. 0 if color set failed.
 
-Example : If the style you want to modify is bg[NORMAL] then set rcflags to GTK_RC_BG and state to GTK_STATE_NORMAL.
+.. function:: hildon_helper_event_button_is_finger (event)
 
+    Checks if the given button event is a finger event.
 
+    :param event: A `GtkEventButton <GtkEventButton>`_ to check
+    :returns: True if the event is a finger event.
 
-``widget``:
-  A :class:`GtkWidget` to assign this logical font for.
+.. function:: hildon_helper_set_insensitive_message (widget, message)
 
+    .. warning:: :func:`hildon_helper_set_insensitive_message` is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.
 
-``rcflags``:
-  `GtkRcFlags <GtkRcFlags>`_ enumeration defining whether to assign to FG, BG, TEXT or BASE style.
+    This function assigns an insensitive message to a ``widget``. When the ``widget`` is in an insensitive state and the user activates it, the ``message`` will be displayed using a standard :class:`HildonBanner` .
 
+    :param widget: A :class:`GtkWidget` to assign a banner to
+    :param message: A message to display to the user
 
-``state``:
-  `GtkStateType <GtkStateType>`_ indicating to which state to assign the logical color
+.. function:: hildon_helper_set_insensitive_messagef (widget, format, ...)
 
+    .. warning:: :func:`hildon_helper_set_insensitive_messagef` is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.
 
-``logicalcolorname``:
-  A gchar\* with the logical font name to assign to the widget.
+    A version of hildon_helper_set_insensitive_message with string formatting.
 
+    :param widget: A :class:`GtkWidget` to assign a banner to
+    :param format: a printf-like format string
+    :param ...: arguments for the format string
 
-:returns: 
-  The signal id that is triggered every time theme is changed. 0 if color set failed.
+.. function:: hildon_helper_set_thumb_scrollbar (win, thumb)
 
+    This function enables a thumb scrollbar on a given scrolled window. It'll convert the existing normal scrollbar into a larger, finger-usable scrollbar that works without a stylus. As fingerable list rows are fairly high, consider using the whole available vertical space of your application for the content in order to have as many rows as possible visible on the screen at once.
 
-.. _hildon-helper-event-button-is-finger:
+    Finger-Sized scrollbar should always be used together with finger-sized content.
 
-.. function:: hildon_helper_event_button_is_finger ()
-
-::
-
-  gboolean            hildon_helper_event_button_is_finger
-                                                          (GdkEventButton *event);
-
-Checks if the given button event is a finger event.
-
-
-
-``event``:
-  A `GtkEventButton <GtkEventButton>`_ to check
-
-
-:returns: 
-  TRUE if the event is a finger event.
-
-
-.. _hildon-helper-set-insensitive-message:
-
-.. function:: hildon_helper_set_insensitive_message ()
-
-::
-
-  void                hildon_helper_set_insensitive_message
-                                                          (GtkWidget *widget,
-                                                           const gchar *message);
-
-.. warning:: ``hildon_helper_set_insensitive_message`` is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.
-
-This function assigns an insensitive message to a ``widget``. When the ``widget`` is in an insensitive state and the user activates it, the ``message`` will be displayed using a standard `HildonBanner <HildonBanner>`_ .
-
-
-
-``widget``:
-  A :class:`GtkWidget` to assign a banner to
-
-
-``message``:
-  A message to display to the user
-
-
-.. _hildon-helper-set-insensitive-messagef:
-
-.. function:: hildon_helper_set_insensitive_messagef ()
-
-::
-
-  void                hildon_helper_set_insensitive_messagef
-                                                          (GtkWidget *widget,
-                                                           const gchar *format,
-                                                           ...);
-
-.. warning:: ``hildon_helper_set_insensitive_messagef`` is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.
-
-A version of hildon_helper_set_insensitive_message with string formatting.
-
-
-
-``widget``:
-  A :class:`GtkWidget` to assign a banner to
-
-
-``format``:
-  a printf-like format string
-
-
-``...``:
-  arguments for the format string
-
-
-.. _hildon-helper-set-thumb-scrollbar:
-
-.. function:: hildon_helper_set_thumb_scrollbar ()
-
-::
-
-  void                hildon_helper_set_thumb_scrollbar   (GtkScrolledWindow *win,
-                                                           gboolean thumb);
-
-This function enables a thumb scrollbar on a given scrolled window. It'll convert the existing normal scrollbar into a larger, finger-usable scrollbar that works without a stylus. As fingerable list rows are fairly high, consider using the whole available vertical space of your application for the content in order to have as many rows as possible visible on the screen at once.
-
-Finger-Sized scrollbar should always be used together with finger-sized content.
-
-
-
-``win``:
-  A `GtkScrolledWindow <GtkScrolledWindow>`_ to use as target
-
-
-``thumb``:
-  TRUE to enable the thumb scrollbar, FALSE to disable
-
-
-.. _hildon-Sound-Utilities:
+    :param win: A :class:`GtkScrolledWindow` to use as target
+    :param thumb: True to enable the thumb scrollbar, False to disable
 
 Sound Utilities
 ***************
 
-.. _hildon-Sound-Utilities.description:
-
-Description
-===========
-
-
-
-
-
-.. _hildon-Sound-Utilities.details:
-
 Details
 =======
 
-.. _hildon-play-system-sound:
+.. function:: hildon_play_system_sound (sample)
 
-.. function:: hildon_play_system_sound ()
+    Plays the given sample using libcanberra. Volume level is received from gconf.
 
-::
-
-  void                hildon_play_system_sound            (const gchar *sample);
-
-Plays the given sample using libcanberra. Volume level is received from gconf.
-
-
-
-``sample``:
-  sound file to play
-
-
-.. _HildonProgram:
+    :param sample: sound file to play
 
 HildonProgram
 *************
-
-.. _HildonProgram_object-hierarchy:
 
 Object Hierarchy
 ================
@@ -519,382 +407,184 @@ Object Hierarchy
      +----HildonProgram
   
 
-.. _HildonProgram.properties:
-
 Properties
 ==========
 
-::
+    .. data:: "can-hibernate"
 
-  
-    can-hibernate            gboolean              : Read / Write
-    is-topmost               gboolean              : Read
-  
+        Read/Write
+    
+    .. data:: "is-topmost"
 
-.. _HildonProgram.description:
+        Read
 
 Description
 ===========
 
-`HildonProgram <HildonProgram>`_ is an object used to represent an application running in the Hildon framework.
+:class:`HildonProgram` is an object used to represent an application running in the Hildon framework.
 
-Applications can have one or more :class:`HildonWindow` s. These can be registered in the `HildonProgram <HildonProgram>`_ with `hildon_program_add_window() <hildon-program-add-window>`_ , and can be unregistered similarly with `hildon_program_remove_window() <hildon-program-remove-window>`_ .
+Applications can have one or more :class:`HildonWindow` s. These can be registered in the :class:`HildonProgram` with :meth:`HildonProgram.add_window` , and can be unregistered similarly with :meth:`HildonProgram.remove_window` .
 
-`HildonProgram <HildonProgram>`_ provides the programmer with commodities such as applying a common toolbar and menu to all registered :class:`HildonWindow` s. This is done with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ , `hildon_program_set_common_app_menu() <hildon-program-set-common-app-menu>`_ and `hildon_program_set_common_toolbar() <hildon-program-set-common-toolbar>`_ .
+:class:`HildonProgram` provides the programmer with commodities such as applying a common toolbar and menu to all registered :class:`HildonWindow` s. This is done with :meth:`HildonProgram.set_common_menu` , :meth:`HildonProgram.set_common_app_menu` and :meth:`HildonProgram.set_common_toolbar`.
 
-`HildonProgram <HildonProgram>`_ is also used to apply program-wide properties that are specific to the Hildon framework. For instance `hildon_program_set_can_hibernate() <hildon-program-set-can-hibernate>`_ sets whether or not an application can be set to hibernate by the Hildon task navigator, in situations of low memory.
+:class:`HildonProgram` is also used to apply program-wide properties that are specific to the Hildon framework. For instance :meth:`HildonProgram.set_can_hibernate` sets whether or not an application can be set to hibernate by the Hildon task navigator, in situations of low memory.
 
-:: HildonProgram *program; HildonWindow *window1; HildonWindow *window2; GtkToolbar *common_toolbar, *window_specific_toolbar; HildonAppMenu *menu; program = HILDON_PROGRAM (hildon_program_get_instance ()); window1 = HILDON_WINDOW (hildon_window_new ()); window2 = HILDON_WINDOW (hildon_window_new ()); common_toolbar = create_common_toolbar (); window_specific_toolbar = create_window_specific_toolbar (); menu = create_menu (); hildon_program_add_window (program, window1); hildon_program_add_window (program, window2); hildon_program_set_common_app_menu (program, menu); hildon_program_set_common_toolbar (program, common_toolbar); hildon_window_add_toolbar (window1, window_specific_toolbar); hildon_program_set_can_hibernate (program, TRUE);
+:: 
 
+    program = HildonProgram.get_instance()
 
+    window1 = hildon_window_new()
+    window2 = hildon_window_new()
 
-.. _HildonProgram.details:
+    common_toolbar = create_common_toolbar()
+    window_specific_toolbar = create_window_specific_toolbar()
+
+    menu = create_menu()
+
+    program.add_window(window1)
+    program.add_window(window2)
+
+    program.set_common_app_menu (menu)
+
+    program.set_common_toolbar (common_toolbar)
+    window1.add_toolbar (window_specific_toolbar)
+
+    program.set_can_hibernate (True)
+
 
 Details
 =======
 
-.. _HildonProgram-struct:
-
 .. class:: HildonProgram
 
-::
+    .. method:: get_instance()
 
-  typedef struct _HildonProgram HildonProgram;
+        Returns the :class:`HildonProgram` for the current process. The object is created on the first call. Note that you're not supposed to unref the returned object since it's not reffed in the first place.
 
+        :returns: the :class:`HildonProgram` .
 
+    .. method:: add_window (window)
 
-.. _hildon-program-get-instance:
+        Registers a :class:`HildonWindow` as belonging to a given :class:`HildonProgram` . This allows to apply program-wide settings as all the registered windows, such as :meth:`HildonProgram.set_common_menu` , :meth:`HildonProgram.set_common_app_menu` and :meth:`HildonProgram.set_common_toolbar`.
 
-.. function:: hildon_program_get_instance ()
+        :param window: A :class:`HildonWindow` to be added
 
-::
 
-  HildonProgram*      hildon_program_get_instance         (void);
+    .. method:: remove_window (window)
 
-Returns the `HildonProgram <HildonProgram>`_ for the current process. The object is created on the first call. Note that you're not supposed to unref the returned object since it's not reffed in the first place.
+        Used to unregister a window from the program. Subsequent calls to :meth:`HildonProgram.set_common_menu` , :meth:`HildonProgram.set_common_app_menu` and :meth:`HildonProgram.set_common_toolbar` will not affect the window.
 
+        :param window: The :class:`HildonWindow` to unregister
 
+    .. method:: set_can_hibernate (can_hibernate)
 
-:returns: 
-  the `HildonProgram <HildonProgram>`_ .
+        Used to set whether or not the Hildon task navigator should be able to set the program to hibernation in case of low memory
 
+        :param can_hibernate: whether or not the :class:`HildonProgram` can hibernate
 
-.. _hildon-program-add-window:
+    .. method:: get_can_hibernate ()
 
-.. function:: hildon_program_add_window ()
+        Returns whether the :class:`HildonProgram` is set to be support hibernation from the Hildon task navigator
 
-::
+        :returns: True if the program can hibernate, False otherwise.
 
-  void                hildon_program_add_window           (HildonProgram *self,
-                                                           HildonWindow *window);
 
-Registers a :class:`HildonWindow` as belonging to a given `HildonProgram <HildonProgram>`_ . This allows to apply program-wide settings as all the registered windows, such as `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ , `hildon_program_set_common_app_menu() <hildon-program-set-common-app-menu>`_ and `hildon_program_set_common_toolbar() <hildon-program-set-common-toolbar>`_ .
+    .. method:: set_common_menu (menu)
 
+        Sets a :class:`GtkMenu` that will appear in all :class:`HildonWindow` s registered with the :class:`HildonProgram` . Only one common :class:`GtkMenu` can be set, further calls will detach the previous common :class:`GtkMenu` . A :class:`HildonWindow` can use its own :class:`GtkMenu` with :meth:`HildonWindow.set_menu`
 
+        This method does not support :class:`HildonAppMenu` s. See :meth:`HildonProgram.set_common_app_menu` for that.
 
-``self``:
-  The `HildonProgram <HildonProgram>`_ to which the window should be registered
+        :param menu: A :class:`GtkMenu` to use as common menu for the program
 
+        .. versionadded 2.2
 
-``window``:
-  A :class:`HildonWindow` to be added
+    .. method:: get_common_menu ()
 
+        Returns the :class:`GtkMenu` that was set as common menu for this :class:`HildonProgram` .
 
-.. _hildon-program-remove-window:
+        :returns: the :class:`GtkMenu` or ``NULL`` of no common menu was set.
 
-.. function:: hildon_program_remove_window ()
+    .. method:: set_common_app_menu (menu)
 
-::
+        Sets a :class:`HildonAppMenu` that will appear in all :class:`HildonWindow` s registered with the :class:`HildonProgram` . Only one common :class:`HildonAppMenu` can be set, further calls will detach the previous common :class:`HildonAppMenu` . A :class:`HildonWindow` can use its own :class:`HildonAppMenu` with :meth:`HildonWindow.set_app_menu`
 
-  void                hildon_program_remove_window        (HildonProgram *self,
-                                                           HildonWindow *window);
+        This method does not support :class:`GtkMenu` s. See :meth:`HildonProgram.set_common_menu` for that.
 
-Used to unregister a window from the program. Subsequent calls to `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ , `hildon_program_set_common_app_menu() <hildon-program-set-common-app-menu>`_ and `hildon_program_set_common_toolbar() <hildon-program-set-common-toolbar>`_ will not affect the window.
+        :param menu: A :class:`HildonAppMenu` to use as common menu for the program
 
+        .. versionadded 2.2
 
+    .. method:: get_common_app_menu ()
 
-``self``:
-  The `HildonProgram <HildonProgram>`_ to which the window should be unregistered
+        Returns the :class:`HildonAppMenu` that was set as common menu for this :class:`HildonProgram` .
 
+        :returns: the :class:`HildonAppMenu` or ``NULL`` of no common app menu was set.
 
-``window``:
-  The :class:`HildonWindow` to unregister
+        .. versionadded 2.2
 
+    .. method:: set_common_toolbar (toolbar)
 
-.. _hildon-program-set-can-hibernate:
+        Sets a :class:`GtkToolbar` that will appear in all the :class:`HildonWindow` registered to the :class:`HildonProgram` . Only one common :class:`GtkToolbar` can be set, further call will detach the previous common :class:`GtkToolbar` . A :class:`HildonWindow` can use its own :class:`GtkToolbar` with :meth:`HildonWindow.add_toolbar` . Both :class:`HildonProgram` and :class:`HildonWindow` specific toolbars will be shown
 
-.. function:: hildon_program_set_can_hibernate ()
+        :param toolbar: A :class:`GtkToolbar` to use as common toolbar for the program
 
-::
+    .. method:: get_common_toolbar ()
 
-  void                hildon_program_set_can_hibernate    (HildonProgram *self,
-                                                           gboolean can_hibernate);
+        Returns the :class:`GtkToolbar` that was set as common toolbar for this :class:`HildonProgram` .
 
-Used to set whether or not the Hildon task navigator should be able to set the program to hibernation in case of low memory
+        :returns: the :class:`GtkToolbar` or ``NULL`` of no common toolbar was set.
 
+    .. method:: get_is_topmost ()
 
+        Returns whether one of the program's windows or dialogs is currently activated by the window manager.
 
-``self``:
-  The `HildonProgram <HildonProgram>`_ which can hibernate or not
+        :returns: True if a window or dialog is topmost, False otherwise.
 
 
-``can_hibernate``:
-  whether or not the `HildonProgram <HildonProgram>`_ can hibernate
+    .. method:: pop_window_stack ()
 
+        .. warning:: :meth:`HildonProgram.pop_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`HildonWindow.stack_pop` instead
 
-.. _hildon-program-get-can-hibernate:
+        Pops a window from the stack.
 
-.. function:: hildon_program_get_can_hibernate ()
+        :returns: A :class:`HildonStackableWindow` , or ``NULL``
 
-::
+        .. versionadded 2.2
 
-  gboolean            hildon_program_get_can_hibernate    (HildonProgram *self);
+    .. method:: peek_window_stack ()
 
-Returns whether the `HildonProgram <HildonProgram>`_ is set to be support hibernation from the Hildon task navigator
+        .. warning:: :meth:`HildonProgram.peek_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`HildonWindow.stack_peek` instead
 
+        :returns: A :class:`HildonStackableWindow` , or ``NULL``
 
 
-``self``:
-  The `HildonProgram <HildonProgram>`_ which can hibernate or not
+        .. versionadded 2.2
 
+    .. method:: go_to_root_window ()
 
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ if the program can hibernate, ``FALSE`` otherwise.
+        .. warning:: :meth:`HildonProgram.go_to_root_window` is deprecated and should not be used in newly-written code. See :class:`HildonWindowStack`
 
+        Goes to the root window of the stack.
 
-.. _hildon-program-set-common-menu:
-
-.. function:: hildon_program_set_common_menu ()
-
-::
-
-  void                hildon_program_set_common_menu      (HildonProgram *self,
-                                                           GtkMenu *menu);
-
-Sets a :class:`GtkMenu` that will appear in all :class:`HildonWindow` s registered with the `HildonProgram <HildonProgram>`_ . Only one common :class:`GtkMenu` can be set, further calls will detach the previous common :class:`GtkMenu` . A :class:`HildonWindow` can use its own :class:`GtkMenu` with `hildon_window_set_menu() <hildon-window-set-menu>`_
-
-This method does not support `HildonAppMenu <HildonAppMenu>`_ s. See `hildon_program_set_common_app_menu() <hildon-program-set-common-app-menu>`_ for that.
-
-
-
-``self``:
-  The `HildonProgram <HildonProgram>`_ in which the common menu should be used
-
-
-``menu``:
-  A :class:`GtkMenu` to use as common menu for the program
-
-
-.. versionadded 2.2
-
-.. _hildon-program-get-common-menu:
-
-.. function:: hildon_program_get_common_menu ()
-
-::
-
-  GtkMenu*            hildon_program_get_common_menu      (HildonProgram *self);
-
-Returns the :class:`GtkMenu` that was set as common menu for this `HildonProgram <HildonProgram>`_ .
-
-
-
-``self``:
-  The `HildonProgram <HildonProgram>`_ from which to retrieve the common menu
-
-
-:returns: 
-  the :class:`GtkMenu` or ``NULL`` of no common menu was set.
-
-
-.. function:: hildon_program_set_common_app_menu ()
-
-::
-
-  void                hildon_program_set_common_app_menu  (HildonProgram *self,
-                                                           HildonAppMenu *menu);
-
-Sets a `HildonAppMenu <HildonAppMenu>`_ that will appear in all :class:`HildonWindow` s registered with the `HildonProgram <HildonProgram>`_ . Only one common `HildonAppMenu <HildonAppMenu>`_ can be set, further calls will detach the previous common `HildonAppMenu <HildonAppMenu>`_ . A :class:`HildonWindow` can use its own `HildonAppMenu <HildonAppMenu>`_ with `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_
-
-This method does not support :class:`GtkMenu` s. See `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ for that.
-
-
-
-``self``:
-  The `HildonProgram <HildonProgram>`_ in which the common menu should be used
-
-
-``menu``:
-  A `HildonAppMenu <HildonAppMenu>`_ to use as common menu for the program
-
-
-.. versionadded 2.2
-
-.. function:: hildon_program_get_common_app_menu ()
-
-::
-
-  HildonAppMenu*      hildon_program_get_common_app_menu  (HildonProgram *self);
-
-Returns the `HildonAppMenu <HildonAppMenu>`_ that was set as common menu for this `HildonProgram <HildonProgram>`_ .
-
-
-
-``self``:
-  The `HildonProgram <HildonProgram>`_ from which to retrieve the common app menu
-
-
-:returns: 
-  the `HildonAppMenu <HildonAppMenu>`_ or ``NULL`` of no common app menu was set.
-
-
-.. versionadded 2.2
-
-.. function:: hildon_program_set_common_toolbar ()
-
-::
-
-  void                hildon_program_set_common_toolbar   (HildonProgram *self,
-                                                           GtkToolbar *toolbar);
-
-Sets a `GtkToolbar <GtkToolbar>`_ that will appear in all the :class:`HildonWindow` registered to the `HildonProgram <HildonProgram>`_ . Only one common `GtkToolbar <GtkToolbar>`_ can be set, further call will detach the previous common `GtkToolbar <GtkToolbar>`_ . A :class:`HildonWindow` can use its own `GtkToolbar <GtkToolbar>`_ with `hildon_window_add_toolbar() <hildon-window-add-toolbar>`_ . Both `HildonProgram <HildonProgram>`_ and :class:`HildonWindow` specific toolbars will be shown
-
-
-
-``self``:
-  The `HildonProgram <HildonProgram>`_ in which the common toolbar should be used
-
-
-``toolbar``:
-  A `GtkToolbar <GtkToolbar>`_ to use as common toolbar for the program
-
-
-.. function:: hildon_program_get_common_toolbar ()
-
-::
-
-  GtkToolbar*         hildon_program_get_common_toolbar   (HildonProgram *self);
-
-Returns the `GtkToolbar <GtkToolbar>`_ that was set as common toolbar for this `HildonProgram <HildonProgram>`_ .
-
-
-
-``self``:
-  The `HildonProgram <HildonProgram>`_ from which to retrieve the common toolbar
-
-
-:returns: 
-  the `GtkToolbar <GtkToolbar>`_ or ``NULL`` of no common toolbar was set.
-
-
-.. function:: hildon_program_get_is_topmost ()
-
-::
-
-  gboolean            hildon_program_get_is_topmost       (HildonProgram *self);
-
-Returns whether one of the program's windows or dialogs is currently activated by the window manager.
-
-
-
-``self``:
-  A :class:`HildonWindow`
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ if a window or dialog is topmost, ``FALSE`` otherwise.
-
-
-.. function:: hildon_program_pop_window_stack ()
-
-::
-
-  HildonStackableWindow* hildon_program_pop_window_stack  (HildonProgram *self);
-
-.. warning:: ``hildon_program_pop_window_stack`` is deprecated and should not be used in newly-written code. Use `hildon_window_stack_pop() <hildon-window-stack-pop>`_ instead
-
-Pops a window from the stack.
-
-
-
-``self``:
-  A `HildonProgram <HildonProgram>`_
-
-
-:returns: 
-  A `HildonStackableWindow <HildonStackableWindow>`_ , or ``NULL``
-
-
-.. versionadded 2.2
-
-.. function:: hildon_program_peek_window_stack ()
-
-::
-
-  HildonStackableWindow* hildon_program_peek_window_stack (HildonProgram *self);
-
-.. warning:: ``hildon_program_peek_window_stack`` is deprecated and should not be used in newly-written code. Use `hildon_window_stack_peek() <hildon-window-stack-peek>`_ instead
-
-
-
-
-
-``self``:
-  A `HildonProgram <HildonProgram>`_
-
-
-:returns: 
-  A `HildonStackableWindow <HildonStackableWindow>`_ , or ``NULL``
-
-
-.. versionadded 2.2
-
-.. function:: hildon_program_go_to_root_window ()
-
-::
-
-  void                hildon_program_go_to_root_window    (HildonProgram *self);
-
-.. warning:: ``hildon_program_go_to_root_window`` is deprecated and should not be used in newly-written code. See `HildonWindowStack <HildonWindowStack>`_
-
-Goes to the root window of the stack.
-
-
-
-``self``:
-  A `HildonProgram <HildonProgram>`_
-
-
-.. versionadded 2.2
+        .. versionadded 2.2
 
 Property Details
 ================
 
-The ``can-hibernate`` property
+.. data:: "can-hibernate"
 
-::
+    Whether the program should be set to hibernate by the Task Navigator in low memory situation.
 
-    can-hibernate            gboolean              : Read / Write
+    Default value: False
 
-Whether the program should be set to hibernate by the Task Navigator in low memory situation.
+.. data:: "is-topmost: 
 
+    Whether one of the program's window or dialog currently is activated by window manager.
 
-
-Default value: FALSE
-
-The ``is-topmost`` property
-
-::
-
-    is-topmost               gboolean              : Read
-
-Whether one of the program's window or dialog currently is activated by window manager.
-
-
-
-Default value: FALSE
+    Default value: False
 
 See Also
 ========
 
-:class:`HildonWindow` `HildonStackableWindow <HildonStackableWindow>`_ 
+:class:`HildonWindow` :class:`HildonStackableWindow` 
