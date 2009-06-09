@@ -17,30 +17,25 @@ Typical main function for a Hildon application
 
 ::
   
-  int
-  main (int argc, char **argv)
-  {
-    /* Initialize i18n support */
-    gtk_set_locale ();
+  import gtk
+  import hildon
   
-    /* Initialize the widget set */
-    hildon_gtk_init (argc, argv);
-  
-    /* Create the main window */
-    mainwin = hildon_stackable_window_new();
-  
-    /* Set up our GUI elements */
+  def main():
+    # Create the main window
+    mainwin = hildon.StackableWindow()
+
+    # Set up our GUI elements
    ...
+   
+    # Show the application window
+    mainwin.show_all()
   
-    /* Show the application window */
-    gtk_widget_show_all (mainwin);
-  
-    /* Enter the main event loop, and wait for user interaction */
-    gtk_main ();
-  
-    /* The user lost interest */
-    return 0;
-  }
+    # Enter the main event loop, and wait for user interaction
+    gtk.main()
+
+  if __name__ == "__main__":
+    main()
+
    
 Details
 =======
