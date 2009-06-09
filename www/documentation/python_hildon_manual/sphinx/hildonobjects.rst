@@ -5471,12 +5471,9 @@ Allowed values: [1900,2100]
 
 Default value: 1970
 
-.. _HildonTimeSelector:
+TimeSelector
+************
 
-HildonTimeSelector
-******************
-
-.. _HildonTimeSelector.object-hierarchy:
 
 Object Hierarchy
 ================
@@ -5495,176 +5492,72 @@ Object Hierarchy
                                                +----HildonTimeSelector
   
 
-.. _HildonTimeSelector.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonTimeSelector implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+TimeSelector implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
-.. _HildonTimeSelector.properties:
-
-Properties
-==========
-
-::
-
-  
-    minutes-step             int                 : Read / Write / Construct Only
-  
-
-.. _HildonTimeSelector.description:
 
 Description
 ===========
 
-:class:`HildonTimeSelector` allows users to choose a time by selecting hour and minute. It also allows choosing between AM or PM format.
+:class:`TimeSelector` allows users to choose a time by selecting hour and minute. It also allows choosing between AM or PM format.
 
-The currently selected time can be altered with `hildon_time_selector_set_time() <hildon-time-selector-set-time>`_ , and retrieved using `hildon_time_selector_get_time() <hildon-time-selector-get-time>`_ .
+The currently selected time can be altered with :meth:`set_time`, and retrieved using :meth:`get_time`.
 
 Use this widget instead of deprecated HildonTimeEditor widget.
 
 
 
-.. _HildonTimeSelector.details:
-
 Details
 =======
 
-.. _HildonTimeSelector-struct:
-
 .. class:: HildonTimeSelector
 
-::
+    .. method:: __init__ ()
 
-  typedef struct _HildonTimeSelector HildonTimeSelector;
-
-
-
-.. _hildon-time-selector-new:
-
-.. function:: hildon_time_selector_new ()
-
-::
-
-  GtkWidget*          hildon_time_selector_new            (void);
-
-Creates a new :class:`HildonTimeSelector`
+        Creates a new :class:`TimeSelector`
+        
+        :returns:  a new :class:`TimeSelector`
 
 
+    .. method:: new_step(minutes_step)
 
-:returns: 
-  a new :class:`HildonTimeSelector`
+        Creates a new :class:`TimeSelector` ``minutes_step``: step between the minutes we are going to show in the selector
 
-
-.. versionadded 2.2
-
-.. _hildon-time-selector-new-step:
-
-.. function:: hildon_time_selector_new_step ()
-
-::
-
-  GtkWidget*          hildon_time_selector_new_step       (int minutes_step);
-
-Creates a new :class:`HildonTimeSelector` ``minutes_step``: step between the minutes we are going to show in the selector
-
-
-
-``minutes_step``:
+        :param minutes_step:
   
+        :returns:  a new :class:`TimeSelector`
 
 
-:returns: 
-  a new :class:`HildonTimeSelector`
+    .. method:: set_time(hours,minutes)
+
+        Sets the current active hour on the :class:`TimeSelector` widget
+        The format of the hours accepted is always 24h format, with a range (0-23):(0-59).
+
+        :param hours: the current hour (0-23)
+        :param minutes: the current minute (0-59)
+        :returns: True on success, False otherwise
 
 
-.. versionadded 2.2
+    .. method:: get_time ()
+        
+        Gets the current active hour on the :class:`TimeSelector` widget.
+        This method returns the date always in 24h format, with a range (0-23):(0-59)
 
-.. _hildon-time-selector-set-time:
+        :returns: a tuple with (hours, minutes) 
 
-.. function:: hildon_time_selector_set_time ()
-
-::
-
-  bool            hildon_time_selector_set_time       (HildonTimeSelector *selector,
-                                                           int hours,
-                                                           int minutes);
-
-Sets the current active hour on the :class:`HildonTimeSelector` widget
-
-The format of the hours accepted is always 24h format, with a range (0-23):(0-59).
-
-
-
-``selector``:
-  the :class:`HildonTimeSelector`
-
-
-``hours``:
-  the current hour (0-23)
-
-
-``minutes``:
-  the current minute (0-59)
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ on success, ```FALSE`` <FALSE:CAPS>`_ otherwise
-
-
-.. versionadded 2.2
-
-.. _hildon-time-selector-get-time:
-
-.. function:: hildon_time_selector_get_time ()
-
-::
-
-  void                hildon_time_selector_get_time       (HildonTimeSelector *selector,
-                                                           int *hours,
-                                                           int *minutes);
-
-Gets the current active hour on the :class:`HildonTimeSelector` widget. Both ``year``\ and ``minutes`` can be NULL.
-
-This method returns the date always in 24h format, with a range (0-23):(0-59)
-
-
-
-``selector``:
-  the :class:`HildonTimeSelector`
-
-
-``hours``:
-  to set the current hour (0-23)
-
-
-``minutes``:
-  to set the current minute (0-59)
-
-
-.. versionadded 2.2
-
-.. _HildonTimeSelector.property-details:
 
 Property Details
 ================
 
-.. _HildonTimeSelector--minutes-step:
+============================ ============ ============================= ============== ===============================================================
+Name                         type         Access                        Default        Meaning
+============================ ============ ============================= ============== ===============================================================
+``minutes-step``             int          Read / Write / Construct Only 1              Step between the minutes in the list of options of the widget . 
+============================ ============ ============================= ============== ===============================================================
 
-The ``minutes-step`` property
-
-::
-
-    minutes-step             int                 : Read / Write / Construct Only
-
-Step between the minutes in the list of options of the widget .
-
-Allowed values: [1,30]
-
-Default value: 1
-
-.. _HildonPannableArea:
 
 HildonPannableArea
 ******************
@@ -5890,8 +5783,6 @@ Functions
         
 
 .. versionadded 2.2
-
-.. _HildonPannableArea.property-details:
 
 Property Details
 ================
@@ -6326,6 +6217,7 @@ Name                            type    Access              Default     Meaning
 ``horizontal-spacing``          int     Read                16          Horizontal spacing between each menu item. Does not apply to filter buttons.
 ``inner-border``                int     Read                16          Border between menu edges and buttons.
 ``vertical-spacing``            int     Read                16          Vertical spacing between each menu item. Does not apply to filter buttons.
+=============================== ======= =================== =========== ================================================================================================
 
 
 .. _HildonFindToolbar:
