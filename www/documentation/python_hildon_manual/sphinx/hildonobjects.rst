@@ -3,19 +3,16 @@
 Hildon Widgets and Objects
 ##########################
 
-.. _HildonWindow:
-
 HildonWindow
 ************
 
-.. _HildonWindow.object-hierarchy:
 
 Object Hierarchy
 ================
 
 ::
 
-  
+
     GObject
      +----GInitiallyUnowned
            +----GtkObject
@@ -25,58 +22,43 @@ Object Hierarchy
                                    +----GtkWindow
                                          +----HildonWindow
                                                +----HildonStackableWindow
-  
-
-.. _HildonWindow.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
 HildonWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
-.. _HildonWindow.properties:
-
 Properties
 ==========
 
 ::
 
-  
     is-topmost               bool              : Read
     markup                   str                : Read / Write
-  
-
-.. _HildonWindow.style-properties:
 
 Style Properties
 ================
 
 ::
 
-  
     borders                  GtkBorder*            : Read
     toolbar-borders          GtkBorder*            : Read
-  
 
-.. _HildonWindow.signals:
 
 Signals
 =======
 
 ::
 
-  
     clipboard-operation                            : Run First
-  
 
-.. _HildonWindow.description:
 
 Description
 ===========
 
 :class:`HildonWindow` is a GTK widget which represents a top-level window in the Hildon framework. It is derived from :class:`GtkWindow` and provides additional commodities specific to the Hildon framework.
 
-:class:`HildonWindow` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with `hildon_window_set_main_menu() <hildon-window-set-main-menu>`_ and `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
+:class:`HildonWindow` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with :meth:`HildonWindow.set_main_menu` and :meth:`HildonWindow.set_app_menu` respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
 
 Similarly, a :class:`HildonWindow` can have several toolbars attached. These can be added with `hildon_window_add_toolbar() <hildon-window-add-toolbar>`_ . In addition to those, a :class:`HildonWindow` can also have a :class:`HildonEditToolbar` . To add it to the window use `hildon_window_set_edit_toolbar() <hildon-window-set-edit-toolbar>`_ .
 
@@ -84,7 +66,6 @@ Creating a HildonWindow ======================= :: HildonWindow *window; GtkTool
 
 
 
-.. _HildonWindow.details:
 
 Details
 =======
@@ -174,7 +155,7 @@ Adds ``child`` to the :class:`HildonWindow` and creates a scrollbar for it. Simi
 
 Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with `hildon_program_set_common_menu() <hildon-program-set-common-menu>`_ . Pass ```NULL`` <NULL:CAPS>`_ to remove the current menu. :class:`HildonWindow` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ instead.
+Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`HildonWindow.set_app_menu` instead.
 
 
 
@@ -643,7 +624,7 @@ Since 2.2
                                                           (HildonStackableWindow *self,
                                                            HildonAppMenu *menu);
 
-.. warning:: ``hildon_stackable_window_set_main_menu`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_
+.. warning:: ``hildon_stackable_window_set_main_menu`` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`HildonWindow.set_app_menu`
 
 
 
@@ -7336,7 +7317,7 @@ This menu opens from the top of the screen and contains a number of entries (:cl
 
 Besides that, the :class:`HildonAppMenu` can contain a group of filter buttons (:class:`GtkToggleButton` or :class:`GtkRadioButton` ).
 
-To use a :class:`HildonAppMenu` , add it to a :class:`HildonWindow` using `hildon_window_set_app_menu() <hildon-window-set-app-menu>`_ . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
+To use a :class:`HildonAppMenu` , add it to a :class:`HildonWindow` using :meth:`HildonWindow.set_app_menu` . The menu will appear when the user presses the window title bar. Alternatively, you can show it by hand using `hildon_app_menu_popup() <hildon-app-menu-popup>`_ .
 
 The menu will be automatically hidden when one of its buttons is clicked. Use `g_signal_connect_after() <g-signal-connect-after>`_ when connecting callbacks to buttons to make sure that they're called after the menu disappears. Alternatively, you can add the button to the menu before connecting any callback.
 
