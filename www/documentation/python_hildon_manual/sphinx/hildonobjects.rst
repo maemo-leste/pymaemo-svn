@@ -730,330 +730,110 @@ Details
 
         .. versionadded 2.2
 
-    .. _hildon-button-set-title-alignment:
+    .. method:: set_title_alignment (xalign, yalign)
 
-    .. method:: set_title_alignment ()
+        Sets the alignment of the title label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
-    ::
+        :param xalign: the horizontal alignment of the title label, from 0 (left) to 1 (right).
+        :param yalign: the vertical alignment of the title label, from 0 (top) to 1 (bottom).
 
-      void                hildon_button_set_title_alignment   (HildonButton *button,
-                                                               gfloat xalign,
-                                                               gfloat yalign);
+        .. versionadded 2.2
 
-    Sets the alignment of the title label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+    .. method:: set_value_alignment (xalign, yalign)
 
+        Sets the alignment of the value label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
+        :param xalign: the horizontal alignment of the value label, from 0 (left) to 1 (right).
+        :param yalign: the vertical alignment of the value label, from 0 (top) to 1 (bottom).
 
-    ``button``:
-      a :class:`HildonButton`
+        .. versionadded 2.2
 
+    .. method:: set_image_alignment (xalign, yalign)
 
-    ``xalign``:
-      the horizontal alignment of the title label, from 0 (left) to 1 (right).
+        Sets the alignment of the image. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
+        :param xalign: the horizontal alignment of the image, from 0 (left) to 1 (right).
+        :param yalign: the vertical alignment of the image, from 0 (top) to 1 (bottom).
 
-    ``yalign``:
-      the vertical alignment of the title label, from 0 (top) to 1 (bottom).
+        .. versionadded 2.2
 
+    .. method:: add_title_size_group (group)
 
-    .. versionadded 2.2
+        Adds the title label of ``button`` to ``size_group``.
 
-    .. _hildon-button-set-value-alignment:
+        :param group: A :class:`GtkSizeGroup` for the button title (main label)
 
-    .. method:: set_value_alignment ()
 
-    ::
+        .. versionadded 2.2
 
-      void                hildon_button_set_value_alignment   (HildonButton *button,
-                                                               gfloat xalign,
-                                                               gfloat yalign);
+    .. method:: add_value_size_group (group)
 
-    Sets the alignment of the value label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+        Adds the value label of ``button`` to ``size_group``.
 
+        :param group: A :class:`GtkSizeGroup` for the button value (secondary label)
 
+        .. versionadded 2.2
 
-    ``button``:
-      a :class:`HildonButton`
+    .. method:: add_image_size_group (size_group)
 
+        Adds the image of ``button`` to ``size_group``. You must add an image using :meth:`HildonButton.set_image` before calling this function.
 
-    ``xalign``:
-      the horizontal alignment of the value label, from 0 (left) to 1 (right).
+        :param size_group: A :class:`GtkSizeGroup` for the button image
 
+        .. versionadded 2.2
 
-    ``yalign``:
-      the vertical alignment of the value label, from 0 (top) to 1 (bottom).
+    .. method:: add_size_groups (title_size_group, value_size_group, image_size_group)
 
+        Convenience function to add title, value and image to size groups. None size groups will be ignored.
 
-    .. versionadded 2.2
+        :param title_size_group: A :class:`GtkSizeGroup` for the button title (main label), or None
+        :param value_size_group: A :class:`GtkSizeGroup` group for the button value (secondary label), or None
+        :param image_size_group: A :class:`GtkSizeGroup` group for the button image, or None
 
-    .. _hildon-button-set-image-alignment:
+        .. versionadded 2.2
 
-    .. method:: set_image_alignment ()
+    .. method:: set_style (style)
 
-    ::
+        Sets the style of ``button`` to ``style``. This changes the visual appearance of the button (colors, font sizes) according to the particular style chosen, but the general layout is not altered.
 
-      void                hildon_button_set_image_alignment   (HildonButton *button,
-                                                               gfloat xalign,
-                                                               gfloat yalign);
+        Use :data:`BUTTON_STYLE_NORMAL` to make it look like a normal :class:`HildonButton` , or :data:`BUTTON_STYLE_PICKER` to make it look like a :class:`HildonPickerButton` .
 
-    Sets the alignment of the image. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+        :param style: A :class:`HildonButtonStyle` for ``button``.
 
-
-
-    ``button``:
-      a :class:`HildonButton`
-
-
-    ``xalign``:
-      the horizontal alignment of the image, from 0 (left) to 1 (right).
-
-
-    ``yalign``:
-      the vertical alignment of the image, from 0 (top) to 1 (bottom).
-
-
-    .. versionadded 2.2
-
-    .. _hildon-button-add-title-size-group:
-
-    .. method:: add_title_size_group ()
-
-    ::
-
-      void                hildon_button_add_title_size_group  (HildonButton *button,
-                                                               GtkSizeGroup *size_group);
-
-    Adds the title label of ``button`` to ``size_group``.
-
-
-
-    ``button``:
-      a :class:`HildonButton`
-
-
-    ``size_group``:
-      A :class:`GtkSizeGroup` for the button title (main label)
-
-
-    .. versionadded 2.2
-
-    .. _hildon-button-add-value-size-group:
-
-    .. method:: add_value_size_group ()
-
-    ::
-
-      void                hildon_button_add_value_size_group  (HildonButton *button,
-                                                               GtkSizeGroup *size_group);
-
-    Adds the value label of ``button`` to ``size_group``.
-
-
-
-    ``button``:
-      a :class:`HildonButton`
-
-
-    ``size_group``:
-      A :class:`GtkSizeGroup` for the button value (secondary label)
-
-
-    .. versionadded 2.2
-
-    .. _hildon-button-add-image-size-group:
-
-    .. method:: add_image_size_group ()
-
-    ::
-
-      void                hildon_button_add_image_size_group  (HildonButton *button,
-                                                               GtkSizeGroup *size_group);
-
-    Adds the image of ``button`` to ``size_group``. You must add an image using :meth:`HildonButton.set_image` before calling this function.
-
-
-
-    ``button``:
-      a :class:`HildonButton`
-
-
-    ``size_group``:
-      A :class:`GtkSizeGroup` for the button image
-
-
-    .. versionadded 2.2
-
-    .. _hildon-button-add-size-groups:
-
-    .. method:: add_size_groups ()
-
-    ::
-
-      void                hildon_button_add_size_groups       (HildonButton *button,
-                                                               GtkSizeGroup *title_size_group,
-                                                               GtkSizeGroup *value_size_group,
-                                                               GtkSizeGroup *image_size_group);
-
-    Convenience function to add title, value and image to size groups. None size groups will be ignored.
-
-
-
-    ``button``:
-      a :class:`HildonButton`
-
-
-    ``title_size_group``:
-      A :class:`GtkSizeGroup` for the button title (main label), or None
-
-
-    ``value_size_group``:
-      A :class:`GtkSizeGroup` group for the button value (secondary label), or None
-
-
-    ``image_size_group``:
-      A :class:`GtkSizeGroup` group for the button image, or None
-
-
-    .. versionadded 2.2
-
-    .. _hildon-button-set-style:
-
-    .. method:: set_style ()
-
-    ::
-
-      void                hildon_button_set_style             (HildonButton *button,
-                                                               HildonButtonStyle style);
-
-    Sets the style of ``button`` to ``style``. This changes the visual appearance of the button (colors, font sizes) according to the particular style chosen, but the general layout is not altered.
-
-    Use ```HILDON_BUTTON_STYLE_NORMAL`` <HILDON-BUTTON-STYLE-NORMAL:CAPS>`_ to make it look like a normal :class:`HildonButton` , or ```HILDON_BUTTON_STYLE_PICKER`` <HILDON-BUTTON-STYLE-PICKER:CAPS>`_ to make it look like a :class:`HildonPickerButton` .
-
-
-
-    ``button``:
-      A :class:`HildonButton`
-
-
-    ``style``:
-      A :class:`HildonButtonStyle` for ``button``\
-
-
-    .. versionadded 2.2
-
-    .. _hildon-button-get-style:
+        .. versionadded 2.2
 
     .. method:: get_style ()
 
-    ::
+        Gets the visual style of the button.
 
-      HildonButtonStyle   hildon_button_get_style             (HildonButton *button);
+        :returns: a :class:`HildonButtonStyle`
 
-    Gets the visual style of the button.
-
-
-
-    ``button``:
-      A :class:`HildonButton`
-
-
-    :returns: 
-      a :class:`HildonButtonStyle`
-
-
-    .. versionadded 2.2
+        .. versionadded 2.2
 
 .. _HildonButton.property-details:
 
 Property Details
 ================
 
-.. _HildonButton--arrangement:
-
-The ``arrangement`` property
-
-::
-
-    arrangement              HildonButtonArrangement  : Write / Construct Only
-
-How the button contents must be arranged.
-
-Default value: HILDON_BUTTON_ARRANGEMENT_HORIZONTAL
-
-.. _HildonButton--size:
-
-The ``size`` property
-
-::
-
-    size                     HildonSizeType        : Write / Construct Only
-
-Size request for the button.
-
-.. _HildonButton--style:
-
-The ``style`` property
-
-::
-
-    style                    HildonButtonStyle     : Read / Write
-
-Visual style of the button.
-
-Default value: HILDON_BUTTON_STYLE_NORMAL
-
-.. _HildonButton--title:
-
-The ``title`` property
-
-::
-
-    title                    str                : Read / Write
-
-Text of the title label inside the button.
-
-Default value: NULL
-
-.. _HildonButton--value:
-
-The ``value`` property
-
-::
-
-    value                    str                : Read / Write
-
-Text of the value label inside the button.
-
-Default value: NULL
-
-.. _HildonButton.style-property-details:
+============= ================== ============================= =============================== ==========================================
+Name          type               Access                        Default                         Meaning
+============= ================== ============================= =============================== ==========================================
+arrangement   ButtonArrangement  Write / Construct Only        BUTTON_ARRANGEMENT_HORIZONTAL   How the buttons must be arranged.
+size          SizeType           Write / Construct Only                                        Size request for the button.
+style         ButonStyle         Read / Write                  BUTTON_STYLE_NORMAL             Visual style of the button.
+title         str                Read / Write                  None                            Text of the title label inside the button.
+value         str                Read / Write                  None                            Text of the value label inside the button.
+============= ================== ============================= =============================== ==========================================
 
 Style Property Details
 ======================
 
-.. _HildonButton--horizontal-spacing:
-
-The ``horizontal-spacing`` style property
-
-::
-
-    horizontal-spacing       int                 : Read
-
-Horizontal spacing between the title and value labels, when in horizontal mode.
-
-Default value: 25
-
-.. _HildonButton--vertical-spacing:
-
-The ``vertical-spacing`` style property
-
-::
-
-    vertical-spacing         int                 : Read
-
-Vertical spacing between the title and value labels, when in vertical mode.
-
-Default value: 5
+================== ======== ======== ========= ================================================================================
+Name               type     Access   Default   Meaning
+================== ======== ======== ========= ================================================================================
+horizontal-spacing int      Read     25        Horizontal spacing between the title and value labels, when in horizontal mode.
+vertical-spacing   int      Read     5         Vertical spacing between the title and value labels, when in vertical mode.
+================== ======== ======== ========= ================================================================================
 
 .. _HildonCheckButton:
 
