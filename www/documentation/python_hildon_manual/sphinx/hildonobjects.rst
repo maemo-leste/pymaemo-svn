@@ -1311,16 +1311,13 @@ See Also
 
 :class:`TouchSelector` :class:`PickerDialog`
 
-HildonDateButton
-****************
-
-.. _HildonDateButton.object-hierarchy:
+DateButton
+**********
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -1334,14 +1331,10 @@ Object Hierarchy
                                                      +----HildonDateButton
   
 
-.. _HildonDateButton.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
 HildonDateButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonDateButton.description:
 
 Description
 ===========
@@ -1349,159 +1342,67 @@ Description
 :class:`HildonDateButton` is a widget that shows a text label and a date, and allows the user to select a different date. Visually, it's a button that, once clicked, presents a :class:`PickerDialog` containing a :class:`HildonDateSelector` . Once the user selects a different date from the selector, this will be shown in the button.
 
 
-
-.. _HildonDateButton.details:
-
 Details
 =======
 
-.. _HildonDateButton-struct:
-
 .. class:: HildonDateButton
 
-::
+    .. method:: __init__ (size, arrangement)
 
-  typedef struct _HildonDateButton HildonDateButton;
+        Creates a new :class:`HildonDateButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
 
+        :param size: One of :class:`HildonSizeType`
 
+        :param arrangement: one of :class:`HildonButtonArrangement`
 
-.. _hildon-date-button-new:
+        :returns: a new :class:`HildonDateButton`
 
-.. function:: hildon_date_button_new ()
+        .. versionadded 2.2
 
-::
+    .. method:: new_with_year_range (size, arrangement, min_year, max_year)
 
-  GtkWidget*          hildon_date_button_new              (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement);
+        Creates a new :class:`HildonDateButton` with a specific valid range of years. See :meth:`hildon.DateSelector.new_with_year_range` for details on the range.
 
-Creates a new :class:`HildonDateButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+        :param size: One of :class:`HildonSizeType`
 
+        :param arrangement: one of :class:`HildonButtonArrangement`
 
+        :param min_year: the minimum available year or -1 to ignore
 
-``size``:
-  One of :class:`HildonSizeType`
+        :param max_year: the maximum available year or -1 to ignore
 
+        :returns: a new :class:`HildonDateButton`
 
-``arrangement``:
-  one of :class:`HildonButtonArrangement`
+        .. versionadded 2.2
 
+    .. method:: get_date (year, month, day)
 
-:returns: 
-  a new :class:`HildonDateButton`
+        Retrieves currently selected date from ``button``.
 
+        :param year: return location for the selected year
 
-.. versionadded 2.2
+        :param month: return location for the selected month
 
-.. _hildon-date-button-new-with-year-range:
+        :param day: return location for the selected day
 
-.. function:: hildon_date_button_new_with_year_range ()
+        .. versionadded 2.2
 
-::
+    .. method:: hildon_date_button_set_date (year, month, day)
 
-  GtkWidget*          hildon_date_button_new_with_year_range
-                                                          (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement,
-                                                           int min_year,
-                                                           int max_year);
+        Sets the date in ``button``. The date set will be displayed and will be the default selected option on the shown :class:`HildonDateSelector` .
 
-Creates a new :class:`HildonDateButton` with a specific valid range of years. See `hildon_date_selector_new_with_year_range() <hildon-date-selector-new-with-year-range>`_ for details on the range.
+        :param year: the year to set.
 
+        :param month: the month number to set.
 
+        :param day: the day of the month to set.
 
-``size``:
-  One of :class:`HildonSizeType`
-
-
-``arrangement``:
-  one of :class:`HildonButtonArrangement`
-
-
-``min_year``:
-  the minimum available year or -1 to ignore
-
-
-``max_year``:
-  the maximum available year or -1 to ignore
-
-
-:returns: 
-  a new :class:`HildonDateButton`
-
-
-.. versionadded 2.2
-
-.. _hildon-date-button-get-date:
-
-.. function:: hildon_date_button_get_date ()
-
-::
-
-  void                hildon_date_button_get_date         (HildonDateButton *button,
-                                                           int *year,
-                                                           int *month,
-                                                           int *day);
-
-Retrieves currently selected date from ``button``.
-
-
-
-``button``:
-  a :class:`HildonDateButton`
-
-
-``year``:
-  return location for the selected year
-
-
-``month``:
-  return location for the selected month
-
-
-``day``:
-  return location for the selected day
-
-
-.. versionadded 2.2
-
-.. _hildon-date-button-set-date:
-
-.. function:: hildon_date_button_set_date ()
-
-::
-
-  void                hildon_date_button_set_date         (HildonDateButton *button,
-                                                           int year,
-                                                           int month,
-                                                           int day);
-
-Sets the date in ``button``. The date set will be displayed and will be the default selected option on the shown :class:`HildonDateSelector` .
-
-
-
-``button``:
-  a :class:`HildonDateButton`
-
-
-``year``:
-  the year to set.
-
-
-``month``:
-  the month number to set.
-
-
-``day``:
-  the day of the month to set.
-
-
-.. versionadded 2.2
-
-.. _HildonDateButton.see-also:
+        .. versionadded 2.2
 
 See Also
 ========
 
-:class:`HildonPickerButton` :class:`HildonTimeButton` .. _HildonTimeButton:
+:class:`HildonPickerButton` :class:`HildonTimeButton`
 
 HildonTimeButton
 ****************
