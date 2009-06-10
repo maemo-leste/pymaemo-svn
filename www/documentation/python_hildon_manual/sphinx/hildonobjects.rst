@@ -1280,7 +1280,7 @@ Object Hierarchy
                        +----GtkContainer
                              +----GtkBin
                                    +----GtkEventBox
-                                         +----HildonCaption
+                                         +----Caption
   
 
 Implemented Interfaces
@@ -1320,15 +1320,7 @@ Value                              Meaming
 ================================== ========================================
 
 
-.. _HildonCaption-struct:
-
-.. class:: HildonCaption
-
-::
-
-  typedef struct _HildonCaption HildonCaption;
-
-
+.. class:: Caption
 
     .. method:: __init__ (group, value, control, icon, flag)
 
@@ -1360,34 +1352,34 @@ Value                              Meaming
 
     .. method:: is_mandatory ()
 
-        Query :class:`HildonCaption` whether this captioned control is a mandatory one.
+        Query :class:`Caption` whether this captioned control is a mandatory one.
 
         :returns: is this captioned control a mandatory one?
 
     .. method:: set_status (flag)
 
-        Sets :class:`HildonCaption` status.
+        Sets :class:`Caption` status.
 
-        :param flag: one of the values from :class:`HildonCaptionStatus`
+        :param flag: one of the values from :class:`CaptionStatus`
 
     .. method:: get_status ()
 
-        Gets :class:`HildonCaption` status.
+        Gets :class:`Caption` status.
 
-        :returns: one of the values from :class:`HildonCaptionStatus`
+        :returns: one of the values from :class:`CaptionStatus`
 
 
     .. method:: set_icon_position (pos)
 
-        Sets :class:`HildonCaption` icon position.
+        Sets :class:`Caption` icon position.
 
-        :param pos: one of the values from :class:`HildonCaptionIconPosition`
+        :param pos: one of the values from :class:`CaptionIconPosition`
 
     .. method:: get_icon_position ()
 
-        Gets :class:`HildonCaption` icon position.
+        Gets :class:`Caption` icon position.
 
-        :returns: one of the values from :class:`HildonCaptionIconPosition` .
+        :returns: one of the values from :class:`CaptionIconPosition` .
 
     .. method:: set_icon_image (icon)
 
@@ -1397,7 +1389,7 @@ Value                              Meaming
 
     .. method:: get_icon_image ()
 
-        Gets icon of :class:`HildonCaption`
+        Gets icon of :class:`Caption`
 
         :returns: the :class:`GtkImage` widget that is being used as the icon by the hildon_caption, or None if no icon image is in use.
 
@@ -1410,7 +1402,7 @@ Value                              Meaming
 
     .. method:: get_label ()
 
-        Gets label of :class:`HildonCaption`
+        Gets label of :class:`Caption`
 
         :returns: the text currently being used as the label of the caption control. The string is owned by the label and the caller should never free or modify this value.
 
@@ -1422,7 +1414,7 @@ Value                              Meaming
 
     .. method:: get_separator ()
 
-        Gets separator string of :class:`HildonCaption`
+        Gets separator string of :class:`Caption`
 
         :returns: the text currently being used as the separator of the caption control. The string is owned by the caption control and the caller should never free or modify this value.
 
@@ -1460,140 +1452,39 @@ Value                              Meaming
 Property Details
 ================
 
-.. _HildonCaption--icon:
+============================ ===================== ==================== =========================== =====================================================
+Name                         type                  Access               Default                     Meaning
+============================ ===================== ==================== =========================== =====================================================
+``icon``                     GtkWidget             Read / Write                                     The icon shown on the caption area.
+``icon-position``            CaptionIconPosition   Read / Write         CAPTION_POSITION_RIGHT      If the icon is positioned on the left or right side.
+``label``                    str                   Read / Write         ""                          Caption label.
+``markup``                   str                   Write                ""                          Caption markup. Mutually exclusive with label.
+``separator``                str                   Read / Write         "ecdg_ti_caption_separator" The current separator.
+``size-group``               GtkSizeGroup          Read / Write                                     Current size group the caption is in.
+``status``                   CaptionStatus         Read / Write         CAPTION_OPTIONAL            Current size group the caption is in.
+============================ ===================== ==================== =========================== =====================================================
 
-The ``icon`` property
-
-::
-
-    icon                     GtkWidget*            : Read / Write
-
-The icon shown on the caption area.
-
-
-
-.. _HildonCaption--icon-position:
-
-The ``icon-position`` property
-
-::
-
-    icon-position            HildonCaptionIconPosition  : Read / Write
-
-If the icon is positioned on the left or right side.
-
-
-
-Default value: HILDON_CAPTION_POSITION_RIGHT
-
-.. _HildonCaption--label:
-
-The ``label`` property
-
-::
-
-    label                    str                : Read / Write
-
-Caption label.
-
-
-
-Default value: NULL
-
-.. _HildonCaption--markup:
-
-The ``markup`` property
-
-::
-
-    markup                   str                : Write
-
-Caption markup. Mutually exclusive with label.
-
-
-
-Default value: NULL
-
-.. _HildonCaption--separator:
-
-The ``separator`` property
-
-::
-
-    separator                str                : Read / Write
-
-The current separator.
-
-
-
-Default value: "ecdg_ti_caption_separator"
-
-.. _HildonCaption--size-group:
-
-The ``size-group`` property
-
-::
-
-    size-group               GtkSizeGroup*         : Read / Write
-
-Current size group the caption is in.
-
-.. _HildonCaption--status:
-
-The ``status`` property
-
-::
-
-    status                   HildonCaptionStatus   : Read / Write
-
-Mandatory or optional status.
-
-
-
-Default value: HILDON_CAPTION_OPTIONAL
-
-.. _HildonCaption.child-property-details:
 
 Child Property Details
 ======================
 
-.. _HildonCaption--expand:
+============= ===== ==================== ========= ==================================================================
+Name          type  Access               Default   Meaning
+============= ===== ==================== ========= ==================================================================
+``expand``    bool  Read / Write         False     Same as GtkBox expand. Wheter the child should be expanded or not.
+============= ===== ==================== ========= ==================================================================
 
-The ``expand`` child property
-
-::
-
-    expand                   bool              : Read / Write
-
-Same as GtkBox expand. Wheter the child should be expanded or not.
-
-Default value: FALSE
-
-.. _HildonCaption.signal-details:
 
 Signal Details
 ==============
 
-.. _HildonCaption-activate:
-
 The ``activate`` signal
 
-::
+.. function:: user_function (Caption, user_data)
+    
+    :param Caption: the object which received the signal.
+    :param user_data: user data set when the signal handler was connected.
 
-  void                user_function                      (HildonCaption *hildoncaption,
-                                                          gpointer       user_data)          : Run First / Action
-
-
-
-``hildoncaption``:
-  the object which received the signal.
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. _HildonBanner:
 
 HildonBanner
 ************
