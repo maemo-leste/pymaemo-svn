@@ -97,7 +97,7 @@ Details
 
         Adds ``child`` to the :class:`Window` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
 
-        :param: child: :class:`GtkWidget`
+        :param child: :class:`GtkWidget`
 
 
     .. method:: set_main_menu (menu)
@@ -106,7 +106,7 @@ Details
 
         Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`Window.set_app_menu` instead.
 
-        :param: menu: The :class:`GtkMenu` to be used for this :class:`Window`
+        :param menu: The :class:`GtkMenu` to be used for this :class:`Window`
 
     .. method:: get_main_menu ()
 
@@ -124,7 +124,7 @@ Details
 
         Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`Window.set_main_menu` instead.
 
-        :param: menu: a :class:`HildonAppMenu` to be used for this window
+        :param menu: a :class:`HildonAppMenu` to be used for this window
 
         .. versionadded 2.2
 
@@ -147,7 +147,7 @@ Details
 
         Note: :meth:`Window.set_menu` calls :meth:`GtkWidget.show_all()` for the :class:`GtkMenu` . To pass control about visibility to the application developer, :meth:`Window.set_main_menu` was introduced, which doesn't do this.
 
-        :param: menu: The :class:`GtkMenu` to be used for this :class:`Window`
+        :param menu: The :class:`GtkMenu` to be used for this :class:`Window`
 
     .. method:: get_menu ()
 
@@ -160,13 +160,13 @@ Details
 
         Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show_all` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide`
 
-        :param: toolbar: A :class:`GtkToolbar` to add to the :class:`Window`
+        :param toolbar: A :class:`GtkToolbar` to add to the :class:`Window`
 
     .. method:: remove_toolbar (toolbar)
 
         Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call :meth:`GObject.ref`before calling this function.
 
-        :param: toolbar: A :class:`GtkToolbar` to remove from the :class:`Window`
+        :param toolbar: A :class:`GtkToolbar` to remove from the :class:`Window`
 
 
     .. method:: set_edit_toolbar (toolbar)
@@ -175,7 +175,7 @@ Details
 
         A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
 
-        :param: toolbar: A :class:`EditToolbar` , or None to remove the current one.
+        :param toolbar: A :class:`EditToolbar` , or None to remove the current one.
 
         .. versionadded 2.2
 
@@ -192,7 +192,7 @@ Details
 
         Note that you need support from the window manager for this title to be used. See :meth:`gtk.Window.set_title` for the standard way of setting the title of a window.
 
-        :param: markup: the marked up title of the window, or None to unset the current one
+        :param markup: the marked up title of the window, or None to unset the current one
 
         .. versionadded 2.2
 
@@ -246,7 +246,9 @@ Signal Details
 See Also
 ========
 
-:class:`HildonProgram` :class:`HildonStackableWindow` .. _HildonStackableWindow:
+:class:`HildonProgram` :class:`HildonStackableWindow` 
+
+.. _HildonStackableWindow:
 
 StackableWindow
 ***************
@@ -515,6 +517,8 @@ See Also
 
 :class:`HildonStackableWindow`
 
+.. _HildonButton:
+
 HildonButton
 ************
 
@@ -544,33 +548,6 @@ Implemented Interfaces
 
 HildonButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
-.. _HildonButton.properties:
-
-Properties
-==========
-
-::
-
-  
-    arrangement              HildonButtonArrangement  : Write / Construct Only
-    size                     HildonSizeType        : Write / Construct Only
-    style                    HildonButtonStyle     : Read / Write
-    title                    str                : Read / Write
-    value                    str                : Read / Write
-  
-
-.. _HildonButton.style-properties:
-
-Style Properties
-================
-
-::
-
-  
-    horizontal-spacing       int                 : Read
-    vertical-spacing         int                 : Read
-  
-
 .. _HildonButton.description:
 
 Description
@@ -582,148 +559,87 @@ The height of a :class:`HildonButton` can be set to either "finger" height or "t
 
 The :class:`HildonButton` can hold any valid child widget, but it usually contains two labels, named title and value, and it can also contain an image. The contents of the button are packed together inside a :class:`GtkAlignment` and they do not expand by default (they don't use the full space of the button).
 
-To change the alignment of both labels, use `gtk_button_set_alignment() <gtk-button-set-alignment>`_
+To change the alignment of both labels, use :meth:`gtk.Button.set_alignment`.
 
-To make them expand and use the full space of the button, use `hildon_button_set_alignment() <hildon-button-set-alignment>`_ .
+To make them expand and use the full space of the button, use :meth:`HildonButton.set_alignment` .
 
-To change the relative alignment of each label, use `hildon_button_set_title_alignment() <hildon-button-set-title-alignment>`_ and `hildon_button_set_value_alignment() <hildon-button-set-value-alignment>`_ .
+To change the relative alignment of each label, use :meth:`HildonButton.set_title_alignment` and :meth:`HildonButton.set_value_alignment` .
 
 In hildon-button-example.c included in the Hildon distribution you can see examples of how to create the most common button layouts.
 
-If only one label is needed, :class:`GtkButton` can be used as well, see also `hildon_gtk_button_new() <hildon-gtk-button-new>`_ .
+If only one label is needed, :class:`GtkButton` can be used as well, see also :class:`GtkButton`.
 
-Creating a HildonButton ======================= :: void button_clicked (HildonButton *button, gpointer user_data) { const gchar *title, *value; title = hildon_button_get_title (button); value = hildon_button_get_value (button); g_debug ("Button clicked with title 's' and value 's'", title, value); } GtkWidget * create_button (void) { GtkWidget *button; GtkWidget *image; button = hildon_button_new (HILDON_SIZE_AUTO_WIDTH | HILDON_SIZE_FINGER_HEIGHT, HILDON_BUTTON_ARRANGEMENT_VERTICAL); hildon_button_set_text (HILDON_BUTTON (button), "Some title", "Some value"); image = gtk_image_new_from_stock (GTK_STOCK_INFO, GTK_ICON_SIZE_BUTTON); hildon_button_set_image (HILDON_BUTTON (button), image); hildon_button_set_image_position (HILDON_BUTTON (button), GTK_POS_RIGHT); gtk_button_set_alignment (GTK_BUTTON (button), 0.0, 0.5); g_signal_connect (button, "clicked", G_CALLBACK (button_clicked), NULL); return button; }
+Creating a HildonButton
+=======================
 
+::
 
+  def button_clicked(button, user_data=None):
+      title = button.get_title()
+      value = button.get_value()
+
+      print "Button clicked with title %s and value %s" % (title, value)
+
+  def create_button():
+      button = hildon.Button(gtk.HILDON_SIZE_AUTO_WIDTH | gtk.HILDON_SIZE_FINGER_HEIGHT,
+                             hildon.BUTTON_ARRANGEMENT_VERTICAL)
+      button.set_text("Some title", "some value")
+
+      image = gtk.image_new_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_BUTTON)
+      button.set_image(image)
+      button.set_image_position(gtk.POS_RIGHT)
+
+      button.set_alignment(button, 0.0, 0.5)
+
+      button.connect("clicked", button_clicked)
+
+      return button
 
 .. _HildonButton.details:
 
 Details
 =======
 
-.. _HildonButton-struct:
-
 .. class:: HildonButton
 
-::
+    .. data:: ButtonArrangement
 
-  typedef struct _HildonButton HildonButton;
+        +------------------------------------+-----------------------------------------------------+
+        | Value                              | Meaning                                             |
+        +====================================+=====================================================+
+        | ``BUTTON_ARRANGEMENT_HORIZONTAL``  | Labels are arranged from left to right              |
+        +------------------------------------+-----------------------------------------------------+
+        | ``BUTTON_ARRANGEMENT_VERTICAL``    | Labels are arranged from top to bottom              |
+        +------------------------------------+-----------------------------------------------------+
 
+        Describes the arrangement of labels inside a :class:`HildonButton`
 
+    .. data:: ButtonStyle
 
-.. _HildonButtonArrangement:
+        +------------------------------------+-----------------------------------------------------+
+        | Value                              | Meaning                                             |
+        +====================================+=====================================================+
+        | ``BUTTON_STYLE_NORMAL``            | The button will look like a :class:`Button`         |
+        +------------------------------------+-----------------------------------------------------+
+        | ``BUTTON_STYLE_PICKER``            | The button will look like a :class:`PickerButton`   |
+        +------------------------------------+-----------------------------------------------------+
 
-.. :: enum HildonButtonArrangement
+        Describes the visual style of a :class:`Button`
 
-::
+    .. method:: __init__ (size, arrangement, title=None, value=None)
 
-  typedef enum {
-     HILDON_BUTTON_ARRANGEMENT_HORIZONTAL,
-     HILDON_BUTTON_ARRANGEMENT_VERTICAL
-  }                                               HildonButtonArrangement;
-  
+        Creates a new :class:`HildonButton` with two labels, ``title`` and ``value``.
 
-Describes the arrangement of labels inside a :class:`HildonButton`
+        If you just don't want to use one of the labels, set it to None . You can set it to a non-None value at any time later using :meth:`HildonButton.set_title` or :meth:`HildonButton.set_value` .
 
+        :param size: Flags to set the size of the button.
+        :param arrangement: How the labels must be arranged.
+        :param title: Title of the button (main label), or None
+        :parma value: Value of the button (secondary label), or None
 
+        :returns: a new :class:`HildonButton`
 
-``HILDON_BUTTON_ARRANGEMENT_HORIZONTAL``
-  Labels are arranged from left to right
-
-
-``HILDON_BUTTON_ARRANGEMENT_VERTICAL``
-  Labels are arranged from top to bottom
-
-
-.. _HildonButtonStyle:
-
-.. :: enum HildonButtonStyle
-
-::
-
-  typedef enum {
-     HILDON_BUTTON_STYLE_NORMAL,
-     HILDON_BUTTON_STYLE_PICKER
-  }                                               HildonButtonStyle;
-  
-
-Describes the visual style of a :class:`HildonButton`
-
-
-
-``HILDON_BUTTON_STYLE_NORMAL``
-  The button will look like a normal :class:`HildonButton`
-
-
-``HILDON_BUTTON_STYLE_PICKER``
-  The button will look like a :class:`HildonPickerButton`
-
-
-.. _hildon-button-new:
-
-.. function:: hildon_button_new ()
-
-::
-
-  GtkWidget*          hildon_button_new                   (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement);
-
-Creates a new :class:`HildonButton` . To set text in the labels, use `hildon_button_set_title() <hildon-button-set-title>`_ and `hildon_button_set_value() <hildon-button-set-value>`_ . Alternatively, you can add a custom child widget using `gtk_container_add() <gtk-container-add>`_ .
-
-
-
-``size``:
-  Flags to set the size of the button.
-
-
-``arrangement``:
-  How the labels must be arranged.
-
-
-:returns: 
-  a new :class:`HildonButton`
-
-
-.. versionadded 2.2
-
-.. _hildon-button-new-with-text:
-
-.. function:: hildon_button_new_with_text ()
-
-::
-
-  GtkWidget*          hildon_button_new_with_text         (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement,
-                                                           const gchar *title,
-                                                           const gchar *value);
-
-Creates a new :class:`HildonButton` with two labels, ``title`` and ``value``.
-
-If you just don't want to use one of the labels, set it to None . You can set it to a non-None value at any time later using `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_value() <hildon-button-set-value>`_ .
-
-
-
-``size``:
-  Flags to set the size of the button.
-
-
-``arrangement``:
-  How the labels must be arranged.
-
-
-``title``:
-  Title of the button (main label), or None
-
-
-``value``:
-  Value of the button (secondary label), or None
-
-
-:returns: 
-  a new :class:`HildonButton`
-
-
-.. versionadded 2.2
+        .. versionadded 2.2
 
 .. _hildon-button-set-title:
 
@@ -787,7 +703,7 @@ If ``value`` is set to None , the value label will be hidden and the title label
 
   const str        hildon_button_get_title             (HildonButton *button);
 
-Fetches the text from the main label (title) of ``button``, as set by `hildon_button_set_title() <hildon-button-set-title>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
+Fetches the text from the main label (title) of ``button``, as set by :meth:`HildonButton.set_title` or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
 
 
 
@@ -809,7 +725,7 @@ Fetches the text from the main label (title) of ``button``, as set by `hildon_bu
 
   const str        hildon_button_get_value             (HildonButton *button);
 
-Fetches the text from the secondary label (value) of ``button``, as set by `hildon_button_set_value() <hildon-button-set-value>`_ or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
+Fetches the text from the secondary label (value) of ``button``, as set by :meth:`HildonButton.set_value` or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
 
 
 
@@ -969,7 +885,7 @@ Note that for this method to work properly the, child widget of ``button`` must 
                                                            gfloat xalign,
                                                            gfloat yalign);
 
-Sets the alignment of the title label. See also `hildon_button_set_alignment() <hildon-button-set-alignment>`_ to set the alignment of the whole contents of the button.
+Sets the alignment of the title label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
 
 
@@ -997,7 +913,7 @@ Sets the alignment of the title label. See also `hildon_button_set_alignment() <
                                                            gfloat xalign,
                                                            gfloat yalign);
 
-Sets the alignment of the value label. See also `hildon_button_set_alignment() <hildon-button-set-alignment>`_ to set the alignment of the whole contents of the button.
+Sets the alignment of the value label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
 
 
@@ -1025,7 +941,7 @@ Sets the alignment of the value label. See also `hildon_button_set_alignment() <
                                                            gfloat xalign,
                                                            gfloat yalign);
 
-Sets the alignment of the image. See also `hildon_button_set_alignment() <hildon-button-set-alignment>`_ to set the alignment of the whole contents of the button.
+Sets the alignment of the image. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
 
 
@@ -5052,7 +4968,7 @@ Details
 Related Functions
 =================
 
-    .. functions:: hildon_date_selector_new_with_year_range (min_year, max_year)
+    .. function:: hildon_date_selector_new_with_year_range (min_year, max_year)
 
         Creates a new :class:`DateSelector` with a specific year range. If ``min_year`` or ``max_year`` are set to -1, then the default upper or lower bound will be used, respectively.
 
