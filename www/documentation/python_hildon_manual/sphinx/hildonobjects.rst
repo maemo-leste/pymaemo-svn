@@ -5518,7 +5518,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-EditToolbar implements :class:`AtkImplementorIface` and :class:`gtk.Buildable` .
+EditToolbar implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -5534,7 +5534,7 @@ To add a :class:`EditToolbar` to a window use :meth:`Window.set_edit_toolbar` .
 ::
 
     window = hildon.StackableWindow()
-    toolbar = hildon.EditToolbar("Choose items to delete", "Delete");
+    toolbar = hildon.EditToolbar("Choose items to delete", "Delete")
     # Create more widgets here ...
 
     # Add toolbar to window
@@ -5542,13 +5542,11 @@ To add a :class:`EditToolbar` to a window use :meth:`Window.set_edit_toolbar` .
 
     # Add other widgets ...
 
-    g_signal_connect(toolbar, "button-clicked", delete_button_clicked, someparameter);
-    g_signal_connect_swapped(toolbar, "arrow-clicked", gtk.widget_destroy, window);
+    toolbar.connect("button-clicked", delete_button_clicked, someparameter)
+    toolbar.connect_swapped("arrow-clicked", gtk.widget_destroy, window)
 
-    gtk.widget_show_all(window);
-    gtk.window_fullscreen(window);
-
-
+    gtk.widget_show_all(window)
+    gtk.window_fullscreen(window)
 
 .. _EditToolbar.details:
 
@@ -5650,7 +5648,7 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-WizardDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable`.
+WizardDialog implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable`.
 
 .. _WizardDialog.description:
 
