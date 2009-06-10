@@ -1505,63 +1505,38 @@ Object Hierarchy
 Implemented Interfaces
 ======================
 
-HildonCaption implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+Caption implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 
 Description
 ===========
 
-:class:`HildonCaption` is a single-child container widget that precedes the contained widget with a field label and an optional icon. It allows grouping of several controls together. When a captioned widget has focus, both widget and caption label are displayed with active focus.
+:class:`Caption` is a single-child container widget that precedes the contained widget with a field label and an optional icon. It allows grouping of several controls together. When a captioned widget has focus, both widget and caption label are displayed with active focus.
 
 Details
 =======
 
-.. :: enum HildonCaptionStatus
+.. data:: CaptionStatus
 
-::
+    Keys to set the :class:`Caption` to be optional or mandatory.
 
-  typedef enum
-  {
-      HILDON_CAPTION_OPTIONAL = 0,
-      HILDON_CAPTION_MANDATORY
-  }                                               HildonCaptionStatus;
-  
+=========================== ========================================
+Value                       Meaming  
+=========================== ========================================
+``CAPTION_OPTIONAL``        Optional.
+``CAPTION_MANDATORY``       Mandatory.
+=========================== ========================================
 
-Keys to set the :class:`HildonCaption` to be optional or mandatory.
+.. data:: CaptionIconPosition
 
+    Keys to set the icon placement in :class:`Caption` .
 
-
-``HILDON_CAPTION_OPTIONAL``
-  Optional.
-
-
-``HILDON_CAPTION_MANDATORY``
-  Mandatory.
-
-
-.. _HildonCaptionIconPosition:
-
-.. :: enum HildonCaptionIconPosition
-
-::
-
-  typedef enum
-  {
-      HILDON_CAPTION_POSITION_LEFT = 0,
-      HILDON_CAPTION_POSITION_RIGHT
-  }                                               HildonCaptionIconPosition;
-  
-
-Keys to set the icon placement in :class:`HildonCaption` .
-
-
-
-``HILDON_CAPTION_POSITION_LEFT``
-  Show the icon on the left side.
-
-
-``HILDON_CAPTION_POSITION_RIGHT``
-  Show the icon on the right side.
+================================== ========================================
+Value                              Meaming  
+================================== ========================================
+``HILDON_CAPTION_POSITION_LEFT``   Show the icon on the left side.
+``HILDON_CAPTION_POSITION_RIGHT``  Show the icon on the right side.
+================================== ========================================
 
 
 .. _HildonCaption-struct:
