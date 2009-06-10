@@ -2989,7 +2989,7 @@ Value                                              Meaning
         :param column: a column number
         :returns:  the ``column``-th :class:`TouchSelectorColumn` in ``selector``
 
-    .. function:: set_active(column, index)
+    .. method:: set_active(column, index)
 
         Sets the active item of the :class:`TouchSelector` to ``index``. The column number is taken from ``column``.
         ``selector`` must be in TOUCH_SELECTOR_SELECTION_MODE_SINGLE
@@ -2998,7 +2998,7 @@ Value                                              Meaning
         :param index: the index of the item to select, or -1 to have no active item
 
 
-    .. function:: get_active (column)
+    .. method:: get_active (column)
     
         Returns the index of the currently active item in column number ``column``, or -1 if there's no active item.
         ``selector`` must be in TOUCH_SELECTOR_SELECTION_MODE_SINGLE
@@ -3006,7 +3006,7 @@ Value                                              Meaning
         :param column: column number
         :returns: an integer which is the index of the currently active item, or -1 if there's no active item.
 
-    .. function:: selector_get_selected(column)
+    .. method:: selector_get_selected(column)
 
         Sets ``iter`` to the currently selected node on the nth-column, if selection is set to TOUCH_SELECTOR_SINGLE or TOUCH_SELECTOR_MULTIPLE with a column different that the first one. ``iter`` may be None if you just want to test if selection has any selected items.
         This function will not work if selection is in TOUCH_SELECTOR_MULTIPLE mode and the column is the first one.
@@ -3016,12 +3016,12 @@ Value                                              Meaning
         :param column: the column number we want to get the element
         :returns: class:`GtkTreeIter` currently selected or None otherwise
 
-    .. function:: center_on_selected()
+    .. method:: center_on_selected()
 
         Ensures all the columns in a :class:`TouchSelector` show a selected item. If one of the columns is in ```TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE`` mode, that column will be scrolled to ensure the selected item that is closest to the currently visible area is shown.
 
 
-    .. function:: select_iter(column, iter, scroll_to)
+    .. method:: select_iter(column, iter, scroll_to)
 
         Sets the currently selected item in the column ``column`` to the one pointed by ``iter``, optionally smoothly scrolling to it.
 
@@ -3030,7 +3030,7 @@ Value                                              Meaning
         :param scroll_to: whether to smoothly scroll to the item
 
 
-    .. function:: unselect_iter(column, iter)
+    .. method:: unselect_iter(column, iter)
 
         Unselect the item pointed by ``iter`` in the column ``column``
 
@@ -3038,14 +3038,14 @@ Value                                              Meaning
         :param iter: the :class:`gtk.TreeIter` to be unselected
 
 
-    .. function:: unselect_all(column)
+    .. method:: unselect_all(column)
 
         Unselects all the selected items in the column ``column``.
 
         :param column: the position of the column to get the selected rows from
 
 
-    .. function:: get_selected_rows(column)
+    .. method:: get_selected_rows(column)
 
         Creates a list of :class:`gtk.TreePath` s of all selected rows in a column. Additionally, if you to plan to modify the model after calling this function, you may want to convert the returned list into a list of GtkTreeRowReferences. To do this, you can use `gtk.TreeRowReference`.
 
@@ -3055,7 +3055,7 @@ Value                                              Meaning
         :returns:  A new list containing a :class:`gtk.TreePath` for each selected row in the column ``column``.
 
 
-    .. function:: set_model(column,model)
+    .. method:: set_model(column,model)
 
         Sets the :class:`gtk.TreeModel` for a particular column in ``model``.
 
@@ -3063,28 +3063,28 @@ Value                                              Meaning
         :param model: a :class:`GtkTreeModel`
 
 
-    .. function:: get_model(column)
+    .. method:: get_model(column)
 
         Gets the model of a column of ``selector``.
 
         :param column: the position of the column in ``selector``
         :returns:  the :class:`gtk.TreeModel` for the column ``column`` of ``selector``.
 
-    .. function:: get_current_text()
+    .. method:: get_current_text()
 
         Returns a string representing the currently selected items for each column of ``selector``. See :meth:`set_print_func`.
     
         :returns:  a newly allocated string.
 
 
-    .. function:: set_print_func(func)
+    .. method:: set_print_func(func)
 
         Sets the function to be used by :meth:`get_current_text` to produce a text representation of the currently selected items in ``selector``. The default function will return a concatenation of comma separated items selected in each column in ``selector``. Use this to override this method if you need a particular representation for your application.
 
         :param func: a callable object
 
 
-    .. function:: get_print_func()
+    .. method:: get_print_func()
 
         Gets the PrintFunc currently used. See :meth:`set_print_func`.
 
@@ -3092,7 +3092,7 @@ Value                                              Meaning
 
 
 
-    .. function:: has_multiple_selection()
+    .. method:: has_multiple_selection()
 
         Determines whether ``selector`` is complex enough to actually require an extra selection step than only picking an item. This is normally True if ``selector`` has multiple columns, multiple selection, or when it is a more complex widget, like :class:`TouchSelectorEntry` .
         This information is useful for widgets containing a :class:`TouchSelector` , like :class:`PickerDialog` , that could need a "Done" button, in case that its internal :class:`TouchSelector` has multiple columns, for instance.
