@@ -1484,17 +1484,14 @@ See Also
 
 :class:`HildonPickerButton` :class:`HildonDateButton`
 
-HildonCaption
-*************
-
-.. _HildonCaption.object-hierarchy:
+Caption
+*******
 
 Object Hierarchy
 ================
 
 ::
 
-  
     GObject
      +----GInitiallyUnowned
            +----GtkObject
@@ -1505,67 +1502,19 @@ Object Hierarchy
                                          +----HildonCaption
   
 
-.. _HildonCaption.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
 HildonCaption implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
-.. _HildonCaption.properties:
-
-Properties
-==========
-
-::
-
-  
-    icon                     GtkWidget*            : Read / Write
-    icon-position            HildonCaptionIconPosition  : Read / Write
-    label                    str                : Read / Write
-    markup                   str                : Write
-    separator                str                : Read / Write
-    size-group               GtkSizeGroup*         : Read / Write
-    status                   HildonCaptionStatus   : Read / Write
-  
-
-.. _HildonCaption.child-properties:
-
-Child Properties
-================
-
-::
-
-  
-    expand                   bool              : Read / Write
-  
-
-.. _HildonCaption.signals:
-
-Signals
-=======
-
-::
-
-  
-    activate                                       : Run First / Action
-  
-
-.. _HildonCaption.description:
 
 Description
 ===========
 
 :class:`HildonCaption` is a single-child container widget that precedes the contained widget with a field label and an optional icon. It allows grouping of several controls together. When a captioned widget has focus, both widget and caption label are displayed with active focus.
 
-
-
-.. _HildonCaption.details:
-
 Details
 =======
-
-.. _HildonCaptionStatus:
 
 .. :: enum HildonCaptionStatus
 
@@ -1625,179 +1574,62 @@ Keys to set the icon placement in :class:`HildonCaption` .
 
 
 
-.. _hildon-caption-new:
+    .. method:: __init__ (group, value, control, icon, flag)
 
-.. function:: hildon_caption_new ()
+        Creates a new instance of hildon_caption widget, with a specific control and image. Note: Clicking on a focused caption will trigger the activate signal. The default behaviour for the caption's activate signal is to call gtk.Widget.activate on it's control.
 
-::
+        :param group: a :class:`GtkSizeGroup` for controlling the size of related captions, Can be None
 
-  GtkWidget*          hildon_caption_new                  (GtkSizeGroup *group,
-                                                           const gchar *value,
-                                                           GtkWidget *control,
-                                                           GtkWidget *icon,
-                                                           HildonCaptionStatus flag);
+        :param value: the caption text to accompany the text entry. The widget makes a copy of this text.
 
-Creates a new instance of hildon_caption widget, with a specific control and image. Note: Clicking on a focused caption will trigger the activate signal. The default behaviour for the caption's activate signal is to call gtk_widget_activate on it's control.
+        :param control: the control that is to be captioned
 
+        :param icon: an icon to accompany the label - can be None in which case no icon is displayed
 
+        :param flag: indicates whether this captioned control is mandatory or optional
 
-``group``:
-  a :class:`GtkSizeGroup` for controlling the size of related captions, Can be NULL
+        :returns: a :class:`GtkWidget` pointer of Caption
 
+    .. method:: get_size_group ()
 
-``value``:
-  the caption text to accompany the text entry. The widget makes a copy of this text.
+        Query given captioned control for the :class:`GtkSizeGroup` assigned to it.
 
+        :returns: a :class:`GtkSizeGroup`
 
-``control``:
-  the control that is to be captioned
+    .. method:: set_size_group (new_group)
 
+        Sets a :class:`GtkSizeGroup` of a given captioned control.
 
-``icon``:
-  an icon to accompany the label - can be NULL in which case no icon is displayed
+        :param new_group: a :class:`GtkSizeGroup`
 
+    .. method:: is_mandatory ()
 
-``flag``:
-  indicates whether this captioned control is mandatory or optional
+        Query :class:`HildonCaption` whether this captioned control is a mandatory one.
 
+        :returns: is this captioned control a mandatory one?
 
-:returns: 
-  a :class:`gtk.Widget` pointer of Caption
+    .. method:: set_status (flag)
 
+        Sets :class:`HildonCaption` status.
 
-.. _hildon-caption-get-size-group:
+        :param flag: one of the values from :class:`HildonCaptionStatus`
 
-.. function:: hildon_caption_get_size_group ()
+    .. method:: get_status ()
 
-::
+        Gets :class:`HildonCaption` status.
 
-  GtkSizeGroup*       hildon_caption_get_size_group       (const HildonCaption *caption);
+        :returns: one of the values from :class:`HildonCaptionStatus`
 
-Query given captioned control for the :class:`GtkSizeGroup` assigned to it.
 
+    .. method:: set_icon_position (pos)
 
+        Sets :class:`HildonCaption` icon position.
 
-``caption``:
-  a :class:`HildonCaption`
+        :param pos: one of the values from :class:`HildonCaptionIconPosition`
 
+    .. method:: get_icon_position ()
 
-:returns: 
-  a :class:`GtkSizeGroup`
-
-
-.. _hildon-caption-set-size-group:
-
-.. function:: hildon_caption_set_size_group ()
-
-::
-
-  void                hildon_caption_set_size_group       (const HildonCaption *caption,
-                                                           GtkSizeGroup *new_group);
-
-Sets a :class:`GtkSizeGroup` of a given captioned control.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``new_group``:
-  a :class:`GtkSizeGroup`
-
-
-.. _hildon-caption-is-mandatory:
-
-.. function:: hildon_caption_is_mandatory ()
-
-::
-
-  bool            hildon_caption_is_mandatory         (const HildonCaption *caption);
-
-Query :class:`HildonCaption` whether this captioned control is a mandatory one.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-:returns: 
-  is this captioned control a mandatory one?
-
-
-.. _hildon-caption-set-status:
-
-.. function:: hildon_caption_set_status ()
-
-::
-
-  void                hildon_caption_set_status           (HildonCaption *caption,
-                                                           HildonCaptionStatus flag);
-
-Sets :class:`HildonCaption` status.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``flag``:
-  one of the values from :class:`HildonCaptionStatus`
-
-
-.. _hildon-caption-get-status:
-
-.. function:: hildon_caption_get_status ()
-
-::
-
-  HildonCaptionStatus hildon_caption_get_status           (const HildonCaption *caption);
-
-Gets :class:`HildonCaption` status.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-:returns: 
-  one of the values from :class:`HildonCaptionStatus`
-
-
-.. _hildon-caption-set-icon-position:
-
-.. function:: hildon_caption_set_icon_position ()
-
-::
-
-  void                hildon_caption_set_icon_position    (HildonCaption *caption,
-                                                           HildonCaptionIconPosition pos);
-
-Sets :class:`HildonCaption` icon position.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``pos``:
-  one of the values from :class:`HildonCaptionIconPosition`
-
-
-.. _hildon-caption-get-icon-position:
-
-.. function:: hildon_caption_get_icon_position ()
-
-::
-
-  HildonCaptionIconPosition hildon_caption_get_icon_position
-                                                          (const HildonCaption *caption);
-
-Gets :class:`HildonCaption` icon position.
+        Gets :class:`HildonCaption` icon position.
 
 
 
