@@ -4622,15 +4622,15 @@ Details
 Property Details
 ================
 
-============================ =========== ============ ============== ===========================================================
+============================ ============ ============ ============== ==========================================================
 Name                         type         Access       Default        Meaning
 ============================ ============ ============ ============== ==========================================================
 ``text-column``              int          Read / Write -1             A column in the data source model to get the strings from.
+============================ ============ ============ ============== ==========================================================
 
-HildonTouchSelectorEntry
-************************
 
-.. _HildonTouchSelectorEntry.object-hierarchy:
+SelectorEntry
+*************
 
 Object Hierarchy
 ================
@@ -4649,243 +4649,101 @@ Object Hierarchy
                                                +----HildonTouchSelectorEntry
   
 
-.. _HildonTouchSelectorEntry.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonTouchSelectorEntry implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonTouchSelectorEntry.properties:
-
-Properties
-==========
-
-::
-
-  
-    text-column              int                  : Read / Write
-  
-
-.. _HildonTouchSelectorEntry.description:
+SelectorEntry implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 Description
 ===========
 
-:class:`HildonTouchSelectorEntry` is a selector widget with a text entry, similar in behaviour to :class:`GtkComboBoxEntry` , that allows user to select an item from a predefined list or to enter a different one in a :class:`HildonEntry` . Items can also be searched and selected by typing in the entry. For more specific use cases, the :class:`HildonEntry` can be accessed directly with `hildon_touch_selector_get_entry() <hildon-touch-selector-get-entry>`_ .
+:class:`SelectorEntry` is a selector widget with a text entry, similar in behaviour to :class:`gtk.ComboBoxEntry` , that allows user to select an item from a predefined list or to enter a different one in a :class:`HildonEntry` . Items can also be searched and selected by typing in the entry. For more specific use cases, the :class:`HildonEntry` can be accessed directly with `hildon_touch_selector_get_entry() <hildon-touch-selector-get-entry>`_ .
 
-The main difference between the :class:`GtkTreeModel` used by :class:`TouchSelector` and :class:`HildonTouchSelectorEntry` , is that the latter must always include a text column. You should set it with `hildon_touch_selector_entry_set_text_column() <hildon-touch-selector-entry-set-text-column>`_ .
+The main difference between the :class:`gtk.TreeModel` used by :class:`HildonTouchSelector` and :class:`TouchSelectorEntry` , is that the latter must always include a text column. You should set it with :meth:`touch_selector_entry_set_text_column`.
 
-Normally, you would use :class:`HildonTouchSelectorEntry` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
+Normally, you would use :class:`TouchSelectorEntry` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`PickerButton` .
 
-If you only need a text only, one column selector, you can create it with `hildon_touch_selector_entry_new_text() <hildon-touch-selector-entry-new-text>`_ and populate it with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
+If you only need a text only, one column selector, you can create it with :func:`hildon_touch_selector_entry_new_text` and populate it with :meth:`append_text`, :meth:`prepend_text()`, and :meth:`insert_text`.
 
 
-
-.. _HildonTouchSelectorEntry.details:
 
 Details
 =======
 
-.. _HildonTouchSelectorEntry-struct:
+.. class:: TouchSelectorEntry
 
-.. class:: HildonTouchSelectorEntry
+    .. method:: __init__ ()
 
-::
+        Creates a :class:`TouchSelectorEntry`
 
-  typedef struct _HildonTouchSelectorEntry HildonTouchSelectorEntry;
+        :returns:  A new :class:`TouchSelectorEntry`
 
 
+    .. method:: set_text_column(text_column)
 
-.. _hildon-touch-selector-entry-new:
+        Sets the model column which touch selector box should use to get strings from to be ``text_column``.
 
-.. function:: hildon_touch_selector_entry_new ()
+        :param text_column: A column in model to get the strings from
 
-::
 
-  GtkWidget*          hildon_touch_selector_entry_new     (void);
+    .. method:: get_text_column()
 
-Creates a :class:`HildonTouchSelectorEntry`
+        Gets the text column that ``selector`` is using as a text column.
 
+        :returns:  the number of the column used as a text column.
 
 
-:returns: 
-  A new :class:`HildonTouchSelectorEntry`
+    .. method:: set_input_mode(input_mode)
 
+        Sets the input mode to be used in the :class:`gtk.Entry` in ``selector``. See :meth:`set_input_mode` for details.
+        It must be noted that not all input modes are available for the entry in ``selector``. In particular, ``GTK_INPUT_MODE_MULTILINE``, ``GTK_INPUT_MODE_INVISIBLE``, ``GTK_INPUT_MODE_DICTIONARY`` are disabled, since these are irrelevant for :class:`TouchSelectorEntry` .
 
-.. versionadded 2.2
+        :param input_mode: :class:`GtkInputMode` mask
 
-.. _hildon-touch-selector-entry-new-text:
 
-.. function:: hildon_touch_selector_entry_new_text ()
+    .. method:: get_input_mode()
+        Gets the input mode used in the :class:`gtk.Entry` in ``selector``. See :meth:`get_input_mode` for details.
 
-::
 
-  GtkWidget*          hildon_touch_selector_entry_new_text
-                                                          (void);
+        :returns: a mask of :class:`GtkInputMode`
 
-Creates a :class:`HildonTouchSelectorEntry` with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
 
+    .. method:: get_entry()
 
-:returns: 
-  A new :class:`HildonTouchSelectorEntry`
+        Provides access to the :class:`Entry` in ``selector``. Use to programmatically change the contents in entry or modify its behavior.
 
+        :returns:  a :class:`Entry` .
 
-.. versionadded 2.2
 
-.. _hildon-touch-selector-entry-set-text-column:
+Related Functions
+=================
 
-.. function:: hildon_touch_selector_entry_set_text_column ()
+.. function:: hildon_touch_selector_entry_new_text()
 
-::
+    Creates a :class:`TouchSelectorEntry` with a single text column that can be populated conveniently through :meth:`append_text`, :meth:`prepend_text()`, :meth:`insert_text()`.
 
-  void                hildon_touch_selector_entry_set_text_column
-                                                          (HildonTouchSelectorEntry *selector,
-                                                           int text_column);
+    :returns: A new :class:`TouchSelectorEntry`
 
-Sets the model column which touch selector box should use to get strings from to be ``text_column``.
-
-
-
-``selector``:
-  A :class:`HildonTouchSelectorEntry`
-
-
-``text_column``:
-  A column in model to get the strings from
-
-
-.. versionadded 2.2
-
-.. _hildon-touch-selector-entry-get-text-column:
-
-.. function:: hildon_touch_selector_entry_get_text_column ()
-
-::
-
-  int                hildon_touch_selector_entry_get_text_column
-                                                          (HildonTouchSelectorEntry *selector);
-
-Gets the text column that ``selector`` is using as a text column.
-
-
-
-``selector``:
-  A :class:`HildonTouchSelectorEntry`
-
-
-:returns: 
-  the number of the column used as a text column.
-
-
-.. versionadded 2.2
-
-.. _hildon-touch-selector-entry-set-input-mode:
-
-.. function:: hildon_touch_selector_entry_set_input_mode ()
-
-::
-
-  void                hildon_touch_selector_entry_set_input_mode
-                                                          (HildonTouchSelectorEntry *selector,
-                                                           HildonGtkInputMode input_mode);
-
-Sets the input mode to be used in the :class:`GtkEntry` in ``selector``. See `hildon_gtk_entry_set_input_mode() <hildon-gtk-entry-set-input-mode>`_ for details.
-
-It must be noted that not all input modes are available for the entry in ``selector``. In particular, ```HILDON_GTK_INPUT_MODE_MULTILINE`` <HILDON-GTK-INPUT-MODE-MULTILINE:CAPS>`_ , ```HILDON_GTK_INPUT_MODE_INVISIBLE`` <HILDON-GTK-INPUT-MODE-INVISIBLE:CAPS>`_ , ```HILDON_GTK_INPUT_MODE_DICTIONARY`` <HILDON-GTK-INPUT-MODE-DICTIONARY:CAPS>`_ are disabled, since these are irrelevant for :class:`HildonTouchSelectorEntry` .
-
-
-
-``selector``:
-  a :class:`HildonTouchSelectorEntry`
-
-
-``input_mode``:
-  :class:`HildonGtkInputMode` mask
-
-
-.. versionadded 2.2
-
-.. _hildon-touch-selector-entry-get-input-mode:
-
-.. function:: hildon_touch_selector_entry_get_input_mode ()
-
-::
-
-  HildonGtkInputMode  hildon_touch_selector_entry_get_input_mode
-                                                          (HildonTouchSelectorEntry *selector);
-
-Gets the input mode used in the :class:`GtkEntry` in ``selector``. See `hildon_gtk_entry_get_input_mode() <hildon-gtk-entry-get-input-mode>`_ for details.
-
-
-
-``selector``:
-  a :class:`HildonTouchSelectorEntry`
-
-
-:returns: 
-  a mask of :class:`HildonGtkInputMode`
-
-
-.. versionadded 2.2
-
-.. _hildon-touch-selector-entry-get-entry:
-
-.. function:: hildon_touch_selector_entry_get_entry ()
-
-::
-
-  HildonEntry*        hildon_touch_selector_entry_get_entry
-                                                          (HildonTouchSelectorEntry *selector);
-
-Provides access to the :class:`HildonEntry` in ``selector``. Use to programmatically change the contents in entry or modify its behavior.
-
-
-
-``selector``:
-  a :class:`HildonTouchSelectorEntry` .
-
-
-:returns: 
-  a :class:`HildonEntry` .
-
-
-.. versionadded 2.2
-
-.. _HildonTouchSelectorEntry.property-details:
 
 Property Details
 ================
 
-.. _HildonTouchSelectorEntry--text-column:
-
-The ``text-column`` property
-
-::
-
-    text-column              int                  : Read / Write
-
-
-
-
-
-Allowed values: = -1
-
-Default value: -1
-
-.. versionadded 2.2
-
-.. _HildonTouchSelectorEntry.see-also:
+================ =========== ============= =============== ===========================================
+Name             type        Access        Default         Meaning
+================ =========== ============= =============== ===========================================
+``text-column``  int         Read / Write  -1                  
+================ =========== ============= =============== ===========================================
 
 See Also
 ========
 
-:class:`TouchSelector` :class:`HildonPickerButton` .. _HildonDateSelector:
+:class:`TouchSelector` :class:`PickerButton`
 
 
 DateSelector
-******************
+************
 
 Object Hierarchy
 ================
