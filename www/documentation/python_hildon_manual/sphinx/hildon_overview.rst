@@ -1,22 +1,14 @@
-Hildon Overview
-###############
+Python Hildon Overview
+######################
 
-Hildon Widgets is a set of widgets present in the Hildon framework. Its aim is to create finger-friendly graphical interfaces specially designed for use in mobile devices.
+Hildon Widgets is a set of widgets present in the Hildon framework. Its aim is to create finger-friendly graphical interfaces specially designed for use in mobile devices. Python Hildon is a language wrapper around the Hildon library that allows programmers to use it on the Python language.
 
 This set of widgets is based on GTK+ and were first developed for the Maemo platform, used by Nokia Internet Tablets.
 
-Hildon depends on the following libraries:
+Python Hildon depends on the following Python modules:
 
-GTK+
-  GTK+ is a library for creating graphical user interfaces.
-
-
-GConf
-  GConf is a system for storing application preferences. It is intended for user preferences; not configuration of something like Apache, or arbitrary data storage.
-
-
-libcanberra
-  libcanberra is an implementation of the XDG Sound Theme and Name Specifications, for generating event sounds on free desktops, such as GNOME.
+PyGtk
+  PyGtk is the Python binding for GTK+ library used for creating graphical user interfaces.
 
 Table of Contents
 -----------------
