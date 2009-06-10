@@ -1486,10 +1486,10 @@ The ``activate`` signal
     :param user_data: user data set when the signal handler was connected.
 
 
-HildonBanner
-************
+Banner
+******
 
-.. _HildonBanner.object-hierarchy:
+.. _Banner.object-hierarchy:
 
 Object Hierarchy
 ================
@@ -1507,57 +1507,32 @@ Object Hierarchy
                                          +----HildonBanner
   
 
-.. _HildonBanner.implemented-interfaces:
+.. _Banner.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonBanner implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+Banner implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
-.. _HildonBanner.properties:
-
-Properties
-==========
-
-::
-
-  
-    is-timed                 bool              : Read / Write / Construct Only
-    parent-window            GtkWindow*            : Read / Write / Construct Only
-    timeout                  int                 : Read / Write / Construct Only
-  
-
-.. _HildonBanner.description:
+.. _Banner.description:
 
 Description
 ===========
 
-:class:`HildonBanner` is a small, pop-up window that can be used to display a short, timed notification or information to the user. It can communicate that a task has been finished or that the application state has changed.
+:class:`Banner` is a small, pop-up window that can be used to display a short, timed notification or information to the user. It can communicate that a task has been finished or that the application state has changed.
 
 Hildon provides convenient funtions to create and show banners. To create and show information banners you can use `hildon_banner_show_information() <hildon-banner-show-information>`_ , `hildon_banner_show_informationf() <hildon-banner-show-informationf>`_ or `hildon_banner_show_information_with_markup() <hildon-banner-show-information-with-markup>`_ .
 
 Two more kinds of banners are maintained for backward compatibility but are no longer recommended in Hildon 2.2. These are the animated banner (created with `hildon_banner_show_animation() <hildon-banner-show-animation>`_ ) and the progress banner (created with `hildon_banner_show_progress() <hildon-banner-show-progress>`_ ). See `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ for the preferred way of showing progress notifications in Hildon 2.2.
 
-Information banners dissapear automatically after a certain period. This is stored in the `"timeout" <HildonBanner--timeout>`_ property (in miliseconds), and can be changed using `hildon_banner_set_timeout() <hildon-banner-set-timeout>`_ .
+Information banners dissapear automatically after a certain period. This is stored in the `"timeout" <Banner--timeout>`_ property (in miliseconds), and can be changed using `set_timeout() <banner-set-timeout>`_ .
 
-Note that :class:`HildonBanner` s should only be used to display non-critical pieces of information.
+Note that :class:`Banner` s should only be used to display non-critical pieces of information.
 
-
-
-.. _HildonBanner.details:
+.. _Banner.details:
 
 Details
 =======
-
-.. _HildonBanner-struct:
-
-.. class:: HildonBanner
-
-::
-
-  typedef struct _HildonBanner HildonBanner;
-
-
 
 .. _hildon-banner-show-information:
 
@@ -1718,189 +1693,78 @@ Shows progress notification. See `hildon_banner_show_animation <hildon-banner-sh
 
 
 :returns: 
-  a :class:`HildonBanner` widget. You must call `gtk_widget_destroy <gtk-widget-destroy>`_ once you are done with the banner.
+  a :class:`Banner` widget. You must call `gtk.Widget.destroy <gtk-widget-destroy>`_ once you are done with the banner.
 
 
-.. _hildon-banner-set-text:
 
-.. function:: hildon_banner_set_text ()
 
-::
+.. class:: Banner
+    .. method:: __init__ ()
+        Creates a new :class:`Banner` .
+        :returns: A :class:`Banner`
 
-  void                hildon_banner_set_text              (HildonBanner *self,
-                                                           const gchar *text);
+.. _banner-set-text:
+    .. method:: set_text (text)
+        Sets the text that is displayed in the banner.
 
-Sets the text that is displayed in the banner.
+        :param text: a new text to display in banner
 
+.. _banner-set-markup:
+    .. method:: set_markup (markup)
+        Sets the text with markup that is displayed in the banner.
 
+        :param markup: a new text with Pango markup to display in the banner
 
-``self``:
-  a :class:`HildonBanner` widget
+.. _banner-set-fraction:
+    .. method:: set_fraction (fraction)
+        The fraction is the completion of progressbar, the scale is from 0.0 to 1.0. Sets the amount of fraction the progressbar has.
 
+        Note that this method only has effect if the banner was created with `hildon_banner_show_progress() <hildon-banner-show-progress>`_
 
-``text``:
-  a new text to display in banner
+        :param fraction: a double
 
+.. _banner-set-icon:
+    .. method:: set_icon (icon_name)
+        Sets the icon to be used in the banner.
 
-.. _hildon-banner-set-markup:
+        :param icon_name: the name of icon to use. Can be None for default icon
 
-.. function:: hildon_banner_set_markup ()
+.. warning:: ``Banner.set_icon`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
 
-::
+.. _banner-set-icon-from-file:
+    .. method:: set_icon_from_file (icon_file)
+        Sets the icon from its filename to be used in the banner.
 
-  void                hildon_banner_set_markup            (HildonBanner *self,
-                                                           const gchar *markup);
+        :param icon_file: the filename of icon to use. Can be None for default icon.
 
-Sets the text with markup that is displayed in the banner.
+.. warning:: ``Banner.set_icon_from_file`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
 
+.. _banner-set-timeout:
+    .. method:: set_timeout (timeout)
+        Sets the timeout on the banner. After the given amount of miliseconds has elapsed the banner will go away. Note that settings this only makes sense on the banners that are timed and that have not been yet displayed on the screen.
 
+        :param timeout: timeout to set in miliseconds.
 
-``self``:
-  a :class:`HildonBanner` widget
 
+Note that this method only has effect if the object is an information banner (created using `hildon_banner_show_information() <hildon-banner-show-information>`_ and friends).
 
-``markup``:
-  a new text with Pango markup to display in the banner
-
-
-.. _hildon-banner-set-fraction:
-
-.. function:: hildon_banner_set_fraction ()
-
-::
-
-  void                hildon_banner_set_fraction          (HildonBanner *self,
-                                                           gdouble fraction);
-
-The fraction is the completion of progressbar, the scale is from 0.0 to 1.0. Sets the amount of fraction the progressbar has.
-
-Note that this method only has effect if ``self`` was created with `hildon_banner_show_progress() <hildon-banner-show-progress>`_
-
-
-
-``self``:
-  a :class:`HildonBanner` widget
-
-
-``fraction``:
-  `gdouble <gdouble>`_
-
-
-.. _hildon-banner-set-icon:
-
-.. function:: hildon_banner_set_icon ()
-
-::
-
-  void                hildon_banner_set_icon              (HildonBanner *self,
-                                                           const gchar *icon_name);
-
-.. warning:: ``hildon_banner_set_icon`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
-
-Sets the icon to be used in the banner.
-
-
-
-``self``:
-  a :class:`HildonBanner` widget
-
-
-``icon_name``:
-  the name of icon to use. Can be None for default icon
-
-
-.. _hildon-banner-set-icon-from-file:
-
-.. function:: hildon_banner_set_icon_from_file ()
-
-::
-
-  void                hildon_banner_set_icon_from_file    (HildonBanner *self,
-                                                           const gchar *icon_file);
-
-.. warning:: ``hildon_banner_set_icon_from_file`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
-
-Sets the icon from its filename to be used in the banner.
-
-
-
-``self``:
-  a :class:`HildonBanner` widget
-
-
-``icon_file``:
-  the filename of icon to use. Can be None for default icon
-
-
-.. _hildon-banner-set-timeout:
-
-.. function:: hildon_banner_set_timeout ()
-
-::
-
-  void                hildon_banner_set_timeout           (HildonBanner *self,
-                                                           int timeout);
-
-Sets the timeout on the banner. After the given amount of miliseconds has elapsed the banner will go away. Note that settings this only makes sense on the banners that are timed and that have not been yet displayed on the screen.
-
-Note that this method only has effect if ``self`` is an information banner (created using `hildon_banner_show_information() <hildon-banner-show-information>`_ and friends).
-
-
-
-``self``:
-  a :class:`HildonBanner` widget
-
-
-``timeout``:
-  timeout to set in miliseconds.
-
-
-.. _HildonBanner.property-details:
+.. _Banner.property-details:
 
 Property Details
 ================
 
-.. _HildonBanner--is-timed:
-
-The ``is-timed`` property
-
-::
-
-    is-timed                 bool              : Read / Write / Construct Only
-
-Whether the banner is timed and goes away automatically.
-
-
-
-Default value: FALSE
-
-.. _HildonBanner--parent-window:
-
-The ``parent-window`` property
-
-::
-
-    parent-window            GtkWindow*            : Read / Write / Construct Only
-
-The window for which the banner will be singleton.
-
-
-
-.. _HildonBanner--timeout:
-
-The ``timeout`` property
-
-::
-
-    timeout                  int                 : Read / Write / Construct Only
-
-The time before making the banner banner go away. This needs to be adjusted before the banner is mapped to the screen.
-
-
-
-Allowed values: = 10000
-
-Default value: 3000
+============================ ========== ============================= ======= ========================================
+Name                         type       Access                        Default Meaning
+============================ ========== ============================= ======= ========================================
+``is-timed``                 bool       Read / Write / Construct Only False   Whether the banner is timed and goes
+                                                                              away automatically.
+``parent-window``            gtk.Window Read / Write / Construct Only         The window for which the banner will be
+                                                                              singleton.
+``timeout``                  int        Read / Write / Construct Only 3000    The time before making the banner banner
+                                                                              go away. This needs to be adjusted
+                                                                              before the banner is mapped to the
+                                                                              screen. Allowed values: 10000
+============================ ========== ============================= ======= ========================================
 
 Note
 ****
@@ -1938,19 +1802,18 @@ To create a note with a text, a progress bar and cancel button, :func:`hildon_no
 
 ::
 
-    bool show_confirmation_note (gtk.Window *parent) {
-        int retcode; GtkWidget *note;
-        note = hildon_note_new_confirmation (parent, "Confirmation message...");
-        retcode = gtk_dialog_run (GTK_DIALOG (note));
-        gtk_widget_destroy (note);
-        if (retcode == GTK_RESPONSE_OK) {
-            g_debug ("User pressed 'OK' button'");
-            return TRUE;
-        } else {
-            g_debug ("User pressed 'Cancel' button");
-            return FALSE;
-        }
-    }
+  def show_confirmation_note(parent):
+      note = hildon.hildon_note_new_confirmation(parent, "Confirmation message...")
+  
+      retcode = gtk.Dialog.run(note)
+  
+      if retcode == gtk.RESPONSE_OK:
+          print "User pressed 'OK' button'"
+          return True
+      else:
+          print "User pressed 'Cancel' button"
+          return False
+
 
 Details
 =======
