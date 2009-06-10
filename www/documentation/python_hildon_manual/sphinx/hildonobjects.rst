@@ -1168,16 +1168,13 @@ The ``toggled`` signal
     .. versionadded 2.2
 
 
-HildonPickerButton
-******************
-
-.. _HildonPickerButton.object-hierarchy:
+PickerButton
+************
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -1192,307 +1189,127 @@ Object Hierarchy
                                                      +----HildonTimeButton
   
 
-.. _HildonPickerButton.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
 HildonPickerButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonPickerButton.properties:
-
-Properties
-==========
-
-::
-
-  
-    done-button-text         str                : Read / Write
-    touch-selector           HildonTouchSelector*  : Read / Write
-  
-
-.. _HildonPickerButton.signals:
-
-Signals
-=======
-
-::
-
-  
-    value-changed                                  : Run Last / Action
-  
-
-.. _HildonPickerButton.description:
 
 Description
 ===========
 
 :class:`HildonPickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`PickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
 
-You should create your own :class:`TouchSelector` at convenience and set it to the :class:`HildonPickerButton` with `hildon_picker_button_set_selector() <hildon-picker-button-set-selector>`_ . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
+You should create your own :class:`TouchSelector` at convenience and set it to the :class:`HildonPickerButton` with :meth:`hildon.PickerButton.set_selector` . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
 
-:: GtkWidget * create_selector (void) { GtkWidget *selector; selector = hildon_touch_selector_new_text (); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "America"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Europe"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Asia"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Africa"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Australia"); hildon_touch_selector_set_active (HILDON_TOUCH_SELECTOR (selector), 0, 2); return selector; } GtkWidget * create_button (HildonTouchSelector *selector) { GtkWidget *button; button = hildon_picker_button_new (HILDON_SIZE_AUTO, HILDON_BUTTON_ARRANGEMENT_VERTICAL); hildon_button_set_title (HILDON_BUTTON (button), "Continent"); hildon_picker_button_set_selector (HILDON_PICKER_BUTTON (button), HILDON_TOUCH_SELECTOR (selector)); return button; }
-
-
-
-.. _HildonPickerButton.details:
 
 Details
 =======
 
-.. _HildonPickerButton-struct:
-
 .. class:: HildonPickerButton
 
-::
+    .. method:: __init__ (size, arrangement)
 
-  typedef struct _HildonPickerButton HildonPickerButton;
+        Creates a new :class:`HildonPickerButton` . See :meth:`hildon.Button` for details on the parameters.
 
+        :param size: One of :class:`HildonSizeType` , specifying the size of the new button.
 
+        :param arrangement: one of :class:`HildonButtonArrangement` , specifying the placement of the labels.
 
-.. _hildon-picker-button-new:
+        :returns: a newly created :class:`HildonPickerButton`
 
-.. function:: hildon_picker_button_new ()
+        .. versionadded 2.2
 
-::
+    .. method:: set_selector (selector)
 
-  GtkWidget*          hildon_picker_button_new            (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement);
+        Sets ``selector`` as the :class:`TouchSelector` to be shown in the :class:`PickerDialog` that ``button`` brings up.
 
-Creates a new :class:`HildonPickerButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+        :param selector: a :class:`TouchSelector`
 
+        .. versionadded 2.2
 
+    .. method:: get_selector ()
 
-``size``:
-  One of :class:`HildonSizeType` , specifying the size of the new button.
+        Retrieves the :class:`TouchSelector` associated to ``button``.
 
+        :returns: a :class:`TouchSelector`
 
-``arrangement``:
-  one of :class:`HildonButtonArrangement` , specifying the placement of the labels.
+        .. versionadded 2.2
 
+    .. method:: set_active (index)
 
-:returns: 
-  a newly created :class:`HildonPickerButton`
+        Sets the active item of the :class:`TouchSelector` associated to ``button`` to ``index``. If the selector has several columns, only the first one is used.
 
+        :param index: the index of the item to select, or -1 to have no active item
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
-.. _hildon-picker-button-set-selector:
+    .. method:: get_active ()
 
-.. function:: hildon_picker_button_set_selector ()
+        Returns the index of the currently active item, or -1 if there's no active item. If the selector has several columns, only the first one is used.
 
-::
+        :returns: an integer which is the index of the currently active item, or -1 if there's no active item.
 
-  void                hildon_picker_button_set_selector   (HildonPickerButton *button,
-                                                           HildonTouchSelector *selector);
+        .. versionadded 2.2
 
-Sets ``selector`` as the :class:`TouchSelector` to be shown in the :class:`PickerDialog` that ``button`` brings up.
+    .. method:: get_done_button_text ()
 
+        Gets the text used in the :class:`PickerDialog` that is launched by ``button``. If no custom text is set, then None is returned.
 
+        :returns: the custom string to be used, or None if the default "done-button-text" is to be used.
+        .. versionadded 2.2
 
-``button``:
-  a :class:`HildonPickerButton`
+    .. method:: set_done_button_text (done_button_text)
 
+        Sets a custom string to be used in the "done" button in :class:`PickerDialog` . If unset, the default "done-button-text" property value will be used.
 
-``selector``:
-  a :class:`TouchSelector`
+        :param done_button_text: a string
 
+        .. versionadded 2.2
 
-.. versionadded 2.2
+    .. method:: value_changed ()
 
-.. _hildon-picker-button-get-selector:
+        Emits a "value-changed" signal to the given :class:`HildonPickerButton`
 
-.. function:: hildon_picker_button_get_selector ()
-
-::
-
-  HildonTouchSelector* hildon_picker_button_get_selector  (HildonPickerButton *button);
-
-Retrieves the :class:`TouchSelector` associated to ``button``.
-
-
-
-``button``:
-  a :class:`HildonPickerButton`
-
-
-:returns: 
-  a :class:`TouchSelector`
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-button-set-active:
-
-.. function:: hildon_picker_button_set_active ()
-
-::
-
-  void                hildon_picker_button_set_active     (HildonPickerButton *button,
-                                                           int index);
-
-Sets the active item of the :class:`TouchSelector` associated to ``button`` to ``index``. If the selector has several columns, only the first one is used.
-
-
-
-``button``:
-  a :class:`HildonPickerButton`
-
-
-``index``:
-  the index of the item to select, or -1 to have no active item
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-button-get-active:
-
-.. function:: hildon_picker_button_get_active ()
-
-::
-
-  int                hildon_picker_button_get_active     (HildonPickerButton *button);
-
-Returns the index of the currently active item, or -1 if there's no active item. If the selector has several columns, only the first one is used.
-
-
-
-``button``:
-  a :class:`HildonPickerButton`
-
-
-:returns: 
-  an integer which is the index of the currently active item, or -1 if there's no active item.
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-button-get-done-button-text:
-
-.. function:: hildon_picker_button_get_done_button_text ()
-
-::
-
-  const str        hildon_picker_button_get_done_button_text
-                                                          (HildonPickerButton *button);
-
-Gets the text used in the :class:`PickerDialog` that is launched by ``button``. If no custom text is set, then None is returned.
-
-
-
-``button``:
-  a :class:`HildonPickerButton`
-
-
-:returns: 
-  the custom string to be used, or None if the default `"done-button-text" <PickerDialog-done-button-text>`_ is to be used.
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-button-set-done-button-text:
-
-.. function:: hildon_picker_button_set_done_button_text ()
-
-::
-
-  void                hildon_picker_button_set_done_button_text
-                                                          (HildonPickerButton *button,
-                                                           const gchar *done_button_text);
-
-Sets a custom string to be used in the "done" button in :class:`PickerDialog` . If unset, the default HildonPickerButton::done-button-text property value will be used.
-
-
-
-``button``:
-  a :class:`HildonPickerButton`
-
-
-``done_button_text``:
-  a string
-
-
-.. versionadded 2.2
-
-.. _hildon-picker-button-value-changed:
-
-.. function:: hildon_picker_button_value_changed ()
-
-::
-
-  void                hildon_picker_button_value_changed  (HildonPickerButton *button);
-
-Emits a "`"value-changed" <HildonPickerButton-value-changed>`_ " signal to the given :class:`HildonPickerButton`
-
-
-
-``button``:
-  a :class:`HildonPickerButton`
-
-
-.. versionadded 2.2
-
-.. _HildonPickerButton.property-details:
+        .. versionadded 2.2
 
 Property Details
 ================
 
-.. _HildonPickerButton--done-button-text:
-
 The ``done-button-text`` property
 
-::
-
-    done-button-text         str                : Read / Write
-
-The text for the "done" button in the dialog launched.
-
-Default value: NULL
-
-.. _HildonPickerButton--touch-selector:
+================ ======= ============ ======= ===================================================
+Name             type    Access       Default Meaning                              
+================ ======= ============ ======= ===================================================
+done-button-text str     Read / Write None The text for the "done" button in the dialog launched.
+================ ======= ============ ======= ===================================================
 
 The ``touch-selector`` property
 
-::
-
-    touch-selector           HildonTouchSelector*  : Read / Write
-
-HildonTouchSelector widget to be launched on button clicked.
-
-.. _HildonPickerButton.signal-details:
+============== ==================== ============ ============================================================
+Name           type                 Access       Default Meaning
+============== ==================== ============ ============================================================
+touch-selector hildon.TouchSelector Read / Write HildonTouchSelector widget to be launched on button clicked.
+============== ==================== ============ ============================================================
 
 Signal Details
 ==============
 
-.. _HildonPickerButton-value-changed:
-
 The ``value-changed`` signal
 
-::
+.. function:: user_function (widget, user_data)
 
-  void                user_function                      (HildonPickerButton *widget,
-                                                          gpointer            user_data)      : Run Last / Action
+    The ::value-changed signal is emitted each time the user chooses a different item from the :class:`TouchSelector` related, and the value label gets updated.
 
-The ::value-changed signal is emitted each time the user chooses a different item from the :class:`TouchSelector` related, and the value label gets updated.
+    :param widget: the widget that received the signal
 
+    :param user_data: user data set when the signal handler was connected.
 
-
-``widget``:
-  the widget that received the signal
-
-
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. versionadded 2.2
-
-.. _HildonPickerButton.see-also:
+    .. versionadded 2.2
 
 See Also
 ========
 
-:class:`TouchSelector` :class:`PickerDialog` .. _HildonDateButton:
+:class:`TouchSelector` :class:`PickerDialog`
 
 HildonDateButton
 ****************
