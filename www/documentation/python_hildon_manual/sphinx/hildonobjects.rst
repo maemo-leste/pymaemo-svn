@@ -1555,7 +1555,7 @@ Description
 
 :class:`HildonPickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`PickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
 
-You should create your own :class:`HildonTouchSelector` at convenience and set it to the :class:`HildonPickerButton` with `hildon_picker_button_set_selector() <hildon-picker-button-set-selector>`_ . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
+You should create your own :class:`TouchSelector` at convenience and set it to the :class:`HildonPickerButton` with `hildon_picker_button_set_selector() <hildon-picker-button-set-selector>`_ . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
 
 :: GtkWidget * create_selector (void) { GtkWidget *selector; selector = hildon_touch_selector_new_text (); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "America"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Europe"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Asia"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Africa"); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), "Australia"); hildon_touch_selector_set_active (HILDON_TOUCH_SELECTOR (selector), 0, 2); return selector; } GtkWidget * create_button (HildonTouchSelector *selector) { GtkWidget *button; button = hildon_picker_button_new (HILDON_SIZE_AUTO, HILDON_BUTTON_ARRANGEMENT_VERTICAL); hildon_button_set_title (HILDON_BUTTON (button), "Continent"); hildon_picker_button_set_selector (HILDON_PICKER_BUTTON (button), HILDON_TOUCH_SELECTOR (selector)); return button; }
 
@@ -1612,7 +1612,7 @@ Creates a new :class:`HildonPickerButton` . See `hildon_button_new() <hildon-but
   void                hildon_picker_button_set_selector   (HildonPickerButton *button,
                                                            HildonTouchSelector *selector);
 
-Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:`PickerDialog` that ``button`` brings up.
+Sets ``selector`` as the :class:`TouchSelector` to be shown in the :class:`PickerDialog` that ``button`` brings up.
 
 
 
@@ -1621,7 +1621,7 @@ Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 .. versionadded 2.2
@@ -1634,7 +1634,7 @@ Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in the :class:
 
   HildonTouchSelector* hildon_picker_button_get_selector  (HildonPickerButton *button);
 
-Retrieves the :class:`HildonTouchSelector` associated to ``button``.
+Retrieves the :class:`TouchSelector` associated to ``button``.
 
 
 
@@ -1643,7 +1643,7 @@ Retrieves the :class:`HildonTouchSelector` associated to ``button``.
 
 
 :returns: 
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 .. versionadded 2.2
@@ -1657,7 +1657,7 @@ Retrieves the :class:`HildonTouchSelector` associated to ``button``.
   void                hildon_picker_button_set_active     (HildonPickerButton *button,
                                                            int index);
 
-Sets the active item of the :class:`HildonTouchSelector` associated to ``button`` to ``index``. If the selector has several columns, only the first one is used.
+Sets the active item of the :class:`TouchSelector` associated to ``button`` to ``index``. If the selector has several columns, only the first one is used.
 
 
 
@@ -1799,7 +1799,7 @@ The ``value-changed`` signal
   void                user_function                      (HildonPickerButton *widget,
                                                           gpointer            user_data)      : Run Last / Action
 
-The ::value-changed signal is emitted each time the user chooses a different item from the :class:`HildonTouchSelector` related, and the value label gets updated.
+The ::value-changed signal is emitted each time the user chooses a different item from the :class:`TouchSelector` related, and the value label gets updated.
 
 
 
@@ -1818,7 +1818,7 @@ The ::value-changed signal is emitted each time the user chooses a different ite
 See Also
 ========
 
-:class:`HildonTouchSelector` :class:`PickerDialog` .. _HildonDateButton:
+:class:`TouchSelector` :class:`PickerDialog` .. _HildonDateButton:
 
 HildonDateButton
 ****************
@@ -3751,23 +3751,23 @@ Signals
 Description
 ===========
 
-:class:`HildonTouchSelector` is a selector widget, that allows users to select items from one to many predefined lists. It is very similar to :class:`GtkComboBox` , but with several individual pannable columns.
+:class:`TouchSelector` is a selector widget, that allows users to select items from one to many predefined lists. It is very similar to :class:`GtkComboBox` , but with several individual pannable columns.
 
-Normally, you would use :class:`HildonTouchSelector` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
+Normally, you would use :class:`TouchSelector` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
 
-The composition of each column in the selector is represented by a :class:`GtkTreeModel` . To add a new column to a :class:`HildonTouchSelector` , use `hildon_touch_selector_append_column() <hildon-touch-selector-append-column>`_ . If you want to add a text-only column, without special attributes, use `hildon_touch_selector_append_text_column() <hildon-touch-selector-append-text-column>`_ .
+The composition of each column in the selector is represented by a :class:`GtkTreeModel` . To add a new column to a :class:`TouchSelector` , use `hildon_touch_selector_append_column() <hildon-touch-selector-append-column>`_ . If you want to add a text-only column, without special attributes, use `hildon_touch_selector_append_text_column() <hildon-touch-selector-append-text-column>`_ .
 
-It is highly recommended that you use only one column :class:`HildonTouchSelector` s. If you only need a text only, one column selector, you can create it with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ and populate with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
+It is highly recommended that you use only one column :class:`TouchSelector` s. If you only need a text only, one column selector, you can create it with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ and populate with `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , and `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
 If you need a selector widget that also accepts user inputs, you can use :class:`HildonTouchSelectorEntry` .
 
-The current selection has a string representation. In the most common cases, each column model will contain a text column. You can configure which column in particular using the :class:`HildonTouchSelectorColumn` property `"text-column" <HildonTouchSelectorColumn--text-column>`_
+The current selection has a string representation. In the most common cases, each column model will contain a text column. You can configure which column in particular using the :class:`TouchSelectorColumn` property `"text-column" <TouchSelectorColumn--text-column>`_
 
-You can get this string representation using `hildon_touch_selector_get_current_text() <hildon-touch-selector-get-current-text>`_ . You can configure how the selection is printed with `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ , that sets the current hildon touch selector print function. The widget has a default print function, that uses the `"text-column" <HildonTouchSelectorColumn--text-column>`_ property on each :class:`HildonTouchSelectorColumn` to compose the final representation.
+You can get this string representation using `hildon_touch_selector_get_current_text() <hildon-touch-selector-get-current-text>`_ . You can configure how the selection is printed with `hildon_touch_selector_set_print_func() <hildon-touch-selector-set-print-func>`_ , that sets the current hildon touch selector print function. The widget has a default print function, that uses the `"text-column" <TouchSelectorColumn--text-column>`_ property on each :class:`TouchSelectorColumn` to compose the final representation.
 
 If you create the selector using `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ you don't need to take care of this property, as the model is created internally. If you create the selector using `hildon_touch_selector_new() <hildon-touch-selector-new>`_ , you need to specify properly the property for your custom model in order to get a non-empty string representation, or define your custom print function.
 
-Creating a HildonTouchSelector ============================== :: void selection_changed (HildonTouchSelector * selector, gpointer *user_data) { gchar *current_selection = NULL; current_selection = hildon_touch_selector_get_current_text (selector); g_debug ("Current selection : s", current_selection); } static GtkWidget * create_customized_selector () { GtkWidget *selector = NULL; GSList *icon_list = NULL; gtk.ListStore *store_icons = NULL; GSList *item = NULL; GtkCellRenderer *renderer = NULL; HildonTouchSelectorColumn *column = NULL; selector = hildon_touch_selector_new (); icon_list = gtk_stock_list_ids (); store_icons = gtk_list_store_new (1, G_TYPE_STRING); for (item = icon_list; item; item = g_slist_next (item)) { GtkTreeIter iter; gchar *label = item->data; gtk_list_store_append (store_icons, iter); gtk_list_store_set (store_icons, iter, 0, label, -1); g_free (label); } g_slist_free (icon_list); renderer = gtk_cell_renderer_pixbuf_new (); gtk_cell_renderer_set_fixed_size (renderer, -1, 100); column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR (selector), GTK_TREE_MODEL (store_icons), renderer, "stock-id", 0, NULL); g_object_set (G_OBJECT (column), "text-column", 0, NULL); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); return selector; } static GtkWidget * create_simple_selector () { GtkWidget *selector = NULL; int i; selector = hildon_touch_selector_new_text (); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); for (i = 1; i = 10 ; i++) { gchar *label = g_strdup_printf ("Item percnt;d", i); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), label); g_free (label); } return selector; }
+Creating a HildonTouchSelector ============================== :: void selection_changed (HildonTouchSelector * selector, gpointer *user_data) { gchar *current_selection = NULL; current_selection = hildon_touch_selector_get_current_text (selector); g_debug ("Current selection : s", current_selection); } static GtkWidget * create_customized_selector () { GtkWidget *selector = NULL; GSList *icon_list = NULL; gtk.ListStore *store_icons = NULL; GSList *item = NULL; GtkCellRenderer *renderer = NULL; TouchSelectorColumn *column = NULL; selector = hildon_touch_selector_new (); icon_list = gtk_stock_list_ids (); store_icons = gtk_list_store_new (1, G_TYPE_STRING); for (item = icon_list; item; item = g_slist_next (item)) { GtkTreeIter iter; gchar *label = item->data; gtk_list_store_append (store_icons, iter); gtk_list_store_set (store_icons, iter, 0, label, -1); g_free (label); } g_slist_free (icon_list); renderer = gtk_cell_renderer_pixbuf_new (); gtk_cell_renderer_set_fixed_size (renderer, -1, 100); column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR (selector), GTK_TREE_MODEL (store_icons), renderer, "stock-id", 0, NULL); g_object_set (G_OBJECT (column), "text-column", 0, NULL); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); return selector; } static GtkWidget * create_simple_selector () { GtkWidget *selector = NULL; int i; selector = hildon_touch_selector_new_text (); hildon_touch_selector_set_column_selection_mode (HILDON_TOUCH_SELECTOR (selector), HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE); g_signal_connect (G_OBJECT (selector), "changed", G_CALLBACK (selection_changed), NULL); for (i = 1; i = 10 ; i++) { gchar *label = g_strdup_printf ("Item percnt;d", i); hildon_touch_selector_append_text (HILDON_TOUCH_SELECTOR (selector), label); g_free (label); } return selector; }
 
 
 
@@ -3822,7 +3822,7 @@ Details
   } HildonTouchSelectorSelectionMode;
   
 
-Describes the selection mode of a :class:`HildonTouchSelector` .
+Describes the selection mode of a :class:`TouchSelector` .
 
 
 
@@ -3842,12 +3842,12 @@ Describes the selection mode of a :class:`HildonTouchSelector` .
 
   GtkWidget*          hildon_touch_selector_new           (void);
 
-Creates a new empty :class:`HildonTouchSelector` .
+Creates a new empty :class:`TouchSelector` .
 
 
 
 :returns: 
-  a new :class:`HildonTouchSelector` .
+  a new :class:`TouchSelector` .
 
 
 .. versionadded 2.2
@@ -3860,12 +3860,12 @@ Creates a new empty :class:`HildonTouchSelector` .
 
   GtkWidget*          hildon_touch_selector_new_text      (void);
 
-Creates a :class:`HildonTouchSelector` with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
+Creates a :class:`TouchSelector` with a single text column that can be populated conveniently through `hildon_touch_selector_append_text() <hildon-touch-selector-append-text>`_ , `hildon_touch_selector_prepend_text() <hildon-touch-selector-prepend-text>`_ , `hildon_touch_selector_insert_text() <hildon-touch-selector-insert-text>`_ .
 
 
 
 :returns: 
-  A new :class:`HildonTouchSelector`
+  A new :class:`TouchSelector`
 
 
 .. versionadded 2.2
@@ -3879,12 +3879,12 @@ Creates a :class:`HildonTouchSelector` with a single text column that can be pop
   void                hildon_touch_selector_append_text   (HildonTouchSelector *selector,
                                                            const gchar *text);
 
-Appends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
+Appends a new entry in a :class:`TouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
 
 
 
 ``selector``:
-  A :class:`HildonTouchSelector` .
+  A :class:`TouchSelector` .
 
 
 ``text``:
@@ -3902,12 +3902,12 @@ Appends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch
   void                hildon_touch_selector_prepend_text  (HildonTouchSelector *selector,
                                                            const gchar *text);
 
-Prepends a new entry in a :class:`HildonTouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
+Prepends a new entry in a :class:`TouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
 
 
 
 ``selector``:
-  A :class:`HildonTouchSelector` .
+  A :class:`TouchSelector` .
 
 
 ``text``:
@@ -3926,12 +3926,12 @@ Prepends a new entry in a :class:`HildonTouchSelector` created with `hildon_touc
                                                            int position,
                                                            const gchar *text);
 
-Inserts a new entry in a particular position of a :class:`HildonTouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
+Inserts a new entry in a particular position of a :class:`TouchSelector` created with `hildon_touch_selector_new_text() <hildon-touch-selector-new-text>`_ .
 
 
 
 ``selector``:
-  a :class:`HildonTouchSelector` .
+  a :class:`TouchSelector` .
 
 
 ``position``:
@@ -3950,7 +3950,7 @@ Inserts a new entry in a particular position of a :class:`HildonTouchSelector` c
 
 ::
 
-  HildonTouchSelectorColumn* hildon_touch_selector_append_text_column
+  TouchSelectorColumn* hildon_touch_selector_append_text_column
                                                           (HildonTouchSelector *selector,
                                                            GtkTreeModel *model,
                                                            bool center);
@@ -3960,7 +3960,7 @@ Equivalent to `hildon_touch_selector_append_column() <hildon-touch-selector-appe
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``model``:
@@ -3983,7 +3983,7 @@ Equivalent to `hildon_touch_selector_append_column() <hildon-touch-selector-appe
 
 ::
 
-  HildonTouchSelectorColumn* hildon_touch_selector_append_column
+  TouchSelectorColumn* hildon_touch_selector_append_column
                                                           (HildonTouchSelector *selector,
                                                            GtkTreeModel *model,
                                                            GtkCellRenderer *cell_renderer,
@@ -3991,7 +3991,7 @@ Equivalent to `hildon_touch_selector_append_column() <hildon-touch-selector-appe
 
 This functions adds a new column to the widget, whose data will be obtained from the model. Only widgets added this way should used on the selection logic, i.e., the print function, the `"changed" <HildonTouchPicker-changed>`_ signal, etc.
 
-You can optionally pass a :class:`GtkCellRenderer` in ``cell_renderer``, together with a None -terminated list of pairs property/value, in the same way you would use `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . This will pack ``cell_renderer`` at the start of the column, expanded by default. If you prefer not to add it this way, you can simply pass None to ``cell_renderer``\ and use the :class:`GtkCellLayout` interface on the returned :class:`HildonTouchSelectorColumn` to set your renderers.
+You can optionally pass a :class:`GtkCellRenderer` in ``cell_renderer``, together with a None -terminated list of pairs property/value, in the same way you would use `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . This will pack ``cell_renderer`` at the start of the column, expanded by default. If you prefer not to add it this way, you can simply pass None to ``cell_renderer``\ and use the :class:`gtk.CellLayout` interface on the returned :class:`TouchSelectorColumn` to set your renderers.
 
 There is a prerequisite to be considered on models used: text data must be in the first column.
 
@@ -4000,7 +4000,7 @@ This method basically adds a :class:`GtkTreeView` to the widget, using the model
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``model``:
@@ -4033,14 +4033,14 @@ This method basically adds a :class:`GtkTreeView` to the widget, using the model
                                                            GtkCellRenderer *cell_renderer,
                                                            ...);
 
-.. warning:: ``hildon_touch_selector_set_column_attributes`` is deprecated and should not be used in newly-written code. :class:`HildonTouchSelectorColumn` implements :class:`GtkCellLayout` , use this interface instead. See `hildon_touch_selector_get_column() <hildon-touch-selector-get-column>`_ .
+.. warning:: ``hildon_touch_selector_set_column_attributes`` is deprecated and should not be used in newly-written code. :class:`TouchSelectorColumn` implements :class:`gtk.CellLayout` , use this interface instead. See `hildon_touch_selector_get_column() <hildon-touch-selector-get-column>`_ .
 
 Sets the attributes for the given column. The attributes must be given in attribute/column pairs, just like in `gtk_tree_view_column_set_attributes() <gtk-tree-view-column-set-attributes>`_ . All existing attributes are removed and replaced with the new ones.
 
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``num_column``:
@@ -4071,7 +4071,7 @@ Removes a column from ``selector``.
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4093,12 +4093,12 @@ Removes a column from ``selector``.
   int                hildon_touch_selector_get_num_columns
                                                           (HildonTouchSelector *selector);
 
-Gets the number of columns in the :class:`HildonTouchSelector` .
+Gets the number of columns in the :class:`TouchSelector` .
 
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 :returns: 
@@ -4122,7 +4122,7 @@ Sets the selection mode for ``selector``. See :class:`HildonTouchSelectorSelecti
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``mode``:
@@ -4145,7 +4145,7 @@ Gets the selection mode of ``selector``.
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 :returns: 
@@ -4160,16 +4160,16 @@ Gets the selection mode of ``selector``.
 
 ::
 
-  HildonTouchSelectorColumn* hildon_touch_selector_get_column
+  TouchSelectorColumn* hildon_touch_selector_get_column
                                                           (HildonTouchSelector *selector,
                                                            int column);
 
-Use this method to retrieve a :class:`HildonTouchSelectorColumn` . Then, you can use the :class:`GtkCellLayout` interface to set up the layout of the column.
+Use this method to retrieve a :class:`TouchSelectorColumn` . Then, you can use the :class:`gtk.CellLayout` interface to set up the layout of the column.
 
 
 
 ``selector``:
-  A :class:`HildonTouchSelector`
+  A :class:`TouchSelector`
 
 
 ``column``:
@@ -4177,7 +4177,7 @@ Use this method to retrieve a :class:`HildonTouchSelectorColumn` . Then, you can
 
 
 :returns: 
-  the ``column``-th :class:`HildonTouchSelectorColumn` in ``selector``\
+  the ``column``-th :class:`TouchSelectorColumn` in ``selector``\
 
 
 .. versionadded 2.2
@@ -4192,14 +4192,14 @@ Use this method to retrieve a :class:`HildonTouchSelectorColumn` . Then, you can
                                                            int column,
                                                            int index);
 
-Sets the active item of the :class:`HildonTouchSelector` to ``index``. The column number is taken from ``column``.
+Sets the active item of the :class:`TouchSelector` to ``index``. The column number is taken from ``column``.
 
 ``selector`` must be in ```HILDON_TOUCH_SELECTOR_SELECTION_MODE_SINGLE`` <HILDON-TOUCH-SELECTOR-SELECTION-MODE-SINGLE:CAPS>`_
 
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4228,7 +4228,7 @@ Returns the index of the currently active item in column number ``column``, or -
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4260,7 +4260,7 @@ See `gtk_tree_selection_get_selected() <gtk-tree-selection-get-selected>`_ for m
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4286,12 +4286,12 @@ See `gtk_tree_selection_get_selected() <gtk-tree-selection-get-selected>`_ for m
   void                hildon_touch_selector_center_on_selected
                                                           (HildonTouchSelector *selector);
 
-Ensures all the columns in a :class:`HildonTouchSelector` show a selected item. If one of the columns is in ```HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE`` <HILDON-TOUCH-SELECTOR-SELECTION-MODE-MULTIPLE:CAPS>`_ mode, that column will be scrolled to ensure the selected item that is closest to the currently visible area is shown.
+Ensures all the columns in a :class:`TouchSelector` show a selected item. If one of the columns is in ```HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE`` <HILDON-TOUCH-SELECTOR-SELECTION-MODE-MULTIPLE:CAPS>`_ mode, that column will be scrolled to ensure the selected item that is closest to the currently visible area is shown.
 
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 .. versionadded 2.2
@@ -4312,7 +4312,7 @@ Sets the currently selected item in the column ``column`` to the one pointed by 
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4344,7 +4344,7 @@ Unselect the item pointed by ``iter`` in the column ``column``
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4371,7 +4371,7 @@ Unselects all the selected items in the column ``column``.
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4397,7 +4397,7 @@ See `gtk_tree_selection_get_selected_rows() <gtk-tree-selection-get-selected-row
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4425,7 +4425,7 @@ Sets the :class:`GtkTreeModel` for a particular column in ``model``.
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4452,7 +4452,7 @@ Gets the model of a column of ``selector``.
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``column``:
@@ -4479,7 +4479,7 @@ Returns a string representing the currently selected items for each column of ``
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 :returns: 
@@ -4503,7 +4503,7 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``func``:
@@ -4526,7 +4526,7 @@ Gets the :class:`HildonTouchSelectorPrintFunc` currently used. See `hildon_touch
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 :returns: 
@@ -4550,7 +4550,7 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 
 ``selector``:
-  a :class:`HildonTouchSelector`
+  a :class:`TouchSelector`
 
 
 ``func``:
@@ -4578,12 +4578,12 @@ Sets the function to be used by `hildon_touch_selector_get_current_text() <hildo
 
 Determines whether ``selector`` is complex enough to actually require an extra selection step than only picking an item. This is normally ```TRUE`` <TRUE:CAPS>`_ if ``selector`` has multiple columns, multiple selection, or when it is a more complex widget, like :class:`HildonTouchSelectorEntry` .
 
-This information is useful for widgets containing a :class:`HildonTouchSelector` , like :class:`PickerDialog` , that could need a "Done" button, in case that its internal :class:`HildonTouchSelector` has multiple columns, for instance.
+This information is useful for widgets containing a :class:`TouchSelector` , like :class:`PickerDialog` , that could need a "Done" button, in case that its internal :class:`TouchSelector` has multiple columns, for instance.
 
 
 
 ``selector``:
-  A :class:`HildonTouchSelector`
+  A :class:`TouchSelector`
 
 
 :returns: 
@@ -4663,7 +4663,7 @@ The ``columns-changed`` signal
   void                user_function                      (HildonTouchSelector *selector,
                                                           gpointer             user_data)      : Run Last
 
-The "columns-changed" signal is emitted when the number of columns in the :class:`HildonTouchSelector` change.
+The "columns-changed" signal is emitted when the number of columns in the :class:`TouchSelector` change.
 
 
 
@@ -4677,85 +4677,39 @@ The "columns-changed" signal is emitted when the number of columns in the :class
 
 .. versionadded 2.2
 
-.. _HildonTouchSelectorColumn:
-
-HildonTouchSelectorColumn
-*************************
-
-.. _HildonTouchSelectorColumn.object-hierarchy:
+TouchSelectorColumn
+*******************
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
-     +----HildonTouchSelectorColumn
+     +----TouchSelectorColumn
   
-
-.. _HildonTouchSelectorColumn.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
-HildonTouchSelectorColumn implements :class:`GtkCellLayout` .
-
-.. _HildonTouchSelectorColumn.properties:
-
-Properties
-==========
-
-::
-
-  
-    text-column              int                  : Read / Write
-  
-
-.. _HildonTouchSelectorColumn.description:
+TouchSelectorColumn implements :class:`gtk.CellLayout` .
 
 Description
 ===========
 
-:class:`HildonTouchSelectorColumn` object represents a visible column in :class:`HildonTouchSelector` . It allows to manage the cell renderers related to each column.
-
-
-
-.. _HildonTouchSelectorColumn.details:
+:class:`TouchSelectorColumn` object represents a visible column in :class:`TouchSelector` . It allows to manage the cell renderers related to each column.
 
 Details
 =======
 
-.. _HildonTouchSelectorColumn-struct:
-
-.. class:: HildonTouchSelectorColumn
-
-::
-
-  typedef struct _HildonTouchSelectorColumn HildonTouchSelectorColumn;
-
-
-
-.. _HildonTouchSelectorColumn.property-details:
+.. class:: TouchSelectorColumn
 
 Property Details
 ================
 
-.. _HildonTouchSelectorColumn--text-column:
-
-The ``text-column`` property
-
-::
-
-    text-column              int                  : Read / Write
-
-A column in the data source model to get the strings from.
-
-Allowed values: = -1
-
-Default value: -1
-
-.. _HildonTouchSelectorEntry:
+============================ =========== ============ ============== ===========================================================
+Name                         type         Access       Default        Meaning
+============================ ============ ============ ============== ==========================================================
+``text-column``              int          Read / Write -1             A column in the data source model to get the strings from.
 
 HildonTouchSelectorEntry
 ************************
@@ -4804,7 +4758,7 @@ Description
 
 :class:`HildonTouchSelectorEntry` is a selector widget with a text entry, similar in behaviour to :class:`GtkComboBoxEntry` , that allows user to select an item from a predefined list or to enter a different one in a :class:`HildonEntry` . Items can also be searched and selected by typing in the entry. For more specific use cases, the :class:`HildonEntry` can be accessed directly with `hildon_touch_selector_get_entry() <hildon-touch-selector-get-entry>`_ .
 
-The main difference between the :class:`GtkTreeModel` used by :class:`HildonTouchSelector` and :class:`HildonTouchSelectorEntry` , is that the latter must always include a text column. You should set it with `hildon_touch_selector_entry_set_text_column() <hildon-touch-selector-entry-set-text-column>`_ .
+The main difference between the :class:`GtkTreeModel` used by :class:`TouchSelector` and :class:`HildonTouchSelectorEntry` , is that the latter must always include a text column. You should set it with `hildon_touch_selector_entry_set_text_column() <hildon-touch-selector-entry-set-text-column>`_ .
 
 Normally, you would use :class:`HildonTouchSelectorEntry` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`HildonPickerButton` .
 
@@ -5011,7 +4965,7 @@ Default value: -1
 See Also
 ========
 
-:class:`HildonTouchSelector` :class:`HildonPickerButton` .. _HildonDateSelector:
+:class:`TouchSelector` :class:`HildonPickerButton` .. _HildonDateSelector:
 
 
 DateSelector
@@ -6410,9 +6364,9 @@ PickerDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 Description
 ===========
 
-:class:`PickerDialog` is a dialog that is used to show a :class:`HildonTouchSelector` widget and a 'Done' button to allow users to finish their selections.
+:class:`PickerDialog` is a dialog that is used to show a :class:`TouchSelector` widget and a 'Done' button to allow users to finish their selections.
 
-The :class:`PickerDialog` will show a 'Done' button in case the :class:`HildonTouchSelector` allows multiple selection. The label of the button can be set using :meth:`PickerDialog.set_done_label` and retrieved using :meth:`PickerDialog.get_done_label`
+The :class:`PickerDialog` will show a 'Done' button in case the :class:`TouchSelector` allows multiple selection. The label of the button can be set using :meth:`PickerDialog.set_done_label` and retrieved using :meth:`PickerDialog.get_done_label`
 
 Note that in most cases developers don't need to deal directly with this widget. :class:`HildonPickerButton` is designed to pop up a :class:`PickerDialog` and manage the interaction with it.
 
@@ -6438,9 +6392,9 @@ Details
 
     .. method:: set_selector (selector)
 
-        Sets ``selector`` as the :class:`HildonTouchSelector` to be shown in ``dialog``
+        Sets ``selector`` as the :class:`TouchSelector` to be shown in ``dialog``
 
-        :param selector: a :class:`HildonTouchSelector`
+        :param selector: a :class:`TouchSelector`
         :returns: True if ``selector`` was set, False otherwise
 
         .. versionadded 2.2
@@ -6464,9 +6418,9 @@ Details
 
     .. method:: get_selector ()
 
-        Retrieves the :class:`HildonTouchSelector` associated to ``dialog``.
+        Retrieves the :class:`TouchSelector` associated to ``dialog``.
 
-        :returns: a :class:`HildonTouchSelector`
+        :returns: a :class:`TouchSelector`
 
         .. versionadded 2.2
 
