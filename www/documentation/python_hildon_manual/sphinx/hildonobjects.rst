@@ -641,472 +641,327 @@ Details
 
         .. versionadded 2.2
 
-.. _hildon-button-set-title:
+    .. method:: set_title (title)
 
-.. function:: hildon_button_set_title ()
+        Sets the title (main label) of ``button`` to ``title``.
 
-::
+        This will clear any previously set title.
 
-  void                hildon_button_set_title             (HildonButton *button,
-                                                           const gchar *title);
+        If ``title`` is set to None , the title label will be hidden and the value label will be realigned.
 
-Sets the title (main label) of ``button`` to ``title``.
+        :param title: a new title (main label) for the button, or None
 
-This will clear any previously set title.
 
-If ``title`` is set to None , the title label will be hidden and the value label will be realigned.
+        .. versionadded 2.2
 
+    .. method:: set_value (value)
 
+        Sets the value (secondary label) of ``button`` to ``value``.
 
-``button``:
-  a :class:`HildonButton`
+        This will clear any previously set value.
 
+        If ``value`` is set to None , the value label will be hidden and the title label will be realigned.
 
-``title``:
-  a new title (main label) for the button, or None
+        :param value: a new value (secondary label) for the button, or None
 
+        .. versionadded 2.2
 
-.. versionadded 2.2
+    .. method:: get_title ()
 
-.. _hildon-button-set-value:
+        Fetches the text from the main label (title) of ``button``, as set by :meth:`HildonButton.set_title` or :meth:`HildonButton.set_text` . If the label text has not been set the return value will be None . This will be the case if you create an empty button to use as a container.
 
-.. function:: hildon_button_set_value ()
+        :returns: The text of the title label. This string is owned by the widget and must not be modified or freed.
 
-::
+        .. versionadded 2.2
 
-  void                hildon_button_set_value             (HildonButton *button,
-                                                           const gchar *value);
+    .. method:: get_value ()
 
-Sets the value (secondary label) of ``button`` to ``value``.
+        Fetches the text from the secondary label (value) of ``button``, as set by :meth:`HildonButton.set_value` or :meth:`HildonButton.set_text` . If the label text has not been set the return value will be None . This will be the case if you create an empty button to use as a container.
 
-This will clear any previously set value.
+        :returns: The text of the value label. This string is owned by the widget and must not be modified or freed.
 
-If ``value`` is set to None , the value label will be hidden and the title label will be realigned.
+        .. versionadded 2.2
 
+    .. method:: set_text (title, value)
 
+        Convenience function to change both labels of a :class:`HildonButton`
 
-``button``:
-  a :class:`HildonButton`
+        :param title: new text for the button title (main label)
+        :param value: new text for the button value (secondary label)
 
+        .. versionadded 2.2
 
-``value``:
-  a new value (secondary label) for the button, or None
+    .. method:: set_image (image)
 
+        Sets the image of ``button`` to the given widget. The previous image (if any) will be removed.
 
-.. versionadded 2.2
+        :param image: a widget to set as the button image
 
-.. _hildon-button-get-title:
+        .. versionadded 2.2
 
-.. function:: hildon_button_get_title ()
+    .. method:: get_image ()
 
-::
+        Gets the widget that is currenty set as the image of ``button``, previously set with :meth:`HildonButton.set_image`
 
-  const str        hildon_button_get_title             (HildonButton *button);
+        :returns: a :class:`GtkWidget` or None in case there is no image
 
-Fetches the text from the main label (title) of ``button``, as set by :meth:`HildonButton.set_title` or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
+        .. versionadded 2.2
 
+    .. method:: set_image_position (position)
 
+        Sets the position of the image inside ``button``. Only :data:`gtk.POS_LEFT` and :data:`gtk.POS_RIGHT` are currently supported.
 
-``button``:
-  a :class:`HildonButton`
+        :param position: the position of the image (:data:`gtk.POS_LEFT` or :data:`gtk.POS_RIGHT`)
 
+        .. versionadded 2.2
 
-:returns: 
-  The text of the title label. This string is owned by the widget and must not be modified or freed.
+    .. _hildon-button-set-alignment:
 
+    .. method:: set_alignment (xalign, yalign, xscale, yscale)
 
-.. versionadded 2.2
+        Sets the alignment of the contents of the widget. If you don't need to change ``xscale`` or ``yscale`` you can just use :meth:`gtk.Button.set_alignment` instead.
 
-.. _hildon-button-get-value:
+        Note that for this method to work properly the, child widget of ``button`` must be a :class:`GtkAlignment` . That's what :class:`HildonButton` uses by default, so this function will work unless you add a custom widget to ``button``.
 
-.. function:: hildon_button_get_value ()
+        :param xalign: the horizontal alignment of the contents, from 0 (left) to 1 (right).
+        :param yalign: the vertical alignment of the contents, from 0 (top) to 1 (bottom).
+        :param xscale: the amount that the child widget expands horizontally to fill up unused space, from 0 to 1
+        :param yscale: the amount that the child widget expands vertically to fill up unused space, from 0 to 1
 
-::
+        .. versionadded 2.2
 
-  const str        hildon_button_get_value             (HildonButton *button);
+    .. _hildon-button-set-title-alignment:
 
-Fetches the text from the secondary label (value) of ``button``, as set by :meth:`HildonButton.set_value` or `hildon_button_set_text() <hildon-button-set-text>`_ . If the label text has not been set the return value will be None . This will be the case if you create an empty button with `hildon_button_new() <hildon-button-new>`_ to use as a container.
+    .. method:: set_title_alignment ()
 
+    ::
 
+      void                hildon_button_set_title_alignment   (HildonButton *button,
+                                                               gfloat xalign,
+                                                               gfloat yalign);
 
-``button``:
-  a :class:`HildonButton`
+    Sets the alignment of the title label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
 
-:returns: 
-  The text of the value label. This string is owned by the widget and must not be modified or freed.
 
+    ``button``:
+      a :class:`HildonButton`
 
-.. versionadded 2.2
 
-.. _hildon-button-set-text:
+    ``xalign``:
+      the horizontal alignment of the title label, from 0 (left) to 1 (right).
 
-.. function:: hildon_button_set_text ()
 
-::
+    ``yalign``:
+      the vertical alignment of the title label, from 0 (top) to 1 (bottom).
 
-  void                hildon_button_set_text              (HildonButton *button,
-                                                           const gchar *title,
-                                                           const gchar *value);
 
-Convenience function to change both labels of a :class:`HildonButton`
+    .. versionadded 2.2
 
+    .. _hildon-button-set-value-alignment:
 
+    .. method:: set_value_alignment ()
 
-``button``:
-  a :class:`HildonButton`
+    ::
 
+      void                hildon_button_set_value_alignment   (HildonButton *button,
+                                                               gfloat xalign,
+                                                               gfloat yalign);
 
-``title``:
-  new text for the button title (main label)
+    Sets the alignment of the value label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
 
-``value``:
-  new text for the button value (secondary label)
 
+    ``button``:
+      a :class:`HildonButton`
 
-.. versionadded 2.2
 
-.. _hildon-button-set-image:
+    ``xalign``:
+      the horizontal alignment of the value label, from 0 (left) to 1 (right).
 
-.. function:: hildon_button_set_image ()
 
-::
+    ``yalign``:
+      the vertical alignment of the value label, from 0 (top) to 1 (bottom).
 
-  void                hildon_button_set_image             (HildonButton *button,
-                                                           GtkWidget *image);
 
-Sets the image of ``button`` to the given widget. The previous image (if any) will be removed.
+    .. versionadded 2.2
 
+    .. _hildon-button-set-image-alignment:
 
+    .. method:: set_image_alignment ()
 
-``button``:
-  a :class:`HildonButton`
+    ::
 
+      void                hildon_button_set_image_alignment   (HildonButton *button,
+                                                               gfloat xalign,
+                                                               gfloat yalign);
 
-``image``:
-  a widget to set as the button image
+    Sets the alignment of the image. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
 
 
-.. versionadded 2.2
 
-.. _hildon-button-get-image:
+    ``button``:
+      a :class:`HildonButton`
 
-.. function:: hildon_button_get_image ()
 
-::
+    ``xalign``:
+      the horizontal alignment of the image, from 0 (left) to 1 (right).
 
-  GtkWidget*          hildon_button_get_image             (HildonButton *button);
 
-Gets the widget that is currenty set as the image of ``button``, previously set with `hildon_button_set_image() <hildon-button-set-image>`_
+    ``yalign``:
+      the vertical alignment of the image, from 0 (top) to 1 (bottom).
 
 
+    .. versionadded 2.2
 
-``button``:
-  a :class:`HildonButton`
+    .. _hildon-button-add-title-size-group:
 
+    .. method:: add_title_size_group ()
 
-:returns: 
-  a :class:`GtkWidget` or None in case there is no image
+    ::
 
+      void                hildon_button_add_title_size_group  (HildonButton *button,
+                                                               GtkSizeGroup *size_group);
 
-.. versionadded 2.2
+    Adds the title label of ``button`` to ``size_group``.
 
-.. _hildon-button-set-image-position:
 
-.. function:: hildon_button_set_image_position ()
 
-::
+    ``button``:
+      a :class:`HildonButton`
 
-  void                hildon_button_set_image_position    (HildonButton *button,
-                                                           GtkPositionType position);
 
-Sets the position of the image inside ``button``. Only ```GTK_POS_LEFT`` <GTK-POS-LEFT:CAPS>`_ and ```GTK_POS_RIGHT`` <GTK-POS-RIGHT:CAPS>`_ are currently supported.
+    ``size_group``:
+      A :class:`GtkSizeGroup` for the button title (main label)
 
 
+    .. versionadded 2.2
 
-``button``:
-  a :class:`HildonButton`
+    .. _hildon-button-add-value-size-group:
 
+    .. method:: add_value_size_group ()
 
-``position``:
-  the position of the image (```GTK_POS_LEFT`` <GTK-POS-LEFT:CAPS>`_ or ```GTK_POS_RIGHT`` <GTK-POS-RIGHT:CAPS>`_ )
+    ::
 
+      void                hildon_button_add_value_size_group  (HildonButton *button,
+                                                               GtkSizeGroup *size_group);
 
-.. versionadded 2.2
+    Adds the value label of ``button`` to ``size_group``.
 
-.. _hildon-button-set-alignment:
 
-.. function:: hildon_button_set_alignment ()
 
-::
+    ``button``:
+      a :class:`HildonButton`
 
-  void                hildon_button_set_alignment         (HildonButton *button,
-                                                           gfloat xalign,
-                                                           gfloat yalign,
-                                                           gfloat xscale,
-                                                           gfloat yscale);
 
-Sets the alignment of the contents of the widget. If you don't need to change ``xscale`` or ``yscale`` you can just use `gtk_button_set_alignment() <gtk-button-set-alignment>`_ instead.
+    ``size_group``:
+      A :class:`GtkSizeGroup` for the button value (secondary label)
 
-Note that for this method to work properly the, child widget of ``button`` must be a :class:`GtkAlignment` . That's what :class:`HildonButton` uses by default, so this function will work unless you add a custom widget to ``button``.
 
+    .. versionadded 2.2
 
+    .. _hildon-button-add-image-size-group:
 
-``button``:
-  a :class:`HildonButton`
+    .. method:: add_image_size_group ()
 
+    ::
 
-``xalign``:
-  the horizontal alignment of the contents, from 0 (left) to 1 (right).
+      void                hildon_button_add_image_size_group  (HildonButton *button,
+                                                               GtkSizeGroup *size_group);
 
+    Adds the image of ``button`` to ``size_group``. You must add an image using :meth:`HildonButton.set_image` before calling this function.
 
-``yalign``:
-  the vertical alignment of the contents, from 0 (top) to 1 (bottom).
 
 
-``xscale``:
-  the amount that the child widget expands horizontally to fill up unused space, from 0 to 1
+    ``button``:
+      a :class:`HildonButton`
 
 
-``yscale``:
-  the amount that the child widget expands vertically to fill up unused space, from 0 to 1
+    ``size_group``:
+      A :class:`GtkSizeGroup` for the button image
 
 
-.. versionadded 2.2
+    .. versionadded 2.2
 
-.. _hildon-button-set-title-alignment:
+    .. _hildon-button-add-size-groups:
 
-.. function:: hildon_button_set_title_alignment ()
+    .. method:: add_size_groups ()
 
-::
+    ::
 
-  void                hildon_button_set_title_alignment   (HildonButton *button,
-                                                           gfloat xalign,
-                                                           gfloat yalign);
+      void                hildon_button_add_size_groups       (HildonButton *button,
+                                                               GtkSizeGroup *title_size_group,
+                                                               GtkSizeGroup *value_size_group,
+                                                               GtkSizeGroup *image_size_group);
 
-Sets the alignment of the title label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+    Convenience function to add title, value and image to size groups. None size groups will be ignored.
 
 
 
-``button``:
-  a :class:`HildonButton`
+    ``button``:
+      a :class:`HildonButton`
 
 
-``xalign``:
-  the horizontal alignment of the title label, from 0 (left) to 1 (right).
+    ``title_size_group``:
+      A :class:`GtkSizeGroup` for the button title (main label), or None
 
 
-``yalign``:
-  the vertical alignment of the title label, from 0 (top) to 1 (bottom).
+    ``value_size_group``:
+      A :class:`GtkSizeGroup` group for the button value (secondary label), or None
 
 
-.. versionadded 2.2
+    ``image_size_group``:
+      A :class:`GtkSizeGroup` group for the button image, or None
 
-.. _hildon-button-set-value-alignment:
 
-.. function:: hildon_button_set_value_alignment ()
+    .. versionadded 2.2
 
-::
+    .. _hildon-button-set-style:
 
-  void                hildon_button_set_value_alignment   (HildonButton *button,
-                                                           gfloat xalign,
-                                                           gfloat yalign);
+    .. method:: set_style ()
 
-Sets the alignment of the value label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+    ::
 
+      void                hildon_button_set_style             (HildonButton *button,
+                                                               HildonButtonStyle style);
 
+    Sets the style of ``button`` to ``style``. This changes the visual appearance of the button (colors, font sizes) according to the particular style chosen, but the general layout is not altered.
 
-``button``:
-  a :class:`HildonButton`
+    Use ```HILDON_BUTTON_STYLE_NORMAL`` <HILDON-BUTTON-STYLE-NORMAL:CAPS>`_ to make it look like a normal :class:`HildonButton` , or ```HILDON_BUTTON_STYLE_PICKER`` <HILDON-BUTTON-STYLE-PICKER:CAPS>`_ to make it look like a :class:`HildonPickerButton` .
 
 
-``xalign``:
-  the horizontal alignment of the value label, from 0 (left) to 1 (right).
 
+    ``button``:
+      A :class:`HildonButton`
 
-``yalign``:
-  the vertical alignment of the value label, from 0 (top) to 1 (bottom).
 
+    ``style``:
+      A :class:`HildonButtonStyle` for ``button``\
 
-.. versionadded 2.2
 
-.. _hildon-button-set-image-alignment:
+    .. versionadded 2.2
 
-.. function:: hildon_button_set_image_alignment ()
+    .. _hildon-button-get-style:
 
-::
+    .. method:: get_style ()
 
-  void                hildon_button_set_image_alignment   (HildonButton *button,
-                                                           gfloat xalign,
-                                                           gfloat yalign);
+    ::
 
-Sets the alignment of the image. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+      HildonButtonStyle   hildon_button_get_style             (HildonButton *button);
 
+    Gets the visual style of the button.
 
 
-``button``:
-  a :class:`HildonButton`
 
+    ``button``:
+      A :class:`HildonButton`
 
-``xalign``:
-  the horizontal alignment of the image, from 0 (left) to 1 (right).
 
+    :returns: 
+      a :class:`HildonButtonStyle`
 
-``yalign``:
-  the vertical alignment of the image, from 0 (top) to 1 (bottom).
 
-
-.. versionadded 2.2
-
-.. _hildon-button-add-title-size-group:
-
-.. function:: hildon_button_add_title_size_group ()
-
-::
-
-  void                hildon_button_add_title_size_group  (HildonButton *button,
-                                                           GtkSizeGroup *size_group);
-
-Adds the title label of ``button`` to ``size_group``.
-
-
-
-``button``:
-  a :class:`HildonButton`
-
-
-``size_group``:
-  A :class:`GtkSizeGroup` for the button title (main label)
-
-
-.. versionadded 2.2
-
-.. _hildon-button-add-value-size-group:
-
-.. function:: hildon_button_add_value_size_group ()
-
-::
-
-  void                hildon_button_add_value_size_group  (HildonButton *button,
-                                                           GtkSizeGroup *size_group);
-
-Adds the value label of ``button`` to ``size_group``.
-
-
-
-``button``:
-  a :class:`HildonButton`
-
-
-``size_group``:
-  A :class:`GtkSizeGroup` for the button value (secondary label)
-
-
-.. versionadded 2.2
-
-.. _hildon-button-add-image-size-group:
-
-.. function:: hildon_button_add_image_size_group ()
-
-::
-
-  void                hildon_button_add_image_size_group  (HildonButton *button,
-                                                           GtkSizeGroup *size_group);
-
-Adds the image of ``button`` to ``size_group``. You must add an image using `hildon_button_set_image() <hildon-button-set-image>`_ before calling this function.
-
-
-
-``button``:
-  a :class:`HildonButton`
-
-
-``size_group``:
-  A :class:`GtkSizeGroup` for the button image
-
-
-.. versionadded 2.2
-
-.. _hildon-button-add-size-groups:
-
-.. function:: hildon_button_add_size_groups ()
-
-::
-
-  void                hildon_button_add_size_groups       (HildonButton *button,
-                                                           GtkSizeGroup *title_size_group,
-                                                           GtkSizeGroup *value_size_group,
-                                                           GtkSizeGroup *image_size_group);
-
-Convenience function to add title, value and image to size groups. None size groups will be ignored.
-
-
-
-``button``:
-  a :class:`HildonButton`
-
-
-``title_size_group``:
-  A :class:`GtkSizeGroup` for the button title (main label), or None
-
-
-``value_size_group``:
-  A :class:`GtkSizeGroup` group for the button value (secondary label), or None
-
-
-``image_size_group``:
-  A :class:`GtkSizeGroup` group for the button image, or None
-
-
-.. versionadded 2.2
-
-.. _hildon-button-set-style:
-
-.. function:: hildon_button_set_style ()
-
-::
-
-  void                hildon_button_set_style             (HildonButton *button,
-                                                           HildonButtonStyle style);
-
-Sets the style of ``button`` to ``style``. This changes the visual appearance of the button (colors, font sizes) according to the particular style chosen, but the general layout is not altered.
-
-Use ```HILDON_BUTTON_STYLE_NORMAL`` <HILDON-BUTTON-STYLE-NORMAL:CAPS>`_ to make it look like a normal :class:`HildonButton` , or ```HILDON_BUTTON_STYLE_PICKER`` <HILDON-BUTTON-STYLE-PICKER:CAPS>`_ to make it look like a :class:`HildonPickerButton` .
-
-
-
-``button``:
-  A :class:`HildonButton`
-
-
-``style``:
-  A :class:`HildonButtonStyle` for ``button``\
-
-
-.. versionadded 2.2
-
-.. _hildon-button-get-style:
-
-.. function:: hildon_button_get_style ()
-
-::
-
-  HildonButtonStyle   hildon_button_get_style             (HildonButton *button);
-
-Gets the visual style of the button.
-
-
-
-``button``:
-  A :class:`HildonButton`
-
-
-:returns: 
-  a :class:`HildonButtonStyle`
-
-
-.. versionadded 2.2
+    .. versionadded 2.2
 
 .. _HildonButton.property-details:
 
