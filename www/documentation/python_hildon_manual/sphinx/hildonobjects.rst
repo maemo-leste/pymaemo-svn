@@ -97,7 +97,7 @@ Details
 
         Adds ``child`` to the :class:`Window` and creates a scrollbar for it. Similar to adding first a :class:`GtkScrolledWindow` and then ``child`` to it.
 
-        :param child: :class:`GtkWidget`
+        :param child: :class:`gtk.Widget`
 
 
     .. method:: set_main_menu (menu)
@@ -164,7 +164,7 @@ Details
 
     .. method:: remove_toolbar (toolbar)
 
-        Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call :meth:`GObject.ref`before calling this function.
+        Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call :meth:`GObject.ref` before calling this function.
 
         :param toolbar: A :class:`GtkToolbar` to remove from the :class:`Window`
 
@@ -1670,7 +1670,7 @@ Creates a new instance of hildon_caption widget, with a specific control and ima
 
 
 :returns: 
-  a :class:`GtkWidget` pointer of Caption
+  a :class:`gtk.Widget` pointer of Caption
 
 
 .. _hildon-caption-get-size-group:
@@ -2271,7 +2271,7 @@ This function creates and displays an information banner that automatically goes
 
 
 ``widget``:
-  the :class:`GtkWidget` that is the owner of the banner
+  the :class:`gtk.Widget` that is the owner of the banner
 
 
 ``icon_name``:
@@ -2302,7 +2302,7 @@ A helper function for `hildon_banner_show_information <hildon-banner-show-inform
 
 
 ``widget``:
-  the :class:`GtkWidget` that is the owner of the banner
+  the :class:`gtk.Widget` that is the owner of the banner
 
 
 ``icon_name``:
@@ -2337,7 +2337,7 @@ This function creates and displays an information banner that automatically goes
 
 
 ``widget``:
-  the :class:`GtkWidget` that wants to display banner
+  the :class:`gtk.Widget` that wants to display banner
 
 
 ``icon_name``:
@@ -2371,7 +2371,7 @@ Please note that banners are destroyed automatically once the window they are at
 
 
 ``widget``:
-  the :class:`GtkWidget` that wants to display banner
+  the :class:`gtk.Widget` that wants to display banner
 
 
 ``animation_name``:
@@ -2403,7 +2403,7 @@ Shows progress notification. See `hildon_banner_show_animation <hildon-banner-sh
 
 
 ``widget``:
-  the :class:`GtkWidget` that wants to display banner
+  the :class:`gtk.Widget` that wants to display banner
 
 
 ``bar``:
@@ -2599,18 +2599,13 @@ Allowed values: = 10000
 
 Default value: 3000
 
-.. _HildonNote:
-
-HildonNote
+Note
 **********
-
-.. _HildonNote.object-hierarchy:
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -2620,314 +2615,125 @@ Object Hierarchy
                              +----GtkBin
                                    +----GtkWindow
                                          +----GtkDialog
-                                               +----HildonNote
-  
-
-.. _HildonNote.implemented-interfaces:
+                                               +----Note
 
 Implemented Interfaces
 ======================
 
-HildonNote implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonNote.properties:
-
-Properties
-==========
-
-::
-
-  
-    description              str                : Read / Write
-    icon                     str                : Read / Write
-    note-type                HildonNoteType        : Read / Write / Construct
-    progressbar              GtkProgressBar*       : Read / Write
-    stock-icon               str                : Read / Write
-  
-
-.. _HildonNote.description:
+Note implements :class:`AtkImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
 
-:class:`HildonNote` is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a progress bar.
+:class:`Note` is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a progress bar.
 
 This widget provides convenient functions to create either information notes, confirmation notes or cancel notes, which are useful to show the progress of a requested task allowing the user to cancel it.
 
-To create information notes you can use `hildon_note_new_information() <hildon-note-new-information>`_ . `hildon_note_new_confirmation() <hildon-note-new-confirmation>`_ creates a note with a text and two buttons to confirm or cancel. Note that it is possible to create a confirmation note with customized buttons by using `hildon_note_new_confirmation_add_buttons() <hildon-note-new-confirmation-add-buttons>`_ .
+To create information notes you can use :func:`hildon_note_new_information` . :func:`hildon_note_new_confirmation` creates a note with a text and two buttons to confirm or cancel.
 
-To create a note with a text, a progress bar and cancel button, `hildon_note_new_cancel_with_progress_bar() <hildon-note-new-cancel-with-progress-bar>`_ can be used.
+To create a note with a text, a progress bar and cancel button, :func:`hildon_note_new_cancel_with_progress_bar` can be used.
 
-HildonNote example ================== :: bool show_confirmation_note (gtk.Window *parent) { int retcode; GtkWidget *note; note = hildon_note_new_confirmation (parent, "Confirmation message..."); retcode = gtk_dialog_run (GTK_DIALOG (note)); gtk_widget_destroy (note); if (retcode == GTK_RESPONSE_OK) { g_debug ("User pressed 'OK' button'"); return TRUE; } else { g_debug ("User pressed 'Cancel' button"); return FALSE; } }
+::
 
-
-
-.. _HildonNote.details:
+    bool show_confirmation_note (gtk.Window *parent) {
+        int retcode; GtkWidget *note;
+        note = hildon_note_new_confirmation (parent, "Confirmation message...");
+        retcode = gtk_dialog_run (GTK_DIALOG (note));
+        gtk_widget_destroy (note);
+        if (retcode == GTK_RESPONSE_OK) {
+            g_debug ("User pressed 'OK' button'");
+            return TRUE;
+        } else {
+            g_debug ("User pressed 'Cancel' button");
+            return FALSE;
+        }
+    }
 
 Details
 =======
 
-.. _HildonNote-struct:
+.. function:: hildon_note_new_confirmation (parent, description)
 
-.. class:: HildonNote
+    Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
 
-::
+    :param parent:the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
+    :param description: the message to confirm
+    :returns: a :class:`gtk.Widget` pointer of the note
 
-  typedef struct _HildonNote HildonNote;
+.. function:: hildon_note_new_confirmation_with_icon_name (parent, description, icon_name)
 
+    .. warning:: :func:`hildon_note_new_confirmation_with_icon_name` is deprecated and should not be used in newly-written code. Since Hildon 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use :func:`hildon_note_new_confirmation` instead.
 
+    Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
 
-.. _hildon-note-new-confirmation:
+    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
+    :param description: the message to confirm
+    :param icon_name: icon to be displayed. If NULL, default icon is used.
+    :returns: a :class:`gtk.Widget` pointer of the note
 
-.. function:: hildon_note_new_confirmation ()
+.. function:: hildon_note_new_cancel_with_progress_bar (parent, description, progressbar)
 
-::
+    Create a new cancel note with a progress bar. Cancel note has text(description) that you specify, a Cancel button and a progress bar.
 
-  GtkWidget*          hildon_note_new_confirmation        (GtkWindow *parent,
-                                                           const gchar *description);
+    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
+    :param description: the action to cancel
+    :param progressbar: a pointer to :class:`gtk.ProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.
+    :returns: a :class:`gtk.Dialog` . Use this to get rid of this note when you no longer need it.
 
-Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
+.. function:: hildon_note_new_information (parent, description)
 
+    Create a new information note. Information note has a text (description) that you specify and an OK button.
 
+    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
+    :param description: the message to confirm
+    :returns: a :class:`gtk.Widget` pointer of the note
 
-``parent``:
-  the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly. In GTK the X window ID can be checked using GDK_WINDOW_XID(GTK_WIDGET(parent)->window).
+.. function:: hildon_note_new_information_with_icon_name (parent, description, icon_name)
 
+    .. warning:: :func:`hildon_note_new_information_with_icon_name` is deprecated and should not be used in newly-written code. Since Hildon 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use :func:`hildon_note_new_information` instead.
 
-``description``:
-  the message to confirm
+    Create a new information note. Information note has text(description) that you specify, an OK button and an icon.
 
+    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
+    :param description: the message to confirm
+    :param icon_name: icon to be displayed. If NULL, default icon is used.
+    :returns: a :class:`gtk.Widget` pointer of the note
 
-:returns: 
-  a :class:`GtkWidget` pointer of the note
 
+.. class:: Note
 
-.. _hildon-note-new-confirmation-add-buttons:
+    .. method:: set_button_text (text)
 
-.. function:: hildon_note_new_confirmation_add_buttons ()
+        Sets the button text to be used by the hildon_note widget.
 
-::
+        :param note: a :class:`Note`
+        :param text: sets the button text and if there is two buttons in dialog, the button texts will be text, "Cancel".
 
-  GtkWidget*          hildon_note_new_confirmation_add_buttons
-                                                          (GtkWindow *parent,
-                                                           const gchar *description,
-                                                           ...);
+.. method:: set_button_texts (text_ok, text_cancel)
 
-Create a new confirmation note with custom buttons. Confirmation note has a text and any number of buttons. It's important to note that even though the name of the function might suggest, the default ok/cancel buttons are not appended but you have to provide all of the buttons.
+    Sets the button texts to be used by this hildon_note widget.
 
-FIXME: This doc seems to be wrong, the two buttons aren't added so it would only contain the "additional" buttons? However, changing this would break those applications that rely on current behaviour.
+    :param note: a :class:`Note`
+    :param text_ok: the new text of the default OK button
+    :param text_cancel: the new text of the default cancel button
 
 
+.. data:: NoteType
 
-``parent``:
-  the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly. In GTK the X window ID can be checked using GDK_WINDOW_XID(GTK_WIDGET(parent)->window).
-
-
-``description``:
-  the message to confirm
-
-
-``...``:
-  arguments pairs for new buttons(label and return value). Terminate the list with None value.
-
-
-:returns: 
-  A :class:`GtkWidget` pointer of the note
-
-
-.. _hildon-note-new-confirmation-with-icon-name:
-
-.. function:: hildon_note_new_confirmation_with_icon_name ()
-
-::
-
-  GtkWidget*          hildon_note_new_confirmation_with_icon_name
-                                                          (GtkWindow *parent,
-                                                           const gchar *description,
-                                                           const gchar *icon_name);
-
-.. warning:: ``hildon_note_new_confirmation_with_icon_name`` is deprecated and should not be used in newly-written code. .. versionadded 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use `hildon_note_new_confirmation() <hildon-note-new-confirmation>`_ instead.
-
-Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
-
-
-
-``parent``:
-  the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly. In GTK the X window ID can be checked using GDK_WINDOW_XID(GTK_WIDGET(parent)->window).
-
-
-``description``:
-  the message to confirm
-
-
-``icon_name``:
-  icon to be displayed. If NULL, default icon is used.
-
-
-:returns: 
-  a :class:`GtkWidget` pointer of the note
-
-
-.. _hildon-note-new-cancel-with-progress-bar:
-
-.. function:: hildon_note_new_cancel_with_progress_bar ()
-
-::
-
-  GtkWidget*          hildon_note_new_cancel_with_progress_bar
-                                                          (GtkWindow *parent,
-                                                           const gchar *description,
-                                                           GtkProgressBar *progressbar);
-
-Create a new cancel note with a progress bar. Cancel note has text(description) that you specify, a Cancel button and a progress bar.
-
-
-
-``parent``:
-  the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly. In GTK the X window ID can be checked using GDK_WINDOW_XID(GTK_WIDGET(parent)->window).
-
-
-``description``:
-  the action to cancel
-
-
-``progressbar``:
-  a pointer to :class:`GtkProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.
-
-
-:returns: 
-  a :class:`GtkDialog` . Use this to get rid of this note when you no longer need it.
-
-
-.. _hildon-note-new-information:
-
-.. function:: hildon_note_new_information ()
-
-::
-
-  GtkWidget*          hildon_note_new_information         (GtkWindow *parent,
-                                                           const gchar *description);
-
-Create a new information note. Information note has a text (description) that you specify and an OK button.
-
-
-
-``parent``:
-  the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly. In GTK the X window ID can be checked using GDK_WINDOW_XID(GTK_WIDGET(parent)->window).
-
-
-``description``:
-  the message to confirm
-
-
-:returns: 
-  a :class:`GtkWidget` pointer of the note
-
-
-.. _hildon-note-new-information-with-icon-name:
-
-.. function:: hildon_note_new_information_with_icon_name ()
-
-::
-
-  GtkWidget*          hildon_note_new_information_with_icon_name
-                                                          (GtkWindow *parent,
-                                                           const gchar *description,
-                                                           const gchar *icon_name);
-
-.. warning:: ``hildon_note_new_information_with_icon_name`` is deprecated and should not be used in newly-written code. .. versionadded 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use `hildon_note_new_information() <hildon-note-new-information>`_ instead.
-
-Create a new information note. Information note has text(description) that you specify, an OK button and an icon.
-
-
-
-``parent``:
-  the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly. In GTK the X window ID can be checked using GDK_WINDOW_XID(GTK_WIDGET(parent)->window).
-
-
-``description``:
-  the message to confirm
-
-
-``icon_name``:
-  icon to be displayed. If NULL, default icon is used.
-
-
-:returns: 
-  a :class:`GtkWidget` pointer of the note
-
-
-.. _hildon-note-set-button-text:
-
-.. function:: hildon_note_set_button_text ()
-
-::
-
-  void                hildon_note_set_button_text         (HildonNote *note,
-                                                           const gchar *text);
-
-Sets the button text to be used by the hildon_note widget.
-
-
-
-``note``:
-  a :class:`HildonNote`
-
-
-``text``:
-  sets the button text and if there is two buttons in dialog, the button texts will be text, "Cancel".
-
-
-.. _hildon-note-set-button-texts:
-
-.. function:: hildon_note_set_button_texts ()
-
-::
-
-  void                hildon_note_set_button_texts        (HildonNote *note,
-                                                           const gchar *text_ok,
-                                                           const gchar *text_cancel);
-
-Sets the button texts to be used by this hildon_note widget.
-
-
-
-``note``:
-  a :class:`HildonNote`
-
-
-``text_ok``:
-  the new text of the default OK button
-
-
-``text_cancel``:
-  the new text of the default cancel button
-
-
-.. _HildonNoteType:
-
-.. :: enum HildonNoteType
-
-::
-
-  typedef enum
-  {
-      HILDON_NOTE_TYPE_CONFIRMATION = 0,
-      HILDON_NOTE_TYPE_CONFIRMATION_BUTTON,
-      HILDON_NOTE_TYPE_INFORMATION,
-      HILDON_NOTE_TYPE_INFORMATION_THEME,
-      HILDON_NOTE_TYPE_PROGRESSBAR
-  }                                               HildonNoteType;
+    ==================================== =======
+    Name                                 Meaning
+    ==================================== =======
+    HILDON_NOTE_TYPE_CONFIRMATION
+    HILDON_NOTE_TYPE_CONFIRMATION_BUTTON
+    HILDON_NOTE_TYPE_INFORMATION
+    HILDON_NOTE_TYPE_INFORMATION_THEME
+    HILDON_NOTE_TYPE_PROGRESSBAR
+    ==================================== =======
   
-
-
-
-.. _HildonNote.property-details:
-
 Property Details
 ================
 
-.. _HildonNote--description:
+.. _Note--description:
 
 The ``description`` property
 
@@ -2941,7 +2747,7 @@ Description for the note.
 
 Default value: ""
 
-.. _HildonNote--icon:
+.. _Note--icon:
 
 The ``icon`` property
 
@@ -2955,19 +2761,19 @@ Icon for the note.
 
 Default value: ""
 
-.. _HildonNote--note-type:
+.. _Note--note-type:
 
 The ``note-type`` property
 
 ::
 
-    note-type                HildonNoteType        : Read / Write / Construct
+    note-type                NoteType        : Read / Write / Construct
 
 The type of the note dialog.
 
 Default value: HILDON_NOTE_TYPE_CONFIRMATION
 
-.. _HildonNote--progressbar:
+.. _Note--progressbar:
 
 The ``progressbar`` property
 
@@ -2979,7 +2785,7 @@ Progressbar for the note (if any).
 
 
 
-.. _HildonNote--stock-icon:
+.. _Note--stock-icon:
 
 The ``stock-icon`` property
 
@@ -4451,7 +4257,7 @@ Ctors:
 
     .. method:: scroll_to(x, y)
 
-        Smoothly scrolls ``area`` to ensure that (``x``, ``y``) is a visible point on the widget. To move in only one coordinate, you must set the other one to -1. Notice that, in ```PANNABLE_AREA_MODE_PUSH``, this function works just like :meth:`jump_to'.
+        Smoothly scrolls ``area`` to ensure that (``x``, ``y``) is a visible point on the widget. To move in only one coordinate, you must set the other one to -1. Notice that, in :const:`PANNABLE_AREA_MODE_PUSH`, this function works just like :meth:`jump_to`.
 
         This function is useful if you need to present the user with a particular element inside a scrollable widget, like :class:`GtkTreeView` . For instance, the following example shows how to scroll inside a :class:`GtkTreeView` to make visible an item, indicated by the :class:`GtkTreeIter` ``iter``.
 
@@ -4484,7 +4290,7 @@ Ctors:
 
         There is a precondition to this function: the widget must be already realized. Check the :meth:`jump_to_child` for more tips regarding how to call this function during initialization.
 
-        :param child: A :class:`GtkWidget` , descendant of ``area``.
+        :param child: A :class:`gtk.Widget` , descendant of ``area``.
 
     .. method:: jump_to_child(child)
 
@@ -4492,7 +4298,7 @@ Ctors:
         
         There is a precondition to this function: the widget must be already realized. You can control if the widget is ready with the GTK_WIDGET_REALIZED macro. If you want to call this function during the initialization process of the widget do it inside a callback to the ::realize signal, using `g_signal_connect_after() <g-signal-connect-after>`_ function.
 
-        :param child: A :class:`GtkWidget` , descendant of ``area``.
+        :param child: A :class:`gtk.Widget` , descendant of ``area``.
 
 
     .. method:: get_child_widget_at(x, y)
@@ -4501,7 +4307,7 @@ Ctors:
 
         :param x: horizontal coordinate of the point
         :param y: vertical coordinate of the point
-        :returns: the :class:`GtkWidget` if we find a widget, NULL in any other case
+        :returns: the :class:`gtk.Widget` if we find a widget, NULL in any other case
 
 
     .. method:: get_size_request_policy()
@@ -4577,7 +4383,7 @@ Property Details
 |``hovershoot-max``                | int           | Read / Write / Construct | 150                      | Space we allow the widget to pass                                                                                                          |
 |                                  |               |                          |                          | over its horizontal limits                                                                                                                 |
 |                                  |               |                          |                          | whenhitting the edges, set 0 in order                                                                                                      |
-|                                  |               |                          |                          |  to deactivate overshooting.                                                                                                               |
+|                                  |               |                          |                          | to deactivate overshooting.                                                                                                                |
 +----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | ``hscrollbar-policy``            | GtkPolicyType | Read / Write / Construct | gtk.POLICY_AUTOMATIC     | Visual policy of the horizontal scrollbar.                                                                                                 |
 +----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
@@ -4693,9 +4499,7 @@ Description
 
 The :class:`Entry` is a GTK widget which represents a text entry. It is derived from the :class:`gtk.Entry` widget and provides additional commodities specific to the Hildon framework.
 
-Besides all the features inherited from :class:`gtk.Entry` , a :class:`Entry` can also have a placeholder text. This text will be shown if the entry is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to `hildon_entry_get_text() <hildon-entry-get-text>`_ will never return the placeholder text, not even when it's being displayed.
-
-Although :class:`Entry` is derived from :class:`gtk.Entry` , `get_text`_ and `set_text` must never be used to get/set the text in this widget. `get_text` and `set_text` must be used instead.
+Besides all the features inherited from :class:`gtk.Entry` , a :class:`Entry` can also have a placeholder text. This text will be shown if the entry is empty and doesn't have the input focus, but it's otherwise ignored. Thus, calls to :meth:`Entry.get_text` will never return the placeholder text, not even when it's being displayed.
 
 Creating a Entry with a placeholder 
 ===================================
@@ -4723,7 +4527,7 @@ Details
     .. method:: set_text(text)
 
         Sets the text in ``entry`` to ``text``, replacing its current contents.
-        Note that you must never use :meth:`set_text()`_ to set the text of a :class:`Entry` .
+        Note that you must never use :meth:`Entry.set_text` to set the text of a :class:`Entry` .
 
         :param text: the new text
 
@@ -4731,8 +4535,8 @@ Details
     .. method:: get_text()
 
         Gets the current text in ``entry``.
-        Note that you must never use :meth:`get_text()` to get the text from a :class:`Entry` .
-        Also note that placeholder text (set using :meth:`set_placeholder()` is never returned. Only text set by :meth:`set_text` or typed by the user is considered.
+        Note that you must never use :meth:`get_text` to get the text from a :class:`Entry` .
+        Also note that placeholder text (set using :meth:`set_placeholder` is never returned. Only text set by :meth:`set_text` or typed by the user is considered.
 
         :returns:  the text in ``entry``. This text must not be modified or freed.
 
@@ -4860,7 +4664,7 @@ To use a :class:`AppMenu` , add it to a :class:`Window` using :meth:`Window.set_
 
 The menu will be automatically hidden when one of its buttons is clicked. Use `g_signal_connect_after()` when connecting callbacks to buttons to make sure that they're called after the menu disappears. Alternatively, you can add the button to the menu before connecting any callback.
 
-Although implemented with a :class:`gtk.Window` , :class:`AppMenu` behaves like a normal ref-counted widget, so :meth:`ref()`_ , :meth:`unref` , :meth:`ref_sink` and friends will behave just like with any other non-toplevel widget.
+Although implemented with a :class:`gtk.Window` , :class:`AppMenu` behaves like a normal ref-counted widget, so :meth:`ref()`, :meth:`unref` , :meth:`ref_sink` and friends will behave just like with any other non-toplevel widget.
 
 Creating a AppMenu
 ==================
@@ -5249,18 +5053,13 @@ The ``button-clicked`` signal
 
     .. versionadded 2.2
 
-.. _WizardDialog:
-
 WizardDialog
 ************
-
-.. _WizardDialog.object-hierarchy:
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -5271,16 +5070,11 @@ Object Hierarchy
                                    +----GtkWindow
                                          +----GtkDialog
                                                +----WizardDialog
-  
-
-.. _WizardDialog.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
 WizardDialog implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable`.
-
-.. _WizardDialog.description:
 
 Description
 ===========
@@ -5292,8 +5086,6 @@ Response buttons are dimmed/undimmed automatically. The notebook widget provided
 Usage of the API is very simple, it has only one function to create it and the rest of it is handled by developers notebook. Also, the response is returned, either cancel or finish. Next and previous buttons are handled by the wizard dialog it self, by switching the page either forward or backward in the notebook.
 
 It is possible to determinate whether users can go to the next page by setting a :class:`WizardDialogPageFunc` function with :meth:`WizardDialog.set_forward_page_func`.
-
-.. _WizardDialog.details:
 
 Details
 =======
@@ -5323,24 +5115,20 @@ Details
         :param page_func: the function, or ``None`` to use the default function.
         :param data: user data for ``page_func``\
 
-
-.. _WizardDialogResponse:
-
 .. data:: WizardDialogResponse
-Used to control the size request policy of the widget
 
-========================== ==================================
-Value                      Meaning
-========================== ==================================
-``WIZARD_DIALOG_CANCEL``   Returned by the 'Cancel' button.
-``WIZARD_DIALOG_PREVIOUS`` Returned by the 'Previous' button.
-``WIZARD_DIALOG_NEXT``     Returned by the 'Next' button.
-``WIZARD_DIALOG_FINISH``   Returned by the 'Finish' button.
-========================== ==================================
+    Used to control the size request policy of the widget
 
-.. warning:: WIZARD_DIALOG_CANCEL is deprecated and should not be used in newly-written code.
+    ========================== ==================================
+    Value                      Meaning
+    ========================== ==================================
+    ``WIZARD_DIALOG_CANCEL``   Returned by the 'Cancel' button.
+    ``WIZARD_DIALOG_PREVIOUS`` Returned by the 'Previous' button.
+    ``WIZARD_DIALOG_NEXT``     Returned by the 'Next' button.
+    ``WIZARD_DIALOG_FINISH``   Returned by the 'Finish' button.
+    ========================== ==================================
 
-.. _WizardDialog.property-details:
+    .. warning:: WIZARD_DIALOG_CANCEL is deprecated and should not be used in newly-written code.
 
 Property Details
 ================
@@ -5549,7 +5337,7 @@ Details
 
         Send a message to the window manager setting the parent window for the animation actor. Parenting an actor will not affect the X window that the AnimationActor represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an animation actor will affect its visibility as set by the :function:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and :meth:`AnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
+        Parenting an animation actor will affect its visibility as set by the :meth:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and :meth:`AnimationActor.set_show` . The animation actor will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the animation actor. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
@@ -5780,7 +5568,7 @@ Details
 
         Send a message to the window manager setting the parent window for the remote texture. Parenting an actor will not affect the X window that the RemoteTexture represents, but it's off-screen bitmap as it is handled by the compositing window manager.
 
-        Parenting an remote texture will affect its visibility as set by the :function:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and :meth:`RemoteTexture.set_show` . The remote texture will only be visible when the top-level window it is parented is visible.
+        Parenting an remote texture will affect its visibility as set by the :meth:`gtk.Widget.show_all` , :meth:`GtkWidget.hide` and :meth:`RemoteTexture.set_show` . The remote texture will only be visible when the top-level window it is parented is visible.
 
         Passing None as a ``parent`` argument will unparent the remote texture. This will restore the actor's visibility if it was suppressed by being unparented or parented to an unmapped window.
 
