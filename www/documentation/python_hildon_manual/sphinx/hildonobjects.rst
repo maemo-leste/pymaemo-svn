@@ -1404,16 +1404,13 @@ See Also
 
 :class:`HildonPickerButton` :class:`HildonTimeButton`
 
-HildonTimeButton
-****************
-
-.. _HildonTimeButton.object-hierarchy:
+TimeButton
+**********
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -1427,14 +1424,11 @@ Object Hierarchy
                                                      +----HildonTimeButton
   
 
-.. _HildonTimeButton.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
 HildonTimeButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
-.. _HildonTimeButton.description:
 
 Description
 ===========
@@ -1442,143 +1436,61 @@ Description
 :class:`HildonTimeButton` is a widget that shows a text label and a time, and allows the user to select a different time. Visually, it's a button that, once clicked, presents a :class:`PickerDialog` containing a :class:`HildonTimeSelector` . Once the user selects a different time from the selector, this will be shown in the button.
 
 
-
-.. _HildonTimeButton.details:
-
 Details
 =======
 
-.. _HildonTimeButton-struct:
-
 .. class:: HildonTimeButton
 
-::
+    .. method:: __init__ (size, param)
 
-  typedef struct _HildonTimeButton HildonTimeButton;
+        Creates a new :class:`HildonTimeButton` . See :meth:`hildon.Button` for details on the parameters.
 
+        :param size: One of :class:`HildonSizeType`
 
+        :param arrangement: one of :class:`HildonButtonArrangement`
 
-.. _hildon-time-button-new:
+        :returns: a new :class:`HildonTimeButton`
 
-.. function:: hildon_time_button_new ()
+        .. versionadded 2.2
 
-::
+    .. method:: new_step (size, arrangement, minutes_step)
 
-  GtkWidget*          hildon_time_button_new              (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement);
+        Creates a new :class:`HildonTimeButton` . See :meth:`hildon.Button` for details on the parameters.
 
-Creates a new :class:`HildonTimeButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
+        :param size: One of :class:`HildonSizeType`
 
+        :param arrangement: one of :class:`HildonButtonArrangement`
 
+        :param minutes_step: step between the minutes in the selector options
 
-``size``:
-  One of :class:`HildonSizeType`
+        :returns: a new :class:`HildonTimeButton`
 
+        .. versionadded 2.2
 
-``arrangement``:
-  one of :class:`HildonButtonArrangement`
+    .. method:: get_time (hours, minutes)
 
+        Retrieves the time from ``button``.
 
-:returns: 
-  a new :class:`HildonTimeButton`
+        :param hours: return location for the hours of the time selected
 
+        :param minutes: return location for the minutes of the time selected
 
-.. versionadded 2.2
+        .. versionadded 2.2
 
-.. _hildon-time-button-new-step:
+    .. method:: set_time (hours, minutes)
 
-.. function:: hildon_time_button_new_step ()
+        Sets the time to be displayed in ``button``. This time will be selected by default on the :class:`HildonTimeSelector` .
 
-::
+        :param hours: the hours to be set
 
-  GtkWidget*          hildon_time_button_new_step         (HildonSizeType size,
-                                                           HildonButtonArrangement arrangement,
-                                                           int minutes_step);
+        :param minutes: the time to be set
 
-Creates a new :class:`HildonTimeButton` . See `hildon_button_new() <hildon-button-new>`_ for details on the parameters.
-
-
-
-``size``:
-  One of :class:`HildonSizeType`
-
-
-``arrangement``:
-  one of :class:`HildonButtonArrangement`
-
-
-``minutes_step``:
-  step between the minutes in the selector options
-
-
-:returns: 
-  a new :class:`HildonTimeButton`
-
-
-.. versionadded 2.2
-
-.. _hildon-time-button-get-time:
-
-.. function:: hildon_time_button_get_time ()
-
-::
-
-  void                hildon_time_button_get_time         (HildonTimeButton *button,
-                                                           int *hours,
-                                                           int *minutes);
-
-Retrieves the time from ``button``.
-
-
-
-``button``:
-  a :class:`HildonTimeButton`
-
-
-``hours``:
-  return location for the hours of the time selected
-
-
-``minutes``:
-  return location for the minutes of the time selected
-
-
-.. versionadded 2.2
-
-.. _hildon-time-button-set-time:
-
-.. function:: hildon_time_button_set_time ()
-
-::
-
-  void                hildon_time_button_set_time         (HildonTimeButton *button,
-                                                           int hours,
-                                                           int minutes);
-
-Sets the time to be displayed in ``button``. This time will be selected by default on the :class:`HildonTimeSelector` .
-
-
-
-``button``:
-  a :class:`HildonTimeButton`
-
-
-``hours``:
-  the hours to be set
-
-
-``minutes``:
-  the time to be set
-
-
-.. versionadded 2.2
-
-.. _HildonTimeButton.see-also:
+        .. versionadded 2.2
 
 See Also
 ========
 
-:class:`HildonPickerButton` :class:`HildonDateButton` .. _HildonCaption:
+:class:`HildonPickerButton` :class:`HildonDateButton`
 
 HildonCaption
 *************
