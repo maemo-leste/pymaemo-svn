@@ -5863,10 +5863,12 @@ The ``button-clicked`` signal
 
     .. versionadded 2.2
 
-HildonWizardDialog
-******************
+.. _WizardDialog:
 
-.. _HildonWizardDialog.object-hierarchy:
+WizardDialog
+************
+
+.. _WizardDialog.object-hierarchy:
 
 Object Hierarchy
 ================
@@ -5882,233 +5884,92 @@ Object Hierarchy
                              +----GtkBin
                                    +----GtkWindow
                                          +----GtkDialog
-                                               +----HildonWizardDialog
+                                               +----WizardDialog
   
 
-.. _HildonWizardDialog.implemented-interfaces:
+.. _WizardDialog.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonWizardDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+WizardDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable`.
 
-.. _HildonWizardDialog.properties:
-
-Properties
-==========
-
-::
-
-  
-    autotitle                bool              : Read / Write
-    wizard-name              str                : Read / Write
-    wizard-notebook          GtkNotebook*          : Read / Write
-  
-
-.. _HildonWizardDialog.description:
+.. _WizardDialog.description:
 
 Description
 ===========
 
-:class:`HildonWizardDialog` is a widget to create a guided installation process. The dialog has three standard buttons, previous, next, finish, and contains several pages.
+:class:`WizardDialog` is a widget to create a guided installation process. The dialog has three standard buttons, previous, next, finish, and contains several pages.
 
 Response buttons are dimmed/undimmed automatically. The notebook widget provided by users contains the actual wizard pages.
 
 Usage of the API is very simple, it has only one function to create it and the rest of it is handled by developers notebook. Also, the response is returned, either cancel or finish. Next and previous buttons are handled by the wizard dialog it self, by switching the page either forward or backward in the notebook.
 
-It is possible to determinate whether users can go to the next page by setting a :class:`HildonWizardDialogPageFunc` function with `hildon_wizard_dialog_set_forward_page_func() <hildon-wizard-dialog-set-forward-page-func>`_
+It is possible to determinate whether users can go to the next page by setting a :class:`WizardDialogPageFunc` function with :meth:`WizardDialog.set_forward_page_func`.
 
-
-
-.. _HildonWizardDialog.details:
+.. _WizardDialog.details:
 
 Details
 =======
 
-.. _HildonWizardDialogResponse:
+.. class:: WizardDialog
 
-.. :: enum HildonWizardDialogResponse
+    .. method:: __init__ (parent, wizard_name, notebook)
 
-::
+        Creates a new :class:`WizardDialog` .
 
-  typedef enum
-  {
-      HILDON_WIZARD_DIALOG_CANCEL = GTK_RESPONSE_CANCEL,
-      HILDON_WIZARD_DIALOG_PREVIOUS = 0,
-      HILDON_WIZARD_DIALOG_NEXT,
-      HILDON_WIZARD_DIALOG_FINISH
-  }                                               HildonWizardDialogResponse;
-  
+        :param parent: a :class:`gtk.Window`
+        :param wizard_name: the name of dialog
+        :param notebook: the notebook to be shown on the dialog
 
-Predefined values for use as response ids for :class:`HildonWizardDialog` .
+        :returns: A :class:`WizardDialog`
 
-.. warning:: HILDON_WIZARD_DIALOG_CANCEL is deprecated and should not be used in newly-written code.
+    .. method:: set_forward_page_func (page_func, data)
 
+        Sets the page forwarding function to be ``page_func``. This function will be used to determine whether it is possible to go to the next page when the user presses the forward button. Setting ``page_func`` to None wil make the wizard to simply go always to the next page.
 
+        The signature of ``page_func`` is:
 
-``HILDON_WIZARD_DIALOG_CANCEL``
-  Returned by the 'Cancel' button.
+        ``def page_func(current_page, user_data):``
 
+        where ``current_page`` is the index of the current page and ``user_data`` is data.
 
-``HILDON_WIZARD_DIALOG_PREVIOUS``
-  Returned by the 'Previous' button.
+        :param page_func: the function, or ``None`` to use the default function.
+        :param data: user data for ``page_func``\
 
 
-``HILDON_WIZARD_DIALOG_NEXT``
-  Returned by the 'Next' button.
+.. _WizardDialogResponse:
 
+.. data:: WizardDialogResponse
+Used to control the size request policy of the widget
 
-``HILDON_WIZARD_DIALOG_FINISH``
-  Returned by the 'Finish' button.
+========================== ==================================
+Value                      Meaning
+========================== ==================================
+``WIZARD_DIALOG_CANCEL``   Returned by the 'Cancel' button.
+``WIZARD_DIALOG_PREVIOUS`` Returned by the 'Previous' button.
+``WIZARD_DIALOG_NEXT``     Returned by the 'Next' button.
+``WIZARD_DIALOG_FINISH``   Returned by the 'Finish' button.
+========================== ==================================
 
+.. warning:: WIZARD_DIALOG_CANCEL is deprecated and should not be used in newly-written code.
 
-.. _HildonWizardDialog-struct:
-
-.. class:: HildonWizardDialog
-
-::
-
-  typedef struct _HildonWizardDialog HildonWizardDialog;
-
-
-
-.. _HildonWizardDialogPageFunc:
-
-.. function:: HildonWizardDialogPageFunc ()
-
-::
-
-  bool            (*HildonWizardDialogPageFunc)       (GtkNotebook *notebook,
-                                                           int current_page,
-                                                           gpointer data);
-
-
-
-``notebook``:
-  
-
-
-``current_page``:
-  
-
-
-``data``:
-  
-
-
-:returns: 
-  
-
-
-.. _hildon-wizard-dialog-new:
-
-.. function:: hildon_wizard_dialog_new ()
-
-::
-
-  GtkWidget*          hildon_wizard_dialog_new            (GtkWindow *parent,
-                                                           const char *wizard_name,
-                                                           GtkNotebook *notebook);
-
-Creates a new :class:`HildonWizardDialog` .
-
-
-
-``parent``:
-  a :class:`gtk.Window`
-
-
-``wizard_name``:
-  the name of dialog
-
-
-``notebook``:
-  the notebook to be shown on the dialog
-
-
-:returns: 
-  a new :class:`HildonWizardDialog`
-
-
-.. _hildon-wizard-dialog-set-forward-page-func:
-
-.. function:: hildon_wizard_dialog_set_forward_page_func ()
-
-::
-
-  void                hildon_wizard_dialog_set_forward_page_func
-                                                          (HildonWizardDialog *wizard_dialog,
-                                                           HildonWizardDialogPageFunc page_func,
-                                                           gpointer data,
-                                                           GDestroyNotify destroy);
-
-Sets the page forwarding function to be ``page_func``. This function will be used to determine whether it is possible to go to the next page when the user presses the forward button. Setting ``page_func`` to None wil make the wizard to simply go always to the next page.
-
-
-
-``wizard_dialog``:
-  a :class:`HildonWizardDialog`
-
-
-``page_func``:
-  the :class:`HildonWizardDialogPageFunc`
-
-
-``data``:
-  user data for ``page_func``\
-
-
-``destroy``:
-  destroy notifier for ``data``\
-
-
-.. versionadded 2.2
-
-.. _HildonWizardDialog.property-details:
+.. _WizardDialog.property-details:
 
 Property Details
 ================
 
-.. _HildonWizardDialog--autotitle:
-
-The ``autotitle`` property
-
-::
-
-    autotitle                bool              : Read / Write
-
-If the wizard should automatically try to change the window title when changing steps. Set to FALSE if you'd like to override the default behaviour.
-
-
-
-Default value: TRUE
-
-Since 0.14.5
-
-.. _HildonWizardDialog--wizard-name:
-
-The ``wizard-name`` property
-
-::
-
-    wizard-name              str                : Read / Write
-
-The name of the wizard.
-
-
-
-Default value: NULL
-
-.. _HildonWizardDialog--wizard-notebook:
-
-The ``wizard-notebook`` property
-
-::
-
-    wizard-notebook          GtkNotebook*          : Read / Write
-
-The notebook object, which is used by the HildonWizardDialog.
-
+============================ ============ ============ ============== ========================================
+Name                         type         Access       Default        Meaning
+============================ ============ ============ ============== ========================================
+``autotitle``                bool         Read / Write True           If the wizard should automatically try
+                                                                      to change the window title when changing
+                                                                      steps. Set to FALSE if you'd like to
+                                                                      override the default behaviour.
+``wizard-name``              str          Read / Write None           The name of the wizard.
+``wizard-notebook``          gtk.Notebook Read / Write                The notebook object, which is used by
+                                                                      the WizardDialog.
+============================ ============ ============ ============== ========================================
 
 
 PickerDialog
@@ -6142,7 +6003,7 @@ Description
 
 The :class:`PickerDialog` will show a 'Done' button in case the :class:`TouchSelector` allows multiple selection. The label of the button can be set using :meth:`PickerDialog.set_done_label` and retrieved using :meth:`PickerDialog.get_done_label`
 
-Note that in most cases developers don't need to deal directly with this widget. :class:`HildonPickerButton` is designed to pop up a :class:`PickerDialog` and manage the interaction with it.
+Note that in most cases developers don't need to deal directly with this widget. :class:`PickerButton` is designed to pop up a :class:`PickerDialog` and manage the interaction with it.
 
 Details
 =======
