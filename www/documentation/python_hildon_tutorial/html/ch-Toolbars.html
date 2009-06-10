@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Toolbars &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="next" title="Navigation" href="ch-Packing.html" />
+    <link rel="prev" title="Menus" href="ch-Menus.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch-Packing.html" title="Navigation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Menus.html" title="Menus"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="toolbars">
+<span id="ch-toolbars"></span><h1>Toolbars<a class="headerlink" href="#toolbars" title="Permalink to this headline">¶</a></h1>
+<p>Toolbars are usually used to group some number of widgets in order to simplify customization of their look and layout. Hildon framework provides two specialized toolbars: hildon.FindToolbar and hildon.EditToolbar that will be explained bellow. Apart from that you can also use GtkToolbars in your Hildon application.</p>
+<div class="section" id="find-toolbars">
+<h2>Find Toolbars<a class="headerlink" href="#find-toolbars" title="Permalink to this headline">¶</a></h2>
+<p>hildon.FindToolbar is a toolbar that contains a search entry and a dropdown list with previously searched strings. An internal gtk.ListStore stores the items in the dropdown list. This list is a property of the widget called &#8220;list&#8221;</p>
+<p>To create a hildon.FindToolbar you can use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">FindToolbar</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">column</span><span class="o">=-</span><span class="mf">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this functions the argument label will be used as label which be displayed as label for the dropdown box.</p>
+<p>The the function above allows to set the model which will be used to store the dropdown box. It is also necessary to indicate which column the search will retrieve the string from.</p>
+<p>If the toolbar is created by using the first function, it will be necessary to manually set up the properties &#8220;list&#8221; and &#8220;column&#8221;.</p>
+<p>This widget provides the following function f for set and retrieve the index in the model of the current active item on the combo. An index -1 indicates no active items in both functions.</p>
+<div class="highlight-python"><pre>def set_active(self, index)
+def get_active(self)</pre>
+</div>
+<p>To get the index of the most recently added item in the toolbar you can use the following function.</p>
+<div class="highlight-python"><pre>def get_last_index(self)</pre>
+</div>
+<p>Alternatively, you can use a gtk.TreeIter to reference the current active item.</p>
+<div class="highlight-python"><pre>def set_active_iter(self, iter)
+def get_active_iter(self)</pre>
+</div>
+<p>After create and properly set up the toolbar is necessary to attach it to any window. hildon.Window provides the following function to attach a toolbar:</p>
+<div class="highlight-python"><pre>def add_toolbar(self, toolbar)</pre>
+</div>
+<p>In case you need to add a common toolbar to all windows in your program, hildon.Program provides the following function to set and retrtieve a common toolbar to each window registered into the curretn program:</p>
+<div class="highlight-python"><pre>def set_common_toolbar(self, toolbar)
+def get_common_toolbar(self)</pre>
+</div>
+<p>Here a simple example that shows how to deal with a hildon.FindToolbar.</p>
+<div class="section" id="using-a-find-toolbar">
+<h3>Using a Find Toolbar<a class="headerlink" href="#using-a-find-toolbar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Based on C code from:</span>
+<span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
+<span class="c"># Example 4.1, &quot;Using a Find Toolbar&quot;</span>
+
+<span class="k">import</span> <span class="nn">sys</span>
+
+<span class="k">import</span> <span class="nn">gobject</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+
+<span class="k">def</span> <span class="nf">on_history_append</span><span class="p">(</span><span class="n">toolbar</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>
+    <span class="c"># Get last added index</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">toolbar</span><span class="o">.</span><span class="n">get_last_index</span><span class="p">()</span>
+
+    <span class="c"># Get the inner list</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="n">toolbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">)</span>
+
+    <span class="c"># Get the item</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">get_iter_from_string</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">index</span><span class="p">)</span>
+
+    <span class="n">item</span><span class="p">,</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;ADDED TO THE LIST : </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">item</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">program</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_program_get_instance</span><span class="p">()</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span>
+
+    <span class="n">program</span><span class="o">.</span><span class="n">add_window</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+    <span class="c"># Create and populate history list model</span>
+    <span class="n">store</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ListStore</span><span class="p">(</span><span class="n">gobject</span><span class="o">.</span><span class="n">TYPE_STRING</span><span class="p">)</span>
+
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">()</span>
+    <span class="n">store</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="s">&quot;Foo&quot;</span><span class="p">)</span>
+
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">()</span>
+    <span class="n">store</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="s">&quot;Bar&quot;</span><span class="p">)</span>
+
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">()</span>
+    <span class="n">store</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="s">&quot;Baz&quot;</span><span class="p">)</span>
+
+    <span class="c"># Create find toolbar</span>
+    <span class="n">toolbar</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">FindToolbar</span><span class="p">(</span><span class="s">&quot;Find&quot;</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+    <span class="c"># Set item on index 0 as the current active</span>
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+
+    <span class="c"># Attach a callback to handle &quot;history-append&quot; signal</span>
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">connect_after</span><span class="p">(</span><span class="s">&quot;history-append&quot;</span><span class="p">,</span> <span class="n">on_history_append</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="c"># Attach toolbar to window</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">add_toolbar</span><span class="p">(</span><span class="n">toolbar</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the example above a callback is set to handle the signal &#8220;history-append&#8221;, emitted by the toolbar when a new item is added to the history. There are other interesting signals such as &#8220;history-append&#8221; that could be handle to perform aditional actions when they will be emitted.</p>
+<p>Apart from the property which stores the internal list, other properties are available such as &#8220;max-characters&#8221; , which set the maximum length of the search string. To a complete description of the signals and properties available read the Hildon reference manual.</p>
+</div>
+</div>
+<div class="section" id="edit-toolbars">
+<h2>Edit Toolbars<a class="headerlink" href="#edit-toolbars" title="Permalink to this headline">¶</a></h2>
+<p>Edit toolbars are implemented by the widget hildon.EditToolbar.This widget is a toolbar to be used as main control and navigation interface for the edit UI mode. This toolbar contains a label and two buttons, being one of them an arrow pointing backwards and the other a button to perform a certain action. It also display a label which explain to the users the action that will be performed by the button and could give intructions to user on how to perform the action properly.</p>
+<p>A typical example could be a view to delete several items in a list. The label would advice user to select the items to delete and those items will be deleted by clicking the button.</p>
+<p>Typically, this toolbar will be attached to a edit view, meaning a hildon.StackableWindow used in the program to perform a certain editing action.</p>
+<p>The action to be performing by clicking the action button should be implemented in a callback to handle the signal &#8220;button-clicked&#8221;, that will be show in the example.</p>
+<p>To create a new hildon.EditToolbar you should use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">EditToolbar</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">button</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The creation function allows to set the two labels of the widget. If you use the simple creation function, you should set the labels by using the following functions.</p>
+<div class="highlight-python"><pre>def set_label(self, label)
+def set_button_label(self, label)</pre>
+</div>
+<p>Once the edit toolbar is configured you need to attach it to a window by using:</p>
+<div class="highlight-python"><pre>def add_toolbar(self, toolbar)</pre>
+</div>
+<p>As was said, the action to be done by clicking the button should be mplemented in a callback attached to the signal &#8220;button-clicked&#8221;. This widgets define also another signal, &#8220;arrow-clicked&#8221;, emitted when users click the arrow. Typically, the callback for the signal &#8220;arrow-clicked&#8221; should destroy the current edit view.</p>
+<p>The example bellow shows how to use an edit toolbar. This example builds a main window showing a list of items and a button to go to a edit view where users can select several items and deleted by clicking the action button of the toolbar.</p>
+<div class="section" id="using-an-edit-toolbar">
+<h3>Using an Edit Toolbar<a class="headerlink" href="#using-an-edit-toolbar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Based on C code from:</span>
+<span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
+<span class="c"># Example 4.2, &quot;Using an Edit Toolbar&quot;</span>
+
+<span class="k">import</span> <span class="nn">gobject</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+
+<span class="n">store</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">get_model</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">store</span>
+
+    <span class="k">if</span> <span class="n">store</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">store</span>
+
+    <span class="n">store</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ListStore</span><span class="p">(</span><span class="n">gobject</span><span class="o">.</span><span class="n">TYPE_STRING</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mf">50</span><span class="p">):</span>
+        <span class="nb">str</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Row </span><span class="si">%d</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">i</span>
+        <span class="n">store</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">store</span>
+
+<span class="k">def</span> <span class="nf">create_treeview</span><span class="p">(</span><span class="n">tvmode</span><span class="p">):</span>
+    <span class="n">tv</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkTreeView</span><span class="p">(</span><span class="n">tvmode</span><span class="p">)</span>
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">CellRendererText</span><span class="p">()</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">TreeViewColumn</span><span class="p">(</span><span class="s">&quot;Title&quot;</span><span class="p">,</span> <span class="n">renderer</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+
+    <span class="n">tv</span><span class="o">.</span><span class="n">append_column</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+
+    <span class="c"># Set multiple selection mode</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">get_selection</span><span class="p">()</span>
+    <span class="n">selection</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">SELECTION_MULTIPLE</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">()</span>
+
+    <span class="n">tv</span><span class="o">.</span><span class="n">set_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tv</span>
+
+<span class="k">def</span> <span class="nf">delete_button_clicked</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">treeview</span><span class="p">):</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="n">treeview</span><span class="o">.</span><span class="n">get_selection</span><span class="p">()</span>
+
+    <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">selected_rows</span><span class="p">)</span> <span class="o">=</span> <span class="n">selection</span><span class="o">.</span><span class="n">get_selected_rows</span><span class="p">()</span>
+
+    <span class="n">row_references</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">selected_rows</span><span class="p">:</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">TreeRowReference</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">row_references</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">row_references</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+        <span class="nb">iter</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_iter</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">edit_window</span><span class="p">(</span><span class="n">button</span><span class="p">):</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">set_border_width</span><span class="p">(</span><span class="mf">6</span><span class="p">)</span>
+
+    <span class="c"># Create a new edit toolbar</span>
+    <span class="n">toolbar</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">EditToolbar</span><span class="p">(</span><span class="s">&quot;Choose items to delete&quot;</span><span class="p">,</span> <span class="s">&quot;Delete&quot;</span><span class="p">)</span>
+
+    <span class="n">area</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">PannableArea</span><span class="p">()</span>
+    <span class="n">tree_view</span> <span class="o">=</span> <span class="n">create_treeview</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_UI_MODE_EDIT</span><span class="p">)</span>
+
+    <span class="c"># Add toolbar to the window</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">set_edit_toolbar</span><span class="p">(</span><span class="n">toolbar</span><span class="p">)</span>
+
+    <span class="n">area</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tree_view</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;button-clicked&quot;</span><span class="p">,</span> <span class="n">delete_button_clicked</span><span class="p">,</span> <span class="n">tree_view</span><span class="p">)</span>
+
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">connect_object</span><span class="p">(</span><span class="s">&quot;arrow-clicked&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Window</span><span class="o">.</span><span class="n">destroy</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+    <span class="c"># Set window to fullscreen</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">fullscreen</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;destroy&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+
+    <span class="n">vbox</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mf">10</span><span class="p">)</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">PannableArea</span><span class="p">()</span>
+
+    <span class="n">tree_view</span> <span class="o">=</span> <span class="n">create_treeview</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_UI_MODE_NORMAL</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&quot;Delete some items&quot;</span><span class="p">)</span>
+
+    <span class="n">area</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tree_view</span><span class="p">)</span>
+    <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+    <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vbox</span><span class="p">)</span>
+
+    <span class="n">button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;clicked&quot;</span><span class="p">,</span> <span class="n">edit_window</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The most of stuff related to hildon.EditToolbar is in the function edit_window. This function creates a edit view, meaning that a new hildon.StackableWindow is created showing a treeview in which users can select several items.</p>
+<p>Note that the edit window is set to fullscreen, thus, the hildon.EditToolbar will be displayed obscuring the usual window controls.</p>
+</div>
+</div>
+<div class="section" id="using-gtk-toolbars-in-hildon-applications">
+<h2>Using gtk.Toolbars in Hildon applications<a class="headerlink" href="#using-gtk-toolbars-in-hildon-applications" title="Permalink to this headline">¶</a></h2>
+<p>You can use the widget gtk.Toolbar as you would do in a GTK+ application but taking account the following that:</p>
+<ul class="simple">
+<li>gtk.Toolbars should be used when there is only one content item visible (e.g. when editing a single image or editing a single email).</li>
+<li>There should be no menu commands or settings for hiding or showing toolbar. The toolbar is always shown in the view where you decided to put it.</li>
+</ul>
+<p>Like the others toolbars, a gtk.Toolbar should be attached to a window by using:</p>
+<div class="highlight-python"><pre>def add_toolbar(self, toolbar)</pre>
+</div>
+<p>The following example shows how to use a gtk.ToolBar. The use is very close to how it would be use in a normal GTK+ application.</p>
+<div class="section" id="using-a-gtk-toolbar-in-a-hildon-application">
+<h3>Using a gtk.Toolbar in a Hildon application<a class="headerlink" href="#using-a-gtk-toolbar-in-a-hildon-application" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Based on C code from:</span>
+<span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
+<span class="c"># Example 4.3, &quot;Using a GtkToolbar in a Hildon application&quot;</span>
+
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+
+<span class="k">def</span> <span class="nf">app_quit</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">on_clicked</span> <span class="p">(</span><span class="n">toolbutton</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Index of clicked item : </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">index</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">program</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_program_get_instance</span><span class="p">()</span>
+    <span class="n">gtk</span><span class="o">.</span><span class="n">set_application_name</span><span class="p">(</span><span class="s">&quot;hildon-touch-selector example program&quot;</span><span class="p">)</span>
+
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">program</span><span class="o">.</span><span class="n">add_window</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+    <span class="c"># Create a toolbar</span>
+    <span class="n">toolbar</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Toolbar</span><span class="p">()</span>
+
+    <span class="c"># Add items to the toolbar</span>
+    <span class="n">toolitem</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ToolButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">image_new_from_stock</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">STOCK_HOME</span><span class="p">,</span>
+                              <span class="n">gtk</span><span class="o">.</span><span class="n">ICON_SIZE_LARGE_TOOLBAR</span><span class="p">),</span>
+                              <span class="s">&quot;Home&quot;</span><span class="p">)</span>
+    <span class="n">toolitem</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;clicked&quot;</span><span class="p">,</span> <span class="n">on_clicked</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">toolitem</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+    <span class="n">toolitem</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ToolButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">image_new_from_stock</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">STOCK_GO_BACK</span><span class="p">,</span>
+                              <span class="n">gtk</span><span class="o">.</span><span class="n">ICON_SIZE_LARGE_TOOLBAR</span><span class="p">),</span>
+                              <span class="s">&quot;Back&quot;</span><span class="p">)</span>
+    <span class="n">toolitem</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;clicked&quot;</span><span class="p">,</span> <span class="n">on_clicked</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>    
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">toolitem</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
+
+
+    <span class="n">toolitem</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ToolButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">image_new_from_stock</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">STOCK_GO_FORWARD</span><span class="p">,</span>
+                              <span class="n">gtk</span><span class="o">.</span><span class="n">ICON_SIZE_LARGE_TOOLBAR</span><span class="p">),</span>
+                              <span class="s">&quot;Forward&quot;</span><span class="p">)</span>
+    <span class="n">toolitem</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;clicked&quot;</span><span class="p">,</span> <span class="n">on_clicked</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span>    
+    <span class="n">toolbar</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">toolitem</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span>
+
+    <span class="c"># Add toolbar to the window</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">add_toolbar</span><span class="p">(</span><span class="n">toolbar</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;destroy&quot;</span><span class="p">,</span> <span class="n">app_quit</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Toolbars</a><ul>
+<li><a class="reference external" href="#find-toolbars">Find Toolbars</a><ul>
+<li><a class="reference external" href="#using-a-find-toolbar">Using a Find Toolbar</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#edit-toolbars">Edit Toolbars</a><ul>
+<li><a class="reference external" href="#using-an-edit-toolbar">Using an Edit Toolbar</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#using-gtk-toolbars-in-hildon-applications">Using gtk.Toolbars in Hildon applications</a><ul>
+<li><a class="reference external" href="#using-a-gtk-toolbar-in-a-hildon-application">Using a gtk.Toolbar in a Hildon application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ch-Menus.html" title="previous chapter">Menus</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ch-Packing.html" title="next chapter">Navigation</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ch-Toolbars.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch-Packing.html" title="Navigation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Menus.html" title="Menus"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
+    </div>
+  </body>
+</html>

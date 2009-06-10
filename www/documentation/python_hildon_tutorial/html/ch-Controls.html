@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Controls &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="next" title="Additions to GTK+" href="ch-GtkAdditions.html" />
+    <link rel="prev" title="Data Selection" href="ch-Selectors.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch-GtkAdditions.html" title="Additions to GTK+"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Selectors.html" title="Data Selection"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="controls">
+<span id="ch-controls"></span><h1>Controls<a class="headerlink" href="#controls" title="Permalink to this headline">¶</a></h1>
+<p>Hildon provides a set of controls specially designed for touchscreens that allows to build simple and easy-to-use interfaces. This chapter explains how to use these widgets.</p>
+<div class="section" id="buttons">
+<h2>Buttons<a class="headerlink" href="#buttons" title="Permalink to this headline">¶</a></h2>
+<p>There are several types of buttons that can be used in a Hildon application. Hildon provides specialized buttons derived from gtk.Button which provide additional commodities specific to the Hildon framework. And it is also adviced the use of gtk.Buttons and gtk.ToggleButtons as it will will expalin in this chapter. We will begin reviewing the Hildon specific buttons.</p>
+<div class="section" id="hildon-button">
+<h3>Hildon Button<a class="headerlink" href="#hildon-button" title="Permalink to this headline">¶</a></h3>
+<p>hildon.Button is a gtk.Button which usually contains two labels, named title and value and also can include an image.</p>
+<p>To create a hildon.Button you can use the following functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">arrangement</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that in the creation of a hildon.Button you must indicate the value for the properties &#8220;size&#8221; and &#8220;arrangement&#8221;, choosing a Hildon size and a hildon.BUTTON_ARRANGEMENT_HORIZONTAL or hildon.BUTTON_ARRANGEMENT_VERTICAL arrangement of the labels.</p>
+<p>Both labels can be set and retrieved by using the following convenience functions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Alternatively, there is a convenience function to set both labels of a hildon.Button.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Regarding images into hildon.Buttons, there are functions to set and retrieve the current image using hildon.Button.set_image() and hildon.Button.get_image().</p>
+<p>You can also select the position of the image.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">set_image_position</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Currently supported positions are gtk.POS_LEFT or gtk.POS_RIGHT.</p>
+<p>The visual style (color, fonts, etc) of a hildon.Button can be changed by using the function hildon.Button.set_style(). Use hildon.ButtonStyle.normal to make it look like a normal hildon.Button, or hildon.ButtonStyle.picker to make it look like a hildon.PickerButton.</p>
+<p>The next simple example shows how to create a hildon.Button and set the text which will be shown by the label, an image is added as well.</p>
+</div>
+<div class="section" id="example-of-a-hildon-button-with-a-label-and-an-image">
+<h3>Example of a Hildon button with a label and an image<a class="headerlink" href="#example-of-a-hildon-button-with-a-label-and-an-image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_button</span><span class="p">():</span>
+    <span class="c"># Create a hildon button</span>
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span><span class="p">,</span>
+                           <span class="n">hildon</span><span class="o">.</span><span class="n">BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+
+    <span class="c"># Set labels value</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s">&quot;Some title&quot;</span><span class="p">,</span> <span class="s">&quot;Some value&quot;</span><span class="p">)</span>
+
+    <span class="c"># Set image</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">image_new_from_stock</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">STOCK_INFO</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ICON_SIZE_BUTTON</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_image_position</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">POS_RIGHT</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">button</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hildon-check-button">
+<h3>Hildon Check Button<a class="headerlink" href="#hildon-check-button" title="Permalink to this headline">¶</a></h3>
+<p>hildon.CheckButton is a button containing a label and a check box which when pressed will toggle its state between checked or unchecked.</p>
+<p>To create a hildon.CheckButton:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that, again, it is needed to indicate a size for the button.</p>
+<p>The current state of the button can be retrieve or set with the following functions, respectively.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">is_active</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">CheckButton</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+<span class="n">hildon</span><span class="o">.</span><span class="n">CheckButton</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="n">is_active</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The signal &#8220;toggled&#8221; is emitted when the state of the button changes. A handler could be attached to this signal if it is necessary to perform a further action.</p>
+<p>Here is a simple example which creates a check button and a simple callback to handle the signal &#8220;toggled&#8221;.</p>
+</div>
+<div class="section" id="example-of-a-hildon-check-button">
+<h3>Example of a Hildon check button<a class="headerlink" href="#example-of-a-hildon-check-button" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">button_toggled</span><span class="p">(</span><span class="n">checkbutton</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">checkbutton</span><span class="o">.</span><span class="n">get_active</span><span class="p">()):</span>
+       <span class="k">print</span> <span class="s">&quot;Button is active&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s">&quot;Button is not active&quot;</span>
+
+<span class="k">def</span> <span class="nf">create_check_button</span><span class="p">():</span>
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&quot;Click me&quot;</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;toggled&quot;</span><span class="p">,</span> <span class="n">button_toggled</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">button</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-gtk-buttons-and-toggles">
+<h3>Using Gtk Buttons and Toggles<a class="headerlink" href="#using-gtk-buttons-and-toggles" title="Permalink to this headline">¶</a></h3>
+<p>As was said above, apart from Hildon specific buttons the use of gtk.Button and gtk.ToggleButton is also adviced in the Hildon framework.</p>
+</div>
+<div class="section" id="hildon-gtkbutton">
+<h3>hildon.GtkButton<a class="headerlink" href="#hildon-gtkbutton" title="Permalink to this headline">¶</a></h3>
+<p>When just a label is needed you do not need to use hildon.Buttons and a hildon.GtkButton can be used instead. You can use it as you would do in a GTK application. The only change is the creation function that you should use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This alternative constructor allows you to set a Hildon size for the newly create function.</p>
+</div>
+<div class="section" id="hildon-gtktogglebutton">
+<h3>hildon.GtkToggleButton<a class="headerlink" href="#hildon-gtktogglebutton" title="Permalink to this headline">¶</a></h3>
+<p>To create a hildon.GtkToggleButton in a Hildon application you should use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">togglebutton</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkToggleButton</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hildon-gtkradiobutton">
+<h3>hildon.GtkRadioButton<a class="headerlink" href="#hildon-gtkradiobutton" title="Permalink to this headline">¶</a></h3>
+<p>To create a hildon.GtkRadioButton in a Hildon application you should use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">radiobutton</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkRadioButton</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The most common use case of this type of buttons in a Hildon application is as filters in a application menu. In the section Touch View Menu you can read more details about how this topic.</p>
+</div>
+</div>
+<div class="section" id="text-display-and-handling">
+<h2>Text Display and Handling<a class="headerlink" href="#text-display-and-handling" title="Permalink to this headline">¶</a></h2>
+<p>Text entry fields are used for entering one or more lines of plain text. Use a hildon.Entry for a single-line text input or hildon.TextView if you need a multi-line text input.</p>
+<div class="section" id="hildon-text-entry">
+<h3>Hildon Text Entry<a class="headerlink" href="#hildon-text-entry" title="Permalink to this headline">¶</a></h3>
+<p>The hildon.Entry is a GTK+ widget which represents a text entry. It is derived from the gtk.Entry widget and provides additional commodities specific to the Hildon framework.</p>
+<p>The main additional feature is that it can have a placeholder text which is shown if the entry is empty and does not have the focus.</p>
+<p>Creating a new hildon.Entry:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entry</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that the creation function needs to specify a size from <tt class="docutils literal"><span class="pre">HildonSizeType</span></tt></p>
+<p>The placeholder is stored as a property and a convenience function to set it is provided:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">Entry</span><span class="o">.</span><span class="n">set_placeholder</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here&#8217;s a very simple example showing how to create a hindon.Entry.</p>
+</div>
+<div class="section" id="example-of-a-hildon-entry">
+<h3>Example of a Hildon entry<a class="headerlink" href="#example-of-a-hildon-entry" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_entry</span><span class="p">():</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO</span><span class="p">)</span>
+    <span class="n">entry</span><span class="o">.</span><span class="n">set_placeholder</span><span class="p">(</span><span class="s">&quot;First name&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">entry</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hildon-text-area">
+<h3>Hildon Text Area<a class="headerlink" href="#hildon-text-area" title="Permalink to this headline">¶</a></h3>
+<p>The hildon.TextView is a GTK+ widget which represents a text area in Hildon applications. It is derived from the gtk.TextView widget and provides additional commodities specific to the Hildon framework.</p>
+<p>Create a hildon.TextView:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">textview</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TextView</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Like for the hildon.TextEntry presented above, a placeholder can be stored as well using the function .</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">TextView</span><span class="o">.</span><span class="n">set_placeholder</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The text that is being edited with a hildon.TextView is represented by a object gtk.TextBuffer. Below, you can find functions to set and retrieve the buffer associated with a hildon.TextView.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">TextView</span><span class="o">.</span><span class="n">set_buffer</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span>
+<span class="n">textbuffer</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TextView</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is an example that shows how to create a hildon.TextView and how to set its placeholder. Also, the buffer is retrieved and a function is set as a handler to the &#8220;changed&#8221; of the buffer. The handler simply gets the text from the hildon.TextView&#8217;s buffer and prints it.</p>
+</div>
+<div class="section" id="example-of-a-hildon-text-view-with-a-placeholder">
+<h3>Example of a Hildon text view with a placeholder<a class="headerlink" href="#example-of-a-hildon-text-view-with-a-placeholder" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">text_changed</span><span class="p">(</span><span class="nb">buffer</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">buffer</span><span class="o">.</span><span class="n">get_start_iter</span><span class="p">()</span>
+
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">buffer</span><span class="o">.</span><span class="n">get_end_iter</span><span class="p">()</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">buffer</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">false</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">create_text_view</span><span class="p">():</span>
+    <span class="n">text_view</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TextView</span><span class="p">()</span>
+    <span class="n">text_view</span><span class="o">.</span><span class="n">set_placeholder</span><span class="p">(</span><span class="s">&quot;Type some text here&quot;</span><span class="p">)</span>
+
+    <span class="nb">buffer</span> <span class="o">=</span> <span class="n">text_view</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">()</span>
+    <span class="nb">buffer</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;changed&quot;</span><span class="p">,</span> <span class="n">text_changed</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">text_view</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="notification-widgets">
+<span id="section-notification-widgets"></span><h2>Notification widgets<a class="headerlink" href="#notification-widgets" title="Permalink to this headline">¶</a></h2>
+<p>To cover the main use cases regarding notification of users, Hildon provides banners and notes. Banner widgets display a text information during a certain period of time. Notes are specialized gtk.Dialogs that need a small amount of input from the user.</p>
+<div class="section" id="banners">
+<h3>Banners<a class="headerlink" href="#banners" title="Permalink to this headline">¶</a></h3>
+<p>A hildon.Banner is useful to display information which does not need any user response. This widget automatically disappears after a certain time period.</p>
+<p>To create and show a banner you can use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">banner</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_banner_show_information</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">icon_name</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+<span class="n">banner</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_banner_show_information_with_markup</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">icon_name</span><span class="p">,</span> <span class="n">markup</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All functions above require a widget as an argument that should be a pointer to the owner widget of the banner. Usually, the owner is the window that represents the currently displayed view.</p>
+<p>Function hildon.hildon_banner_show_information() shows a banner with the given text.</p>
+<p>You can also apply a <a class="reference external" href="http://maemo.org/api_refs/5.0/beta/pango/PangoMarkupFormat.html">Pango markup</a> and add some attributes to the displayed text. To do that you can either use hildon.hildon_banner_show_information_with_markup() to create the banner or setup the markup by calling hildon.Banner.set_markup() after the initialization.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Currently, icons are not displayed in banners, so any value that you pass as the icon_name will be ignored.</p>
+</div>
+<p>The period of time after the banner automatically disappear is stored in the property &#8220;timeout&#8221; (in miliseconds). A convenience function to set this property is provided:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hildon</span><span class="o">.</span><span class="n">Banner</span><span class="o">.</span><span class="n">set_timeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is a simple example showing how to setup and show an informational banner.</p>
+</div>
+<div class="section" id="setting-up-an-informational-banner">
+<h3>Setting up an informational banner<a class="headerlink" href="#setting-up-an-informational-banner" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Create a banner with a markup</span>
+<span class="n">banner</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Banner</span><span class="o">.</span><span class="n">show_information_with_markup</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;&lt;b&gt;Information banner&lt;/b&gt;&quot;</span><span class="p">)</span>
+<span class="n">banner</span><span class="o">.</span><span class="n">set_timeout</span><span class="p">(</span><span class="mf">9000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For each window in your application there can only be one timed banner, so if you spawn a new banner before the earlier one has timed out, the previous one will be replaced.</p>
+</div>
+</div>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<p>hildon.Notes are gtk.Dialogs designed to request a small amount of input from users. Usually, notes show an information text and buttons to confirm, cancel, etc. according to their type.</p>
+<p>Unlike banners, notes always need a user action, that is, notes do not disappear automatically after a period of time.</p>
+<p>The hildon.Note widget provides functions to create and show different types of notes: information notes, confirmation notes and cancel notes.</p>
+<div class="highlight-python"><pre>def hildon_note_new_information(parent, description)
+def hildon_note_new_information_with_icon_name(parent, description, icon_name)
+def hildon_note_new_confirmation(parent, description)
+def hildon_note_new_confirmation_with_icon_name(parent, description, icon_name)
+def hildon_note_new_cancel_with_progress_bar(parent, description, progressbar)</pre>
+</div>
+<p>Every function to create notes receives as a parameter the parent window of the newly created note. This is important so that the window manager can handle the windows properly.</p>
+<p>Below, each different type of note will be explain.</p>
+</div>
+<div class="section" id="information-notes">
+<h3>Information Notes<a class="headerlink" href="#information-notes" title="Permalink to this headline">¶</a></h3>
+<p>Information notes are used to show an information to the users. This note disappears when user taps outside the note&#8217;s area. Otherwise the note remains visible.</p>
+<p>Here&#8217;s an example of how to show an information note and handle the user&#8217;s answer.</p>
+</div>
+<div class="section" id="example-of-a-hildon-information-note">
+<h3>Example of a Hildon information note<a class="headerlink" href="#example-of-a-hildon-information-note" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">show_information_note</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_note_new_information</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> \
+        <span class="s">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&quot;</span> \
+        <span class="s">&quot;Maecenas tristique dictum est. Aenean rhoncus aliquam mi.&quot;</span> \
+        <span class="s">&quot;In hac habitasse platea dictumst.&quot;</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_DELETE_EVENT</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;show_information_note: gtk.RESPONSE_DELETE_EVENT&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="confirmation-notes">
+<h3>Confirmation Notes<a class="headerlink" href="#confirmation-notes" title="Permalink to this headline">¶</a></h3>
+<p>Confirmation notes show an information text that is usually a question and two buttons labelled &#8220;Yes&#8221; and &#8220;No&#8221;.</p>
+<p>You can use hildon.hildon_note_new_confirmation() to create a confirmation note with the text you specify and two buttons labelled &#8220;Yes&#8221;/&#8221;No&#8221; as follows:</p>
+</div>
+<div class="section" id="example-of-a-hildon-confirmation-note">
+<h3>Example of a Hildon confirmation note<a class="headerlink" href="#example-of-a-hildon-confirmation-note" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">show_confirmation_note</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_note_new_confirmation</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s">&quot;Do you want foo ?&quot;</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_DELETE_EVENT</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;show_information_note: gtk.RESPONSE_DELETE_EVENT&quot;</span>
+</pre></div>
+</div>
+<p>Alternatively, you can use hildon.Note.add_buttons() to create a confirmation note with custom buttons.</p>
+</div>
+<div class="section" id="example-of-a-hildon-copnfirmation-note-with-custom-buttons">
+<h3>Example of a Hildon copnfirmation note with custom buttons<a class="headerlink" href="#example-of-a-hildon-copnfirmation-note-with-custom-buttons" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">show_confirmation_note_with_buttons</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_note_new_confirmation</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s">&quot;Do you want foo ?&quot;</span><span class="p">)</span>
+    <span class="n">note</span><span class="o">.</span><span class="n">add_buttons</span><span class="p">(</span><span class="s">&quot;ACCEPT&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_OK</span><span class="p">,</span> \
+                     <span class="s">&quot;CANCEL&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_CANCEL</span><span class="p">,</span> \
+                     <span class="s">&quot;DELETE&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_DELETE_EVENT</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_DELETE_EVENT</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;show_information_note: gtk.RESPONSE_DELETE_EVENT&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cancel-notes">
+<h3>Cancel Notes<a class="headerlink" href="#cancel-notes" title="Permalink to this headline">¶</a></h3>
+<p>A cancel note displays a text, a Cancel button and a progress bar. They are useful to tell users that a long task is in progress. Also, cancel notes allow users to cancel the task in progress.</p>
+<p>Next example shows how to create a cancel note with a progress bar. Note that to control the progress bar, additional code would be needed.</p>
+</div>
+<div class="section" id="example-of-a-hildon-cancel-note-with-a-progress-bar">
+<h3>Example of a Hildon cancel note with a progress bar<a class="headerlink" href="#example-of-a-hildon-cancel-note-with-a-progress-bar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">show_information_note_with_progress_bar</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+    <span class="n">progressbar</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">ProgressBar</span><span class="p">()</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_note_new_cancel_with_progress_bar</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span>
+                                                           <span class="s">&quot;A large task is happening&quot;</span><span class="p">,</span>
+                                                           <span class="n">progressbar</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_DELETE_EVENT</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;show_information_note: gtk.RESPONSE_DELETE_EVENT&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Controls</a><ul>
+<li><a class="reference external" href="#buttons">Buttons</a><ul>
+<li><a class="reference external" href="#hildon-button">Hildon Button</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-button-with-a-label-and-an-image">Example of a Hildon button with a label and an image</a></li>
+<li><a class="reference external" href="#hildon-check-button">Hildon Check Button</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-check-button">Example of a Hildon check button</a></li>
+<li><a class="reference external" href="#using-gtk-buttons-and-toggles">Using Gtk Buttons and Toggles</a></li>
+<li><a class="reference external" href="#hildon-gtkbutton">hildon.GtkButton</a></li>
+<li><a class="reference external" href="#hildon-gtktogglebutton">hildon.GtkToggleButton</a></li>
+<li><a class="reference external" href="#hildon-gtkradiobutton">hildon.GtkRadioButton</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#text-display-and-handling">Text Display and Handling</a><ul>
+<li><a class="reference external" href="#hildon-text-entry">Hildon Text Entry</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-entry">Example of a Hildon entry</a></li>
+<li><a class="reference external" href="#hildon-text-area">Hildon Text Area</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-text-view-with-a-placeholder">Example of a Hildon text view with a placeholder</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#notification-widgets">Notification widgets</a><ul>
+<li><a class="reference external" href="#banners">Banners</a></li>
+<li><a class="reference external" href="#setting-up-an-informational-banner">Setting up an informational banner</a></li>
+<li><a class="reference external" href="#notes">Notes</a></li>
+<li><a class="reference external" href="#information-notes">Information Notes</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-information-note">Example of a Hildon information note</a></li>
+<li><a class="reference external" href="#confirmation-notes">Confirmation Notes</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-confirmation-note">Example of a Hildon confirmation note</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-copnfirmation-note-with-custom-buttons">Example of a Hildon copnfirmation note with custom buttons</a></li>
+<li><a class="reference external" href="#cancel-notes">Cancel Notes</a></li>
+<li><a class="reference external" href="#example-of-a-hildon-cancel-note-with-a-progress-bar">Example of a Hildon cancel note with a progress bar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ch-Selectors.html" title="previous chapter">Data Selection</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ch-GtkAdditions.html" title="next chapter">Additions to GTK+</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ch-Controls.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch-GtkAdditions.html" title="Additions to GTK+"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Selectors.html" title="Data Selection"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
+    </div>
+  </body>
+</html>

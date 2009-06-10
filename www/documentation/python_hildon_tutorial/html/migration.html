@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Migration &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="next" title="Writing Desktop Widgets" href="desktop-plugins.html" />
+    <link rel="prev" title="Utilities" href="ch-Utilities.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="desktop-plugins.html" title="Writing Desktop Widgets"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Utilities.html" title="Utilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="id1">
+<span id="migration"></span><h1>Migration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Since Hildon 2.2 takes a great step from its previous versions, there are a number of approaches in the development of your program graphical user interface that might need to be migrated to this new kind of interfaces.</p>
+<div class="section" id="menus">
+<span id="migration-menus"></span><h2>Menus<a class="headerlink" href="#menus" title="Permalink to this headline">¶</a></h2>
+<p>Hildon app menu represents a big difference from the normal menus. If your application is to be finger-friendly then it is mandatory to feature an app menu.</p>
+<p>Since the app menu is simply done with buttons, you can easily add them with the functions that the original menu items were assigned. On top of that, given the menu limited size (ten items), the items to be added must be carefully divided. For example, consider an advanced text edition program. The original menu bar had the following menus:</p>
+<div class="section" id="menu-example">
+<h3>Menu example<a class="headerlink" href="#menu-example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>File
+    \ New
+    \ Open
+    \ Save
+    \ Save As
+    \ Quit
+Edit
+    \ Copy
+    \ Paste
+    \ Cut
+    \ Indent Type
+        \ Tabs
+        \ Spaces
+    \ Preferences
+View
+    \ Zoom In
+    \ Zoom Out
+    \ Normal Size
+    \ Highlight
+        \ C
+        \ Python
+        \ JAVA
+Help
+    \ Contents
+    \ About</pre>
+</div>
+<p>A few decisions of what menus to include and which ones to divide or leave out need to be taken. For example, the &#8220;File&#8221; menu is a mandatory one and should be accessible from the main window&#8217;s menu. On the other hand, the &#8220;Quit&#8221; sub menu is not really necessary since the user can quit the application using the upper right corner&#8217;s cross. Considering that the device has &#8220;+&#8221; and &#8220;-&#8221; keys, those can be assigned the functions of zooming in and out of the &#8220;View&#8221; menu. The &#8220;Copy&#8221;, &#8220;Paste&#8221; and &#8220;Cut&#8221; actions from the &#8220;Edit&#8221; menu are also present in the application&#8217;s toolbar as well as by using keyboard shortcuts so, they are not included in the menu. The &#8220;Indent Type&#8221; menu can be accomplished using app menu filters being, for this, removed from the &#8220;Edit&#8221; menu as well. This results in the &#8220;Edit&#8221; menu having only a sub menu &#8220;Preferences&#8221; which can be added to the app menu directly instead.</p>
+<p>The following example shows the implementation of the menu following the above decisions. Figure &#64;&#64;IMAGE&#64;&#64; shows the final result of the app menu. Figures &#64;&#64;IMAGE&#64;&#64; and &#64;&#64;IMAGE&#64;&#64; show the sub views activated by the menus &#8220;View&#8221; and &#8220;Help&#8221;, respectively.</p>
+</div>
+<div class="section" id="migrating-a-menu">
+<h3>Migrating a menu<a class="headerlink" href="#migrating-a-menu" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+
+<span class="k">def</span> <span class="nf">normal_zoom_cb</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">hildon</span><span class="o">.</span><span class="n">WindowStack</span><span class="o">.</span><span class="n">get_default</span><span class="p">()</span><span class="o">.</span><span class="n">pop_1</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">view_subview</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">view_window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">view_window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;View&#39;</span><span class="p">)</span>
+
+    <span class="n">normal_zoom_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span>
+                <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span><span class="p">)</span>
+    <span class="n">normal_zoom_button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Normal Zoom&#39;</span><span class="p">)</span>
+    <span class="n">normal_zoom_button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">normal_zoom_cb</span><span class="p">)</span>
+
+    <span class="n">highlight_selector</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TouchSelector</span><span class="p">()</span>
+    <span class="c"># Differs from C as we should pass a TreeModel explicitly.</span>
+    <span class="c"># This will be improved in a future release</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">highlight_selector</span><span class="o">.</span><span class="n">append_text_column</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">ListStore</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;text-column&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+    <span class="n">highlight_selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+    <span class="n">highlight_selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&#39;Java&#39;</span><span class="p">)</span>
+    <span class="n">highlight_selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&#39;Python&#39;</span><span class="p">)</span>
+    <span class="n">highlight_picker</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">PickerButton</span><span class="p">(</span>
+                <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_HALFSCREEN_WIDTH</span><span class="p">,</span>
+                <span class="n">hildon</span><span class="o">.</span><span class="n">BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+    <span class="n">highlight_picker</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Syntax highlight:&#39;</span><span class="p">)</span>
+    <span class="n">highlight_picker</span><span class="o">.</span><span class="n">set_selector</span><span class="p">(</span><span class="n">highlight_selector</span><span class="p">)</span>
+    <span class="n">highlight_picker</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mf">12</span><span class="p">)</span>
+    <span class="n">contents</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">highlight_picker</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">contents</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">normal_zoom_button</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">view_window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="n">view_window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">help_contents_cb</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">hildon</span><span class="o">.</span><span class="n">WindowStack</span><span class="o">.</span><span class="n">get_default</span><span class="p">()</span><span class="o">.</span><span class="n">pop_1</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">help_about_cb</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">hildon</span><span class="o">.</span><span class="n">WindowStack</span><span class="o">.</span><span class="n">get_default</span><span class="p">()</span><span class="o">.</span><span class="n">pop_1</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">help_subview</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">view_window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">view_window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Help&#39;</span><span class="p">)</span>
+
+    <span class="n">help_contents_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span>
+                <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span><span class="p">)</span>
+    <span class="n">help_contents_button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Contents&#39;</span><span class="p">)</span>
+    <span class="n">help_contents_button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">help_contents_cb</span><span class="p">)</span>
+
+    <span class="n">help_about_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span>
+                <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span><span class="p">)</span>
+    <span class="n">help_about_button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;About&#39;</span><span class="p">)</span>
+    <span class="n">help_about_button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">help_about_cb</span><span class="p">)</span>
+
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mf">12</span><span class="p">)</span>
+    <span class="n">contents</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">help_contents_button</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">contents</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">help_about_button</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">view_window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="n">view_window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">build_menu</span><span class="p">():</span>
+    <span class="n">button_size</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span>
+    <span class="n">menu</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">AppMenu</span><span class="p">()</span>
+
+    <span class="c"># Menus like New, Open, etc that would open new dialogs (no submenus)</span>
+    <span class="c"># are not assigned any action in this example</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;New&#39;</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Open&#39;</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Save As&#39;</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Preferences&#39;</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;View&#39;</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">view_subview</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+
+    <span class="n">filt</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkRadioButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">filt</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Indentation: Spaces&#39;</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="n">filt</span><span class="p">)</span>
+    <span class="n">filt</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Help&#39;</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">help_subview</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+
+    <span class="n">filt</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkRadioButton</span><span class="p">(</span><span class="n">button_size</span><span class="p">,</span> <span class="n">filt</span><span class="p">)</span> <span class="c">#, filt)</span>
+    <span class="n">filt</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Indentation: Tabs&#39;</span><span class="p">)</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="n">filt</span><span class="p">)</span>
+    <span class="n">filt</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">menu</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Editor&#39;</span><span class="p">)</span>
+
+    <span class="n">menu</span> <span class="o">=</span> <span class="n">build_menu</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">set_main_menu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&#39;&#39;&#39;This examples shows how an app menu could be</span>
+<span class="s">                            divided.</span><span class="se">\n</span><span class="s">Menus that would open new dialogs</span>
+<span class="s">                            are not assigned any action.&#39;&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;destroy&#39;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="choices">
+<span id="migration-choices"></span><h2>Choices<a class="headerlink" href="#choices" title="Permalink to this headline">¶</a></h2>
+<p>Some widgets for choosing options also need to be adapted to the new Hildon way of designing interfaces. When having several radio buttons to express a choice, it is a good idea to replace those with a picker button.</p>
+<p>Consider a dialog where, among other widgets, there&#8217;s a frame labeled &#8220;Proxy Preferences&#8221; and three radio buttons: &#8220;None&#8221;, &#8220;Auto&#8221; and &#8220;Manual&#8221;, displayed vertically like <a class="reference internal" href="#example-choices"><em>Three radio buttons</em></a> shows. The following example shows how such task could be accomplished using a picker button. The frame label becomes the picker button&#8217;s title and the three radio buttons&#8217; labels become the choices in the picker&#8217;s touch selector. &#64;&#64;IMAGE&#64;&#64; shows a screenshot of the resulting graphical user interface.</p>
+<div align="center" class="figure" id="example-choices">
+<img alt="_images/choices.png" src="_images/choices.png" />
+<p class="caption">Three radio buttons</p>
+</div>
+<div class="section" id="migrating-choice-widgets">
+<h3>Migrating choice widgets<a class="headerlink" href="#migrating-choice-widgets" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Preferences&quot;</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;destroy&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+
+    <span class="n">picker</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">PickerButton</span><span class="p">(</span>
+            <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span> <span class="o">|</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_WIDTH</span><span class="p">,</span>
+            <span class="n">hildon</span><span class="o">.</span><span class="n">BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+    <span class="n">picker</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Proxy preferences&quot;</span><span class="p">)</span>
+
+    <span class="n">selector</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TouchSelector</span><span class="p">()</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">append_text_column</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">ListStore</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;text-column&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+    <span class="n">picker</span><span class="o">.</span><span class="n">set_selector</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span>
+
+    <span class="n">selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&quot;None&quot;</span><span class="p">)</span>
+    <span class="n">selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&quot;Auto&quot;</span><span class="p">)</span>
+    <span class="n">selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&quot;Manual&quot;</span><span class="p">)</span>
+    <span class="n">picker</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mf">12</span><span class="p">)</span>
+
+    <span class="n">contents</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="notebooks">
+<span id="migration-notebooks"></span><h2>Notebooks<a class="headerlink" href="#notebooks" title="Permalink to this headline">¶</a></h2>
+<p>Since the use of notebooks is not advised in Hildon, there&#8217;s the need to replace this widget with something that accomplishes the same task.</p>
+<p>Imagine a preferences dialog that has a notebook to divide the preferences in &#8220;General&#8221;, &#8220;Colors&#8221; and &#8220;Tools&#8221; like depicted in <a class="reference internal" href="#example-notebook"><em>Typical Notebook</em></a> . The way to accomplish the same functionality without having a notebook is to have a window with buttons that open other windows as sub views. Each of the windows opened from the buttons should have the contents that the respective page in the notebook had.</p>
+<div align="center" class="figure" id="example-notebook">
+<img alt="_images/notebook.png" src="_images/notebook.png" />
+<p class="caption">Typical Notebook</p>
+</div>
+<p>The example shows the code to produce a replacement for the notebook (see &#64;&#64;IMAGE&#64;&#64;).</p>
+<div class="section" id="migrating-a-notebook">
+<h3>Migrating a notebook<a class="headerlink" href="#migrating-a-notebook" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python2.5</span>
+
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+
+<span class="k">def</span> <span class="nf">new_preferences_window</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">pref_window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">pref_window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Set the </span><span class="si">%s</span><span class="s"> preferences&quot;</span> <span class="o">%</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">content</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">pref_window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pref_window</span>
+
+<span class="k">def</span> <span class="nf">button_clicked_cb</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">sw</span> <span class="o">=</span> <span class="n">new_preferences_window</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="n">sw</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Preferences&#39;</span><span class="p">)</span>
+
+    <span class="n">general_pref_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_HEIGHT</span><span class="p">)</span>
+    <span class="n">general_pref_button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;General&#39;</span><span class="p">)</span>
+    <span class="n">general_pref_button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">button_clicked_cb</span><span class="p">,</span> <span class="s">&#39;General&#39;</span><span class="p">)</span>
+
+    <span class="n">colors_pref_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_HEIGHT</span><span class="p">)</span>
+    <span class="n">colors_pref_button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Colors&#39;</span><span class="p">)</span>
+    <span class="n">colors_pref_button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">button_clicked_cb</span><span class="p">,</span> <span class="s">&#39;Colors&#39;</span><span class="p">)</span>
+
+    <span class="n">tools_pref_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_AUTO_HEIGHT</span><span class="p">)</span>
+    <span class="n">tools_pref_button</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Tools&#39;</span><span class="p">)</span>
+    <span class="n">tools_pref_button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;clicked&#39;</span><span class="p">,</span> <span class="n">button_clicked_cb</span><span class="p">,</span> <span class="s">&#39;Tools&#39;</span><span class="p">)</span>
+
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="mf">12</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">contents</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">general_pref_button</span><span class="p">)</span>
+    <span class="n">contents</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">colors_pref_button</span><span class="p">)</span>
+    <span class="n">contents</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tools_pref_button</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;destroy&#39;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Migration</a><ul>
+<li><a class="reference external" href="#menus">Menus</a><ul>
+<li><a class="reference external" href="#menu-example">Menu example</a></li>
+<li><a class="reference external" href="#migrating-a-menu">Migrating a menu</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#choices">Choices</a><ul>
+<li><a class="reference external" href="#migrating-choice-widgets">Migrating choice widgets</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#notebooks">Notebooks</a><ul>
+<li><a class="reference external" href="#migrating-a-notebook">Migrating a notebook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ch-Utilities.html" title="previous chapter">Utilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="desktop-plugins.html" title="next chapter">Writing Desktop Widgets</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/migration.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="desktop-plugins.html" title="Writing Desktop Widgets"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Utilities.html" title="Utilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.2.
+    </div>
+  </body>
+</html>
