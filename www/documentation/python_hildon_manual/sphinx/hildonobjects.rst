@@ -1606,79 +1606,26 @@ Value                              Meaming
 
         Gets :class:`HildonCaption` icon position.
 
+        :returns: one of the values from :class:`HildonCaptionIconPosition` .
 
+    .. method:: set_icon_image (icon)
 
-``caption``:
-  a :class:`HildonCaption`
+        Sets the icon image widget to be used by this hildon_caption widget.
 
+        :param icon: the :class:`GtkImage` to use as the icon. calls gtk.Widget.show on the icon if it is not visible
 
-:returns: 
-  one of the values from :class:`HildonCaptionIconPosition` .
+    .. method:: get_icon_image ()
 
+        Gets icon of :class:`HildonCaption`
 
-.. _hildon-caption-set-icon-image:
+        :returns: the :class:`GtkImage` widget that is being used as the icon by the hildon_caption, or None if no icon image is in use.
 
-.. function:: hildon_caption_set_icon_image ()
+    .. method:: set_label (label)
 
-::
+        Sets the label text that appears before the control. Separator character is added to the end of the label string. By default the separator is ":".
 
-  void                hildon_caption_set_icon_image       (HildonCaption *caption,
-                                                           GtkWidget *icon);
+        :param label: the text to use
 
-Sets the icon image widget to be used by this hildon_caption widget.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``icon``:
-  the :class:`GtkImage` to use as the icon. calls gtk_widget_show on the icon if !GTK_WIDGET_VISIBLE(icon)
-
-
-.. _hildon-caption-get-icon-image:
-
-.. function:: hildon_caption_get_icon_image ()
-
-::
-
-  GtkWidget*          hildon_caption_get_icon_image       (const HildonCaption *caption);
-
-Gets icon of :class:`HildonCaption`
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-:returns: 
-  the :class:`GtkImage` widget that is being used as the icon by the hildon_caption, or NULL if no icon image is in use.
-
-
-.. _hildon-caption-set-label:
-
-.. function:: hildon_caption_set_label ()
-
-::
-
-  void                hildon_caption_set_label            (HildonCaption *caption,
-                                                           const gchar *label);
-
-Sets the label text that appears before the control. Separator character is added to the end of the label string. By default the separator is ":".
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``label``:
-  the text to use
-
-
-.. _hildon-caption-get-label:
 
 .. function:: hildon_caption_get_label ()
 
