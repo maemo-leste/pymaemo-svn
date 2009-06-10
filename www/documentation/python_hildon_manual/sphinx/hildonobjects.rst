@@ -1627,169 +1627,54 @@ Value                              Meaming
         :param label: the text to use
 
 
-.. function:: hildon_caption_get_label ()
+    .. method:: get_label ()
 
-::
+        Gets label of :class:`HildonCaption`
 
-  str              hildon_caption_get_label            (const HildonCaption *caption);
+        :returns: the text currently being used as the label of the caption control. The string is owned by the label and the caller should never free or modify this value.
 
-Gets label of :class:`HildonCaption`
+    .. method:: set_separator (separator)
 
+        Sets the separator character that appears after the label. The default seaparator character is ":" separately.
 
+        :param separator: the separator to use
 
-``caption``:
-  a :class:`HildonCaption`
+    .. method:: get_separator ()
 
+        Gets separator string of :class:`HildonCaption`
 
-:returns: 
-  the text currently being used as the label of the caption control. The string is owned by the label and the caller should never free or modify this value.
+        :returns: the text currently being used as the separator of the caption control. The string is owned by the caption control and the caller should never free or modify this value.
 
+    .. method:: set_label_alignment (alignment)
 
-.. _hildon-caption-set-separator:
+        Sets the vertical alignment to be used for the text part of the caption. Applications need to align the child control themselves.
 
-.. function:: hildon_caption_set_separator ()
+        :param alignment: new vertical alignment
 
-::
+    .. method:: get_label_alignment ()
 
-  void                hildon_caption_set_separator        (HildonCaption *caption,
-                                                           const gchar *separator);
+        Gets current vertical alignment for the text part.
 
-Sets the separator character that appears after the label. The default seaparator character is ":" separately.
+        :returns: vertical alignment
 
 
+    .. method:: set_child_expand (expand)
 
-``caption``:
-  a :class:`HildonCaption`
+        Sets child expandability.
 
+        :param expand: bool to determine if the child is expandable
 
-``separator``:
-  the separator to use
+    .. method:: get_child_expand ()
 
+        Gets childs expandability.
 
-.. _hildon-caption-get-separator:
+        :returns: wheter the child is expandable or not.
 
-.. function:: hildon_caption_get_separator ()
+    .. method:: set_label_markup (markup)
 
-::
+        Sets the label markup text that appears before the control. It acts like `hildon_caption_set_label <hildon-caption-set-label>`_ but is using the markup text that allows to specify text properties such as bold or italic.
 
-  str              hildon_caption_get_separator        (const HildonCaption *caption);
-
-Gets separator string of :class:`HildonCaption`
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-:returns: 
-  the text currently being used as the separator of the caption control. The string is owned by the caption control and the caller should never free or modify this value.
-
-
-.. _hildon-caption-set-label-alignment:
-
-.. function:: hildon_caption_set_label_alignment ()
-
-::
-
-  void                hildon_caption_set_label_alignment  (HildonCaption *caption,
-                                                           gfloat alignment);
-
-Sets the vertical alignment to be used for the text part of the caption. Applications need to align the child control themselves.
-
-
-
-``caption``:
-  a :class:`HildonCaption` widget
-
-
-``alignment``:
-  new vertical alignment
-
-
-.. _hildon-caption-get-label-alignment:
-
-.. function:: hildon_caption_get_label_alignment ()
-
-::
-
-  gfloat              hildon_caption_get_label_alignment  (HildonCaption *caption);
-
-Gets current vertical alignment for the text part.
-
-
-
-``caption``:
-  a :class:`HildonCaption` widget
-
-
-:returns: 
-  vertical alignment
-
-
-.. _hildon-caption-set-child-expand:
-
-.. function:: hildon_caption_set_child_expand ()
-
-::
-
-  void                hildon_caption_set_child_expand     (HildonCaption *caption,
-                                                           bool expand);
-
-Sets child expandability.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``expand``:
-  bool to determine if the child is expandable
-
-
-.. _hildon-caption-get-child-expand:
-
-.. function:: hildon_caption_get_child_expand ()
-
-::
-
-  bool            hildon_caption_get_child_expand     (const HildonCaption *caption);
-
-Gets childs expandability.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-:returns: 
-  wheter the child is expandable or not.
-
-
-.. _hildon-caption-set-label-markup:
-
-.. function:: hildon_caption_set_label_markup ()
-
-::
-
-  void                hildon_caption_set_label_markup     (HildonCaption *caption,
-                                                           const gchar *markup);
-
-Sets the label markup text that appears before the control. It acts like `hildon_caption_set_label <hildon-caption-set-label>`_ but is using the markup text that allows to specify text properties such as bold or italic.
-
-
-
-``caption``:
-  a :class:`HildonCaption`
-
-
-``markup``:
-  the markup text to use
-
-
-.. _HildonCaption.property-details:
+        :param markup:  the markup text to use
 
 Property Details
 ================
