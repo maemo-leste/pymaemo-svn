@@ -1257,6 +1257,7 @@ Details
         Gets the text used in the :class:`PickerDialog` that is launched by ``button``. If no custom text is set, then None is returned.
 
         :returns: the custom string to be used, or None if the default "done-button-text" is to be used.
+
         .. versionadded 2.2
 
     .. method:: set_done_button_text (done_button_text)
@@ -2369,7 +2370,7 @@ Name                         type                        Access       Default   
 ============================ =========================== ============ ============================= ========================================
 ``description``              str                         Read / Write                               Description for the note.
 ``icon``                     str                         Read / Write None                          Icon for the note.
-``note-type`                 :class:`NoteType`           Read / Write HILDON_NOTE_TYPE_CONFIRMATION The type of the note dialog.
+``note-type``                :class:`NoteType`           Read / Write HILDON_NOTE_TYPE_CONFIRMATION The type of the note dialog.
 ``progressbar``              :class:`gtk.GtkProgressBar` Read / Write                               Progressbar for the note (if any).
 ``stock-icon``               str                         Read / Write None                          Stock icon name for the note.
 ============================ =========================== ============ ============================= ========================================
