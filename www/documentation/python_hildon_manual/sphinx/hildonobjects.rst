@@ -1202,16 +1202,13 @@ Default value: 5
 
 .. _HildonCheckButton:
 
-HildonCheckButton
-*****************
-
-.. _HildonCheckButton.object-hierarchy:
+CheckButton
+***********
 
 Object Hierarchy
 ================
 
 ::
-
   
     GObject
      +----GInitiallyUnowned
@@ -1223,192 +1220,98 @@ Object Hierarchy
                                          +----HildonCheckButton
   
 
-.. _HildonCheckButton.implemented-interfaces:
-
 Implemented Interfaces
 ======================
 
-HildonCheckButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
-
-.. _HildonCheckButton.style-properties:
-
-Style Properties
-================
-
-::
-
-  
-    checkbox-size            int                 : Read
-  
-
-.. _HildonCheckButton.signals:
-
-Signals
-=======
-
-::
-
-  
-    toggled                                        : Run First
-  
-
-.. _HildonCheckButton.description:
+CheckButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
 
 Description
 ===========
 
 :class:`HildonCheckButton` is a button containing a label and a check box which will remain 'pressed-in' when clicked. Clicking again will make the check box toggle its state.
 
-The state of a :class:`HildonCheckButton` can be set using `hildon_check_button_set_active() <hildon-check-button-set-active>`_ , and retrieved using `hildon_check_button_get_active() <hildon-check-button-get-active>`_ . The label can be set using `gtk_button_set_label() <gtk-button-set-label>`_ and retrieved using `gtk_button_get_label() <gtk-button-get-label>`_ .
+The state of a :class:`HildonCheckButton` can be set using :meth:`hildon.check_button_set_active` , and retrieved using :meth:`hildon.check_button_get_active` . The label can be set using :meth:`gtk.Button.set_label` and retrieved using :meth:`gtk.Button.get_label` .
 
-.. note:: :class:`HildonCheckButton` does NOT support an image, so don't use `gtk_button_set_image() <gtk-button-set-image>`_ .
+.. note:: :class:`HildonCheckButton` does NOT support an image, so don't use :meth:`gtk.Button.set_image` .
 
-Using a Hildon check button =========================== :: void button_toggled (HildonCheckButton *button, gpointer user_data) { bool active; active = hildon_check_button_get_active (button); if (active) g_debug ("Button is active"); else g_debug ("Button is not active"); } GtkWidget * create_button (void) { GtkWidget *button; button = hildon_check_button_new (HILDON_SIZE_AUTO); gtk_button_set_label (GTK_BUTTON (button), "Click me"); g_signal_connect (button, "toggled", G_CALLBACK (button_toggled), NULL); return button; }
+Using a Hildon check button
+=========================== 
+::
+  
+  def button_toggled(checkbutton):
+      if (checkbutton.get_active()):
+          print "Button is active"
+      else:
+          print "Button is not active"
 
-
-
-.. _HildonCheckButton.details:
+  def create_check_button():
+      button = hildon.CheckButton(gtk.HILDON_SIZE_AUTO)
+      button.set_label("Click me")
+      button.connect("toggled", button_toggled)
+      return button
 
 Details
 =======
 
-.. _HildonCheckButton-struct:
-
 .. class:: HildonCheckButton
 
-::
+    .. method:: __init__ (size)
 
-  typedef struct _HildonCheckButton HildonCheckButton;
+        Creates a new :class:`HildonCheckButton` .
 
+        :param size: Flags indicating the size of the new button
 
+        :returns: A newly created :class:`HildonCheckButton`
 
-.. _hildon-check-button-new:
+        .. versionadded 2.2
 
-.. function:: hildon_check_button_new ()
+    .. method:: set_active (is_active)
 
-::
+        Sets the status of a :class:`HildonCheckButton` . Set to True if you want ``button`` to be 'pressed-in', and False to raise it. This action causes the "toggled" signal to be emitted.
 
-  GtkWidget*          hildon_check_button_new             (HildonSizeType size);
+        :param is_active: new state for the button
 
-Creates a new :class:`HildonCheckButton` .
+        .. versionadded 2.2
 
+    .. method:: get_active ()
 
+        Gets the current state of ``button``.
 
-``size``:
-  Flags indicating the size of the new button
+        :returns: True if ``button`` is active, False otherwise.
 
+        .. versionadded 2.2
 
-:returns: 
-  A newly created :class:`HildonCheckButton`
+    .. method:: toggled ()
 
+        Emits the "toggled" signal on the :class:`HildonCheckButton` . There is no good reason for an application ever to call this function.
 
-.. versionadded 2.2
-
-.. _hildon-check-button-set-active:
-
-.. function:: hildon_check_button_set_active ()
-
-::
-
-  void                hildon_check_button_set_active      (HildonCheckButton *button,
-                                                           bool is_active);
-
-Sets the status of a :class:`HildonCheckButton` . Set to ```TRUE`` <TRUE:CAPS>`_ if you want ``button`` to be 'pressed-in', and ```FALSE`` <FALSE:CAPS>`_ to raise it. This action causes the `"toggled" <HildonCheckButton-toggled>`_ signal to be emitted.
-
-
-
-``button``:
-  A :class:`HildonCheckButton`
-
-
-``is_active``:
-  new state for the button
-
-
-.. versionadded 2.2
-
-.. _hildon-check-button-get-active:
-
-.. function:: hildon_check_button_get_active ()
-
-::
-
-  bool            hildon_check_button_get_active      (HildonCheckButton *button);
-
-Gets the current state of ``button``.
-
-
-
-``button``:
-  A :class:`HildonCheckButton`
-
-
-:returns: 
-  ```TRUE`` <TRUE:CAPS>`_ if ``button`` is active, ```FALSE`` <FALSE:CAPS>`_ otherwise.
-
-
-.. versionadded 2.2
-
-.. _hildon-check-button-toggled:
-
-.. function:: hildon_check_button_toggled ()
-
-::
-
-  void                hildon_check_button_toggled         (HildonCheckButton *button);
-
-Emits the `"toggled" <HildonCheckButton-toggled>`_ signal on the :class:`HildonCheckButton` . There is no good reason for an application ever to call this function.
-
-
-
-``button``:
-  A :class:`HildonCheckButton`
-
-
-.. versionadded 2.2
-
-.. _HildonCheckButton.style-property-details:
+        .. versionadded 2.2
 
 Style Property Details
 ======================
 
-.. _HildonCheckButton--checkbox-size:
-
 The ``checkbox-size`` style property
 
-::
-
-    checkbox-size            int                 : Read
-
-Size of the check box.
-
-Default value: 26
-
-.. _HildonCheckButton.signal-details:
+============= ==== ====== ======= ======================
+Name          type Access Default Meaning
+============= ==== ====== ======= ======================
+checkbox-size int  Read   26      Size of the check box.
+============= ==== ====== ======= ======================
 
 Signal Details
 ==============
 
-.. _HildonCheckButton-toggled:
-
 The ``toggled`` signal
 
-::
 
-  void                user_function                      (HildonCheckButton *arg0,
-                                                          gpointer           user_data)      : Run First
+.. function:: user_function (user_data)
 
-Emitted when the :class:`HildonCheckButton` 's state is changed.
+    Emitted when the :class:`HildonCheckButton` 's state is changed.
 
+    :param user_data: user data set when the signal handler was connected.
 
+    .. versionadded 2.2
 
-``user_data``:
-  user data set when the signal handler was connected.
-
-
-.. versionadded 2.2
-
-.. _HildonPickerButton:
 
 HildonPickerButton
 ******************
