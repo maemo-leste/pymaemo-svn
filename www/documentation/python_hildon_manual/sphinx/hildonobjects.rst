@@ -1521,9 +1521,9 @@ Description
 
 :class:`Banner` is a small, pop-up window that can be used to display a short, timed notification or information to the user. It can communicate that a task has been finished or that the application state has changed.
 
-Hildon provides convenient funtions to create and show banners. To create and show information banners you can use `hildon_banner_show_information() <hildon-banner-show-information>`_ , `hildon_banner_show_informationf() <hildon-banner-show-informationf>`_ or `hildon_banner_show_information_with_markup() <hildon-banner-show-information-with-markup>`_ .
+Hildon provides convenient funtions to create and show banners. To create and show information banners you can use :func:`hildon_banner_show_information` , `hildon_banner_show_informationf() <hildon-banner-show-informationf>`_ or `hildon_banner_show_information_with_markup() <hildon-banner-show-information-with-markup>`_ .
 
-Two more kinds of banners are maintained for backward compatibility but are no longer recommended in Hildon 2.2. These are the animated banner (created with `hildon_banner_show_animation() <hildon-banner-show-animation>`_ ) and the progress banner (created with `hildon_banner_show_progress() <hildon-banner-show-progress>`_ ). See `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ for the preferred way of showing progress notifications in Hildon 2.2.
+Two more kinds of banners are maintained for backward compatibility but are no longer recommended in Hildon 2.2. These are the animated banner (created with `hildon_banner_show_animation() <hildon-banner-show-animation>`_ ) and the progress banner (created with :func:`hildon_banner_show_progress` ). See `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ for the preferred way of showing progress notifications in Hildon 2.2.
 
 Information banners dissapear automatically after a certain period. This is stored in the `"timeout" <Banner--timeout>`_ property (in miliseconds), and can be changed using `set_timeout() <banner-set-timeout>`_ .
 
@@ -1535,218 +1535,104 @@ Details
 =======
 
 .. _hildon-banner-show-information:
+.. function:: hildon_banner_new_information (widget, icon_name, text)
 
-.. function:: hildon_banner_show_information ()
+    This function creates and displays an information banner that automatically goes away after certain time period. For each window in your application there can only be one timed banner, so if you spawn a new banner before the earlier one has timed out, the previous one will be replaced.
 
-::
+    :param widget: the :class:`gtk.Widget` that is the owner of the banner
+    :param icon_name: since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
+    :param text: text to display
+    :returns: the newly created :class:`Banner`
 
-  GtkWidget*          hildon_banner_show_information      (GtkWidget *widget,
-                                                           const gchar *icon_name,
-                                                           const gchar *text);
 
-This function creates and displays an information banner that automatically goes away after certain time period. For each window in your application there can only be one timed banner, so if you spawn a new banner before the earlier one has timed out, the previous one will be replaced.
+.. function:: hildon_banner_show_information_with_markup (widget, icon_name, markup)
 
+    This function creates and displays an information banner that automatically goes away after certain time period. For each window in your application there can only be one timed banner, so if you spawn a new banner before the earlier one has timed out, the previous one will be replaced.
 
+    :param widget: the :class:`gtk.Widget` that wants to display banner
+    :param icon_name: since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
+    :param text: a markup string to display (see `Pango markup format <http://maemo.org/api_refs/5.0/beta/pango/PangoMarkupFormat.html>`_)
+    :returns: the newly created :class:`Banner`
 
-``widget``:
-  the :class:`gtk.Widget` that is the owner of the banner
 
+.. function:: hildon_banner_show_animation (widget, animation_name, text)
 
-``icon_name``:
-  since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
+    Shows an animated progress notification. It's recommended not to try to show more than one progress notification at a time, since they will appear on top of each other. You can use progress notifications with timed banners. In this case the banners are located so that you can somehow see both.
 
+    Please note that banners are destroyed automatically once the window they are attached to is closed. The pointer that you receive with this function does not contain additional references, so it can become invalid without warning (this is true for all toplevel windows in gtk). To make sure that the banner does not disappear automatically, you can separately ref the return value (this doesn't prevent the banner from disappearing, just the object from being finalized).
 
-``text``:
-  Text to display
+    :param widget: the :class:`gtk.Widget` that wants to display banner
+    :param animation_name: since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
+    :param text: text to display
+    :returns: the newly created :class:`Banner`
 
+    .. warning:: ``hildon_banner_show_animation`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ instead.
 
-:returns: 
-  The newly created banner
 
+.. function:: hildon_banner_show_progress (widget, bar, text)
 
-.. _hildon-banner-show-informationf:
+    Shows progress notification. See `hildon_banner_show_animation <hildon-banner-show-animation>`_ for more information.
 
-.. function:: hildon_banner_show_informationf ()
+    :param widget: the :class:`gtk.Widget` that wants to display banner
+    :param bar: Progressbar to use. You usually can just pass None , unless you want somehow customized progress bar.
+    :param text: text to display
+    :returns: the newly created :class:`Banner`
 
-::
-
-  GtkWidget*          hildon_banner_show_informationf     (GtkWidget *widget,
-                                                           const gchar *icon_name,
-                                                           const gchar *format,
-                                                           ...);
-
-A helper function for `hildon_banner_show_information <hildon-banner-show-information>`_ with string formatting.
-
-
-
-``widget``:
-  the :class:`gtk.Widget` that is the owner of the banner
-
-
-``icon_name``:
-  since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
-
-
-``format``:
-  a printf-like format string
-
-
-``...``:
-  arguments for the format string
-
-
-:returns: 
-  the newly created banner
-
-
-.. _hildon-banner-show-information-with-markup:
-
-.. function:: hildon_banner_show_information_with_markup ()
-
-::
-
-  GtkWidget*          hildon_banner_show_information_with_markup
-                                                          (GtkWidget *widget,
-                                                           const gchar *icon_name,
-                                                           const gchar *markup);
-
-This function creates and displays an information banner that automatically goes away after certain time period. For each window in your application there can only be one timed banner, so if you spawn a new banner before the earlier one has timed out, the previous one will be replaced.
-
-
-
-``widget``:
-  the :class:`gtk.Widget` that wants to display banner
-
-
-``icon_name``:
-  since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
-
-
-``markup``:
-  a markup string to display (see `Pango markup format <PangoMarkupFormat>`_ )
-
-
-:returns: 
-  the newly created banner
-
-
-.. _hildon-banner-show-animation:
-
-.. function:: hildon_banner_show_animation ()
-
-::
-
-  GtkWidget*          hildon_banner_show_animation        (GtkWidget *widget,
-                                                           const gchar *animation_name,
-                                                           const gchar *text);
-
-.. warning:: ``hildon_banner_show_animation`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ instead.
-
-Shows an animated progress notification. It's recommended not to try to show more than one progress notification at a time, since they will appear on top of each other. You can use progress notifications with timed banners. In this case the banners are located so that you can somehow see both.
-
-Please note that banners are destroyed automatically once the window they are attached to is closed. The pointer that you receive with this function does not contain additional references, so it can become invalid without warning (this is true for all toplevel windows in gtk). To make sure that the banner does not disappear automatically, you can separately ref the return value (this doesn't prevent the banner from disappearing, just the object from being finalized). In this case you have to call both `gtk_widget_destroy() <gtk-widget-destroy>`_ followed by `g_object_unref() <g-object-unref>`_ (in this order).
-
-
-
-``widget``:
-  the :class:`gtk.Widget` that wants to display banner
-
-
-``animation_name``:
-  since Hildon 2.2 this parameter is not used anymore and any value that you pass will be ignored
-
-
-``text``:
-  the text to display.
-
-
-:returns: 
-  a :class:`HildonBanner` widget. You must call `gtk_widget_destroy() <gtk-widget-destroy>`_ once you are done with the banner.
-
-
-.. _hildon-banner-show-progress:
-
-.. function:: hildon_banner_show_progress ()
-
-::
-
-  GtkWidget*          hildon_banner_show_progress         (GtkWidget *widget,
-                                                           GtkProgressBar *bar,
-                                                           const gchar *text);
-
-.. warning:: ``hildon_banner_show_progress`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ instead.
-
-Shows progress notification. See `hildon_banner_show_animation <hildon-banner-show-animation>`_ for more information.
-
-
-
-``widget``:
-  the :class:`gtk.Widget` that wants to display banner
-
-
-``bar``:
-  Progressbar to use. You usually can just pass None , unless you want somehow customized progress bar.
-
-
-``text``:
-  text to display.
-
-
-:returns: 
-  a :class:`Banner` widget. You must call `gtk.Widget.destroy <gtk-widget-destroy>`_ once you are done with the banner.
-
-
+    .. warning:: ``hildon_banner_show_progress`` is deprecated and should not be used in newly-written code. Hildon 2.2: use `hildon_gtk_window_set_progress_indicator() <hildon-gtk-window-set-progress-indicator>`_ instead.
 
 
 .. class:: Banner
+
     .. method:: __init__ ()
+
         Creates a new :class:`Banner` .
+
         :returns: A :class:`Banner`
 
-.. _banner-set-text:
     .. method:: set_text (text)
+
         Sets the text that is displayed in the banner.
 
         :param text: a new text to display in banner
 
-.. _banner-set-markup:
     .. method:: set_markup (markup)
+
         Sets the text with markup that is displayed in the banner.
 
         :param markup: a new text with Pango markup to display in the banner
 
-.. _banner-set-fraction:
     .. method:: set_fraction (fraction)
+
         The fraction is the completion of progressbar, the scale is from 0.0 to 1.0. Sets the amount of fraction the progressbar has.
 
-        Note that this method only has effect if the banner was created with `hildon_banner_show_progress() <hildon-banner-show-progress>`_
+        Note that this method only has effect if the banner was created with :func:`hildon_banner_show_progress`
 
         :param fraction: a double
 
-.. _banner-set-icon:
     .. method:: set_icon (icon_name)
+
         Sets the icon to be used in the banner.
 
         :param icon_name: the name of icon to use. Can be None for default icon
 
-.. warning:: ``Banner.set_icon`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
+        .. warning:: ``Banner.set_icon`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
 
-.. _banner-set-icon-from-file:
     .. method:: set_icon_from_file (icon_file)
+
         Sets the icon from its filename to be used in the banner.
 
         :param icon_file: the filename of icon to use. Can be None for default icon.
 
-.. warning:: ``Banner.set_icon_from_file`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
+        .. warning:: ``Banner.set_icon_from_file`` is deprecated and should not be used in newly-written code. This function does nothing. As of hildon 2.2, hildon banners don't allow changing their icons.
 
-.. _banner-set-timeout:
     .. method:: set_timeout (timeout)
+
         Sets the timeout on the banner. After the given amount of miliseconds has elapsed the banner will go away. Note that settings this only makes sense on the banners that are timed and that have not been yet displayed on the screen.
 
         :param timeout: timeout to set in miliseconds.
 
 
-Note that this method only has effect if the object is an information banner (created using `hildon_banner_show_information() <hildon-banner-show-information>`_ and friends).
+        Note that this method only has effect if the object is an information banner (created using :func:`hildon_banner_show_information` and friends).
 
 .. _Banner.property-details:
 
