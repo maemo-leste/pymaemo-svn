@@ -2346,7 +2346,7 @@ Allowed values: = 10000
 Default value: 3000
 
 Note
-**********
+****
 
 Object Hierarchy
 ================
@@ -2479,71 +2479,16 @@ Details
 Property Details
 ================
 
-.. _Note--description:
+============================ =========================== ============ ============================= ========================================
+Name                         type                        Access       Default                       Meaning
+============================ =========================== ============ ============================= ========================================
+``description``              str                         Read / Write                               Description for the note.
+``icon``                     str                         Read / Write None                          Icon for the note.
+``note-type`                 :class:`NoteType`           Read / Write HILDON_NOTE_TYPE_CONFIRMATION The type of the note dialog.
+``progressbar``              :class:`gtk.GtkProgressBar` Read / Write                               Progressbar for the note (if any).
+``stock-icon``               str                         Read / Write None                          Stock icon name for the note.
+============================ =========================== ============ ============================= ========================================
 
-The ``description`` property
-
-::
-
-    description              str                : Read / Write
-
-Description for the note.
-
-
-
-Default value: ""
-
-.. _Note--icon:
-
-The ``icon`` property
-
-::
-
-    icon                     str                : Read / Write
-
-Icon for the note.
-
-
-
-Default value: ""
-
-.. _Note--note-type:
-
-The ``note-type`` property
-
-::
-
-    note-type                NoteType        : Read / Write / Construct
-
-The type of the note dialog.
-
-Default value: HILDON_NOTE_TYPE_CONFIRMATION
-
-.. _Note--progressbar:
-
-The ``progressbar`` property
-
-::
-
-    progressbar              GtkProgressBar*       : Read / Write
-
-Progressbar for the note (if any).
-
-
-
-.. _Note--stock-icon:
-
-The ``stock-icon`` property
-
-::
-
-    stock-icon               str                : Read / Write
-
-Stock icon name for the note.
-
-
-
-Default value: ""
 
 TouchSelector
 *************
