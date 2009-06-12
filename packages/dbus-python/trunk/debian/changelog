@@ -1,3 +1,10 @@
+dbus-python (0.83.0-1maemo4) unstable; urgency=low
+
+  * Remove hardcoded 'site-packages' paths allowing install without
+    problems in either python2.5 ou python2.6
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  8 Jun 2009 16:21:00 -0400
+
 dbus-python (0.83.0-1maemo3) unstable; urgency=low
 
   * Fix typo in debian/control (used "XSBC-Maintainer" instead of

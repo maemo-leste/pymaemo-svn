@@ -4,14 +4,14 @@ set -e
 
 if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt "0.71-3"; then
     echo "Remove stale byte-compiled files..."
-    rm -f /usr/lib/python2.[45]/site-packages/dbus.pyc
-    rm -f /usr/lib/python2.[45]/site-packages/dbus.pyo
-    rm -f /usr/lib/python2.[45]/site-packages/dbus/*.pyc
-    rm -f /usr/lib/python2.[45]/site-packages/dbus/*.pyo
-    for v in 2.4 2.5; do
-        if [ -e /usr/lib/python${v}/site-packages/dbus ]; then
+    rm -f /usr/lib/python2.[56]/{site,dist}-packages/dbus.pyc
+    rm -f /usr/lib/python2.[56]/{site,dist}-packages/dbus.pyo
+    rm -f /usr/lib/python2.[56]/{site,dist}-packages/dbus/*.pyc
+    rm -f /usr/lib/python2.[56]/{site,dist}-packages/dbus/*.pyo
+    for v in 2.5 2.6; do
+        if [ -e /usr/lib/python${v}/-packages/dbus ]; then
             rmdir --ignore-fail-on-non-empty \
-                /usr/lib/python${v}/site-packages/dbus
+                /usr/lib/python${v}/{site,dist}-packages/dbus
         fi
     done
 fi

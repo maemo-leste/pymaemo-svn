@@ -91,7 +91,7 @@ dbg-install-%: build-%-dbg/build-stamp
 	find debian/python-dbus-dbg -depth -empty -exec rmdir {} \;
 
 install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
-	rm -f debian/python-dbus/usr/lib/python*/site-packages/*.la
+	rm -f debian/python-dbus/usr/lib/python*/{site,dist}-packages/*.la
 	rm -rf debian/python-dbus/usr/share/doc/deleteme
 	# compare installed .pc and .h, asserting that the ones all versions
 	# wanted are the same as what we ended up with
