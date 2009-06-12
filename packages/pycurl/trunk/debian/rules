@@ -54,8 +54,8 @@ install: build
  	    python$$py-dbg setup.py install --root=$(CURDIR)/debian/python-pycurl-dbg; \
 	done
 	dh_install -ppython-pycurl-dbg --sourcedir=debian/tmp
-	rm -rf $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/site-packages/curl
-	rm -f $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/site-packages/pycurl-*.egg-info
+	rm -rf $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/{site,dist}-packages/curl
+	rm -f $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/{site,dist}-packages/pycurl-*.egg-info
 
 # Build architecture-independent files here.
 binary-indep: DH_OPTIONS=-i
