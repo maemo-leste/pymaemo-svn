@@ -1,3 +1,10 @@
+python-imaging (1.1.6-3maemo3) unstable; urgency=low
+
+  * Remove hardcoded 'site-packages' paths allowing install without
+    problems in either python2.5 ou python2.6
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue,  9 Jun 2009 15:28:08 -0400
+
 python-imaging (1.1.6-3maemo2) unstable; urgency=low
 
   [ Bruno dos Santos de Araujo ]

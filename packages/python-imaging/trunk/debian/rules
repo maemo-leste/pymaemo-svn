@@ -116,8 +116,8 @@ endif
 ifeq ($(with_python-imaging-tk),yes)
 	dh_movefiles -ppython-imaging-tk \
 	    --sourcedir=debian/python-imaging \
-		usr/lib/python$*/site-packages/PIL/_imagingtk.so \
-		usr/lib/python$*/site-packages/PIL/ImageTk.py
+		usr/lib/python$*/*-packages/PIL/_imagingtk.so \
+		usr/lib/python$*/*-packages/PIL/ImageTk.py
 endif
 	python$*-dbg setup.py install --root $(CURDIR)/debian/python-imaging-dbg
 	mkdir -p debian/python-imaging-dbg/usr/include/python$*_d
@@ -137,7 +137,7 @@ endif
 ifeq ($(with_python-imaging-tk-dbg),yes)
 	dh_movefiles -ppython-imaging-tk-dbg \
 	    --sourcedir=debian/python-imaging-dbg \
-		usr/lib/python$*/site-packages/PIL/_imagingtk_d.so
+		usr/lib/python$*/*-packages/PIL/_imagingtk_d.so
 endif
 
 ifeq ($(with_indep),yes)
