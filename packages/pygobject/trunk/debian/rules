@@ -18,7 +18,7 @@ ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
 endif
 
-PYVERS := $(shell pyversions -vs)
+PYVERS := $(shell pyversions -vd)
 
 build-%/configure-stamp: apply-patches
 	dh_testdir
@@ -87,7 +87,7 @@ clean:: reverse-patches
 	-test -f config.guess && \
 	  test -r /usr/share/misc/config.guess && \
 	  cp -f /usr/share/misc/config.guess config.guess
-	dh_clean *.pyc */*.pyc
+	dh_clean *.py[co] */*.py[co]
 
 binary-indep: build install
 	dh_testdir
