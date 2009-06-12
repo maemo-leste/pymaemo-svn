@@ -1,3 +1,10 @@
+gnome-python (2.18.0-2maemo7) unstable; urgency=low
+
+  * Remove hardcoded 'site-packages' paths allowing install without
+    problems in either python2.5 ou python2.6  
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue,  9 Jun 2009 14:07:51 -0400
+
 gnome-python (2.18.0-2maemo6) unstable; urgency=low
 
   * Add missing information in debian/copyright
