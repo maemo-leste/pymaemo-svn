@@ -9,10 +9,13 @@ export SHELL	= /bin/bash
 
 # all versions
 PYVERS	:= $(filter-out 2.3, $(shell pyversions -vs))
-PYVERS	:= $(shell pyversions -vs)
-PYVER   := $(shell python -c 'import sys; print sys.version[:3]')
+PYVER   := $(shell pyversions -vd)
 
+ifeq ($(PYVER),2.5)
 PYSITE	= usr/lib/python$(PYVER)/site-packages
+else
+PYSITE	= usr/lib/python$(PYVER)/dist-packages
+endif
 
 p_num	= python-numeric
 p_ext	= python-numeric-ext
