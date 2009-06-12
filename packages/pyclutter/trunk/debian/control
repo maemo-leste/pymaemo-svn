@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Ross Burton <ross@debian.org>
 XS-Python-Version: current
-Build-Depends: debhelper (>= 5.0.38), cdbs, python-support (>= 0.5.3), python, python-dev, python-gtk2-dev, libclutter-0.8-dev, python-cairo-dev, python-gst0.10, libgl-dev
+Build-Depends: debhelper (>= 5.0.38), cdbs, python-support (>= 0.5.3), python, python-dev, python-gtk2-dev, libclutter-0.8-dev, python-cairo-dev, python-gst0.10, libgl-dev, libclutter-gtk-0.8-dev, libclutter-cairo-0.8-dev 
 Standards-Version: 3.7.3
 
 Package: python-clutter
