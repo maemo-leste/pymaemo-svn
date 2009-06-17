@@ -32,8 +32,9 @@ ifneq (,$(filter parallel=%,$(subst $(COMMA), ,$(DEB_BUILD_OPTIONS))))
   NJOBS := -j $(subst parallel=,,$(filter parallel=%,$(subst $(COMMA), ,$(DEB_BUILD_OPTIONS))))
 endif
 
-distribution := $(shell lsb_release -is)
+#distribution := $(shell lsb_release -is)
 #distribution := Ubuntu
+distribution := maemo
 
 export VER=2.6
 export NVER=2.7
@@ -65,6 +66,20 @@ with_tk := no
 with_gdbm := no
 with_interp := static
 #with_interp := shared
+
+ifeq ($(distribution),maemo)
+WITHOUT_CHECK := yes
+with_idle := no
+with_doc := no
+endif
+
+ifneq ($(with_idle),yes)
+  NOPKGS += -Nidle-python2.6
+endif
+ifneq ($(with_doc),yes)
+  NOPKGS += -Npython2.6-doc
+endif
+export DH_OPTIONS = $(NOPKGS)
 
 build_target := build-all
 install_target := install
@@ -117,6 +132,7 @@ p_exam	:= $(PVER)-examples
 p_idle	:= idle-$(PVER)
 p_doc	:= $(PVER)-doc
 p_dbg	:= $(PVER)-dbg
+p_test  := $(PVER)-testing
 
 d_base	:= debian/$(p_base)
 d_min	:= debian/$(p_min)
@@ -462,7 +478,9 @@ minimal-test:
 
 stamp-doc-html:
 	dh_testdir
+ifeq ($(with_doc),yes)
 	$(MAKE) -C Doc html
+endif
 	touch stamp-doc-html
 
 build-doc: patch-stamp stamp-build-doc
@@ -529,8 +547,10 @@ stamp-control:
 	  fi; \
 	done
 ifneq (,$(filter $(DEB_BUILD_ARCH), alpha amd64 ia64 ppc64))
+ifneq ($(distribution),maemo)
 	sed -i 's/\(Py_InitModule4[^@]*\)@/\1_64@/' \
 		debian/lib$(PVER).symbols debian/$(PVER)-dbg.symbols
+endif
 endif
 
 install: $(build_target) stamp-install
@@ -638,9 +658,11 @@ endif
 	dh_installdirs -p$(p_dev) \
 		usr/share/doc/python$(VER) \
 		$(scriptdir) \
-		$(scriptdir)/doc/html \
 		usr/include \
 		usr/lib
+ifeq ($(with_doc),yes)
+	dh_installdirs -p$(p_dev) $(scriptdir)/doc/html
+endif
 	cp -p Misc/HISTORY Misc/README.valgrind Misc/gdbinit \
 		debian/README.maintainers \
 		debian/test_results $(buildd_static)/pybench.log \
@@ -678,6 +700,7 @@ ifeq ($(with_gdbm),yes)
 		usr/lib/python$(VER)/lib-dynload/gdbm.so
 endif
 
+ifeq ($(p_test),)
 #	: # The test framework into $(p_base), regression tests dropped
 	DH_COMPAT=2 dh_movefiles -p$(p_base) --sourcedir=$(d) \
 		$(scriptdir)/test/{regrtest.py,test_support.py,__init__.py,README,pystone.py}
@@ -690,6 +713,20 @@ endif
 	rm -rf $(d)/$(scriptdir)/distutils/tests
 	rm -rf $(d)/$(scriptdir)/lib2to3/tests
 
+else
+	: # Regression tests into $(p_test)
+	DH_COMPAT=2 dh_movefiles -p$(p_test) --sourcedir=$(d) \
+		  $(scriptdir)/test \
+		  $(scriptdir)/lib-dynload/{_ctypes_test.so,_testcapi.so} \
+		  $(scriptdir)/bsddb/test \
+		  $(scriptdir)/ctypes/test \
+		  $(scriptdir)/distutils/tests \
+		  $(scriptdir)/email/test \
+		  $(scriptdir)/json/tests \
+		  $(scriptdir)/lib2to3/tests \
+		  $(scriptdir)/sqlite3/test
+endif
+ifeq ($(with_idle),yes)
 	: # IDLE
 	mv $(d)/usr/bin/idle $(d)/usr/bin/idle-python$(VER)
 	rm -f $(d)/usr/lib/python$(VER)/idlelib/idle.bat
@@ -700,6 +737,7 @@ endif
 		usr/lib/python$(VER)/idlelib \
 		usr/bin/idle-python$(VER)
 	cp -p debian/idle-$(PVER).1 $(d_idle)/usr/share/man/man1/
+endif
 
 	: # Move the demos and tools into $(p_exam)'s doc directory
 	dh_installdirs -p$(p_exam) \
@@ -749,6 +787,7 @@ endif
 	ln -sf NEWS.gz $(d_base)/usr/share/doc/$(p_base)/changelog.gz
 	dh_installdocs --all -N$(p_base) -N$(p_dev) -N$(p_dbg) -N$(p_lib) debian/README.Debian
 
+ifeq ($(with_idle),yes)
 	: # IDLE has its own changelogs, docs...
 	dh_installchangelogs -p$(p_idle) Lib/idlelib/ChangeLog
 	dh_installdocs -p$(p_idle) Lib/idlelib/{NEWS,README,TODO,extend}.txt
@@ -756,12 +795,15 @@ endif
 	mkdir -p $(d_idle)/usr/share/applications
 	cp -p debian/idle.desktop \
 		$(d_idle)/usr/share/applications/idle-$(PVER).desktop
+endif
 
 	: # those packages have own README.Debian's
 	install -m 644 -p debian/README.$(p_base) \
 		$(d_base)/usr/share/doc/$(PVER)/README.Debian
+ifeq ($(with_idle),yes)
 	install -m 644 -p debian/README.$(p_idle) \
 		$(d_idle)/usr/share/doc/$(p_idle)/README.Debian
+endif
 ifeq ($(with_tk),yes)
 	cp -p debian/README.Tk $(d_tk)/usr/share/doc/$(p_tk)/
 endif
@@ -791,7 +833,7 @@ endif
 	-find debian -name '*.py[co]' | xargs rm -f
 
 	: # remove empty directories, when all components are in place
-	-find debian ! -name lib-dynload -type d -empty -delete
+	-find debian ! -name lib-dynload -type d -empty | xargs rmdir -p 2>/dev/null
 
 	: # install debug package
 	rm -rf $(d)-dbg
@@ -845,6 +887,14 @@ endif
 	  b=$$(basename $$i .overrides); \
 	  install -D -m 644 $$i debian/$$b/usr/share/lintian/overrides/$$b; \
 	done
+ifneq ($(with_doc),yes)
+	rm -f debian/$(PVER)-doc/usr/share/lintian/overrides/$(PVER)-doc
+	rmdir -p debian/$(PVER)-doc/usr/share/lintian/overrides || true
+endif
+ifneq ($(with_idle),yes)
+	rm -f debian/idle-$(PVER)/usr/share/lintian/overrides/idle-$(PVER)
+	rmdir -p debian/idle-$(PVER)/usr/share/lintian/overrides || true
+endif
 
 	touch stamp-install
 
@@ -853,6 +903,7 @@ binary-indep: $(install_target) $(build_target) stamp-build-doc stamp-control
 	dh_testdir -i
 	dh_testroot -i
 
+ifeq ($(with_doc),yes)
 	: # $(p_doc) package
 	dh_installdirs -p$(p_doc) \
 		usr/share/doc/$(p_base) \
@@ -870,6 +921,7 @@ binary-indep: $(install_target) $(build_target) stamp-build-doc stamp-control
 	gzip -9v $(d_doc)/usr/share/doc/$(p_base)/html/$(PVER).devhelp
 	dh_link -p$(p_doc) \
 		/usr/share/doc/$(p_base)/html /usr/share/devhelp/books/$(PVER)
+endif
 
 	dh_installdebconf -i $(dh_args)
 	dh_installexamples -i $(dh_args)
@@ -932,10 +984,12 @@ endif
 
 	dh_makeshlibs -p$(p_lib) -V '$(p_lib)'
 	dh_makeshlibs -p$(p_dbg) -V '$(p_dbg)'
+ifneq ($(distribution),maemo)
 # don't include the following symbols, found in extensions
 # which either can be built as builtin or extension.
 	sed -ri '/^ (_check_|asdl_|fast_save_|init)/d' \
 	  $(d_lib)/DEBIAN/symbols $(d_dbg)/DEBIAN/symbols
+endif
 	dh_installdeb -a
 	dh_shlibdeps -a
 	dh_gencontrol -a

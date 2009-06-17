@@ -66,7 +66,7 @@ if [ "$1" = configure ]; then
 	done
 	if [ -f /var/lib/python/@PVER@_installed ]; then
 	    rm -f /var/lib/python/@PVER@_installed
-	    rmdir --ignore-fail-on-non-empty /var/lib/python 2>/dev/null
+	    rmdir -p /var/lib/python 2>/dev/null || true
 	fi
     fi
 fi

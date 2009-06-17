@@ -1,10 +1,10 @@
 Source: python2.6
 Section: python
 Priority: optional
-Maintainer: Matthias Klose <doko@debian.org>
-Build-Depends: debhelper (>= 5), autoconf, libreadline5-dev, zlib1g-dev, libssl-dev, sharutils, libbz2-dev, libbluetooth-dev, locales, libsqlite3-dev, libffi-dev (>= 3.0.5), mime-support, netbase, lsb-release, bzip2, libdb-dev
-Build-Depends-Indep: 
-Build-Conflicts: python2.6-xml, python-xml, libgdbm-dev
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
+Build-Depends: debhelper (>= 5), autoconf, automake1.9, libreadline5-dev, libncursesw5-dev (>= 5.3), zlib1g-dev, libssl-dev, sharutils, libbz2-dev, libbluetooth-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], locales [!armel !hppa !ia64 !mipsel], libsqlite3-dev, libffi-dev (>= 3.0.5), mime-support, netbase, lsb-release, bzip2, libdb-dev
+Build-Conflicts: tcl8.3-dev, tk8.3-dev, python2.6-xml, python-xml, libgdbm-dev
 XS-Python-Version: 2.6
 Standards-Version: 3.8.0
 Vcs-Browser: https://code.launchpad.net/~doko/python/pkg2.6
@@ -13,7 +13,7 @@ Vcs-Bzr: http://bazaar.launchpad.net/~doko/python/pkg2.6
 Package: python2.6
 Architecture: any
 Priority: optional
-Depends: python2.6-minimal (= ${binary:Version}), mime-support, ${shlibs:Depends}
+Depends: python2.6-minimal (= ${binary:Version}), ${shlibs:Depends}
 Suggests: python2.6-doc, python2.6-profiler, binutils
 Provides: python2.6-cjkcodecs, python2.6-ctypes, python2.6-elementtree, python2.6-celementtree, python2.6-wsgiref
 XB-Python-Version: 2.6
@@ -109,3 +109,9 @@ Suggests: python-gdbm-dbg, python-tk-dbg
 Description: Debug Build of the Python Interpreter (version 2.6)
  Python interpreter configured with --pydebug. Dynamically loaded modules are
  searched in /usr/lib/python2.6/lib-dynload/debug first.
+
+Package: python2.6-testing
+Architecture: any
+Depends: python2.6-dev (= ${binary:Version}), mime-support
+Description: Regression testing modules for Python
+ Modules used to test python (regression tests).
