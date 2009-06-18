@@ -54,7 +54,7 @@ install: build
 
 	# fix executable file : headers, names 
 	# $$file -> python$$version-$$file
-	$(PYTHON) setup.py install --root=$(CURDIR)/debian/python-pyrex --no-compile
+	$(PYTHON) setup.py install --root=$(CURDIR)/debian/python-pyrex --no-compile --install-layout=deb
 	for python in $(PYVERS); do \
 		sed 's/#VERS#/'$$python'/g' debian/pythonX.Y-pyrexc > debian/python-pyrex/usr/bin/python$$python-pyrexc ; \
 		chmod 755 debian/python-pyrex/usr/bin/python$$python-pyrexc ; \
