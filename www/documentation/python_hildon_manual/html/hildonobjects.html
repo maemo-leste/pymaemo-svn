@@ -55,32 +55,32 @@
 <div class="section" id="object-hierarchy">
 <h3>Object Hierarchy<a class="headerlink" href="#object-hierarchy" title="Permalink to this headline">¶</a></h3>
 <p class="graphviz">
-<img src="_images/inheritance-9237b39105238dda2e87f11b6157abfc13078a7a.png" alt="digraph inheritancea5ceb9f2c0 {
+<img src="_images/inheritance-0cce9c0ca3df0d54e3ead4a8929845d400a6aeff.png" alt="digraph inheritancea5ceb9f2c0 {
 rankdir=LR;
 size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.Window&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Window&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Window&quot; -&gt; &quot;hildon.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Window&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Bin&quot; -&gt; &quot;gtk.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject._gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;hildon.Window&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Window&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
-  &quot;gtk.Window&quot; -&gt; &quot;hildon.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gobject._gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
 }" usemap="#inheritancea5ceb9f2c0" class="inheritance"/>
 <map id="inheritancea5ceb9f2c0" name="inheritancea5ceb9f2c0">
-<area shape="rect" href="#hildon.Window" title="hildon.Window" alt="" coords="688,39,763,57"/>
+<area shape="rect" href="#hildon.Window" title="hildon.Window" alt="" coords="693,43,773,61" />
 </map>
 </p>
 </div>
@@ -101,8 +101,8 @@ size=&quot;8.0, 12.0&quot;;
 </div>
 <div class="section" id="creating-a-window">
 <h3>Creating a Window<a class="headerlink" href="#creating-a-window" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">gtk</span>
-<span class="k">import</span> <span class="nn">hildon</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">gtk</span>
+<span class="kn">import</span> <span class="nn">hildon</span>
 
 <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span>
 <span class="n">toolbar</span> <span class="o">=</span> <span class="n">create_toolbar</span><span class="p">()</span>
@@ -470,6 +470,38 @@ activated by the window manager.</td>
 <span id="id1"></span><h2>StackableWindow<a class="headerlink" href="#stackablewindow" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
 <h3>Object Hierarchy<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-c3b414262f16d52fe14547b2f2d36d19bb5c6e35.png" alt="digraph inheritance6deaca7332 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.StackableWindow&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.StackableWindow&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;hildon.Window&quot; -&gt; &quot;hildon.StackableWindow&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.Window&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Window&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Window&quot; -&gt; &quot;hildon.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Window&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance6deaca7332" class="inheritance"/>
+<map id="inheritance6deaca7332" name="inheritance6deaca7332">
+<area shape="rect" href="#hildon.StackableWindow" title="hildon.StackableWindow" alt="" coords="673,36,773,52" />
+<area shape="rect" href="#hildon.Window" title="hildon.Window" alt="" coords="575,36,642,52" />
+</map>
+</p>
 </div>
 <div class="section" id="id3">
 <h3>Implemented Interfaces<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -485,8 +517,8 @@ activated by the window manager.</td>
 </div>
 <div class="section" id="basic-stackablewindow-example">
 <h3>Basic <a title="hildon.StackableWindow" class="reference internal" href="#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">StackableWindow</span></tt></a> example<a class="headerlink" href="#basic-stackablewindow-example" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">gtk</span>
-<span class="k">import</span> <span class="nn">hildon</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">gtk</span>
+<span class="kn">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">show_new_window</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
   <span class="n">win</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
@@ -576,6 +608,18 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">StackableW
 <h2>WindowStack<a class="headerlink" href="#windowstack" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id7">
 <h3>Object Hierarchy<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-48486be1092191b9aef7d0f5ccc6764b1c10d11e.png" alt="digraph inheritancefbd0666518 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.WindowStack&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.WindowStack&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gobject.GObject&quot; -&gt; &quot;hildon.WindowStack&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+}" usemap="#inheritancefbd0666518" class="inheritance"/>
+<map id="inheritancefbd0666518" name="inheritancefbd0666518">
+<area shape="rect" href="#hildon.WindowStack" title="hildon.WindowStack" alt="" coords="164,6,297,30" />
+</map>
+</p>
 </div>
 <div class="section" id="id8">
 <h3>Description<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
@@ -788,6 +832,35 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">WindowStac
 <span id="id12"></span><h2>Button<a class="headerlink" href="#button" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="button-object-hierarchy">
 <span id="id13"></span><h3>Object Hierarchy<a class="headerlink" href="#button-object-hierarchy" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-dbd66c44ea7a74a69a6f95a1ac08ce50fd66401c.png" alt="digraph inheritance683a732543 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.Button&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Button&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Button&quot; -&gt; &quot;hildon.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Button&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance683a732543" class="inheritance"/>
+<map id="inheritance683a732543" name="inheritance683a732543">
+<area shape="rect" href="#hildon.Button" title="hildon.Button" alt="" coords="699,43,772,62" />
+</map>
+</p>
 </div>
 <div class="section" id="button-implemented-interfaces">
 <span id="id14"></span><h3>Implemented Interfaces<a class="headerlink" href="#button-implemented-interfaces" title="Permalink to this headline">¶</a></h3>
@@ -1297,6 +1370,32 @@ value labels, when in vertical mode.</td>
 <span id="id19"></span><h2>CheckButton<a class="headerlink" href="#checkbutton" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id20">
 <h3>Object Hierarchy<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-adfb295cce3bb203fcd9e36d36c486eb41a10923.png" alt="digraph inheritance9f35103b75 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.CheckButton&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Button&quot; -&gt; &quot;hildon.CheckButton&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Button&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" class="inheritance"/>
+</p>
 </div>
 <div class="section" id="id21">
 <h3>Implemented Interfaces<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
@@ -1437,6 +1536,37 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">HildonChec
 <h2>PickerButton<a class="headerlink" href="#pickerbutton" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id26">
 <h3>Object Hierarchy<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-cf1b30da420acd09f8475f19e8bf869b6671adfa.png" alt="digraph inheritance18cc3f2662 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.PickerButton&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;hildon.Button&quot; -&gt; &quot;hildon.PickerButton&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.Button&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Button&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Button&quot; -&gt; &quot;hildon.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Button&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance18cc3f2662" class="inheritance"/>
+<map id="inheritance18cc3f2662" name="inheritance18cc3f2662">
+<area shape="rect" href="#hildon.Button" title="hildon.Button" alt="" coords="591,38,654,54" />
+</map>
+</p>
 </div>
 <div class="section" id="id27">
 <h3>Implemented Interfaces<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
@@ -1633,6 +1763,39 @@ clicked.</td>
 <h2>DateButton<a class="headerlink" href="#datebutton" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id33">
 <h3>Object Hierarchy<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-83803152ec96ef7fdc3460f75d212b98bbc7ad91.png" alt="digraph inheritanceb94d368786 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.DateButton&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;hildon.PickerButton&quot; -&gt; &quot;hildon.DateButton&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.PickerButton&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;hildon.Button&quot; -&gt; &quot;hildon.PickerButton&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Button&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.Button&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Button&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Button&quot; -&gt; &quot;hildon.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritanceb94d368786" class="inheritance"/>
+<map id="inheritanceb94d368786" name="inheritanceb94d368786">
+<area shape="rect" href="#hildon.Button" title="hildon.Button" alt="" coords="517,33,571,47" />
+</map>
+</p>
 </div>
 <div class="section" id="id34">
 <h3>Implemented Interfaces<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
@@ -1742,6 +1905,39 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">HildonDate
 <h2>TimeButton<a class="headerlink" href="#timebutton" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id38">
 <h3>Object Hierarchy<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-2f3d34c9659881066c8ee4ea3307edb4aced2717.png" alt="digraph inheritancea87dd514e7 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.TimeButton&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;hildon.PickerButton&quot; -&gt; &quot;hildon.TimeButton&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.PickerButton&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;hildon.Button&quot; -&gt; &quot;hildon.PickerButton&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Button&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.Button&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Button&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Button&quot; -&gt; &quot;hildon.Button&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritancea87dd514e7" class="inheritance"/>
+<map id="inheritancea87dd514e7" name="inheritancea87dd514e7">
+<area shape="rect" href="#hildon.Button" title="hildon.Button" alt="" coords="516,33,570,47" />
+</map>
+</p>
 </div>
 <div class="section" id="id39">
 <h3>Implemented Interfaces<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
@@ -1849,7 +2045,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">HildonTime
 <div class="section" id="id43">
 <h3>Object Hierarchy<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
 <p class="graphviz">
-<img src="_images/inheritance-057e6b98287635b25fb678ca9e99f22cbf91f18e.png" alt="digraph inheritance7066e6511f {
+<img src="_images/inheritance-b7aaada472c68987eb59f37822941056631890c0.png" alt="digraph inheritance7066e6511f {
 rankdir=LR;
 size=&quot;8.0, 12.0&quot;;
   &quot;hildon.Caption&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Caption&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
@@ -1860,21 +2056,21 @@ size=&quot;8.0, 12.0&quot;;
   &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject._gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gobject._gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
 }" usemap="#inheritance7066e6511f" class="inheritance"/>
 <map id="inheritance7066e6511f" name="inheritance7066e6511f">
-<area shape="rect" href="#hildon.Caption" title="hildon.Caption" alt="" coords="688,38,764,56"/>
+<area shape="rect" href="#hildon.Caption" title="hildon.Caption" alt="" coords="695,42,773,61" />
 </map>
 </p>
 </div>
@@ -2340,32 +2536,32 @@ with label.</td>
 <div class="section" id="banner-object-hierarchy">
 <span id="id49"></span><h3>Object Hierarchy<a class="headerlink" href="#banner-object-hierarchy" title="Permalink to this headline">¶</a></h3>
 <p class="graphviz">
-<img src="_images/inheritance-08228970f7ab3150e6bca68e5ac06917fbd03ae2.png" alt="digraph inheritancebbdfcc89b1 {
+<img src="_images/inheritance-437f07d6d6a943c259728b44b77a5a2bf84a5c33.png" alt="digraph inheritancebbdfcc89b1 {
 rankdir=LR;
 size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.Banner&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Banner&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Window&quot; -&gt; &quot;hildon.Banner&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Window&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Bin&quot; -&gt; &quot;gtk.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject._gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;hildon.Banner&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Banner&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
-  &quot;gtk.Window&quot; -&gt; &quot;hildon.Banner&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gobject._gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
 }" usemap="#inheritancebbdfcc89b1" class="inheritance"/>
 <map id="inheritancebbdfcc89b1" name="inheritancebbdfcc89b1">
-<area shape="rect" href="#hildon.Banner" title="hildon.Banner" alt="" coords="689,39,764,57"/>
+<area shape="rect" href="#hildon.Banner" title="hildon.Banner" alt="" coords="698,43,772,61" />
 </map>
 </p>
 </div>
@@ -2646,34 +2842,34 @@ screen. Allowed values: 10000</td>
 <div class="section" id="id57">
 <h3>Object Hierarchy<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
 <p class="graphviz">
-<img src="_images/inheritance-1da9a5d9d5b4393408f00698f2eb4e3639877a0b.png" alt="digraph inheritance3704f38351 {
+<img src="_images/inheritance-4027d1fe384ef20db24bcae74c5d225872231e3b.png" alt="digraph inheritance3704f38351 {
 rankdir=LR;
 size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.Note&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Note&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Dialog&quot; -&gt; &quot;hildon.Note&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Dialog&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Window&quot; -&gt; &quot;gtk.Dialog&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Window&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gobject._gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;hildon.Note&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Note&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
-  &quot;gtk.Dialog&quot; -&gt; &quot;hildon.Note&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
-  &quot;gobject._gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
   &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
   &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Window&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
 }" usemap="#inheritance3704f38351" class="inheritance"/>
 <map id="inheritance3704f38351" name="inheritance3704f38351">
-<area shape="rect" href="#hildon.Note" title="hildon.Note" alt="" coords="706,35,764,52"/>
+<area shape="rect" href="#hildon.Note" title="hildon.Note" alt="" coords="715,39,773,56" />
 </map>
 </p>
 </div>
@@ -2941,6 +3137,35 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Note</tt><
 <h2>TouchSelector<a class="headerlink" href="#touchselector" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id62">
 <h3>Object Hierarchy<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-cb5ac2a192c188449112b8ed5b1c42b70a1b83f9.png" alt="digraph inheritanceb9eec41058 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.TouchSelector&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TouchSelector&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.VBox&quot; -&gt; &quot;hildon.TouchSelector&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.VBox&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Box&quot; -&gt; &quot;gtk.VBox&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Box&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Box&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritanceb9eec41058" class="inheritance"/>
+<map id="inheritanceb9eec41058" name="inheritanceb9eec41058">
+<area shape="rect" href="#hildon.TouchSelector" title="hildon.TouchSelector" alt="" coords="670,42,774,60" />
+</map>
+</p>
 </div>
 <div class="section" id="id63">
 <h3>Implemented Interfaces<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
@@ -3551,6 +3776,22 @@ when the selector is firstshown.</td>
 <h2>TouchSelectorColumn<a class="headerlink" href="#touchselectorcolumn" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id68">
 <h3>Object Hierarchy<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-a9f71f6799938afca8e7b1eb0ba85c82e7a55024.png" alt="digraph inheritancedc96457a34 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.TouchSelectorColumn&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TouchSelectorColumn&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gobject.GObject&quot; -&gt; &quot;hildon.TouchSelectorColumn&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.CellLayout&quot; -&gt; &quot;hildon.TouchSelectorColumn&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.CellLayout&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.CellLayout&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+}" usemap="#inheritancedc96457a34" class="inheritance"/>
+<map id="inheritancedc96457a34" name="inheritancedc96457a34">
+<area shape="rect" href="#hildon.TouchSelectorColumn" title="hildon.TouchSelectorColumn" alt="" coords="335,30,513,54" />
+</map>
+</p>
 </div>
 <div class="section" id="id69">
 <h3>Implemented Interfaces<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h3>
@@ -3602,6 +3843,38 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">TouchSelec
 <h2>SelectorEntry<a class="headerlink" href="#selectorentry" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id73">
 <h3>Object Hierarchy<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-6e4f33f15c981f8dea51a82d620a9fb28125991d.png" alt="digraph inheritance6a014f3c70 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.TouchSelectorEntry&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TouchSelectorEntry&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;hildon.TouchSelector&quot; -&gt; &quot;hildon.TouchSelectorEntry&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.TouchSelector&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TouchSelector&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.VBox&quot; -&gt; &quot;hildon.TouchSelector&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.VBox&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Box&quot; -&gt; &quot;gtk.VBox&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Box&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Box&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance6a014f3c70" class="inheritance"/>
+<map id="inheritance6a014f3c70" name="inheritance6a014f3c70">
+<area shape="rect" href="#hildon.TouchSelectorEntry" title="hildon.TouchSelectorEntry" alt="" coords="669,35,773,51" />
+<area shape="rect" href="#hildon.TouchSelector" title="hildon.TouchSelector" alt="" coords="553,35,638,51" />
+</map>
+</p>
 </div>
 <div class="section" id="id74">
 <h3>Implemented Interfaces<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h3>
@@ -3763,6 +4036,38 @@ It must be noted that not all input modes are available for the entry in <tt cla
 <h2>DateSelector<a class="headerlink" href="#dateselector" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id80">
 <h3>Object Hierarchy<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-815ff90949b19ddb62757850039cbea1abfecbb0.png" alt="digraph inheritance4a7c4f8666 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.DateSelector&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.DateSelector&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;hildon.TouchSelector&quot; -&gt; &quot;hildon.DateSelector&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.TouchSelector&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TouchSelector&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.VBox&quot; -&gt; &quot;hildon.TouchSelector&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.VBox&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Box&quot; -&gt; &quot;gtk.VBox&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Box&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Box&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance4a7c4f8666" class="inheritance"/>
+<map id="inheritance4a7c4f8666" name="inheritance4a7c4f8666">
+<area shape="rect" href="#hildon.DateSelector" title="hildon.DateSelector" alt="" coords="690,37,774,52" />
+<area shape="rect" href="#hildon.TouchSelector" title="hildon.TouchSelector" alt="" coords="571,37,659,52" />
+</map>
+</p>
 </div>
 <div class="section" id="id81">
 <h3>Implemented Interfaces<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h3>
@@ -3934,6 +4239,38 @@ Utility function to keep this API similar to the previously existing <tt class="
 <h2>TimeSelector<a class="headerlink" href="#timeselector" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id86">
 <h3>Object Hierarchy<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-b664b9181ebc8ca9bcc60a613b9077e6cbb8679e.png" alt="digraph inheritancef573332dc6 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.TimeSelector&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TimeSelector&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;hildon.TouchSelector&quot; -&gt; &quot;hildon.TimeSelector&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.TouchSelector&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TouchSelector&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.VBox&quot; -&gt; &quot;hildon.TouchSelector&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.VBox&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Box&quot; -&gt; &quot;gtk.VBox&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Box&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Box&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritancef573332dc6" class="inheritance"/>
+<map id="inheritancef573332dc6" name="inheritancef573332dc6">
+<area shape="rect" href="#hildon.TimeSelector" title="hildon.TimeSelector" alt="" coords="689,36,774,52" />
+<area shape="rect" href="#hildon.TouchSelector" title="hildon.TouchSelector" alt="" coords="570,36,658,52" />
+</map>
+</p>
 </div>
 <div class="section" id="id87">
 <h3>Implemented Interfaces<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h3>
@@ -4055,6 +4392,33 @@ list of options of the widget.</td>
 <h2>PannableArea<a class="headerlink" href="#pannablearea" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="pannablearea-object-hierarchy">
 <span id="id91"></span><h3>Object Hierarchy<a class="headerlink" href="#pannablearea-object-hierarchy" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-1805a5d9b2fb66f9eedf7272d7622e3b502f153b.png" alt="digraph inheritance1ab5fa60a3 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.PannableArea&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.PannableArea&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Bin&quot; -&gt; &quot;hildon.PannableArea&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance1ab5fa60a3" class="inheritance"/>
+<map id="inheritance1ab5fa60a3" name="inheritance1ab5fa60a3">
+<area shape="rect" href="#hildon.PannableArea" title="hildon.PannableArea" alt="" coords="657,47,774,68" />
+</map>
+</p>
 </div>
 <div class="section" id="pannablearea-implemented-interfaces">
 <span id="id92"></span><h3>Implemented Interfaces<a class="headerlink" href="#pannablearea-implemented-interfaces" title="Permalink to this headline">¶</a></h3>
@@ -4627,6 +4991,37 @@ to deactivate overshooting.</td>
 <h2>Entry<a class="headerlink" href="#entry" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id99">
 <h3>Object Hierarchy<a class="headerlink" href="#id99" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-c569cb665be38f31734d6f1e12d30d8b0b0c349d.png" alt="digraph inheritancee5dd52e4c6 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.Entry&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.Entry&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.Entry&quot; -&gt; &quot;hildon.Entry&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Entry&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Entry&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Editable&quot; -&gt; &quot;gtk.Entry&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.CellEditable&quot; -&gt; &quot;gtk.Entry&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.CellEditable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.CellEditable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Editable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Editable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritancee5dd52e4c6" class="inheritance"/>
+<map id="inheritancee5dd52e4c6" name="inheritancee5dd52e4c6">
+<area shape="rect" href="#hildon.Entry" title="hildon.Entry" alt="" coords="638,151,726,175" />
+</map>
+</p>
 </div>
 <div class="section" id="id100">
 <h3>Implemented Interfaces<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h3>
@@ -4721,6 +5116,33 @@ Also note that placeholder text (set using <a title="hildon.Entry.set_placeholde
 <h2>TextView<a class="headerlink" href="#textview" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id103">
 <h3>Object Hierarchy<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-e63336dc31c5af68991b416481dfc6482982c40a.png" alt="digraph inheritance7ebff5b1b9 {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.TextView&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.TextView&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;gtk.TextView&quot; -&gt; &quot;hildon.TextView&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.TextView&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.TextView&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance7ebff5b1b9" class="inheritance"/>
+<map id="inheritance7ebff5b1b9" name="inheritance7ebff5b1b9">
+<area shape="rect" href="#hildon.TextView" title="hildon.TextView" alt="" coords="676,47,774,68" />
+</map>
+</p>
 </div>
 <div class="section" id="id104">
 <h3>Implemented Interfaces<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h3>
@@ -5661,6 +6083,39 @@ the WizardDialog.</td>
 <h2>PickerDialog<a class="headerlink" href="#pickerdialog" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id130">
 <h3>Object Hierarchy<a class="headerlink" href="#id130" title="Permalink to this headline">¶</a></h3>
+<p class="graphviz">
+<img src="_images/inheritance-4c734dca4ceca3a434676ce34e95af75ca9f2f89.png" alt="digraph inheritance512cc03a0d {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;hildon.PickerDialog&quot; [style=&quot;setlinewidth(0.5)&quot;,URL=&quot;#hildon.PickerDialog&quot;,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25,shape=box,fontsize=10];
+  &quot;hildon.Dialog&quot; -&gt; &quot;hildon.PickerDialog&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;hildon.Dialog&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Dialog&quot; -&gt; &quot;hildon.Dialog&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Dialog&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Window&quot; -&gt; &quot;gtk.Dialog&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Widget&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Object&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; -&gt; &quot;gtk.Widget&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gobject.GObject&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Widget&quot; -&gt; &quot;gtk.Container&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;atk.ImplementorIface&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;atk.ImplementorIface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Bin&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Container&quot; -&gt; &quot;gtk.Bin&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Object&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GObject&quot; -&gt; &quot;gtk.Object&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Window&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gtk.Bin&quot; -&gt; &quot;gtk.Window&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;gtk.Buildable&quot; [shape=box,style=&quot;setlinewidth(0.5)&quot;,fontsize=10,fontname=Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans,height=0.25];
+  &quot;gobject.GInterface&quot; -&gt; &quot;gtk.Buildable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}" usemap="#inheritance512cc03a0d" class="inheritance"/>
+<map id="inheritance512cc03a0d" name="inheritance512cc03a0d">
+<area shape="rect" href="#hildon.PickerDialog" title="hildon.PickerDialog" alt="" coords="696,34,773,48" />
+</map>
+</p>
 </div>
 <div class="section" id="id131">
 <h3>Implemented Interfaces<a class="headerlink" href="#id131" title="Permalink to this headline">¶</a></h3>
@@ -6719,7 +7174,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">RemoteText
     </div>
     <div class="footer">
       &copy; Copyright , .
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
     </div>
   </body>
 </html>
