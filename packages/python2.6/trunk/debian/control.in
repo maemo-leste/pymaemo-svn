@@ -29,7 +29,7 @@ Depends: ${shlibs:Depends}
 Recommends: @PVER@
 Suggests: binfmt-support
 Replaces: @PVER@ (<< 2.6)
-Conflicts: binfmt-support (<< 1.1.2), python-central (<< 0.6.11ubuntu6)
+Conflicts: binfmt-support (<< 1.1.2), python-central (<< 0.6.11.1maemo1)
 XB-Python-Runtime: @PVER@
 XB-Python-Version: @VER@
 Description: A minimal subset of the Python language (version @VER@)

@@ -29,7 +29,7 @@ Depends: ${shlibs:Depends}
 Recommends: python2.6
 Suggests: binfmt-support
 Replaces: python2.6 (<< 2.6)
-Conflicts: binfmt-support (<< 1.1.2), python-central (<< 0.6.11ubuntu6)
+Conflicts: binfmt-support (<< 1.1.2), python-central (<< 0.6.11.1maemo1)
 XB-Python-Runtime: python2.6
 XB-Python-Version: 2.6
 Description: A minimal subset of the Python language (version 2.6)
