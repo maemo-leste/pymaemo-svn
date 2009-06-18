@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
-Build-Depends-Indep: debhelper (>= 4), libhtml-tree-perl, debiandoc-sgml, @DOCUTILS@ @PVER@ (>= @PREVVER@), @PVER@-minimal (>= @PREVVER@)
+Build-Depends-Indep: debhelper (>= 4), libhtml-tree-perl, debiandoc-sgml, @PVER@ (>= @PREVVER@), @PVER@-minimal (>= @PREVVER@)
 Standards-Version: 3.7.2
 
 Package: python
