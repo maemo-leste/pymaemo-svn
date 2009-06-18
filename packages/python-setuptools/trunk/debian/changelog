@@ -1,3 +1,49 @@
+python-setuptools (0.6c9-1maemo1) unstable; urgency=low
+
+  * New release from jaunty 
+  * debian/control:
+    + Remove "Uploaders" field (not applicable to maemo).
+    + Put the pymaemo-developers mailing list address in "Maintainer" field and
+      move original value to a separate field.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 17 Jun 2009 16:33:10 -0400
+
+python-setuptools (0.6c9-0ubuntu4) jaunty; urgency=low
+
+  * Update the installation schemes in easy_install to follow the modified
+    distutils install command:
+    - When the --prefix option is used for setup.py install, Use the
+      `posix' scheme. LP: #344410.
+    - Use the `deb_system' scheme if --install-layout=deb is specified.
+    - Use the the `unix_local' scheme if neither --install-layout=deb
+      nor --prefix is specified.
+  * Always use the `posix' scheme for setup.py install in a virtualenv
+    setup. LP: #339904.
+  * Error out when easy_install tries to install into /usr, unless the
+    (new) option --force-installation-into-system-dir is given (heh, this
+    option name is even longer than --single-version-externally-managed).
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 04 Apr 2009 13:13:59 +0200
+
+python-setuptools (0.6c9-0ubuntu3) jaunty; urgency=low
+
+  * Fix interpreter name for the easy_install-2.6 script. LP: #332656.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 22 Feb 2009 22:25:32 +0100
+
+python-setuptools (0.6c9-0ubuntu2) jaunty; urgency=low
+
+  * Rebuild to add python2.6 support.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 18 Feb 2009 19:05:11 +0100
+
+python-setuptools (0.6c9-0ubuntu1) intrepid; urgency=low
+
+  * New upstream version (bug fixes from the stable branch).
+    - Adds subversion 1.5 compatibility. LP: #262636.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 25 Sep 2008 10:40:35 +0200
+
 python-setuptools (0.6c8-4maemo4) unstable; urgency=low
 
   * Put the pymaemo-developers mailing list address in "Maintainer" field and

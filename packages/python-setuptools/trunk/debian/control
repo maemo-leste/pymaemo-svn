@@ -2,11 +2,10 @@ Source: python-setuptools
 Section: python
 Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
-Build-Depends: debhelper (>= 5.0.37.1), quilt (>> 0.45)
-Build-Depends-Indep: python-all-dev, python-central (>= 0.4.10)
-XS-Python-Version: all
-Standards-Version: 3.7.3
+XSBC-Original-Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends-Indep: debhelper (>= 5.0.37.1), python-all-dev, python2.6-dev, python-central (>= 0.6.11)
+XS-Python-Version: 2.5, 2.6
+Standards-Version: 3.8.0
 
 Package: python-setuptools
 Architecture: all

@@ -10,8 +10,6 @@
 # Modified to make a template file for a multi-binary package with separated
 # build-arch and build-indep targets  by Bill Allombert 2001
 
-include /usr/share/quilt/quilt.make
-
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
@@ -21,10 +19,13 @@ export DH_OPTIONS
 # setuptools doesn't handle translated messages
 export LC_ALL=C
 
-PYVERS	:= $(shell pyversions -vr debian/control)
-PYVER   := $(shell python2.5 -c 'import sys; print sys.version[:3]')
+PYVERS	:= 2.3 2.5 $(shell pyversions -vr debian/control)
+PYVERS	:= 2.6
+PYVER   := $(shell python2.6 -c 'import sys; print sys.version[:3]')
 SETUPTOOLSVER=$(shell dpkg-parsechangelog | grep 'Version:' | sed 's,Version: \(.*\)-.*,\1,g')
 export PYVERS
+
+include /usr/share/pycentral-data/pycentral.mk
 
 d = debian/python-setuptools
 d2 = debian/python-pkg-resources
@@ -32,14 +33,14 @@ d2 = debian/python-pkg-resources
 build: build-stamp
 build-stamp: $(PYVERS:%=build-python%)
 	touch $@
-build-python%: patch
+build-python%:
 	python$* setup.py build
 	touch $@
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp
+	rm -f build-python*
 	rm -rf build dist
 	#rm -rf setuptools.egg-info
 	-find -name '*.py[co]' | xargs rm -f
@@ -73,16 +74,16 @@ install-prereq:
 	dh_clean -k
 
 install-python%:
-	dh_installdirs -A usr/bin usr/lib/python$*/site-packages
-	python$* setup.py install --root=$(CURDIR)/$(d)
+	dh_installdirs -A usr/bin usr/lib/python$*/$(call sitedir,$*)
+	python$* setup.py install --root=$(CURDIR)/$(d) --install-layout=deb
 
-	mv $(d)/usr/lib/python$*/site-packages/pkg_resources.py \
-	  $(d2)/usr/lib/python$*/site-packages/
+	mv $(d)/usr/lib/python$*/$(call sitedir,$*)/pkg_resources.py \
+	  $(d2)/usr/lib/python$*/$(call sitedir,$*)/
 
-	mv $(d)/usr/lib/python$*/site-packages/setuptools-$(SETUPTOOLSVER)-py$*.egg-info \
-	  $(d)/usr/lib/python$*/site-packages/setuptools.egg-info
+	mv $(d)/usr/lib/python$*/$(call sitedir,$*)/setuptools-$(SETUPTOOLSVER)-py$*.egg-info \
+	  $(d)/usr/lib/python$*/$(call sitedir,$*)/setuptools.egg-info
 	echo setuptools-$(SETUPTOOLSVER).egg-info \
-	  > $(d)/usr/lib/python$*/site-packages/setuptools.pth
+	  > $(d)/usr/lib/python$*/$(call sitedir,$*)/setuptools.pth
 
 binary-arch:
 
@@ -94,16 +95,26 @@ binary-indep: build install
 	dh_installdocs -ppython-pkg-resources pkg_resources.txt
 	dh_compress -i
 	dh_fixperms -i
-	sed -i -e 's/python2\../python2.5/g' \
-		debian/python-setuptools/usr/bin/easy_install-2.5
-	DH_PYCENTRAL=noprepare dh_pycentral -i
+
+	for v in $(PYVERS); do \
+	  sed -i "s/python2\../python$$v/g" $(d)/usr/bin/easy_install-$$v; \
+	done
+
+	DH_PYCENTRAL=include-links dh_pycentral -i
 	cat $(d).substvars
 	( \
-	  echo 'python:Versions=2.5'; \
-	  echo 'python:Provides=python2.5-setuptools'; \
-	  echo 'python:Depends=python (>= 2.4), python (<< 2.6), python-central (>= 0.5.7)'; \
+	  echo 'python:Versions=2.5, 2.6'; \
+	  echo 'python:Provides=python2.4-setuptools, python2.5-setuptools, python2.6-setuptools'; \
+	  echo 'python:Depends=python (>= 2.5), python (<< 2.7), python-central (>= 0.6.11)'; \
 	) > $(d).substvars
 	cat $(d).substvars
+
+	cat $(d2).substvars
+	( \
+	  echo 'python:Versions=2.5, 2.6'; \
+	  echo 'python:Depends=python (>= 2.5), python (<< 2.7), python-central (>= 0.6.11)'; \
+	) > $(d2).substvars
+	cat $(d2).substvars
 
 	dh_installdeb -i
 	dh_gencontrol -i
