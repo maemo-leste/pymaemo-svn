@@ -5,7 +5,7 @@ DEB_PYTHON_SYSTEM = pycentral
 
 # workaround to force using python2.5 inside Scratchbox
 # this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk
-cdbs_python_compile_version=2.5
+cdbs_python_compile_version=$(shell pyversions -vd)
 
 # python modules are installed in python central, so we don't
 # need the empty directory /usr/lib
