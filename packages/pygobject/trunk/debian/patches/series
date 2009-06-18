@@ -1,8 +1,9 @@
 01_pkgconfig-private.patch
-02_ffi-use-pkgconfig.patch
 03_maintainer_mode.patch
-60_use-python-config-for-includes.patch
-61_wakeupfd-fix.patch
+04_testsuite_gtk.patch
+61_wakeupfd-fctnl-and-read.patch
+62_install-pyglib-in-libdir-with-python-version.patch
+64_gil_locking.patch
 90_autofoo.patch
-05-change_pygconstant_strip_prefix.patch
-07-fix-lambda-expression-broken.patch
+91_upstream_change_fix_rhythmbox_crash.patch
+
