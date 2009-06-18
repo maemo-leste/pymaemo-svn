@@ -1,4 +1,4 @@
-python-central (0.6.11-1maemo1) unstable; urgency=low
+python-central (0.6.11.1maemo1) unstable; urgency=low
 
   * New version from jaunty
   * Remove "Uploaders" field (not applicable to maemo).
