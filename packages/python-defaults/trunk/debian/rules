@@ -15,12 +15,12 @@ PKGVERSION := $(word 2, $(changelog_values))
 
 distribution := $(shell lsb_release -is)
 
-export VER=2.5
-export NVER=2.6
-export PVER=python2.5
+export VER=2.6
+export NVER=2.7
+export PVER=python2.6
 
 PREVVER	:= $(shell awk '/^python/ && NR > 1 {print substr($$2,2,length($$2)-2); exit}' debian/changelog)
-PREVVER := 2.5.2-15
+PREVVER := 2.6.2
 
 PWD		:= $(shell pwd)
 
@@ -34,21 +34,23 @@ rst2html	= rst2html
 PYTHON_PKGS	= dbg dev examples all all-dev all-dbg
 
 with_doc	= no
+with_idle 	= no
+with_faq	= no
+
 ifneq ($(with_doc),yes)
-  NOPKGS	= -Npython-doc
+  NOPKGS	+= -Npython-doc
 endif
 
-with_faq	= no
 ifeq ($(with_faq),yes)
   DOCUTILS	= $(shell echo 'python-docutils (>= 0.4-3),')
 endif
 
-with_idle	= no
 ifeq ($(with_idle),yes)
   PYTHON_PKGS	+= idle
 else
   NOPKGS	+= -Nidle
 endif
+
 
 build: stamp-build
 stamp-build:
@@ -70,7 +72,6 @@ control-file:
 	    -e "s/@NVER@/$(NVER)/g" \
 	    -e "s/@VER@/$(VER)/g" \
 	    -e "s/@PREVVER@/$(PREVVER)/g" \
-	    -e "s/ *@DOCUTILS@/$(DOCUTILS)/g" \
 		<debian/control.in >debian/control.tmp
 ifeq ($(distribution),Ubuntu)
   ifneq (,$(findstring ubuntu, $(PKGVERSION)))
@@ -141,7 +142,7 @@ stamp-install: stamp-build control-file stamp-control
 ifeq ($(with_faq),yes)
 	dh_installdirs usr/share/doc/python/faq
 
-	set -e; \
+    set -e; \
 	cd faq && \
 	for p in *.ht; do \
 	  p=`basename $$p .ht`; \
@@ -154,7 +155,6 @@ ifeq ($(with_faq),yes)
 	mv debian/python/usr/share/doc/python/faq/FAQ.html \
 		debian/python/usr/share/doc/python/
 endif
-
 	touch stamp-install
 
 # Build architecture-independent files here.
@@ -187,6 +187,11 @@ binary-indep: build install stamp-doc
 	ln -sf pydoc$(VER) debian/python/usr/bin/pydoc
 	ln -sf pygettext$(VER) debian/python/usr/bin/pygettext
 	ln -sf pdb$(VER) debian/python/usr/bin/pdb
+	ln -sf 2to3-$(VER) debian/python/usr/bin/2to3
+
+	mkdir -p debian/python/usr/share/python
+	install -m 644 debian/python.mk \
+		debian/python/usr/share/python/
 
 	mkdir -p debian/python/usr/share/man/man1
 	ln -sf pydoc$(VER).1.gz \
@@ -254,8 +259,8 @@ ifeq ($(with_idle),yes)
 	mkdir -p debian/idle/usr/share/pixmaps
 	ln -sf python.xpm debian/python/usr/share/pixmaps/idle.xpm
 
-	mkdir -p debian/idle/usr/share/applications
-	cp -p debian/idle.desktop debian/idle/usr/share/applications/
+#	mkdir -p debian/idle/usr/share/applications
+#	cp -p debian/idle.desktop debian/idle/usr/share/applications/
 endif
 
 #	dh_installdebconf -i $(NOPKGS)

@@ -10,7 +10,7 @@ Package: python
 Architecture: all
 Priority: standard
 Depends: @PVER@ (>= @PREVVER@), python-minimal (= ${Source-Version})
-Conflicts: python2.3 (<< 2.3.5-14), python2.1 (<= 2.1.2), python-xmlbase, python-csv, python-bz2, python-base, python-central (<< 0.5.5)
+Conflicts: python2.3 (<< 2.3.5-14), python2.1 (<= 2.1.2), python-xmlbase, python-csv, python-bz2, python-base, python-central (<< 0.5.5), ufw (<< 0.27~r416), libboost-python-dev (<< 1.34.1-15ubuntu3), libboost-python1.35-dev (<< 1.35.0-8ubuntu5), qmtest (<< 2.4-5ubuntu1), pitivi (<< 0.11.3-1ubuntu1), libboost-dbg (<< 1.34.1-15ubuntu3), libboost1.35-dbg (<< 1.35.0-8ubuntu5), python-freevo (<< 1.8.1-3ubuntu3), python-aubio (<< 0.3.2-2ubuntu3)
 Replaces: python2.3 (<= 2.3.2-6), python-xmlbase, python-base
 Provides: python-email, python-xmlbase, python-plistlib, python-ctypes, python-wsgiref
 Suggests: python-doc (>= ${Source-Version}), python-tk (>= ${Source-Version}), python-profiler (>= ${Source-Version})
@@ -26,9 +26,9 @@ Package: python-minimal
 Architecture: all
 Priority: standard
 Depends: @PVER@-minimal (>= @PREVVER@), dpkg (>= 1.13.20)
+Recommends: python
 Conflicts: python (<= 2.4-1), python-central (<< 0.5.5)
 Replaces: python (<= 2.4-1)
-Recommends: python
 Description: A minimal subset of the Python language (default version)
  This package contains the interpreter and some essential modules.  It's used
  in the boot process for some basic tasks.
@@ -68,13 +68,13 @@ Description: An IDE for Python using Tkinter (default version)
  IDLE is written using Tkinter and therefore quite platform-independent.
  .
  This package is a dependency package, which depends on Debian's default
- Python version (currently v@VER@).
+ Python version (currently v@VER@)
 
 Package: python-doc
 Section: doc
 Architecture: all
 Depends: python@VER@-doc (>= @PREVVER@)
-Suggests: python
+Suggests: python (>= ${Source-Version})
 Conflicts: python-doc-info, python (<< 2.3.5)
 Replaces: python-doc-info, python (<< 2.3.5)
 Description: Documentation for the high-level object-oriented language Python
@@ -107,10 +107,11 @@ Description: Debug Build of the Python Interpreter (version @VER@)
 Package: python-all
 Architecture: all
 Priority: optional
-Depends: python (= ${Source-Version}), python2.5 (>= 2.5.1-1)
+Depends: python (= ${Source-Version}), python2.6 (>= 2.6.2)
 Description: Package depending on all supported Python runtime versions
- The package currently depends on python2.5, in the future, dependencies on
- jython (Python for a JVM) and ironpython (Python for Mono) may be added.
+ The package currently depends on python2.6, in the future,
+ dependencies on jython (Python for a JVM) and ironpython (Python for Mono)
+ may be added.
  .
  This package is used as a build dependency for other packages to
  avoid hardcoded dependencies on specific Python runtimes.
@@ -118,10 +119,11 @@ Description: Package depending on all supported Python runtime versions
 Package: python-all-dev
 Architecture: all
 Priority: optional
-Depends: python-all (= ${Source-Version}), python-dev (= ${Source-Version}), python2.5-dev (>= 2.5.1-1)
+Depends: python-all (= ${Source-Version}), python-dev (= ${Source-Version}), python2.6-dev (>= 2.6.2) 
 Description: Package depending on all supported Python development packages
- The package currently depends on python2.5-dev, in the future, dependencies on
- jython (Python for a JVM) and ironpython (Python for Mono) may be added.
+ The package currently depends on python2.6-dev, in the
+ future, dependencies on jython (Python for a JVM) and ironpython (Python
+ for Mono) may be added.
  .
  This package is used as a build dependency for other packages to
  avoid hardcoded dependencies on specific Python development packages.
@@ -129,10 +131,11 @@ Description: Package depending on all supported Python development packages
 Package: python-all-dbg
 Architecture: all
 Priority: optional
-Depends: python-all (= ${Source-Version}), python-dbg (= ${Source-Version}), python2.5-dbg (>= 2.5.1-1)
+Depends: python-all (= ${Source-Version}), python-dbg (= ${Source-Version}), python2.6-dbg (>= 2.6.2)
 Description: Package depending on all supported Python debugging packages
- The package currently depends on python2.5-dbg, in the future, dependencies on
- jython (Python for a JVM) and ironpython (Python for Mono) may be added.
+ The package currently depends on python2.6-dbg, in the
+ future, dependencies on jython (Python for a JVM) and ironpython (Python
+ for Mono) may be added.
  .
  This package is used as a build dependency for other packages to
  avoid hardcoded dependencies on specific Python development packages.

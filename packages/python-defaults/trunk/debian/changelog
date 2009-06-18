@@ -1,3 +1,125 @@
+python-defaults (2.6.2-1maemo1) unstable; urgency=low
+
+  * New version from jaunty 
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 17 Jun 2009 16:03:20 -0400
+
+python-defaults (2.6.2-0ubuntu1) jaunty; urgency=low
+
+  * Bump version to 2.6.2.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 18 Apr 2009 14:51:24 +0200
+
+python-defaults (2.6.1-0ubuntu9) jaunty; urgency=low
+
+  * add versionized conflict for python-freevo and python-aubio to 
+    make intrepid->jaunty upgrade work reliable
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue, 31 Mar 2009 19:52:07 +0200
+
+python-defaults (2.6.1-0ubuntu8) jaunty; urgency=low
+
+  * Add versionized conflict against libboost-dbg and libboost1.35-dbg for
+    lower version than jaunty. This ensures that the new version of the
+    libboost-dbg.rtupdate script is available when the new python2.6 gets
+    installed. The old script does not know about python2.6 and errors
+    out (LP: #352317)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue, 31 Mar 2009 14:30:21 +0200
+
+python-defaults (2.6.1-0ubuntu7) jaunty; urgency=low
+
+  * Add versionized conflict against pitivi for lower version than jaunty
+    to ensure that the new version of pitivi is available when the new
+    python2.6 gets installed. This works around a install failure in
+    intrepid->jaunty upgrade (LP: #349441)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Fri, 27 Mar 2009 16:06:42 +0100
+
+python-defaults (2.6.1-0ubuntu6) jaunty; urgency=low
+
+  [ Michael Vogt ]
+  * Add versionized conflict against qmtest for lower version than jaunty
+    to ensure that the new version of qmtest is available when the new
+    python2.6 gets installed. This works around a install failure in
+    intrepid->jaunty upgrade (LP: #348322)
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 26 Mar 2009 19:24:09 -0700
+
+python-defaults (2.6.1-0ubuntu5) jaunty; urgency=low
+
+  * python: Add an unversioned `2to3' binary.
+  * idle: Don't install a desktop file (already done in the versioned
+    idle packages).
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 22 Mar 2009 21:42:15 +0100
+
+python-defaults (2.6.1-0ubuntu4) jaunty; urgency=low
+
+  * Add versioned conflict against libboost-python-dev and
+    libboost-python1.35-dev. Both packages have broken .rtupdate scripts
+    in intrepid. LP: #346795.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 22 Mar 2009 15:13:47 +0100
+
+python-defaults (2.6.1-0ubuntu3) jaunty; urgency=low
+
+  * Add versionized conflict against ufw for lower version than jaunty 
+    to ensure that the new version of ufw (with python2.6 modules)
+    is available when the new python2.6 gets installed. This works
+    around a trigger failure in intrepid->jaunty upgrade (LP: #337705)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Wed, 04 Mar 2009 21:37:16 +0100
+
+python-defaults (2.6.1-0ubuntu2) jaunty; urgency=low
+
+  * idle-python: Depend on idle-python2.6. LP: #246125. Closes: #482163.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 02 Mar 2009 14:04:05 +0100
+
+python-defaults (2.6.1-0ubuntu1) jaunty; urgency=low
+
+  * Make python2.6 the default python version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 27 Feb 2009 11:44:05 +0100
+
+python-defaults (2.5.4-0ubuntu5) jaunty; urgency=low
+
+  * python: Install /usr/share/python/python.mk, helper functions for
+    getting the python library dir and install args for distutils installs.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 24 Feb 2009 15:47:38 +0100
+
+python-defaults (2.5.4-0ubuntu3) jaunty; urgency=low
+
+  * Accept initial blank line in debian/control when parsing version
+    information. LP: #328929.
+  * Merge pyversions.py with python-central.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 20 Feb 2009 10:53:36 +0100
+
+python-defaults (2.5.4-0ubuntu2) jaunty; urgency=low
+
+  * Fix dependencies fo the -all packages.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 19 Feb 2009 12:52:35 +0100
+
+python-defaults (2.5.4-0ubuntu1) jaunty; urgency=low
+
+  * Depend on the 2.5.4 versions of the packages.
+  * Add 2.6 as a supported version, drop 2.4 as a supported version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 19 Feb 2009 10:03:43 +0100
+
+python-defaults (2.5.2-3ubuntu1) jaunty; urgency=low
+
+  * Merge with Debian; remaining changes:
+    - Build the -doc package from this source package.
+    - Omit Debian specific upgrade code.
+    - Regenerate the control file.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 23 Nov 2008 21:58:03 +0100
+
 python-defaults (2.5.2-3maemo3) unstable; urgency=low
 
   * Change PREVVER in debian/rules, avoiding old python2.5-minimal versions
@@ -33,76 +155,118 @@ python-defaults (2.5.2-3) unstable; urgency=low
 python-defaults (2.5.2-2) unstable; urgency=low
 
   * python: Provide python-plistlib.
-  * python-minimal: Provide python (suggested by Neil McGovern).
+  * python-minimal: Recommend python (suggested by Neil McGovern).
 
  -- Matthias Klose <doko@debian.org>  Sat, 26 Jul 2008 02:37:00 +0200
 
-python-defaults (2.5.2-1) unstable; urgency=low
+python-defaults (2.5.2-1ubuntu1) intrepid; urgency=low
 
-  * Maintainer upload; asking the Release Team to better coordinate
-    things. Being in contact with two members of the release team for
-    two or three weeks when to upload without getting in the way of
-    other transitions, an unannounced upload of a third member of this
-    team is at least surprising.
-  * debian/python.postinst.in: Fix the bug introduced in the NMU, run the
-    rtupdate hooks when upgrading from a version < 2.5.2-1. Closes: #476095.
+  * Merge with Debian; remaining changes:
+    - Build the -doc package from this source package.
+    - Omit Debian specific upgrade code.
+    - Regenerate the control file.
 
- -- Matthias Klose <doko@debian.org>  Thu, 17 Apr 2008 20:32:59 +0200
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 23 Jun 2008 13:13:51 +0200
 
-python-defaults (2.5.2-0.1) unstable; urgency=low
+python-defaults (2.5.2-0ubuntu1) hardy; urgency=low
 
-  * NMU by the Release Team not to lose the sweet spot for the Python
-    transition.
-  * Make python2.5 the default Python version.
+  * Depend on the 2.5.2 versions of the packages.
 
- -- Adeodato Simó <dato@net.com.org.es>  Sun, 13 Apr 2008 11:29:32 +0200
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 10 Mar 2008 18:03:30 +0000
 
-python-defaults (2.4.4-6) unstable; urgency=low
+python-defaults (2.5.1-1ubuntu2) gutsy; urgency=low
 
-  * python.postinst: Fix cleanup of temporary files. Closes: #424703, #424704.
+  * Temporarily loosen the dependency on python2.5 to allow python2.5
+    to build on powerpc and sparc.
 
- -- Matthias Klose <doko@debian.org>  Thu, 17 May 2007 08:17:16 +0200
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 27 Apr 2007 00:00:32 +0200
 
-python-defaults (2.4.4-5) unstable; urgency=low
+python-defaults (2.5.1-1ubuntu1) gutsy; urgency=low
 
-  * Run the python2.5 rtinstall hooks, if python2.5 was already
-    installed as an unsupported version.
+  * Depend on the 2.5.1 versions of the packages.
 
- -- Matthias Klose <doko@debian.org>  Wed, 16 May 2007 21:19:51 +0200
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 26 Apr 2007 11:23:17 +0200
 
-python-defaults (2.4.4-4) unstable; urgency=low
+python-defaults (2.5.1~rc1-0ubuntu3) feisty; urgency=low
+
+  * Fix versioned build dependency on python2.5.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 13 Apr 2007 06:37:58 +0200
+
+python-defaults (2.5.1~rc1-0ubuntu2) feisty; urgency=low
+
+  * Add a sanity check, that /usr/bin/python points to the default
+    python version. Users tend to modify this symlink, which then
+    breaks stuff in obscure ways. Ubuntu #75557, Debian #418002.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri,  6 Apr 2007 17:47:24 +0200
+
+python-defaults (2.5.1~rc1-0ubuntu1) feisty; urgency=low
+
+  * Depend on the 2.5.1~rc1 versions of the packages.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri,  6 Apr 2007 11:13:10 +0000
+
+python-defaults (2.5-0ubuntu6) feisty; urgency=low
+
+  * python-dbg: Add a python-dbg-config binary.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 17 Feb 2007 21:39:44 +0100
+
+python-defaults (2.5-0ubuntu5) feisty; urgency=low
+
+  * python-all-dbg: Tighten dependencies on the python2.x-dbg packages.
+  * python-dbg: Provide python-gdbm-dbg, python-tk-dbg,
+    link to README.debug, SpecialBuilds.txt.gz.
+  * python-dev: Add an unversioned python-config binary.
+  * Readd build-dependency on python-docutils.
+  * Set Ubuntu maintainer address.
+  * Update the FAQ.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 16 Feb 2007 18:18:06 +0100
+
+python-defaults (2.5-0ubuntu4) feisty; urgency=low
 
   * New package python-all-dbg.
 
- -- Matthias Klose <doko@debian.org>  Fri, 04 May 2007 06:56:27 +0200
+ -- Matthias Klose <doko@ubuntu.com>  Fri,  9 Feb 2007 01:16:09 +0100
 
-python-defaults (2.4.4-3) unstable; urgency=low
+python-defaults (2.5-0ubuntu3) feisty; urgency=low
 
-  * Add python2.5 as a supported python version.
-  * Depend on python2.4 packages (>= 2.4.4-4), built for ldbl128 on
-    alpha, powerpc, s390, sparc.
-  * python-all*: Depend on python2.5 packages (>= 2.4.5-1), built
-    for ldbl128 on alpha, powerpc, s390, sparc.
-  * Merge pyversions.py changes from python-central.
-  * Merge changes from Ubuntu:
-    - Add a sanity check, that /usr/bin/python points to the default
-      python version. Users tend to modify this symlink, which then
-      breaks stuff in obscure ways. Ubuntu #75557, closes: #418002.
-    - python-dbg: Provide python-gdbm-dbg, python-tk-dbg,
-      link to README.debug, SpecialBuilds.txt.gz.
-    - python-dev: Add an unversioned python-config binary (backport
-      from python2.5 (appears in python2.4 2.4.4-4).
-    - Robustify building the faq html pages.
-    - Make the suggestions of various packages versioned.
-  * Update the upstream FAQ.
+  * Temporarily remove build-dependency on python-docutils.
 
- -- Matthias Klose <doko@debian.org>  Fri,  4 May 2007 06:05:12 +0200
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 12 Jan 2007 13:06:50 +0000
 
-python-defaults (2.4.4-2) unstable; urgency=medium
+python-defaults (2.5-0ubuntu2) feisty; urgency=low
 
-  * python-all{,-dev}: Drop dependencies on python2.3{,-dev}.
+  * Fix icon for desktop file.
+  * Robustify building the faq html pages.
+  * Make the suggestions of various packages versioned.
+  * Recommend depending on "pythonX.X-foo, python-foo" instead of recommending
+    to only depend on "pythonX.X-foo" when a particular version is needed to
+    permit upgrades from real packages to virtual ones. (Loic Minier).
 
- -- Matthias Klose <doko@debian.org>  Sat, 16 Dec 2006 15:42:21 +0100
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 12 Jan 2007 11:42:02 +0000
+
+python-defaults (2.5-0ubuntu1) feisty; urgency=low
+
+  * Make python2.5 the default version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 12 Jan 2007 09:10:52 +0000
+
+python-defaults (2.4.4-1ubuntu2) feisty; urgency=low
+
+  * python-minimal is essential, not python.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu,  7 Dec 2006 14:25:20 +0000
+
+python-defaults (2.4.4-1ubuntu1) feisty; urgency=low
+
+  * Merge with Debian unstable.
+    - Backout: Add 2.5 to unsupported-versions.
+  * Build the FAQ again.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 16 Nov 2006 15:21:31 -0800
 
 python-defaults (2.4.4-1) unstable; urgency=medium
 
@@ -112,6 +276,27 @@ python-defaults (2.4.4-1) unstable; urgency=medium
   * Add 2.5 to unsupported-versions.
 
  -- Matthias Klose <doko@debian.org>  Sun, 29 Oct 2006 11:06:39 +0100
+
+python-defaults (2.4.3-11ubuntu3) edgy; urgency=low
+
+  * Temporarily remove the FAQ and the build-dependency on python-docutils,
+    so that the build dependencies can be installed.
+    
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 20 Sep 2006 17:28:47 +0000
+
+python-defaults (2.4.3-11ubuntu2) edgy; urgency=low
+
+  * debian/pyversions:
+    - merged the changes from python-central to support older python
+      version (and not break on upgrades)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Wed, 20 Sep 2006 16:42:12 +0200
+
+python-defaults (2.4.3-11ubuntu1) edgy; urgency=low
+
+  * Merge with Debian unstable.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri,  8 Sep 2006 00:22:21 +0200
 
 python-defaults (2.4.3-11) unstable; urgency=low
 
@@ -174,6 +359,21 @@ python-defaults (2.4.3-6) experimental; urgency=low
 
  -- Matthias Klose <doko@debian.org>  Sat,  5 Aug 2006 17:54:43 +0200
 
+python-defaults (2.4.3-5ubuntu1) edgy; urgency=low
+
+  * Synchronize with Debian experimental.
+  * Remove python's dependency on python-central. On upgrade of
+    the runtime, call hooks /usr/share/python/runtime.d/*.rtupdate.
+    Addresses: #372658.
+  * pyversions -r: If the XS-Python-Version field cannot be found in
+    debian/control, fall back to debian/pyversions for the version
+    information. Return with an error code, if the intersection of
+    the versions in debian/pyversions and the supported python versions
+    is empty. Fall back to the supported versions if no version
+    information can be found. Based on a patch from Raphael Hertzog.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed,  5 Jul 2006 05:11:42 +0000
+
 python-defaults (2.4.3-5) experimental; urgency=low
 
   * Tighten dependencies between packages built from this source.
@@ -204,6 +404,18 @@ python-defaults (2.4.3-02) experimental; urgency=low
   * Really do not build python-doc.
 
  -- Matthias Klose <doko@debian.org>  Sun, 11 Jun 2006 23:25:02 +0000
+
+python-defaults (2.4.3-1ubuntu1) edgy; urgency=low
+
+  * Let the -all packages depend on the default packages (closes: #365219).
+  * Add /usr/share/python/debian_defaults for some default values (i.e.
+    the supported python versions).
+  * Add /etc/python/debian_config for byte-compilation options.
+  * Add a pyversions script to give information about python versions and
+    parse the XS-Python-Version attribute.
+  * Include version 0.4.1.0 of the python policy.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 13 Jun 2006 13:22:43 +0200
 
 python-defaults (2.4.3-01) experimental; urgency=low
 
