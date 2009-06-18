@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 # ipython debian/rules file
 DEB_PYTHON_SYSTEM = pysupport
-PYVERS = $(shell pyversions -sv)
+PYVERS = $(shell pyversions -vd)
 
 # Make sure the html documentation is not compressed and thus stays usable.
 DEB_COMPRESS_EXCLUDE := manual/html/
@@ -12,7 +12,7 @@ include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 # force using of correct version of python during build inside scratchbox
 # this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk, not meant to be used outside
-cdbs_python_compile_version=2.5
+cdbs_python_compile_version=$(PYVERS)
 
 install/ipython::
 	# remove test suite script
