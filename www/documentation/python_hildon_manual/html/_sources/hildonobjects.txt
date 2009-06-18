@@ -9,22 +9,12 @@ Window
 Object Hierarchy
 ================
 
-::
-
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----Window
-                                               +----HildonStackableWindow
+.. inheritance-diagram:: Window
 
 Implemented Interfaces
 ======================
 
-Window implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+Window implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Signals
 =======
@@ -39,9 +29,9 @@ Description
 
 :class:`Window` is a GTK widget which represents a top-level window in the Hildon framework. It is derived from :class:`gtk.Window` and provides additional commodities specific to the Hildon framework.
 
-:class:`Window` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`GtkMenu` or a :class:`HildonAppMenu` (set with :meth:`Window.set_main_menu` and :meth:`Window.set_app_menu` respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`HildonAppMenu` is the recommended menu to use.
+:class:`Window` s can have a menu attached, which is toggled with a hardware key or by tapping on the window frame. This menu can be either a :class:`gtk.Menu` or a :class:`AppMenu` (set with :meth:`Window.set_main_menu` and :meth:`Window.set_app_menu` respectively). Only one type of menu can be used at the same time. In Hildon 2.2, :class:`AppMenu` is the recommended menu to use.
 
-Similarly, a :class:`Window` can have several toolbars attached. These can be added with :meth:`Window.add_toolbar` . In addition to those, a :class:`Window` can also have a :class:`HildonEditToolbar` . To add it to the window use :meth:`Window.set_edit_toolbar` .
+Similarly, a :class:`Window` can have several toolbars attached. These can be added with :meth:`Window.add_toolbar` . In addition to those, a :class:`Window` can also have a :class:`EditToolbar` . To add it to the window use :meth:`Window.set_edit_toolbar` .
 
 Creating a Window
 =======================
@@ -73,15 +63,13 @@ Details
 
 .. data:: WindowClipboardOperation
 
-+------------------------------------+-----------------------------------------------------+
-| Value                              | Meaning                                             |
-+====================================+=====================================================+
-| ``WINDOW_CO_COPY``                 | Areaing follows pointer                             |
-+------------------------------------+-----------------------------------------------------+
-| ``WINDOW_CO_CUT``                  | Areaing uses physics to "spin" the widget           |
-+------------------------------------+-----------------------------------------------------+
-| ``WINDOW_CO_PASTE``                | Automatically chooses between push and accel modes, |
-+------------------------------------+-----------------------------------------------------+
+=================== ==================================================
+Value               Meaning
+=================== ==================================================
+``WINDOW_CO_COPY``  Areaing follows pointer
+``WINDOW_CO_CUT``   Areaing uses physics to "spin" the widget
+``WINDOW_CO_PASTE`` Automatically chooses between push and accel modes
+=================== ==================================================
 
 .. class:: Window
 
@@ -104,17 +92,17 @@ Details
 
         Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. :class:`Window` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`Window.set_app_menu` instead.
+        Note that if you're using a :class:`AppMenu` rather than a :class:`gtk.Menu` you should use :meth:`Window.set_app_menu` instead.
 
-        :param menu: The :class:`GtkMenu` to be used for this :class:`Window`
+        :param menu: The :class:`gtk.Menu` to be used for this :class:`Window`
 
     .. method:: get_main_menu ()
 
-        Gets the :class:`GtkMenu` assigned to the :class:`HildonAppview` . Note that the window is still the owner of the menu.
+        Gets the :class:`gtk.Menu` assigned to the :class:`HildonAppview` . Note that the window is still the owner of the menu.
 
-        Note that if you're using a :class:`HildonAppMenu` rather than a :class:`GtkMenu` you should use :meth:`Window.get_app_menu` instead.
+        Note that if you're using a :class:`AppMenu` rather than a :class:`gtk.Menu` you should use :meth:`Window.get_app_menu` instead.
 
-        :returns: The :class:`GtkMenu` assigned to this application view.
+        :returns: The :class:`gtk.Menu` assigned to this application view.
 
         .. versionadded 2.2
 
@@ -122,20 +110,20 @@ Details
 
         Sets the menu to be used for this window. Pass None to remove the current menu. Any reference to a previous menu will be dropped. :class:`Window` takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`Window.set_main_menu` instead.
+        Note that if you're using a :class:`gtk.Menu` rather than a :class:`AppMenu` you should use :meth:`Window.set_main_menu` instead.
 
-        :param menu: a :class:`HildonAppMenu` to be used for this window
+        :param menu: a :class:`AppMenu` to be used for this window
 
         .. versionadded 2.2
 
     .. method:: get_app_menu ()
 
-        Returns the :class:`HildonAppMenu` assigned to ``self``, or None if it's unset. Note that the window is still the owner of the menu.
+        Returns the :class:`AppMenu` assigned to ``self``, or None if it's unset. Note that the window is still the owner of the menu.
 
-        Note that if you're using a :class:`GtkMenu` rather than a :class:`HildonAppMenu` you should use :meth:`Window.get_main_menu` instead.
+        Note that if you're using a :class:`gtk.Menu` rather than a :class:`AppMenu` you should use :meth:`Window.get_main_menu` instead.
 
 
-        :returns: a :class:`HildonAppMenu`
+        :returns: a :class:`AppMenu`
 
         .. versionadded 2.2
 
@@ -145,33 +133,33 @@ Details
 
         Sets the menu to be used for this window. This menu overrides a program-wide menu that may have been set with :meth:`HildonProgram.set_common_menu` . Pass None to remove the current menu. Window takes ownership of the passed menu and you're not supposed to free it yourself anymore.
 
-        Note: :meth:`Window.set_menu` calls :meth:`GtkWidget.show_all()` for the :class:`GtkMenu` . To pass control about visibility to the application developer, :meth:`Window.set_main_menu` was introduced, which doesn't do this.
+        Note: :meth:`Window.set_menu` calls :meth:`GtkWidget.show_all()` for the :class:`gtk.Menu` . To pass control about visibility to the application developer, :meth:`Window.set_main_menu` was introduced, which doesn't do this.
 
-        :param menu: The :class:`GtkMenu` to be used for this :class:`Window`
+        :param menu: The :class:`gtk.Menu` to be used for this :class:`Window`
 
     .. method:: get_menu ()
 
         .. warning:: :meth:`Window.get_menu` is deprecated and should not be used in newly-written code. In Hildon 2.2 this function has been renamed to :meth:`Window.get_main_menu` for consistency
 
-        :returns:  a :class:`GtkMenu`
+        :returns:  a :class:`gtk.Menu`
 
 
     .. method:: add_toolbar (toolbar)
 
         Adds a toolbar to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show_all` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide`
 
-        :param toolbar: A :class:`GtkToolbar` to add to the :class:`Window`
+        :param toolbar: A :class:`gtk.Toolbar` to add to the :class:`Window`
 
     .. method:: remove_toolbar (toolbar)
 
         Removes a toolbar from the window. Note that this decreases the refference count on the widget. If you want to keep the toolbar alive call :meth:`GObject.ref` before calling this function.
 
-        :param toolbar: A :class:`GtkToolbar` to remove from the :class:`Window`
+        :param toolbar: A :class:`gtk.Toolbar` to remove from the :class:`Window`
 
 
     .. method:: set_edit_toolbar (toolbar)
 
-        Adds a :class:`EditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`GtkWidget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`GtkWidget.hide` .
+        Adds a :class:`EditToolbar` to the window. Note that the toolbar is not automatically shown. You need to call :meth:`gtk.Widget.show` on it to make it visible. It's also possible to hide the toolbar (without removing it) by calling :meth:`gtk.Widget.hide` .
 
         A window can only have at most one edit toolbar at a time, so the previous toolbar (if any) is replaced after calling this function.
 
@@ -204,28 +192,26 @@ Details
 
         .. versionadded 2.2
 
-Property Details
+Properties
+==========
+
+============== ==== ============ ======= =====================================
+Name           type Access       Default Meaning
+============== ==== ============ ======= =====================================
+``is-topmost`` bool Read         False   Whether the window is currently
+                                         activated by the window manager.
+``markup``     str  Read / Write None    The Markup Text for the window title.
+============== ==== ============ ======= =====================================
+
+Style Properties
 ================
 
-+---------------------------+--------+--------------------------+--------------+--------------------------------------+
-| Name                      | type   | Access                   | Default      | Meaning                              |
-+===========================+========+==========================+==============+======================================+
-| ``is-topmost``            | bool   | Read                     | False        | Whether the window is currently      |
-|                           |        |                          |              | activated by the window manager.     |
-+---------------------------+--------+--------------------------+--------------+--------------------------------------+
-| ``markup``                | str    | Read / Write             | None         | The Markup Text for the window title.|
-+---------------------------+--------+--------------------------+--------------+--------------------------------------+
-
-Style Property Details
-======================
-
-+---------------------------+-------------+--------------------------+--------------+--------------------------------------+
-| Name                      | type        | Access                   | Default      | Meaning                              |
-+===========================+=============+==========================+==============+======================================+
-| ``borders``               | GtkBorder   | Read                     |              | Size of graphical window borders.    |
-+---------------------------+-------------+--------------------------+--------------+--------------------------------------+
-| ``toolbar-borders``       | GtkBorder   | Read                     |              | Size of graphical toolbar borders.   |
-+---------------------------+-------------+--------------------------+--------------+--------------------------------------+
+=================== ========== ====== ======= ==================================
+Name                type       Access Default Meaning
+=================== ========== ====== ======= ==================================
+``borders``         gtk.Border Read           Size of graphical window borders.
+``toolbar-borders`` gtk.Border Read           Size of graphical toolbar borders.
+=================== ========== ====== ======= ==================================
 
 Signal Details
 ==============
@@ -246,9 +232,9 @@ Signal Details
 See Also
 ========
 
-:class:`HildonProgram` :class:`HildonStackableWindow` 
+:class:`Program` :class:`StackableWindow` 
 
-.. _HildonStackableWindow:
+.. _StackableWindow:
 
 StackableWindow
 ***************
@@ -256,38 +242,28 @@ StackableWindow
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----Window
-                                               +----StackableWindow
+.. inheritance-diagram:: StackableWindow
 
 Implemented Interfaces
 ======================
 
-hildon.StackableWindow implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+:class:`StackableWindow` implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
 
-The :class:`hildon.StackableWindow` is a GTK+ widget which represents a top-level window in the Hildon framework. It is derived from :class:`hildon.Window` . Applications that use stackable windows are organized in a hierarchical way so users can go from any window back to the application's root window.
+The :class:`StackableWindow` is a GTK+ widget which represents a top-level window in the Hildon framework. It is derived from :class:`Window` . Applications that use stackable windows are organized in a hierarchical way so users can go from any window back to the application's root window.
 
 The user can only see and interact with the window on top of the stack. Although all other windows are mapped and visible, they are obscured by the topmost one so in practice they appear as if they were hidden.
 
 To add a window to the stack, just use :meth:`gtk.Widget.show_all` . The previous one will be obscured by the new one. When the new window is destroyed, the previous one will appear again.
 
-Alternatively, you can remove a window from the top of the stack without destroying it by using :meth:`hildon.WindowStack.pop`. The window will be automatically hidden and the previous one will appear.
+Alternatively, you can remove a window from the top of the stack without destroying it by using :meth:`WindowStack.pop`. The window will be automatically hidden and the previous one will appear.
 
 For advanced details on stack handling, see :class:`WindowStack`
 
-Basic hildon.StackableWindow example
-====================================
+Basic :class:`StackableWindow` example
+======================================
 ::
 
   import gtk
@@ -341,7 +317,7 @@ Details
 
         .. warning:: :meth:`StackableWindow.set_main_menu` is deprecated and should not be used in newly-written code. Hildon 2.2: use :meth:`Window.set_app_menu`
 
-        :param menu: a :class:`HildonAppMenu` to be used for this window
+        :param menu: a :class:`AppMenu` to be used for this window
 
 See Also
 ========
@@ -354,28 +330,24 @@ WindowStack
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----WindowStack
-  
+.. inheritance-diagram:: WindowStack
 
 Description
 ===========
 
 The :class:`WindowStack` is an object used to represent a stack of windows in the Hildon framework.
 
-Stacks contain all :class:`HildonStackableWindow` s that are being shown. The user can only interact with the topmost window from each stack (as it covers all the others), but all of them are mapped and visible from the Gtk point of view.
+Stacks contain all :class:`StackableWindow` s that are being shown. The user can only interact with the topmost window from each stack (as it covers all the others), but all of them are mapped and visible from the Gtk point of view.
 
 Each window can only be in one stack at a time. All stacked windows are visible and all visible windows are stacked.
 
 Each application has a default stack, and windows are automatically added to it when they are shown with :meth:`gtk.Widget.show_all` .
 
-Additional stacks can be created at any time using :meth:`hildon.WindowStack` . To add a window to a specific stack, use :meth:`hildon.WindowStack.push_1` (remember that, for the default stack, :meth:`gtk.Widget.show_all` can be used instead).
+Additional stacks can be created at any time using :meth:`WindowStack` . To add a window to a specific stack, use :meth:`WindowStack.push_1` (remember that, for the default stack, :meth:`gtk.Widget.show_all` can be used instead).
 
-To remove a window from a stack use :meth:`hildon.WindowStack.pop_1` , or simply :meth:`gtk.Widget.hide` .
+To remove a window from a stack use :meth:`WindowStack.pop_1` , or simply :meth:`gtk.Widget.hide` .
 
-For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See :meth:`hildon.WindowStack.push` , :meth:`hildon.WindowStack.pop` and :meth:`hildon.WindowStack.pop_and_push` for more details.
+For more complex layout changes, applications can push and/or pop several windows at the same time in a single step. See :meth:`WindowStack.push` , :meth:`WindowStack.pop` and :meth:`WindowStack.pop_and_push` for more details.
 
 
 Details
@@ -411,7 +383,7 @@ Details
 
         Returns the list of windows on this stack (topmost first). The widgets in the list are not individually referenced.
 
-        :returns: a newly-allocated list of :class:`HildonStackableWindow` s
+        :returns: a newly-allocated list of :class:`StackableWindow` s
 
         .. versionadded 2.2
 
@@ -429,7 +401,7 @@ Details
 
         :param win1: The first window to push
 
-        :param ...: A None -terminated list of additional :class:`HildonStackableWindow` s to push.
+        :param ...: A None -terminated list of additional :class:`StackableWindow` s to push.
 
         .. versionadded 2.2
 
@@ -445,7 +417,7 @@ Details
 
         Adds ``win`` to the top of ``stack``, and shows it. The window must not be already stacked.
 
-        ``win``: A :class:`HildonStackableWindow`
+        ``win``: A :class:`StackableWindow`
 
         .. versionadded 2.2
 
@@ -481,7 +453,7 @@ Details
 
         ``win1``: The first window to push
 
-        ``...``: A None -terminated list of additional :class:`HildonStackableWindow` s to push.
+        ``...``: A None -terminated list of additional :class:`StackableWindow` s to push.
 
         .. versionadded 2.2
 
@@ -495,12 +467,12 @@ Details
 
         ``popped_windows``: if non-None , the list of popped windows is stored here
 
-        ``list``: A list of :class:`HildonStackableWindow` s to push
+        ``list``: A list of :class:`StackableWindow` s to push
 
         .. versionadded 2.2
 
-Property Details
-================
+Properties
+==========
 
 The ``window-group`` property
 
@@ -515,61 +487,49 @@ GtkWindowGroup that all windows on this stack belong to.
 See Also
 ========
 
-:class:`HildonStackableWindow`
+:class:`StackableWindow`
 
-.. _HildonButton:
+.. _Button:
 
-HildonButton
-************
+Button
+******
 
-.. _HildonButton.object-hierarchy:
+.. _Button.object-hierarchy:
 
 Object Hierarchy
 ================
 
-::
+.. inheritance-diagram:: Button
 
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkButton
-                                         +----HildonButton
-                                               +----HildonPickerButton
-  
-
-.. _HildonButton.implemented-interfaces:
+.. _Button.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+Button implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
-.. _HildonButton.description:
+.. _Button.description:
 
 Description
 ===========
 
-The :class:`HildonButton` is a GTK widget which represents a clickable button. It is derived from the :class:`GtkButton` widget and provides additional commodities specific to the Hildon framework.
+The :class:`Button` is a GTK widget which represents a clickable button. It is derived from the :class:`GtkButton` widget and provides additional commodities specific to the Hildon framework.
 
-The height of a :class:`HildonButton` can be set to either "finger" height or "thumb" height. It can also be configured to use halfscreen or fullscreen width. Alternatively, either dimension can be set to "auto" so it behaves like a standard :class:`GtkButton` .
+The height of a :class:`Button` can be set to either "finger" height or "thumb" height. It can also be configured to use halfscreen or fullscreen width. Alternatively, either dimension can be set to "auto" so it behaves like a standard :class:`GtkButton` .
 
-The :class:`HildonButton` can hold any valid child widget, but it usually contains two labels, named title and value, and it can also contain an image. The contents of the button are packed together inside a :class:`GtkAlignment` and they do not expand by default (they don't use the full space of the button).
+The :class:`Button` can hold any valid child widget, but it usually contains two labels, named title and value, and it can also contain an image. The contents of the button are packed together inside a :class:`gtk.Alignment` and they do not expand by default (they don't use the full space of the button).
 
 To change the alignment of both labels, use :meth:`gtk.Button.set_alignment`.
 
-To make them expand and use the full space of the button, use :meth:`HildonButton.set_alignment` .
+To make them expand and use the full space of the button, use :meth:`Button.set_alignment` .
 
-To change the relative alignment of each label, use :meth:`HildonButton.set_title_alignment` and :meth:`HildonButton.set_value_alignment` .
+To change the relative alignment of each label, use :meth:`Button.set_title_alignment` and :meth:`Button.set_value_alignment` .
 
 In hildon-button-example.c included in the Hildon distribution you can see examples of how to create the most common button layouts.
 
 If only one label is needed, :class:`GtkButton` can be used as well, see also :class:`GtkButton`.
 
-Creating a HildonButton
+Creating a Button
 =======================
 
 ::
@@ -595,49 +555,47 @@ Creating a HildonButton
 
       return button
 
-.. _HildonButton.details:
+.. _Button.details:
 
 Details
 =======
 
-.. class:: HildonButton
+.. class:: Button
 
     .. data:: ButtonArrangement
 
-        +------------------------------------+-----------------------------------------------------+
-        | Value                              | Meaning                                             |
-        +====================================+=====================================================+
-        | ``BUTTON_ARRANGEMENT_HORIZONTAL``  | Labels are arranged from left to right              |
-        +------------------------------------+-----------------------------------------------------+
-        | ``BUTTON_ARRANGEMENT_VERTICAL``    | Labels are arranged from top to bottom              |
-        +------------------------------------+-----------------------------------------------------+
+        ================================= ======================================
+        Value                             Meaning
+        ================================= ======================================
+        ``BUTTON_ARRANGEMENT_HORIZONTAL`` Labels are arranged from left to right
+        ``BUTTON_ARRANGEMENT_VERTICAL``   Labels are arranged from top to bottom
+        ================================= ======================================
 
-        Describes the arrangement of labels inside a :class:`HildonButton`
+        Describes the arrangement of labels inside a :class:`Button`
 
     .. data:: ButtonStyle
 
-        +------------------------------------+-----------------------------------------------------+
-        | Value                              | Meaning                                             |
-        +====================================+=====================================================+
-        | ``BUTTON_STYLE_NORMAL``            | The button will look like a :class:`Button`         |
-        +------------------------------------+-----------------------------------------------------+
-        | ``BUTTON_STYLE_PICKER``            | The button will look like a :class:`PickerButton`   |
-        +------------------------------------+-----------------------------------------------------+
+        ======================= =================================================
+        Value                   Meaning
+        ======================= =================================================
+        ``BUTTON_STYLE_NORMAL`` The button will look like a :class:`Button`
+        ``BUTTON_STYLE_PICKER`` The button will look like a :class:`PickerButton`
+        ======================= =================================================
 
         Describes the visual style of a :class:`Button`
 
     .. method:: __init__ (size, arrangement, title=None, value=None)
 
-        Creates a new :class:`HildonButton` with two labels, ``title`` and ``value``.
+        Creates a new :class:`Button` with two labels, ``title`` and ``value``.
 
-        If you just don't want to use one of the labels, set it to None . You can set it to a non-None value at any time later using :meth:`HildonButton.set_title` or :meth:`HildonButton.set_value` .
+        If you just don't want to use one of the labels, set it to None . You can set it to a non-None value at any time later using :meth:`Button.set_title` or :meth:`Button.set_value` .
 
         :param size: Flags to set the size of the button.
         :param arrangement: How the labels must be arranged.
         :param title: Title of the button (main label), or None
         :parma value: Value of the button (secondary label), or None
 
-        :returns: a new :class:`HildonButton`
+        :returns: a new :class:`Button`
 
         .. versionadded 2.2
 
@@ -668,7 +626,7 @@ Details
 
     .. method:: get_title ()
 
-        Fetches the text from the main label (title) of ``button``, as set by :meth:`HildonButton.set_title` or :meth:`HildonButton.set_text` . If the label text has not been set the return value will be None . This will be the case if you create an empty button to use as a container.
+        Fetches the text from the main label (title) of ``button``, as set by :meth:`Button.set_title` or :meth:`Button.set_text` . If the label text has not been set the return value will be None . This will be the case if you create an empty button to use as a container.
 
         :returns: The text of the title label. This string is owned by the widget and must not be modified or freed.
 
@@ -676,7 +634,7 @@ Details
 
     .. method:: get_value ()
 
-        Fetches the text from the secondary label (value) of ``button``, as set by :meth:`HildonButton.set_value` or :meth:`HildonButton.set_text` . If the label text has not been set the return value will be None . This will be the case if you create an empty button to use as a container.
+        Fetches the text from the secondary label (value) of ``button``, as set by :meth:`Button.set_value` or :meth:`Button.set_text` . If the label text has not been set the return value will be None . This will be the case if you create an empty button to use as a container.
 
         :returns: The text of the value label. This string is owned by the widget and must not be modified or freed.
 
@@ -684,7 +642,7 @@ Details
 
     .. method:: set_text (title, value)
 
-        Convenience function to change both labels of a :class:`HildonButton`
+        Convenience function to change both labels of a :class:`Button`
 
         :param title: new text for the button title (main label)
         :param value: new text for the button value (secondary label)
@@ -701,9 +659,9 @@ Details
 
     .. method:: get_image ()
 
-        Gets the widget that is currenty set as the image of ``button``, previously set with :meth:`HildonButton.set_image`
+        Gets the widget that is currenty set as the image of ``button``, previously set with :meth:`Button.set_image`
 
-        :returns: a :class:`GtkWidget` or None in case there is no image
+        :returns: a :class:`gtk.Widget` or None in case there is no image
 
         .. versionadded 2.2
 
@@ -721,7 +679,7 @@ Details
 
         Sets the alignment of the contents of the widget. If you don't need to change ``xscale`` or ``yscale`` you can just use :meth:`gtk.Button.set_alignment` instead.
 
-        Note that for this method to work properly the, child widget of ``button`` must be a :class:`GtkAlignment` . That's what :class:`HildonButton` uses by default, so this function will work unless you add a custom widget to ``button``.
+        Note that for this method to work properly the, child widget of ``button`` must be a :class:`gtk.Alignment` . That's what :class:`Button` uses by default, so this function will work unless you add a custom widget to ``button``.
 
         :param xalign: the horizontal alignment of the contents, from 0 (left) to 1 (right).
         :param yalign: the vertical alignment of the contents, from 0 (top) to 1 (bottom).
@@ -732,7 +690,7 @@ Details
 
     .. method:: set_title_alignment (xalign, yalign)
 
-        Sets the alignment of the title label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+        Sets the alignment of the title label. See also :meth:`Button.set_alignment` to set the alignment of the whole contents of the button.
 
         :param xalign: the horizontal alignment of the title label, from 0 (left) to 1 (right).
         :param yalign: the vertical alignment of the title label, from 0 (top) to 1 (bottom).
@@ -741,7 +699,7 @@ Details
 
     .. method:: set_value_alignment (xalign, yalign)
 
-        Sets the alignment of the value label. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+        Sets the alignment of the value label. See also :meth:`Button.set_alignment` to set the alignment of the whole contents of the button.
 
         :param xalign: the horizontal alignment of the value label, from 0 (left) to 1 (right).
         :param yalign: the vertical alignment of the value label, from 0 (top) to 1 (bottom).
@@ -750,7 +708,7 @@ Details
 
     .. method:: set_image_alignment (xalign, yalign)
 
-        Sets the alignment of the image. See also :meth:`HildonButton.set_alignment` to set the alignment of the whole contents of the button.
+        Sets the alignment of the image. See also :meth:`Button.set_alignment` to set the alignment of the whole contents of the button.
 
         :param xalign: the horizontal alignment of the image, from 0 (left) to 1 (right).
         :param yalign: the vertical alignment of the image, from 0 (top) to 1 (bottom).
@@ -761,7 +719,7 @@ Details
 
         Adds the title label of ``button`` to ``size_group``.
 
-        :param group: A :class:`GtkSizeGroup` for the button title (main label)
+        :param group: A :class:`gtk.SizeGroup` for the button title (main label)
 
 
         .. versionadded 2.2
@@ -770,15 +728,15 @@ Details
 
         Adds the value label of ``button`` to ``size_group``.
 
-        :param group: A :class:`GtkSizeGroup` for the button value (secondary label)
+        :param group: A :class:`gtk.SizeGroup` for the button value (secondary label)
 
         .. versionadded 2.2
 
     .. method:: add_image_size_group (size_group)
 
-        Adds the image of ``button`` to ``size_group``. You must add an image using :meth:`HildonButton.set_image` before calling this function.
+        Adds the image of ``button`` to ``size_group``. You must add an image using :meth:`Button.set_image` before calling this function.
 
-        :param size_group: A :class:`GtkSizeGroup` for the button image
+        :param size_group: A :class:`gtk.SizeGroup` for the button image
 
         .. versionadded 2.2
 
@@ -786,9 +744,9 @@ Details
 
         Convenience function to add title, value and image to size groups. None size groups will be ignored.
 
-        :param title_size_group: A :class:`GtkSizeGroup` for the button title (main label), or None
-        :param value_size_group: A :class:`GtkSizeGroup` group for the button value (secondary label), or None
-        :param image_size_group: A :class:`GtkSizeGroup` group for the button image, or None
+        :param title_size_group: A :class:`gtk.SizeGroup` for the button title (main label), or None
+        :param value_size_group: A :class:`gtk.SizeGroup` group for the button value (secondary label), or None
+        :param image_size_group: A :class:`gtk.SizeGroup` group for the button image, or None
 
         .. versionadded 2.2
 
@@ -796,9 +754,9 @@ Details
 
         Sets the style of ``button`` to ``style``. This changes the visual appearance of the button (colors, font sizes) according to the particular style chosen, but the general layout is not altered.
 
-        Use :data:`BUTTON_STYLE_NORMAL` to make it look like a normal :class:`HildonButton` , or :data:`BUTTON_STYLE_PICKER` to make it look like a :class:`HildonPickerButton` .
+        Use :data:`BUTTON_STYLE_NORMAL` to make it look like a normal :class:`Button` , or :data:`BUTTON_STYLE_PICKER` to make it look like a :class:`PickerButton` .
 
-        :param style: A :class:`HildonButtonStyle` for ``button``.
+        :param style: A :class:`ButtonStyle` for ``button``.
 
         .. versionadded 2.2
 
@@ -806,36 +764,43 @@ Details
 
         Gets the visual style of the button.
 
-        :returns: a :class:`HildonButtonStyle`
+        :returns: a :class:`ButtonStyle`
 
         .. versionadded 2.2
 
-.. _HildonButton.property-details:
+.. _Button.property-details:
 
-Property Details
+Properties
+==========
+
+=============== ===================== ====================== ============================= =======================
+Name            type                  Access                 Default                       Meaning
+=============== ===================== ====================== ============================= =======================
+``arrangement`` ``ButtonArrangement`` Write / Construct Only BUTTON_ARRANGEMENT_HORIZONTAL How the buttons must be
+                                                                                           arranged.
+``size``        ``SizeType``          Write / Construct Only                               Size request for the
+                                                                                           button.
+``style``       ``ButonStyle``        Read / Write           BUTTON_STYLE_NORMAL           Visual style of the
+                                                                                           button.
+``title``       str                   Read / Write           None                          Text of the title label
+                                                                                           inside the button.
+``value``       str                   Read / Write           None                          Text of the value label
+                                                                                           inside the button.
+=============== ===================== ====================== ============================= =======================
+
+Style Properties
 ================
 
-============= ================== ============================= =============================== ==========================================
-Name          type               Access                        Default                         Meaning
-============= ================== ============================= =============================== ==========================================
-arrangement   ButtonArrangement  Write / Construct Only        BUTTON_ARRANGEMENT_HORIZONTAL   How the buttons must be arranged.
-size          SizeType           Write / Construct Only                                        Size request for the button.
-style         ButonStyle         Read / Write                  BUTTON_STYLE_NORMAL             Visual style of the button.
-title         str                Read / Write                  None                            Text of the title label inside the button.
-value         str                Read / Write                  None                            Text of the value label inside the button.
-============= ================== ============================= =============================== ==========================================
+====================== ==== ====== ======= ========================================
+Name                   type Access Default Meaning
+====================== ==== ====== ======= ========================================
+``horizontal-spacing`` int  Read   25      Horizontal spacing between the title and
+                                           value labels, when in horizontal mode.
+``vertical-spacing``   int  Read   5       Vertical spacing between the title and
+                                           value labels, when in vertical mode.
+====================== ==== ====== ======= ========================================
 
-Style Property Details
-======================
-
-================== ======== ======== ========= ================================================================================
-Name               type     Access   Default   Meaning
-================== ======== ======== ========= ================================================================================
-horizontal-spacing int      Read     25        Horizontal spacing between the title and value labels, when in horizontal mode.
-vertical-spacing   int      Read     5         Vertical spacing between the title and value labels, when in vertical mode.
-================== ======== ======== ========= ================================================================================
-
-.. _HildonCheckButton:
+.. _CheckButton:
 
 CheckButton
 ***********
@@ -843,22 +808,12 @@ CheckButton
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkButton
-                                         +----HildonCheckButton
-  
+.. inheritance-diagram:: CheckButton
 
 Implemented Interfaces
 ======================
 
-CheckButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+CheckButton implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -923,8 +878,8 @@ Details
         .. versionadded 2.2
 
 
-Style Property Details
-======================
+Style Properties
+================
 
 The ``checkbox-size`` style property
 
@@ -955,32 +910,19 @@ PickerButton
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkButton
-                                         +----HildonButton
-                                               +----HildonPickerButton
-                                                     +----HildonDateButton
-                                                     +----HildonTimeButton
-  
+.. inheritance-diagram:: PickerButton
 
 Implemented Interfaces
 ======================
 
-HildonPickerButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+HildonPickerButton implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
 
-:class:`HildonPickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`PickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
+:class:`PickerButton` is a widget that lets the user select a particular item from a list. Visually, it's a button with title and value labels that brings up a :class:`PickerDialog` . The user can then use this dialog to choose an item, which will be displayed in the value label of the button.
 
-You should create your own :class:`TouchSelector` at convenience and set it to the :class:`HildonPickerButton` with :meth:`hildon.PickerButton.set_selector` . For the common use cases of buttons to select date and time, you can use :class:`HildonDateButton` and :class:`HildonTimeButton` .
+You should create your own :class:`TouchSelector` at convenience and set it to the :class:`PickerButton` with :meth:`PickerButton.set_selector` . For the common use cases of buttons to select date and time, you can use :class:`DateButton` and :class:`TimeButton` .
 
 
 Details
@@ -994,7 +936,7 @@ Details
 
         :param size: One of :class:`HildonSizeType` , specifying the size of the new button.
 
-        :param arrangement: one of :class:`HildonButtonArrangement` , specifying the placement of the labels.
+        :param arrangement: one of :class:`ButtonArrangement` , specifying the placement of the labels.
 
         :returns: a newly created :class:`HildonPickerButton`
 
@@ -1054,15 +996,17 @@ Details
 
         .. versionadded 2.2
 
-Property Details
-================
+Properties
+==========
 
-===================== ==================== ============ =================== =========================================================
-Name                  type                 Access       Default             Meaning                              
-===================== ==================== ============ =================== =========================================================
-``done-button-text``  str                  Read / Write None                The text for the "done" button in the dialog launched.
-``touch-selector``    hildon.TouchSelector Read / Write HildonTouchSelector widget to be launched on button clicked.
-===================== ==================== ============ =================== =========================================================
+==================== ====================== ============ ====================== ===============================
+Name                 type                   Access       Default                Meaning
+==================== ====================== ============ ====================== ===============================
+``done-button-text`` str                    Read / Write None                   The text for the "done" button
+                                                                                in the dialog launched.
+``touch-selector``   :class:`TouchSelector` Read / Write :class:`TouchSelector` Widget to be launched on button
+                                                                                clicked.
+==================== ====================== ============ ====================== ===============================
 
 Signal Details
 ==============
@@ -1090,24 +1034,12 @@ DateButton
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkButton
-                                         +----HildonButton
-                                               +----HildonPickerButton
-                                                     +----HildonDateButton
-  
+.. inheritance-diagram:: DateButton
 
 Implemented Interfaces
 ======================
 
-HildonDateButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+HildonDateButton implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -1126,7 +1058,7 @@ Details
 
         :param size: One of :class:`HildonSizeType`
 
-        :param arrangement: one of :class:`HildonButtonArrangement`
+        :param arrangement: one of :class:`ButtonArrangement`
 
         :returns: a new :class:`HildonDateButton`
 
@@ -1138,7 +1070,7 @@ Details
 
         :param size: One of :class:`HildonSizeType`
 
-        :param arrangement: one of :class:`HildonButtonArrangement`
+        :param arrangement: one of :class:`ButtonArrangement`
 
         :param min_year: the minimum available year or -1 to ignore
 
@@ -1175,7 +1107,7 @@ Details
 See Also
 ========
 
-:class:`HildonPickerButton` :class:`HildonTimeButton`
+:class:`PickerButton` :class:`TimeButton`
 
 TimeButton
 **********
@@ -1183,24 +1115,12 @@ TimeButton
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkButton
-                                         +----HildonButton
-                                               +----HildonPickerButton
-                                                     +----HildonTimeButton
-  
+.. inheritance-diagram:: TimeButton
 
 Implemented Interfaces
 ======================
 
-HildonTimeButton implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+HildonTimeButton implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 
 Description
@@ -1220,7 +1140,7 @@ Details
 
         :param size: One of :class:`HildonSizeType`
 
-        :param arrangement: one of :class:`HildonButtonArrangement`
+        :param arrangement: one of :class:`ButtonArrangement`
 
         :returns: a new :class:`HildonTimeButton`
 
@@ -1232,7 +1152,7 @@ Details
 
         :param size: One of :class:`HildonSizeType`
 
-        :param arrangement: one of :class:`HildonButtonArrangement`
+        :param arrangement: one of :class:`ButtonArrangement`
 
         :param minutes_step: step between the minutes in the selector options
 
@@ -1263,7 +1183,7 @@ Details
 See Also
 ========
 
-:class:`HildonPickerButton` :class:`HildonDateButton`
+:class:`PickerButton` :class:`DateButton`
 
 Caption
 *******
@@ -1271,23 +1191,12 @@ Caption
 Object Hierarchy
 ================
 
-::
-
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkEventBox
-                                         +----Caption
-  
+.. inheritance-diagram:: Caption
 
 Implemented Interfaces
 ======================
 
 Caption implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
-
 
 Description
 ===========
@@ -1326,7 +1235,7 @@ Value                              Meaming
 
         Creates a new instance of hildon_caption widget, with a specific control and image. Note: Clicking on a focused caption will trigger the activate signal. The default behaviour for the caption's activate signal is to call gtk.Widget.activate on it's control.
 
-        :param group: a :class:`GtkSizeGroup` for controlling the size of related captions, Can be None
+        :param group: a :class:`gtk.SizeGroup` for controlling the size of related captions, Can be None
 
         :param value: the caption text to accompany the text entry. The widget makes a copy of this text.
 
@@ -1340,15 +1249,15 @@ Value                              Meaming
 
     .. method:: get_size_group ()
 
-        Query given captioned control for the :class:`GtkSizeGroup` assigned to it.
+        Query given captioned control for the :class:`gtk.SizeGroup` assigned to it.
 
-        :returns: a :class:`GtkSizeGroup`
+        :returns: a :class:`gtk.SizeGroup`
 
     .. method:: set_size_group (new_group)
 
-        Sets a :class:`GtkSizeGroup` of a given captioned control.
+        Sets a :class:`gtk.SizeGroup` of a given captioned control.
 
-        :param new_group: a :class:`GtkSizeGroup`
+        :param new_group: a :class:`gtk.SizeGroup`
 
     .. method:: is_mandatory ()
 
@@ -1449,24 +1358,26 @@ Value                              Meaming
 
         :param markup:  the markup text to use
 
-Property Details
+Properties
+==========
+
+================= =================== ============ =========================== =====================================
+Name              type                Access       Default                     Meaning
+================= =================== ============ =========================== =====================================
+``icon``          gtk.Widget          Read / Write                             The icon shown on the caption area.
+``icon-position`` CaptionIconPosition Read / Write CAPTION_POSITION_RIGHT      If the icon is positioned on the
+                                                                               left or right side.
+``label``         str                 Read / Write ""                          Caption label.
+``markup``        str                 Write        ""                          Caption markup. Mutually exclusive
+                                                                               with label.
+``separator``     str                 Read / Write "ecdg_ti_caption_separator" The current separator.
+``size-group``    gtk.SizeGroup       Read / Write                             Current size group the caption is in.
+``status``        CaptionStatus       Read / Write CAPTION_OPTIONAL            Current size group the caption is in.
+================= =================== ============ =========================== =====================================
+
+
+Child Properties
 ================
-
-============================ ===================== ==================== =========================== =====================================================
-Name                         type                  Access               Default                     Meaning
-============================ ===================== ==================== =========================== =====================================================
-``icon``                     GtkWidget             Read / Write                                     The icon shown on the caption area.
-``icon-position``            CaptionIconPosition   Read / Write         CAPTION_POSITION_RIGHT      If the icon is positioned on the left or right side.
-``label``                    str                   Read / Write         ""                          Caption label.
-``markup``                   str                   Write                ""                          Caption markup. Mutually exclusive with label.
-``separator``                str                   Read / Write         "ecdg_ti_caption_separator" The current separator.
-``size-group``               GtkSizeGroup          Read / Write                                     Current size group the caption is in.
-``status``                   CaptionStatus         Read / Write         CAPTION_OPTIONAL            Current size group the caption is in.
-============================ ===================== ==================== =========================== =====================================================
-
-
-Child Property Details
-======================
 
 ============= ===== ==================== ========= ==================================================================
 Name          type  Access               Default   Meaning
@@ -1494,18 +1405,7 @@ Banner
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----HildonBanner
-  
+.. inheritance-diagram:: Banner
 
 .. _Banner.implemented-interfaces:
 
@@ -1636,21 +1536,21 @@ Details
 
 .. _Banner.property-details:
 
-Property Details
-================
+Properties
+==========
 
-============================ ========== ============================= ======= ========================================
-Name                         type       Access                        Default Meaning
-============================ ========== ============================= ======= ========================================
-``is-timed``                 bool       Read / Write / Construct Only False   Whether the banner is timed and goes
-                                                                              away automatically.
-``parent-window``            gtk.Window Read / Write / Construct Only         The window for which the banner will be
-                                                                              singleton.
-``timeout``                  int        Read / Write / Construct Only 3000    The time before making the banner banner
-                                                                              go away. This needs to be adjusted
-                                                                              before the banner is mapped to the
-                                                                              screen. Allowed values: 10000
-============================ ========== ============================= ======= ========================================
+================= ========== ============================= ======= ========================================
+Name              type       Access                        Default Meaning
+================= ========== ============================= ======= ========================================
+``is-timed``      bool       Read / Write / Construct Only False   Whether the banner is timed and goes
+                                                                   away automatically.
+``parent-window`` gtk.Window Read / Write / Construct Only         The window for which the banner will be
+                                                                   singleton.
+``timeout``       int        Read / Write / Construct Only 3000    The time before making the banner banner
+                                                                   go away. This needs to be adjusted
+                                                                   before the banner is mapped to the
+                                                                   screen. Allowed values: 10000
+================= ========== ============================= ======= ========================================
 
 Note
 ****
@@ -1658,22 +1558,12 @@ Note
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----GtkDialog
-                                               +----Note
+.. inheritance-diagram:: Note
 
 Implemented Interfaces
 ======================
 
-Note implements :class:`AtkImplementorIface` and :class:`gtk.Buildable` .
+Note implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -1775,26 +1665,25 @@ Details
     ==================================== =======
     Name                                 Meaning
     ==================================== =======
-    HILDON_NOTE_TYPE_CONFIRMATION
-    HILDON_NOTE_TYPE_CONFIRMATION_BUTTON
-    HILDON_NOTE_TYPE_INFORMATION
-    HILDON_NOTE_TYPE_INFORMATION_THEME
-    HILDON_NOTE_TYPE_PROGRESSBAR
+    hildon.NOTE_TYPE_CONFIRMATION
+    hildon.NOTE_TYPE_CONFIRMATION_BUTTON
+    hildon.NOTE_TYPE_INFORMATION
+    hildon.NOTE_TYPE_INFORMATION_THEME
+    hildon.NOTE_TYPE_PROGRESSBAR
     ==================================== =======
-  
-Property Details
-================
 
-============================ =========================== ============ ============================= ========================================
-Name                         type                        Access       Default                       Meaning
-============================ =========================== ============ ============================= ========================================
-``description``              str                         Read / Write                               Description for the note.
-``icon``                     str                         Read / Write None                          Icon for the note.
-``note-type``                :class:`NoteType`           Read / Write HILDON_NOTE_TYPE_CONFIRMATION The type of the note dialog.
-``progressbar``              :class:`gtk.GtkProgressBar` Read / Write                               Progressbar for the note (if any).
-``stock-icon``               str                         Read / Write None                          Stock icon name for the note.
-============================ =========================== ============ ============================= ========================================
+Properties
+==========
 
+=============== ======================== ============ ============================= ==================================
+Name            type                     Access       Default                       Meaning
+=============== ======================== ============ ============================= ==================================
+``description`` str                      Read / Write                               Description for the note.
+``icon``        str                      Read / Write None                          Icon for the note.
+``note-type``   :class:`NoteType`        Read / Write hildon.NOTE_TYPE_CONFIRMATION The type of the note dialog.
+``progressbar`` :class:`gtk.ProgressBar` Read / Write                               Progressbar for the note (if any).
+``stock-icon``  str                      Read / Write None                          Stock icon name for the note.
+=============== ======================== ============ ============================= ==================================
 
 TouchSelector
 *************
@@ -1802,21 +1691,7 @@ TouchSelector
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBox
-                                   +----GtkVBox
-                                         +----HildonTouchSelector
-                                               +----HildonTouchSelectorEntry
-                                               +----HildonTimeSelector
-                                               +----HildonDateSelector
-  
+.. inheritance-diagram:: TouchSelector
 
 Implemented Interfaces
 ======================
@@ -1844,8 +1719,7 @@ You can get this string representation using :meth:`get_current_text()`. You can
 If you create the selector using :func:`hildon_touch_selector_new_text()` you don't need to take care of this property, as the model is created internally. If you create the selector using :meth:`__init__()` , you need to specify properly the property for your custom model in order to get a non-empty string representation, or define your custom print function.
 
 Creating a TouchSelector
-======================== 
-
+========================
 
 ::
 
@@ -1883,18 +1757,16 @@ Creating a TouchSelector
 Details
 =======
 
-  
 .. data:: TouchSelectorSelectionMode
 
-================================================== ========================================
-Value                                              Meaning
-================================================== ========================================
-``HILDON_TOUCH_SELECTOR_SELECTION_MODE_SINGLE``    Users can select one item
-``HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE``  Users can select one to many items 
-================================================== ========================================
+================================================= ==================================
+Value                                             Meaning
+================================================= ==================================
+``hildon.TOUCH_SELECTOR_SELECTION_MODE_SINGLE``   Users can select one item
+``hildon.TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE`` Users can select one to many items
+================================================= ==================================
 
-
-.. class:: HildonTouchSelector
+.. class:: TouchSelector
 
     .. method:: __init__()
     
@@ -1949,7 +1821,7 @@ Value                                              Meaning
 
     .. method:: set_column_attributes(num_column, cell_renderer, ...)
 
-        .. warning:: :meth:``set_column_attributes`` is deprecated and should not be used in newly-written code. :class:`SelectorColumn` implements :class:`gtk.CellLayout` , use this interface instead. See :meth:`get_column()`.
+        .. warning:: :meth:`set_column_attributes` is deprecated and should not be used in newly-written code. :class:`SelectorColumn` implements :class:`gtk.CellLayout` , use this interface instead. See :meth:`get_column()`.
 
         Sets the attributes for the given column. The attributes must be given in attribute/column pairs, just like in :meth:`set_attributes()`. All existing attributes are removed and replaced with the new ones.
 
@@ -2115,17 +1987,20 @@ Related Functions
         :returns:  A new :class:`TouchSelector`
 
 
-Property Details
-================
+Properties
+==========
 
-============================ ============ ======================== ============== =====================================================================================================================================================================================
-Name                         type         Access                   Default        Meaning
-============================ ============ ======================== ============== =====================================================================================================================================================================================
-``has-multiple-selection``   bool         Read                     False          Whether the widget has multiple selection (like multiple columns, multiselection mode, or multiple internal widgets) and therefore it may need a confirmation button, for instance.
-``initial-scroll``           bool         Read / Write / Construct True           Whether to scroll to thecurrent selection whenthe selector is firstshown.
-============================ ============ ======================== ============== =====================================================================================================================================================================================
-
-
+========================== ==== ======================== ======= ============================================
+Name                       type Access                   Default Meaning
+========================== ==== ======================== ======= ============================================
+``has-multiple-selection`` bool Read                     False   Whether the widget has multiple selection
+                                                                 (like multiple columns, multiselection mode,
+                                                                 or multiple internal widgets) and therefore
+                                                                 it may need a confirmation button, for
+                                                                 instance.
+``initial-scroll``         bool Read / Write / Construct True    Whether to scroll to thecurrent selection
+                                                                 when the selector is firstshown.
+========================== ==== ======================== ======= ============================================
 
 Signal Details
 ==============
@@ -2158,11 +2033,8 @@ TouchSelectorColumn
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----TouchSelectorColumn
-  
+.. inheritance-diagram:: TouchSelectorColumn
+
 Implemented Interfaces
 ======================
 
@@ -2178,15 +2050,14 @@ Details
 
 .. class:: TouchSelectorColumn
 
-Property Details
-================
+Properties
+==========
 
-============================ ============ ============ ============== ==========================================================
-Name                         type         Access       Default        Meaning
-============================ ============ ============ ============== ==========================================================
-``text-column``              int          Read / Write -1             A column in the data source model to get the strings from.
-============================ ============ ============ ============== ==========================================================
-
+=============== ==== ============ ======= ==========================================================
+Name            type Access       Default Meaning
+=============== ==== ============ ======= ==========================================================
+``text-column`` int  Read / Write -1      A column in the data source model to get the strings from.
+=============== ==== ============ ======= ==========================================================
 
 SelectorEntry
 *************
@@ -2194,25 +2065,12 @@ SelectorEntry
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBox
-                                   +----GtkVBox
-                                         +----HildonTouchSelector
-                                               +----HildonTouchSelectorEntry
-  
-
+.. inheritance-diagram:: TouchSelectorEntry
 
 Implemented Interfaces
 ======================
 
-SelectorEntry implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+SelectorEntry implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -2224,8 +2082,6 @@ The main difference between the :class:`gtk.TreeModel` used by :class:`HildonTou
 Normally, you would use :class:`TouchSelectorEntry` together with a :class:`PickerDialog` activated from a button. For the most common cases, you should use :class:`PickerButton` .
 
 If you only need a text only, one column selector, you can create it with :func:`hildon_touch_selector_entry_new_text` and populate it with :meth:`append_text`, :meth:`prepend_text()`, and :meth:`insert_text`.
-
-
 
 Details
 =======
@@ -2286,14 +2142,14 @@ Related Functions
     :returns: A new :class:`TouchSelectorEntry`
 
 
-Property Details
-================
+Properties
+==========
 
-================ =========== ============= =============== ===========================================
-Name             type        Access        Default         Meaning
-================ =========== ============= =============== ===========================================
-``text-column``  int         Read / Write  -1                  
-================ =========== ============= =============== ===========================================
+================ =========== ============= ======= =======
+Name             type        Access        Default Meaning
+================ =========== ============= ======= =======
+``text-column``  int         Read / Write  -1
+================ =========== ============= ======= =======
 
 See Also
 ========
@@ -2307,20 +2163,7 @@ DateSelector
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBox
-                                   +----GtkVBox
-                                         +----HildonTouchSelector
-                                               +----HildonDateSelector
-  
-
+.. inheritance-diagram:: DateSelector
 
 Implemented Interfaces
 ======================
@@ -2338,7 +2181,7 @@ The currently selected month and year can be altered with :meth:`select_month()`
 Details
 =======
 
-.. class:: HildonDateSelector
+.. class:: DateSelector
 
     .. method:: __init__()
 
@@ -2393,41 +2236,23 @@ Related Functions
         :param max_year: the maximum available year or -1 to ignore
         :returns:  a new :class:`DateSelector`
 
+Properties
+==========
 
-
-Property Details
-================
-
-
-=============================== =========== =============================== =============== ===========================================
-Name                            type         Access                         Default         Meaning
-=============================== =========== =============================== =============== ===========================================
-``max-year``                    int         Read / Write / Construct Only   2037            The maximum available year in the selector.    
-``min-year``                    int         Read / Write / Construct Only   1970            The minimum available year in the selector.
-=============================== =========== =============================== =============== ===========================================
-
+============ ==== ============================= ======= ===========================================
+Name         type Access                        Default Meaning
+============ ==== ============================= ======= ===========================================
+``max-year`` int  Read / Write / Construct Only 2037    The maximum available year in the selector.
+``min-year`` int  Read / Write / Construct Only 1970    The minimum available year in the selector.
+============ ==== ============================= ======= ===========================================
 
 TimeSelector
 ************
 
-
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBox
-                                   +----GtkVBox
-                                         +----HildonTouchSelector
-                                               +----HildonTimeSelector
-  
-
+.. inheritance-diagram:: TimeSelector
 
 Implemented Interfaces
 ======================
@@ -2449,7 +2274,7 @@ Use this widget instead of deprecated HildonTimeEditor widget.
 Details
 =======
 
-.. class:: HildonTimeSelector
+.. class:: TimeSelector
 
     .. method:: __init__ ()
 
@@ -2485,128 +2310,104 @@ Details
         :returns: a tuple with (hours, minutes) 
 
 
-Property Details
-================
+Properties
+==========
 
-============================ ============ ============================= ============== ===============================================================
-Name                         type         Access                        Default        Meaning
-============================ ============ ============================= ============== ===============================================================
-``minutes-step``             int          Read / Write / Construct Only 1              Step between the minutes in the list of options of the widget . 
-============================ ============ ============================= ============== ===============================================================
+================ ===== ============================= ======= ===============================
+Name             type  Access                        Default Meaning
+================ ===== ============================= ======= ===============================
+``minutes-step`` int   Read / Write / Construct Only 1       Step between the minutes in the
+                                                             list of options of the widget.
+================ ===== ============================= ======= ===============================
 
+PannableArea
+************
 
-HildonPannableArea
-******************
-
-.. _HildonPannableArea.object-hierarchy:
+.. _PannableArea.object-hierarchy:
 
 Object Hierarchy
 ================
 
-::
+.. inheritance-diagram:: PannableArea
 
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----HildonPannableArea
-  
-
-.. _HildonPannableArea.implemented-interfaces:
+.. _PannableArea.implemented-interfaces:
 
 Implemented Interfaces
 ======================
 
-HildonPannableArea implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+:class:`PannableArea` implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
-
-.. _HildonPannableArea.description:
+.. _PannableArea.description:
 
 Description
 ===========
 
-:class:`HildonPannableArea` is a container widget that can be "panned" (scrolled) up and down using the touchscreen with fingers. The widget has no scrollbars, but it rather shows small scroll indicators to give an idea of the part of the content that is visible at a time. The scroll indicators appear when a dragging motion is started on the pannable area.
+:class:`PannableArea` is a container widget that can be "panned" (scrolled) up and down using the touchscreen with fingers. The widget has no scrollbars, but it rather shows small scroll indicators to give an idea of the part of the content that is visible at a time. The scroll indicators appear when a dragging motion is started on the pannable area.
 
 The scrolling is "kinetic", meaning the motion can be "flicked" and it will continue from the initial motion by gradually slowing down to an eventual stop. The motion can also be stopped immediately by pressing the touchscreen over the pannable area.
 
 
-.. _HildonPannableArea.details:
+.. _PannableArea.details:
 
 Details
 =======
 
-.. _HildonPannableAreaMode:
+.. _PannableAreaMode:
 
-.. data:: HildonPannableAreaMode
+.. data:: PannableAreaMode
 
-+------------------------------+-----------------------------------------------------+
-| Value                        | Meaning                                             |
-+==============================+=====================================================+
-| ``PANNABLE_AREA_MODE_PUSH``  | Areaing follows pointer                             |
-+------------------------------+-----------------------------------------------------+
-| ``PANNABLE_AREA_MODE_ACCEL`` | Areaing uses physics to "spin" the widget           |
-+------------------------------+-----------------------------------------------------+
-| ``PANNABLE_AREA_MODE_AUTO``  | Automatically chooses between push and accel modes, |
-|                              | depending on input.                                 |
-+------------------------------+-----------------------------------------------------+
+============================ =========================================
+Value                        Meaning
+============================ =========================================
+``PANNABLE_AREA_MODE_PUSH``  Areaing follows pointer
+``PANNABLE_AREA_MODE_ACCEL`` Areaing uses physics to "spin" the widget
+``PANNABLE_AREA_MODE_AUTO``  Automatically chooses between push and
+                             accel modes, depending on input.
+============================ =========================================
 
+.. _MovementMode:
 
-.. _HildonMovementMode:
-
-.. data:: HildonMovementMode
+.. data:: MovementMode
     Used to control the movement of the pannable, we can allow or disallow horizontal or vertical movement. This way the applications can control the movement using scroll_to and jump_to functions
 
+======================= ========
+Value                   Meaning
+======================= ========
+``MOVEMENT_MODE_HORIZ`` 1  1
+``MOVEMENT_MODE_VERT``  1  2
+``MOVEMENT_MODE_BOTH``  0x000006
+======================= ========
 
-+------------------------------------+---------------------+
-| Value                              | Meaning             |
-+====================================+=====================+
-| ``MOVEMENT_MODE_HORIZ``            | 1  1                |
-+------------------------------------+---------------------+
-| ``MOVEMENT_MODE_VERT``             | 1  2                |
-+------------------------------------+---------------------+
-| ``MOVEMENT_MODE_BOTH``             | 0x000006            |
-+------------------------------------+---------------------+
- 
+.. _MovementDirection:
 
-.. _HildonMovementDirection:
-
-.. data:: HildonMovementDirection
+.. data:: MovementDirection
     Used to point out the direction of the movement
 
-+--------------------------+---------------------+
-| Value                    | Meaning             |
-+==========================+=====================+
-| ``MOVEMENT_UP``          |                     |
-+--------------------------+---------------------+
-| ``MOVEMENT_DOWN``        |                     |
-+--------------------------+---------------------+
-| ``MOVEMENT_LEFT``        |                     |
-+--------------------------+---------------------+
-| ``HILDON_MOVEMENT_RIGHT``|                     |
-+--------------------------+---------------------+
+========================= =======
+Value                     Meaning
+========================= =======
+``MOVEMENT_UP``
+``MOVEMENT_DOWN``
+``MOVEMENT_LEFT``
+``HILDON_MOVEMENT_RIGHT``
+========================= =======
 
+.. _SizeRequestPolicy:
 
-.. _HildonSizeRequestPolicy:
-
-.. data:: HildonSizeRequestPolicy
+.. data:: SizeRequestPolicy
     Used to control the size request policy of the widget
 
-+---------------------------+--------------------------------------------------------+
-| Value                     | Meaning                                                |
-+===========================+========================================================+
-| ``SIZE_REQUEST_MINIMUM``  | The minimum size the widget could use to paint itself  |
-+---------------------------+--------------------------------------------------------+
-| ``SIZE_REQUEST_CHILDREN`` | The minimum size of the children of the widget         |
-+---------------------------+--------------------------------------------------------+
-
+========================= =====================================================
+Value                     Meaning
+========================= =====================================================
+``SIZE_REQUEST_MINIMUM``  The minimum size the widget could use to paint itself
+``SIZE_REQUEST_CHILDREN`` The minimum size of the children of the widget
+========================= =====================================================
 
 
 Ctors:
 
-.. class:: HildonPannableArea
+.. class:: PannableArea
 
     .. method:: __init__()
 
@@ -2699,7 +2500,7 @@ Ctors:
 
         Returns the vertical adjustment. This adjustment is the internal widget adjustment used to control the animations. Do not modify it directly to change the position of the pannable, to do that use the pannable API. If you modify the object directly it could cause artifacts in the animations.
 
-        :returns:  The vertical :class:`GtkAdjustment`
+        :returns:  The vertical :class:`gtk.Adjustment`
 
 
 Functions
@@ -2716,12 +2517,12 @@ Functions
     :param decel: Value for the deceleration property
     :param sps: Value for the sps property
     :returns: the newly create :class:`HildonPannableArea`
-        
+
 
 .. versionadded 2.2
 
-Property Details
-================
+Properties
+==========
 
 +----------------------------------+---------------+--------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | Name                             | type          | Access                   | Default                  | Meaning                                                                                                                                    |
@@ -2787,14 +2588,14 @@ Property Details
 
 
 
-Style Property Details
-======================
+Style Properties
+================
 
-+----------------------+------+--------------+----------+-------------------------------------------------+
-| Name                 | type | Access       | Default  | Meaning                                         |
-+======================+======+==============+==========+=================================================+
-| ``indicator-width``  | int  | Read / Write | 8        | Pixel width used to draw the scroll indicators. |
-+----------------------+------+--------------+----------+-------------------------------------------------+
+=================== ==== ============ ======= ===============================================
+Name                type Access       Default Meaning
+=================== ==== ============ ======= ===============================================
+``indicator-width`` int  Read / Write 8       Pixel width used to draw the scroll indicators.
+=================== ==== ============ ======= ===============================================
 
 
 Signal Details
@@ -2814,7 +2615,7 @@ The ``horizontal-movement`` signal
     :param user_data: user data set when the signal handler was connected.
 
 
-.. _HildonPannableArea-vertical-movement:
+.. _PannableArea-vertical-movement:
 
 The ``vertical-movement`` signal
 
@@ -2832,7 +2633,7 @@ The ``vertical-movement`` signal
 See Also
 ========
 
-:class:`GtkScrolledWindow` 
+:class:`gtk.ScrolledWindow`
 
 
 Entry
@@ -2841,22 +2642,13 @@ Entry
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkEntry
-                             +----HildonEntry
-  
+.. inheritance-diagram:: Entry
 
 
 Implemented Interfaces
 ======================
 
-Entry implements :class:`AtkImplementorIface` , :class:`GtkBuildable` , :class:`GtkEditable` and :class:`GtkCellEditable` .
+Entry implements :class:`atk.ImplementorIface` , :class:`gtk.Buildable` , :class:`GtkEditable` and :class:`GtkCellEditable` .
 
 
 Description
@@ -2918,23 +2710,12 @@ TextView
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkTextView
-                                   +----HildonTextView
-  
-
+.. inheritance-diagram:: TextView
 
 Implemented Interfaces
 ======================
 
-TextView implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+TextView implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -2997,18 +2778,7 @@ AppMenu
 Object Hierarchy
 ================
 
-::
-
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----HildonAppMenu
-  
+.. inheritance-diagram   :: AppMenu
 
 Implemented Interfaces
 ======================
@@ -3139,41 +2909,35 @@ Details
 
 
 
-Style Property Details
-======================
+Style Properties
+================
 
 
-=============================== ======= =================== =========== ================================================================================================
-Name                            type    Access              Default     Meaning                                         
-=============================== ======= =================== =========== ================================================================================================
-``external-border``             int     Read                50          Border between the right and left edges of the menu and the screen edges (in horizontal mode).
-``filter-vertical-spacing``     int     Read                8           Vertical spacing between filters and menu items.
-``horizontal-spacing``          int     Read                16          Horizontal spacing between each menu item. Does not apply to filter buttons.
-``inner-border``                int     Read                16          Border between menu edges and buttons.
-``vertical-spacing``            int     Read                16          Vertical spacing between each menu item. Does not apply to filter buttons.
-=============================== ======= =================== =========== ================================================================================================
-
+=========================== ==== ====== ======= ================================================
+Name                        type Access Default Meaning
+=========================== ==== ====== ======= ================================================
+``external-border``         int  Read   50      Border between the right and left edges of the
+                                                menu and the screen edges (in horizontal mode).
+``filter-vertical-spacing`` int  Read   8       Vertical spacing between filters and menu items.
+``horizontal-spacing``      int  Read   16      Horizontal spacing between each menu item. Does
+                                                not apply to filter buttons.
+``inner-border``            int  Read   16      Border between menu edges and buttons.
+``vertical-spacing``        int  Read   16      Vertical spacing between each menu item. Does
+                                                not apply to filter buttons.
+=========================== ==== ====== ======= ================================================
 
 FindToolbar
-*****************
+***********
 
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkToolbar
-                                   +----FindToolbar
-  
+..   inheritance-diagram   :: FindToolbar
+
 Implemented Interfaces
 ======================
 
-FindToolbar implements :class:`AtkImplementorIface` and :class:`gtk.Buildable` .
+FindToolbar implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -3233,24 +2997,30 @@ Details
 
         :returns: Index of the last entry
 
-Property Details
-================
+Properties
+==========
 
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
-| Name                      | type                      | Access                   | Default                      | Meaning                                                                      |
-+===========================+===========================+==========================+==============================+==============================================================================+
-| ``column``                | int                       | Read / Write             | 0                            | The column number in gtk.ListStore where strings of search history are kept. |
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
-| ``history-limit``         | int                       | Read / Write / Construct | 5                            | Maximum number of history items in the combobox.                             |
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
-| ``labe``                  | str                       | Read / Write / Construct | "ecdg_ti_find_toolbar_label" | The label to display before the search box.                                  |
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
-| ``list``                  | :class:`gtk.ListStore`    | Read / Write             |                              | A :class:`gtk.ListStore` where the search history is kept.                   |
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
-| ``max-characters``        | int                       | Read / Write / Construct | 0                            | Maximum number of characters in search string.                               |
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
-| ``prefix``                | str                       | Read / Write / Construct | None                         | Search string.                                                               |
-+---------------------------+---------------------------+--------------------------+------------------------------+------------------------------------------------------------------------------+
+================== ====================== ======================== ============================ ======================
+Name               type                   Access                   Default                      Meaning
+================== ====================== ======================== ============================ ======================
+``column``         int                    Read / Write             0                            The column number in
+                                                                                                gtk.ListStore where
+                                                                                                strings of search
+                                                                                                history are kept.
+``history-limit``  int                    Read / Write / Construct 5                            Maximum number of
+                                                                                                history items in the
+                                                                                                combobox.
+``labe``           str                    Read / Write / Construct "ecdg_ti_find_toolbar_label" The label to display
+                                                                                                before the search box.
+``list``           :class:`gtk.ListStore` Read / Write                                          A
+                                                                                                :class:`gtk.ListStore`
+                                                                                                where the search
+                                                                                                history is kept.
+``max-characters`` int                    Read / Write / Construct 0                            Maximum number of
+                                                                                                characters in search
+                                                                                                string.
+``prefix``         str                    Read / Write / Construct None                         Search string.
+================== ====================== ======================== ============================ ======================
 
 Signal Details
 ==============
@@ -3302,17 +3072,7 @@ EditToolbar
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBox
-                                   +----GtkHBox
-                                         +----EditToolbar
-  
+..   inheritance-diagram   :: EditToolbar
 
 Implemented Interfaces
 ======================
@@ -3382,16 +3142,15 @@ Details
 
         .. versionadded 2.2
 
-Style Property Details
-======================
+Style Properties
+================
 
-+---------------------------+--------+--------------------------+--------------+--------------------------------------+
-| Name                      | type   | Access                   | Default      | Meaning                              |
-+===========================+========+==========================+==============+======================================+
-| ``arrow-height``          | int    | Read                     | 56           | Height of the arrow button.          |
-+---------------------------+--------+--------------------------+--------------+--------------------------------------+
-| ``arrow-width``           | int    | Read                     | 112          | Width of the arrow button.           |
-+---------------------------+--------+--------------------------+--------------+--------------------------------------+
+================ ==== ====== ======= ===========================
+Name             type Access Default Meaning
+================ ==== ====== ======= ===========================
+``arrow-height`` int  Read   56      Height of the arrow button.
+``arrow-width``  int  Read   112     Width of the arrow button.
+================ ==== ====== ======= ===========================
 
 Signal Details
 ==============
@@ -3424,17 +3183,7 @@ WizardDialog
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----GtkDialog
-                                               +----WizardDialog
+.. inheritance-diagram   :: WizardDialog
 
 Implemented Interfaces
 ======================
@@ -3495,8 +3244,8 @@ Details
 
     .. warning:: WIZARD_DIALOG_CANCEL is deprecated and should not be used in newly-written code.
 
-Property Details
-================
+Properties
+==========
 
 ============================ ============ ============ ============== ========================================
 Name                         type         Access       Default        Meaning
@@ -3517,23 +3266,12 @@ PickerDialog
 Object Hierarchy
 ================
 
-::
-  
-    GObject
-     +----GInitiallyUnowned
-           +----GtkObject
-                 +----GtkWidget
-                       +----GtkContainer
-                             +----GtkBin
-                                   +----GtkWindow
-                                         +----GtkDialog
-                                               +----HildonDialog
-                                                     +----PickerDialog
+.. inheritance-diagram:: PickerDialog
 
 Implemented Interfaces
 ======================
 
-PickerDialog implements :class:`AtkImplementorIface` and :class:`GtkBuildable` .
+PickerDialog implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 
 Description
 ===========
@@ -3598,16 +3336,16 @@ Details
 
         .. versionadded 2.2
 
-Property Details
-================
+Properties
+==========
 
-+---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
-| Name                      | type   | Access                   | Default        | Meaning                                                                |
-+===========================+========+==========================+================+========================================================================+
-| ``center-on-show``        | bool   | Read / Write / Construct | True           | If the dialog should center on the current selection when it is showed.|
-+---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
-| ``done-button-text``      | str    | Read / Write / Construct | "wdgt_bd_done" | Done Button Label.                                                     |
-+---------------------------+--------+--------------------------+----------------+------------------------------------------------------------------------+
+==================== ==== ======================== ============== ====================================
+Name                 type Access                   Default        Meaning
+==================== ==== ======================== ============== ====================================
+``center-on-show``   bool Read / Write / Construct True           If the dialog should center on the
+                                                                  current selection when it is showed.
+``done-button-text`` str  Read / Write / Construct "wdgt_bd_done" Done Button Label.
+==================== ==== ======================== ============== ====================================
 
 AnimationActor
 **************
@@ -3862,7 +3600,7 @@ Details
     .. seealso:: :meth:`AnimationActor.set_rotation`
 
 RemoteTexture
-*******************
+*************
 
 Description
 ===========

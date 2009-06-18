@@ -10,9 +10,6 @@ Python Hildon depends on the following Python modules:
 PyGtk
   PyGtk is the Python binding for GTK+ library used for creating graphical user interfaces.
 
-Table of Contents
------------------
-
 .. toctree::
   :maxdepth: 2
 

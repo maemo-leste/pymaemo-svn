@@ -8,7 +8,7 @@ Main
 
 Before using Hildon, you need to initialize it; initialization connects to the window system display, and parses some standard command line arguments. See also :func:`gtk_init` to know more details on this topic.
 
-Hildon should be initialized by using `hildon_gtk_init() <hildon-gtk-init>`_ . Notice this function also initialize gtk by calling :func:`gtk_init` . In case you need a customized initialization of GTK+ library you could use :func:`hildon_init` after the customized GTK+ initialization.
+Hildon should be initialized by using :func:`hildon_gtk_init()` . Notice this function also initialize gtk by calling :func:`gtk_init` . In case you need a customized initialization of GTK+ library you could use :func:`hildon_init` after the customized GTK+ initialization.
 
 Typical main function for a Hildon application
 ==============================================
@@ -75,7 +75,7 @@ Details
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to False by default.
+    Buttons created using this function have "focus-on-click" set to ``False`` by default.
 
     :param size: Flags indicating the size of the new button
 
@@ -89,7 +89,7 @@ Details
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to False by default.
+    Buttons created using this function have "focus-on-click" set to ``False`` by default.
 
     :param size: Flags indicating the size of the new button
 
@@ -99,48 +99,48 @@ Details
 
 .. function:: hildon_gtk_radio_button_new (size, group)
 
-    This is a convenience function to create a :class:`GtkRadioButton` setting its size to one of the pre-defined Hildon sizes.
+    This is a convenience function to create a :class:`gtk.RadioButton` setting its size to one of the pre-defined Hildon sizes.
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to False by default.
+    Buttons created using this function have "focus-on-click" set to ``False`` by default.
 
     :param size: Flags indicating the size of the new button
-    :param group: An existing radio button group, or ``NULL`` if you are creating a new group
-    :returns: A newly created :class:`GtkRadioButton` widget.
+    :param group: An existing radio button group, or ``None`` if you are creating a new group
+    :returns: A newly created :class:`gtk.RadioButton` widget.
 
     .. versionadded 2.2
 
 .. function:: hildon_gtk_radio_button_new_from_widget (size, radio_group_member)
 
-    This is a convenience function to create a :class:`GtkRadioButton` setting its size to one of the pre-defined Hildon sizes.
+    This is a convenience function to create a :class:`gtk.RadioButton` setting its size to one of the pre-defined Hildon sizes.
 
     Buttons created with this function also override the "gtk-button-images" setting. Images set using :func:`gtk_button_set_image` are always shown.
 
-    Buttons created using this function have "focus-on-click" set to False by default.
+    Buttons created using this function have "focus-on-click" set to ``False`` by default.
 
     :param size: Flags indicating the size of the new button
-    :param radio_group_member: widget to get radio group from or ``NULL``
-    :returns: A newly created :class:`GtkRadioButton` widget.
+    :param radio_group_member: widget to get radio group from or ``None``
+    :returns: A newly created :class:`gtk.RadioButton` widget.
 
     .. versionadded 2.2
 
 .. function:: hildon_gtk_tree_view_new (mode)
 
-    Creates a new :class:`GtkTreeView` widget with the Hildon UI mode set to ``mode``
+    Creates a new :class:`gtk.TreeView` widget with the Hildon UI mode set to ``mode``
 
     :param mode: the Hildon UI mode
-    :returns: A newly created :class:`GtkTreeView` widget.
+    :returns: A newly created :class:`gtk.TreeView` widget.
 
     .. versionadded 2.2
 
 .. function:: hildon_gtk_tree_view_new_with_model (mode, model)
 
-    Creates a new :class:`GtkTreeView` widget with the Hildon UI mode set to ``mode`` and the model initialized to ``model``.
+    Creates a new :class:`gtk.TreeView` widget with the Hildon UI mode set to ``mode`` and the model initialized to ``model``.
 
     :param mode: the Hildon UI mode
     :param model: the model.
-    :returns: A newly created :class:`GtkTreeView` widget.
+    :returns: A newly created :class:`gtk.TreeView` widget.
 
     .. versionadded 2.2
 
@@ -148,27 +148,27 @@ Details
 
     Sets the UI mode of ``treeview`` to ``mode``.
 
-    :param treeview: A :class:`GtkTreeView`
-    :param mode: The new :class:`HildonUIMode`
+    :param treeview: A :class:`gtk.TreeView`
+    :param mode: The new :class:`hildon.UIMode`
 
     .. versionadded 2.2
 
 .. function:: hildon_gtk_icon_view_new (mode)
 
-    Creates a new :class:`GtkIconView` widget with the Hildon UI mode set to ``mode``
+    Creates a new :class:`gtk.IconView` widget with the Hildon UI mode set to ``mode``
 
     :param mode: the Hildon UI mode
-    :returns: A newly created :class:`GtkIconView` widget
+    :returns: A newly created :class:`gtk.IconView` widget
 
     .. versionadded 2.2
 
 .. function:: hildon_gtk_icon_view_new_with_model (mode, model)
 
-    Creates a new :class:`GtkIconView` widget with the Hildon UI mode set to ``mode`` and the model intitialized to ``model``.
+    Creates a new :class:`gtk.IconView` widget with the Hildon UI mode set to ``mode`` and the model intitialized to ``model``.
 
     :param mode: the Hildon UI mode
     :param model: The model.
-    :returns: A newly created :class:`GtkIconView` widget.
+    :returns: A newly created :class:`gtk.IconView` widget.
 
     .. versionadded 2.2
 
@@ -176,18 +176,18 @@ Details
 
     Sets the UI mode of ``iconview`` to ``mode``.
 
-    :param iconview: A :class:`GtkIconView`
-    :param mode: The new :class:`HildonUIMode`
+    :param iconview: A :class:`gtk.IconView`
+    :param mode: The new :class:`hildon.UIMode`
 
     .. versionadded 2.2
 
 .. function:: hildon_gtk_window_set_progress_indicator (window, state)
 
-    This functions tells the window manager to show/hide a progress indicator in the window title. It applies to :class:`HildonDialog` and :class:`hildon.Window` (including subclasses).
+    This functions tells the window manager to show/hide a progress indicator in the window title. It applies to :class:`hildon.Dialog` and :class:`hildon.Window` (including subclasses).
 
     Note that ``window`` must be realized for this to work.
 
-    :param window: a :class:`GtkWindow` .
+    :param window: a :class:`gtk.Window`.
     :param state: The state we want to set: 1 -> show progress indicator, 0 -> hide progress indicator.
 
     .. versionadded 2.2
@@ -208,14 +208,14 @@ Details
 
     The scale is hildonized, which means that a click or tap immediately jumps to the desired position, see :func:`gtk_range_set_jump_to_position` . Further more the value is not displayed, see :func:`gtk_scale_set_draw_value` .
 
-    :returns: a new hildonized :class:`GtkVScale`
+    :returns: a new hildonized :class:`gtk.VScale`
 
     .. versionadded 2.2
 
 See Also
 ========
 
-    :class:`HildonButton` :class:`HildonCheckButton`
+    :class:`hildon.Button` :class:`hildon.CheckButton`
 
 Constants
 *********
@@ -325,8 +325,8 @@ Details
 
     This function assigns a defined logical font to the ``widget`` and all its child widgets. it also connects to the "style_set" signal which will retrieve assign the new font for the given logical name each time the theme is changed The returned signal id can be used to disconnect the signal. When calling multiple times the previous signal (obtained by calling this function) is disconnected automatically and should not be used.
 
-    :param widget: a :class:`GtkWidget` to assign this logical font for.
-    :param logicalfontname: a gchar\* with the logical font name to assign to the widget.
+    :param widget: a :class:`gtk.Widget` to assign this logical font for.
+    :param logicalfontname: a ``str`` with the logical font name to assign to the widget.
     :returns: the signal id that is triggered every time theme is changed. 0 if font set failed.
 
 .. function:: hildon_helper_set_logical_color (widget, rcflags, state, logicalcolorname)
@@ -335,7 +335,7 @@ Details
 
     Example: If the style you want to modify is bg[NORMAL] then set rcflags to GTK_RC_BG and state to GTK_STATE_NORMAL.
 
-    :param widget: A :class:`GtkWidget` to assign this logical font for.
+    :param widget: A :class:`gtk.Widget` to assign this logical font for.
     :param rcflags: :class:`GtkRcFlags` enumeration defining whether to assign to FG, BG, TEXT or BASE style.
     :param state: :class:`GtkStateType` indicating to which state to assign the logical color
     :param logicalcolorname: A string with the logical font name to assign to the widget.
@@ -346,15 +346,15 @@ Details
     Checks if the given button event is a finger event.
 
     :param event: A `GtkEventButton <GtkEventButton>`_ to check
-    :returns: True if the event is a finger event.
+    :returns: ``True`` if the event is a finger event.
 
 .. function:: hildon_helper_set_insensitive_message (widget, message)
 
     .. warning:: :func:`hildon_helper_set_insensitive_message` is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.
 
-    This function assigns an insensitive message to a ``widget``. When the ``widget`` is in an insensitive state and the user activates it, the ``message`` will be displayed using a standard :class:`HildonBanner` .
+    This function assigns an insensitive message to a ``widget``. When the ``widget`` is in an insensitive state and the user activates it, the ``message`` will be displayed using a standard :class:`hildon.Banner`.
 
-    :param widget: A :class:`GtkWidget` to assign a banner to
+    :param widget: A :class:`gtk.Widget` to assign a banner to
     :param message: A message to display to the user
 
 .. function:: hildon_helper_set_insensitive_messagef (widget, format, ...)
@@ -363,7 +363,7 @@ Details
 
     A version of hildon_helper_set_insensitive_message with string formatting.
 
-    :param widget: A :class:`GtkWidget` to assign a banner to
+    :param widget: A :class:`gtk.Widget` to assign a banner to
     :param format: a printf-like format string
     :param ...: arguments for the format string
 
@@ -374,7 +374,7 @@ Details
     Finger-Sized scrollbar should always be used together with finger-sized content.
 
     :param win: A :class:`GtkScrolledWindow` to use as target
-    :param thumb: True to enable the thumb scrollbar, False to disable
+    :param thumb: ``True`` to enable the thumb scrollbar, ``False`` to disable
 
 Sound Utilities
 ***************
@@ -467,14 +467,14 @@ Details
 
         Returns whether the :class:`Program` is set to be support hibernation from the Hildon task navigator
 
-        :returns: True if the program can hibernate, False otherwise.
+        :returns: ``True`` if the program can hibernate, ``False`` otherwise.
 
 
     .. method:: set_common_menu (menu)
 
         Sets a :class:`gtk.Menu` that will appear in all :class:`hildon.Window` s registered with the :class:`Program` . Only one common :class:`gtk.Menu` can be set, further calls will detach the previous common :class:`gtk.Menu` . A :class:`hildon.Window` can use its own :class:`gtk.Menu` with :meth:`hildon.Window.set_menu`
 
-        This method does not support :class:`HildonAppMenu` s. See :meth:`Program.set_common_app_menu` for that.
+        This method does not support :class:`hildon.AppMenu` s. See :meth:`Program.set_common_app_menu` for that.
 
         :param menu: A :class:`gtk.Menu` to use as common menu for the program
 
@@ -484,23 +484,23 @@ Details
 
         Returns the :class:`gtk.Menu` that was set as common menu for this :class:`Program` .
 
-        :returns: the :class:`gtk.Menu` or ``NULL`` of no common menu was set.
+        :returns: the :class:`gtk.Menu` or ``None`` of no common menu was set.
 
     .. method:: set_common_app_menu (menu)
 
-        Sets a :class:`HildonAppMenu` that will appear in all :class:`hildon.Window` s registered with the :class:`Program` . Only one common :class:`HildonAppMenu` can be set, further calls will detach the previous common :class:`HildonAppMenu` . A :class:`hildon.Window` can use its own :class:`HildonAppMenu` with :meth:`hildon.Window.set_app_menu`
+        Sets a :class:`hildon.AppMenu` that will appear in all :class:`hildon.Window` s registered with the :class:`Program` . Only one common :class:`hildon.AppMenu` can be set, further calls will detach the previous common :class:`hildon.AppMenu` . A :class:`hildon.Window` can use its own :class:`hildon.AppMenu` with :meth:`hildon.Window.set_app_menu`
 
         This method does not support :class:`gtk.Menu` s. See :meth:`Program.set_common_menu` for that.
 
-        :param menu: A :class:`HildonAppMenu` to use as common menu for the program
+        :param menu: A :class:`hildon.AppMenu` to use as common menu for the program
 
         .. versionadded 2.2
 
     .. method:: get_common_app_menu ()
 
-        Returns the :class:`HildonAppMenu` that was set as common menu for this :class:`Program` .
+        Returns the :class:`hildon.AppMenu` that was set as common menu for this :class:`Program` .
 
-        :returns: the :class:`HildonAppMenu` or ``NULL`` of no common app menu was set.
+        :returns: the :class:`hildon.AppMenu` or ``None`` of no common app menu was set.
 
         .. versionadded 2.2
 
@@ -514,13 +514,13 @@ Details
 
         Returns the :class:`gtk.Toolbar` that was set as common toolbar for this :class:`Program` .
 
-        :returns: the :class:`gtk.Toolbar` or ``NULL`` of no common toolbar was set.
+        :returns: the :class:`gtk.Toolbar` or ``None`` of no common toolbar was set.
 
     .. method:: get_is_topmost ()
 
         Returns whether one of the program's windows or dialogs is currently activated by the window manager.
 
-        :returns: True if a window or dialog is topmost, False otherwise.
+        :returns: ``True`` if a window or dialog is topmost, ``False`` otherwise.
 
 
     .. method:: pop_window_stack ()
@@ -529,7 +529,7 @@ Details
 
         Pops a window from the stack.
 
-        :returns: A :class:`HildonStackableWindow` , or ``NULL``
+        :returns: A :class:`hildon.StackableWindow` , or ``None``
 
         .. versionadded 2.2
 
@@ -537,7 +537,7 @@ Details
 
         .. warning:: :meth:`Program.peek_window_stack` is deprecated and should not be used in newly-written code. Use :meth:`hildon.Window.stack_peek` instead
 
-        :returns: A :class:`HildonStackableWindow` , or ``NULL``
+        :returns: A :class:`hildon.StackableWindow` , or ``None``
 
 
         .. versionadded 2.2
@@ -553,15 +553,14 @@ Details
 Property Details
 ================
 
-+---------------------------+--------+--------------------------+--------------+-----------------------------------------------------------------------------------------------+
-| Name                      | type   | Access                   | Default      | Meaning                                                                                       |
-+===========================+========+==========================+==============+===============================================================================================+
-| ``can-hibernate``         | bool   | Read / Write             | False        | Whether the program should be set to hibernate by the Task Navigator in low memory situation. |
-+---------------------------+--------+--------------------------+--------------+-----------------------------------------------------------------------------------------------+
-| ``is-topmost``            | bool   | Read                     | False        | Whether one of the program's window or dialog currently is activated by window manager.       |
-+---------------------------+--------+--------------------------+--------------+-----------------------------------------------------------------------------------------------+
+========================== ======== ======================== ============= =============================================================================================
+Name                        type    Access                   Default       Meaning                                                                                      
+========================== ======== ======================== ============= =============================================================================================
+``can-hibernate``           bool    Read / Write             ``False``     Whether the program should be set to hibernate by the Task Navigator in low memory situation.
+``is-topmost``              bool    Read                     ``False``     Whether one of the program's window or dialog currently is activated by window manager.     
+========================== ======== ======================== ============= =============================================================================================
 
 See Also
 ========
 
-:class:`hildon.Window` :class:`HildonStackableWindow` 
+:class:`hildon.Window` :class:`hildon.StackableWindow` 
