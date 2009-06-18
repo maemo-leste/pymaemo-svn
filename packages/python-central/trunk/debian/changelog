@@ -1,3 +1,139 @@
+python-central (0.6.11-1maemo1) unstable; urgency=low
+
+  * New version from jaunty
+  * Remove "Uploaders" field (not applicable to maemo).
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 17 Jun 2009 11:33:43 -0400
+
+python-central (0.6.11ubuntu7) jaunty; urgency=low
+
+  * When the rtinstall action runs, do not check the support
+    status of the runtime but byte-compile anyway. This fixes
+    the problem that python2.6-minimal gets installed before 
+    the /usr/share/python/debian_defaults file gets updated
+    and has python2.6 as supported (LP: #357884)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Wed, 15 Apr 2009 16:09:42 +0200
+
+python-central (0.6.11ubuntu6) jaunty; urgency=low
+
+  * fix logic in get_installed_runtime() to not error when a 
+    new runtime gets installed (LP: #354228). 
+    
+    the root of the problem is that the debian_defaults file is not yet
+    the jaunty version when python2.6-minimal gets installed and pycentral
+    errors on versions it has no explicit knowledge about (from
+    debian_defaults)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Fri, 03 Apr 2009 09:42:57 +0200
+
+python-central (0.6.11ubuntu5) jaunty; urgency=low
+
+  * pycentral.py:
+    - when detecting already existing files check if those
+      are local installs (via setup.py) or file conflicts from
+      other packages and give a meaningful error message 
+      (LP: #347939)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Wed, 25 Mar 2009 17:19:39 +0100
+
+python-central (0.6.11ubuntu4) jaunty; urgency=low
+
+  * revert the change for the Python-Version check
+    in the preinst, causes more trouble than good
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Fri, 13 Mar 2009 20:17:45 +0100
+
+python-central (0.6.11ubuntu3) jaunty; urgency=low
+
+  * re-add check for "Python-Version" in preinst
+  * allow removal of package with no python-version
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Wed, 11 Mar 2009 11:42:34 +0100
+
+python-central (0.6.11ubuntu2) jaunty; urgency=low
+
+  * dh_pycentral: Autodetect more stuff in /usr/local.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 24 Feb 2009 19:15:31 +0100
+
+python-central (0.6.11ubuntu1) jaunty; urgency=low
+
+  * Merge with Debian; remaining changes:
+    - Keep the changelog entries.
+  * Work around missing value in pkgconfig file. LP: #332532.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 21 Feb 2009 16:39:30 +0100
+
+python-central (0.6.11) unstable; urgency=low
+
+  * Correctly set the `include-links' option.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 21 Feb 2009 16:29:08 +0100
+
+python-central (0.6.10) unstable; urgency=low
+
+  * dh_pycentral: Handle special characters in package name (Alexander
+    Achenbach). Closes: #494290.
+  * Add support for reporting pycentral-managed files to cruft, adding
+    new commands pkglist and list (Gabriel de Perthuis). Closes: #494016.
+  * Don't be verbose about using older python versions. Closes: #403872.
+  * pycentral: Add names of overwritten local files. Closes: #489977.
+  * /usr/share/pycentral-data/pycentral.mk: makefile macros (currently
+    just sitedir).
+  * Fix handling of `:' and `=' characters in file names.
+  * Enable the option to include the symbolic links to sys.path in
+    the package (calling DH_PYCENTRAL=include-links dh_pycentral).
+  * Merge the pyversions.py code with the version in python-defaults.
+  * Ignore the pkgprepare option; packages which need to be available
+    during upgrades should install directly into sys.path.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 21 Feb 2009 14:52:26 +0100
+
+python-central (0.6.9ubuntu4) jaunty; urgency=low
+
+  * dh_pycentral: Handle special characters in package name (Alexander
+    Achenbach). Closes: #494290.
+  * Add support for reporting pycentral-managed files to cruft, adding
+    new commands pkglist and list (Gabriel de Perthuis). Closes: #494016.
+  * Don't be verbose about using older python versions. Closes: #403872.
+  * pycentral: Add names of overwritten local files. Closes: #489977.
+  * /usr/share/pycentral-data/pycentral.mk: makefile macros (currently
+    just sitedir).
+  * Fix handling of `:' and `=' characters in file names.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 21 Feb 2009 09:11:03 +0100
+
+python-central (0.6.9ubuntu3) jaunty; urgency=low
+
+  * Enable the option to include the symbolic links to sys.path in
+    the package (calling DH_PYCENTRAL=include-links dh_pycentral).
+  * Merge the pyversions.py code with the version in python-defaults.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 20 Feb 2009 15:01:58 +0100
+
+python-central (0.6.9ubuntu2) jaunty; urgency=low
+
+  * Re-include lost debhelper template file.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 19 Feb 2009 14:58:29 +0100
+
+python-central (0.6.9ubuntu1) jaunty; urgency=low
+
+  * Ignore the pkgprepare option; packages which need to be available
+    during upgrades should install directly into sys.path.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 17 Feb 2009 12:01:15 +0100
+
+python-central (0.6.8ubuntu1) intrepid; urgency=low
+
+  * Support installation of third party modules in 'dist-packages' for
+    python versions 2.6 and 3.0.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 25 Oct 2008 15:54:46 +0200
+
 python-central (0.6.8maemo3) unstable; urgency=low
 
   * Put the pymaemo-developers mailing list address in "Maintainer" field and
