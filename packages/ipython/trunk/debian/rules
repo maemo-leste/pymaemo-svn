@@ -13,6 +13,7 @@ include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 # force using of correct version of python during build inside scratchbox
 # this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk, not meant to be used outside
 cdbs_python_compile_version=$(PYVERS)
+DEB_PYTHON_INSTALL_ARGS_ALL = --no-compile -O0 --install-layout=deb
 
 install/ipython::
 	# remove test suite script
