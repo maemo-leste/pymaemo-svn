@@ -44,8 +44,6 @@
     <div class="content">
         <h2><a name="documentation">Documentation</a></h2>
 
-        <p>For fremantle documentation <a href="documentation_fremantle.html">click here</a></p>
-
         <ul>
             <li><a href="documentation/pymaemo_tutorial/python_maemo_howto.html">Python for Maemo tutorial</a></li>
             <li><a href="http://maemo.org/development/documentation/apis/3-x/python-maemo-3.x/">API Documentation (Maemo 3.x Bora)</a></li>
@@ -55,67 +53,94 @@
             <li><a href="http://pycage.blogspot.com/2007/12/tablet-python-1-relocatable-software.html">Martin's useful tips for PyMaemo development</a></li>
             <li><a href="http://home.cfl.rr.com/genecash/nokia/making_packages.html">Creating Debian packages and a repository for Python apps for the N800</a></li>
         </ul>
-        <h2><a name="components">Components in Maemo 4.1.2 (Diablo)</a></h2>
+        <h2><a name="components">Components in Maemo 5 (Fremantle)</a></h2>
+        <h3><a name="core">Core</a></h3>
+         <table>
+            <tr><th>Package</th><th>Version</th><th>Documentation</th><th>Examples</th>
+            </tr>
+            <tr><td><a href="http://www.python.org/">Python</a>: a dynamic object-oriented programming language, core of PyMaemo</td>
+                <td>2.5.2</td>
+                <td><a href="http://www.python.org/doc/">doc</a></td>
+            </tr>
+            <tr><td><a href="http://wiki.debian.org/DebianPythonFAQ">Python-central:</a> This package provides support for building and installing python modules independent of the current installed Python version.</td>
+                <td>0.6</td>
+                <td><a href="http://wiki.debian.org/DebianPythonFAQ">doc</a></td>
+           </tr>
+           <tr><td><a href="http://wiki.debian.org/DebianPythonFAQ">python-supprt: </a>automated rebuilding support for python modules</td>
+                <td>1.0</td>
+                <td><a href="http://wiki.debian.org/DebianPythonFAQ">doc</a></td>
+            </tr>
+        </table>
+
+        <h3><a name="bindings">Bindings</a></h3>
         <table>
             <tr><th>Package</th><th>Version</th><th>Documentation</th><th>Examples</th>
             </tr>
-            <tr><td><a href="http://ipython.scipy.org/moin/">iPython</a>: improved interactive shell</td>
-                <td>0.8.1</td>
-                <td><a href="http://ipython.scipy.org/moin/Documentation">doc</a></td>
+            <tr><td><a href="http://www.freedesktop.org/wiki/Software/dbus">dbus-python</a>: D-Bus python bindings</td>
+                <td>0.83.0</td>
+                <td><a href="http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html">doc(>=0.80)</a></td>
             </tr>
-            <tr><td><a href="http://org.csail.mit.edu/pybluez/">PyBluez</a>: wrappers around system Bluetooth resources</td>
-                <td>0.9.1</td>
-                <td><a href="http://org.csail.mit.edu/pybluez/docs.html">doc</a></td>
-            </tr>
-            <tr><td><a href="http://www.pygame.org/">PyGame</a>: set of Python modules designed for writing games</td>
-                <td>1.7.1</td>
-                <td><a href="http://www.pygame.org/docs/">doc</a></td>
-            </tr>
-            <tr><td><a href="http://www.pygtk.org/">PyGconf/GnomeVFS*</a>: bindings to use Gconf (a system for storing 
+            <tr><td><a href="http://www.pygtk.org/">gnome-python</a>: bindings to use Gconf (a system for storing 
             application preferences) and Gnome Virtual File System</td>
                 <td>2.18.0</td>
                 <td><a href="http://www.pygtk.org/reference.html">doc</a></td>
             </tr>
+           <tr><td><a href="http://gstreamer.freedesktop.org/modules/gst-python.html">gst0.10-python</a>: GStreamer python bindings </td>
+                <td>0.10.14</td>
+                <td><a href="http://pygstdocs.berlios.de/#online">doc</a></td>
+            </tr>
+            <tr><td><a href="http://code.google.com/p/pybluez/">PyBluez</a>: wrappers around system Bluetooth resources</td>
+                <td>0.15-1</td>
+                <td><a href="http://code.google.com/p/pybluez/wiki/Documentation">doc</a></td>
+            </tr>
+            <tr><td><a href="http://www.cairographics.org/pycairo/">python-cairo</a>: a set of Python bindings for the cairo graphics library.</td>
+                <td>1.4.12</td>
+                <td><a href="http://www.cairographics.org/documentation/">doc</a></td>
+            </tr>
+            <tr><td><a href="http://pycurl.sourceforge.net/">PyCURL</a>: bindings to use libcurl.</td>
+                <td>7.18.2</td>
+                <td><a href="http://pycurl.sourceforge.net/doc/pycurl.html">doc</a></td>
+            </tr>
+            <tr><td><a href="http://www.pygame.org/">PyGame</a>: set of Python modules designed for writing games</td>
+                <td>1.8.1</td>
+                <td><a href="http://www.pygame.org/docs/">doc</a></td>
+            </tr>
             <tr><td><a href="http://www.pygtk.org/docs/pygobject/index.html">PyGobject</a>: bindings to use Gobject model</td>
-                <td>2.12.2</td>
+                <td>2.14.2</td>
                 <td><a href="http://www.pygtk.org/docs/pygobject/index.html">doc</a></td>
             </tr>
             <tr><td><a href="http://www.pygtk.org/">PyGtk</a>: access GTK components through Python</td>
-                <td>2.10.3</td>
+                <td>2.12.1</td>
                 <td><a href="http://www.pygtk.org/">doc</a></td>
             </tr>
             <tr><td><a href="http://pyid3lib.sourceforge.net/">Pyid3lib</a>: a module for editing ID3v2 tags of MP3 files</td>
                 <td>0.5.1</td>
                 <td><a href="http://pyid3lib.sourceforge.net/doc.html">doc</a></td>
             </tr>
-            <tr><td><a href="http://www.pythonware.com/products/pil/">PyImage(PIL)</a>: adds image processing capabilities to Python</td>
-                <td>1.1.6</td>
-                <td><a href="http://www.pythonware.com/products/pil/">doc</a></td>
+            <tr><td><a href="http://pyopenssl.sourceforge.net/">pyOpenSSL</a>: Python interface to the OpenSSL library</td>
+                <td>0.5.1</td>
+                <td><a href="http://pyopenssl.sourceforge.net/pyOpenSSL.html/">doc</a></td>
             </tr>
-            <tr><td><a href="http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a>: lets you write code that mixes 
-            Python and C data types and compiles it into a C extension</td>
-                <td>0.9.5.1</td>
-                <td><a href="http://ldots.org/pyrex-guide/">doc</a></td>
+            <tr><td><a href="http://www.clutter-project.org/">python-clutter</a>: Python interface to the Clutter library</td>
+                <td>0.8.0</td>
+                <td><a href="http://www.clutter-project.org/docs.html">doc</a></td>
             </tr>
-            <tr><td><a href="http://www.python.org/">Python</a>: a dynamic object-oriented programming language, core of PyMaemo</td>
-                <td>2.5.1</td>
-                <td><a href="http://www.python.org/doc/">doc</a></td>
-            </tr>
-            <tr><td><a href="http://www.freedesktop.org/wiki/Software/dbus">Python-dbus</a>: D-Bus python bindings</td>
-                <td>0.71</td>
-                <td><a href="http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html">doc(>=0.80)</a></td>
-            </tr>
-            <tr><td><a href="documentation/python_gps_examples/index.html">Python-GPSbt</a>: libgpsbt bindings</td>
-                <td>0.1-18</td>
-                <td><a href="documentation/python_gps_examples/index.html">doc</a></td>
-            </tr>
-            <tr><td><a href="http://gstreamer.freedesktop.org/modules/gst-python.html">Python-Gstreamer</a>: GStreamer python bindings </td>
-                <td>0.10.5</td>
-                <td><a href="http://pygstdocs.berlios.de/#online">doc</a></td>
+            <tr><td><a href="http://pymaemo.garage.maemo.org">python-conic</a>: Bindings for the libConIC connectivity library.</td>
+                <td>0.1</td>
+                <td></td>
+                <td><a href="https://garage.maemo.org/svn/pymaemo/packages/python-conic/branches/chinook/tests/">examples and tests</a></td>
             </tr>
             <tr><td>Python-Hildon: bindings to use Hildon interface components</td>
-                <td>0.8.7</td>
+                <td>0.10.14</td>
                 <td><a href="http://maemo.org/development/documentation/apis/3-x/python-maemo-3.x/python_hildon_widgets_api.html">API</a></td>
+            </tr>
+            <tr><td><a href="http://wiki.maemo.org/PyMaemo/HildonDesktop">PyMaemo/HildonDesktop</a>: bindings to use Hildon interface components</td>
+                <td>0.10.14</td>
+                <td><a href="http://wiki.maemo.org/PyMaemo/HildonDesktop">API</a></td>
+            </tr>
+            <tr><td><a href="http://www.pythonware.com/products/pil/">PyImage(PIL)</a>: adds image processing capabilities to Python</td>
+                <td>1.1.6</td>
+                <td><a href="http://www.pythonware.com/library/pil/handbook/index.htm">doc</a></td>
             </tr>
             <tr><td><a href="http://people.csail.mit.edu/jrennie/python/numeric/">Python-Numeric</a>: a module for high-performance,
             numeric computing</td>
@@ -123,41 +148,34 @@
                 <td><a href="http://people.csail.mit.edu/jrennie/python/numeric/">doc</a></td>
             </tr>
             <tr><td>Python-Osso: bindings to use OSSO components</td>
-                <td>1.20-1</td>
-                <td><a href="http://maemo.org/development/documentation/apis/3-x/python-maemo-3.x/python_libosso_api.html">API</a></td>
-                <td><a href="documentation/python_osso_examples/index.html">examples</a></td>
+                <td>0.3</td>
+                <td><a href="http://maemo.org/api_refs/5.0/beta/libosso/">API</a></td>
             </tr>
             <tr><td><a href="http://pyxml.sourceforge.net/">Python-Xml</a>: a collection of libraries to process XML with Python</td>
                 <td>0.8.4</td>
                 <td><a href="http://pyxml.sourceforge.net/topics/">doc</a></td>
             </tr>
-            <tr><td>Python-ABook: bindings to use OSSO-AddressBook components</td>
-                <td>0.1</td>
-                <td><a href="documentation/api/abook/index.html">doc - unfinished</a></td>
-                <td><a href="https://garage.maemo.org/svn/pymaemo/packages/python-abook/trunk/tests/">examples</a></td>
+            <tr><td><a href="https://storm.canonical.com/">Storm</a>: an Object Relational Mapper for the Python programming language.</td>
+                <td>0.12-0</td>
+                <td><a href="https://storm.canonical.com/">doc</a></td>
             </tr>
-            <tr><td><a href="http://www.conduit-project.org/wiki/evolution-python">Evolution-python</a>: bindings to use Evolution libraries (EBook) components</td>
-                <td>0.0.4</td>
+         </table>
+        <h3><a name="bindings">Development</a></h3>
+        <table>
+            <tr><th>Package</th><th>Version</th><th>Documentation</th><th>Examples</th>
             </tr>
-            <tr><td><a href="http://pymaemo.garage.maemo.org">python-conic</a>: Bindings for the libConIC connectivity library.</td>
-                <td>0.1</td>
-                <td></td>
-                <td><a href="https://garage.maemo.org/svn/pymaemo/packages/python-conic/branches/chinook/tests/">examples and tests</a></td>
+            <tr><td><a href="http://ipython.scipy.org/moin/">iPython</a>: improved interactive shell</td>
+                <td>0.9.1</td>
+                <td><a href="http://ipython.scipy.org/moin/Documentation">doc</a></td>
             </tr>
-            <tr><td><a href="http://www.galago-project.org/news/index.php">Galago-python</a>: bindings to use the Galago presence framework</td>
-                <td>0.5.0</td>
-            </tr>
-            <tr><td><a href="http://pycurl.sourceforge.net/">PyCURL</a>: bindings to use libcurl.</td>
-                <td>7.15.5</td>
-                <td><a href="http://pycurl.sourceforge.net/doc/pycurl.html">doc</a></td>
+            <tr><td><a href="http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a>: lets you write code that mixes 
+            Python and C data types and compiles it into a C extension</td>
+                <td>0.9.7.2</td>
+                <td><a href="http://ldots.org/pyrex-guide/">doc</a></td>
             </tr>
             <tr><td><a href="http://www.cython.org/">Cython</a>: based on Pyrex, supports more cutting edge functionality.</td>
-                <td>0.9.6.8</td>
+                <td>0.9.8</td>
                 <td><a href="http://www.cython.org/">doc</a></td>
-            </tr>
-            <tr><td><a href="https://storm.canonical.com/">Storm</a>: an Object Relational Mapper for the Python programming language.</td>
-                <td>0.11</td>
-                <td><a href="https://storm.canonical.com/">doc</a></td>
             </tr>
         </table>
     </div>
