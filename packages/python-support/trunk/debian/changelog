@@ -1,12 +1,15 @@
-python-support (1.0.2maemo1) unstable; urgency=low
+python-support (1.0.3maemo1) unstable; urgency=low
 
-  [ Bruno dos Santos de Araujo ]
-  * New version from Debian sid. 
+  * Maemo port
 
-  [ Anderson Lizardo ]
-  * Avoid using python from Scratchbox.
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 18 Jun 2009 15:26:17 -0400
 
- -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 08 May 2009 15:26:17 -0400
+python-support (1.0.3) unstable; urgency=low
+
+  * update-python-modules: be resilient against broken directories in 
+    /usr/share/python-support. Closes: #528130.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 12 May 2009 21:46:05 +0200
 
 python-support (1.0.2) unstable; urgency=low
 
@@ -136,17 +139,6 @@ python-support (0.8.5) unstable; urgency=low
   * README: document how to do that and that you shouldn't.
 
  -- Josselin Mouette <joss@debian.org>  Thu, 24 Jul 2008 14:30:01 +0200
-
-python-support (0.8.4maemo1) unstable; urgency=low
-
-  * Downgrade debhelper build dependency to (>= 5.0.38).
-  * Avoid using Scratchbox's python in debian/rules.
-  * Remove "dpkg (>= 1.14.19)" dependency (only required for triggers support,
-    which maemo currently does not support anyway).
-  * Put the pymaemo-developers mailing list address in "Maintainer" field and
-    move original value to a separate field.
-
- -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 02 Apr 2009 11:28:36 -0400
 
 python-support (0.8.4) unstable; urgency=medium
 
