@@ -7,8 +7,7 @@ Build-Depends: debhelper (>= 5),
                python-support,
                gnome-pkg-tools (>= 0.10),
                cdbs,
-               python2.5-dev (>= 2.5.2-5),
-               python-all-dev (>= 2.3.5-11),
+               python-dev (>= 2.5),
                libgtk2.0-dev (>= 2.12.0),
                libglib2.0-dev (>= 2.8.0),
                libpango1.0-dev (>= 1.16.0),
@@ -26,7 +25,7 @@ Standards-Version: 3.7.3
 Package: python-gtk2
 Architecture: any
 Depends: ${python:Depends},
-         python2.5 (>= 2.5.2-5),
+         python (>= 2.5),
          ${shlibs:Depends},
          ${misc:Depends}
 Python-Depends: python-numeric (>= 24.2-3),
@@ -57,8 +56,7 @@ Depends: ${python:Depends},
          python-gtk2 (>= ${source:Version}),
          libglib2.0-dev (>= 2.8),
          libgtk2.0-dev (>= 2.12.0),
-         python2.5-dev (>= 2.5.2-5),
-         python-dev,
+         python-dev (>= 2.5),
          python-gobject-dev (>= 2.14.0)
 Recommends: python-gtk2-doc
 Replaces: python2.2-gtk2 (<< 1.99.17-4),
