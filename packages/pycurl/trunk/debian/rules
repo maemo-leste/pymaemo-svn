@@ -50,8 +50,8 @@ install: build
 	dh_clean -k
 	dh_installdirs
 	for py in $(PYVERS); do \
-  	    python$$py setup.py install --root=$(CURDIR)/debian/python-pycurl; \
- 	    python$$py-dbg setup.py install --root=$(CURDIR)/debian/python-pycurl-dbg; \
+	    python$$py setup.py install --root=$(CURDIR)/debian/python-pycurl --install-layout=deb; \
+	    python$$py-dbg setup.py install --root=$(CURDIR)/debian/python-pycurl-dbg --install-layout=deb; \
 	done
 	dh_install -ppython-pycurl-dbg --sourcedir=debian/tmp
 	rm -rf $(CURDIR)/debian/python-pycurl-dbg/usr/lib/python*/{site,dist}-packages/curl
