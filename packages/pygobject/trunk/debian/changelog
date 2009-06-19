@@ -1,8 +1,8 @@
 pygobject (2.16.1-1maemo1) unstable; urgency=low
 
-  * Packaging fixes for maemo.
+  * Packaging fixes for Maemo.
 
- -- Renato Araujo Oliveira Filho <renato.filho@indt.org.br>  Thu, 18 June 2009 12:18:00 -0300
+ -- Renato Araujo Oliveira Filho <renato.filho@indt.org.br>  Thu, 18 Jun 2009 12:18:00 -0300
 
 pygobject (2.16.1-1ubuntu2) jaunty; urgency=low
 
