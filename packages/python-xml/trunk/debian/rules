@@ -7,6 +7,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+include /usr/share/pycentral-data/pycentral.mk
+
 DEFAULT_PYTHON	:= $(shell pyversions -d)
 VERSIONS	:= $(shell pyversions -vs)
 
@@ -15,7 +17,7 @@ dest_xbel_utils := debian/xbel-utils
 
 doc_xbel := $(dest_xbel)/usr/share/doc/xbel
 doc_xbel_utils := $(dest_xbel_utils)/usr/share/doc/xbel-utils
-debian_patches=
+debian_patches=import-oldxml replace-reserved-words
 
 with_doc := no
 with_xbel := no
@@ -39,7 +41,7 @@ ifneq ($(shell dh_listpackages -i $(DH_OPTIONS) 2>/dev/null),)
 with_indep := yes
 endif
 
-build: stamp-build
+build: apply-patches stamp-build
 stamp-build: $(VERSIONS:%=stamp-build-%)
 	touch $@
 stamp-build-%: patched-stamp
@@ -85,10 +87,10 @@ ifeq ($(with_xbel),yes)
 
 # xbel_utils
 	install -m 0644 demo/xbel/README $(doc_xbel_utils)
-	mkdir -p $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/site-packages/_xmlplus/xbel
+	mkdir -p $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/$(call sitedir,$(DEFAULT_PYTHON))/oldxml/_xmlplus/xbel
 	install -m 0644 demo/xbel/*.py \
-	  $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/site-packages/_xmlplus/xbel
-	touch $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/site-packages/_xmlplus/xbel/__init__.py
+	  $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/$(call sitedir,$(DEFAULT_PYTHON))/oldxml/_xmlplus/xbel
+	touch $(dest_xbel_utils)/usr/lib/$(DEFAULT_PYTHON)/$(call sitedir,$(DEFAULT_PYTHON))/oldxml/_xmlplus/xbel/__init__.py
 
 	set -e; \
 	cd $(dest_xbel_utils) && \
@@ -104,7 +106,7 @@ ifeq ($(with_xbel),yes)
 	  ( \
 	    echo "#! /bin/sh"; \
 	    echo "ver=\$$(/usr/bin/python -c 'import sys; print sys.version[:3]')"; \
-	    echo "exec /usr/bin/python /usr/lib/python\$$ver/site-packages/_xmlplus/xbel/$$i.py \"\$$@\""; \
+	    echo "exec /usr/bin/python /usr/lib/python\$$ver/$(call sitedir,$(ver))/oldxml/_xmlplus/xbel/$$i.py \"\$$@\""; \
 	  ) > $(dest_xbel_utils)/usr/bin/$$i; \
 	done
 endif
@@ -167,8 +169,8 @@ binary-arch: build
 	  PYTHON=python$${version} ; \
 	  PACKAGE=python-xml ;\
 	  DESTDIR=debian/$${PACKAGE} ;\
-	  SITE_PACK=$${DESTDIR}/usr/lib/$${PYTHON}/site-packages/_xmlplus ;\
-	  $${PYTHON} setup.py install \
+	  SITE_PACK=$${DESTDIR}/usr/lib/$${PYTHON}/$(call sitedir,$(version))/oldxml/_xmlplus ;\
+	  $${PYTHON} setup.py install --install-layout=deb \
 	    --without-xslt --no-compile --prefix=$${DESTDIR}/usr ;\
 	  chmod 755 $${SITE_PACK}/dom/html/GenerateHtml.py ;\
 	  rm $${DOC}/examples/demo/sgmlop/test2.htm ;\
@@ -202,10 +204,13 @@ binary-arch: build
 	  PYTHON=python$${version} ; \
 	  PACKAGE=python-xml-dbg ;\
 	  DESTDIR=debian/$${PACKAGE} ;\
-	  SITE_PACK=$${DESTDIR}/usr/lib/$${PYTHON}/site-packages/_xmlplus ;\
+	  SITE_PACK=$${DESTDIR}/usr/lib/$${PYTHON}/$(call sitedir,$(version))/oldxml/_xmlplus ;\
 	  DOC=$${DESTDIR}/usr/share/doc/$${PACKAGE} ;\
-	  $${PYTHON}-dbg setup.py \
-	    install --without-xslt --no-compile --prefix=$${DESTDIR}/usr ;\
+	  $${PYTHON}-dbg setup.py install --install-layout=deb \
+	    --without-xslt --no-compile --prefix=$${DESTDIR}/usr ;\
+	  mkdir -p $${DESTDIR}/usr/lib/$${PYTHON}/$(call sitedir,$(version))/oldxml ;\
+	  mv $${DESTDIR}/usr/lib/$${PYTHON}/$(call sitedir,$(version))/_xmlplus \
+	    $${DESTDIR}/usr/lib/$${PYTHON}/$(call sitedir,$(version))/oldxml/ ;\
 	done
 	find debian/python-xml-dbg ! -type d ! \( -name '*_d.so' -o -name '*.h' \) \
 		| xargs rm -f

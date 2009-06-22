@@ -1,3 +1,19 @@
+python-xml (0.8.4-10.1maemo4) unstable; urgency=low
+
+  * Integrate fixes for python2.6 (taken from Ubuntu jaunty)
+  * Add patches:
+    - import-oldxml.dpatch
+      -> From Ubuntu package changelog:
+        - Install the files outside of sys.path, so that the package
+        does not overlay the xml code as found in the core python packages.
+        This package should be removed once all rdepends are gone. For
+        now, packages have to add this path before the first xml import:
+        sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+    - replace-reserved-words.dpatch
+      -> Replace "as" keyword (reserved as of python2.6)
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon, 22 Jun 2009 14:23:16 -0400
+
 python-xml (0.8.4-10.1maemo3) unstable; urgency=low
 
   [ Bruno dos Santos de Araujo ]

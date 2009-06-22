@@ -1,0 +1,136 @@
+#! /bin/sh -e
+
+# DP: 
+
+# remove the next line
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p1 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p1 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+Index: python-xml-0.8.4/demo/xbel/adr_parse.py
+===================================================================
+--- python-xml-0.8.4.orig/demo/xbel/adr_parse.py	2009-06-22 14:26:07.000000000 -0400
++++ python-xml-0.8.4/demo/xbel/adr_parse.py	2009-06-22 14:26:28.000000000 -0400
+@@ -4,7 +4,8 @@
+ Small utility to parse Opera bookmark files.
+ Written by Lars Marius Garshol
+ """
+-
++import sys
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ import string,bookmark,time
+ 
+ # --- Constants
+Index: python-xml-0.8.4/demo/xbel/lynx_parse.py
+===================================================================
+--- python-xml-0.8.4.orig/demo/xbel/lynx_parse.py	2009-06-22 14:26:51.000000000 -0400
++++ python-xml-0.8.4/demo/xbel/lynx_parse.py	2009-06-22 14:27:17.000000000 -0400
+@@ -9,6 +9,8 @@
+ #     are stored.)
+ #
+ 
++import sys
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ import bookmark
+ import re
+ 
+Index: python-xml-0.8.4/demo/xbel/msie_parse.py
+===================================================================
+--- python-xml-0.8.4.orig/demo/xbel/msie_parse.py	2009-06-22 14:27:28.000000000 -0400
++++ python-xml-0.8.4/demo/xbel/msie_parse.py	2009-06-22 14:27:45.000000000 -0400
+@@ -9,7 +9,8 @@
+     with current IE shortcut format, which can differ from the format
+     that was assumed here.
+ """
+-
++import sys
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ import bookmark,os,string
+ 
+ DIR = "Favoritter" # Norwegian version
+Index: python-xml-0.8.4/demo/xbel/ns_parse.py
+===================================================================
+--- python-xml-0.8.4.orig/demo/xbel/ns_parse.py	2009-06-22 14:27:58.000000000 -0400
++++ python-xml-0.8.4/demo/xbel/ns_parse.py	2009-06-22 14:28:13.000000000 -0400
+@@ -10,7 +10,8 @@
+ # Cross references?
+ # Descriptions
+ 
+-
++import sys
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ from xml.sax import sax2exts,handler
+ import bookmark
+ import string, htmlentitydefs
+Index: python-xml-0.8.4/demo/xbel/xbel2html.py
+===================================================================
+--- python-xml-0.8.4.orig/demo/xbel/xbel2html.py	2009-06-22 14:28:25.000000000 -0400
++++ python-xml-0.8.4/demo/xbel/xbel2html.py	2009-06-22 14:28:40.000000000 -0400
+@@ -7,7 +7,7 @@
+ #              no checking of the command-line args
+ 
+ import sys
+-
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ from xml.sax import make_parser,saxlib,saxutils
+ 
+ # --- HTML templates
+Index: python-xml-0.8.4/demo/xbel/xbel_parse.py
+===================================================================
+--- python-xml-0.8.4.orig/demo/xbel/xbel_parse.py	2009-06-22 14:29:02.000000000 -0400
++++ python-xml-0.8.4/demo/xbel/xbel_parse.py	2009-06-22 14:29:24.000000000 -0400
+@@ -9,7 +9,8 @@
+ it to standard output in a selected format.
+ 
+ """
+-
++import sys
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ import bookmark
+ import string
+ from xml.sax import saxlib,make_parser
+Index: python-xml-0.8.4/scripts/xmlproc_parse
+===================================================================
+--- python-xml-0.8.4.orig/scripts/xmlproc_parse	2009-06-22 14:29:39.000000000 -0400
++++ python-xml-0.8.4/scripts/xmlproc_parse	2009-06-22 14:30:06.000000000 -0400
+@@ -30,6 +30,7 @@
+ # --- INITIALIZATION
+ 
+ import sys,getopt
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+ from xml.parsers.xmlproc import xmlproc, _outputters
+ 
+ # --- Interpreting options
+Index: python-xml-0.8.4/scripts/xmlproc_val
+===================================================================
+--- python-xml-0.8.4.orig/scripts/xmlproc_val	2009-06-22 14:30:17.000000000 -0400
++++ python-xml-0.8.4/scripts/xmlproc_val	2009-06-22 14:30:46.000000000 -0400
+@@ -32,8 +32,9 @@
+   and XMLSOCATALOG will be used (in that order).
+ """
+ 
+-from xml.parsers.xmlproc import xmlval,catalog,xcatalog,xmlproc,_outputters
+ import sys, getopt, os, string
++sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
++from xml.parsers.xmlproc import xmlval,catalog,xcatalog,xmlproc,_outputters
+ 
+ # --- Utilities
+ 

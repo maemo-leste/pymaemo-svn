@@ -1,0 +1,8 @@
+#! /bin/sh
+
+set -e
+
+#DEBHELPER#
+
+# left over by an early python-central version?
+rm -rf /usr/lib/python2.[345]/site-packages/_xmlplus
