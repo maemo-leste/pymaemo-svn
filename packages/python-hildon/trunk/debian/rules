@@ -13,6 +13,7 @@ include /usr/share/cdbs/1/class/python-distutils.mk
 
 DEB_DESTDIR=$(CURDIR)/debian/tmp/
 DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
+DEB_PYTHON_INSTALL_ARGS_ALL = --no-compile -O0 --install-layout=deb
 
 #install/python-hildon-tests::
 #	cp -r $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/tmp/usr/share/python-hildon-tests
