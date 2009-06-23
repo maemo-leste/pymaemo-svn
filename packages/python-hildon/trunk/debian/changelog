@@ -1,3 +1,13 @@
+python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET.
+  * Packaging fixes:
+    + debian/rules: remove unnecessary DEB_DESTDIR.
+    + debian/rules: remove hardcoded reference to Python 2.5.
+    + debian/rules: normalizer interpreter lines in Python scripts.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 23 Jun 2009 11:57:38 -0400
+
 python-hildon (0.9.0-1maemo8) unstable; urgency=low
 
   [ Lauro Moura ]
