@@ -120,6 +120,20 @@ pygobject (2.15.4-1) experimental; urgency=low
 
  -- Josselin Mouette <joss@debian.org>  Wed, 12 Nov 2008 15:49:34 +0100
 
+pygobject (2.14.2-1maemo2) unstable; urgency=low
+
+  * Add pymaemo specific patches:
+    - 05-change_pygconstant_strip_prefix.patch
+    - 07-fix-lambda-expression-broken.patch
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue, 09 Dec 2008 09:44:14 -0400
+
+pygobject (2.14.2-1maemo1) unstable; urgency=low
+
+  * Add Conflicts/Replaces for "python2.5-gobject (<< ${binary:Version})".
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 11 Nov 2008 10:25:22 -0400
+
 pygobject (2.14.2-1) unstable; urgency=low
 
   * Switch to quilt; build-depend on quilt.
