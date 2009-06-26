@@ -2,6 +2,9 @@ cython (0.9.8-1maemo5) unstable; urgency=low
 
   * Remove hardcoded 'site-packages' paths allowing install without
     problems in either python2.5 ou python2.6
+  * debian/rules:
+    - Drop fixed version passed to cdbs_python_compile_version
+    - Pass --install-layout=deb flag to setup.py via CDBS
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  8 Jun 2009 15:20:50 -0400
 
