@@ -4,6 +4,7 @@ pyclutter (0.8.0-1maemo2) unstable; urgency=low
   * Build-Depends (debian/control):
     - Add libclutter-gtk-0.8-dev (GTK+ widget integration)
     - Add libclutter-cairo-0.8-dev (Cairo integration)
+  * Pass --install-layout=deb flag to setup.py via CDBS in debian/rules 
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 12 Jun 2009 11:26:41 -0400
 
