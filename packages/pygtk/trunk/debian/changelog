@@ -2,6 +2,8 @@ pygtk (2.12.1-6maemo8) unstable; urgency=low
 
   * Remove hardcoded 'site-packages' paths allowing install without
     problems in either python2.5 ou python2.6
+  * Use python-dev instead of python2.5-dev and python-all-dev in
+    Build-Depends of debian/control[.in]
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue,  9 Jun 2009 08:21:01 -0400
 
