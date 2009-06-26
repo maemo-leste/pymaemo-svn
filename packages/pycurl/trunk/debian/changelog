@@ -2,6 +2,7 @@ pycurl (7.18.2-1maemo2) unstable; urgency=low
 
   * Remove hardcoded 'site-packages' paths allowing install without
     problems in either python2.5 ou python2.6
+  * Pass --install-layout=deb to setup.py in debian/rules
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  8 Jun 2009 17:46:00 -0400
 
