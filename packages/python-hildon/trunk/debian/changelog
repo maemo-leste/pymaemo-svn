@@ -1,6 +1,9 @@
 python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
 
   * NOT RELEASED YET.
+  [ Renato Araujo Oliveira Filho ]
+  * Created override for function hildon_program_get_instance
+
   * Packaging fixes:
     + debian/rules: remove unnecessary DEB_DESTDIR.
     + debian/rules: remove hardcoded reference to Python 2.5.

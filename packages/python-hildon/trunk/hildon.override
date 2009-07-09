@@ -629,3 +629,15 @@ _wrap_hildon_window_stack_get_default(PyGObject *self)
 
     return pygobject_new((GObject *)window);
 }
+
+%%
+override hildon_program_get_instance noargs staticmethod
+static PyObject *
+_wrap_hildon_program_get_instance(PyGObject *self)
+{
+    HildonProgram *app;
+
+    app = hildon_program_get_instance();
+
+    return pygobject_new((GObject *)app);
+}

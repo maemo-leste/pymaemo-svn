@@ -12,7 +12,8 @@
 
 ;; From hildon-program.h
 
-(define-function hildon_program_get_instance
+(define-method get_instance
+  (of-object "HildonProgram")
   (c-name "hildon_program_get_instance")
   (return-type "HildonProgram*")
 )
