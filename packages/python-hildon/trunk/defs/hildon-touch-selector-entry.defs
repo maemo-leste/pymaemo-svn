@@ -25,7 +25,10 @@
 
 (define-function hildon_touch_selector_entry_new_text
   (c-name "hildon_touch_selector_entry_new_text")
+  (is-constructor-of "HildonTouchSelectorEntry")
   (return-type "GtkWidget*")
+  (parameters
+  )
 )
 
 (define-method set_text_column

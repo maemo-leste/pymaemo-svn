@@ -68,6 +68,7 @@ ignore hildon_edit_toolbar_new
 ignore hildon_find_toolbar_new
 ignore hildon_gtk_radio_button_new
 ignore hildon_gtk_tree_view_new
+ignore hildon_touch_selector_entry_new
 
 ignore hildon_file_system_special_location_get_display_name
 ignore hildon_file_system_special_location_get_icon
@@ -689,5 +690,30 @@ _wrap_hildon_touch_selector_append_column(PyGObject *self, PyObject *args, PyObj
     return pygobject_new ((GObject *) column);
 }
 
+%%
+override hildon_touch_selector_entry_new_text kwargs
+static int
+_wrap_hildon_touch_selector_entry_new_text(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "text", NULL };
+    gboolean text = FALSE;
 
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "|i:HildonTouchSelectorEntry.__init__",
+                                     kwlist, &text))
+        return -1;
 
+    if (text) {
+        self->obj = (GObject *)hildon_touch_selector_entry_new_text();
+    } else {
+        self->obj = (GObject *)hildon_touch_selector_entry_new();
+    }
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonTouchSelectorEntry object");
+        return -1;
+    }
+
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
