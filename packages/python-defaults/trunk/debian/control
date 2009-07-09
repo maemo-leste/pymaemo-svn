@@ -3,13 +3,13 @@ Section: python
 Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
-Build-Depends-Indep: debhelper (>= 4), libhtml-tree-perl, debiandoc-sgml, python2.6 (>= 2.6.2), python2.6-minimal (>= 2.5.2)
+Build-Depends-Indep: debhelper (>= 4), libhtml-tree-perl, debiandoc-sgml, python2.5 (>= 2.5.2), python2.5-minimal (>= 2.5.2)
 Standards-Version: 3.7.2
 
 Package: python
 Architecture: all
 Priority: standard
-Depends: python2.6 (>= 2.6.2), python-minimal (= ${Source-Version})
+Depends: python2.5 (>= 2.5.2), python-minimal (= ${Source-Version})
 Conflicts: python2.3 (<< 2.3.5-14), python2.1 (<= 2.1.2), python-xmlbase, python-csv, python-bz2, python-base, python-central (<< 0.5.5), ufw (<< 0.27~r416), libboost-python-dev (<< 1.34.1-15ubuntu3), libboost-python1.35-dev (<< 1.35.0-8ubuntu5), qmtest (<< 2.4-5ubuntu1), pitivi (<< 0.11.3-1ubuntu1), libboost-dbg (<< 1.34.1-15ubuntu3), libboost1.35-dbg (<< 1.35.0-8ubuntu5), python-freevo (<< 1.8.1-3ubuntu3), python-aubio (<< 0.3.2-2ubuntu3)
 Replaces: python2.3 (<= 2.3.2-6), python-xmlbase, python-base
 Provides: python-email, python-xmlbase, python-plistlib, python-ctypes, python-wsgiref
@@ -20,12 +20,12 @@ Description: An interactive high-level object-oriented language (default version
  network programming, system administration, sounds and graphics.
  .
  This package is a dependency package, which depends on Debian's default
- Python version (currently v2.6).
+ Python version (currently v2.5).
 
 Package: python-minimal
 Architecture: all
 Priority: standard
-Depends: python2.6-minimal (>= 2.6.2), dpkg (>= 1.13.20)
+Depends: python2.5-minimal (>= 2.5.2), dpkg (>= 1.13.20)
 Recommends: python
 Conflicts: python (<= 2.4-1), python-central (<< 0.5.5)
 Replaces: python (<= 2.4-1)
@@ -37,17 +37,17 @@ Description: A minimal subset of the Python language (default version)
 
 Package: python-examples
 Architecture: all
-Depends: python (= ${Source-Version}), python2.6-examples (>= 2.6.2)
+Depends: python (= ${Source-Version}), python2.5-examples (>= 2.5.2)
 Description: Examples for the Python language (default version)
  Examples, Demos and Tools for Python. These are files included in
  the upstream Python distribution.
  .
  This package is a dependency package, which depends on Debian's default
- Python version (currently v2.6).
+ Python version (currently v2.5).
 
 Package: python-dev
 Architecture: all
-Depends: python (= ${Source-Version}), python2.6-dev (>= 2.6.2)
+Depends: python (= ${Source-Version}), python2.5-dev (>= 2.5.2)
 Description: Header files and a static library for Python (default)
  Header files, a static library and development tools for building
  Python modules, extending the Python interpreter or embedding Python
@@ -57,7 +57,7 @@ Description: Header files and a static library for Python (default)
  version 1.5.2.
  .
  This package is a dependency package, which depends on Debian's default
- Python version (currently v2.6).
+ Python version (currently v2.5).
 
 Package: idle
 Architecture: all
@@ -68,18 +68,18 @@ Description: An IDE for Python using Tkinter (default version)
  IDLE is written using Tkinter and therefore quite platform-independent.
  .
  This package is a dependency package, which depends on Debian's default
- Python version (currently v2.6)
+ Python version (currently v2.5)
 
 Package: python-doc
 Section: doc
 Architecture: all
-Depends: python2.6-doc (>= 2.6.2)
+Depends: python2.5-doc (>= 2.5.2)
 Suggests: python (>= ${Source-Version})
 Conflicts: python-doc-info, python (<< 2.3.5)
 Replaces: python-doc-info, python (<< 2.3.5)
 Description: Documentation for the high-level object-oriented language Python
  This is the official set of documentation for the interactive high-level
- object-oriented language Python (v2.6). All documents are provided
+ object-oriented language Python (v2.5). All documents are provided
  in HTML format, some in info format. The package consists of nine documents:
  .
    * Tutorial
@@ -93,23 +93,23 @@ Description: Documentation for the high-level object-oriented language Python
    * Distributing Python Modules
  .
  This package is a dependency package, which depends on Debian's default
- Python version (currently v2.6).
+ Python version (currently v2.5).
 
 Package: python-dbg
 Architecture: all
 Priority: extra
-Depends: python (= ${Source-Version}), python2.6-dbg (>= 2.6.2)
+Depends: python (= ${Source-Version}), python2.5-dbg (>= 2.5.2)
 Provides: python-gdbm-dbg, python-tk-dbg
-Description: Debug Build of the Python Interpreter (version 2.6)
+Description: Debug Build of the Python Interpreter (version 2.5)
  Python interpreter configured with --pydebug. Dynamically loaded modules are
- searched in /usr/lib/python2.6/lib-dynload/debug first.
+ searched in /usr/lib/python2.5/lib-dynload/debug first.
 
 Package: python-all
 Architecture: all
 Priority: optional
-Depends: python (= ${Source-Version}), python2.6 (>= 2.6.2)
+Depends: python (= ${Source-Version}), python2.5 (>= 2.5.2)
 Description: Package depending on all supported Python runtime versions
- The package currently depends on python2.6, in the future,
+ The package currently depends on python2.5, in the future,
  dependencies on jython (Python for a JVM) and ironpython (Python for Mono)
  may be added.
  .
@@ -119,9 +119,9 @@ Description: Package depending on all supported Python runtime versions
 Package: python-all-dev
 Architecture: all
 Priority: optional
-Depends: python-all (= ${Source-Version}), python-dev (= ${Source-Version}), python2.6-dev (>= 2.6.2) 
+Depends: python-all (= ${Source-Version}), python-dev (= ${Source-Version}), python2.5-dev (>= 2.5.2) 
 Description: Package depending on all supported Python development packages
- The package currently depends on python2.6-dev, in the
+ The package currently depends on python2.5-dev, in the
  future, dependencies on jython (Python for a JVM) and ironpython (Python
  for Mono) may be added.
  .
@@ -131,9 +131,9 @@ Description: Package depending on all supported Python development packages
 Package: python-all-dbg
 Architecture: all
 Priority: optional
-Depends: python-all (= ${Source-Version}), python-dbg (= ${Source-Version}), python2.6-dbg (>= 2.6.2)
+Depends: python-all (= ${Source-Version}), python-dbg (= ${Source-Version}), python2.5-dbg (>= 2.5.2)
 Description: Package depending on all supported Python debugging packages
- The package currently depends on python2.6-dbg, in the
+ The package currently depends on python2.5-dbg, in the
  future, dependencies on jython (Python for a JVM) and ironpython (Python
  for Mono) may be added.
  .

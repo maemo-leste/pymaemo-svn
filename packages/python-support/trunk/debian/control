@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Build-Depends: debhelper (>= 5), cdbs
-Build-Depends-Indep: python (>= 2.6)
+Build-Depends-Indep: python (>= 2.5)
 Standards-Version: 3.8.1
 
 Package: python-support

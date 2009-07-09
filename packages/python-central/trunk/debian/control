@@ -3,7 +3,7 @@ Section: python
 Priority: standard
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Build-Depends: debhelper (>= 5), python (>= 2.6.2)
+Build-Depends: debhelper (>= 5)
 Build-Depends-Indep: perl
 Standards-Version: 3.8.0
 
