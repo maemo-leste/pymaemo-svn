@@ -3,6 +3,8 @@ python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
   * NOT RELEASED YET.
   [ Renato Araujo Oliveira Filho ]
   * Created override for function hildon_program_get_instance
+  * Fixed bug 4646: Implemented override for function
+    hildon.TouchSelector.append_column
 
   * Packaging fixes:
     + debian/rules: remove unnecessary DEB_DESTDIR.
