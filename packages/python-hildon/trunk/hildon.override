@@ -33,6 +33,7 @@ modulename hildon
 import gobject.GObject as PyGObject_Type
 import gtk.Bin as PyGtkBin_Type
 import gtk.Button as PyGtkButton_Type
+import gtk.CellRenderer as PyGtkCellRenderer_Type
 import gtk.Container as PyGtkContainer_Type
 import gtk.Dialog as PyGtkDialog_Type
 import gtk.Entry as PyGtkEntry_Type
@@ -641,3 +642,52 @@ _wrap_hildon_program_get_instance(PyGObject *self)
 
     return pygobject_new((GObject *)app);
 }
+
+%%
+override hildon_touch_selector_append_column kwargs
+static PyObject *
+_wrap_hildon_touch_selector_append_column(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    HildonTouchSelectorColumn *column;
+    GtkCellRenderer *cell;
+    GtkTreeModel *model;
+
+    PyObject *py_cell, *py_model, *key, *item;
+    Py_ssize_t i = 0;
+
+    if (!PyArg_ParseTuple(args,
+                          "O!O!:Hildon.TouchSelector.append_column",
+                          &PyGtkTreeModel_Type, &py_model, &PyGtkCellRenderer_Type, &py_cell))
+        return NULL;
+
+    model = GTK_TREE_MODEL(pygobject_get(py_model));
+    cell = GTK_CELL_RENDERER(pygobject_get(py_cell));
+
+    column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR(self->obj),
+                                                  model, cell, NULL);
+
+    if (column == NULL) {
+        return NULL;
+    }
+
+    if (kwargs) {
+        while (PyDict_Next(kwargs, &i, &key, &item)) {
+            gchar *attr = PyString_AsString(key);
+
+            if (!PyInt_Check(item)) {
+                gchar err[128];
+                g_snprintf(err, sizeof(err),
+                           "%s must be an integer column number", attr);
+                PyErr_SetString(PyExc_TypeError, err);
+                return NULL;
+            }
+            gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(column),
+                                          cell,
+					  attr, PyInt_AsLong(item));
+        }
+    }
+    return pygobject_new ((GObject *) column);
+}
+
+
+
