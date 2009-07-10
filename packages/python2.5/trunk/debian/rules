@@ -532,6 +532,8 @@ ifeq ($(with_interp),static)
 else
 	$(MAKE) -C $(buildd_shared) install prefix=$(CURDIR)/$(d)/usr
 endif
+	-find $(d)/usr/lib/python$(VER) -name '*_failed*.so'
+	find $(d)/usr/lib/python$(VER) -name '*_failed*.so' | xargs -r rm -f
 
 	: # add additional files
 	cp -p Lib/plat-mac/plistlib.py $(d)/usr/lib/python$(VER)/
@@ -932,14 +934,12 @@ endif
 patchdir	= debian/patches
 
 debian_doc_patches = \
-	svn-doc-updates \
 	doc-faq \
 	profile-doc \
 	signal.set_wakeup_fd-doc \
 
 # which patches should be applied?
 debian_patches = \
-	svn-updates \
 	deb-setup \
 	deb-locations \
 	locale-module \
@@ -954,23 +954,20 @@ debian_patches = \
 	subprocess-eintr-safety \
 	webbrowser \
 	linecache \
-	CVE-2007-4965 \
 	hurd-broken-poll \
 	issue961805 \
 	signal.set_wakeup_fd \
-	CVE-2008-1679 \
 	no-zip-on-sys.path \
-	fix-bashisms \
 	issue1813 \
-	CVE-2008-2315 \
-	CVE-2008-2316 \
 	linux2-platforms \
-	CVE-2008-4864 \
+	distutils-install-layout \
 	ctypes_findlib \
 	sbox-ld-preload \
 	sbox-arm-segfault \
 	04-import \
 
+#	svn-updates \
+#	svn-doc-updates \
 #	pydebug-path \
 
 ifeq ($(with_fpectl),yes)

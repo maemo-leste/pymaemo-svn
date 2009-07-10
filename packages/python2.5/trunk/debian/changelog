@@ -1,3 +1,35 @@
+python2.5 (2.5.4-1maemo1) unstable; urgency=low
+
+  * New version from Debian squeeze.
+  * Some cleanup on debian directory.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 10 Jul 2009 11:00:44 -0400
+
+python2.5 (2.5.4-1) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 17 Feb 2009 21:05:41 +0100
+
+python2.5 (2.5.4-1~exp1) experimental; urgency=low
+
+  * New upstream version.
+  * ctypes.util.find_library(): Determine the shared object name of a library
+    using ldconfig only, only fall back to objdump/gcc if ldconfig fails.
+    Raise exceptions if gcc or objdump cannot be found. Closes: #453287,
+    LP: #211962.
+    Packages needing binutils and/or gcc must explicitely depend on it.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 04 Jan 2009 18:37:12 +0100
+
+python2.5 (2.5.3-1~exp1) experimental; urgency=low
+
+  * New upstream version.
+  * Add an option --install-layout=deb, which is ignored for 2.5.
+  * Don't include extensions in the package, which did fail to build.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 21 Dec 2008 07:53:50 +0100
+
 python2.5 (2.5.2-15maemo3) unstable; urgency=low
 
   * Drop patch:
