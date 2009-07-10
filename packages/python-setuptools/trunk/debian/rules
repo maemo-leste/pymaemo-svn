@@ -20,8 +20,8 @@ export DH_OPTIONS
 export LC_ALL=C
 
 PYVERS	:= 2.3 2.5 $(shell pyversions -vr debian/control)
-PYVERS	:= 2.6
-PYVER   := $(shell python2.6 -c 'import sys; print sys.version[:3]')
+PYVERS	:= 2.5
+PYVER   := $(shell python2.5 -c 'import sys; print sys.version[:3]')
 SETUPTOOLSVER=$(shell dpkg-parsechangelog | grep 'Version:' | sed 's,Version: \(.*\)-.*,\1,g')
 export PYVERS
 
@@ -103,15 +103,15 @@ binary-indep: build install
 	DH_PYCENTRAL=include-links dh_pycentral -i
 	cat $(d).substvars
 	( \
-	  echo 'python:Versions=2.5, 2.6'; \
-	  echo 'python:Provides=python2.4-setuptools, python2.5-setuptools, python2.6-setuptools'; \
+	  echo 'python:Versions=2.5'; \
+	  echo 'python:Provides=python2.4-setuptools, python2.5-setuptools'; \
 	  echo 'python:Depends=python (>= 2.5), python (<< 2.7), python-central (>= 0.6.11)'; \
 	) > $(d).substvars
 	cat $(d).substvars
 
 	cat $(d2).substvars
 	( \
-	  echo 'python:Versions=2.5, 2.6'; \
+	  echo 'python:Versions=2.5'; \
 	  echo 'python:Depends=python (>= 2.5), python (<< 2.7), python-central (>= 0.6.11)'; \
 	) > $(d2).substvars
 	cat $(d2).substvars
