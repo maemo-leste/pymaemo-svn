@@ -11,6 +11,7 @@ python-xml (0.8.4-10.1maemo4) unstable; urgency=low
         sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
     - replace-reserved-words.dpatch
       -> Replace "as" keyword (reserved as of python2.6)
+   * Automatically select site-packages for python2.5 and dist-packages for 2.6
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon, 22 Jun 2009 14:23:16 -0400
 
