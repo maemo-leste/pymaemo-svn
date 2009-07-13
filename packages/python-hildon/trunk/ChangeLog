@@ -1,8 +1,6 @@
+For full list of changes, see debian/changelog and SVN commit logs.
+
 0.9.0 - 20090414
-    - Renato Araujo Oliveira Filho <renato.filho@openbossa.org.br>
-      - Created override for function hildon_program_get_instance
-      - Fixed bug 4646: Implemented overrido for function
-      hildon.TouchSelector.append_column
     - Anderson Lizardo <anderson.lizardo@indt.org.br>
       - Update API (now covering most of maemo 5 alpha API)
       - Rewrite setup.py
