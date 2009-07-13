@@ -1,5 +1,8 @@
 python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
 
+  [ Lauro Moura ]
+  * Add hildon.TouchSelectorEntry constructor. Fixes: MB#4647.
+
   [ Renato Araujo Oliveira Filho ]
   * Create override for function hildon_program_get_instance. Fixes: MB#4632.
   * Implement override for function hildon.TouchSelector.append_column. Fixes:
