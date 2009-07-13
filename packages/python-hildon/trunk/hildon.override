@@ -61,6 +61,7 @@ import gtk.VBox as PyGtkVBox_Type
 import gtk.VScale as PyGtkVScale_Type
 import gtk.Widget as PyGtkWidget_Type
 import gtk.Window as PyGtkWindow_Type
+import pynotify.Notification as PyNotifyNotification_Type
 
 %%
 ignore-glob *_get_type

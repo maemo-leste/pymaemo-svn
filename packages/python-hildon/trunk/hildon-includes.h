@@ -1,3 +1,4 @@
+#include "/usr/include/hildon-notify/hildon/hildon-notification.h"
 #include "/usr/include/hildon-fm-2/hildon/hildon-file-details-dialog.h"
 #include "/usr/include/hildon-fm-2/hildon/hildon-fm.h"
 #include "/usr/include/hildon-fm-2/hildon/hildon-file-system-remote-device.h"

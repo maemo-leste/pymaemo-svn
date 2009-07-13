@@ -52,6 +52,7 @@
 (include "defs/hildon-main.defs")
 (include "defs/hildon-marshalers.defs")
 (include "defs/hildon-note.defs")
+(include "defs/hildon-notification.defs")
 (include "defs/hildon-number-editor.defs")
 (include "defs/hildon-pannable-area.defs")
 (include "defs/hildon-picker-button.defs")

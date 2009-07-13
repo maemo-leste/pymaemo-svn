@@ -2,7 +2,7 @@ Source: python-hildon
 Section: python
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libhildon1-dev, libhildonfm2-dev (>= 1:2.11+0m5)
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libhildon1-dev, libhildonfm2-dev (>= 1:2.11+0m5), libhildonnotify-dev (>= 0.0.2), libdbus-1-dev (>= 1.2.12 ), libdbus-glib-1-dev (>= 0.78), python-notify (>= 0.1.1)
 XS-Python-Version: all
 Standards-Version: 3.7.2
 

@@ -3,7 +3,7 @@
 # Author: Anderson Lizardo <anderson.lizardo@indt.org.br>
 set -e
 
-dev_packages="libhildon1-dev libhildonfm2-dev"
+dev_packages="libhildon1-dev libhildonfm2-dev libhildonnotify-dev"
 codegen_dir="$(pkg-config --variable=codegendir pygtk-2.0)"
 # contains some enums used in HildonWeekdayPicker
 extra_headers="/usr/include/glib-2.0/glib/gdate.h"
@@ -65,6 +65,7 @@ set_null_ok defs/hildon-caption.defs hildon_caption_new group
 set_null_ok defs/hildon-caption.defs hildon_caption_new icon
 set_null_ok defs/hildon-button.defs hildon_button_new_with_text title
 set_null_ok defs/hildon-button.defs hildon_button_new_with_text value
+set_null_ok defs/hildon-notification.defs hildon_notification_new category
 set_constructor defs/hildon-button.defs hildon_button_new_with_text HildonButton
 set_constructor defs/hildon-edit-toolbar.defs hildon_edit_toolbar_new_with_text HildonEditToolbar
 set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget HildonGtkRadioButton

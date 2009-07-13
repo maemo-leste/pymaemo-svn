@@ -21,6 +21,7 @@
 
 #include <Python.h>
 
+#include <dbus/dbus.h>
 #include <pygobject.h>
 #include <pygtk/pygtk.h>
 #include <hildon/hildon-defines.h>
@@ -50,13 +51,25 @@ DL_EXPORT(void)
 inithildon(void)
 {
     PyObject *m, *d;
+    static DBusConnection *connection = NULL;
 
     m = Py_InitModule("hildon", pyhildon_functions);
+    if (m == NULL) {
+        PyErr_Print();
+        exit(1);
+    }
     d = PyModule_GetDict(m);
 
     init_pygobject();
     init_pygtk();
-    
+
+    /* Hildon notification requires a working DBus connection to work.
+     * The same happened to hildonhelp some time ago */
+    if (connection == NULL) {
+        connection = dbus_bus_get(DBUS_BUS_SESSION, NULL);
+        dbus_connection_setup_with_g_main(connection, NULL);
+    }
+
     pyhildon_register_classes(d);
     pyhildon_add_constants(m, "HILDON_");
     _add_keysyms(m);
