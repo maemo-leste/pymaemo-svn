@@ -67,6 +67,7 @@ set_constructor defs/hildon-edit-toolbar.defs hildon_edit_toolbar_new_with_text 
 set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget HildonGtkRadioButton
 set_constructor defs/hildon-touch-selector-entry.defs hildon_touch_selector_entry_new_text HildonTouchSelectorEntry
 to_method defs/hildon-window-stack.defs hildon_window_stack_get_default get_default HildonWindowStack
+to_method defs/hildon-program.defs hildon_program_get_instance get_instance HildonProgram
 
 echo Generating hildon-types.c and hildon-types.h...
 glib-mkenums --template hildon-types-template.h $headers $extra_headers > hildon-types.h
