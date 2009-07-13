@@ -7,7 +7,7 @@ import hildon
 class TestHildonGtkButton(unittest.TestCase):
     def test_constructor(self):
         t = hildon.GtkButton(gtk.HILDON_SIZE_AUTO)
-        self.assertTrue(type(t) is hildon.GtkButton)
+        self.assertTrue(isinstance(t, hildon.GtkButton))
         self.assertRaises(TypeError, hildon.GtkButton)
        
 class TestHildonGtkButtonConstructor(unittest.TestCase):
@@ -17,7 +17,7 @@ class TestHildonGtkButtonConstructor(unittest.TestCase):
     
     def testBasic(self):
         a = hildon.GtkRadioButton(self.size_policy)
-        self.assertTrue(type(a) is hildon.GtkRadioButton)
+        self.assertTrue(isinstance(a, hildon.GtkRadioButton))
         self.assertRaises(TypeError, hildon.GtkRadioButton)
 
     def testGroupConstructor(self):
@@ -28,11 +28,11 @@ class TestHildonGtkButtonConstructor(unittest.TestCase):
 class TestHildonGtkTreeView(unittest.TestCase):
     def test_constructor(self):
         t = hildon.GtkTreeView(gtk.HILDON_UI_MODE_NORMAL)
-        self.assertTrue(type(t) is hildon.GtkTreeView)
+        self.assertTrue(isinstance(t, hildon.GtkTreeView))
         s = gtk.ListStore(gobject.TYPE_STRING)
         s.append(["Foo"])
         t = hildon.GtkTreeView(gtk.HILDON_UI_MODE_NORMAL, s)
-        self.assertTrue(type(t) is hildon.GtkTreeView)
+        self.assertTrue(isinstance(t, hildon.GtkTreeView))
         self.assertRaises(TypeError, hildon.GtkTreeView)
         self.assertRaises(TypeError, hildon.GtkTreeView, gtk.HILDON_UI_MODE_NORMAL, None)
 

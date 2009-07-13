@@ -6,9 +6,9 @@ import hildon
 class TestHildonEditToolbar(unittest.TestCase):
     def test_constructor(self):
         t = hildon.EditToolbar()
-        self.assertTrue(type(t) is hildon.EditToolbar)
+        self.assertTrue(isinstance(t, hildon.EditToolbar))
         t = hildon.EditToolbar("Label", "Button")
-        self.assertTrue(type(t) is hildon.EditToolbar)
+        self.assertTrue(isinstance(t, hildon.EditToolbar))
         self.assertRaises(ValueError, hildon.EditToolbar, "Label")
         self.assertRaises(ValueError, hildon.EditToolbar, button="Button")
 

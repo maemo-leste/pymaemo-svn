@@ -7,13 +7,13 @@ import hildon
 class TestHildonFindToolbar(unittest.TestCase):
     def test_constructor(self):
         t = hildon.FindToolbar("Label")
-        self.assertTrue(type(t) is hildon.FindToolbar)
+        self.assertTrue(isinstance(t, hildon.FindToolbar))
 
     def test_constructor_with_model(self):
         s = gtk.ListStore(gobject.TYPE_STRING)
         s.append(["Foo"])
         t = hildon.FindToolbar("Label", s, 0)
-        self.assertTrue(type(t) is hildon.FindToolbar)
+        self.assertTrue(isinstance(t, hildon.FindToolbar))
         self.assertRaises(ValueError, hildon.FindToolbar, "Label", s)
         self.assertRaises(ValueError, hildon.FindToolbar, "Label", s, -2)
         self.assertRaises(ValueError, hildon.FindToolbar, "Label", column=0)

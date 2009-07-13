@@ -1,5 +1,3 @@
-#!/usr/bin/env python2.5
-
 import unittest
 from sys import getrefcount
 
@@ -17,7 +15,7 @@ class TestHildonTouchSelector(unittest.TestCase):
 	
 	cell = gtk.CellRendererPixbuf()
 	col = ts.append_column(store, cell, stock_id=0)
-	self.assertTrue(type(col) is hildon.TouchSelectorColumn)
+	self.assertTrue(isinstance(col, hildon.TouchSelectorColumn))
 
 	
 

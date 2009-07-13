@@ -1,4 +1,3 @@
-#!/usr/bin/env python2.5
 import unittest
 
 import gtk
@@ -7,9 +6,9 @@ import hildon
 class TestHildonWizardDialog(unittest.TestCase):
     def test_constructor(self):
         d = hildon.WizardDialog(gtk.Window(), "Wizard", gtk.Notebook())
-        self.assertTrue(type(d) is hildon.WizardDialog)
+        self.assertTrue(isinstance(d, hildon.WizardDialog))
         d = hildon.WizardDialog(None, "Wizard", gtk.Notebook())
-        self.assertTrue(type(d) is hildon.WizardDialog)
+        self.assertTrue(isinstance(d, hildon.WizardDialog))
 
     def test_set_page_func(self):
         d = hildon.WizardDialog(None, "Wizard", gtk.Notebook())
