@@ -1,5 +1,8 @@
 python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
 
+  [ Bruno dos Santos de Araujo ]
+  * Implement missing GTK constructors (Fixes: MB#4628)
+
   [ Lauro Moura ]
   * Add hildon.TouchSelectorEntry constructor. Fixes: MB#4647.
 

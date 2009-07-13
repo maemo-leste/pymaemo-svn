@@ -71,3 +71,86 @@
     '("GtkTreeModel*" "model" (default "NULL"))
   )
 )
+
+(define-object GtkMenu
+  (in-module "Hildon")
+  (parent "GtkMenu")
+  (c-name "HildonGtkMenu")
+  (gtype-id "GTK_TYPE_MENU")
+)
+
+(define-function hildon_gtk_menu_new
+  (c-name "hildon_gtk_menu_new")
+  (is-constructor-of "GtkMenu")
+  (return-type "GtkWidget*")
+)
+
+(define-object GtkToggleButton
+  (in-module "Hildon")
+  (parent "GtkToggleButton")
+  (c-name "HildonGtkToggleButton")
+  (gtype-id "GTK_TYPE_TOGGLE_BUTTON")
+)
+
+(define-function hildon_gtk_toggle_button_new
+  (c-name "hildon_gtk_toggle_button_new")
+  (is-constructor-of "GtkToggleButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+  )
+)
+
+(define-object GtkHScale
+  (in-module "Hildon")
+  (parent "GtkHScale")
+  (c-name "HildonGtkHScale")
+  (gtype-id "GTK_TYPE_HSCALE")
+)
+
+(define-function hildon_gtk_hscale_new
+  (c-name "hildon_gtk_hscale_new")
+  (is-constructor-of "GtkHScale")
+  (return-type "GtkWidget*")
+)
+
+(define-object GtkVScale
+  (in-module "Hildon")
+  (parent "GtkVScale")
+  (c-name "HildonGtkVScale")
+  (gtype-id "GTK_TYPE_VSCALE")
+)
+
+(define-function hildon_gtk_vscale_new
+  (c-name "hildon_gtk_vscale_new")
+  (is-constructor-of "GtkVScale")
+  (return-type "GtkWidget*")
+)
+
+(define-object GtkIconView
+  (in-module "Hildon")
+  (parent "GtkIconView")
+  (c-name "HildonGtkIconView")
+  (gtype-id "GTK_TYPE_ICON_VIEW")
+)
+
+;(define-function hildon_gtk_icon_view_new
+;  (c-name "hildon_gtk_icon_view_new")
+;  (is-constructor-of "GtkIconView")
+;  (return-type "GtkWidget*")
+;  (parameters
+;    '("HildonUIMode" "mode")
+;  )
+;)
+
+(define-function hildon_gtk_icon_view_new_with_model
+  (c-name "hildon_gtk_icon_view_new_with_model")
+  (is-constructor-of "GtkIconView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonUIMode" "mode")
+    '("GtkTreeModel*" "model" (default "NULL"))
+  )
+)
+
+

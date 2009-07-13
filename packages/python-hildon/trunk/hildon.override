@@ -40,6 +40,7 @@ import gtk.Entry as PyGtkEntry_Type
 import gtk.EventBox as PyGtkEventBox_Type
 import gtk.FileFilter as PyGtkFileFilter_Type
 import gtk.HBox as PyGtkHBox_Type
+import gtk.HScale as PyGtkHScale_Type
 import gtk.IconView as PyGtkIconView_Type
 import gtk.Label as PyGtkLabel_Type
 import gtk.ListStore as PyGtkListStore_Type
@@ -52,10 +53,12 @@ import gtk.ScrolledWindow as PyGtkScrolledWindow_Type
 import gtk.SizeGroup as PyGtkSizeGroup_Type
 import gtk.TextBuffer as PyGtkTextBuffer_Type
 import gtk.TextView as PyGtkTextView_Type
+import gtk.ToggleButton as PyGtkToggleButton_Type
 import gtk.Toolbar as PyGtkToolbar_Type
 import gtk.TreeModel as PyGtkTreeModel_Type
 import gtk.TreeView as PyGtkTreeView_Type
 import gtk.VBox as PyGtkVBox_Type
+import gtk.VScale as PyGtkVScale_Type
 import gtk.Widget as PyGtkWidget_Type
 import gtk.Window as PyGtkWindow_Type
 
@@ -68,6 +71,7 @@ ignore hildon_edit_toolbar_new
 ignore hildon_find_toolbar_new
 ignore hildon_gtk_radio_button_new
 ignore hildon_gtk_tree_view_new
+ignore hildon_gtk_icon_view_new
 ignore hildon_touch_selector_entry_new
 
 ignore hildon_file_system_special_location_get_display_name
@@ -587,6 +591,33 @@ _wrap_hildon_edit_toolbar_new_with_text(PyGObject *self, PyObject *args, PyObjec
     }
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create HildonEditToolbar object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_gtk_icon_view_new_with_model kwargs
+static int
+_wrap_hildon_gtk_icon_view_new_with_model(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "mode", "model", NULL };
+    PyObject *py_mode = NULL;
+    PyGObject *model = NULL;
+    HildonUIMode mode;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O|O!:HildonGtkIconView.__init__", kwlist, &py_mode, &PyGtkTreeModel_Type, &model))
+        return -1;
+    if (pyg_enum_get_value(HILDON_TYPE_UI_MODE, py_mode, (gpointer)&mode))
+        return -1;
+    if (model == NULL) {
+        self->obj = (GObject *)hildon_gtk_icon_view_new(mode);
+    } else {
+        self->obj = (GObject *)hildon_gtk_icon_view_new_with_model(mode, GTK_TREE_MODEL(model->obj));
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonGtkIconView object");
         return -1;
     }
     pygobject_register_wrapper((PyObject *)self);
