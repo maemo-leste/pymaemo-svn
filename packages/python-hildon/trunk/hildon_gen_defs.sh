@@ -25,6 +25,7 @@ done
 $codegen_dir/createdefs.py hildon.defs hildon-extras.defs defs/*.defs
 
 # Apply some transformations to the generated .defs
+# Mark parameter as optional
 function set_null_ok()
 {
 	defs_file=$1
@@ -34,6 +35,7 @@ function set_null_ok()
 	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
 	rm $defs_file.bak
 }
+# Turn a method into a constructor
 function set_constructor()
 {
 	defs_file=$1
@@ -43,6 +45,7 @@ function set_constructor()
 	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
 	rm $defs_file.bak
 }
+# Turn a function into a method of a class
 function to_method()
 {
 	defs_file=$1
