@@ -1,7 +1,7 @@
 /* -*- Mode: C; c-basic-offset: 4 -*-
- * python-hildon - Python bindings for the Hildon toolkit.
+ * python-mafw - Python bindings for the MAFW library.
  *
- *   hildonmodule.c: module wrapping the Hildon library.
+ *   mafwmodule.c: module wrapping the MAFW library.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,30 +22,11 @@
 #include <Python.h>
 
 #include <pygobject.h>
-//#include <pygtk/pygtk.h>
-//#include <hildon/hildon-defines.h>
 
 void pymafw_register_classes(PyObject *d);
 extern void pymafw_add_constants(PyObject *module, const gchar *strip_prefix);
 extern PyMethodDef pymafw_functions[];
-/*
-static void
-_add_keysyms(PyObject *module)
-{
-    PyModule_AddIntConstant(module, "KEY_LEFT", HILDON_HARDKEY_LEFT);
-    PyModule_AddIntConstant(module, "KEY_UP", HILDON_HARDKEY_UP);
-    PyModule_AddIntConstant(module, "KEY_RIGHT", HILDON_HARDKEY_RIGHT);
-    PyModule_AddIntConstant(module, "KEY_DOWN", HILDON_HARDKEY_DOWN);
 
-    PyModule_AddIntConstant(module, "KEY_SELECT", HILDON_HARDKEY_SELECT);
-    PyModule_AddIntConstant(module, "KEY_MENU", HILDON_HARDKEY_MENU);
-    PyModule_AddIntConstant(module, "KEY_HOME", HILDON_HARDKEY_HOME);
-    PyModule_AddIntConstant(module, "KEY_ESC", HILDON_HARDKEY_ESC);
-    PyModule_AddIntConstant(module, "KEY_FULLSCREEN", HILDON_HARDKEY_FULLSCREEN);
-    PyModule_AddIntConstant(module, "KEY_INCREASE", HILDON_HARDKEY_INCREASE);
-    PyModule_AddIntConstant(module, "KEY_DECREASE", HILDON_HARDKEY_DECREASE);
-}
-*/
 DL_EXPORT(void)
 initmafw(void)
 {
@@ -55,9 +36,7 @@ initmafw(void)
     d = PyModule_GetDict(m);
 
     init_pygobject();
-//    init_pygtk();
     
     pymafw_register_classes(d);
     pymafw_add_constants(m, "MAFW_");
-//    _add_keysyms(m);
 }

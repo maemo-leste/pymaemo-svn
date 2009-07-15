@@ -1,7 +1,7 @@
 /* -*- Mode: C; c-basic-offset: 4 -*-
- * python-hildon - Python bindings for the Hildon toolkit.
+ * python-mafw - Python bindings for the MAFW library.
  *
- *   hildon.override: overrides for the hildon module.
+ *   mafw.override: overrides for the mafw module.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

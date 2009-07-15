@@ -1,8 +1,8 @@
 /*** BEGIN file-header ***/
 /* -*- Mode: C; c-basic-offset: 4 -*-
- * python-hildon - Python bindings for the Hildon toolkit.
+ * python-mafw - Python bindings for the MAFW library.
  *
- * hildon-types: definitions that should be in hildon
+ * mafw-types: definitions that should be in mafw
  *               itself but are not yet.
  *
  * This library is free software; you can redistribute it and/or
