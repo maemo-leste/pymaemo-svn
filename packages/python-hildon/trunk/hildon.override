@@ -226,6 +226,18 @@ _wrap_hildon_range_editor_get_range(PyGObject *self)
 }
 
 %%
+override hildon_time_button_get_time noargs
+static PyObject *
+_wrap_hildon_time_button_get_time(PyGObject *self)
+{
+    guint hours, minutes;
+
+    hildon_time_button_get_time(HILDON_TIME_BUTTON(self->obj), &hours, &minutes);
+
+    return Py_BuildValue("(II)", hours, minutes);
+}
+
+%%
 override hildon_time_editor_get_duration_range noargs
 static PyObject *
 _wrap_hildon_time_editor_get_duration_range(PyGObject *self)
