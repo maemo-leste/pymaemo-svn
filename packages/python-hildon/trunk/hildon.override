@@ -781,10 +781,6 @@ _wrap_hildon_window_stack_pop_and_push(PyGObject *self, PyObject *args)
     nwindows = PyInt_AsLong(PyTuple_GetItem(args, 0));
     if (PyErr_Occurred())
         return NULL;
-    /*if (!PyInt_Check(py_nwindows)) {
-        PyErr_SetString(PyExc_TypeError, "first argument must be a integer");
-        return NULL;
-    }*/
     for (i = 1; i < len; i++) {
         PyObject *item = PyTuple_GetItem(args, i);
         if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
