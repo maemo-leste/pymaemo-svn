@@ -1,0 +1,15 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Source
+  (in-module "Mafw")
+  (parent "MafwExtension")
+  (c-name "MafwSource")
+  (gtype-id "MAFW_TYPE_SOURCE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From mafw-source.h
+
+

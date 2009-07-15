@@ -1,0 +1,25 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Registry
+  (in-module "Mafw")
+  (parent "GObject")
+  (c-name "MafwRegistry")
+  (gtype-id "MAFW_TYPE_REGISTRY")
+)
+
+;; Enumerations and flags ...
+
+
+;; From mafw-registry.h
+
+(define-function mafw_registry_get_type
+  (c-name "mafw_registry_get_type")
+  (return-type "GType")
+)
+
+(define-function mafw_registry_get_instance
+  (c-name "mafw_registry_get_instance")
+  (return-type "MafwRegistry*")
+)
+
+

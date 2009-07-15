@@ -1,0 +1,15 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Extension
+  (in-module "Mafw")
+  (parent "GInitiallyUnowned")
+  (c-name "MafwExtension")
+  (gtype-id "MAFW_TYPE_EXTENSION")
+)
+
+;; Enumerations and flags ...
+
+
+;; From mafw-extension.h
+
+
