@@ -719,6 +719,33 @@ _wrap_hildon_window_stack_push_list(PyGObject *self, PyObject *args,
 }
 
 %%
+override hildon_window_stack_push args
+static PyObject *
+_wrap_hildon_window_stack_push(PyGObject *self, PyObject *args)
+{
+    GList *list = NULL;
+    int len, i;
+
+    len = PyTuple_Size(args);
+    if (len == 0) {
+        PyErr_SetString(PyExc_TypeError, "HildonWindowStach.push requires at least one argument");
+        return NULL;
+    }
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyTuple_GetItem(args, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "argument not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+    hildon_window_stack_push_list(HILDON_WINDOW_STACK(self->obj), list);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
 override hildon_program_get_instance noargs staticmethod
 static PyObject *
 _wrap_hildon_program_get_instance(PyGObject *self)

@@ -21,5 +21,12 @@ class TestHildonWindowStack(unittest.TestCase):
         stack.push_list([w1, w2])
         self.assertTrue(stack.get_windows(), [w1, w2])
 
+    def test_push(self):
+        stack = hildon.WindowStack()
+        w1 = hildon.StackableWindow()
+        w2 = hildon.StackableWindow()
+        stack.push(w1, w2)
+        self.assertTrue(stack.get_windows(), [w1, w2])
+
 if __name__ == '__main__':
     unittest.main()

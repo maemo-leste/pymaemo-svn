@@ -22,6 +22,7 @@
 #include <Python.h>
 
 #include <dbus/dbus.h>
+#include <dbus/dbus-glib-lowlevel.h>
 #include <pygobject.h>
 #include <pygtk/pygtk.h>
 #include <hildon/hildon-defines.h>
