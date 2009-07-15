@@ -690,6 +690,126 @@ _wrap_hildon_window_stack_get_windows(PyGObject *self)
 }
 
 %%
+override hildon_window_stack_pop kwargs
+static PyObject *
+_wrap_hildon_window_stack_pop(PyGObject *self, PyObject *args,
+                              PyObject *kwargs)
+{
+    static char *kwlist[] = { "nwindows", NULL };
+    GList *list = NULL;
+    PyObject *py_list;
+    guint nlist;
+    gint nwindows;
+    int i;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:HildonWindowStack.pop",
+                                     kwlist, &nwindows))
+        return NULL;
+
+    hildon_window_stack_pop(HILDON_WINDOW_STACK(self->obj), nwindows, &list);
+    nlist = g_list_length(list);
+    if ((py_list = PyList_New(nlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(list, i));
+        PyList_SetItem(py_list, i, item);
+    }
+    g_list_free(list);
+
+    return py_list;
+}
+
+%%
+override hildon_window_stack_pop_and_push_list kwargs
+static PyObject *
+_wrap_hildon_window_stack_pop_and_push_list(PyGObject *self, PyObject *args,
+                                            PyObject *kwargs)
+{
+    static char *kwlist[] = { "nwindows", "list", NULL };
+    PyObject *py_list;
+    gint nwindows;
+    guint npopped;
+    GList *list = NULL, *popped = NULL;
+    int len, i;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "iO!:HildonWindowStack.pop_and_push_list",
+                                     kwlist, &nwindows, &PyList_Type, &py_list))
+        return NULL;
+
+    len = PyList_Size(py_list);
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyList_GetItem(py_list, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "list item not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+
+    hildon_window_stack_pop_and_push_list(HILDON_WINDOW_STACK(self->obj), nwindows, &popped, list);
+
+    npopped = g_list_length(popped);
+    if ((py_list = PyList_New(npopped)) == NULL)
+        return NULL;
+    for (i = 0; i < npopped; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(popped, i));
+        PyList_SetItem(py_list, i, item);
+    }
+    g_list_free(list);
+
+    return py_list;
+}
+
+%%
+override hildon_window_stack_pop_and_push args
+static PyObject *
+_wrap_hildon_window_stack_pop_and_push(PyGObject *self, PyObject *args)
+{
+    PyObject *py_list;
+    gint nwindows;
+    guint npopped;
+    GList *list = NULL, *popped = NULL;
+    int len, i;
+
+    len = PyTuple_Size(args);
+    if (len == 0) {
+        PyErr_SetString(PyExc_TypeError, "HildonWindowStach.pop_and_push requires at least one argument");
+        return NULL;
+    }
+    nwindows = PyInt_AsLong(PyTuple_GetItem(args, 0));
+    if (PyErr_Occurred())
+        return NULL;
+    /*if (!PyInt_Check(py_nwindows)) {
+        PyErr_SetString(PyExc_TypeError, "first argument must be a integer");
+        return NULL;
+    }*/
+    for (i = 1; i < len; i++) {
+        PyObject *item = PyTuple_GetItem(args, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "argument not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+
+    hildon_window_stack_pop_and_push_list(HILDON_WINDOW_STACK(self->obj), nwindows, &popped, list);
+
+    npopped = g_list_length(popped);
+    if ((py_list = PyList_New(npopped)) == NULL)
+        return NULL;
+    for (i = 0; i < npopped; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(popped, i));
+        PyList_SetItem(py_list, i, item);
+    }
+    g_list_free(list);
+
+    return py_list;
+}
+
+%%
 override hildon_window_stack_push_list kwargs
 static PyObject *
 _wrap_hildon_window_stack_push_list(PyGObject *self, PyObject *args,

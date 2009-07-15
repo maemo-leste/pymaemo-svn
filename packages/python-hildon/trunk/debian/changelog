@@ -16,9 +16,11 @@ python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
     + debian/rules: remove unnecessary DEB_DESTDIR.
     + debian/rules: remove hard-coded reference to Python 2.5.
     + debian/rules: normalize interpreter lines in Python scripts.
-  * Implement overrides for hildon.WindowStack.push,
-    hildon.WindowStack.push_list and
-    hildon.WindowStack.get_windows.
+  * (Fixes: MB#4750) Implement overrides for:
+    + hildon.WindowStack.pop
+    + hildon.WindowStack.push{,_list}
+    + hildon.WindowStack.pop_and_push{,_list}
+    + hildon.WindowStack.get_windows.
 
  -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 23 Jun 2009 11:57:38 -0400
 
