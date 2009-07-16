@@ -171,4 +171,14 @@
   )
 )
 
+(define-method get_current_metadata
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_get_current_metadata")
+  (return-type "none")
+  (parameters
+    '("MafwRendererMetadataResultCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
 

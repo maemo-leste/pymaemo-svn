@@ -25,84 +25,6 @@
 
 #include "mafw-types.h"
 
-/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-renderer.h" */
-
-GType
-mafw_renderer_error_policy_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { MAFW_RENDERER_ERROR_POLICY_CONTINUE, "MAFW_RENDERER_ERROR_POLICY_CONTINUE", "continue" },
-            { MAFW_RENDERER_ERROR_POLICY_STOP, "MAFW_RENDERER_ERROR_POLICY_STOP", "stop" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("MafwRendererErrorPolicy", values);
-    }
-    return etype;
-}
-
-GType
-mafw_play_state_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { Stopped, "Stopped", "stopped" },
-            { Playing, "Playing", "playing" },
-            { Paused, "Paused", "paused" },
-            { Transitioning, "Transitioning", "transitioning" },
-            { _LastMafwPlayState, "_LastMafwPlayState", "-lastmafwplaystate" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("MafwPlayState", values);
-    }
-    return etype;
-}
-
-GType
-mafw_renderer_seek_mode_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { SeekAbsolute, "SeekAbsolute", "absolute" },
-            { SeekRelative, "SeekRelative", "relative" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("MafwRendererSeekMode", values);
-    }
-    return etype;
-}
-
-
-/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-filter.h" */
-
-GType
-mafw_filter_type_get_type (void)
-{
-    static GType etype = 0;
-    if (etype == 0) {
-        static const GEnumValue values[] = {
-            { MAFW_F_INVALID, "MAFW_F_INVALID", "mafw-f-invalid" },
-            { mafw_f_and, "mafw_f_and", "mafw-f-and" },
-            { mafw_f_or, "mafw_f_or", "mafw-f-or" },
-            { mafw_f_not, "mafw_f_not", "mafw-f-not" },
-            { MAFW_F_COMPLEX, "MAFW_F_COMPLEX", "mafw-f-complex" },
-            { mafw_f_exists, "mafw_f_exists", "mafw-f-exists" },
-            { mafw_f_eq, "mafw_f_eq", "mafw-f-eq" },
-            { mafw_f_lt, "mafw_f_lt", "mafw-f-lt" },
-            { mafw_f_gt, "mafw_f_gt", "mafw-f-gt" },
-            { mafw_f_approx, "mafw_f_approx", "mafw-f-approx" },
-            { MAFW_F_LAST, "MAFW_F_LAST", "mafw-f-last" },
-            { 0, NULL, NULL }
-        };
-        etype = g_enum_register_static ("MafwFilterType", values);
-    }
-    return etype;
-}
-
-
 /* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-errors.h" */
 
 GType
@@ -179,12 +101,18 @@ mafw_renderer_error_get_type (void)
             { MAFW_RENDERER_ERROR_MEDIA_NOT_FOUND, "MAFW_RENDERER_ERROR_MEDIA_NOT_FOUND", "media-not-found" },
             { MAFW_RENDERER_ERROR_STREAM_DISCONNECTED, "MAFW_RENDERER_ERROR_STREAM_DISCONNECTED", "stream-disconnected" },
             { MAFW_RENDERER_ERROR_TYPE_NOT_AVAILABLE, "MAFW_RENDERER_ERROR_TYPE_NOT_AVAILABLE", "type-not-available" },
+            { MAFW_RENDERER_ERROR_PLAYBACK, "MAFW_RENDERER_ERROR_PLAYBACK", "playback" },
+            { MAFW_RENDERER_ERROR_UNABLE_TO_PERFORM, "MAFW_RENDERER_ERROR_UNABLE_TO_PERFORM", "unable-to-perform" },
             { MAFW_RENDERER_ERROR_UNSUPPORTED_TYPE, "MAFW_RENDERER_ERROR_UNSUPPORTED_TYPE", "unsupported-type" },
+            { MAFW_RENDERER_ERROR_UNSUPPORTED_RESOLUTION, "MAFW_RENDERER_ERROR_UNSUPPORTED_RESOLUTION", "unsupported-resolution" },
+            { MAFW_RENDERER_ERROR_UNSUPPORTED_FPS, "MAFW_RENDERER_ERROR_UNSUPPORTED_FPS", "unsupported-fps" },
             { MAFW_RENDERER_ERROR_DRM, "MAFW_RENDERER_ERROR_DRM", "drm" },
             { MAFW_RENDERER_ERROR_DEVICE_UNAVAILABLE, "MAFW_RENDERER_ERROR_DEVICE_UNAVAILABLE", "device-unavailable" },
             { MAFW_RENDERER_ERROR_CORRUPTED_FILE, "MAFW_RENDERER_ERROR_CORRUPTED_FILE", "corrupted-file" },
             { MAFW_RENDERER_ERROR_PLAYLIST_PARSING, "MAFW_RENDERER_ERROR_PLAYLIST_PARSING", "playlist-parsing" },
             { MAFW_RENDERER_ERROR_CODEC_NOT_FOUND, "MAFW_RENDERER_ERROR_CODEC_NOT_FOUND", "codec-not-found" },
+            { MAFW_RENDERER_ERROR_VIDEO_CODEC_NOT_FOUND, "MAFW_RENDERER_ERROR_VIDEO_CODEC_NOT_FOUND", "video-codec-not-found" },
+            { MAFW_RENDERER_ERROR_AUDIO_CODEC_NOT_FOUND, "MAFW_RENDERER_ERROR_AUDIO_CODEC_NOT_FOUND", "audio-codec-not-found" },
             { MAFW_RENDERER_ERROR_NO_PLAYLIST, "MAFW_RENDERER_ERROR_NO_PLAYLIST", "no-playlist" },
             { MAFW_RENDERER_ERROR_INDEX_OUT_OF_BOUNDS, "MAFW_RENDERER_ERROR_INDEX_OUT_OF_BOUNDS", "index-out-of-bounds" },
             { MAFW_RENDERER_ERROR_CANNOT_PLAY, "MAFW_RENDERER_ERROR_CANNOT_PLAY", "cannot-play" },
@@ -220,6 +148,84 @@ mafw_source_error_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static ("MafwSourceError", values);
+    }
+    return etype;
+}
+
+
+/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-renderer.h" */
+
+GType
+mafw_renderer_error_policy_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { MAFW_RENDERER_ERROR_POLICY_CONTINUE, "MAFW_RENDERER_ERROR_POLICY_CONTINUE", "continue" },
+            { MAFW_RENDERER_ERROR_POLICY_STOP, "MAFW_RENDERER_ERROR_POLICY_STOP", "stop" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("MafwRendererErrorPolicy", values);
+    }
+    return etype;
+}
+
+GType
+mafw_play_state_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { Stopped, "Stopped", "stopped" },
+            { Playing, "Playing", "playing" },
+            { Paused, "Paused", "paused" },
+            { Transitioning, "Transitioning", "transitioning" },
+            { _LastMafwPlayState, "_LastMafwPlayState", "-lastmafwplaystate" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("MafwPlayState", values);
+    }
+    return etype;
+}
+
+GType
+mafw_renderer_seek_mode_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { SeekAbsolute, "SeekAbsolute", "absolute" },
+            { SeekRelative, "SeekRelative", "relative" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("MafwRendererSeekMode", values);
+    }
+    return etype;
+}
+
+
+/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-filter.h" */
+
+GType
+mafw_filter_type_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GEnumValue values[] = {
+            { MAFW_F_INVALID, "MAFW_F_INVALID", "mafw-f-invalid" },
+            { mafw_f_and, "mafw_f_and", "mafw-f-and" },
+            { mafw_f_or, "mafw_f_or", "mafw-f-or" },
+            { mafw_f_not, "mafw_f_not", "mafw-f-not" },
+            { MAFW_F_COMPLEX, "MAFW_F_COMPLEX", "mafw-f-complex" },
+            { mafw_f_exists, "mafw_f_exists", "mafw-f-exists" },
+            { mafw_f_eq, "mafw_f_eq", "mafw-f-eq" },
+            { mafw_f_lt, "mafw_f_lt", "mafw-f-lt" },
+            { mafw_f_gt, "mafw_f_gt", "mafw-f-gt" },
+            { mafw_f_approx, "mafw_f_approx", "mafw-f-approx" },
+            { MAFW_F_LAST, "MAFW_F_LAST", "mafw-f-last" },
+            { 0, NULL, NULL }
+        };
+        etype = g_enum_register_static ("MafwFilterType", values);
     }
     return etype;
 }

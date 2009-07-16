@@ -5,7 +5,8 @@ set -e
 
 pkg_name="mafw"
 dev_packages="libmafw0-dev libmafw-shared0-dev"
-codegen_dir="$(pkg-config --variable=codegendir pygtk-2.0)"
+codegen_dir="$(pkg-config --variable=codegendir pygtk-2.0)" || \
+{ echo "Could not find codegen. Make sure that python-gtk2-dev is installed"; exit 1; }
 # contains some enums used in HildonWeekdayPicker
 #extra_headers="/usr/include/glib-2.0/glib/gdate.h"
 

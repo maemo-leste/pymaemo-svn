@@ -28,24 +28,6 @@
 #include "mafw-includes.h"
 
 
-/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-renderer.h" */
-
-GType mafw_renderer_error_policy_get_type (void) G_GNUC_CONST;
-#define MAFW_TYPE_RENDERER_ERROR_POLICY (mafw_renderer_error_policy_get_type())
-
-GType mafw_play_state_get_type (void) G_GNUC_CONST;
-#define MAFW_TYPE_PLAY_STATE (mafw_play_state_get_type())
-
-GType mafw_renderer_seek_mode_get_type (void) G_GNUC_CONST;
-#define MAFW_TYPE_RENDERER_SEEK_MODE (mafw_renderer_seek_mode_get_type())
-
-
-/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-filter.h" */
-
-GType mafw_filter_type_get_type (void) G_GNUC_CONST;
-#define MAFW_TYPE_FILTER_TYPE (mafw_filter_type_get_type())
-
-
 /* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-errors.h" */
 
 GType mafw_error_get_type (void) G_GNUC_CONST;
@@ -62,6 +44,24 @@ GType mafw_renderer_error_get_type (void) G_GNUC_CONST;
 
 GType mafw_source_error_get_type (void) G_GNUC_CONST;
 #define MAFW_TYPE_SOURCE_ERROR (mafw_source_error_get_type())
+
+
+/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-renderer.h" */
+
+GType mafw_renderer_error_policy_get_type (void) G_GNUC_CONST;
+#define MAFW_TYPE_RENDERER_ERROR_POLICY (mafw_renderer_error_policy_get_type())
+
+GType mafw_play_state_get_type (void) G_GNUC_CONST;
+#define MAFW_TYPE_PLAY_STATE (mafw_play_state_get_type())
+
+GType mafw_renderer_seek_mode_get_type (void) G_GNUC_CONST;
+#define MAFW_TYPE_RENDERER_SEEK_MODE (mafw_renderer_seek_mode_get_type())
+
+
+/* enumerations from "/usr/include/mafw-1.0/libmafw/mafw-filter.h" */
+
+GType mafw_filter_type_get_type (void) G_GNUC_CONST;
+#define MAFW_TYPE_FILTER_TYPE (mafw_filter_type_get_type())
 
 
 /* Generated data ends here */
