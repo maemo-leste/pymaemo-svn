@@ -1,4 +1,4 @@
-python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
+python-hildon (0.9.0-1maemo9) unstable; urgency=low
 
   [ Bruno dos Santos de Araujo ]
   * Implement missing GTK constructors (Fixes: MB#4628)
@@ -11,7 +11,6 @@ python-hildon (0.9.0-1maemo9) UNRELEASED; urgency=low
   * Implement override for hildon.TouchSelector.append_column. Fixes: MB#4646.
 
   [ Anderson Lizardo ]
-  * NOT RELEASED YET.
   * Packaging fixes:
     + debian/rules: remove unnecessary DEB_DESTDIR.
     + debian/rules: remove hard-coded reference to Python 2.5.
