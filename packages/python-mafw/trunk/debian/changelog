@@ -1,11 +1,5 @@
 python-mafw (0.1-1maemo1) unstable; urgency=low
 
-  * Version bump. 
-
- -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 15 Jul 2009 17:38:50 -0300
-
-python-mafw (0.0.0-1maemo1) unstable; urgency=low
-
   * Initial release.
 
  -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue, 14 Jul 2009 10:28:50 -0300
