@@ -8,7 +8,7 @@ Standards-Version: 3.7.2
 
 Package: python-hildon
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-gtk2
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-gtk2, python-notify
 Conflicts: python2.5-hildon (<< 0.8.9-2maemo1)
 Replaces: python2.5-hildon (<< 0.8.9-2maemo1)
 Provides: ${python:Provides}
