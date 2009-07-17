@@ -74,15 +74,15 @@ class TestAddChildren(unittest.TestCase):
         fi = mafw.Filter(mafw.F_AND)
         self.assertEqual(len(fi.parts), 0)
 
-        fi.add_children(mafw.Filter(mafw.F_EQ, 'att', 'vvv')
+        fi.add_children(mafw.Filter(mafw.F_EQ, 'att', 'vvv'))
         self.assertEqual(len(fi.parts), 1)
 
-        fi.add_children(mafw.Filter(mafw.F_LT, 'yyy', 'xxx')
+        fi.add_children(mafw.Filter(mafw.F_LT, 'yyy', 'xxx'))
+        self.assertEqual(len(fi.parts), 2)
 
         self.assertEqual(fi.parts[0].key(), 'att')
         self.assertEqual(fi.parts[0].value(), 'vvv')
 
-        self.assertEqual(len(fi.parts), 1)
         self.assertEqual(fi.parts[1].type(), mafw.F_LT)
         self.assertEqual(fi.parts[1].key(), 'yyy')
         self.assertEqual(fi.parts[1].value(), 'xxx')
