@@ -17,9 +17,87 @@
   (return-type "GType")
 )
 
-(define-function mafw_registry_get_instance
+(define-method get_instance
+  (of-object "MafwRegistry")
   (c-name "mafw_registry_get_instance")
   (return-type "MafwRegistry*")
+)
+
+(define-method get_renderers
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_get_renderers")
+  (return-type "GList*")
+)
+
+(define-method get_sources
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_get_sources")
+  (return-type "GList*")
+)
+
+(define-method get_extension_by_uuid
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_get_extension_by_uuid")
+  (return-type "MafwExtension*")
+  (parameters
+    '("const-gchar*" "uuid")
+  )
+)
+
+(define-method add_extension
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_add_extension")
+  (return-type "none")
+  (parameters
+    '("MafwExtension*" "extension")
+  )
+)
+
+(define-method remove_extension
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_remove_extension")
+  (return-type "none")
+  (parameters
+    '("MafwExtension*" "extension")
+  )
+)
+
+(define-method load_plugin
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_load_plugin")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("GError**" "error")
+  )
+)
+
+(define-method unload_plugin
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_unload_plugin")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("GError**" "error")
+  )
+)
+
+(define-method list_plugins
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_list_plugins")
+  (return-type "GList*")
+)
+
+(define-method load_plugins
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_load_plugins")
+  (return-type "none")
+)
+
+(define-method unload_plugins
+  (of-object "MafwRegistry")
+  (c-name "mafw_registry_unload_plugins")
+  (return-type "none")
 )
 
 

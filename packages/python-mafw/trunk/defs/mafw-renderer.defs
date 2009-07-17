@@ -27,6 +27,18 @@
   (return-type "GType")
 )
 
+(define-method emit_metadata
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_emit_metadata")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+    '("GType" "type")
+    '("guint" "nargs")
+  )
+  (varargs #t)
+)
+
 (define-method emit_buffering_info
   (of-object "MafwRenderer")
   (c-name "mafw_renderer_emit_buffering_info")

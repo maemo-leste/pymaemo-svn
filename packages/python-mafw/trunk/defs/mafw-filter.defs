@@ -24,4 +24,65 @@
 
 ;; From mafw-filter.h
 
+(define-function mafw_filter_quote
+  (c-name "mafw_filter_quote")
+  (return-type "char*")
+  (parameters
+    '("char-const*" "str")
+  )
+)
+
+(define-function mafw_filter_unquote
+  (c-name "mafw_filter_unquote")
+  (return-type "char*")
+  (parameters
+    '("char-const*" "str")
+  )
+)
+
+(define-function mafw_filter_new
+  (c-name "mafw_filter_new")
+  (is-constructor-of "MafwFilter")
+  (return-type "MafwFilter*")
+  (parameters
+    '("MafwFilterType" "type")
+  )
+  (varargs #t)
+)
+
+(define-method free
+  (of-object "MafwFilter")
+  (c-name "mafw_filter_free")
+  (return-type "none")
+)
+
+(define-method add_children_n
+  (of-object "MafwFilter")
+  (c-name "mafw_filter_add_children_n")
+  (return-type "MafwFilter*")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-function mafw_filter_parse
+  (c-name "mafw_filter_parse")
+  (return-type "MafwFilter*")
+  (parameters
+    '("char-const*" "filter")
+  )
+)
+
+(define-method to_string
+  (of-object "MafwFilter")
+  (c-name "mafw_filter_to_string")
+  (return-type "gchar*")
+)
+
+(define-method copy
+  (of-object "MafwFilter")
+  (c-name "mafw_filter_copy")
+  (return-type "MafwFilter*")
+)
+
 

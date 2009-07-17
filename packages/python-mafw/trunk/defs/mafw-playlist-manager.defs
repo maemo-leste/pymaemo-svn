@@ -1,8 +1,115 @@
 ;; -*- scheme -*-
 ; object definitions ...
+(define-object PlaylistManager
+  (in-module "Mafw")
+  (parent "GObject")
+  (c-name "MafwPlaylistManager")
+  (gtype-id "MAFW_TYPE_PLAYLIST_MANAGER")
+)
+
 ;; Enumerations and flags ...
 
 
 ;; From mafw-playlist-manager.h
+
+(define-function mafw_playlist_manager_get_type
+  (c-name "mafw_playlist_manager_get_type")
+  (return-type "GType")
+)
+
+(define-function mafw_playlist_manager_get
+  (c-name "mafw_playlist_manager_get")
+  (return-type "MafwPlaylistManager*")
+)
+
+(define-method create_playlist
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_create_playlist")
+  (return-type "MafwProxyPlaylist*")
+  (parameters
+    '("gchar-const*" "name")
+    '("GError**" "errp")
+  )
+)
+
+(define-method destroy_playlist
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_destroy_playlist")
+  (return-type "gboolean")
+  (parameters
+    '("MafwProxyPlaylist*" "playlist")
+    '("GError**" "errp")
+  )
+)
+
+(define-method dup_playlist
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_dup_playlist")
+  (return-type "MafwProxyPlaylist*")
+  (parameters
+    '("MafwProxyPlaylist*" "playlist")
+    '("gchar-const*" "new_name")
+    '("GError**" "errp")
+  )
+)
+
+(define-method get_playlist
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_get_playlist")
+  (return-type "MafwProxyPlaylist*")
+  (parameters
+    '("guint" "id")
+    '("GError**" "errp")
+  )
+)
+
+(define-method get_playlists
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_get_playlists")
+  (return-type "GPtrArray*")
+  (parameters
+    '("GError**" "errp")
+  )
+)
+
+(define-method list_playlists
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_list_playlists")
+  (return-type "GArray*")
+  (parameters
+    '("GError**" "errp")
+  )
+)
+
+(define-function mafw_playlist_manager_free_list_of_playlists
+  (c-name "mafw_playlist_manager_free_list_of_playlists")
+  (return-type "none")
+  (parameters
+    '("GArray*" "playlist_list")
+  )
+)
+
+(define-method import
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_import")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "playlist")
+    '("const-gchar*" "base_uri")
+    '("MafwPlaylistManagerImportCb" "cb")
+    '("gpointer" "user_data")
+    '("GError**" "error")
+  )
+)
+
+(define-method cancel_import
+  (of-object "MafwPlaylistManager")
+  (c-name "mafw_playlist_manager_cancel_import")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "import_id")
+    '("GError**" "error")
+  )
+)
 
 

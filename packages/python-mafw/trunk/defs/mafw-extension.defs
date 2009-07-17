@@ -12,4 +12,203 @@
 
 ;; From mafw-extension.h
 
+(define-function mafw_extension_get_type
+  (c-name "mafw_extension_get_type")
+  (return-type "GType")
+)
+
+(define-method set_name
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_name
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_uuid
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_get_uuid")
+  (return-type "const-gchar*")
+)
+
+(define-method get_plugin
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_get_plugin")
+  (return-type "const-gchar*")
+)
+
+(define-method add_property
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_add_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+    '("GType" "type")
+  )
+)
+
+(define-method list_properties
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_list_properties")
+  (return-type "const-GPtrArray*")
+)
+
+(define-method set_property
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method get_property
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_get_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+    '("MafwExtensionPropertyCallback" "cb")
+    '("gpointer" "udata")
+  )
+)
+
+(define-method emit_property_changed
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_emit_property_changed")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method set_property_string
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_string")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_property_boolean
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_boolean")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gboolean" "value")
+  )
+)
+
+(define-method set_property_char
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_char")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gchar" "value")
+  )
+)
+
+(define-method set_property_uchar
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_uchar")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("guchar" "value")
+  )
+)
+
+(define-method set_property_int
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_int")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gint" "value")
+  )
+)
+
+(define-method set_property_uint
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_uint")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("guint" "value")
+  )
+)
+
+(define-method set_property_long
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_long")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("glong" "value")
+  )
+)
+
+(define-method set_property_ulong
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_ulong")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gulong" "value")
+  )
+)
+
+(define-method set_property_int64
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_int64")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gint64" "value")
+  )
+)
+
+(define-method set_property_uint64
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_uint64")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("guint64" "value")
+  )
+)
+
+(define-method set_property_float
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_float")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gfloat" "value")
+  )
+)
+
+(define-method set_property_double
+  (of-object "MafwExtension")
+  (c-name "mafw_extension_set_property_double")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("gdouble" "value")
+  )
+)
+
 

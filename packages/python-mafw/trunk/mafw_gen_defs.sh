@@ -68,7 +68,7 @@ function to_method()
 #set_constructor defs/hildon-edit-toolbar.defs hildon_edit_toolbar_new_with_text HildonEditToolbar
 #set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget HildonGtkRadioButton
 #set_constructor defs/hildon-touch-selector-entry.defs hildon_touch_selector_entry_new_text HildonTouchSelectorEntry
-#to_method defs/hildon-window-stack.defs hildon_window_stack_get_default get_default HildonWindowStack
+to_method defs/mafw-registry.defs mafw_registry_get_instance get_instance MafwRegistry
 
 echo Generating mafw-types.c and mafw-types.h...
 glib-mkenums --template $pkg_name-types-template.h $headers $extra_headers > $pkg_name-types.h

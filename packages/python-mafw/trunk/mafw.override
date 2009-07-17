@@ -33,3 +33,17 @@ modulename mafw
 import gobject.GObject as PyGObject_Type
 import gobject.GObject as PyGInitiallyUnowned_Type
 
+%%
+ignore-glob *_get_type
+
+%%
+override mafw_registry_get_instance noargs staticmethod
+static PyObject *
+_wrap_mafw_registry_get_instance(PyGObject *self)
+{
+    MafwRegistry *registry;
+
+    registry = mafw_registry_get_instance();
+
+    return pygobject_new((GObject *)registry);
+}

@@ -5,4 +5,116 @@
 
 ;; From mafw-metadata.h
 
+(define-function mafw_metadata_new
+  (c-name "mafw_metadata_new")
+  (is-constructor-of "MafwMetadata")
+  (return-type "GHashTable*")
+)
+
+(define-function mafw_metadata_release
+  (c-name "mafw_metadata_release")
+  (return-type "none")
+  (parameters
+    '("GHashTable*" "md")
+  )
+)
+
+(define-function mafw_metadata_add_something
+  (c-name "mafw_metadata_add_something")
+  (return-type "none")
+  (parameters
+    '("GHashTable*" "md")
+    '("const-gchar*" "key")
+    '("GType" "argvtype")
+    '("guint" "nvalues")
+  )
+  (varargs #t)
+)
+
+(define-function mafw_metadata_nvalues
+  (c-name "mafw_metadata_nvalues")
+  (return-type "guint")
+  (parameters
+    '("gconstpointer" "value")
+  )
+)
+
+(define-function mafw_metadata_first
+  (c-name "mafw_metadata_first")
+  (return-type "GValue*")
+  (parameters
+    '("GHashTable*" "md")
+    '("const-gchar*" "key")
+  )
+)
+
+(define-function mafw_metadata_print_one
+  (c-name "mafw_metadata_print_one")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("gpointer" "val")
+    '("const-gchar*" "domain")
+  )
+)
+
+(define-function mafw_metadata_print
+  (c-name "mafw_metadata_print")
+  (return-type "none")
+  (parameters
+    '("GHashTable*" "md")
+    '("const-gchar*" "domain")
+  )
+)
+
+(define-function mafw_metadata_sorting_terms
+  (c-name "mafw_metadata_sorting_terms")
+  (return-type "gchar**")
+  (parameters
+    '("const-gchar*" "sorting")
+  )
+)
+
+(define-function mafw_metadata_relevant_keys
+  (c-name "mafw_metadata_relevant_keys")
+  (return-type "const-gchar**")
+  (parameters
+    '("const-gchar*-const*" "keys")
+    '("const-MafwFilter*" "filter")
+    '("const-gchar*-const*" "sorting")
+  )
+)
+
+(define-function mafw_metadata_ordered
+  (c-name "mafw_metadata_ordered")
+  (return-type "gboolean")
+  (parameters
+    '("MafwFilterType" "rel")
+    '("const-gchar*" "key")
+    '("const-GValue*" "lhsgv")
+    '("const-GValue*" "rhsgv")
+  )
+)
+
+(define-function mafw_metadata_filter
+  (c-name "mafw_metadata_filter")
+  (return-type "gboolean")
+  (parameters
+    '("GHashTable*" "md")
+    '("const-MafwFilter*" "filter")
+    '("MafwMetadataComparator" "funcomp")
+  )
+)
+
+(define-function mafw_metadata_compare
+  (c-name "mafw_metadata_compare")
+  (return-type "gint")
+  (parameters
+    '("GHashTable*" "md1")
+    '("GHashTable*" "md2")
+    '("const-gchar*-const*" "terms")
+    '("MafwMetadataComparator" "funcomp")
+  )
+)
+
 

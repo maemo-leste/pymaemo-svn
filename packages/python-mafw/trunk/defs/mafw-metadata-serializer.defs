@@ -5,4 +5,65 @@
 
 ;; From mafw-metadata-serializer.h
 
+(define-function mafw_metadata_freeze_bary
+  (c-name "mafw_metadata_freeze_bary")
+  (return-type "GByteArray*")
+  (parameters
+    '("GHashTable*" "md")
+  )
+)
+
+(define-function mafw_metadata_thaw_bary
+  (c-name "mafw_metadata_thaw_bary")
+  (return-type "GHashTable*")
+  (parameters
+    '("GByteArray*" "bary")
+  )
+)
+
+(define-function mafw_metadata_freeze
+  (c-name "mafw_metadata_freeze")
+  (return-type "gchar*")
+  (parameters
+    '("GHashTable*" "md")
+    '("gsize*" "sstreamp")
+  )
+)
+
+(define-function mafw_metadata_thaw
+  (c-name "mafw_metadata_thaw")
+  (return-type "GHashTable*")
+  (parameters
+    '("const-gchar*" "stream")
+    '("gsize" "sstream")
+  )
+)
+
+(define-function mafw_metadata_val_freeze_bary
+  (c-name "mafw_metadata_val_freeze_bary")
+  (return-type "none")
+  (parameters
+    '("GByteArray*" "bary")
+    '("gpointer" "val")
+  )
+)
+
+(define-function mafw_metadata_val_thaw_bary
+  (c-name "mafw_metadata_val_thaw_bary")
+  (return-type "gpointer")
+  (parameters
+    '("GByteArray*" "bary")
+    '("gsize*" "i")
+  )
+)
+
+(define-function mafw_metadata_val_freeze
+  (c-name "mafw_metadata_val_freeze")
+  (return-type "gchar*")
+  (parameters
+    '("gpointer" "val")
+    '("gsize*" "sstreamp")
+  )
+)
+
 
