@@ -3,6 +3,8 @@ import pygtk
 pygtk.require('2.0')
 import gobject
 
+#import sqlite3
+
 class Extension(gobject.GObject):
 
     __gproperties__ = {
@@ -85,4 +87,37 @@ class Registry(gobject.GObject):
             Registry._instance = Registry()
         return Registry._instance
 
+class PlaylistManager(gobject.GObject):
+    __gtype_name__ = 'PlaylistManager'
 
+    _instance = None
+
+    def __init__(self):
+        gobject.GObject.__init__(self)
+        self.playlists = []
+        #self.connection = sqlite3.connect('data.db')
+        #self.cursor = self.connection.cursor()
+
+    def get_playlists(self):
+        return self.playlists
+
+    def create_playlist(self, name):
+        self.playlists.append(ProxyPlaylist(name))
+        #self.cursor.execute('insert into playlists values (?)', (name,))
+        #self.connection.commit()
+
+    @classmethod
+    def get(self):
+        if not PlaylistManager._instance:
+            PlaylistManager._instance = PlaylistManager()
+        return PlaylistManager._instance
+
+class ProxyPlaylist(gobject.GObject):
+    __gtype_name__ = 'ProxyPlaylist'
+
+    def __init__(self, name):
+        gobject.GObject.__init__(self)
+        self.name = name
+
+    def get_name(self):
+        return self.name
