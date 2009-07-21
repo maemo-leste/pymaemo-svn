@@ -9,7 +9,7 @@ def app_quit(widget, data=None):
     gtk.main_quit()
 
 def main ():
-    program = hildon.hildon_program_get_instance()
+    program = hildon.Program.get_instance()
     gtk.set_application_name("hildon-touch-selector example program")
 
     window = hildon.StackableWindow()
@@ -25,7 +25,6 @@ def main ():
     # Add button to main window 
     window.add(date_button)
 
-    
     window.connect("destroy", app_quit)
     window.show_all()
     gtk.main()

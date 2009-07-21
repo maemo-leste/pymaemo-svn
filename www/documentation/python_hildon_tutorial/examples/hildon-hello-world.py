@@ -12,7 +12,7 @@ def hello(widget, data):
 def main():
     # Get an instance of HildonProgram. It is an object used to represent an
     # application running in the Hildon framework.
-    program = hildon.hildon_program_get_instance()
+    program = hildon.Program.get_instance()
 
     # create a new hildon window
     window = hildon.Window()

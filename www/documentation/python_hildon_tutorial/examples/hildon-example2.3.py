@@ -16,6 +16,4 @@ while nwindows > 0:
     win_list.append(parent) 
     nwindows -= 1;
 
-#TODO: push_list must be implemented as an override
 stack.push_list(win_list)
-

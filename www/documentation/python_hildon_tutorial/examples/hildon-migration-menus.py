@@ -1,3 +1,6 @@
+# Based on C code from:
+# "Hildon Tutorial" version 2009-04-28
+# Example 10.2, "Migrating a menu"
 
 import gtk
 import hildon
@@ -14,11 +17,12 @@ def view_subview(widget, data=None):
     normal_zoom_button.set_label('Normal Zoom')
     normal_zoom_button.connect('clicked', normal_zoom_cb)
 
+    # FIXME: hildon.TouchSelector does create TouchSelector with single text
+    # column, see MB#4821.
     highlight_selector = hildon.TouchSelector()
-    # Differs from C as we should pass a TreeModel explicitly.
-    # This will be improved in a future release
     col = highlight_selector.append_text_column(gtk.ListStore(str), True)
     col.set_property("text-column", 0)
+
     highlight_selector.append_text('C')
     highlight_selector.append_text('Java')
     highlight_selector.append_text('Python')
@@ -104,10 +108,12 @@ def build_menu():
     button.connect('clicked', help_subview)
     menu.append(button)
 
-    filt = hildon.GtkRadioButton(button_size, filt) #, filt)
+    filt = hildon.GtkRadioButton(button_size, filt)
     filt.set_label('Indentation: Tabs')
     menu.add_filter(filt)
     filt.set_mode(False)
+
+    menu.show_all()
 
     return menu
 
@@ -117,11 +123,11 @@ def main():
     window.set_title('Editor')
 
     menu = build_menu()
-    window.set_main_menu(menu)
+    window.set_app_menu(menu)
 
-    contents = gtk.Label('''This examples shows how an app menu could be
-                            divided.\nMenus that would open new dialogs
-                            are not assigned any action.''')
+    contents = gtk.Label('This example shows how an app menu could be ' +
+                         'divided.\nMenus that would open new dialogs ' +
+                         'are not assigned any action.')
 
     window.add(contents)
 

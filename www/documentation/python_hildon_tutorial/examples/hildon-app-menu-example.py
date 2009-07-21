@@ -29,10 +29,7 @@ def create_menu(label):
         menu.append(button)
 
     # Create filters
-    # FIXME: hildon_gtk_radio_button_new() is not exposed to Python, using a
-    # plain gtk.RadioButton for now
-    #button = hildon.GtkRadioButton(gtk.HILDON_SIZE_AUTO, None)
-    button = gtk.RadioButton()
+    button = hildon.GtkRadioButton(gtk.HILDON_SIZE_AUTO, None)
     button.set_label("filter one")
     button.connect("clicked", menu_button_clicked, label)
     menu.add_filter(button)

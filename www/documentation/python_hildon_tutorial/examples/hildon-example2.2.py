@@ -5,6 +5,6 @@
 import hildon
 
 win = hildon.StackableWindow()
-stack = hildon.hildon_window_stack_get_default()
+stack = hildon.WindowStack.get_default()
 stack.push_1(win)
 

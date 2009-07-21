@@ -4,10 +4,9 @@
 
 import hildon
 
-stack = hildon.hildon_stackable_window_get_default()
 nwindows = 10
-win_list = []
 
-if stack.hildon_stackable_window_size() > nwindows :
-    stack.hildon_window_stack_pop(nwindows, win_list)
+stack = hildon.WindowStack.get_default()
 
+if stack.size() > nwindows:
+    list = stack.pop(nwindows)

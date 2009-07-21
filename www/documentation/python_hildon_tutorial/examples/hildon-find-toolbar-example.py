@@ -23,7 +23,7 @@ def on_history_append(toolbar, user_data):
     print >>sys.stderr, "ADDED TO THE LIST : %s" % item
 
 def main():
-    program = hildon.hildon_program_get_instance()
+    program = hildon.Program.get_instance()
     window = hildon.Window()
 
     program.add_window(window)

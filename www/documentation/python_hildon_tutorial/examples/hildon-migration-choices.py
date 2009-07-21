@@ -1,3 +1,6 @@
+# Based on C code from:
+# "Hildon Tutorial" version 2009-04-28
+# Example Example 10.3, "Migrating choice widgets"
 
 import gtk
 import hildon
@@ -12,6 +15,8 @@ def main():
             hildon.BUTTON_ARRANGEMENT_VERTICAL)
     picker.set_title("Proxy preferences")
 
+    # FIXME: hildon.TouchSelector does create TouchSelector with single text
+    # column, see MB#4821.
     selector = hildon.TouchSelector()
     col = selector.append_text_column(gtk.ListStore(str), True)
     col.set_property("text-column", 0)
