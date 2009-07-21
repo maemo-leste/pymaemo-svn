@@ -17,7 +17,8 @@
   (return-type "GType")
 )
 
-(define-function mafw_playlist_manager_get
+(define-method get
+  (of-object "MafwPlaylistManager")
   (c-name "mafw_playlist_manager_get")
   (return-type "MafwPlaylistManager*")
 )

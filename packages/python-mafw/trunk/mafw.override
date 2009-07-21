@@ -37,6 +37,18 @@ import gobject.GObject as PyGInitiallyUnowned_Type
 ignore-glob *_get_type
 
 %%
+override mafw_playlist_manager_get noargs staticmethod
+static PyObject *
+_wrap_mafw_playlist_manager_get(PyGObject *self)
+{
+    MafwPlaylistManager *manager;
+
+    manager = mafw_playlist_manager_get();
+
+    return pygobject_new((GObject *)manager);
+}
+
+%%
 override mafw_registry_get_instance noargs staticmethod
 static PyObject *
 _wrap_mafw_registry_get_instance(PyGObject *self)

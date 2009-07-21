@@ -1,8 +1,8 @@
 ;; -*- scheme -*-
 ; object definitions ...
-(define-object ProxyPlaylist
+(define-interface ProxyPlaylist
   (in-module "Mafw")
-  (parent "GObject")
+  (prerequisite "GObject")
   (c-name "MafwProxyPlaylist")
   (gtype-id "MAFW_TYPE_PROXY_PLAYLIST")
 )

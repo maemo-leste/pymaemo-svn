@@ -1,4 +1,3 @@
-
 import unittest
 import math
 
@@ -48,3 +47,6 @@ class PlaylistCreation(unittest.TestCase):
         self.manager.destroy_playlist(playlist)
 
         self.assertEqual(len(self.manager.get_playlists()), old_size)
+
+if __name__ == "__main__":
+    unittest.main()

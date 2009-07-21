@@ -1,5 +1,12 @@
 ;; -*- scheme -*-
 ; object definitions ...
+(define-object Playlist
+  (in-module "Mafw")
+  (c-name "MafwPlaylist")
+  (gtype-id "MAFW_TYPE_PLAYLIST")
+  (implements "MafwProxyPlaylist")
+)
+
 ;; Enumerations and flags ...
 
 
