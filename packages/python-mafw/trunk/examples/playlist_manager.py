@@ -1,4 +1,3 @@
-
 import sys
 import logging
 
@@ -68,17 +67,25 @@ functions = {
 }
 
 def dispatch(mainloop, args):
-
     manager = mafw.PlaylistManager.get()
 
-    command = args[0]
-    args = args[1:]
-    functions[command](manager, *args)
+    try:
+        command = args[0]
+        args = args[1:]
+        functions[command](manager, *args)
+    except (TypeError, IndexError, KeyError):
+        print >>sys.stderr, ("Please, provide one of these sets of arguments:\n" +
+                             "  create <playlist-name>\n" +
+                             "  remove <playlist-name>\n" +
+                             "  show <playlist-name>\n" +
+                             "  add-item <playlist-name> <object-id>\n" +
+                             "  remove-item <playlist-name> <object-id>\n")
+    except LookupError:
+        print >>sys.stderr, "Playlist \"%s\" not found" % args[0]
 
     mainloop.quit()
 
 def main(args):
-
     mainloop = gobject.MainLoop()
 
     gobject.timeout_add(100, dispatch, mainloop, args)
