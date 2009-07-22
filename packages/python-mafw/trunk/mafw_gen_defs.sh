@@ -26,25 +26,32 @@ for h in $headers; do
 done
 $codegen_dir/createdefs.py $pkg_name.defs $pkg_name-extras.defs defs/*.defs
 
-# Apply some transformations to the generated .defs
+# show modifications in diff format
+function show_changes()
+{
+	defs_file=$1
+	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
+	rm $defs_file.bak
+}
+# mark parameter as optional
 function set_null_ok()
 {
 	defs_file=$1
 	method=$2
 	param=$3
 	sed -i.bak "/^(define-\(method\|function\) $method\$/,/^)/{/^  (parameters/{:l;N;s/\\n.*\"$param\"/& (null-ok) (default \"NULL\")/;Tl}}" $defs_file
-	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
-	rm $defs_file.bak
+	show_changes $defs_file
 }
+# set function or method as a class constructor
 function set_constructor()
 {
 	defs_file=$1
 	method=$2
 	module=$3
 	sed -i.bak "/^(define-\(method\|function\) $method\$/,/^)/{/^  (c-name \"$method\".*/{s//&\n  (is-constructor-of \"$module\")/}}" $defs_file
-	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
-	rm $defs_file.bak
+	show_changes $defs_file
 }
+# transform a function into a method
 function to_method()
 {
 	defs_file=$1
@@ -52,8 +59,25 @@ function to_method()
 	meth=$3
 	module=$4
 	sed -i.bak "s/^(define-function $fn$/(define-method $meth\n  (of-object \"$module\")/" $defs_file
-	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
-	rm $defs_file.bak
+	show_changes $defs_file
+}
+# mark a object as implementor of a interface
+function implements()
+{
+	defs_file=$1
+	object=$2
+	module=$3
+	implements=$4
+	sed -i.bak "/^(define-object $object\$/,/^)/{s/^  (in-module \"$module\")$/&\n  (implements \"$implements\")/}" $defs_file
+	show_changes $defs_file
+}
+# transform a object into a interface
+function to_interface()
+{
+	defs_file=$1
+	object=$2
+	sed -i.bak "/^(define-object $object\$/,/^)/{s/^(define-object /(define-interface /;s/^  (parent /  (prerequisite /}" $defs_file
+	show_changes $defs_file
 }
 
 #set_null_ok defs/hildon-window.defs set_main_menu menu
@@ -69,6 +93,9 @@ function to_method()
 #set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget HildonGtkRadioButton
 #set_constructor defs/hildon-touch-selector-entry.defs hildon_touch_selector_entry_new_text HildonTouchSelectorEntry
 to_method defs/mafw-registry.defs mafw_registry_get_instance get_instance MafwRegistry
+to_method defs/mafw-playlist-manager.defs mafw_playlist_manager_get get MafwPlaylistManager
+to_interface defs/mafw-proxy-playlist.defs ProxyPlaylist
+implements defs/mafw-playlist.defs Playlist Mafw MafwProxyPlaylist
 
 echo Generating mafw-types.c and mafw-types.h...
 glib-mkenums --template $pkg_name-types-template.h $headers $extra_headers > $pkg_name-types.h
