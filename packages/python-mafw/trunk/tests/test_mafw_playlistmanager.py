@@ -1,5 +1,5 @@
 import unittest
-import math
+import random
 
 import mafw
 
@@ -38,7 +38,7 @@ class PlaylistCreation(unittest.TestCase):
 
     def testCreate(self):
         #TODO improve this...
-        name = 'temp' + str(math.randint(0, 1000))
+        name = 'temp' + str(random.randint(0, 1000))
         old_size = len(self.manager.get_playlists())
         self.manager.create_playlist(name)
         self.assertEqual(len(self.manager.get_playlists()), old_size+1)
