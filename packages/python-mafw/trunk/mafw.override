@@ -59,3 +59,36 @@ _wrap_mafw_registry_get_instance(PyGObject *self)
 
     return pygobject_new((GObject *)registry);
 }
+
+%%
+override mafw_playlist_manager_get_playlists noargs
+static PyObject *
+_wrap_mafw_playlist_manager_get_playlists(PyGObject *self)
+{
+    GPtrArray *list = NULL;
+    PyObject *py_list;
+    GError *errp = NULL;
+    gint i;
+
+    list = mafw_playlist_manager_get_playlists(MAFW_PLAYLIST_MANAGER(self->obj), &errp);
+
+    if (pyg_error_check(&errp))
+        return NULL;
+
+    if (list == NULL) {
+        PyErr_SetString(PyExc_RuntimeError, "could not get playlists");
+        return NULL;
+    }
+
+    if ((py_list = PyList_New(list->len)) == NULL)
+        return NULL;
+
+    for (i = 0; i < list->len; i++) {
+	MafwPlaylist *pl = (MafwPlaylist *)g_ptr_array_index (list, i);
+        PyObject *item = pygobject_new((GObject *)pl);
+	PyList_SetItem(py_list, i, item);
+    }
+    /* FIXME: currently leaks memory for the GPtrArray. */
+
+    return py_list;
+}

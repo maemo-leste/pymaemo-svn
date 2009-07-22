@@ -37,15 +37,17 @@ class PlaylistCreation(unittest.TestCase):
         self.manager = mafw.PlaylistManager.get()
 
     def testCreate(self):
-        #TODO improve this...
-        name = 'temp' + str(random.randint(0, 1000))
+        # remove any existing playlist named "dummy"
+        pls = filter(lambda x: x.get_name() == 'dummy',
+                     self.manager.get_playlists())
+        if pls:
+            self.manager.destroy_playlist(pls[0])
+
         old_size = len(self.manager.get_playlists())
-        self.manager.create_playlist(name)
-        self.assertEqual(len(self.manager.get_playlists()), old_size+1)
-
-        playlist = [x for x in self.manager.get_playlists if x.get_name() == name][0]
+        playlist = self.manager.create_playlist('dummy')
+        self.assertEqual(len(self.manager.get_playlists()), old_size + 1)
         self.manager.destroy_playlist(playlist)
-
+        # FIXME: currently fails because playlist destruction is assynchronous
         self.assertEqual(len(self.manager.get_playlists()), old_size)
 
 if __name__ == "__main__":
