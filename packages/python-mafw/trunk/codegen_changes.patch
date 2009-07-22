@@ -1,0 +1,47 @@
+diff -Naur /usr/share/pygtk/2.0/codegen/h2def.py.orig /usr/share/pygtk/2.0/codegen/h2def.py
+--- /usr/share/pygtk/2.0/codegen/h2def.py.orig	2007-11-01 12:20:22.000000000 -0400
++++ /usr/share/pygtk/2.0/codegen/h2def.py	2009-07-20 15:12:09.000000000 -0400
+@@ -152,6 +152,32 @@
+             objdefs.append(t)
+         pos = m.end()
+ 
++    # alternative Iface pattern
++    pat = re.compile("typedef struct\s+{\s*" +
++                     "GTypeInterface\s+" +
++                     "[^}]*}\s+(" + obj_name_pat + ")Iface\s*;", re.MULTILINE)
++    pos = 0
++    while pos < len(buf):
++        m = pat.search(buf, pos)
++        if not m: break
++        t = (m.group(1), '')
++        t2 = (m.group(1)+'Iface', 'GTypeInterface')
++        # if we find an object structure together with a corresponding
++        # class structure, then we have probably found a GtkObject subclass.
++        if t2 in maybeobjdefs:
++            objdefs.append(t)
++        pos = m.end()
++
++    # typedef GObjectClass ...Class;
++    pat = re.compile("typedef\s+GObjectClass\s+(" + obj_name_pat +
++                     ")Class\s*;", re.MULTILINE)
++    pos = 0
++    while pos < len(buf):
++        m = pat.search(buf, pos)
++        if not m: break
++        objdefs.append((m.group(1), 'GObject'))
++        pos = m.end()
++
+ def sort_obj_defs(objdefs):
+     objdefs.sort()  # not strictly needed, but looks nice
+     pos = 0
+@@ -227,6 +253,10 @@
+     pat = re.compile(r"""^\s*(extern)\s+\"C\"\s+{""", re.MULTILINE)
+     buf = pat.sub('', buf)
+ 
++    # extern declaration
++    pat = re.compile(r"""^\s*extern\s+""", re.MULTILINE)
++    buf = pat.sub('', buf)
++
+     #multiple whitespace
+     pat = re.compile(r"""\s+""", re.MULTILINE)
+     buf = pat.sub(' ', buf)
