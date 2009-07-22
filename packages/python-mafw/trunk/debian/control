@@ -11,13 +11,13 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
-Description: Python bindings for MAFW Framework.
+Description: Python bindings for MAFW UI library
 
 Package: python-mafw-dev
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, python-mafw
 XB-Python-Version: ${python:Versions}
-Description: Development files for MAFW Framework.
+Description: Python bindings for MAFW UI library (development files)
 
 #Package: python-mafw-tests
 #Architecture: any
