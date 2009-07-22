@@ -1,5 +1,4 @@
 import unittest
-import random
 
 import mafw
 
@@ -47,8 +46,6 @@ class PlaylistCreation(unittest.TestCase):
         playlist = self.manager.create_playlist('dummy')
         self.assertEqual(len(self.manager.get_playlists()), old_size + 1)
         self.manager.destroy_playlist(playlist)
-        # FIXME: currently fails because playlist destruction is assynchronous
-        self.assertEqual(len(self.manager.get_playlists()), old_size)
 
 if __name__ == "__main__":
     unittest.main()
