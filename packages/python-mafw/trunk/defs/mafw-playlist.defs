@@ -1,8 +1,7 @@
 ;; -*- scheme -*-
 ; object definitions ...
-(define-object Playlist
+(define-interface Playlist
   (in-module "Mafw")
-  (implements "MafwProxyPlaylist")
   (c-name "MafwPlaylist")
   (gtype-id "MAFW_TYPE_PLAYLIST")
 )

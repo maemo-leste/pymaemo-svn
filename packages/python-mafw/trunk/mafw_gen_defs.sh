@@ -94,8 +94,8 @@ function to_interface()
 #set_constructor defs/hildon-touch-selector-entry.defs hildon_touch_selector_entry_new_text HildonTouchSelectorEntry
 to_method defs/mafw-registry.defs mafw_registry_get_instance get_instance MafwRegistry
 to_method defs/mafw-playlist-manager.defs mafw_playlist_manager_get get MafwPlaylistManager
-to_interface defs/mafw-proxy-playlist.defs ProxyPlaylist
-implements defs/mafw-playlist.defs Playlist Mafw MafwProxyPlaylist
+to_interface defs/mafw-playlist.defs Playlist
+implements defs/mafw-proxy-playlist.defs ProxyPlaylist Mafw MafwPlaylist
 
 echo Generating mafw-types.c and mafw-types.h...
 glib-mkenums --template $pkg_name-types-template.h $headers $extra_headers > $pkg_name-types.h
