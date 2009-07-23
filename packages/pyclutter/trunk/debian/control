@@ -8,7 +8,7 @@ Build-Depends: debhelper (>= 5.0.38), cdbs, python-support (>= 0.5.3), python, p
 Standards-Version: 3.7.3
 
 Package: python-clutter
-Architecture: i386
+Architecture: any
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Depends: ${shlibs:Depends}, ${python:Depends}, ${misc:Depends}
@@ -20,7 +20,7 @@ Description: Open GL based interactive canvas library - Python bindings
  This package contains the Python bindings.
 
 Package: python-clutter-dbg
-Architecture: i386
+Architecture: any
 Priority: extra
 XB-Python-Version: ${python:Versions}
 Depends: python-clutter, ${shlibs:Depends}, ${python:Depends}, ${misc:Depends}
