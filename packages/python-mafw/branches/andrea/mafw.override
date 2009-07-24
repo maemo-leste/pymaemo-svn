@@ -1,0 +1,112 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ * python-mafw - Python bindings for the MAFW library.
+ *
+ *   mafw.override: overrides for the mafw module.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+
+#include "mafw-includes.h"
+#include "mafw-types.h"
+
+%%
+modulename mafw
+
+%%
+import gobject.GObject as PyGObject_Type
+import gobject.GObject as PyGInitiallyUnowned_Type
+
+%%
+ignore-glob *_get_type
+
+%%
+override mafw_playlist_manager_get noargs staticmethod
+static PyObject *
+_wrap_mafw_playlist_manager_get(PyGObject *self)
+{
+    MafwPlaylistManager *manager;
+
+    manager = mafw_playlist_manager_get();
+
+    return pygobject_new((GObject *)manager);
+}
+
+%%
+override mafw_registry_get_instance noargs staticmethod
+static PyObject *
+_wrap_mafw_registry_get_instance(PyGObject *self)
+{
+    MafwRegistry *registry;
+
+    registry = mafw_registry_get_instance();
+
+    return pygobject_new((GObject *)registry);
+}
+
+%%
+override mafw_playlist_manager_get_playlists noargs
+static PyObject *
+_wrap_mafw_playlist_manager_get_playlists(PyGObject *self)
+{
+    GPtrArray *list = NULL;
+    PyObject *py_list;
+    GError *errp = NULL;
+    gint i;
+    MafwPlaylistManager *manager;
+
+    manager = mafw_playlist_manager_get();
+    /*list = mafw_playlist_manager_get_playlists(MAFW_PLAYLIST_MANAGER(self->obj), &errp);*/
+    list = mafw_playlist_manager_get_playlists(manager, &errp);
+
+    if (pyg_error_check(&errp))
+        return NULL;
+
+    if (list == NULL) {
+        PyErr_SetString(PyExc_RuntimeError, "could not get playlists");
+        return NULL;
+    }
+
+    if ((py_list = PyList_New(list->len)) == NULL)
+        return NULL;
+
+    for (i = 0; i < list->len; i++) {
+	MafwPlaylist *pl = (MafwPlaylist *)g_ptr_array_index (list, i);
+        PyObject *item = pygobject_new((GObject *)pl);
+	PyList_SetItem(py_list, i, item);
+    }
+    /* FIXME: currently leaks memory for the GPtrArray. */
+
+    return py_list;
+}
+
+%%
+override mafw_renderer_play kwargs
+static PyObject *
+python_MafwRendererPlaybackCB(MafwRenderer *self, gpointer user_data, const GError *error)
+{
+	return Py_None;
+}
+
+static PyObject *
+_wrap_mafw_renderer_play(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	return Py_None;
+}
+

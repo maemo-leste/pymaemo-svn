@@ -1,0 +1,27 @@
+Source: python-mafw
+Section: python
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libmafw0-dev (>= 0.1.2009.16-1+0m5), libmafw-shared0-dev (>= 0.1.2009.16-1+0m5)
+XS-Python-Version: all
+Standards-Version: 3.7.2
+
+Package: python-mafw
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Python bindings for MAFW UI library
+
+Package: python-mafw-dev
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}, python-mafw
+XB-Python-Version: ${python:Versions}
+Description: Python bindings for MAFW UI library (development files)
+
+#Package: python-mafw-tests
+#Architecture: any
+#Section: tests
+#Depends: ${shlibs:Depends}, ${python:Depends}, python-mafw
+#XB-Python-Version: ${python:Versions}
+#Description: Standalone tests for MAFW Framework.
