@@ -69,11 +69,8 @@ _wrap_mafw_playlist_manager_get_playlists(PyGObject *self)
     PyObject *py_list;
     GError *errp = NULL;
     gint i;
-    MafwPlaylistManager *manager;
-
-    manager = mafw_playlist_manager_get();
-    /*list = mafw_playlist_manager_get_playlists(MAFW_PLAYLIST_MANAGER(self->obj), &errp);*/
-    list = mafw_playlist_manager_get_playlists(manager, &errp);
+    
+    list = mafw_playlist_manager_get_playlists(MAFW_PLAYLIST_MANAGER(self->obj), &errp);
 
     if (pyg_error_check(&errp))
         return NULL;
@@ -97,16 +94,27 @@ _wrap_mafw_playlist_manager_get_playlists(PyGObject *self)
 }
 
 %%
-override mafw_renderer_play kwargs
+override mafw_registry_get_renderers noargs
 static PyObject *
-python_MafwRendererPlaybackCB(MafwRenderer *self, gpointer user_data, const GError *error)
+_wrap_mafw_registry_get_renderers(PyGObject *self)
 {
-	return Py_None;
-}
+    GList *wlist;
+    guint nwlist;
+    int i;
+    PyObject *list;
 
-static PyObject *
-_wrap_mafw_renderer_play(PyGObject *self, PyObject *args, PyObject *kwargs)
-{
-	return Py_None;
+    wlist = mafw_registry_get_renderers(MAFW_REGISTRY(self->obj));
+    nwlist = g_list_length(wlist);
+
+    if ((list = PyList_New(nwlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nwlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        PyList_SetItem(list, i, item);
+    }
+    g_list_free(wlist);
+
+    return list;
 }
 
