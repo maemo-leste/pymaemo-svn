@@ -1,13 +1,15 @@
 import unittest
-
 import mafw
+
+class MyPlugin(mafw.Renderer):
+	__gtype_name__ = 'MyPlugin'
 
 class TestMafwRegistry(unittest.TestCase):
     def test_get_instance(self):
         reg = mafw.Registry.get_instance()
 
-	r1 = mafw.Source()
-	r2 = mafw.Source()
+	r1 = MyPlugin()
+	r2 = MyPlugin()
 	
 	reg.add_extension(r1)
 	reg.add_extension(r2)
