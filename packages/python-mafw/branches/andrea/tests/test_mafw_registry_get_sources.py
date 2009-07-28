@@ -15,7 +15,7 @@ class TestMafwRegistry(unittest.TestCase):
 	reg.add_extension(x1)
 	reg.add_extension(x2)
 	
-	self.assertTrue(reg.get_sources(), [x1, x2])
+	self.assertEquals(set(reg.get_sources()), set([x1, x2]))
 
 if __name__ == "__main__":
     unittest.main()
