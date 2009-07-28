@@ -26,13 +26,3 @@ Description: C-Extensions for Python
  functionality and optimizations.
  .
  Development of Cython is mainly motivated by the needs of Sage.
-
-#Package: cython-tests
-#Section: tests
-#Priority: optional
-#Architecture: any
-#Depends: ${shlibs:Depends}, ${python:Depends}, cython 
-#XB-Python-Version: ${python:Versions}
-#Description: Tests for cython package.
-# Standalone tests for cython package; these tests can be 
-# executed directly by calling /usr/share/cython-tests/runtests.sh.
