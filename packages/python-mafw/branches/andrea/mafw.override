@@ -143,3 +143,28 @@ _wrap_mafw_registry_get_sources(PyGObject *self)
     return list;
 }
 
+%%
+override mafw_registry_list_plugins noargs
+static PyObject *
+_wrap_mafw_registry_list_plugins(PyGObject *self)
+{
+    GList *wlist;
+    guint nwlist;
+    int i;
+    PyObject *list;
+
+    wlist = mafw_registry_list_plugins(MAFW_REGISTRY(self->obj));
+    nwlist = g_list_length(wlist);
+
+    if ((list = PyList_New(nwlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nwlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        PyList_SetItem(list, i, item);
+    }
+    g_list_free(wlist);
+
+    return list;
+}
+
