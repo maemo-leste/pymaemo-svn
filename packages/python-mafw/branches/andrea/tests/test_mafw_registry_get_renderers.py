@@ -1,4 +1,5 @@
 import unittest
+import gobject
 import mafw
 
 class MyPlugin(mafw.Renderer):
@@ -8,13 +9,13 @@ class TestMafwRegistry(unittest.TestCase):
     def test_get_instance(self):
         reg = mafw.Registry.get_instance()
 
-	r1 = MyPlugin()
-	r2 = MyPlugin()
+	x1 = gobject.new(MyPlugin, uuid = 'test1')
+	x2 = gobject.new(MyPlugin, uuid = 'test2')
 	
-	reg.add_extension(r1)
-	reg.add_extension(r2)
+	reg.add_extension(x1)
+	reg.add_extension(x2)
 	
-        self.AssertTrue(registry.get_renderers(), [r1, r2])
+        self.assertTrue(reg.get_renderers(), [x1, x2])
 
 if __name__ == "__main__":
     unittest.main()
