@@ -18,13 +18,3 @@ Description: Python bindings for Internet Connectivity library
  connection.
  .
  This package contains the Python bindings for libconic.
-
-#Package: python-conic-tests
-#Section: tests
-#Priority: optional
-#Architecture: any
-#Depends: ${shlibs:Depends}, ${python:Depends}, python-conic 
-#XB-Python-Version: ${python:Versions}
-#Description: Tests for python-conic package.
-# Standalone tests for python-conic package; these tests can be 
-# executed directly by calling /usr/share/python-conic-tests/runtests.sh.
