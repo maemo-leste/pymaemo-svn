@@ -119,9 +119,9 @@ class SourceBrowsing(object):
 
 def main():
 
-    if len(sys.argv) < 2:
-        sys.stderr.write('Missing object identifier for browsing.\n')
-        sys.exit(1)
+    #if len(sys.argv) < 2:
+    #    sys.stderr.write('Missing object identifier for browsing.\n')
+    #    sys.exit(1)
 
     logging.info('Starting example...')
     app = SourceBrowsing(gobject.MainLoop(), 'aaaa')
