@@ -168,3 +168,29 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
     return list;
 }
 
+#define MAFW_TYPE_PLUGIN_DESCRIPTOR_PUBLIC (py_foobar_get_type())
+
+gpointer
+py_foobar_copy (gpointer foo)
+{
+  g_warning ("you should not copy foobar");
+  return NULL;
+}
+
+void
+py_foobar_free (gpointer foo)
+{
+  g_foobar_destroy (foo);
+}
+
+GType py_foobar_get_type (void)
+{
+  static GType type;
+  if (G_UNLIKELY (!type))
+    type = g_boxed_type_register_static ("PyFoobar",
+                                                       py_foobar_copy,
+                                                       py_foobar_free);
+  return type;
+}
+
+
