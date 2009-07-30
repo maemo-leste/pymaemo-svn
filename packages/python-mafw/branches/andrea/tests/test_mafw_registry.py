@@ -29,13 +29,13 @@ class TestMafwRegistry(unittest.TestCase):
         reg.add_extension(x2)
         self.assertEquals(set(reg.get_renderers()), set([x1, x2]))
         
-    def test_list_plugins(self):
-        reg = mafw.Registry.get_instance()
-        x1 = gobject.new(MyRendererPlugin, uuid = 'MyPlugin1')
-        x2 = gobject.new(MySourcePlugin, uuid = 'MyPlugin2')
-        reg.add_extension(x1)
-        reg.add_extension(x2)
-        self.assertEquals(set(reg.list_plugins()), set([x1, x2]))
+    #def test_list_plugins(self):
+    #    reg = mafw.Registry.get_instance()
+    #    x1 = gobject.new(MyRendererPlugin, uuid = 'MyPlugin1')
+    #    x2 = gobject.new(MySourcePlugin, uuid = 'MyPlugin2')
+    #    reg.add_extension(x1)
+    #    reg.add_extension(x2)
+    #    self.assertEquals(set(reg.list_plugins()), set([x1, x2]))
 
 if __name__ == "__main__":
     unittest.main()

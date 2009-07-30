@@ -1,9 +1,9 @@
 ;; -*- scheme -*-
 ; object definitions ...
-(define-object PluginDescriptorPublic
-    (in-module "Mafw")
-    (parent "GObject")
-    (c-name "MafwPluginDescriptorPublic")
-    (gtype-id "MAFW_TYPE_PLUGIN_DESCRIPTOR_PUBLIC")
-)
+;(define-object PluginDescriptorPublic
+;    (in-module "Mafw")
+;    (parent "GObject")
+;    (c-name "MafwPluginDescriptorPublic")
+;    (gtype-id "MAFW_TYPE_PLUGIN_DESCRIPTOR_PUBLIC")
+;)
 
