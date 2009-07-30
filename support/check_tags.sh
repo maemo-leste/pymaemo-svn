@@ -27,8 +27,9 @@ function find_commit()
     ver=$2
     dsc_url=$3
 
-    if [ ! -f "${pkg}_${ver}.dsc" ]; then
-        (cd $tempdir && dget -u $dsc_url)
+    if [ ! -f $tempdir/${pkg}_${ver}.dsc ]; then
+        echo "Downloading source for $pkg..." >&2
+        (cd $tempdir && dget -q -u $dsc_url >&2 2>/dev/null)
     fi
 
     src_dir=$(ls -d $tempdir/*/ | head -n1) && test -n "$src_dir"
@@ -41,17 +42,16 @@ function find_commit()
         new=packages/$pkg/trunk/debian
     fi
     commits=$(git log --pretty=oneline $new | awk '{print $1}')
-    commit=""
+    commit=
     git log --pretty=oneline $new | awk '{print $1}' | while read c; do
-        git checkout $c 2>/dev/null
-        if diff -qr $old $new 2>/dev/null; then
-            echo "COMMIT FOUND: $c"
+        #echo "Trying commit $c..." >&2
+        git archive $c $new | tar -C $tempdir -xf-
+        if diff -qr $old $tempdir/$new >/dev/null; then
+            echo $c
             break
         fi
     done
-    git checkout master
-
-    rm -rf $src_dir
+    rm -rf $src_dir $tempdir/packages
 }
 
 wget -P $tempdir http://repository.maemo.org/extras-devel/dists/fremantle/free/source/Sources.bz2
@@ -62,7 +62,13 @@ for d in packages/python-hildon/; do
         if [ ! -d "packages/$pkg/tags/$v" ]; then
             echo "ERROR: $pkg: tag for version \"$v\" does not exist"
             dsc_url=$(find_dsc_url http://repository.maemo.org/extras-devel $tempdir/Sources.bz2 $pkg $v)
-            find_commit $pkg $v $dsc_url
+            c=$(find_commit $pkg $v $dsc_url)
+            if [ -z "$c" ]; then
+                echo "ERROR: commit not found for $pkg $v" >&2
+            else
+                git log -n1 $c | awk '/git-svn-id:/{print $2}' | cut -d@ -f2
+                #echo "svn cp packages/$pkg/trunk packages/$pkg/tags/$v"
+            fi
         fi
     done
 done
