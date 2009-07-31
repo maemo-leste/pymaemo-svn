@@ -1,0 +1,89 @@
+
+/* Generated data (by glib-mkenums) */
+
+
+/* enumerations from "/usr/include/conic/conicconnection.h" */
+GType
+con_ic_connect_flags_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GFlagsValue values[] = {
+      { CON_IC_CONNECT_FLAG_NONE, "CON_IC_CONNECT_FLAG_NONE", "none" },
+      { CON_IC_CONNECT_FLAG_AUTOMATICALLY_TRIGGERED, "CON_IC_CONNECT_FLAG_AUTOMATICALLY_TRIGGERED", "automatically-triggered" },
+      { CON_IC_CONNECT_FLAG_UNMANAGED, "CON_IC_CONNECT_FLAG_UNMANAGED", "unmanaged" },
+      { 0, NULL, NULL }
+    };
+    etype = g_flags_register_static ("ConIcConnectFlags", values);
+  }
+  return etype;
+}
+GType
+con_ic_proxy_mode_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CON_IC_PROXY_MODE_NONE, "CON_IC_PROXY_MODE_NONE", "none" },
+      { CON_IC_PROXY_MODE_MANUAL, "CON_IC_PROXY_MODE_MANUAL", "manual" },
+      { CON_IC_PROXY_MODE_AUTO, "CON_IC_PROXY_MODE_AUTO", "auto" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("ConIcProxyMode", values);
+  }
+  return etype;
+}
+GType
+con_ic_proxy_protocol_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CON_IC_PROXY_PROTOCOL_HTTP, "CON_IC_PROXY_PROTOCOL_HTTP", "http" },
+      { CON_IC_PROXY_PROTOCOL_HTTPS, "CON_IC_PROXY_PROTOCOL_HTTPS", "https" },
+      { CON_IC_PROXY_PROTOCOL_FTP, "CON_IC_PROXY_PROTOCOL_FTP", "ftp" },
+      { CON_IC_PROXY_PROTOCOL_SOCKS, "CON_IC_PROXY_PROTOCOL_SOCKS", "socks" },
+      { CON_IC_PROXY_PROTOCOL_RTSP, "CON_IC_PROXY_PROTOCOL_RTSP", "rtsp" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("ConIcProxyProtocol", values);
+  }
+  return etype;
+}
+
+/* enumerations from "/usr/include/conic/conicconnectionevent.h" */
+GType
+con_ic_connection_status_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CON_IC_STATUS_CONNECTED, "CON_IC_STATUS_CONNECTED", "connected" },
+      { CON_IC_STATUS_DISCONNECTED, "CON_IC_STATUS_DISCONNECTED", "disconnected" },
+      { CON_IC_STATUS_DISCONNECTING, "CON_IC_STATUS_DISCONNECTING", "disconnecting" },
+      { CON_IC_STATUS_NETWORK_UP, "CON_IC_STATUS_NETWORK_UP", "network-up" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("ConIcConnectionStatus", values);
+  }
+  return etype;
+}
+GType
+con_ic_connection_error_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CON_IC_CONNECTION_ERROR_NONE, "CON_IC_CONNECTION_ERROR_NONE", "none" },
+      { CON_IC_CONNECTION_ERROR_INVALID_IAP, "CON_IC_CONNECTION_ERROR_INVALID_IAP", "invalid-iap" },
+      { CON_IC_CONNECTION_ERROR_CONNECTION_FAILED, "CON_IC_CONNECTION_ERROR_CONNECTION_FAILED", "connection-failed" },
+      { CON_IC_CONNECTION_ERROR_USER_CANCELED, "CON_IC_CONNECTION_ERROR_USER_CANCELED", "user-canceled" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("ConIcConnectionError", values);
+  }
+  return etype;
+}
+
+/* Generated data ends here */
+
