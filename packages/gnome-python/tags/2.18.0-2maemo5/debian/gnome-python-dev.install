@@ -1,0 +1,5 @@
+usr/lib/python2*/site-packages/gtk-2.0/gnome/__init__.py
+usr/share/pygtk/2.0/defs/gconf.defs
+usr/share/pygtk/2.0/argtypes/gconf-arg-types.py
+usr/lib/pkgconfig
+usr/include/gnome-python-2.0/pygnomevfs.h

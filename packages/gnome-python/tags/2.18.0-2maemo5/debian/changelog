@@ -1,0 +1,67 @@
+gnome-python (2.18.0-2maemo5) unstable; urgency=low
+
+  * Fix debian/copyright
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed, 20 May 2009 15:35:24 -0400
+
+gnome-python (2.18.0-2maemo4) unstable; urgency=low
+
+  [ Bruno dos Santos de Araujo ]
+  * Add Conflicts/Replaces entry in debian/control:
+    - python2.5-gnome (<< 2.18.0-2maemo4)
+  * Small fix in 11-remove-libgnome-from-configure.patch
+
+  [ Anderson Lizardo ]
+  * Put the pymaemo-developers mailing list address in "Maintainer" field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 01 Apr 2009 13:20:20 -0400
+
+gnome-python (2.18.0-2maemo3) unstable; urgency=low
+
+  * Avoid using quilt provided by maemo3-tools devkit.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 30 Dec 2008 10:53:55 -0400
+
+gnome-python (2.18.0-2maemo2) unstable; urgency=low
+
+  * Add python-support to Build-Depends to avoid transitive dependency on this
+    package
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu, 27 Nov 2008 08:08:06 -0400
+
+gnome-python (2.18.0-2maemo1) unstable; urgency=low
+
+  * Change name to gnome-python for consistency
+  * Repackage with CDBS for easier management
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon, 24 Nov 2008 09:12:24 -0400
+
+python-gnome (2.18.0-1osso4) unstable; urgency=low
+
+  * Fallback to autotools while the fakeroot + popen + qemu-eabi bug isn't
+    solved. (Previously was using dsextras classes from pygtk)
+  * debian/rules using dh_install to select files
+  * Now exporting the .pc file.
+  * Added libgtk2.0 and gnome-common to build-depends
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu, 27 Mar 2008 17:07:23 -0300
+
+python-gnome (2.18.0-1osso3) unstable; urgency=low
+
+  * correct copyright file and put it inside /usr/share/doc
+  * fix doc install path
+  * fix missing __init__.py problem
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  6 Nov 2007 16:44:35 -0300
+
+python-gnome (2.18.0-1osso2) unstable; urgency=low
+
+  * fix #972 and #988
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 24 Oct 2007 15:50:03 -0300
+
+python-gnome (2.18.0-1osso1) unstable; urgency=low
+
+  * PythonGnome2.18 release for PyMaemo.
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 13 Apr 2007 09:30:00 -0300
