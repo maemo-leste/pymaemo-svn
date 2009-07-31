@@ -1,0 +1,15 @@
+Hi dear user,
+
+  if you are a programmer looking for documentation on PycURL, this
+is the right place. You know, documentation is boring to be written
+and to keep updated. Indeed PycURL developers are still writing it ;)
+please be patient.
+
+Anyway you could be interested in using libcurl documentation, which is
+provided by libcurl-dev Debian package. Some PycURL functions/objects
+have a direct mapping on the libcurl ones.
+
+i.e. try "man curl_easy_setopt"
+
+ 
+ -- Domenico Andreoli <cavok@debian.org> Wed, 18 Dec 2002 01:57:45 +0100
