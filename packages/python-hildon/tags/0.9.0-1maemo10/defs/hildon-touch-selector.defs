@@ -1,0 +1,271 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TouchSelector
+  (in-module "Hildon")
+  (parent "GtkVBox")
+  (c-name "HildonTouchSelector")
+  (gtype-id "HILDON_TYPE_TOUCH_SELECTOR")
+)
+
+;; Enumerations and flags ...
+
+(define-enum TouchSelectorSelectionMode
+  (in-module "Hildon")
+  (c-name "HildonTouchSelectorSelectionMode")
+  (gtype-id "HILDON_TYPE_TOUCH_SELECTOR_SELECTION_MODE")
+  (values
+    '("single" "HILDON_TOUCH_SELECTOR_SELECTION_MODE_SINGLE")
+    '("multiple" "HILDON_TOUCH_SELECTOR_SELECTION_MODE_MULTIPLE")
+  )
+)
+
+
+;; From hildon-touch-selector.h
+
+(define-function hildon_touch_selector_get_type
+  (c-name "hildon_touch_selector_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_touch_selector_new
+  (c-name "hildon_touch_selector_new")
+  (is-constructor-of "HildonTouchSelector")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_touch_selector_new_text
+  (c-name "hildon_touch_selector_new_text")
+  (return-type "GtkWidget*")
+)
+
+(define-method append_text
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_append_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method prepend_text
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_prepend_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method insert_text
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_insert_text")
+  (return-type "none")
+  (parameters
+    '("gint" "position")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method append_text_column
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_append_text_column")
+  (return-type "HildonTouchSelectorColumn*")
+  (parameters
+    '("GtkTreeModel*" "model")
+    '("gboolean" "center")
+  )
+)
+
+(define-method append_column
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_append_column")
+  (return-type "HildonTouchSelectorColumn*")
+  (parameters
+    '("GtkTreeModel*" "model")
+    '("GtkCellRenderer*" "cell_renderer")
+  )
+  (varargs #t)
+)
+
+(define-method set_column_attributes
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_column_attributes")
+  (return-type "none")
+  (parameters
+    '("gint" "num_column")
+    '("GtkCellRenderer*" "cell_renderer")
+  )
+  (varargs #t)
+)
+
+(define-method remove_column
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_remove_column")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method get_num_columns
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_num_columns")
+  (return-type "gint")
+)
+
+(define-method set_column_selection_mode
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_column_selection_mode")
+  (return-type "none")
+  (parameters
+    '("HildonTouchSelectorSelectionMode" "mode")
+  )
+)
+
+(define-method get_column_selection_mode
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_column_selection_mode")
+  (return-type "HildonTouchSelectorSelectionMode")
+)
+
+(define-method get_column
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_column")
+  (return-type "HildonTouchSelectorColumn*")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method set_active
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_active")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+    '("gint" "index")
+  )
+)
+
+(define-method get_active
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_active")
+  (return-type "gint")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method get_selected
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_selected")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "column")
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method select_iter
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_select_iter")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+    '("GtkTreeIter*" "iter")
+    '("gboolean" "scroll_to")
+  )
+)
+
+(define-method unselect_iter
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_unselect_iter")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method unselect_all
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_unselect_all")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method get_selected_rows
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_selected_rows")
+  (return-type "GList*")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method set_model
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_model")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+    '("GtkTreeModel*" "model")
+  )
+)
+
+(define-method get_model
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_model")
+  (return-type "GtkTreeModel*")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method get_current_text
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_current_text")
+  (return-type "gchar*")
+)
+
+(define-method set_print_func
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_print_func")
+  (return-type "none")
+  (parameters
+    '("HildonTouchSelectorPrintFunc" "func")
+  )
+)
+
+(define-method set_print_func_full
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_print_func_full")
+  (return-type "none")
+  (parameters
+    '("HildonTouchSelectorPrintFunc" "func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "destroy_func")
+  )
+)
+
+(define-method get_print_func
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_print_func")
+  (return-type "HildonTouchSelectorPrintFunc")
+)
+
+(define-method has_multiple_selection
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_has_multiple_selection")
+  (return-type "gboolean")
+)
+
+(define-method center_on_selected
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_center_on_selected")
+  (return-type "none")
+)
+
+

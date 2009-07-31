@@ -1,0 +1,960 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ * python-hildon - Python bindings for the Hildon toolkit.
+ *
+ *   hildon.override: overrides for the hildon module.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+
+#include "hildon-includes.h"
+#include "hildon-types.h"
+
+%%
+modulename hildon
+
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Bin as PyGtkBin_Type
+import gtk.Button as PyGtkButton_Type
+import gtk.CellRenderer as PyGtkCellRenderer_Type
+import gtk.Container as PyGtkContainer_Type
+import gtk.Dialog as PyGtkDialog_Type
+import gtk.Entry as PyGtkEntry_Type
+import gtk.EventBox as PyGtkEventBox_Type
+import gtk.FileFilter as PyGtkFileFilter_Type
+import gtk.HBox as PyGtkHBox_Type
+import gtk.HScale as PyGtkHScale_Type
+import gtk.IconView as PyGtkIconView_Type
+import gtk.Label as PyGtkLabel_Type
+import gtk.ListStore as PyGtkListStore_Type
+import gtk.Menu as PyGtkMenu_Type
+import gtk.Notebook as PyGtkNotebook_Type
+import gtk.ProgressBar as PyGtkProgressBar_Type
+import gtk.RadioButton as PyGtkRadioButton_Type
+import gtk.Scale as PyGtkScale_Type
+import gtk.ScrolledWindow as PyGtkScrolledWindow_Type
+import gtk.SizeGroup as PyGtkSizeGroup_Type
+import gtk.TextBuffer as PyGtkTextBuffer_Type
+import gtk.TextView as PyGtkTextView_Type
+import gtk.ToggleButton as PyGtkToggleButton_Type
+import gtk.Toolbar as PyGtkToolbar_Type
+import gtk.TreeModel as PyGtkTreeModel_Type
+import gtk.TreeView as PyGtkTreeView_Type
+import gtk.VBox as PyGtkVBox_Type
+import gtk.VScale as PyGtkVScale_Type
+import gtk.Widget as PyGtkWidget_Type
+import gtk.Window as PyGtkWindow_Type
+import pynotify.Notification as PyNotifyNotification_Type
+
+%%
+ignore-glob *_get_type
+ignore hildon_gtk_init
+
+ignore hildon_button_new
+ignore hildon_edit_toolbar_new
+ignore hildon_find_toolbar_new
+ignore hildon_gtk_radio_button_new
+ignore hildon_gtk_tree_view_new
+ignore hildon_gtk_icon_view_new
+ignore hildon_touch_selector_entry_new
+
+ignore hildon_file_system_special_location_get_display_name
+ignore hildon_file_system_special_location_get_icon
+ignore hildon_file_system_special_location_rewrite_path
+ignore hildon_file_system_special_location_volumes_changed
+ignore hildon_file_system_voldev_is_visible
+
+%%
+override hildon_calendar_popup_get_date noargs
+static PyObject *
+_wrap_hildon_calendar_popup_get_date(PyGObject *self)
+{
+    guint year, month, day;
+
+    hildon_calendar_popup_get_date(HILDON_CALENDAR_POPUP(self->obj), &year, &month, &day);
+
+    return Py_BuildValue("(III)", year, month, day);
+}
+
+%%
+override hildon_color_button_get_color noargs
+static PyObject *
+_wrap_hildon_color_button_get_color(PyGObject *self)
+{
+    GdkColor color = {0, 0, 0, 0};
+
+    hildon_color_button_get_color(HILDON_COLOR_BUTTON(self->obj), &color);
+    return pyg_boxed_new(GDK_TYPE_COLOR, &color, TRUE, TRUE);
+}
+
+%%
+override hildon_date_button_get_date noargs
+static PyObject *
+_wrap_hildon_date_button_get_date(PyGObject *self)
+{
+    guint year, month, day;
+
+    hildon_date_button_get_date(HILDON_DATE_BUTTON(self->obj), &year, &month, &day);
+
+    return Py_BuildValue("(III)", year, month, day);
+}
+
+%%
+override hildon_date_editor_get_date noargs
+static PyObject *
+_wrap_hildon_date_editor_get_date(PyGObject *self)
+{
+    guint year, month, day;
+
+    hildon_date_editor_get_date(HILDON_DATE_EDITOR(self->obj), &year, &month, &day);
+
+    return Py_BuildValue("(III)", year, month, day);
+}
+
+%%
+override hildon_gtk_radio_button_new_from_widget kwargs
+static int
+_wrap_hildon_gtk_radio_button_new_from_widget(PyGObject *self, PyObject *args,
+                                  PyObject *kwargs)
+{
+    static char *kwlist[] = {"size", "group", NULL};
+    HildonSizeType size;
+    PyObject *py_group = Py_None;
+    GtkRadioButton *group = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "i|O:HildonGtkRadioButton.__init__",
+                                     kwlist, &size, &py_group))
+        return -1;
+
+    if (py_group == Py_None)
+        group = NULL;
+    else if(pygobject_check(py_group, &PyGtkRadioButton_Type))
+        group = GTK_RADIO_BUTTON(pygobject_get(py_group));
+    else {
+        PyErr_SetString(PyExc_TypeError,
+                        "second argument must be a GtkRadioButton or None");
+        return -1;
+    }
+
+    if (group != NULL) {
+        self->obj = (GObject *)hildon_gtk_radio_button_new_from_widget(size, group);
+    } else {
+        self->obj = (GObject *)hildon_gtk_radio_button_new(size, NULL);
+    }
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError,
+                "could not create HildonGtkRadioButton object");
+        return -1;
+    }
+
+    pygobject_register_wrapper((PyObject *)self);
+
+    return 0;
+}
+
+%%
+override hildon_note_new kwargs
+static int
+_wrap_hildon_note_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "note_type", "parent", "description", "icon_name", "progressbar", NULL };
+    PyGObject *parent, *progressbar = NULL;
+    char *note_type, *description, *icon_name = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sO!s|sO!:HildonNote.__init__", kwlist, &note_type, &PyGtkWindow_Type, &parent, &description, &icon_name, &PyGtkProgressBar_Type, &progressbar))
+        return -1;
+    if (strcmp (note_type, "confirmation") == 0) {
+        if (icon_name == NULL) {
+            self->obj = (GObject *)hildon_note_new_confirmation(GTK_WINDOW(parent->obj), description);
+        } else {
+            self->obj = (GObject *)hildon_note_new_confirmation_with_icon_name(GTK_WINDOW(parent->obj), description, icon_name);
+        }
+    } else if (strcmp (note_type, "information") == 0) {
+        if (icon_name == NULL) {
+            self->obj = (GObject *)hildon_note_new_information(GTK_WINDOW(parent->obj), description);
+        } else {
+            self->obj = (GObject *)hildon_note_new_information_with_icon_name(GTK_WINDOW(parent->obj), description, icon_name);
+        }
+    } else if (strcmp (note_type, "cancel") == 0) {
+        if (progressbar == NULL) {
+            PyErr_SetString(PyExc_TypeError, "progress bar must be specified");
+            return -1;
+        } else {
+            self->obj = (GObject *)hildon_note_new_cancel_with_progress_bar(GTK_WINDOW(parent->obj), description, GTK_PROGRESS_BAR(progressbar->obj));
+        }
+    } else {
+        PyErr_SetString(PyExc_ValueError, "unknown note type");
+        return -1;
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonNote object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_range_editor_get_range noargs 
+static PyObject *
+_wrap_hildon_range_editor_get_range(PyGObject *self)
+{
+    gint start, end;
+
+    hildon_range_editor_get_range(HILDON_RANGE_EDITOR(self->obj), &start, &end);
+
+    return Py_BuildValue("(ii)", start, end);
+}
+
+%%
+override hildon_time_button_get_time noargs
+static PyObject *
+_wrap_hildon_time_button_get_time(PyGObject *self)
+{
+    guint hours, minutes;
+
+    hildon_time_button_get_time(HILDON_TIME_BUTTON(self->obj), &hours, &minutes);
+
+    return Py_BuildValue("(II)", hours, minutes);
+}
+
+%%
+override hildon_time_editor_get_duration_range noargs
+static PyObject *
+_wrap_hildon_time_editor_get_duration_range(PyGObject *self)
+{
+    guint min_seconds, max_seconds;
+
+    hildon_time_editor_get_duration_range(HILDON_TIME_EDITOR(self->obj), &min_seconds, &max_seconds);
+
+    return Py_BuildValue("(II)", min_seconds, max_seconds);
+}
+
+%%
+override hildon_time_editor_get_time noargs
+static PyObject *
+_wrap_hildon_time_editor_get_time(PyGObject *self)
+{
+    guint hours, minutes, seconds;
+
+    hildon_time_editor_get_time(HILDON_TIME_EDITOR(self->obj), &hours, &minutes, &seconds);
+
+    return Py_BuildValue("(III)", hours, minutes, seconds);
+}
+
+%%
+override hildon_time_picker_get_time noargs
+static PyObject *
+_wrap_hildon_time_picker_get_time(PyGObject *self)
+{
+    guint hours, minutes;
+
+    hildon_time_picker_get_time(HILDON_TIME_PICKER(self->obj), &hours, &minutes);
+
+    return Py_BuildValue("(II)", hours, minutes);
+}
+
+%%
+override hildon_weekday_picker_set_day kwargs
+static PyObject *
+_wrap_hildon_weekday_picker_set_day(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "day", NULL };
+    PyObject *py_day = NULL;
+    GDateWeekday day;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:HildonWeekdayPicker.set_day", kwlist, &py_day))
+        return NULL;
+    if (pyg_enum_get_value(HILDON_TYPE_DATE_WEEKDAY, py_day, (gpointer)&day))
+        return NULL;
+
+    hildon_weekday_picker_set_day(HILDON_WEEKDAY_PICKER(self->obj), day);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_weekday_picker_unset_day kwargs
+static PyObject *
+_wrap_hildon_weekday_picker_unset_day(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "day", NULL };
+    PyObject *py_day = NULL;
+    GDateWeekday day;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:HildonWeekdayPicker.unset_day", kwlist, &py_day))
+        return NULL;
+    if (pyg_enum_get_value(HILDON_TYPE_DATE_WEEKDAY, py_day, (gpointer)&day))
+        return NULL;
+
+    hildon_weekday_picker_unset_day(HILDON_WEEKDAY_PICKER(self->obj), day);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_weekday_picker_toggle_day kwargs
+static PyObject *
+_wrap_hildon_weekday_picker_toggle_day(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "day", NULL };
+    PyObject *py_day = NULL;
+    GDateWeekday day;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:HildonWeekdayPicker.toggle_day", kwlist, &py_day))
+        return NULL;
+    if (pyg_enum_get_value(HILDON_TYPE_DATE_WEEKDAY, py_day, (gpointer)&day))
+        return NULL;
+
+    hildon_weekday_picker_toggle_day(HILDON_WEEKDAY_PICKER(self->obj), day);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_weekday_picker_isset_day kwargs
+static PyObject *
+_wrap_hildon_weekday_picker_isset_day(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "day", NULL };
+    PyObject *py_day = NULL;
+    int ret;
+    GDateWeekday day;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:HildonWeekdayPicker.isset_day", kwlist, &py_day))
+        return NULL;
+    if (pyg_enum_get_value(HILDON_TYPE_DATE_WEEKDAY, py_day, (gpointer)&day))
+        return NULL;
+
+    ret = hildon_weekday_picker_isset_day(HILDON_WEEKDAY_PICKER(self->obj), day);
+
+    return PyBool_FromLong(ret);
+}
+
+%%
+override hildon_window_set_app_menu kwargs
+
+static PyObject *
+_wrap_hildon_window_set_app_menu(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "menu", NULL };
+    PyGObject *py_menu = NULL;
+    HildonAppMenu *menu = NULL;
+    static PyGObject *current_py_menu = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|O:HildonWindow.set_app_menu", kwlist, &py_menu))
+        return NULL;
+    if ((PyObject *)py_menu == Py_None)
+        menu = NULL;
+    else if (py_menu && pygobject_check(py_menu, &PyHildonAppMenu_Type))
+        menu = HILDON_APP_MENU(py_menu->obj);
+    else if (py_menu) {
+        PyErr_SetString(PyExc_TypeError, "menu should be a HildonAppMenu or None");
+        return NULL;
+    }
+    if (py_menu != current_py_menu) {
+        hildon_window_set_app_menu(HILDON_WINDOW(self->obj), (HildonAppMenu *) menu);
+        if (current_py_menu != NULL) {
+            current_py_menu->obj = NULL;
+            Py_DECREF(current_py_menu);
+        }
+        if (menu == NULL) {
+            current_py_menu = NULL;
+        } else {
+            current_py_menu = py_menu;
+            Py_INCREF(current_py_menu);
+        }
+    }
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_wizard_dialog_set_forward_page_func kwargs
+
+/* borrowed from PyGTK */
+typedef struct {
+    PyObject *func, *data;
+} PyHildonCustomNotify;
+
+/* borrowed from PyGTK */
+void
+pyhildon_custom_destroy_notify(gpointer user_data)
+{
+    PyHildonCustomNotify *cunote = user_data;
+    PyGILState_STATE state;
+
+    g_return_if_fail(user_data);
+    state = pyg_gil_state_ensure();
+    Py_XDECREF(cunote->func);
+    Py_XDECREF(cunote->data);
+    pyg_gil_state_release(state);
+    
+    g_free(cunote);
+}
+
+static gboolean
+python_hildon_page_func(GtkNotebook *notebook, gint current_page, gpointer data)
+{
+    PyHildonCustomNotify *cunote = data;
+    PyObject *py_ret;
+    gboolean ret;
+    PyGILState_STATE state;
+
+    g_assert(cunote->func);
+    state = pyg_gil_state_ensure();
+    py_ret = PyObject_CallFunction(cunote->func, "(NiO)", pygobject_new((GObject *)notebook), current_page, cunote->data);
+    if (py_ret == NULL) {
+        PyErr_Print();
+        ret = FALSE;
+    } else {
+        ret = py_ret == Py_True ? TRUE : FALSE;
+    }
+    pyg_gil_state_release(state);
+    return ret;
+}
+
+static PyObject *
+_wrap_hildon_wizard_dialog_set_forward_page_func(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "page_func", "data", "destroy" , NULL };
+    PyObject *py_page_func, *py_data = Py_None, *py_destroy = Py_None;
+    PyHildonCustomNotify *cunote;
+    PyGILState_STATE state;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O|OO:HildonWizardDialog.set_forward_page_func", kwlist, &py_page_func, &py_data, &py_destroy))
+        return NULL;
+    if (!PyCallable_Check(py_page_func)) {
+        PyErr_SetString(PyExc_TypeError, "page_func must be callable");
+        return NULL;
+    }
+#if 0
+    /* FIXME: implement handling of destroy callback */
+    if (py_destroy != Py_None && !PyCallable_Check(py_destroy)) {
+        PyErr_SetString(PyExc_TypeError, "destroy must be callable or None");
+        return NULL;
+    }
+#endif
+    if (py_destroy != Py_None) {
+        PyErr_SetString(PyExc_NotImplementedError, "destroy callback support not implemented");
+        return NULL;
+    }
+    cunote = g_new0(PyHildonCustomNotify, 1);
+    cunote->func = py_page_func;
+    cunote->data = py_data;
+    Py_INCREF(cunote->func);
+    Py_INCREF(cunote->data);
+    state = pyg_gil_state_ensure();
+    g_object_weak_ref(G_OBJECT(self->obj), (GWeakNotify) pyhildon_custom_destroy_notify, cunote);
+    pyg_gil_state_release(state);
+    /* FIXME: handle destroy callback argument */
+    hildon_wizard_dialog_set_forward_page_func(HILDON_WIZARD_DIALOG(self->obj), python_hildon_page_func, cunote, NULL);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_file_system_model_new kwargs
+static int
+_wrap_hildon_file_system_model_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "ref_widget", "root_dir", NULL };
+    PyGObject *py_ref_widget = NULL, *py_root_dir = NULL;
+    GtkWidget *ref_widget = NULL;
+    char *root_dir = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|OO:HildonFileSystemModel.__init__", kwlist, &py_ref_widget, &py_root_dir))
+        return -1;
+    if ((PyObject *)py_ref_widget == Py_None)
+        ref_widget = NULL;
+    else if (py_ref_widget && pygobject_check(py_ref_widget, &PyGtkWidget_Type))
+        ref_widget = GTK_WIDGET(py_ref_widget->obj);
+    else if (py_ref_widget) {
+        PyErr_SetString(PyExc_TypeError, "ref_widget should be a GtkWidget or None");
+        return -1;
+    }
+    if ((PyObject *)py_root_dir == Py_None)
+        root_dir = NULL;
+    else if (py_root_dir && PyString_Check(py_root_dir))
+        root_dir = PyString_AsString((PyObject *)py_root_dir);
+    else if (py_root_dir) {
+        PyErr_SetString(PyExc_TypeError, "root_dir should be a string or None");
+        return -1;
+    }
+    self->obj = (GObject *)g_object_new(HILDON_TYPE_FILE_SYSTEM_MODEL, "ref-widget", ref_widget, "root-dir", root_dir, NULL);
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonFileSystemModel object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_file_chooser_dialog_new kwargs
+static int
+_wrap_hildon_file_chooser_dialog_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "parent", "action", "file_system_model", NULL };
+    PyGObject *parent = NULL, *py_file_system_model = NULL;
+    PyObject *py_action = NULL;
+    GtkFileChooserAction action;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!OO!:HildonFileChooserDialog.__init__", kwlist, &PyGtkWindow_Type, &parent, &py_action, &PyHildonFileSystemModel_Type, &py_file_system_model))
+        return -1;
+    if (pyg_enum_get_value(GTK_TYPE_FILE_CHOOSER_ACTION, py_action, (gpointer)&action))
+        return -1;
+    self->obj = (GObject *)g_object_new(HILDON_TYPE_FILE_CHOOSER_DIALOG, "file-system-model", py_file_system_model->obj, "action", action, NULL);
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonFileChooserDialog object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_find_toolbar_new_with_model kwargs
+static int
+_wrap_hildon_find_toolbar_new_with_model(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", "model", "column", NULL };
+    char *label;
+    PyGObject *py_model = NULL;
+    int column = -1;
+    GtkListStore *model = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s|Oi:HildonFindToolbar.__init__", kwlist, &label, &py_model, &column))
+        return -1;
+    if ((PyObject *)py_model == Py_None)
+        model = NULL;
+    else if (py_model && pygobject_check(py_model, &PyGtkListStore_Type))
+        model = GTK_LIST_STORE(py_model->obj);
+    else if (py_model) {
+        PyErr_SetString(PyExc_TypeError, "model should be a GtkListStore or None");
+        return -1;
+    }
+    if (model != NULL) {
+        if (column < 0) {
+            PyErr_SetString(PyExc_ValueError, "column should be non-negative");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_find_toolbar_new_with_model(label, (GtkListStore *) model, column);
+    } else {
+        if (column >= 0) {
+            PyErr_SetString(PyExc_ValueError, "column cannot be used without model");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_find_toolbar_new(label);
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonFindToolbar object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_edit_toolbar_new_with_text kwargs
+static int
+_wrap_hildon_edit_toolbar_new_with_text(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", "button", NULL };
+    char *label = NULL, *button = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"|zz:HildonEditToolbar.__init__", kwlist, &label, &button))
+        return -1;
+    if (label) {
+        if (!button) {
+            PyErr_SetString(PyExc_ValueError, "label cannot be used without button");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_edit_toolbar_new_with_text(label, button);
+    } else {
+        if (button) {
+            PyErr_SetString(PyExc_ValueError, "button cannot be used without label");
+            return -1;
+        }
+        self->obj = (GObject *)hildon_edit_toolbar_new();
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonEditToolbar object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_gtk_icon_view_new_with_model kwargs
+static int
+_wrap_hildon_gtk_icon_view_new_with_model(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "mode", "model", NULL };
+    PyObject *py_mode = NULL;
+    PyGObject *model = NULL;
+    HildonUIMode mode;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O|O!:HildonGtkIconView.__init__", kwlist, &py_mode, &PyGtkTreeModel_Type, &model))
+        return -1;
+    if (pyg_enum_get_value(HILDON_TYPE_UI_MODE, py_mode, (gpointer)&mode))
+        return -1;
+    if (model == NULL) {
+        self->obj = (GObject *)hildon_gtk_icon_view_new(mode);
+    } else {
+        self->obj = (GObject *)hildon_gtk_icon_view_new_with_model(mode, GTK_TREE_MODEL(model->obj));
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonGtkIconView object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_gtk_tree_view_new_with_model kwargs
+static int
+_wrap_hildon_gtk_tree_view_new_with_model(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "mode", "model", NULL };
+    PyObject *py_mode = NULL;
+    PyGObject *model = NULL;
+    HildonUIMode mode;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O|O!:HildonGtkTreeView.__init__", kwlist, &py_mode, &PyGtkTreeModel_Type, &model))
+        return -1;
+    if (pyg_enum_get_value(HILDON_TYPE_UI_MODE, py_mode, (gpointer)&mode))
+        return -1;
+    if (model == NULL) {
+        self->obj = (GObject *)hildon_gtk_tree_view_new(mode);
+    } else {
+        self->obj = (GObject *)hildon_gtk_tree_view_new_with_model(mode, GTK_TREE_MODEL(model->obj));
+    }
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonGtkTreeView object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+%%
+override hildon_window_stack_get_default noargs staticmethod
+static PyObject *
+_wrap_hildon_window_stack_get_default(PyGObject *self)
+{
+    HildonWindowStack *window;
+
+    window = hildon_window_stack_get_default();
+
+    return pygobject_new((GObject *)window);
+}
+
+%%
+override hildon_window_stack_get_windows noargs
+static PyObject *
+_wrap_hildon_window_stack_get_windows(PyGObject *self)
+{
+    GList *wlist;
+    guint nwlist;
+    int i;
+    PyObject *list;
+
+    wlist = hildon_window_stack_get_windows(HILDON_WINDOW_STACK(self->obj));
+    nwlist = g_list_length(wlist);
+
+    if ((list = PyList_New(nwlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nwlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        PyList_SetItem(list, i, item);
+    }
+    g_list_free(wlist);
+
+    return list;
+}
+
+%%
+override hildon_window_stack_pop kwargs
+static PyObject *
+_wrap_hildon_window_stack_pop(PyGObject *self, PyObject *args,
+                              PyObject *kwargs)
+{
+    static char *kwlist[] = { "nwindows", NULL };
+    GList *list = NULL;
+    PyObject *py_list;
+    guint nlist;
+    gint nwindows;
+    int i;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:HildonWindowStack.pop",
+                                     kwlist, &nwindows))
+        return NULL;
+
+    hildon_window_stack_pop(HILDON_WINDOW_STACK(self->obj), nwindows, &list);
+    nlist = g_list_length(list);
+    if ((py_list = PyList_New(nlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(list, i));
+        PyList_SetItem(py_list, i, item);
+    }
+    g_list_free(list);
+
+    return py_list;
+}
+
+%%
+override hildon_window_stack_pop_and_push_list kwargs
+static PyObject *
+_wrap_hildon_window_stack_pop_and_push_list(PyGObject *self, PyObject *args,
+                                            PyObject *kwargs)
+{
+    static char *kwlist[] = { "nwindows", "list", NULL };
+    PyObject *py_list;
+    gint nwindows;
+    guint npopped;
+    GList *list = NULL, *popped = NULL;
+    int len, i;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "iO!:HildonWindowStack.pop_and_push_list",
+                                     kwlist, &nwindows, &PyList_Type, &py_list))
+        return NULL;
+
+    len = PyList_Size(py_list);
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyList_GetItem(py_list, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "list item not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+
+    hildon_window_stack_pop_and_push_list(HILDON_WINDOW_STACK(self->obj), nwindows, &popped, list);
+
+    npopped = g_list_length(popped);
+    if ((py_list = PyList_New(npopped)) == NULL)
+        return NULL;
+    for (i = 0; i < npopped; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(popped, i));
+        PyList_SetItem(py_list, i, item);
+    }
+    g_list_free(list);
+
+    return py_list;
+}
+
+%%
+override hildon_window_stack_pop_and_push args
+static PyObject *
+_wrap_hildon_window_stack_pop_and_push(PyGObject *self, PyObject *args)
+{
+    PyObject *py_list;
+    gint nwindows;
+    guint npopped;
+    GList *list = NULL, *popped = NULL;
+    int len, i;
+
+    len = PyTuple_Size(args);
+    if (len == 0) {
+        PyErr_SetString(PyExc_TypeError, "HildonWindowStach.pop_and_push requires at least one argument");
+        return NULL;
+    }
+    nwindows = PyInt_AsLong(PyTuple_GetItem(args, 0));
+    if (PyErr_Occurred())
+        return NULL;
+    for (i = 1; i < len; i++) {
+        PyObject *item = PyTuple_GetItem(args, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "argument not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+
+    hildon_window_stack_pop_and_push_list(HILDON_WINDOW_STACK(self->obj), nwindows, &popped, list);
+
+    npopped = g_list_length(popped);
+    if ((py_list = PyList_New(npopped)) == NULL)
+        return NULL;
+    for (i = 0; i < npopped; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(popped, i));
+        PyList_SetItem(py_list, i, item);
+    }
+    g_list_free(list);
+
+    return py_list;
+}
+
+%%
+override hildon_window_stack_push_list kwargs
+static PyObject *
+_wrap_hildon_window_stack_push_list(PyGObject *self, PyObject *args,
+                                    PyObject *kwargs)
+{
+    static char *kwlist[] = { "list", NULL };
+    PyObject *py_list;
+    GList *list = NULL;
+    int len, i;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:HildonWindowStack.push_list",
+                                     kwlist, &PyList_Type, &py_list))
+        return NULL;
+    len = PyList_Size(py_list);
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyList_GetItem(py_list, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "list item not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+    hildon_window_stack_push_list(HILDON_WINDOW_STACK(self->obj), list);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_window_stack_push args
+static PyObject *
+_wrap_hildon_window_stack_push(PyGObject *self, PyObject *args)
+{
+    GList *list = NULL;
+    int len, i;
+
+    len = PyTuple_Size(args);
+    if (len == 0) {
+        PyErr_SetString(PyExc_TypeError, "HildonWindowStach.push requires at least one argument");
+        return NULL;
+    }
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyTuple_GetItem(args, i);
+        if (!pygobject_check(item, &PyHildonStackableWindow_Type)) {
+            PyErr_SetString(PyExc_TypeError, "argument not a HildonStackableWindow");
+            g_list_free(list);
+            return NULL;
+        }
+        list = g_list_append(list, pygobject_get(item));
+    }
+    hildon_window_stack_push_list(HILDON_WINDOW_STACK(self->obj), list);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+%%
+override hildon_program_get_instance noargs staticmethod
+static PyObject *
+_wrap_hildon_program_get_instance(PyGObject *self)
+{
+    HildonProgram *app;
+
+    app = hildon_program_get_instance();
+
+    return pygobject_new((GObject *)app);
+}
+
+%%
+override hildon_touch_selector_append_column kwargs
+static PyObject *
+_wrap_hildon_touch_selector_append_column(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    HildonTouchSelectorColumn *column;
+    GtkCellRenderer *cell;
+    GtkTreeModel *model;
+
+    PyObject *py_cell, *py_model, *key, *item;
+    Py_ssize_t i = 0;
+
+    if (!PyArg_ParseTuple(args,
+                          "O!O!:Hildon.TouchSelector.append_column",
+                          &PyGtkTreeModel_Type, &py_model, &PyGtkCellRenderer_Type, &py_cell))
+        return NULL;
+
+    model = GTK_TREE_MODEL(pygobject_get(py_model));
+    cell = GTK_CELL_RENDERER(pygobject_get(py_cell));
+
+    column = hildon_touch_selector_append_column (HILDON_TOUCH_SELECTOR(self->obj),
+                                                  model, cell, NULL);
+
+    if (column == NULL) {
+        return NULL;
+    }
+
+    if (kwargs) {
+        while (PyDict_Next(kwargs, &i, &key, &item)) {
+            gchar *attr = PyString_AsString(key);
+
+            if (!PyInt_Check(item)) {
+                gchar err[128];
+                g_snprintf(err, sizeof(err),
+                           "%s must be an integer column number", attr);
+                PyErr_SetString(PyExc_TypeError, err);
+                return NULL;
+            }
+            gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(column),
+                                          cell,
+					  attr, PyInt_AsLong(item));
+        }
+    }
+    return pygobject_new ((GObject *) column);
+}
+
+%%
+override hildon_touch_selector_entry_new_text kwargs
+static int
+_wrap_hildon_touch_selector_entry_new_text(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "text", NULL };
+    gboolean text = FALSE;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "|i:HildonTouchSelectorEntry.__init__",
+                                     kwlist, &text))
+        return -1;
+
+    if (text) {
+        self->obj = (GObject *)hildon_touch_selector_entry_new_text();
+    } else {
+        self->obj = (GObject *)hildon_touch_selector_entry_new();
+    }
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create HildonTouchSelectorEntry object");
+        return -1;
+    }
+
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
