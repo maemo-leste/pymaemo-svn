@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+PVER=$(shell pyversions -vd)
+PY_INTERPRETER=/usr/bin/python$(PVER)
+SUPP=$(shell python$(PVER) -c 'import pysupport; print " ".join(pysupport.py_supported)')
+
+clean::
+	rm -f debhelper/dh_pysupport.1 *.pyc
+
+build/python-support::
+	cd debhelper && pod2man -c "python-support" -r "$(DEB_VERSION)" dh_pysupport dh_pysupport.1
+
+binary-install/python-support::
+	for ver in $(SUPP); do \
+          if dpkg --compare-versions $$ver ge python2.6; then \
+            subdir=dist-packages ; \
+          else \
+            subdir=site-packages ; \
+          fi ; \
+	  mkdir -p debian/python-support/usr/lib/$$ver/$$subdir ;\
+	  ln -s ../../pymodules/$$ver/.path debian/python-support/usr/lib/$$ver/$$subdir/python-support.pth ;\
+	done
+	: # Replace all '#!' calls to python with $(PY_INTERPRETER)
+	: # and make them executable
+	: # (borrowed from python debian/rules)
+	for i in `find debian/python-support -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#! $(PY_INTERPRETER)\1,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
