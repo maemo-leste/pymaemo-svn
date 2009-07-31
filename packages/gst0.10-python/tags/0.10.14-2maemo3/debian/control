@@ -1,0 +1,58 @@
+Source: gst0.10-python
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Maintainers of GStreamer packages <pkg-gstreamer-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 5.0.37.2),
+               pkg-config,
+               libgstreamer0.10-dev (>= 0.10.22),
+               libgstreamer-plugins-base0.10-dev (>= 0.10.22),
+               gstreamer0.10-plugins-base,
+               libxml2-utils,
+               xmlto,
+               libx11-dev,
+               python-dev,
+               python-gobject-dev (>= 2.11.2),
+               python-gobject-dbg,
+               python-all-dev (>= 2.3.5-11),
+               python-all-dbg,
+               python-central (>= 0.5),
+               autotools-dev,
+               quilt
+Standards-Version: 3.8.0
+XS-Python-Version: >= 2.3
+Homepage: http://gstreamer.freedesktop.org
+
+Package: python-gst0.10
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${python:Depends},
+         python-gobject (>= 2.11.2)
+Provides: ${python:Provides}
+Replaces: python2.3-gst0.10,
+          python2.4-gst0.10
+Conflicts: python2.3-gst0.10,
+           python2.4-gst0.10
+Suggests: python-gst0.10-dbg
+XB-Python-Version: ${python:Versions}
+Description: generic media-playing framework (Python bindings)
+ GStreamer is a media processing framework with support for a wide variety
+ of data sources, sinks, and formats through the use of dynamically loaded
+ plugins.
+ .
+ This package contains bindings to access GStreamer from Python.
+
+Package: python-gst0.10-dbg
+Priority: extra
+Architecture: any
+Depends: python-gst0.10 (= ${binary:Version}),
+         python-dbg,
+         python-gobject-dbg,
+         ${shlibs:Depends}
+Description: generic media-playing framework (Python debug bindings)
+ GStreamer is a media processing framework with support for a wide variety
+ of data sources, sinks, and formats through the use of dynamically loaded
+ plugins.
+ .
+ This package contains the extension built for the Python debug interpreter.
+
