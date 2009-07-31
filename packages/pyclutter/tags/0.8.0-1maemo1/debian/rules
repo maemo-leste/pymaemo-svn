@@ -1,0 +1,10 @@
+#! /usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+
+DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,-O1 -Wl,--as-needed"
+DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
+
+binary-install/python-clutter::
+	dh_pysupport -p$(cdbs_curpkg)
