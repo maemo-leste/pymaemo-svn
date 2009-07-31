@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TouchSelectorColumn
+  (in-module "Hildon")
+  (parent "GObject")
+  (c-name "HildonTouchSelectorColumn")
+  (gtype-id "HILDON_TYPE_TOUCH_SELECTOR_COLUMN")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-touch-selector-column.h
+
+(define-function hildon_touch_selector_column_get_type
+  (c-name "hildon_touch_selector_column_get_type")
+  (return-type "GType")
+)
+
+

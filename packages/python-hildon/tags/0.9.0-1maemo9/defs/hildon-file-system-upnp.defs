@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemUpnp
+  (in-module "Hildon")
+  (parent "HildonFileSystemRemoteDevice")
+  (c-name "HildonFileSystemUpnp")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_UPNP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-upnp.h
+
+(define-function hildon_file_system_upnp_get_type
+  (c-name "hildon_file_system_upnp_get_type")
+  (return-type "GType")
+)
+
+

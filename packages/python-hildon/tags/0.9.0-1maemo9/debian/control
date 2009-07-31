@@ -1,0 +1,29 @@
+Source: python-hildon
+Section: python
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: cdbs, debhelper (>= 5), python-all-dev, python-central, python-gtk2-dev, libhildon1-dev, libhildonfm2-dev (>= 1:2.11+0m5), libhildonnotify-dev (>= 0.0.2), libdbus-1-dev (>= 1.2.12 ), libdbus-glib-1-dev (>= 0.78), python-notify (>= 0.1.1)
+XS-Python-Version: all
+Standards-Version: 3.7.2
+
+Package: python-hildon
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-gtk2
+Conflicts: python2.5-hildon (<< 0.8.9-2maemo1)
+Replaces: python2.5-hildon (<< 0.8.9-2maemo1)
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Python bindings for Hildon Framework.
+
+Package: python-hildon-dev
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}, python-hildon
+XB-Python-Version: ${python:Versions}
+Description: Development files for Hildon Framework.
+
+#Package: python-hildon-tests
+#Architecture: any
+#Section: tests
+#Depends: ${shlibs:Depends}, ${python:Depends}, python-hildon
+#XB-Python-Version: ${python:Versions}
+#Description: Standalone tests for Hildon Framework.
