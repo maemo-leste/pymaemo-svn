@@ -1,0 +1,17 @@
+Source: python-central
+Section: python
+Priority: standard
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 5), python (>= 2.5)
+Build-Depends-Indep: perl
+Standards-Version: 3.8.0
+
+Package: python-central
+Architecture: all
+Depends: python (>= 2.4.3-10)
+Conflicts: debhelper (<< 5.0.37.3ubuntu2)
+Description: register and build utility for Python packages
+ This package provides support for building and installing
+ python modules independent of the current installed Python
+ version.
