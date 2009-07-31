@@ -1,0 +1,88 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From mafw-db.h
+
+(define-function mafw_db_get
+  (c-name "mafw_db_get")
+  (return-type "sqlite3*")
+)
+
+(define-function mafw_db_trace
+  (c-name "mafw_db_trace")
+  (return-type "none")
+)
+
+(define-function mafw_db_prepare
+  (c-name "mafw_db_prepare")
+  (return-type "sqlite3_stmt*")
+  (parameters
+    '("gchar-const*" "query")
+  )
+)
+
+(define-function mafw_db_exec
+  (c-name "mafw_db_exec")
+  (return-type "gint")
+  (parameters
+    '("gchar-const*" "query")
+  )
+)
+
+(define-function mafw_db_do
+  (c-name "mafw_db_do")
+  (return-type "gint")
+  (parameters
+    '("sqlite3_stmt*" "stmt")
+  )
+)
+
+(define-function mafw_db_nchanges
+  (c-name "mafw_db_nchanges")
+  (return-type "gint")
+)
+
+(define-function mafw_db_select
+  (c-name "mafw_db_select")
+  (return-type "gint")
+  (parameters
+    '("sqlite3_stmt*" "stmt")
+    '("gboolean" "expect_row")
+  )
+)
+
+(define-function mafw_db_change
+  (c-name "mafw_db_change")
+  (return-type "gint")
+  (parameters
+    '("sqlite3_stmt*" "stmt")
+    '("gboolean" "csint_may_fail")
+  )
+)
+
+(define-function mafw_db_delete
+  (c-name "mafw_db_delete")
+  (return-type "gint")
+  (parameters
+    '("sqlite3_stmt*" "stmt")
+  )
+)
+
+(define-function mafw_db_begin
+  (c-name "mafw_db_begin")
+  (return-type "gboolean")
+)
+
+(define-function mafw_db_commit
+  (c-name "mafw_db_commit")
+  (return-type "gboolean")
+)
+
+(define-function mafw_db_rollback
+  (c-name "mafw_db_rollback")
+  (return-type "gboolean")
+)
+
+

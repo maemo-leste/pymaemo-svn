@@ -1,0 +1,16 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From mafw-log.h
+
+(define-function mafw_log_init
+  (c-name "mafw_log_init")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "doms")
+  )
+)
+
+

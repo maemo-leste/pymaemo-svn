@@ -1,0 +1,36 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ProxyPlaylist
+  (in-module "Mafw")
+  (implements "MafwPlaylist")
+  (parent "GObject")
+  (c-name "MafwProxyPlaylist")
+  (gtype-id "MAFW_TYPE_PROXY_PLAYLIST")
+)
+
+;; Enumerations and flags ...
+
+
+;; From mafw-proxy-playlist.h
+
+(define-function mafw_proxy_playlist_get_type
+  (c-name "mafw_proxy_playlist_get_type")
+  (return-type "GType")
+)
+
+(define-function mafw_proxy_playlist_new
+  (c-name "mafw_proxy_playlist_new")
+  (is-constructor-of "MafwProxyPlaylist")
+  (return-type "GObject*")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method get_id
+  (of-object "MafwProxyPlaylist")
+  (c-name "mafw_proxy_playlist_get_id")
+  (return-type "guint")
+)
+
+

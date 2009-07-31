@@ -1,0 +1,138 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Source
+  (in-module "Mafw")
+  (parent "MafwExtension")
+  (c-name "MafwSource")
+  (gtype-id "MAFW_TYPE_SOURCE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From mafw-source.h
+
+(define-function mafw_source_get_type
+  (c-name "mafw_source_get_type")
+  (return-type "GType")
+)
+
+(define-function mafw_source_all_keys
+  (c-name "mafw_source_all_keys")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*-const*" "keys")
+  )
+)
+
+(define-method browse
+  (of-object "MafwSource")
+  (c-name "mafw_source_browse")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "object_id")
+    '("gboolean" "recursive")
+    '("const-MafwFilter*" "filter")
+    '("const-gchar*" "sort_criteria")
+    '("const-gchar*-const*" "metadata_keys")
+    '("guint" "skip_count")
+    '("guint" "item_count")
+    '("MafwSourceBrowseResultCb" "browse_cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method cancel_browse
+  (of-object "MafwSource")
+  (c-name "mafw_source_cancel_browse")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "browse_id")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_update_progress
+  (of-object "MafwSource")
+  (c-name "mafw_source_get_update_progress")
+  (return-type "gint")
+)
+
+(define-method get_metadata
+  (of-object "MafwSource")
+  (c-name "mafw_source_get_metadata")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_id")
+    '("const-gchar*-const*" "metadata_keys")
+    '("MafwSourceMetadataResultCb" "metadata_cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method get_metadatas
+  (of-object "MafwSource")
+  (c-name "mafw_source_get_metadatas")
+  (return-type "none")
+  (parameters
+    '("const-gchar**" "object_ids")
+    '("const-gchar*-const*" "metadata_keys")
+    '("MafwSourceMetadataResultsCb" "metadatas_cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method set_metadata
+  (of-object "MafwSource")
+  (c-name "mafw_source_set_metadata")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_id")
+    '("GHashTable*" "metadata")
+    '("MafwSourceMetadataSetCb" "cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method create_object
+  (of-object "MafwSource")
+  (c-name "mafw_source_create_object")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "parent")
+    '("GHashTable*" "metadata")
+    '("MafwSourceObjectCreatedCb" "cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method destroy_object
+  (of-object "MafwSource")
+  (c-name "mafw_source_destroy_object")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_id")
+    '("MafwSourceObjectDestroyedCb" "cb")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-function mafw_source_split_objectid
+  (c-name "mafw_source_split_objectid")
+  (return-type "gboolean")
+  (parameters
+    '("gchar-const*" "objectid")
+    '("gchar**" "extensionid")
+    '("gchar**" "itemid")
+  )
+)
+
+(define-function mafw_source_create_objectid
+  (c-name "mafw_source_create_objectid")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+

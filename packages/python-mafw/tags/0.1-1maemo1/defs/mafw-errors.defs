@@ -1,0 +1,108 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum Error
+  (in-module "Mafw")
+  (c-name "MafwError")
+  (gtype-id "MAFW_TYPE_ERROR")
+  (values
+    '("s-not-supported" "MAFW_ERROR_PLUGINS_NOT_SUPPORTED")
+    '("-load-failed" "MAFW_ERROR_PLUGIN_LOAD_FAILED")
+    '("-init-failed" "MAFW_ERROR_PLUGIN_INIT_FAILED")
+    '("-name-conflict" "MAFW_ERROR_PLUGIN_NAME_CONFLICT")
+    '("-not-loaded" "MAFW_ERROR_PLUGIN_NOT_LOADED")
+  )
+)
+
+(define-enum ExtensionError
+  (in-module "Mafw")
+  (c-name "MafwExtensionError")
+  (gtype-id "MAFW_TYPE_EXTENSION_ERROR")
+  (values
+    '("extension-not-available" "MAFW_EXTENSION_ERROR_EXTENSION_NOT_AVAILABLE")
+    '("unsupported-operation" "MAFW_EXTENSION_ERROR_UNSUPPORTED_OPERATION")
+    '("network-down" "MAFW_EXTENSION_ERROR_NETWORK_DOWN")
+    '("service-not-responding" "MAFW_EXTENSION_ERROR_SERVICE_NOT_RESPONDING")
+    '("extension-not-responding" "MAFW_EXTENSION_ERROR_EXTENSION_NOT_RESPONDING")
+    '("invalid-property" "MAFW_EXTENSION_ERROR_INVALID_PROPERTY")
+    '("set-property" "MAFW_EXTENSION_ERROR_SET_PROPERTY")
+    '("get-property" "MAFW_EXTENSION_ERROR_GET_PROPERTY")
+    '("access-denied" "MAFW_EXTENSION_ERROR_ACCESS_DENIED")
+    '("invalid-params" "MAFW_EXTENSION_ERROR_INVALID_PARAMS")
+    '("out-of-memory" "MAFW_EXTENSION_ERROR_OUT_OF_MEMORY")
+    '("failed" "MAFW_EXTENSION_ERROR_FAILED")
+  )
+)
+
+(define-enum PlaylistError
+  (in-module "Mafw")
+  (c-name "MafwPlaylistError")
+  (gtype-id "MAFW_TYPE_PLAYLIST_ERROR")
+  (values
+    '("database" "MAFW_PLAYLIST_ERROR_DATABASE")
+    '("invalid-name" "MAFW_PLAYLIST_ERROR_INVALID_NAME")
+    '("invalid-index" "MAFW_PLAYLIST_ERROR_INVALID_INDEX")
+    '("playlist-not-found" "MAFW_PLAYLIST_ERROR_PLAYLIST_NOT_FOUND")
+    '("import-failed" "MAFW_PLAYLIST_ERROR_IMPORT_FAILED")
+    '("invalid-import-id" "MAFW_PLAYLIST_ERROR_INVALID_IMPORT_ID")
+  )
+)
+
+(define-enum RendererError
+  (in-module "Mafw")
+  (c-name "MafwRendererError")
+  (gtype-id "MAFW_TYPE_RENDERER_ERROR")
+  (values
+    '("no-media" "MAFW_RENDERER_ERROR_NO_MEDIA")
+    '("uri-not-available" "MAFW_RENDERER_ERROR_URI_NOT_AVAILABLE")
+    '("invalid-uri" "MAFW_RENDERER_ERROR_INVALID_URI")
+    '("media-not-found" "MAFW_RENDERER_ERROR_MEDIA_NOT_FOUND")
+    '("stream-disconnected" "MAFW_RENDERER_ERROR_STREAM_DISCONNECTED")
+    '("type-not-available" "MAFW_RENDERER_ERROR_TYPE_NOT_AVAILABLE")
+    '("playback" "MAFW_RENDERER_ERROR_PLAYBACK")
+    '("unable-to-perform" "MAFW_RENDERER_ERROR_UNABLE_TO_PERFORM")
+    '("unsupported-type" "MAFW_RENDERER_ERROR_UNSUPPORTED_TYPE")
+    '("unsupported-resolution" "MAFW_RENDERER_ERROR_UNSUPPORTED_RESOLUTION")
+    '("unsupported-fps" "MAFW_RENDERER_ERROR_UNSUPPORTED_FPS")
+    '("drm" "MAFW_RENDERER_ERROR_DRM")
+    '("device-unavailable" "MAFW_RENDERER_ERROR_DEVICE_UNAVAILABLE")
+    '("corrupted-file" "MAFW_RENDERER_ERROR_CORRUPTED_FILE")
+    '("playlist-parsing" "MAFW_RENDERER_ERROR_PLAYLIST_PARSING")
+    '("codec-not-found" "MAFW_RENDERER_ERROR_CODEC_NOT_FOUND")
+    '("video-codec-not-found" "MAFW_RENDERER_ERROR_VIDEO_CODEC_NOT_FOUND")
+    '("audio-codec-not-found" "MAFW_RENDERER_ERROR_AUDIO_CODEC_NOT_FOUND")
+    '("no-playlist" "MAFW_RENDERER_ERROR_NO_PLAYLIST")
+    '("index-out-of-bounds" "MAFW_RENDERER_ERROR_INDEX_OUT_OF_BOUNDS")
+    '("cannot-play" "MAFW_RENDERER_ERROR_CANNOT_PLAY")
+    '("cannot-stop" "MAFW_RENDERER_ERROR_CANNOT_STOP")
+    '("cannot-pause" "MAFW_RENDERER_ERROR_CANNOT_PAUSE")
+    '("cannot-set-position" "MAFW_RENDERER_ERROR_CANNOT_SET_POSITION")
+    '("cannot-get-position" "MAFW_RENDERER_ERROR_CANNOT_GET_POSITION")
+    '("cannot-get-status" "MAFW_RENDERER_ERROR_CANNOT_GET_STATUS")
+  )
+)
+
+(define-enum SourceError
+  (in-module "Mafw")
+  (c-name "MafwSourceError")
+  (gtype-id "MAFW_TYPE_SOURCE_ERROR")
+  (values
+    '("invalid-object-id" "MAFW_SOURCE_ERROR_INVALID_OBJECT_ID")
+    '("object-id-not-available" "MAFW_SOURCE_ERROR_OBJECT_ID_NOT_AVAILABLE")
+    '("invalid-search-string" "MAFW_SOURCE_ERROR_INVALID_SEARCH_STRING")
+    '("invalid-sort-string" "MAFW_SOURCE_ERROR_INVALID_SORT_STRING")
+    '("invalid-browse-id" "MAFW_SOURCE_ERROR_INVALID_BROWSE_ID")
+    '("peer" "MAFW_SOURCE_ERROR_PEER")
+    '("browse-result-failed" "MAFW_SOURCE_ERROR_BROWSE_RESULT_FAILED")
+    '("get-metadata-result-failed" "MAFW_SOURCE_ERROR_GET_METADATA_RESULT_FAILED")
+    '("unsupported-metadata-key" "MAFW_SOURCE_ERROR_UNSUPPORTED_METADATA_KEY")
+    '("destroy-object-failed" "MAFW_SOURCE_ERROR_DESTROY_OBJECT_FAILED")
+    '("playlist-parsing-failed" "MAFW_SOURCE_ERROR_PLAYLIST_PARSING_FAILED")
+  )
+)
+
+
+;; From mafw-errors.h
+
+

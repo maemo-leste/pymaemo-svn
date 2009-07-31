@@ -1,0 +1,13 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From mafw-uri-source.h
+
+(define-function mafw_get_uri_source
+  (c-name "mafw_get_uri_source")
+  (return-type "MafwURISource*")
+)
+
+

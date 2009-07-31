@@ -1,0 +1,48 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From mafw-callbas.h
+
+(define-function mafw_callbas_argv2gval
+  (c-name "mafw_callbas_argv2gval")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value")
+    '("GType" "type")
+    '("va_list*" "args")
+  )
+)
+
+(define-function mafw_callbas_new
+  (c-name "mafw_callbas_new")
+  (is-constructor-of "MafwCallbas")
+  (return-type "MafwCallbas*")
+  (parameters
+    '("GCallback" "cb")
+    '("GClosureMarshal" "mars")
+    '("gpointer" "self")
+  )
+  (varargs #t)
+)
+
+(define-method free
+  (of-object "MafwCallbas")
+  (c-name "mafw_callbas_free")
+  (return-type "none")
+)
+
+(define-method invoke
+  (of-object "MafwCallbas")
+  (c-name "mafw_callbas_invoke")
+  (return-type "none")
+)
+
+(define-method defer
+  (of-object "MafwCallbas")
+  (c-name "mafw_callbas_defer")
+  (return-type "gint")
+)
+
+

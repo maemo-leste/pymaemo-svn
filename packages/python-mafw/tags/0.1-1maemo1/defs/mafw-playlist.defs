@@ -1,0 +1,280 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-interface Playlist
+  (in-module "Mafw")
+  (c-name "MafwPlaylist")
+  (gtype-id "MAFW_TYPE_PLAYLIST")
+)
+
+;; Enumerations and flags ...
+
+
+;; From mafw-playlist.h
+
+(define-function mafw_playlist_get_type
+  (c-name "mafw_playlist_get_type")
+  (return-type "GType")
+)
+
+(define-method set_name
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_name
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_name")
+  (return-type "gchar*")
+)
+
+(define-method set_repeat
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_set_repeat")
+  (return-type "none")
+  (parameters
+    '("gboolean" "repeat")
+  )
+)
+
+(define-method get_repeat
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_repeat")
+  (return-type "gboolean")
+)
+
+(define-method is_shuffled
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_is_shuffled")
+  (return-type "gboolean")
+)
+
+(define-method shuffle
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_shuffle")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method unshuffle
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_unshuffle")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method increment_use_count
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_increment_use_count")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method decrement_use_count
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_decrement_use_count")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method insert_item
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_insert_item")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "index")
+    '("const-gchar*" "objectid")
+    '("GError**" "error")
+  )
+)
+
+(define-method insert_items
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_insert_items")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "index")
+    '("const-gchar**" "objectid")
+    '("GError**" "error")
+  )
+)
+
+(define-method insert_uri
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_insert_uri")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "index")
+    '("const-gchar*" "uri")
+    '("GError**" "error")
+  )
+)
+
+(define-method append_item
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_append_item")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "oid")
+    '("GError**" "error")
+  )
+)
+
+(define-method append_items
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_append_items")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar**" "oid")
+    '("GError**" "error")
+  )
+)
+
+(define-method append_uri
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_append_uri")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "uri")
+    '("GError**" "error")
+  )
+)
+
+(define-method remove_item
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_remove_item")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "index")
+    '("GError**" "error")
+  )
+)
+
+(define-method clear
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_clear")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method move_item
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_move_item")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "from")
+    '("guint" "to")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_item
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_item")
+  (return-type "gchar*")
+  (parameters
+    '("guint" "index")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_items
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_items")
+  (return-type "gchar**")
+  (parameters
+    '("guint" "first_index")
+    '("guint" "last_index")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_starting_index
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_starting_index")
+  (return-type "none")
+  (parameters
+    '("guint*" "index")
+    '("gchar**" "object_id")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_last_index
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_last_index")
+  (return-type "none")
+  (parameters
+    '("guint*" "index")
+    '("gchar**" "object_id")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_next
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_next")
+  (return-type "gboolean")
+  (parameters
+    '("guint*" "index")
+    '("gchar**" "object_id")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_prev
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_prev")
+  (return-type "gboolean")
+  (parameters
+    '("guint*" "index")
+    '("gchar**" "object_id")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_size
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_size")
+  (return-type "guint")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method get_items_md
+  (of-object "MafwPlaylist")
+  (c-name "mafw_playlist_get_items_md")
+  (return-type "gpointer")
+  (parameters
+    '("guint" "from")
+    '("gint" "to")
+    '("const-gchar*-const[]" "keys")
+    '("MafwPlaylistGetItemsCB" "cb")
+    '("gpointer" "cbarg")
+    '("GDestroyNotify" "free_cbarg")
+  )
+)
+
+(define-function mafw_playlist_cancel_get_items_md
+  (c-name "mafw_playlist_cancel_get_items_md")
+  (return-type "none")
+  (parameters
+    '("gconstpointer" "op")
+  )
+)
+
+

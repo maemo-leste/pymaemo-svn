@@ -1,0 +1,196 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Renderer
+  (in-module "Mafw")
+  (parent "MafwExtension")
+  (c-name "MafwRenderer")
+  (gtype-id "MAFW_TYPE_RENDERER")
+)
+
+;; Enumerations and flags ...
+
+(define-enum RendererSeekMode
+  (in-module "Mafw")
+  (c-name "MafwRendererSeekMode")
+  (gtype-id "MAFW_TYPE_RENDERER_SEEK_MODE")
+  (values
+    '("absolute" "SeekAbsolute")
+    '("relative" "SeekRelative")
+  )
+)
+
+
+;; From mafw-renderer.h
+
+(define-function mafw_renderer_get_type
+  (c-name "mafw_renderer_get_type")
+  (return-type "GType")
+)
+
+(define-method emit_metadata
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_emit_metadata")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+    '("GType" "type")
+    '("guint" "nargs")
+  )
+  (varargs #t)
+)
+
+(define-method emit_buffering_info
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_emit_buffering_info")
+  (return-type "none")
+  (parameters
+    '("gfloat" "fraction")
+  )
+)
+
+(define-method play
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_play")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method play_object
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_play_object")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_id")
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method play_uri
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_play_uri")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method stop
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_stop")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method pause
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_pause")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method resume
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_resume")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method get_status
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_get_status")
+  (return-type "none")
+  (parameters
+    '("MafwRendererStatusCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method assign_playlist
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_assign_playlist")
+  (return-type "gboolean")
+  (parameters
+    '("MafwPlaylist*" "playlist")
+    '("GError**" "error")
+  )
+)
+
+(define-method next
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_next")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method previous
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_previous")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method goto_index
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_goto_index")
+  (return-type "none")
+  (parameters
+    '("guint" "index")
+    '("MafwRendererPlaybackCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method set_position
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_set_position")
+  (return-type "none")
+  (parameters
+    '("MafwRendererSeekMode" "mode")
+    '("gint" "seconds")
+    '("MafwRendererPositionCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method get_position
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_get_position")
+  (return-type "none")
+  (parameters
+    '("MafwRendererPositionCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method get_current_metadata
+  (of-object "MafwRenderer")
+  (c-name "mafw_renderer_get_current_metadata")
+  (return-type "none")
+  (parameters
+    '("MafwRendererMetadataResultCB" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+

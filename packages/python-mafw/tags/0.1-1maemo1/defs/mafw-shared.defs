@@ -1,0 +1,22 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From mafw-shared.h
+
+(define-function mafw_shared_init
+  (c-name "mafw_shared_init")
+  (return-type "gboolean")
+  (parameters
+    '("MafwRegistry*" "reg")
+    '("GError**" "error")
+  )
+)
+
+(define-function mafw_shared_deinit
+  (c-name "mafw_shared_deinit")
+  (return-type "none")
+)
+
+
