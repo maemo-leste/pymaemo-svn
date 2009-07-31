@@ -1,0 +1,33 @@
+Source: notify-python
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Gustavo Franco <stratus@debian.org>
+Build-Depends: debhelper (>= 5.0.37.2),
+               cdbs (>= 0.4.43),
+               python-all-dev (>= 2.3.5-7),
+               python-support (>= 0.3),
+               pkg-config (>= 0.20-1),
+               libnotify-dev (>= 0.4.3),
+               python-gtk2-dev (>= 2.10)
+Standards-Version: 3.7.2
+XS-Python-Version: >= 2.3
+Vcs-Svn: svn://svn.debian.org/svn/python-modules/packages/notify-python/trunk/
+Vcs-Browser: http://svn.debian.org/wsvn/python-modules/packages/notify-python/?op=log
+
+Package: python-notify
+Architecture: any
+Depends: ${python:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python-gtk2 (>= 2.10)
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Python bindings for libnotify
+ libnotify sends desktop notifications to a notification daemon, as
+ defined in the Desktop Notifications spec. These notifications can be
+ used to inform the user about an event or display some form of
+ information without getting in the user's way.
+ .
+ python-notify provides just the Python bindings for libnotify.
+
