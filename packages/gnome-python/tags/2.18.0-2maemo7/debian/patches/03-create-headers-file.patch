@@ -1,0 +1,16 @@
+Index: gnome-python-maemo/gconf/gconf-headers.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gnome-python-maemo/gconf/gconf-headers.h	2007-03-28 09:34:52.000000000 -0300
+@@ -0,0 +1,11 @@
++#include "gconf-types.h.in"
++
++#include <gconf/gconf-changeset.h>
++#include <gconf/gconf-client.h>
++#include <gconf/gconf-engine.h>
++#include <gconf/gconf-enum-types.h>
++#include <gconf/gconf-error.h>
++#include <gconf/gconf-listeners.h>
++#include <gconf/gconf-schema.h>
++#include <gconf/gconf-value.h>
++#include <gconf/gconf.h>

@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+# Add here any variable or target overrides you need.
+PYVER = $(shell pyversions -vd)
+
+DEB_CONFIGURE_SCRIPT_ENV += PYTHON="/usr/bin/python$(PYVER)"
+DEB_CONFIGURE_EXTRA_FLAGS = PYTHON="/usr/bin/python$(PYVER)"
+DEB_MAKE_CLEAN_TARGET = distclean PYTHON=/usr/bin/python$(PYVER)
+DEB_DH_INSTALL_SOURCEDIR = $(CURDIR)/debian/tmp
+
+install/gnome-python::
+	dh_pysupport -pgnome-python
+
+install/gnome-python-dev::
+	dh_pysupport -pgnome-python-dev
+
+cleanbuilddir/gnome-python::
+	touch -r configure.ac configure
+
+
+
