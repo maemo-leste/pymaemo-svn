@@ -1,4 +1,3 @@
-
 import sys
 import os
 import logging
@@ -9,7 +8,6 @@ import gobject
 WANTED_SOURCE = 'Mafw-Tracker-Source'
 
 logging.basicConfig(level=logging.INFO)
-
 
 class SourceBrowsing(object):
 
@@ -28,18 +26,22 @@ class SourceBrowsing(object):
         self.mainloop.run()
 
     def _register_signals(self):
+        logging.info('Registering signals...')
         self.registry.connect('renderer_added', self.renderer_added_cb)
         self.registry.connect('renderer_removed', self.renderer_removed_cb)
         self.registry.connect('source_added', self.source_added_cb)
         self.registry.connect('source_removed', self.source_removed_cb)
 
     def _add_existing_ext(self):
+        logging.info('Adding existing sources and renderers...')
         extension_list = self.registry.get_renderers()
         for extension in extension_list:
+            logging.info('Renderer added...')
             self.renderer_added_cb(self.registry, extension)
 
         extension_list = self.registry.get_sources()
         for extension in extension_list:
+            logging.info('Source added...')
             self.source_added_cb(self.registry, extension)
 
     def _check_in_process_plugins(self):
@@ -54,24 +56,27 @@ class SourceBrowsing(object):
         except KeyError:
             logging.info('No in-process plugins requested')
 
-
     # Callbacks
     def source_added_cb(self, registry, source, data=None):
+        print "DEBUG: source added"
         name = source.get_name()
         logging.info('Source %s available' % name)
+        
         if name == WANTED_SOURCE:
             logging.info('Wanted source found!')
             self.app_source = source
             gobject.timeout_add(1000, self.do_browse_request, data)
 
-
     def source_removed_cb(self, registry, source, data=None):
+        print "DEBUG: source removed"
         logging.info('Source %s removed' % source.get_name())
+        
         if source == sef.app_source:
             logging.error('Required source removed!\nExiting...')
             self.mainloop.quit()
 
     def renderer_added_cb(self, registry, renderer, data=None):
+        print "DEBUG: renderer added"
         logging.info('Renderer %s added' % renderer.get_name())
 
     def renderer_removed_cb(self, registry, renderer, data=None):
@@ -118,17 +123,10 @@ class SourceBrowsing(object):
             self.mainloop.quit()
 
 def main():
-
-    #if len(sys.argv) < 2:
-    #    sys.stderr.write('Missing object identifier for browsing.\n')
-    #    sys.exit(1)
-
     logging.info('Starting example...')
     app = SourceBrowsing(gobject.MainLoop(), 'aaaa')
     logging.info('Example started')
     app.run()
-
-
 
 if __name__ == '__main__':
     main()
