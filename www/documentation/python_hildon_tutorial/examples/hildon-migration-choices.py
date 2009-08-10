@@ -15,14 +15,8 @@ def main():
             hildon.BUTTON_ARRANGEMENT_VERTICAL)
     picker.set_title("Proxy preferences")
 
-    # FIXME: hildon.TouchSelector does create TouchSelector with single text
-    # column, see MB#4821.
-    selector = hildon.TouchSelector()
-    col = selector.append_text_column(gtk.ListStore(str), True)
-    col.set_property("text-column", 0)
-
+    selector = hildon.TouchSelector(text=True)
     picker.set_selector(selector)
-
     selector.append_text("None")
     selector.append_text("Auto")
     selector.append_text("Manual")
