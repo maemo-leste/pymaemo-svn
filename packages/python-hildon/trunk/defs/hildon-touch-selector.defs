@@ -35,6 +35,7 @@
 
 (define-function hildon_touch_selector_new_text
   (c-name "hildon_touch_selector_new_text")
+  (is-constructor-of "HildonTouchSelector")
   (return-type "GtkWidget*")
 )
 
