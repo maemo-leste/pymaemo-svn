@@ -255,7 +255,7 @@ init
     if (PyDict_SetItemString(d, "PluginDescriptorPublic", (PyObject *)&PyMafwPluginDescriptorPublic_Type) < 0) {
         g_return_if_reached();
     }
-
+    
 %%
 override mafw_registry_list_plugins noargs
 static PyObject *
@@ -280,4 +280,22 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
     g_list_free(wlist);
 
     return list;
+}
+
+%%
+define METADATA_KEY_CHILDCOUNT
+static PyObject *
+_wrap_METADATA_KEY_CHILDCOUNT(PyGObject *self, PyObject *args)
+{
+    int n;
+    char *c;
+
+    if (!PyArg_ParseTuple(args, "i", &n))
+	{
+		return NULL;
+	}
+
+    c = g_strdup_printf("childcount(%d)", n);
+
+	return Py_BuildValue("s", c);
 }
