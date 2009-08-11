@@ -46,7 +46,7 @@ class SourceBrowsing(object):
         logging.info('Checking for in-process plugins...')
 
         try:
-            plugins = os.environ['MAFW_INP_PLUGINS'].split(os.sep)
+            plugins = os.environ['MAFW_INP_PLUGINS'].split(":")
             for plugin in plugins:
                 logging.info('Loading in-process plugin %s...' % plugin)
                 self.registry.load_plugin(plugin)
