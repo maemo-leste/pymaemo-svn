@@ -8,12 +8,13 @@ import gobject
 WANTED_SOURCE = 'Mafw-Tracker-Source'
 
 logging.basicConfig(level=logging.INFO)
+gobject.threads_init()
 
-class SourceBrowsing(object):
-
-    def __init__(self, mainloop, obj_id):
-        self.mainloop = mainloop
+class SourceBrowsing:
+    def __init__(self, obj_id):
+        self.mainloop = gobject.MainLoop()
         self.registry = mafw.Registry.get_instance()
+        mafw.mafw_shared_init(self.registry)
         self.app_source = None
         self.obj_id = obj_id
 
@@ -92,7 +93,7 @@ class SourceBrowsing(object):
             self.obj_id, recursive=False, keys=keys, count=30,
                         callback=browse_request_cb)
 
-        if self.browse_id == maff.SOURCE_INVALID_BROWSE_ID:
+        if self.browse_id == mafw.SOURCE_INVALID_BROWSE_ID:
             logging.warning('Incorrect browse request')
 
         return False
@@ -124,9 +125,10 @@ class SourceBrowsing(object):
 
 def main():
     logging.info('Starting example...')
-    app = SourceBrowsing(gobject.MainLoop(), 'aaaa')
+    app = SourceBrowsing('aaaa')
     logging.info('Example started')
     app.run()
+    logging.info('Example end!')
 
 if __name__ == '__main__':
     main()
