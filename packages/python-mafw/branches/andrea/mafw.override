@@ -296,9 +296,6 @@ _wrap_METADATA_KEY_CHILDCOUNT(PyGObject *self, PyObject *args)
 		return NULL;
 	}
 
-    //c = g_strdup_printf("childcount(%d)", n);
-	//return Py_BuildValue("s", c);
-
     return Py_BuildValue("s", MAFW_METADATA_KEY_CHILDCOUNT(n));
 }
 
