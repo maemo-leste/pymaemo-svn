@@ -25,10 +25,11 @@ headers
 
 #include "mafw-includes.h"
 #include "mafw-types.h"
+#include <libmafw/mafw-metadata.h>
 
 #include "structmember.h"
 
-extern PyTypeObject PyMafwPluginDescriptorPublic_Type;
+//extern PyTypeObject PyMafwPluginDescriptorPublic_Type;
 
 %%
 modulename mafw
@@ -273,8 +274,8 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
         return NULL;
 
     for (i = 0; i < nwlist; i++) {
-        //PyMafwPluginDescriptorPublic *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
-        PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        PyMafwPluginDescriptorPublic *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        //PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
         PyList_SetItem(list, i, item);
     }
     g_list_free(wlist);
@@ -295,7 +296,9 @@ _wrap_METADATA_KEY_CHILDCOUNT(PyGObject *self, PyObject *args)
 		return NULL;
 	}
 
-    c = g_strdup_printf("childcount(%d)", n);
+    //c = g_strdup_printf("childcount(%d)", n);
+	//return Py_BuildValue("s", c);
 
-	return Py_BuildValue("s", c);
+    return Py_BuildValue("s", MAFW_METADATA_KEY_CHILDCOUNT(n));
 }
+
