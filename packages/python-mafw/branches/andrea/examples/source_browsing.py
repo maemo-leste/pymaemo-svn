@@ -30,7 +30,7 @@ class SourceBrowsing:
         logging.info('Registering signals...')
         self.registry.connect('renderer_added', self.renderer_added_cb)
         self.registry.connect('renderer_removed', self.renderer_removed_cb)
-        self.registry.connect('source_added', self.source_added_cb)
+        self.registry.connect('source_added', self.source_added_cb, self.obj_id)
         self.registry.connect('source_removed', self.source_removed_cb)
 
     def _add_existing_ext(self):
@@ -89,17 +89,33 @@ class SourceBrowsing:
         keys = [mafw.METADATA_KEY_TITLE, mafw.METADATA_KEY_ARTIST,
                 mafw.METADATA_KEY_ALBUM, mafw.METADATA_KEY_GENRE]
 
-        self.browse_id = self.app_source.browse(
-            self.obj_id, recursive=False, keys=keys, count=30,
-                        callback=browse_request_cb)
+        #self.browse_id = self.app_source.browse(
+        #    self.obj_id,
+        #    recursive = False,
+        #    filter = None,
+        #    sorting = None,
+        #    keys = keys,
+        #    offset = 0,
+        #    count = 30,
+        #    callback = self.browse_request_cb,
+        #    user_data = None)
+        
+        self.browse_id = self.app_source.browse(self.obj_id, mafw.METADATA_KEY_TITLE, self.browse_request_cb)
 
-        if self.browse_id == mafw.SOURCE_INVALID_BROWSE_ID:
+        if self.browse_id == mafw.SOURCE_ERROR_INVALID_BROWSE_ID:
             logging.warning('Incorrect browse request')
 
         return False
 
-    def browse_request_cb(self, source, browse_id, remaining, index,
-                          object_id, metadata, data=None, error=None):
+    def browse_request_cb(self,
+                          source,
+                          browse_id,
+                          remaining,
+                          index,
+                          object_id,
+                          metadata,
+                          data = None,
+                          error = None):
         if not (error is None):
             logging.info('Browse error: %s' % error.message)
             return
@@ -124,8 +140,14 @@ class SourceBrowsing:
             self.mainloop.quit()
 
 def main():
+    if len(sys.argv) < 2:
+        sys.stderr.write('Missing object identifier for browsing.\n')
+        sys.exit(1)
+    
+    obj_id = sys.argv[1]
+    
     logging.info('Starting example...')
-    app = SourceBrowsing('aaaa')
+    app = SourceBrowsing(obj_id)
     logging.info('Example started')
     app.run()
     logging.info('Example end!')

@@ -29,8 +29,6 @@ headers
 
 #include "structmember.h"
 
-//extern PyTypeObject PyMafwPluginDescriptorPublic_Type;
-
 %%
 modulename mafw
 
@@ -248,6 +246,84 @@ PyTypeObject PyMafwPluginDescriptorPublic_Type = {
     (PyObject *)0,                      /* tp_bases */
 };
 
+typedef struct 
+{
+    PyObject_HEAD
+} PyMafwMetaData;
+
+static void
+py_mafwmetadata_dealloc(PyMafwMetaData *self)
+{
+    PyObject_DEL(self);
+}
+
+static PyObject *
+PyMafwMetaData_get(PyMafwMetaData* self, PyObject *args)
+{
+    char *m;
+    char *res;
+
+    if (!PyArg_ParseTuple(args, "s", &m))
+	{
+		return NULL;
+	}
+
+    res = mafw_metadata_first (self, m);
+
+    return res;
+}
+
+static PyMethodDef metadata_methods[] = {
+    {"get", (PyCFunction)PyMafwMetaData_get, METH_VARARGS, ""},
+    {NULL}  /* Sentinel */
+};
+
+PyTypeObject PyMafwMetaData_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "mafw.MetaData",                     /* tp_name */
+    sizeof(PyMafwMetaData),     		/* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    /* methods */
+    (destructor)py_mafwmetadata_dealloc,/* tp_dealloc */
+    (printfunc)0,                       /* tp_print */
+    (getattrfunc)0,                     /* tp_getattr */
+    (setattrfunc)0,                     /* tp_setattr */
+    (cmpfunc)0,                         /* tp_compare */
+    (reprfunc)0,                        /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    (hashfunc)0,                        /* tp_hash */
+    (ternaryfunc)0,                     /* tp_call */
+    (reprfunc)0,                        /* tp_str */
+    (getattrofunc)0,                    /* tp_getattro */
+    (setattrofunc)0,                    /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,   		        /* tp_flags */
+    "MetaData",       /* Documentation string */
+    (traverseproc)0,                    /* tp_traverse */
+    (inquiry)0,                         /* tp_clear */
+    (richcmpfunc)0,                     /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    (getiterfunc)0,                     /* tp_iter */
+    (iternextfunc)0,                    /* tp_iternext */
+    metadata_methods,                   /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    (PyTypeObject *)0,                  /* tp_base */
+    (PyObject *)0,                      /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    (initproc)0,                        /* tp_init */
+    0,                	        		/* tp_alloc */
+    0,                                  /* tp_new */
+    0,                                  /* tp_free */
+    (inquiry)0,                         /* tp_is_gc */
+    (PyObject *)0,                      /* tp_bases */
+};
+
 %%
 init
     if (PyType_Ready(&PyMafwPluginDescriptorPublic_Type) < 0) {
@@ -256,7 +332,14 @@ init
     if (PyDict_SetItemString(d, "PluginDescriptorPublic", (PyObject *)&PyMafwPluginDescriptorPublic_Type) < 0) {
         g_return_if_reached();
     }
-    
+
+    if (PyType_Ready(&PyMafwMetaData_Type) < 0) {
+        g_return_if_reached();
+    }
+    if (PyDict_SetItemString(d, "MetaData", (PyObject *)&PyMafwMetaData_Type) < 0) {
+        g_return_if_reached();
+    }
+   
 %%
 override mafw_registry_list_plugins noargs
 static PyObject *
@@ -284,12 +367,46 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
 }
 
 %%
+override mafw_source_browse varargs
+static PyObject *
+_wrap_mafw_source_browse(PyObject *self, PyObject *args, PyObject *kwds)
+{
+    char *object_id;
+    int recursive;
+    char *filter;
+    char *sort_criteria;
+    char *metadata_keys;
+    int skip_count;
+    int item_count;
+    PyObject *browse_cb;
+    gpointer user_data = NULL;
+
+    int browse_id = 0;
+
+    if (!PyArg_ParseTuple(args, "ssO", &object_id, &metadata_keys, &browse_cb))
+	{
+		return NULL;
+	}
+
+    browse_id = mafw_source_browse(self,        /* Source */
+				        object_id,              /* Object identifier */
+				        FALSE,                  /* Recursive */
+				        NULL,                   /* Filter */
+				        NULL,                   /* Sorting */
+				        metadata_keys,          /* Requested keys */
+				        0, 30,                  /* Offset, Count*/
+				        &browse_cb,              /* Callback */
+				        NULL);                  /* User data */
+
+    return Py_BuildValue("i", browse_id);
+}
+
+%%
 define METADATA_KEY_CHILDCOUNT
 static PyObject *
 _wrap_METADATA_KEY_CHILDCOUNT(PyGObject *self, PyObject *args)
 {
     int n;
-    char *c;
 
     if (!PyArg_ParseTuple(args, "i", &n))
 	{
