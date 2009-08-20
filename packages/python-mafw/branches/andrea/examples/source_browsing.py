@@ -10,15 +10,20 @@ WANTED_SOURCE = 'Mafw-Tracker-Source'
 logging.basicConfig(level=logging.INFO)
 gobject.threads_init()
 
-class SourceBrowsing:
+class SourceBrowsing(object):
     def __init__(self, obj_id):
-        self.mainloop = gobject.MainLoop()
-        self.registry = mafw.Registry.get_instance()
-        mafw.mafw_shared_init(self.registry)
         self.app_source = None
         self.obj_id = obj_id
+        self.mainloop = gobject.MainLoop()
+        self.registry = mafw.Registry.get_instance()
+        if not self.registry:
+            logging.error('Failed to get MafwRegistry reference')
+            raise RuntimeError, 'Failed to get MafwRegistry reference'
+        try:
+            mafw.mafw_shared_init(self.registry)
+        except gobject.GError, message:
+            logging.warning('Ext. discovery failed: %s' % message)
 
-        #TODO initialize mafwshared
         self._register_signals()
         self._add_existing_ext()
         self._check_in_process_plugins()
@@ -27,6 +32,9 @@ class SourceBrowsing:
         self.mainloop.run()
 
     def _register_signals(self):
+        """Connect to extension discovery signals. These signals will be
+        emitted when new extensions are started or removed."""
+
         logging.info('Registering signals...')
         self.registry.connect('renderer_added', self.renderer_added_cb)
         self.registry.connect('renderer_removed', self.renderer_removed_cb)
@@ -34,6 +42,8 @@ class SourceBrowsing:
         self.registry.connect('source_removed', self.source_removed_cb)
 
     def _add_existing_ext(self):
+        """Check for already started extensions."""
+
         logging.info('Adding existing sources and renderers...')
         extension_list = self.registry.get_renderers()
         for extension in extension_list:
@@ -46,16 +56,22 @@ class SourceBrowsing:
             self.source_added_cb(self.registry, extension)
 
     def _check_in_process_plugins(self):
+        """Start in-process plugin loading."""
+
         logging.info('Checking for in-process plugins...')
-
         try:
-            plugins = os.environ['MAFW_INP_PLUGINS'].split(os.sep)
-            for plugin in plugins:
-                logging.info('Loading in-process plugin %s...' % plugin)
-                self.registry.load_plugin(plugin)
-
+            plugins = os.environ['MAFW_INP_PLUGINS'].split(':')
         except KeyError:
-            logging.info('No in-process plugins requested')
+            logging.info('No in-process plugins requested.')
+            return
+
+        for plugin in plugins:
+            logging.info('Loading in-process plugin %s...' % plugin)
+            try:
+                self.registry.load_plugin(plugin)
+            except gobject.GError, message:
+                logging.warning('Plugin loading failed: Unable to load inp. ' +
+                    'plugin %s: %s' % (plugin, message))
 
     # Callbacks
     def source_added_cb(self, registry, source, data=None):
@@ -121,9 +137,9 @@ class SourceBrowsing:
             return
 
         if not object_id:
-            logging.info('Sorry, no songs found')
+            logging.info('Sorry, no songs found!')
         else:
-            logging.info('Got %d results:' % index)
+            logging.info('Got result %d:' % index)
             title = metadata.get(mafw.METADATA_KEY_TITLE, 'Unknown')
             artist = metadata.get(mafw.METADATA_KEY_ARTIST, 'Unknown')
             album = metadata.get(mafw.METADATA_KEY_ALBUM, 'Unknown')
@@ -136,7 +152,7 @@ class SourceBrowsing:
             logging.info('Genre: %s' % genre)
 
         if remaining == 0:
-            logging.info('No more items left')
+            logging.info('Browse operaton finished. Exiting...')
             self.mainloop.quit()
 
 def main():

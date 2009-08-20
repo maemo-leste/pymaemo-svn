@@ -388,6 +388,9 @@ _wrap_mafw_source_browse(PyObject *self, PyObject *args, PyObject *kwds)
 		return NULL;
 	}
 
+    g_print("DEBUG::object_id: %s \n", object_id);
+    g_print("DEBUG::metadata_keys: %s \n", metadata_keys);
+
     browse_id = mafw_source_browse(self,        /* Source */
 				        object_id,              /* Object identifier */
 				        FALSE,                  /* Recursive */
@@ -395,7 +398,7 @@ _wrap_mafw_source_browse(PyObject *self, PyObject *args, PyObject *kwds)
 				        NULL,                   /* Sorting */
 				        metadata_keys,          /* Requested keys */
 				        0, 30,                  /* Offset, Count*/
-				        &browse_cb,              /* Callback */
+				        browse_cb,              /* Callback */
 				        NULL);                  /* User data */
 
     return Py_BuildValue("i", browse_id);
