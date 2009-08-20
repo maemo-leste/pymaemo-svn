@@ -167,3 +167,16 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
 
     return list;
 }
+
+%%
+define METADATA_KEY_CHILDCOUNT
+static PyObject *
+_wrap_METADATA_KEY_CHILDCOUNT(PyGObject *self, PyObject *args)
+{
+    int n;
+
+    if (!PyArg_ParseTuple(args, "i", &n))
+        return NULL;
+
+    return Py_BuildValue("s", MAFW_METADATA_KEY_CHILDCOUNT(n));
+}
