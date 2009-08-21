@@ -1,0 +1,13 @@
+chain.py
+daemon.py
+exclude.patterns
+exclude.py
+loop.py
+not_quiet.py
+stats.py
+stats_threaded.py
+transient_file.py
+transient_file.sh
+tutorial_notifier.py
+tutorial_threadednotifier.py
+unicode.py

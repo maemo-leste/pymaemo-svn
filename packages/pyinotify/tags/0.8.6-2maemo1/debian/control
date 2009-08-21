@@ -1,0 +1,40 @@
+Source: pyinotify
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Mikhail Gusarov <dottedmag@dottedmag.net>
+Build-Depends: debhelper (>= 5), python
+Build-Depends-Indep: python-support (>= 0.3)
+Standards-Version: 3.8.1
+XS-Python-Version: >=2.4
+Homepage: http://trac.dbzteam.org/pyinotify
+Vcs-Svn: svn://svn.debian.org/python-modules/packages/pyinotify/trunk/
+Vcs-Browser: http://svn.debian.org/viewsvn/python-modules/packages/pyinotify/trunk/
+
+Package: python-pyinotify
+Architecture: all
+Depends: ${python:Depends}
+Provides: ${python:Provides}
+Replaces: python2.3-pyinotify (<< 0.5.2-1.1), python2.4-pyinotify (<< 0.5.2-1.1)
+Conflicts: python2.3-pyinotify (<< 0.5.2-1.1), python2.4-pyinotify (<< 0.5.2-1.1)
+Recommends: python-psyco
+Suggests: python-pyinotify-doc
+Breaks: deejayd (<< 0.8), listen (<< 0.6), pytagsfs (<< 0.9.0-2), debomatic (<< 0.6)
+XB-Python-Version: ${python:Versions}
+Description: simple Linux inotify Python bindings
+ pyinotify is a simple wrapper for the Linux inotify mechanism.
+ .
+ inotify is a Linux Kernel feature available since 2.6.13. inotify makes
+ it possible for applications to easily be notified of filesystem changes.
+
+Package: python-pyinotify-doc
+Architecture: all
+Section: doc
+Recommends: python-pyinotify
+Description: simple Linux inotify Python bindings -- documentation
+ pyinotify is a simple wrapper for the Linux inotify mechanism.
+ .
+ inotify is a Linux Kernel feature available since 2.6.13. inotify makes
+ it possible for applications to easily be notified of filesystem changes.
+ .
+ This package contains API documentation and examples.
