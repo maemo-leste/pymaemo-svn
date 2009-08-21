@@ -1,0 +1,174 @@
+pyinotify (0.8.6-2maemo1) unstable; urgency=low
+
+  * New version imported from Debian squeeze.
+  * debian/control:
+    + Drop python-epydoc from Build-Depends-Indep;
+    + Change debhelper needed version to (>= 5) in Build-Depends;
+    + Put the pymaemo-developers mailing list address in "Maintainer" field and
+    keep the original mantainer in a separated field;
+    + Remove "Uploaders" field (not applicable to Maemo).
+  * debian/rules:
+    + Disable build of python-pyinotify-doc;
+    + Avoid using python from scratchbox by detecting python version
+    automatically using "pyversions -vd".
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu, 20 Aug 2009 08:55:05 -0400
+
+pyinotify (0.8.6-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Added Breaks field for packages known to be incompatible with
+    pyinotify 0.8.x.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 14 May 2009 13:49:58 +0700
+
+pyinotify (0.8.6-1) experimental; urgency=low
+
+  * New upstream release (Closes: #521422):
+    - New upstream homepage,
+      + debian/watch updated.
+    - debian/copyright updated.
+    - compiled module is gone:
+      + -dbg package removed,
+      + build-dependencies/runtime-dependencies cleaned up,
+      + debian/rules cleanup.
+    - documentation is now built with epydoc
+      + added python-epydoc to dependencies
+      + debian/rules adjusted
+    - use-sys-syscall-h.patch removed, obsolete.
+    - quilt dependency removed, no longer used:
+      + debian/README.source removed.
+  * Bump Standards-Version to 3.8.1, no changes required.
+  * Bump debhelper compatibility to 7.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 13 Apr 2009 16:47:49 +0700
+
+pyinotify (0.7.1-3) unstable; urgency=low
+
+  * debian/copyight:
+    - Replacing (C) with ©, as suggested by Lintian,
+    - Several files are under GPLv2 or later,
+    - Updating copyright years to 2009.
+  * debian/control:
+    - Updated short description for python-pyinotify-doc, as suggested by
+      Lintian.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Tue, 17 Feb 2009 00:46:17 +0600
+
+pyinotify (0.7.1-2) unstable; urgency=low
+
+  [ Piotr Ożarowski ]
+  * Vcs-Svn, Vcs-Browser and Homepage fields added
+
+  [ Sandro Tosi ]
+  * debian/control
+    - uniforming Vcs-Browser field
+    - switch Vcs-Browser field to viewsvn
+    - added -dbg package, adding python-all-dbg to build-depends
+    - uncapitalized short descriptions of all binary packages
+    - bump Standards-Version to 3.8.0
+      + added debian/README.source
+  * debian/rules
+    - added -dbg building rules; thanks to Ezequiel Lara Gómez for the (partial)
+      patch; Closes: #470990
+    - correctly depending on '$(QUILT_STAMPFN)' (for configure-stamp target)
+      and 'unpatch' (for clean target)
+    - added removal of 'html/' dir (created by Debian package build system)
+    - merged *-stamp removal in 'dh_clean' call
+  * debian/patches/use-sys-syscall-h.patch
+    - added description (from previous changelog entries)
+
+ -- Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>  Sun, 28 Dec 2008 15:01:11 +0100
+
+pyinotify (0.7.1-1) unstable; urgency=low
+  
+  [Mikhail Gusarov]
+
+  * New upstream release (Closes: #432866).
+    - Removed hppa-syscalls.patch - applied upstream.
+    - Removed m68k-syscalls.patch - applied upstream.
+
+  * Acknowleging NMU 0.7.0-2.1. Thanks to LaMont Jones.
+    - Added use-sys-syscall-h.patch - all Lenny architectures have an
+    inotify support.
+    - Package made Architecture: any.
+
+  * Fixed compilation of _inotify.so for several Python versions (thanks
+    to Christopher Halse Rogers) (Closes: #430891).
+
+  * epydoc documentation moved to html/ subdir to avoid polluting
+    documentation directory.
+  
+  * autopath.py stripped from examples, as it is not needed for packaged
+    library, and hangs when being imported due to some reason.
+
+  [Scott Kitterman]
+
+  * Suggest python-pyinotify instead of python2.*-pyinotify for
+    python-pyinotify-doc.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 20 Sep 2007 01:22:55 +0700
+
+pyinotify (0.7.0-2.1) unstable; urgency=low 
+
+   * Fix FTBFS on hppa and mips/mipsel by using sys/syscall.h, since
+     inotify stuff is mainline linux on all lenny-supporting architectures.
+   * Architecture: any and let Packages-arch-specific deal with the exceptions.
+
+ -- LaMont Jones <lamont@debian.org>  Fri, 31 Aug 2007 18:59:18 -0600
+  
+pyinotify (0.7.0-2) unstable; urgency=low
+
+  * Added armel and armeb to the supported architectures list. Thanks, Riku.
+   (Closes: #429266)
+  * Added patch hppa-syscalls.patch, enabling compilation for
+    hppa. Thanks, Jan. (Closes: #382647).
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sun, 17 Jun 2007 00:18:31 +0700
+
+pyinotify (0.7.0-1) unstable; urgency=low
+
+  * New maintainer. Thanks for your work, Hans!
+  * Acknowledging NMU. Thanks, Pierre! (Closes: #373497)
+
+  * New upstream release. (Closes: #370565, #414740)
+  * Added syscall numbers for m68k. (Closes: #394587)
+
+  * debhelper compatibility level 5 (no changes required).
+  * -doc package moved to 'doc' section.
+  * '[dummy package]' removed from description: package is no longer
+    dummy. (Closes: #420775)
+  * Trailing whitespace and empty lines removed from the
+    debian/{control,rules,changelog}
+  * 'Homepage' entries indented to have two leading spaces.
+  * debian/copyright updated: several files in package are under MIT and
+    PSF licenses
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 14 May 2007 21:54:22 +0700
+
+pyinotify (0.5.2-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Update package for new python policy (Closes: #373497).
+
+ -- Pierre Habouzit <madcoder@debian.org>  Fri, 30 Jun 2006 10:30:52 +0200
+
+pyinotify (0.5.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Hans Ulrich Niedermann <debian@n-dimensional.de>  Sun,  2 Apr 2006 02:35:31 +0200
+
+pyinotify (0.5.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Explicitly list all (Linux) architectures supported by inotify.
+  * Do ship private docs (they are linked to from the public docs).
+
+ -- Hans Ulrich Niedermann <debian@n-dimensional.de>  Tue, 28 Mar 2006 14:25:09 +0200
+
+pyinotify (0.5.0-1) unstable; urgency=low
+
+  * Initial Release, closes: #351451.
+
+ -- Hans Ulrich Niedermann <debian@n-dimensional.de>  Thu,  9 Mar 2006 15:48:55 +0100

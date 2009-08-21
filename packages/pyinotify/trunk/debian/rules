@@ -1,0 +1,59 @@
+#!/usr/bin/make -f
+
+# Based on sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+PYVER := $(shell pyversions -vd)
+
+with_doc := no
+
+ifneq ($(with_doc),yes)
+NOPKGS += -Npython-pyinotify-doc
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	python$(PYVER) setup.py clean --all
+
+	rm -rf html
+	[ ! -e docstrings.orig ] || mv docstrings.orig docstrings
+
+	dh_clean
+
+build:
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+
+ifeq ($(with_doc),yes)
+	[ ! -e docstrings ] || mv docstrings docstrings.orig
+	epydoc pyinotify.py
+endif
+
+	python$(PYVER) setup.py install --root $(CURDIR)/debian/python-pyinotify
+
+binary-indep: build install
+	dh_testdir -i
+	dh_testroot -i
+	dh_installdocs -i
+	dh_installexamples -i
+	dh_installchangelogs -i NEWS
+	dh_pysupport -i
+	dh_compress -i -Xexamples
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+binary-arch:
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
