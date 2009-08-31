@@ -1,0 +1,326 @@
+python-hildon (0.9.0-1maemo11) unstable; urgency=low
+
+  * Add "text" parameter on HildonTouchSelector constructor (Fixes: MB#4821)
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon, 10 Aug 2009 12:14:40 -0400
+
+python-hildon (0.9.0-1maemo10) unstable; urgency=low
+
+  * Add missing dependency on python-notify. Fixes MB#4791.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 16 Jul 2009 11:33:31 -0400
+
+python-hildon (0.9.0-1maemo9) unstable; urgency=low
+
+  [ Bruno dos Santos de Araujo ]
+  * Implement missing GTK constructors (Fixes: MB#4628)
+
+  [ Lauro Moura ]
+  * Add hildon.TouchSelectorEntry constructor. Fixes: MB#4647.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Create override for hildon_program_get_instance. Fixes: MB#4632.
+  * Implement override for hildon.TouchSelector.append_column. Fixes: MB#4646.
+
+  [ Anderson Lizardo ]
+  * Packaging fixes:
+    + debian/rules: remove unnecessary DEB_DESTDIR.
+    + debian/rules: remove hard-coded reference to Python 2.5.
+    + debian/rules: normalize interpreter lines in Python scripts.
+  * (Fixes: MB#4750) Implement overrides for:
+    + hildon.WindowStack.pop
+    + hildon.WindowStack.push{,_list}
+    + hildon.WindowStack.pop_and_push{,_list}
+    + hildon.WindowStack.get_windows.
+  * Implement override for hildon.TimeButton.get_time. Fixes MB#4749.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 23 Jun 2009 11:57:38 -0400
+
+python-hildon (0.9.0-1maemo8) unstable; urgency=low
+
+  [ Lauro Moura ]
+  * Add hildon.GtkRadioButton class and hildon.WindowStack.get_default()
+    static method.
+
+  [ Anderson Lizardo ]
+  * Update .defs using hildon_gen_defs.sh.
+  * hildon-ignore.defs: remove file. It was not necessary, and the only entry
+    there was added as a ignore in the .override file.
+  * hildon_gen_defs.sh: add to_method() transformation that turns a function
+    into a method.
+  * hildon_gen_defs.sh: hildon_edit_toolbar_new_with_text and
+    hildon_gtk_radio_button_new_from_widget as constructors, and
+    hildon_window_stack_get_default as method.
+  * hildon.override: add ignores for hildon_gtk_init,
+    hildon_gtk_radio_button_new and hildon_file_system_voldev_is_visible.
+  * hildon-extras.defs: fix hildon_gtk_radio_button_new_from_widget
+    definition.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 09 Jun 2009 10:52:08 -0400
+
+python-hildon (0.9.0-1maemo7) unstable; urgency=low
+
+  * Add support for hildon.FindToolbar model/column parameters.
+  * Add support for hildon.Button title/value parameters (fixes MB#4629).
+  * Add support for hildon.EditToolbar label/button parameters.
+  * Move hildon-extras.defs out of hildon_gen_defs.sh.
+  * Add support for API found in hildon-gtk.h (available as Gtk* classes).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 05 Jun 2009 13:54:27 -0400
+
+python-hildon (0.9.0-1maemo6) unstable; urgency=low
+
+  [ Anderson Lizardo ]
+  * hildonmodule.c: replace hardcoded constants with defines from
+    hildon-defines.h.
+  * hildon.override: add override for hildon_color_button_get_color (restores
+    behavior added by GB#1195 fix).
+  * debian/rules: Fix build cleanup.
+  * Allow None as parent argument for WizardDialog (restores GB#825 fix).
+  * Restore hildon.Note custom constructor, fixing a few bugs and simplifying
+    the arguments.
+  * Add support for hildon.WizardDialog.set_forward_page_func(), plus unit
+    tests and an example.
+  * Make title optional for hildon.FontSelectionDialog().
+  * Make group and icon arguments optional for hildon.HildonCaption().
+  * Add support for hildon.FileSystemModel() and hildonFileChooserDialog().
+  * Restore working examples and tests from previous version (0.8.9).
+
+  [ Bruno dos Santos de Araujo ]
+  * Split package into -dev (examples, .defs) and -tests packages.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 19 May 2009 20:22:03 -0400
+
+python-hildon (0.9.0-1maemo5) unstable; urgency=low
+
+  * Add versioned build dependency on libhildonfm2-dev >= 1:2.11+0m5 to use
+    version that fixes MB#4450.
+  * Update .defs and hildon.override for Maemo 5.0 beta API.
+  * Fix refcount bug in set_app_menu and add test (fixes MB#4492).
+  * Add support for .defs transformation in hildon_gen_defs.sh.
+  * setup.py: add gconf-2.0 and gnome-vfs-2.0 as dependencies, as a workaround
+    for MB#4538.
+  * Restore hildonglade module.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 12 May 2009 15:27:28 -0400
+
+python-hildon (0.9.0-1maemo4) unstable; urgency=low
+
+  * Remove libhildondesktop-1 from setup.py.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 11 May 2009 14:40:16 -0400
+
+python-hildon (0.9.0-1maemo3) unstable; urgency=low
+
+  * Remove unused build dependency on libhildondesktop1-dev.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Fri, 08 May 2009 14:43:35 -0400
+
+python-hildon (0.9.0-1maemo2) unstable; urgency=low
+
+  * Remove libhildonhelp dependency (removed since fremantle 5 beta).
+  * Add workaround for missing headers in libhildonfm2-dev (MB#4450).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Sat, 02 May 2009 20:53:57 -0400
+
+python-hildon (0.9.0-1maemo1) unstable; urgency=low
+
+  * Bump version to 0.9.0.
+  * Restore deprecated API (should avoid breaking existing applications).
+  * Add unit tests for hand-written code in hildon.override.
+  * Create hildon_gen_defs.sh script to automate (re)generation of .defs.
+  * Cleanup build system (see TODO for missing things).
+  * Fix build/installation dependencies.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 14 Apr 2009 16:01:56 -0400
+
+python-hildon (0.8.9-2maemo3) unstable; urgency=low
+
+  * Put the pymaemo-developers mailing list address in "Maintainer" field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 01 Apr 2009 13:21:52 -0400
+
+python-hildon (0.8.9-2maemo2) unstable; urgency=low
+
+  * Disable deprecated API. Still needs review on new/changed API.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 23 Dec 2008 12:46:59 -0400
+
+python-hildon (0.8.9-2maemo1) unstable; urgency=low
+
+  * CDBS repackaging.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 19 Nov 2008 16:20:06 -0400
+
+python-hildon (0.8.9-1osso2) unstable; urgency=low
+
+  * Dependency on libhildonhelp and libhildonmime
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Fri, 27 Jun 2008 14:13:53 -0300
+
+python-hildon (0.8.9-1osso1) unstable; urgency=low
+
+  * Bump version to 0.8.9
+  * Add hildonmime module.
+  * Update setup.py and debian/rules to use dh_install instead of manually
+    moving the files.
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 21 Jan 2008 17:46:23 -0300
+
+python-hildon (0.8.8-1osso8) unstable; urgency=low
+
+  * Adding python2.5-osso as dependency (hildonhelp depends on it).
+  * Fix #2009 - Hildon banner should accept null arguments
+  * Adding tests directory to hold unit tests. 
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Wed, 16 Jan 2008 15:44:35 -0300
+
+python-hildon (0.8.8-1osso7) unstable; urgency=low
+
+  * hildon.override: Removing comment from hildon.Caption constructor that was avoiding the
+    override. 
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  3 Jan 2008 18:02:08 -0300
+
+python-hildon (0.8.8-1osso6) unstable; urgency=low
+
+  * Fixes #1565 - Adding hildon-help bindings (module hildonhelp).
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Mon, 10 Dec 2007 16:20:12 -0300
+
+python-hildon (0.8.8-1osso5) unstable; urgency=low
+
+  * Fixing #1724 - use pygtk's TemplateExtension when building
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Thu,  6 Dec 2007 16:54:12 -0300
+
+python-hildon (0.8.8-1osso4) unstable; urgency=low
+
+  * Fixing #1720 - adding hildon keysyms (hildon.KEY_*)
+
+ -- Lauro Moura Maranhao Neto <lauro.neto@openbossa.org>  Tue,  4 Dec 2007 16:49:06 -0300
+
+python-hildon (0.8.8-1osso3) unstable; urgency=low
+
+  * Fixing #1195 - hildon.ColorButton.get_color() and adding example. 
+
+ -- Lauro Moura Neto <lauro.neto@openbossa.org>  Fri, 26 Oct 2007 17:38:41 -0300
+
+python-hildon (0.8.8-1osso2) unstable; urgency=low
+
+  * Exporting enumerations (constants).
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Mon, 22 Oct 2007 15:20:11 -0300
+
+python-hildon (0.8.8-1osso1) unstable; urgency=low
+
+  * added cairo and new gtk version
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 30 May 2007 15:38:03 -0300
+
+python-hildon (0.8.7-1osso3) unstable; urgency=low
+
+  * allow NULL parent window to HildonWizardDialog
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  8 May 2007 11:01:49 -0300
+
+python-hildon (0.8.7-1osso2) unstable; urgency=low
+
+  * python2.5-gtk2-dev dependency added to the dev package (#775) 
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Wed, 25 Apr 2007 15:12:13 -0300
+
+python-hildon (0.8.7-1osso1) unstable; urgency=low
+
+  * employed new build system based on distutils
+  * removed configure.in, Makefile.am
+  * added setup.py
+
+ -- Luciano Miguel Wolf <luciano.wolf@indt.org.br>  Tue,  5 Sep 2006 18:01:41 -0300
+
+python-hildon (0.8.6-1osso1) unstable; urgency=low
+
+  * fixed depends on shlibs
+  * enable "-mthumb" and "-msoft-abi=softfp" flags on gcc
+  * changed section to python on debian/control
+  * changed platform to 'all' in python2.4-hildon-dev package
+  * added hildon-base-lib dependencies to build this package
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Mon, 6 Jun 2006 10:38:00 -0300
+
+python-hildon (0.8.4-1osso4) unstable; urgency=low
+
+  * remove reference to hildon-insert-object-dialog.h
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 1 Jun 2006 23:32:00 -0300
+
+python-hildon (0.8.4-1osso3) unstable; urgency=low
+
+  * renamed documentation directory in development package
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 5 May 2006 17:13:00 -0300
+
+python-hildon (0.8.4-1osso2) unstable; urgency=low
+
+  * Some package cleanups
+  * Recompiled on SDK 2.0rc4
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 5 May 2006 17:13:00 -0300
+
+python-hildon (0.8.4-1osso1) unstable; urgency=low
+
+  * Updated to 0.8.4 release
+  * Recompiled on SDK 2.0rc4
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 02 May 2006 18:42:00 -0300
+
+python-hildon (0.7.0-1osso3) unstable; urgency=low
+
+  * Strip some unused files to reduce footprint
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 05 Apr 2006 16:54:00 -0300
+
+python-hildon (0.7.0-1osso2) unstable; urgency=low
+
+  * Recompiled against SDK 1.2
+
+ -- Ruda Moura <ruda.moura@indt.org.br>  Thu, 09 Feb 2006 13:25:07 -0300
+
+python-hildon (0.7.0-1osso1) unstable; urgency=low
+
+  * new release to add hildonglade.py
+  * added license information (LGPL)
+  * create a package for examples
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Fri, 27 Jan 2006 18:03:00 -0300
+
+python-hildon (0.6.0-1indt1) unstable; urgency=low
+
+  * new release to fix python-hildon to accomplish new hildon-libs API
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 Aug 2005 09:45:00 -0300
+
+python-hildon (0.5.1-1indt1) unstable; urgency=low
+
+  * new release
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 10 Aug 2005 09:45:00 -0300
+
+python-hildon (0.5.0-1indt1) unstable; urgency=low
+
+  * complete hildon widgets mapping
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Wed, 03 Aug 2005 17:03:00 -0300
+
+python-hildon (0.0.0-1indt2) unstable; urgency=low
+
+  * added other hildon widgets into module
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 06 Jul 2005 15:28:17 -0300
+
+python-hildon (0.0.0-1indt1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Osvaldo Santana Neto <osvaldo.santana@indt.org.br>  Thu, 16 Jun 2005 15:58:17 -0300
+

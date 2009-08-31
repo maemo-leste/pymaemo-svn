@@ -1,0 +1,68 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TouchSelectorEntry
+  (in-module "Hildon")
+  (parent "HildonTouchSelector")
+  (c-name "HildonTouchSelectorEntry")
+  (gtype-id "HILDON_TYPE_TOUCH_SELECTOR_ENTRY")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-touch-selector-entry.h
+
+(define-function hildon_touch_selector_entry_get_type
+  (c-name "hildon_touch_selector_entry_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_touch_selector_entry_new
+  (c-name "hildon_touch_selector_entry_new")
+  (is-constructor-of "HildonTouchSelectorEntry")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_touch_selector_entry_new_text
+  (c-name "hildon_touch_selector_entry_new_text")
+  (is-constructor-of "HildonTouchSelectorEntry")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_text_column
+  (of-object "HildonTouchSelectorEntry")
+  (c-name "hildon_touch_selector_entry_set_text_column")
+  (return-type "none")
+  (parameters
+    '("gint" "text_column")
+  )
+)
+
+(define-method get_text_column
+  (of-object "HildonTouchSelectorEntry")
+  (c-name "hildon_touch_selector_entry_get_text_column")
+  (return-type "gint")
+)
+
+(define-method get_input_mode
+  (of-object "HildonTouchSelectorEntry")
+  (c-name "hildon_touch_selector_entry_get_input_mode")
+  (return-type "HildonGtkInputMode")
+)
+
+(define-method set_input_mode
+  (of-object "HildonTouchSelectorEntry")
+  (c-name "hildon_touch_selector_entry_set_input_mode")
+  (return-type "none")
+  (parameters
+    '("HildonGtkInputMode" "input_mode")
+  )
+)
+
+(define-method get_entry
+  (of-object "HildonTouchSelectorEntry")
+  (c-name "hildon_touch_selector_entry_get_entry")
+  (return-type "HildonEntry*")
+)
+
+

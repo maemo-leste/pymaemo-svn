@@ -1,0 +1,129 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-gtk.h
+
+(define-function hildon_gtk_menu_new
+  (c-name "hildon_gtk_menu_new")
+  (is-constructor-of "HildonGtkMenu")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_gtk_button_new
+  (c-name "hildon_gtk_button_new")
+  (is-constructor-of "HildonGtkButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+  )
+)
+
+(define-function hildon_gtk_toggle_button_new
+  (c-name "hildon_gtk_toggle_button_new")
+  (is-constructor-of "HildonGtkToggleButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+  )
+)
+
+(define-function hildon_gtk_radio_button_new
+  (c-name "hildon_gtk_radio_button_new")
+  (is-constructor-of "HildonGtkRadioButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("GSList*" "group")
+  )
+)
+
+(define-function hildon_gtk_radio_button_new_from_widget
+  (c-name "hildon_gtk_radio_button_new_from_widget")
+  (is-constructor-of "HildonGtkRadioButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("GtkRadioButton*" "radio_group_member")
+  )
+)
+
+(define-function hildon_gtk_tree_view_new
+  (c-name "hildon_gtk_tree_view_new")
+  (is-constructor-of "HildonGtkTreeView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonUIMode" "mode")
+  )
+)
+
+(define-function hildon_gtk_tree_view_new_with_model
+  (c-name "hildon_gtk_tree_view_new_with_model")
+  (is-constructor-of "HildonGtkTreeView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonUIMode" "mode")
+    '("GtkTreeModel*" "model")
+  )
+)
+
+(define-function hildon_gtk_tree_view_set_ui_mode
+  (c-name "hildon_gtk_tree_view_set_ui_mode")
+  (return-type "none")
+  (parameters
+    '("GtkTreeView*" "treeview")
+    '("HildonUIMode" "mode")
+  )
+)
+
+(define-function hildon_gtk_icon_view_new
+  (c-name "hildon_gtk_icon_view_new")
+  (is-constructor-of "HildonGtkIconView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonUIMode" "mode")
+  )
+)
+
+(define-function hildon_gtk_icon_view_new_with_model
+  (c-name "hildon_gtk_icon_view_new_with_model")
+  (is-constructor-of "HildonGtkIconView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonUIMode" "mode")
+    '("GtkTreeModel*" "model")
+  )
+)
+
+(define-function hildon_gtk_icon_view_set_ui_mode
+  (c-name "hildon_gtk_icon_view_set_ui_mode")
+  (return-type "none")
+  (parameters
+    '("GtkIconView*" "iconview")
+    '("HildonUIMode" "mode")
+  )
+)
+
+(define-function hildon_gtk_window_set_progress_indicator
+  (c-name "hildon_gtk_window_set_progress_indicator")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+    '("guint" "state")
+  )
+)
+
+(define-function hildon_gtk_hscale_new
+  (c-name "hildon_gtk_hscale_new")
+  (is-constructor-of "HildonGtkHscale")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_gtk_vscale_new
+  (c-name "hildon_gtk_vscale_new")
+  (is-constructor-of "HildonGtkVscale")
+  (return-type "GtkWidget*")
+)
+
+

@@ -1,0 +1,11 @@
+* Add support for hildondesktop API from maemo 5 alpha (http://maemo.org/api_refs/5.0/alpha/libhildondesktop/)
+* Fix regressions:
+  [GB#2009] HildonBanner issues
+  [GB#1195] [chinook] hildon.ColorButton.get_color in chinook doesn't works
+* Use existing #defines instead of hardcoded constants for Hildon keysyms.
+* Update/remove https://garage.maemo.org/plugins/wiki/index.php?Using%20PyGtk%20template%20classes%20in%20setup.py&id=40&type=g
+* Review and restore missing overrides from 0.8.9 (see hildon.override.orig)
+* Review and restore examples and tests from 0.8.9
+* Review and restore hildonglade.py
+* Extend setup.py with some missings bits (install .defs, examples ?)
+* Improve documentation

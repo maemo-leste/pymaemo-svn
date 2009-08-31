@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemSmb
+  (in-module "Hildon")
+  (parent "HildonFileSystemRemoteDevice")
+  (c-name "HildonFileSystemSmb")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_SMB")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-smb.h
+
+(define-function hildon_file_system_smb_get_type
+  (c-name "hildon_file_system_smb_get_type")
+  (return-type "GType")
+)
+
+

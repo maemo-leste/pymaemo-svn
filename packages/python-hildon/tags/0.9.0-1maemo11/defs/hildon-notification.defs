@@ -1,0 +1,91 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Notification
+  (in-module "Hildon")
+  (parent "NotifyNotification")
+  (c-name "HildonNotification")
+  (gtype-id "HILDON_TYPE_NOTIFICATION")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-notification.h
+
+(define-function hildon_notification_get_type
+  (c-name "hildon_notification_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_notification_new
+  (c-name "hildon_notification_new")
+  (is-constructor-of "HildonNotification")
+  (return-type "HildonNotification*")
+  (parameters
+    '("const-gchar*" "summary")
+    '("const-gchar*" "body")
+    '("const-gchar*" "icon")
+    '("const-gchar*" "category" (null-ok) (default "NULL"))
+  )
+)
+
+(define-method set_persistent
+  (of-object "HildonNotification")
+  (c-name "hildon_notification_set_persistent")
+  (return-type "none")
+  (parameters
+    '("gboolean" "persistent")
+  )
+)
+
+(define-method set_sound
+  (of-object "HildonNotification")
+  (c-name "hildon_notification_set_sound")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "sound_file")
+  )
+)
+
+(define-method add_dbus_action
+  (of-object "HildonNotification")
+  (c-name "hildon_notification_add_dbus_action")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "action_id")
+    '("const-gchar*" "action_label")
+    '("const-gchar*" "dbus_destination")
+    '("const-gchar*" "dbus_path")
+    '("const-gchar*" "dbus_interface")
+    '("const-gchar*" "dbus_method")
+    '("GType" "param_type")
+  )
+  (varargs #t)
+)
+
+(define-function hildon_notification_get_notifications
+  (c-name "hildon_notification_get_notifications")
+  (return-type "GList*")
+)
+
+(define-function hildon_notification_helper_show
+  (c-name "hildon_notification_helper_show")
+  (return-type "guint")
+  (parameters
+    '("guint" "id")
+    '("const-gchar*" "summary")
+    '("const-gchar*" "body")
+    '("const-gchar*" "icon")
+    '("const-gchar*" "category")
+    '("guint" "timeout")
+    '("gboolean" "persistent")
+    '("const-gchar*" "dbus_destination")
+    '("const-gchar*" "dbus_path")
+    '("const-gchar*" "dbus_interface")
+    '("const-gchar*" "dbus_method")
+    '("GType" "param_type")
+  )
+  (varargs #t)
+)
+
+
