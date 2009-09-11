@@ -94,8 +94,8 @@
   (c-name "hildon_pannable_area_scroll_to")
   (return-type "none")
   (parameters
-    '("const-gint" "x")
-    '("const-gint" "y")
+    '("gint" "x")
+    '("gint" "y")
   )
 )
 
@@ -104,8 +104,8 @@
   (c-name "hildon_pannable_area_jump_to")
   (return-type "none")
   (parameters
-    '("const-gint" "x")
-    '("const-gint" "y")
+    '("gint" "x")
+    '("gint" "y")
   )
 )
 

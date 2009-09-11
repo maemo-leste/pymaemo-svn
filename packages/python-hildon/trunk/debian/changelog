@@ -1,3 +1,10 @@
+python-hildon (0.9.0-1maemo12) unstable; urgency=low
+
+  * Add missing functions from hildon.PannableArea: scroll_to() and jump_to()
+    (Fixes: MB#4969)
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed,  9 Sep 2009 16:36:01 -0400
+
 python-hildon (0.9.0-1maemo11) unstable; urgency=low
 
   * Add "text" parameter on HildonTouchSelector constructor (Fixes: MB#4821)
