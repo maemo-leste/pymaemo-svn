@@ -28,11 +28,14 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${python:Depends},
          python-gobject (>= 2.11.2)
-Provides: ${python:Provides}
+Provides: ${python:Provides},
+          python2.5-gstreamer
 Replaces: python2.3-gst0.10,
-          python2.4-gst0.10
+          python2.4-gst0.10,
+          phthon2.5-gstreamer
 Conflicts: python2.3-gst0.10,
-           python2.4-gst0.10
+           python2.4-gst0.10,
+           python2.5-gstreamer
 Suggests: python-gst0.10-dbg
 XB-Python-Version: ${python:Versions}
 Description: generic media-playing framework (Python bindings)
