@@ -2,6 +2,8 @@ python-hildon (0.9.0-1maemo12) unstable; urgency=low
 
   * Add missing functions from hildon.PannableArea: scroll_to() and jump_to()
     (Fixes: MB#4969)
+  * Add missing functions from hildon.AppMenu: get_items() (Fixes: MB#5015)
+    and get_filters()
 
  -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed,  9 Sep 2009 16:36:01 -0400
 

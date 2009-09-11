@@ -83,6 +83,57 @@ ignore hildon_file_system_special_location_rewrite_path
 ignore hildon_file_system_special_location_volumes_changed
 ignore hildon_file_system_voldev_is_visible
 
+
+%%
+override hildon_app_menu_get_items noargs
+static PyObject *
+_wrap_hildon_app_menu_get_items(PyGObject *self)
+{
+    GList *wlist;
+    guint nwlist;
+    int i;
+    PyObject *list;
+
+    wlist = hildon_app_menu_get_items(HILDON_APP_MENU(self->obj));
+    nwlist = g_list_length(wlist);
+
+    if ((list = PyList_New(nwlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nwlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        PyList_SetItem(list, i, item);
+    }
+    g_list_free(wlist);
+
+    return list;
+}
+
+%%
+override hildon_app_menu_get_filters noargs
+static PyObject *
+_wrap_hildon_app_menu_get_filters(PyGObject *self)
+{
+    GList *wlist;
+    guint nwlist;
+    int i;
+    PyObject *list;
+
+    wlist = hildon_app_menu_get_filters(HILDON_APP_MENU(self->obj));
+    nwlist = g_list_length(wlist);
+
+    if ((list = PyList_New(nwlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nwlist; i++) {
+        PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
+        PyList_SetItem(list, i, item);
+    }
+    g_list_free(wlist);
+
+    return list;
+}
+
 %%
 override hildon_calendar_popup_get_date noargs
 static PyObject *
