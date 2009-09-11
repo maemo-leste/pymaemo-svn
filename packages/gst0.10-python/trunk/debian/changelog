@@ -1,9 +1,15 @@
+gst0.10-python (0.10.14-2maemo5) unstable; urgency=low
+
+  * debian/control
+    - Add python2.5-gstreamer to Provides/Replaces/Conflicts keywords
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 11 Sep 2009 08:44:34 -0400
+
 gst0.10-python (0.10.14-2maemo4) unstable; urgency=low
 
   * Recompile for python2.6
 
  -- Renato Araujo Oliveira Filho <renato.filho@ind.org.br>  Thu, 18 Jun 2009 13:10:00 -0300
-
 
 gst0.10-python (0.10.14-2maemo3) unstable; urgency=low
 
