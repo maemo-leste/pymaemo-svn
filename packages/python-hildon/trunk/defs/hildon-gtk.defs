@@ -2,6 +2,16 @@
 ; object definitions ...
 ;; Enumerations and flags ...
 
+(define-flags PortraitFlags
+  (in-module "Hildon")
+  (c-name "HildonPortraitFlags")
+  (gtype-id "HILDON_TYPE_PORTRAIT_FLAGS")
+  (values
+    '("request" "HILDON_PORTRAIT_MODE_REQUEST")
+    '("support" "HILDON_PORTRAIT_MODE_SUPPORT")
+  )
+)
+
 
 ;; From hildon-gtk.h
 
@@ -111,6 +121,16 @@
   (parameters
     '("GtkWindow*" "window")
     '("guint" "state")
+  )
+)
+
+(define-method set_portrait_flags
+  (of-object "HildonWindow")
+  (c-name "hildon_gtk_window_set_portrait_flags")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+    '("HildonPortraitFlags" "portrait_flags")
   )
 )
 

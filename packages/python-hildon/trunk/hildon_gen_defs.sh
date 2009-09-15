@@ -82,6 +82,7 @@ set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget Hil
 set_constructor defs/hildon-touch-selector-entry.defs hildon_touch_selector_entry_new_text HildonTouchSelectorEntry
 to_method defs/hildon-window-stack.defs hildon_window_stack_get_default get_default HildonWindowStack
 to_method defs/hildon-program.defs hildon_program_get_instance get_instance HildonProgram
+to_method defs/hildon-gtk.defs hildon_gtk_window_set_portrait_flags set_portrait_flags HildonWindow
 remove-const-gint defs/hildon-pannable-area.defs
 
 echo Generating hildon-types.c and hildon-types.h...

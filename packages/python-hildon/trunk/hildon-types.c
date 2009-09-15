@@ -472,6 +472,23 @@ hildon_number_editor_error_type_get_type (void)
     return etype;
 }
 
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-gtk.h" */
+
+GType
+hildon_portrait_flags_get_type (void)
+{
+    static GType etype = 0;
+    if (etype == 0) {
+        static const GFlagsValue values[] = {
+            { HILDON_PORTRAIT_MODE_REQUEST, "HILDON_PORTRAIT_MODE_REQUEST", "request" },
+            { HILDON_PORTRAIT_MODE_SUPPORT, "HILDON_PORTRAIT_MODE_SUPPORT", "support" },
+            { 0, NULL, NULL }
+        };
+        etype = g_flags_register_static ("HildonPortraitFlags", values);
+    }
+    return etype;
+}
+
 
 /* enumerations from "/usr/include/glib-2.0/glib/gdate.h" */
 

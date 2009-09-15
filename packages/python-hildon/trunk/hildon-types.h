@@ -135,6 +135,11 @@ GType hildon_caption_icon_position_get_type (void) G_GNUC_CONST;
 GType hildon_number_editor_error_type_get_type (void) G_GNUC_CONST;
 #define HILDON_TYPE_NUMBER_EDITOR_ERROR_TYPE (hildon_number_editor_error_type_get_type())
 
+/* enumerations from "/usr/include/hildon-1/hildon/hildon-gtk.h" */
+
+GType hildon_portrait_flags_get_type (void) G_GNUC_CONST;
+#define HILDON_TYPE_PORTRAIT_FLAGS (hildon_portrait_flags_get_type())
+
 
 /* enumerations from "/usr/include/glib-2.0/glib/gdate.h" */
 
