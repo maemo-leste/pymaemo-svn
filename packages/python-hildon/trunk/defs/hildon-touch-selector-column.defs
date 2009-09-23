@@ -17,4 +17,19 @@
   (return-type "GType")
 )
 
+(define-method set_text_column
+  (of-object "HildonTouchSelectorColumn")
+  (c-name "hildon_touch_selector_column_set_text_column")
+  (return-type "none")
+  (parameters
+    '("gint" "text_column")
+  )
+)
+
+(define-method get_text_column
+  (of-object "HildonTouchSelectorColumn")
+  (c-name "hildon_touch_selector_column_get_text_column")
+  (return-type "gint")
+)
+
 

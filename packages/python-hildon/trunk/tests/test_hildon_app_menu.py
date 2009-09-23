@@ -69,5 +69,23 @@ class TestHildonAppMenu(unittest.TestCase):
         # should not segfault
         m.append(gtk.Button('test'))
 
+    def test_get_items(self):
+        m = hildon.AppMenu()
+        self.assertEqual(set(m.get_items()), set([]))
+        b1 = gtk.Button()
+        b2 = gtk.Button()
+        m.append(b1)
+        m.append(b2)
+        self.assertEqual(set(m.get_items()), set([b1, b2]))
+
+    def test_get_filters(self):
+        m = hildon.AppMenu()
+        self.assertEqual(set(m.get_filters()), set([]))
+        f1 = gtk.RadioButton()
+        f2 = gtk.RadioButton()
+        m.add_filter(f1)
+        m.add_filter(f2)
+        self.assertEqual(set(m.get_filters()), set([f1, f2]))
+
 if __name__ == "__main__":
     unittest.main()

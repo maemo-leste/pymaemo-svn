@@ -70,6 +70,15 @@
   )
 )
 
+(define-method set_empty_text
+  (of-object "HildonFileSelection")
+  (c-name "hildon_file_selection_set_empty_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "empty_text")
+  )
+)
+
 (define-method set_mode
   (of-object "HildonFileSelection")
   (c-name "hildon_file_selection_set_mode")

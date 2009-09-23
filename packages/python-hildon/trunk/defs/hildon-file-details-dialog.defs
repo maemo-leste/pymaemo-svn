@@ -55,4 +55,14 @@
   )
 )
 
+(define-method add_label_with_value
+  (of-object "HildonFileDetailsDialog")
+  (c-name "hildon_file_details_dialog_add_label_with_value")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("const-gchar*" "value")
+  )
+)
+
 

@@ -33,6 +33,15 @@
   (varargs #t)
 )
 
+(define-function hildon_banner_show_information_override_dnd
+  (c-name "hildon_banner_show_information_override_dnd")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "text")
+  )
+)
+
 (define-function hildon_banner_show_information_with_markup
   (c-name "hildon_banner_show_information_with_markup")
   (return-type "GtkWidget*")

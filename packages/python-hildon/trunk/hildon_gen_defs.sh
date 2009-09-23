@@ -12,7 +12,10 @@ mkdir -p defs
 
 headers=""
 for p in $dev_packages; do
-	headers="$(dpkg -L $p | grep '\.h$') $headers"
+	# According to a comment on the header, gtkfilesystem.h is necessary
+	# only for writing "alternate GtkFileChooser backend modules".
+	# It also breaks codegen, so simply ignore it.
+	headers="$(dpkg -L $p | grep '\.h$' | grep -v gtkfilesystem/gtkfilesystem.h) $headers"
 done
 
 echo Parsing .h files and creating .defs...
@@ -57,13 +60,14 @@ function to_method()
 	rm $defs_file.bak
 }
 
-#Change const-gint to gint
-function remove-const-gint()
+# Change const-gint (not recognized by codegen) to gint
+function remove_const_gint()
 {
-        defs_file=$1
-        sed -i.bak "s/const-gint/gint/g" $defs_file
-        diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
-        rm $defs_file.bak
+	defs_file=$1
+	method=$2
+	sed -i.bak "/^(define-\(method\|function\) $method\$/,/^)/s/\"const-/\"/g" $defs_file
+	diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
+	rm $defs_file.bak
 }
 
 
@@ -79,11 +83,12 @@ set_null_ok defs/hildon-notification.defs hildon_notification_new category
 set_constructor defs/hildon-button.defs hildon_button_new_with_text HildonButton
 set_constructor defs/hildon-edit-toolbar.defs hildon_edit_toolbar_new_with_text HildonEditToolbar
 set_constructor defs/hildon-gtk.defs hildon_gtk_radio_button_new_from_widget HildonGtkRadioButton
+set_constructor defs/hildon-touch-selector.defs hildon_touch_selector_new_text HildonTouchSelector
 set_constructor defs/hildon-touch-selector-entry.defs hildon_touch_selector_entry_new_text HildonTouchSelectorEntry
 to_method defs/hildon-window-stack.defs hildon_window_stack_get_default get_default HildonWindowStack
 to_method defs/hildon-program.defs hildon_program_get_instance get_instance HildonProgram
-to_method defs/hildon-gtk.defs hildon_gtk_window_set_portrait_flags set_portrait_flags HildonWindow
-remove-const-gint defs/hildon-pannable-area.defs
+remove_const_gint defs/hildon-pannable-area.defs scroll_to
+remove_const_gint defs/hildon-pannable-area.defs jump_to
 
 echo Generating hildon-types.c and hildon-types.h...
 glib-mkenums --template hildon-types-template.h $headers $extra_headers > hildon-types.h

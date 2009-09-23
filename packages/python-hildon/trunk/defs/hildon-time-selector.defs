@@ -9,6 +9,17 @@
 
 ;; Enumerations and flags ...
 
+(define-enum TimeSelectorFormatPolicy
+  (in-module "Hildon")
+  (c-name "HildonTimeSelectorFormatPolicy")
+  (gtype-id "HILDON_TYPE_TIME_SELECTOR_FORMAT_POLICY")
+  (values
+    '("ampm" "HILDON_TIME_SELECTOR_FORMAT_POLICY_AMPM")
+    '("24h" "HILDON_TIME_SELECTOR_FORMAT_POLICY_24H")
+    '("automatic" "HILDON_TIME_SELECTOR_FORMAT_POLICY_AUTOMATIC")
+  )
+)
+
 
 ;; From hildon-time-selector.h
 

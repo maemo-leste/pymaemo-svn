@@ -124,13 +124,30 @@
   )
 )
 
-(define-method set_portrait_flags
-  (of-object "HildonWindow")
+(define-function hildon_gtk_window_set_do_not_disturb
+  (c-name "hildon_gtk_window_set_do_not_disturb")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+    '("gboolean" "dndflag")
+  )
+)
+
+(define-function hildon_gtk_window_set_portrait_flags
   (c-name "hildon_gtk_window_set_portrait_flags")
   (return-type "none")
   (parameters
     '("GtkWindow*" "window")
     '("HildonPortraitFlags" "portrait_flags")
+  )
+)
+
+(define-function hildon_gtk_window_take_screenshot
+  (c-name "hildon_gtk_window_take_screenshot")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+    '("gboolean" "take")
   )
 )
 

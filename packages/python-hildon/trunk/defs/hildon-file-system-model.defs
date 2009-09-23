@@ -25,6 +25,7 @@
     '("column-file-time" "HILDON_FILE_SYSTEM_MODEL_COLUMN_FILE_TIME")
     '("column-is-folder" "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_FOLDER")
     '("column-is-available" "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_AVAILABLE")
+    '("column-is-readonly" "HILDON_FILE_SYSTEM_MODEL_COLUMN_IS_READONLY")
     '("column-has-local-path" "HILDON_FILE_SYSTEM_MODEL_COLUMN_HAS_LOCAL_PATH")
     '("column-type" "HILDON_FILE_SYSTEM_MODEL_COLUMN_TYPE")
     '("column-icon" "HILDON_FILE_SYSTEM_MODEL_COLUMN_ICON")

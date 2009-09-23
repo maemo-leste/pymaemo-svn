@@ -269,4 +269,37 @@
   (return-type "none")
 )
 
+(define-method optimal_size_request
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_optimal_size_request")
+  (return-type "none")
+  (parameters
+    '("GtkRequisition*" "requisition")
+  )
+)
+
+(define-method get_hildon_ui_mode
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_hildon_ui_mode")
+  (return-type "HildonUIMode")
+)
+
+(define-method set_hildon_ui_mode
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_set_hildon_ui_mode")
+  (return-type "gboolean")
+  (parameters
+    '("HildonUIMode" "mode")
+  )
+)
+
+(define-method get_last_activated_row
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_get_last_activated_row")
+  (return-type "GtkTreePath*")
+  (parameters
+    '("gint" "column")
+  )
+)
+
 

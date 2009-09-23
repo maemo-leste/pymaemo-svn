@@ -61,4 +61,12 @@
   )
 )
 
+(define-function hildon_format_file_size_for_display
+  (c-name "hildon_format_file_size_for_display")
+  (return-type "gchar*")
+  (parameters
+    '("goffset" "size")
+  )
+)
+
 

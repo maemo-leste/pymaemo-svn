@@ -30,6 +30,11 @@
   (return-type "GType")
 )
 
+(define-function hildon_time_selector_format_policy_get_type
+  (c-name "hildon_time_selector_format_policy_get_type")
+  (return-type "GType")
+)
+
 (define-function hildon_touch_selector_selection_mode_get_type
   (c-name "hildon_touch_selector_selection_mode_get_type")
   (return-type "GType")
@@ -77,6 +82,11 @@
 
 (define-function hildon_button_style_get_type
   (c-name "hildon_button_style_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_portrait_flags_get_type
+  (c-name "hildon_portrait_flags_get_type")
   (return-type "GType")
 )
 

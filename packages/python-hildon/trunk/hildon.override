@@ -22,6 +22,7 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include <pygobject.h>
+#include <pygtk/pygtk.h>
 
 #include "hildon-includes.h"
 #include "hildon-types.h"
@@ -1039,25 +1040,3 @@ _wrap_hildon_touch_selector_new_text(PyGObject *self, PyObject *args, PyObject *
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
-
-%%
-override hildon_gtk_window_set_portrait_flags kwargs
-static PyObject *
-_wrap_hildon_gtk_window_set_portrait_flags(PyGObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "window", "portrait_flags", NULL };
-    PyGObject *window;
-    PyObject *py_portrait_flags = NULL;
-    HildonPortraitFlags portrait_flags;
-    //overriden!
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!O:HildonWindow.set_portrait_flags", kwlist, &PyGtkWindow_Type, &window, &py_portrait_flags))
-        return NULL;
-    if (pyg_flags_get_value(HILDON_TYPE_PORTRAIT_FLAGS, py_portrait_flags, (gpointer)&portrait_flags))
-        return NULL;
-
-    hildon_gtk_window_set_portrait_flags(GTK_WINDOW(window->obj), portrait_flags);
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-

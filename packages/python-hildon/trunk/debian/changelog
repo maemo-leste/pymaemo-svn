@@ -1,11 +1,19 @@
 python-hildon (0.9.0-1maemo12) unstable; urgency=low
 
+  [ Bruno dos Santos de Araujo ]
   * Add missing functions from hildon.PannableArea: scroll_to() and jump_to()
-    (Fixes: MB#4969)
+    (Fixes: MB#4969).
   * Add missing functions from hildon.AppMenu: get_items() (Fixes: MB#5015)
-    and get_filters()
+    and get_filters().
+  [ Anderson Lizardo ]
+  * hildon_gen_defs.sh: mark hildon_touch_selector_new_text as constructor.
+  * hildon_gen_defs.sh: avoid parsing gtkfilesystem.h (breaks the glib-mkenums
+    parser).
+  * Add unit tests for hildon.AppMenu.get_items() and
+    hildon.AppMenu.get_filters().
+  * Update Hildon API (Fixes: MB#5026).
 
- -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Wed,  9 Sep 2009 16:36:01 -0400
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 21 Sep 2009 14:41:52 -0400
 
 python-hildon (0.9.0-1maemo11) unstable; urgency=low
 
