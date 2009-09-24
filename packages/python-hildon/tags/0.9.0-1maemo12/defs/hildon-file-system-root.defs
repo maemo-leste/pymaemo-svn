@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemRoot
+  (in-module "Hildon")
+  (parent "HildonFileSystemSpecialLocation")
+  (c-name "HildonFileSystemRoot")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_ROOT")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-root.h
+
+(define-function hildon_file_system_root_get_type
+  (c-name "hildon_file_system_root_get_type")
+  (return-type "GType")
+)
+
+

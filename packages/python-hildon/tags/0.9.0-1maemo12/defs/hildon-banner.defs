@@ -1,0 +1,129 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Banner
+  (in-module "Hildon")
+  (parent "GtkWindow")
+  (c-name "HildonBanner")
+  (gtype-id "HILDON_TYPE_BANNER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-banner.h
+
+(define-function hildon_banner_show_information
+  (c-name "hildon_banner_show_information")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "icon_name")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-function hildon_banner_show_informationf
+  (c-name "hildon_banner_show_informationf")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "icon_name")
+    '("const-gchar*" "format")
+  )
+  (varargs #t)
+)
+
+(define-function hildon_banner_show_information_override_dnd
+  (c-name "hildon_banner_show_information_override_dnd")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-function hildon_banner_show_information_with_markup
+  (c-name "hildon_banner_show_information_with_markup")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "icon_name")
+    '("const-gchar*" "markup")
+  )
+)
+
+(define-function hildon_banner_show_animation
+  (c-name "hildon_banner_show_animation")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "animation_name")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-function hildon_banner_show_progress
+  (c-name "hildon_banner_show_progress")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkProgressBar*" "bar")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method set_text
+  (of-object "HildonBanner")
+  (c-name "hildon_banner_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method set_markup
+  (of-object "HildonBanner")
+  (c-name "hildon_banner_set_markup")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "markup")
+  )
+)
+
+(define-method set_fraction
+  (of-object "HildonBanner")
+  (c-name "hildon_banner_set_fraction")
+  (return-type "none")
+  (parameters
+    '("gdouble" "fraction")
+  )
+)
+
+(define-method set_icon
+  (of-object "HildonBanner")
+  (c-name "hildon_banner_set_icon")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "icon_name")
+  )
+)
+
+(define-method set_icon_from_file
+  (of-object "HildonBanner")
+  (c-name "hildon_banner_set_icon_from_file")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "icon_file")
+  )
+)
+
+(define-method set_timeout
+  (of-object "HildonBanner")
+  (c-name "hildon_banner_set_timeout")
+  (return-type "none")
+  (parameters
+    '("guint" "timeout")
+  )
+)
+
+

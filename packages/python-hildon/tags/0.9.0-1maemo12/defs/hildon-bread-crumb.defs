@@ -1,0 +1,35 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object BreadCrumb
+  (in-module "Hildon")
+  (c-name "HildonBreadCrumb")
+  (gtype-id "HILDON_TYPE_BREAD_CRUMB")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-bread-crumb.h
+
+(define-function hildon_bread_crumb_get_type
+  (c-name "hildon_bread_crumb_get_type")
+  (return-type "GType")
+)
+
+(define-method get_natural_size
+  (of-object "HildonBreadCrumb")
+  (c-name "hildon_bread_crumb_get_natural_size")
+  (return-type "none")
+  (parameters
+    '("gint*" "width")
+    '("gint*" "height")
+  )
+)
+
+(define-method activated
+  (of-object "HildonBreadCrumb")
+  (c-name "hildon_bread_crumb_activated")
+  (return-type "none")
+)
+
+

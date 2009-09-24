@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemDynamicDevice
+  (in-module "Hildon")
+  (parent "HildonFileSystemRemoteDevice")
+  (c-name "HildonFileSystemDynamicDevice")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_DYNAMIC_DEVICE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-dynamic-device.h
+
+(define-function hildon_file_system_dynamic_device_get_type
+  (c-name "hildon_file_system_dynamic_device_get_type")
+  (return-type "GType")
+)
+
+

@@ -1,0 +1,16 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-defines.h
+
+(define-function hildon_get_icon_pixel_size
+  (c-name "hildon_get_icon_pixel_size")
+  (return-type "gint")
+  (parameters
+    '("GtkIconSize" "size")
+  )
+)
+
+

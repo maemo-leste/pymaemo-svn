@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FileSystemRemoteDevice
+  (in-module "Hildon")
+  (parent "HildonFileSystemSpecialLocation")
+  (c-name "HildonFileSystemRemoteDevice")
+  (gtype-id "HILDON_TYPE_FILE_SYSTEM_REMOTE_DEVICE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-file-system-remote-device.h
+
+(define-function hildon_file_system_remote_device_get_type
+  (c-name "hildon_file_system_remote_device_get_type")
+  (return-type "GType")
+)
+
+
