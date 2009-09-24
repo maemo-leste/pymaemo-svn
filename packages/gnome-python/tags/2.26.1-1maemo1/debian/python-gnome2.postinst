@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+/usr/share/python/runtime.d/python-gnome2.rtupdate \
+        rtupdate \
+        pouet \
+        $(pyversions -d)
+
+#DEBHELPER#
+

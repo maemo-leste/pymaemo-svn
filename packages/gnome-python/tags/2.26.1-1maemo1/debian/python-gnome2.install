@@ -1,0 +1,3 @@
+usr/lib/python*/*-packages/gtk-2.0/gnomecanvas.so
+usr/lib/python*/*-packages/gtk-2.0/*/*.{py,so}
+../python-gnome2.rtupdate /usr/share/python/runtime.d/
