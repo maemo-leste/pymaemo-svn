@@ -3,6 +3,18 @@
 # Check which package releases were uploaded to Maemo extras, but do not have
 # release tags.
 # It must be run from a git-svn copy of the PyMaemo tree.
+#
+# Usage:
+# ./check_tags.sh > /tmp/commands.txt
+#
+# A lot of debugging information will be shown on screen, but /tmp/commands.txt
+# will contain the SVN commands necessary to create the tags (if any). Then, to
+# run the commands, you can use:
+#
+# bash -x -e /tmp/commands.txt
+#
+# Thils will print the commands as they are run, and stop execution on first
+# error.
 set -e -u
 
 if [ ! -d packages/ -o ! -d .git/ -o ! -d .git/svn/ ]; then
@@ -56,7 +68,7 @@ function find_commit()
     rm -rf $src_dir $tempdir/packages
 }
 
-wget -P $tempdir http://repository.maemo.org/extras-devel/dists/fremantle/free/source/Sources.bz2
+wget --no-cache -P $tempdir http://repository.maemo.org/extras-devel/dists/fremantle/free/source/Sources.bz2
 for d in packages/*/trunk/debian/; do
     pkg=$(basename $(readlink -f $d/../../))
     bzcat $tempdir/Sources.bz2 | grep-dctrl -XnSs Version $pkg | while read v; do
