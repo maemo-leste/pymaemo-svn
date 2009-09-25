@@ -23,7 +23,7 @@ if [ ! -d packages/ -o ! -d .git/ -o ! -d .git/svn/ ]; then
 fi
 
 tempdir=$(mktemp -d)
-trap "echo Removing temporary directory... >&2; rm -rf $tempdir" EXIT
+trap "echo Removing temporary directory... >&2; rm -rf $tempdir; echo -en '\e[m'" EXIT
 trap "exit 1" INT
 
 function find_dsc_url()
@@ -55,6 +55,11 @@ function find_commit()
     else
         old=$src_dir/debian
         new=packages/$pkg/trunk/debian
+    fi
+    if [ -d "$old/.svn" ]; then
+        CON="\e[33;1m"
+        COFF="\e[m"
+        echo -e "${CON}WARNING: .svn directory found in $pkg ($ver)${COFF}" >&2
     fi
     commits=$(git log --pretty=oneline $new | awk '{print $1}')
     git log --pretty=oneline $new | awk '{print $1}' | while read c; do
