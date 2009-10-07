@@ -1,0 +1,7 @@
+<html>
+<head></head>
+<body>
+<p>Testing SSI</p>
+<p><cite><!--#include virtual="LICENSE.txt" --></cite></p>
+</body>
+</html>
