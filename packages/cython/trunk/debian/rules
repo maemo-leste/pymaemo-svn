@@ -14,3 +14,4 @@ install/cython::
 
 clean::
 	rm -f Cython/Compiler/Lexicon.pickle Cython/*/*.c
+	find . -name "*.pyo" -exec rm -f '{}' \;
