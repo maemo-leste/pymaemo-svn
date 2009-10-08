@@ -1,3 +1,11 @@
+python2.5 (2.5.4-1maemo2) unstable; urgency=low
+
+  * Drop patch:
+    - sbox-ld-preload.dpatch: current toolchains are now fixed, and this
+      actually causes problems at least on Cython build.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Thu, 08 Oct 2009 08:46:52 -0400
+
 python2.5 (2.5.4-1maemo1) unstable; urgency=low
 
   * New version from Debian squeeze.

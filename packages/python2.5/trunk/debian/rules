@@ -962,7 +962,6 @@ debian_patches = \
 	linux2-platforms \
 	distutils-install-layout \
 	ctypes_findlib \
-	sbox-ld-preload \
 	sbox-arm-segfault \
 	04-import \
 
