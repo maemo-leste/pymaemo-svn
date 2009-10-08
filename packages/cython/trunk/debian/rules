@@ -2,34 +2,15 @@
 # -*- makefile -*-
 
 DEB_PYTHON_SYSTEM=pysupport
-#mean hack to force python version to be 2.5 in scratchbox
-#this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk, not meant to be used outside
+# Force usage of python2.5 (needed inside Scratchbox). This is a internal
+# variable from /usr/share/cdbs/1/class/python-distutils.mk
 cdbs_python_compile_version=$(shell pyversions -vd)
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
 
-DEB_PYTHON_INSTALL_ARGS_ALL = --no-compile -O0 --install-layout=deb
-DEB_DESTDIR=$(CURDIR)/debian/tmp/
-DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
-
-#with_tests := no
-
-#ifneq ($(with_tests),yes)
-#NOPKGS += -Ncython-tests
-#endif
-
-#export DH_OPTIONS = $(NOPKGS)
+install/cython::
+	dh_installman debian/cython.1
 
 clean::
-	find . -name *.pyo | xargs rm -rf
-	rm -fr build/lib/Cython/Compiler/Lexicon.pickle
-
-install/cython::
-	dh_installman -pcython debian/cython.1
-
-#install/cython-tests::
-#	mkdir -p $(CURDIR)/debian/cython-tests/usr/share/cython-tests
-#	cp -r $(CURDIR)/tests $(CURDIR)/debian/cython-tests/usr/share/cython-tests
-#	cp $(CURDIR)/runtests.py $(CURDIR)/debian/cython-tests/usr/share/cython-tests
-#	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/cython-tests/usr/share/cython-tests
+	rm -f Cython/Compiler/Lexicon.pickle Cython/*/*.c

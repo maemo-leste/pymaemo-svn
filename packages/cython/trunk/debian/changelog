@@ -1,3 +1,46 @@
+cython (0.11.2-1maemo1) unstable; urgency=low
+
+  * New upstream release (from Debian squeeze).
+  * Remove modifications related to test package.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Thu, 08 Oct 2009 08:01:00 -0400
+
+cython (0.11.2-1) unstable; urgency=low
+
+  [ Ryan Kavanagh ]
+  * New upstream release (Closes: #525620, #536213)
+
+  [ Jakub Wilk ]
+  * debian/rules: remove generated files.
+
+  [ Piotr Ożarowski ]
+  * Standards-Version bumped to 3.8.2 (no change needed)
+
+ -- Python Applications Packaging Team <python-apps-team@lists.alioth.debian.org>  Mon, 10 Aug 2009 23:18:51 +0200
+
+cython (0.10.3-1) unstable; urgency=low
+
+  [ Vernon Tang ]
+  * New upstream release
+  * debian/watch: corrected regexp
+
+ -- Ondrej Certik <ondrej@certik.cz>  Sun, 15 Feb 2009 11:27:13 -0800
+
+cython (0.10.2-1) unstable; urgency=low
+
+  [ Sandro Tosi ]
+  * debian/control
+    - switch Vcs-Browser field to viewsvn
+
+  [ Ondrej Certik ]
+  * New upstream release
+  * Description updated
+  * ${shlibs:Depends} added to depends
+  * architecture changed from all to any
+  * python-support moved from Build-Depends-Indep to Build-Depends
+
+ -- Ondrej Certik <ondrej@certik.cz>  Tue, 02 Dec 2008 12:06:41 +0100
+
 cython (0.9.8-1maemo5) unstable; urgency=low
 
   * Remove hardcoded 'site-packages' paths allowing install without
