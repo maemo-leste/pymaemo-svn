@@ -76,8 +76,13 @@ cat >> $tmp/from_python.js << EOF
 function handle_assign(fn, stmt)
 {
     for each(s in stmt.assign) {
-        if (s.isFcall)
+        if (s.isFcall) {
             handle_function_call(fn, s);
+            for each(a in s.arguments) {
+                if (a.isFcall)
+                    handle_function_call(fn, a);
+            }
+        }
     }
 }
 
