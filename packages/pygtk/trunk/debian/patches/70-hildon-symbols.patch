@@ -1,0 +1,248 @@
+diff -Nurp ../pygtk-2.12.1/gtk/Makefile.am ./gtk/Makefile.am
+--- ../pygtk-2.12.1/gtk/Makefile.am	2008-01-02 07:36:47.000000000 -0500
++++ ./gtk/Makefile.am	2009-10-08 10:30:13.000000000 -0400
+@@ -61,6 +61,11 @@ GTK_DEFS += gtk-2.12.defs 
+ GTK_TYPES_DEFS += gtk-2.12-types.defs
+ endif
+ 
++# hildon defs
++GTK_DEFS += hildon.defs
++GTK_TYPES_DEFS += hildon-types.defs
++
++
+ CREATEDEFS = $(PYTHON) $(top_srcdir)/codegen/createdefs.py
+ 
+ GDK_OVERRIDES = \
+diff -Nurp ../pygtk-2.12.1/gtk/hildon-types.defs ./gtk/hildon-types.defs
+--- ../pygtk-2.12.1/gtk/hildon-types.defs	1969-12-31 19:00:00.000000000 -0500
++++ ./gtk/hildon-types.defs	2009-10-08 10:30:28.000000000 -0400
+@@ -0,0 +1,53 @@
++;; -*- scheme -*-
++;; Enumerations and flags ...
++
++;; Hildon Enumerations and flags ...
++
++(define-enum Mode
++  (in-module "Hildon")
++  (c-name "HildonMode")
++  (gtype-id "HILDON_TYPE_MODE")
++  (values
++    '("diablo" "HILDON_DIABLO")
++    '("fremantle" "HILDON_FREMANTLE")
++  )
++)
++
++(define-enum UIMode
++  (in-module "Hildon")
++  (c-name "HildonUIMode")
++  (gtype-id "HILDON_TYPE_UI_MODE")
++  (values
++    '("normal" "HILDON_UI_MODE_NORMAL")
++    '("edit" "HILDON_UI_MODE_EDIT")
++  )
++)
++
++
++(define-enum InvalidInputType
++  (in-module "Gtk")
++  (c-name "GtkInvalidInputType")
++  (gtype-id "GTK_TYPE_INVALID_INPUT_TYPE")
++  (values
++    '("max-chars-reached" "GTK_INVALID_INPUT_MAX_CHARS_REACHED")
++    '("mode-restriction" "GTK_INVALID_INPUT_MODE_RESTRICTION")
++  )
++)
++
++(define-flags GtkInputMode
++  (in-module "Gtk")
++  (c-name "HildonGtkInputMode")
++  (gtype-id "GTK_TYPE_GTK_INPUT_MODE")
++  (values
++    '("alpha" "HILDON_GTK_INPUT_MODE_ALPHA")
++    '("numeric" "HILDON_GTK_INPUT_MODE_NUMERIC")
++    '("special" "HILDON_GTK_INPUT_MODE_SPECIAL")
++    '("hexa" "HILDON_GTK_INPUT_MODE_HEXA")
++    '("mode-tele" "HILDON_GTK_INPUT_MODE_TELE")
++    '("mode-full" "HILDON_GTK_INPUT_MODE_FULL")
++    '("multiline" "HILDON_GTK_INPUT_MODE_MULTILINE")
++    '("invisible" "HILDON_GTK_INPUT_MODE_INVISIBLE")
++    '("autocap" "HILDON_GTK_INPUT_MODE_AUTOCAP")
++    '("dictionary" "HILDON_GTK_INPUT_MODE_DICTIONARY")
++  )
++)
+diff -Nurp ../pygtk-2.12.1/gtk/hildon.defs ./gtk/hildon.defs
+--- ../pygtk-2.12.1/gtk/hildon.defs	1969-12-31 19:00:00.000000000 -0500
++++ ./gtk/hildon.defs	2009-10-08 10:30:28.000000000 -0400
+@@ -0,0 +1,46 @@
++;; -*- scheme -*-
++
++(include "hildon-types.defs")
++
++;; From gtkentry.h
++
++(define-method get_placeholder_text
++  (of-object "GtkEntry")
++  (c-name "hildon_gtk_entry_get_placeholder_text")
++  (return-type "const-gchar*")
++)
++
++(define-method set_placeholder_text
++  (of-object "GtkEntry")
++  (c-name "hildon_gtk_entry_set_placeholder_text")
++  (return-type "none")
++  (parameters
++    '("const-gchar*" "placeholder_text")
++  )
++)
++
++(define-method set_input_mode
++  (of-object "GtkEntry")
++  (c-name "hildon_gtk_entry_set_input_mode")
++  (return-type "none")
++  (parameters
++    '("HildonGtkInputMode" "input_mode")
++  )
++)
++
++(define-method get_input_default
++  (of-object "GtkEntry")
++  (c-name "hildon_gtk_entry_get_input_default")
++  (return-type "HildonGtkInputMode")
++)
++
++(define-method set_input_default
++  (of-object "GtkEntry")
++  (c-name "hildon_gtk_entry_set_input_default")
++  (return-type "none")
++  (parameters
++    '("HildonGtkInputMode" "input_mode")
++  )
++)
++
++
+diff -Nurp ../pygtk-2.12.1/hildon-symbols.patch ./hildon-symbols.patch
+--- ../pygtk-2.12.1/hildon-symbols.patch	1969-12-31 19:00:00.000000000 -0500
++++ ./hildon-symbols.patch	2009-10-08 10:33:54.000000000 -0400
+@@ -0,0 +1,122 @@
++diff -Nurp ../pygtk-2.12.1/gtk/Makefile.am ./gtk/Makefile.am
++--- ../pygtk-2.12.1/gtk/Makefile.am	2008-01-02 07:36:47.000000000 -0500
+++++ ./gtk/Makefile.am	2009-10-08 10:30:13.000000000 -0400
++@@ -61,6 +61,11 @@ GTK_DEFS += gtk-2.12.defs 
++ GTK_TYPES_DEFS += gtk-2.12-types.defs
++ endif
++ 
+++# hildon defs
+++GTK_DEFS += hildon.defs
+++GTK_TYPES_DEFS += hildon-types.defs
+++
+++
++ CREATEDEFS = $(PYTHON) $(top_srcdir)/codegen/createdefs.py
++ 
++ GDK_OVERRIDES = \
++diff -Nurp ../pygtk-2.12.1/gtk/hildon-types.defs ./gtk/hildon-types.defs
++--- ../pygtk-2.12.1/gtk/hildon-types.defs	1969-12-31 19:00:00.000000000 -0500
+++++ ./gtk/hildon-types.defs	2009-10-08 10:30:28.000000000 -0400
++@@ -0,0 +1,53 @@
+++;; -*- scheme -*-
+++;; Enumerations and flags ...
+++
+++;; Hildon Enumerations and flags ...
+++
+++(define-enum Mode
+++  (in-module "Hildon")
+++  (c-name "HildonMode")
+++  (gtype-id "HILDON_TYPE_MODE")
+++  (values
+++    '("diablo" "HILDON_DIABLO")
+++    '("fremantle" "HILDON_FREMANTLE")
+++  )
+++)
+++
+++(define-enum UIMode
+++  (in-module "Hildon")
+++  (c-name "HildonUIMode")
+++  (gtype-id "HILDON_TYPE_UI_MODE")
+++  (values
+++    '("normal" "HILDON_UI_MODE_NORMAL")
+++    '("edit" "HILDON_UI_MODE_EDIT")
+++  )
+++)
+++
+++
+++(define-enum InvalidInputType
+++  (in-module "Gtk")
+++  (c-name "GtkInvalidInputType")
+++  (gtype-id "GTK_TYPE_INVALID_INPUT_TYPE")
+++  (values
+++    '("max-chars-reached" "GTK_INVALID_INPUT_MAX_CHARS_REACHED")
+++    '("mode-restriction" "GTK_INVALID_INPUT_MODE_RESTRICTION")
+++  )
+++)
+++
+++(define-flags GtkInputMode
+++  (in-module "Gtk")
+++  (c-name "HildonGtkInputMode")
+++  (gtype-id "GTK_TYPE_GTK_INPUT_MODE")
+++  (values
+++    '("alpha" "HILDON_GTK_INPUT_MODE_ALPHA")
+++    '("numeric" "HILDON_GTK_INPUT_MODE_NUMERIC")
+++    '("special" "HILDON_GTK_INPUT_MODE_SPECIAL")
+++    '("hexa" "HILDON_GTK_INPUT_MODE_HEXA")
+++    '("mode-tele" "HILDON_GTK_INPUT_MODE_TELE")
+++    '("mode-full" "HILDON_GTK_INPUT_MODE_FULL")
+++    '("multiline" "HILDON_GTK_INPUT_MODE_MULTILINE")
+++    '("invisible" "HILDON_GTK_INPUT_MODE_INVISIBLE")
+++    '("autocap" "HILDON_GTK_INPUT_MODE_AUTOCAP")
+++    '("dictionary" "HILDON_GTK_INPUT_MODE_DICTIONARY")
+++  )
+++)
++diff -Nurp ../pygtk-2.12.1/gtk/hildon.defs ./gtk/hildon.defs
++--- ../pygtk-2.12.1/gtk/hildon.defs	1969-12-31 19:00:00.000000000 -0500
+++++ ./gtk/hildon.defs	2009-10-08 10:30:28.000000000 -0400
++@@ -0,0 +1,46 @@
+++;; -*- scheme -*-
+++
+++(include "hildon-types.defs")
+++
+++;; From gtkentry.h
+++
+++(define-method get_placeholder_text
+++  (of-object "GtkEntry")
+++  (c-name "hildon_gtk_entry_get_placeholder_text")
+++  (return-type "const-gchar*")
+++)
+++
+++(define-method set_placeholder_text
+++  (of-object "GtkEntry")
+++  (c-name "hildon_gtk_entry_set_placeholder_text")
+++  (return-type "none")
+++  (parameters
+++    '("const-gchar*" "placeholder_text")
+++  )
+++)
+++
+++(define-method set_input_mode
+++  (of-object "GtkEntry")
+++  (c-name "hildon_gtk_entry_set_input_mode")
+++  (return-type "none")
+++  (parameters
+++    '("HildonGtkInputMode" "input_mode")
+++  )
+++)
+++
+++(define-method get_input_default
+++  (of-object "GtkEntry")
+++  (c-name "hildon_gtk_entry_get_input_default")
+++  (return-type "HildonGtkInputMode")
+++)
+++
+++(define-method set_input_default
+++  (of-object "GtkEntry")
+++  (c-name "hildon_gtk_entry_set_input_default")
+++  (return-type "none")
+++  (parameters
+++    '("HildonGtkInputMode" "input_mode")
+++  )
+++)
+++
+++
