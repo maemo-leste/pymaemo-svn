@@ -1,0 +1,28 @@
+# - has variable argument list
+# - reimplemented using osso_rpc_run_with_argfill()
+osso_rpc_run
+
+# - has variable argument list
+# - reimplemented using osso_rpc_run_system_with_argfill()
+osso_rpc_run_system
+
+# - has variable argument list
+# - reimplemented using osso_rpc_run_with_argfill()
+osso_rpc_run_with_defaults
+
+# - has variable argument list
+# - reimplemented using osso_rpc_async_run_with_argfill()
+osso_rpc_async_run
+
+# - has variable argument list
+# - reimplemented using osso_rpc_async_run_with_argfill()
+osso_rpc_async_run_with_defaults
+
+# Resource deallocation functions, not necessary in Python
+osso_rpc_free_val
+osso_rpc_set_cb_f_with_free
+osso_rpc_set_default_cb_f_with_free
+
+# Deprecated API
+osso_application_set_top_cb
+osso_application_unset_top_cb
