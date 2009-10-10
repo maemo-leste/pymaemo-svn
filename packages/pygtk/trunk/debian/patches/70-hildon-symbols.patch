@@ -16,7 +16,7 @@ diff -Nurp ../pygtk-2.12.1/gtk/Makefile.am ./gtk/Makefile.am
 diff -Nurp ../pygtk-2.12.1/gtk/hildon-types.defs ./gtk/hildon-types.defs
 --- ../pygtk-2.12.1/gtk/hildon-types.defs	1969-12-31 19:00:00.000000000 -0500
 +++ ./gtk/hildon-types.defs	2009-10-08 10:30:28.000000000 -0400
-@@ -0,0 +1,53 @@
+@@ -0,0 +1,67 @@
 +;; -*- scheme -*-
 +;; Enumerations and flags ...
 +
@@ -42,6 +42,20 @@ diff -Nurp ../pygtk-2.12.1/gtk/hildon-types.defs ./gtk/hildon-types.defs
 +  )
 +)
 +
++(define-flags SizeType
++  (in-module "Hildon")
++  (c-name "HildonSizeType")
++  (gtype-id "HILDON_TYPE_SIZE_TYPE")
++  (values
++    '("auto-width" "HILDON_SIZE_AUTO_WIDTH")
++    '("halfscreen-width" "HILDON_SIZE_HALFSCREEN_WIDTH")
++    '("fullscreen-width" "HILDON_SIZE_FULLSCREEN_WIDTH")
++    '("auto-height" "HILDON_SIZE_AUTO_HEIGHT")
++    '("finger-height" "HILDON_SIZE_FINGER_HEIGHT")
++    '("thumb-height" "HILDON_SIZE_THUMB_HEIGHT")
++    '("auto" "HILDON_SIZE_AUTO")
++  )
++)
 +
 +(define-enum InvalidInputType
 +  (in-module "Gtk")
