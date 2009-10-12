@@ -269,6 +269,16 @@
   (return-type "none")
 )
 
+(define-method center_on_index
+  (of-object "HildonTouchSelector")
+  (c-name "hildon_touch_selector_center_on_index")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+    '("gint" "index")
+  )
+)
+
 (define-method optimal_size_request
   (of-object "HildonTouchSelector")
   (c-name "hildon_touch_selector_optimal_size_request")

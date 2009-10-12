@@ -164,4 +164,19 @@
   (return-type "GtkAdjustment*")
 )
 
+(define-method get_center_on_child_focus
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_get_center_on_child_focus")
+  (return-type "gboolean")
+)
+
+(define-method set_center_on_child_focus
+  (of-object "HildonPannableArea")
+  (c-name "hildon_pannable_area_set_center_on_child_focus")
+  (return-type "none")
+  (parameters
+    '("gboolean" "value")
+  )
+)
+
 

@@ -126,4 +126,13 @@
   )
 )
 
+(define-function hildon_banner_show_custom_widget
+  (c-name "hildon_banner_show_custom_widget")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkWidget*" "custom_widget")
+  )
+)
+
 

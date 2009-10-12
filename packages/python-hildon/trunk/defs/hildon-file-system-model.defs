@@ -163,4 +163,12 @@
   (return-type "none")
 )
 
+(define-function rescan_local_device_folders
+  (c-name "rescan_local_device_folders")
+  (return-type "none")
+  (parameters
+    '("HildonFileSystemModel*" "model")
+  )
+)
+
 

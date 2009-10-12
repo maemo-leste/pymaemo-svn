@@ -15,7 +15,7 @@ for p in $dev_packages; do
 	# According to a comment on the header, gtkfilesystem.h is necessary
 	# only for writing "alternate GtkFileChooser backend modules".
 	# It also breaks codegen, so simply ignore it.
-	headers="$(dpkg -L $p | grep '\.h$' | grep -v gtkfilesystem/gtkfilesystem.h) $headers"
+	headers="$(dpkg -L $p | sort | grep '\.h$' | grep -v gtkfilesystem/gtkfilesystem.h) $headers"
 done
 
 echo Parsing .h files and creating .defs...
@@ -91,5 +91,9 @@ remove_const_gint defs/hildon-pannable-area.defs scroll_to
 remove_const_gint defs/hildon-pannable-area.defs jump_to
 
 echo Generating hildon-types.c and hildon-types.h...
+# It is necessary to create some enum introspection declarations missing from
+# Hildon headers.
 glib-mkenums --template hildon-types-template.h $headers $extra_headers > hildon-types.h
-glib-mkenums --template hildon-types-template.c $headers $extra_headers > hildon-types.c
+# Do not generate enum introspection code for Hildon headers, because the
+# libraries already include it.
+glib-mkenums --template hildon-types-template.c $extra_headers > hildon-types.c
