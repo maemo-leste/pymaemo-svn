@@ -2,6 +2,6 @@
 set -e
 
 # Cleanup for bytecompiled files in the former package version
-rm -f /usr/lib/python2.[34]/{site,dist}-packages/pygtk.py[co]
+rm -f /usr/lib/python2.[34]/site-packages/pygtk.py[co]
 
 #DEBHELPER#

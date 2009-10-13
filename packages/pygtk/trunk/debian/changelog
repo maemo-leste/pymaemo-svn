@@ -1,12 +1,10 @@
-pygtk (2.12.1-6maemo9) unstable; urgency=low
+pygtk (2.12.1-6maemo8) unstable; urgency=low
 
+  [ Renato Araujo Oliveira Filho ]
   * Create a individual def file for hildon types and export functions.
   * Export GtkEntry hildon related functions. Fixes: MB#5199
 
- -- Renato Araujo Oliveira Filho <renato.filho@indt.org.br>  Thu,  8 Oct 2009 16:25:00 -0300
-
-pygtk (2.12.1-6maemo8) unstable; urgency=low
-
+  [ Bruno dos Santos de Araujo ]
   * Remove hardcoded 'site-packages' paths allowing install without
     problems in either python2.5 ou python2.6
   * Use python-dev instead of python2.5-dev and python-all-dev in
