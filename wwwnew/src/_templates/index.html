@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% set title = 'PyMaemo' %}
+{% block document %}
+<div class="section">
+    <h1>Overview</h1>
+
+    <p>Python for Maemo is an effort to bring the Python interpreter and
+    libraries to Maemo devices.</p>
+    <p>For a detailed list of supported modules, check <a href="{{ pathto('development') }}">Components in PyMaemo</a>
+
+    <p>More information can be found in our <a href="{{ pathto('faq') }}">FAQ</a>.</p>
+</div>
+
+<div class="section">
+  <h1>News</h1>
+  {% include './latests_news.html' %}
+
+  <hr />
+  <p class="oldnews"><a href="{{ pathto('news') }}">Old news</a></p>
+</div>
+
+{% endblock %}

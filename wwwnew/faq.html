@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyMaemo &mdash; FAQ</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/highslide/highslide.css" type="text/css" />
+    <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+    };
+    function preLoadImages() {
+        // create object
+        imageObj = new Image();
+        // set image list
+        images = [
+            "./_static/bt_devel_normal.jpg",
+            "./_static/bt_devel_over.jpg",
+            "./_static/bt_devel_selected.jpg",
+            "./_static/bt_faq_normal.jpg",
+            "./_static/bt_faq_over.jpg",
+            "./_static/bt_faq_selected.jpg",
+            "./_static/bt_get_normal.jpg",
+            "./_static/bt_get_over.jpg",
+            "./_static/bt_get_selected.jpg",
+            "./_static/bt_install_normal.jpg",
+            "./_static/bt_install_over.jpg",
+            "./_static/bt_install_selected.jpg",
+            "./_static/bt_news_normal.jpg",
+            "./_static/bt_news_over.jpg",
+            "./_static/bt_news_selected.jpg",
+            "./_static/bt_screen_normal.jpg",
+            "./_static/bt_screen_over.jpg",
+            "./_static/bt_screen_selected.jpg",
+            "./_static/bt_search.jpg"
+        ];
+
+        // start preloading
+        for(i=0; i < images.length; i++)
+            imageObj.src=images[i];
+    }
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+    <link rel="top" title="PyMaemo v0.1 documentation" href="index.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Get Involved" href="getinvolved.html" /> 
+  </head>
+  <body onload="preLoadImages()" id="faq">
+
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+    </div>
+    <ul id="menu">
+        <li><a id="menu_news" href="index.html"><spam>News</spam></a></li>
+        <li><a id="menu_screenshots" href="screenshots.html"><spam>Screenshots</spam></a></li>
+        <li><a id="menu_getinvolved" href="getinvolved.html"><spam>Get incolved</spam></a></li>
+        <li><a id="menu_faq" href=""><spam>FAQ</spam></a></li>
+        <li><a id="menu_development" href="development.html"><spam>Development</spam></a></li>
+        <li><a id="menu_installation" href="installation.html"><spam>Installation</spam></a></li>
+    </ul>
+</div>
+
+
+
+<div id="body" >
+    
+  <div class="section" id="faq">
+<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<p><strong>What is Python?</strong></p>
+<blockquote>
+Python is a dynamic object-oriented programming language that can be used for many kinds of software development. It offers strong support for integration with other languages and tools, comes with extensive standard libraries, and can be learned in a few days.</blockquote>
+<p><strong>What is PyMaemo?</strong></p>
+<blockquote>
+It is the Python package ported to run in Maemo based devices.</blockquote>
+<p><strong>Does PyMaemo come installed by default?</strong></p>
+<blockquote>
+No, but there are some requirements and we expect to fulfill all of them in a near future.</blockquote>
+<p><strong>Why to use two diferent .install files?</strong></p>
+<blockquote>
+Due to a limitation in Application Manager, only one repository can be handled by a .install file. PyMaemo depends on two repositories, to avoid duplication of packages. One repository contains base packages and another contains PyMaemo itself. This behaviour will change in a next release of Application Manager.</blockquote>
+<p><strong>Why I get &#8220;missing dependencies&#8221; message when I try to install PyMaemo?</strong></p>
+<blockquote>
+Because you have to use both .install files (read previous question) as described at installation page.</blockquote>
+<p><strong>Why do some modules (e.g.: curses) are missing?</strong></p>
+<blockquote>
+In order to keep the platform small and supportable, PyMaemo only comes with the most commonly used packages.</blockquote>
+<p><strong>Why do I get the error &lt;put some error message here&gt;?</strong></p>
+<blockquote>
+First make sure that you are running python2.5 explicitly, as python inside scratchbox defaults to scratchbox&#8217; python (2.3)</blockquote>
+</div>
+
+
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
+</html>

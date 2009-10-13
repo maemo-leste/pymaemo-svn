@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyMaemo &mdash; Development</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/highslide/highslide.css" type="text/css" />
+    <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+    };
+    function preLoadImages() {
+        // create object
+        imageObj = new Image();
+        // set image list
+        images = [
+            "./_static/bt_devel_normal.jpg",
+            "./_static/bt_devel_over.jpg",
+            "./_static/bt_devel_selected.jpg",
+            "./_static/bt_faq_normal.jpg",
+            "./_static/bt_faq_over.jpg",
+            "./_static/bt_faq_selected.jpg",
+            "./_static/bt_get_normal.jpg",
+            "./_static/bt_get_over.jpg",
+            "./_static/bt_get_selected.jpg",
+            "./_static/bt_install_normal.jpg",
+            "./_static/bt_install_over.jpg",
+            "./_static/bt_install_selected.jpg",
+            "./_static/bt_news_normal.jpg",
+            "./_static/bt_news_over.jpg",
+            "./_static/bt_news_selected.jpg",
+            "./_static/bt_screen_normal.jpg",
+            "./_static/bt_screen_over.jpg",
+            "./_static/bt_screen_selected.jpg",
+            "./_static/bt_search.jpg"
+        ];
+
+        // start preloading
+        for(i=0; i < images.length; i++)
+            imageObj.src=images[i];
+    }
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+    <link rel="top" title="PyMaemo v0.1 documentation" href="index.html" />
+    <link rel="next" title="Python-OSSO examples" href="pyosso.html" />
+    <link rel="prev" title="Installation On Scratchbox" href="installation_scratchbox.html" /> 
+  </head>
+  <body onload="preLoadImages()" id="development">
+
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+    </div>
+    <ul id="menu">
+        <li><a id="menu_news" href="index.html"><spam>News</spam></a></li>
+        <li><a id="menu_screenshots" href="screenshots.html"><spam>Screenshots</spam></a></li>
+        <li><a id="menu_getinvolved" href="getinvolved.html"><spam>Get incolved</spam></a></li>
+        <li><a id="menu_faq" href="faq.html"><spam>FAQ</spam></a></li>
+        <li><a id="menu_development" href=""><spam>Development</spam></a></li>
+        <li><a id="menu_installation" href="installation.html"><spam>Installation</spam></a></li>
+    </ul>
+</div>
+
+
+
+<div id="body" >
+    
+  <div class="section" id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_hildon_tutorial/html/">Python Hildon tutorial</a></li>
+<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_hildon_manual/html/">Python Hildon manual</a></li>
+</ul>
+</div>
+<div class="section" id="components-in-pymaemo">
+<span id="pymaemo-components"></span><h2>Components in PyMaemo<a class="headerlink" href="#components-in-pymaemo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="core">
+<h3>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="23%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Package</th>
+<th class="head">Maemo 4.1.2 - Diablo</th>
+<th class="head">Maemo 5 - Fremantle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference external" href="http://www.python.org/">Python</a>: a dynamic
+object-oriented programming language, core of PyMaemo</td>
+<td>2.5.1</td>
+<td>2.5.2</td>
+</tr>
+<tr><td><a class="reference external" href="http://wiki.debian.org/DebianPythonFAQ">Python-central</a>:
+This package provides support for building and installing
+python modules independent of the current installed Python
+version.</td>
+<td>&nbsp;</td>
+<td>0.6</td>
+</tr>
+<tr><td><a class="reference external" href="http://wiki.debian.org/DebianPythonFAQ">python-support</a>:
+automated rebuilding support for python modules</td>
+<td>&nbsp;</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bindings">
+<h3>Bindings<a class="headerlink" href="#bindings" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="23%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Package</th>
+<th class="head">Maemo 4.1.2 - Diablo</th>
+<th class="head">Maemo 5 - Fremantle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference external" href="http://www.freedesktop.org/wiki/Software/dbus">dbus-python</a>
+:D-Bus python bindings</td>
+<td>0.71</td>
+<td>0.83.0</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.conduit-project.org/wiki/evolution-python">Evolution-python</a>:
+bindings to use Evolution libraries (EBook) components</td>
+<td>0.0.4</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.galago-project.org/news/index.php">Galago-python</a>:
+bindings to use the Galago presence framework</td>
+<td>0.5.0</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.pygtk.org/">gnome-python</a>:
+bindings to use Gconf (a system for storing application
+preferences) and Gnome Virtual File System</td>
+<td>2.18.0</td>
+<td>2.18.0</td>
+</tr>
+<tr><td><a class="reference external" href="http://org.csail.mit.edu/pybluez/">PyBluez</a>:
+wrappers around system Bluetooth resources</td>
+<td>0.9.1</td>
+<td>0.15-1</td>
+</tr>
+<tr><td><a class="reference external" href="http://pycurl.sourceforge.net/">PyCURL</a>:
+bindings to use libcurl</td>
+<td>7.15.5</td>
+<td>7.18.2</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.pygame.org/">PyGame</a>:
+set of Python modules designed for writing games</td>
+<td>1.7.1</td>
+<td>1.8.1</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.pygtk.org/docs/pygobject/index.html">PyGobject</a>:
+bindings to use Gobject model</td>
+<td>2.12.2</td>
+<td>2.14.2</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.pygtk.org/">PyGtk</a>:
+access GTK components through Python</td>
+<td>2.10.3</td>
+<td>2.12.1</td>
+</tr>
+<tr><td><a class="reference external" href="http://pyid3lib.sourceforge.net/">Pyid3lib</a>:
+a module for editing ID3v2 tags of MP3 files</td>
+<td>0.5.1</td>
+<td>0.5.1</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.pythonware.com/products/pil/">PyImage(PIL)</a>:
+adds image processing capabilities to Python</td>
+<td>1.1.6</td>
+<td>1.1.6</td>
+</tr>
+<tr><td><a class="reference external" href="http://wiki.maemo.org/PyMaemo/HildonDesktop">PyMaemo/HildonDesktop</a>:
+bindings to use Hildon interface components</td>
+<td>&nbsp;</td>
+<td>0.10.14</td>
+</tr>
+<tr><td><a class="reference external" href="http://pyopenssl.sourceforge.net/">pyOpenSSL</a>:
+Python interface to the OpenSSL library</td>
+<td>&nbsp;</td>
+<td>0.5.1</td>
+</tr>
+<tr><td>Python-ABook:
+bindings to use OSSO-AddressBook components</td>
+<td>&nbsp;</td>
+<td>0.1</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.cairographics.org/pycairo">python-cairo</a>:
+a set of Python bindings for the cairo graphics library</td>
+<td>&nbsp;</td>
+<td>1.4.12</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.clutter-project.org">python-clutter</a>:
+Python interface to the Clutter library</td>
+<td>&nbsp;</td>
+<td>0.8.0</td>
+</tr>
+<tr><td><a class="reference external" href="http://pymaemo.garage.maemo.org/">python-conic</a>:
+Bindings for the libConIC connectivity library</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr><td><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_gps_examples/index.html">Python-GPSbt</a>:
+libgpsbt bindings</td>
+<td>0.1-18</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td><a class="reference external" href="http://gstreamer.freedesktop.org/modules/gst-python.html">Python-Gstreamer</a>:
+GStreamer python bindings</td>
+<td>0.10.5</td>
+<td>0.10.14</td>
+</tr>
+<tr><td>Python-Hildon: bindings to use Hildon interface components</td>
+<td>0.8.7</td>
+<td>0.10.14</td>
+</tr>
+<tr><td><a class="reference external" href="http://people.csail.mit.edu/jrennie/python/numeric/">Python-Numeric</a>:
+a module for high-performance, numeric computing</td>
+<td>24.2</td>
+<td>24.2</td>
+</tr>
+<tr><td>Python-Osso: bindings to use OSSO components</td>
+<td>1.20-1</td>
+<td>0.3</td>
+</tr>
+<tr><td><a class="reference external" href="http://pyxml.sourceforge.net/">Python-Xml</a>:
+a collection of libraries to process XML with Python</td>
+<td>0.8.4</td>
+<td>0.8.4</td>
+</tr>
+<tr><td><a class="reference external" href="https://storm.canonical.com/">Storm</a>: an Object Relational
+Mapper for the Python programming language</td>
+<td>0.11</td>
+<td>0.12-0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h3>Development<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="23%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Package</th>
+<th class="head">Maemo 4.1.2 - Diablo</th>
+<th class="head">Maemo 5 - Fremantle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference external" href="http://www.cython.org/">Cython</a>:
+based on Pyrex, supports morevou  cutting edge functionality</td>
+<td>0.9.6.8</td>
+<td>0.9.8</td>
+</tr>
+<tr><td><a class="reference external" href="http://ipython.scipy.org/moin/">iPython</a>:
+improved interactive shell</td>
+<td>0.8.1</td>
+<td>0.9.1</td>
+</tr>
+<tr><td><a class="reference external" href="http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a>:
+lets you write code that mixes Python and C data types and
+compiles it into a C extension</td>
+<td>0.9.5.1</td>
+<td>0.9.7.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Code samples and tests for PyMaemo components.</p>
+<ul class="simple">
+<li><a class="reference external" href="pyosso.html"><em>Python-OSSO examples</em></a></li>
+<li><a class="reference external" href="abook.html"><em>Python-ABook examples</em></a></li>
+<li><a class="reference external" href="conic.html"><em>Python-Conic examples</em></a></li>
+</ul>
+</div>
+</div>
+
+
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
+</html>

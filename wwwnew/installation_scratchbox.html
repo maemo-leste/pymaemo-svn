@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyMaemo &mdash; Installation On Scratchbox</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/highslide/highslide.css" type="text/css" />
+    <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+    };
+    function preLoadImages() {
+        // create object
+        imageObj = new Image();
+        // set image list
+        images = [
+            "./_static/bt_devel_normal.jpg",
+            "./_static/bt_devel_over.jpg",
+            "./_static/bt_devel_selected.jpg",
+            "./_static/bt_faq_normal.jpg",
+            "./_static/bt_faq_over.jpg",
+            "./_static/bt_faq_selected.jpg",
+            "./_static/bt_get_normal.jpg",
+            "./_static/bt_get_over.jpg",
+            "./_static/bt_get_selected.jpg",
+            "./_static/bt_install_normal.jpg",
+            "./_static/bt_install_over.jpg",
+            "./_static/bt_install_selected.jpg",
+            "./_static/bt_news_normal.jpg",
+            "./_static/bt_news_over.jpg",
+            "./_static/bt_news_selected.jpg",
+            "./_static/bt_screen_normal.jpg",
+            "./_static/bt_screen_over.jpg",
+            "./_static/bt_screen_selected.jpg",
+            "./_static/bt_search.jpg"
+        ];
+
+        // start preloading
+        for(i=0; i < images.length; i++)
+            imageObj.src=images[i];
+    }
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+    <link rel="top" title="PyMaemo v0.1 documentation" href="index.html" />
+    <link rel="next" title="Development" href="development.html" />
+    <link rel="prev" title="Installation On Device" href="installation_device.html" /> 
+  </head>
+  <body onload="preLoadImages()" id="installation_scratchbox">
+
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+    </div>
+    <ul id="menu">
+        <li><a id="menu_news" href="index.html"><spam>News</spam></a></li>
+        <li><a id="menu_screenshots" href="screenshots.html"><spam>Screenshots</spam></a></li>
+        <li><a id="menu_getinvolved" href="getinvolved.html"><spam>Get incolved</spam></a></li>
+        <li><a id="menu_faq" href="faq.html"><spam>FAQ</spam></a></li>
+        <li><a id="menu_development" href="development.html"><spam>Development</spam></a></li>
+        <li><a id="menu_installation" href="installation.html"><spam>Installation</spam></a></li>
+    </ul>
+</div>
+
+
+
+<div id="body" >
+    
+  <div class="section" id="installation-on-scratchbox">
+<h1>Installation On Scratchbox<a class="headerlink" href="#installation-on-scratchbox" title="Permalink to this headline">¶</a></h1>
+<p>Follow these instructions to install the Maemo SDK on your PC.
+Notice that the SDK will be installed on a Maemo target inside
+the <a class="reference external" href="http://scratchbox.org">Scratchbox</a> environment,
+Scratchbox and Maemo 5 SDK installers can be found on
+<a class="reference external" href="http://www.forum.nokia.com/info/sw.nokia.com/id/c05693a1-265c-4c7f-a389-fc227db4c465/Maemo_5_SDK.html">forum.nokia.com</a>.</p>
+<p>Scratchbox works only on Linux platforms, if you are bound
+to the Windows chains consider using the
+<a class="reference external" href="http://maemovmware.garage.maemo.org">Maemo SDK Virtual Image</a>.</p>
+<div class="section" id="fremantle-sdk">
+<h2>Fremantle SDK<a class="headerlink" href="#fremantle-sdk" title="Permalink to this headline">¶</a></h2>
+<p>First make sure your targets have the Nokia Binaries installed.
+If not, visit the <a class="reference external" href="http://tablets-dev.nokia.com/eula/index.php">Maemo 5.0 (Fremantle) SDK EULA</a> page and proceed
+as described there.</p>
+<p>With the Fremantle targets properly installed add this line to
+your targets <strong>/etc/apt/sources.list</strong>.</p>
+<div class="highlight-python"><pre>deb http://repository.maemo.org/extras-devel/ fremantle free non-free</pre>
+</div>
+<p>Now resynchronize your package index files with the following command:</p>
+<div class="highlight-python"><pre>[sbox-FREMANTLE_X86: ~] &gt; apt-get update</pre>
+</div>
+<p>After that you are ready to install python2.5 plus bindings doing this:</p>
+<div class="highlight-python"><pre>[sbox-FREMANTLE_X86: ~] &gt; apt-get install python-sdk</pre>
+</div>
+<p>To see all python-related packages issue this command</p>
+<div class="highlight-python"><pre>[sbox-FREMANTLE_X86: ~] &gt; apt-cache search python*</pre>
+</div>
+<p>Note that you&#8217;ll see also scratchbox&#8217;s own python (version 2.3) which you
+must not use for your Maemo development. So, run your scripts explicitly
+calling python2.5 instead of just python.</p>
+<p>Also, some programs require some extra configuration done by the
+run-standalone.sh script. Call python with it as follows:</p>
+<div class="highlight-python"><pre>run-standalone.sh python2.5 &lt;yourscript.py&gt;</pre>
+</div>
+</div>
+<div class="section" id="diablo-os2009-sdk">
+<h2>Diablo (OS2009) SDK<a class="headerlink" href="#diablo-os2009-sdk" title="Permalink to this headline">¶</a></h2>
+<p>The first thing is to add the Maemo extras repository (where Python is located) to your list of package sources. To do that you will have to edit the file /etc/apt/sources.list  inside scratchbox, for both targets (X86 and ARMEL), which should look similar to this:</p>
+<div class="highlight-python"><pre>deb http://repository.maemo.org/ diablo free non-free
+deb-src http://repository.maemo.org/ diablo free
+deb file:/home/[username]/maemo-sdk-nokia-binaries_4.1.2 diablo explicit</pre>
+</div>
+<p>Add the following line to it:</p>
+<div class="highlight-python"><pre>deb http://repository.maemo.org/extras/ diablo free non-free</pre>
+</div>
+<p>Now resynchronize your package index files with the following command:</p>
+<div class="highlight-python"><pre>[sbox-SDK_X86: ~] &gt; apt-get update</pre>
+</div>
+<p>After that you are ready to install python2.5 plus bindings doing this:</p>
+<div class="highlight-python"><pre>[sbox-SDK_X86: ~] &gt; apt-get install python2.5-sdk</pre>
+</div>
+<p>To see all python-related packages issue this command</p>
+<div class="highlight-python"><pre>[sbox-SDK_X86: ~] &gt; apt-cache search python*</pre>
+</div>
+</div>
+</div>
+
+
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
+</html>
