@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Introduction &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="next" title="3. Getting Started" href="ch-GettingStarted.html" />
+    <link rel="prev" title="1. Legal Notice" href="__legal_notice.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch-GettingStarted.html" title="3. Getting Started"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="__legal_notice.html" title="1. Legal Notice"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction">
+<span id="intro"></span><h1>2. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Hildon is a user interface toolkit based in GTK that targets mobile devices. Hildon was originally developed by Nokia for the Maemo operating system that powered its Tnternet Tablet devices.</p>
+<p>Since version 5.0 (also known as Fremantle), Hildon widgets are specially designed to be finger-friendly, that is, easily used on touch-screen devices. Hildon is published under the LGPL license which gives you the right to develop free and open source, as well as commercial, software with Hildon without being charged for licenses or royalties.</p>
+<p>Since it is based on GTK, Hildon offers an object-oriented API, although written in C.</p>
+<p>GTK is a library for creating user interfaces that is used in a number of important projects like GNOME. There will be presented a lot of GTK and Glib references in this document. Glib is a library that offers functions to manage memory and data structures, as well as some replacements for standard calls in order to increase portability. Although they may be explained, for a more detailed explanation about GTK and Glib, readers should check the GTK&#8217;s and Glib&#8217;s own documentation.</p>
+<p>This book is intended for developers and covers the usage of Hildon to create graphical user interfaces. From a simple &#8220;Hello World&#8221; program to more complex examples, a number of widgets will be presented and their usage to accomplish some tasks will be explained from a technical point of view. After reading and understanding the contents of this document, you will be able to understand the process of graphical user interfaces programming and build effective touch interfaces for mobile devices with Hildon.</p>
+<p>This document is not a Python tutorial, it assumes that readers already have a good knowledge of the Python programming language. Previous experience on creating graphical user interfaces with GTK would surely be helpful but is not mandatory. This book targets the development of graphical user interfaces, not the design of such. For guidelines about designing interfaces thinking in usability and user experience, please consult the Hildon Human Interface Guidelines.</p>
+<div class="section" id="desktop-overview">
+<span id="id1"></span><h2>2.1. Desktop Overview<a class="headerlink" href="#desktop-overview" title="Permalink to this headline">¶</a></h2>
+<p>This section gives a brief overview of the Hildon desktop area so you have a better understand of what are the applications&#8217; domains and layout.</p>
+<p><a class="reference internal" href="#desktop-overview-general-figure"><em>Three radio buttons</em></a> illustrates the look of the desktop when an application&#8217;s normal window is shown. As for the figure&#8217;s legend, the following list explains it:</p>
+<ul class="simple">
+<li><em>A:</em> Task switcher button. Tapping on it, the application is put in second plan and the desktop is quickly shown allowing you to choose any running application, as well as the application you had on before. From this new view you can access the home view by pressing the dimmed area around the applications&#8217; thumbnails, or launch another task by tapping the task switcher button that bocomes, in this view, a task launcher button.</li>
+<li><em>B:</em> Status area button. Provides information about the status of the device or applications. A status view can be accessed by pressing the status area.</li>
+<li><em>C:</em> Close button. Closes the application. Note that if the current application&#8217;s window is a subview (see <a class="reference external" href="ch-Windows.html#ch-windows"><em>Windows and Dialogs</em></a> for detailed information), instead of a close button, there will be a back button. The back button also closes the window but instead of closing the application, it goes back to a previous view.</li>
+<li><em>D:</em> Title area. Shows an identifier of the application&#8217;s current task, usually its name but may also be a document&#8217;s name, etc. Tapping on it will call the application&#8217;s menu.</li>
+<li><em>F:</em> Application area. Shows the actual application&#8217;s contents.</li>
+</ul>
+<div class="figure align-center" id="desktop-overview-general-figure">
+<img alt="_images/desktop_view.png" src="_images/desktop_view.png" />
+<p class="caption">Three radio buttons</p>
+</div>
+<p>Note that the above explanation refers to the normal view of an application. When using an application on fullscreen mode, only the application area is shown. It should be also relevant to refer that if an application has a toolbar widget, it will be shown at the very bottom of the application&#8217;s area, both in normal and in fullscreen views.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">2. Introduction</a><ul>
+<li><a class="reference external" href="#desktop-overview">2.1. Desktop Overview</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="__legal_notice.html"
+                                  title="previous chapter">1. Legal Notice</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ch-GettingStarted.html"
+                                  title="next chapter">3. Getting Started</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/intro.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ch-GettingStarted.html" title="3. Getting Started"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="__legal_notice.html" title="1. Legal Notice"
+             >previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

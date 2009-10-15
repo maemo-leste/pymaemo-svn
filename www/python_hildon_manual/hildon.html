@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Running Hildon Applications &mdash; Hildon Reference Manual v documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Reference Manual v documentation" href="index.html" />
+    <link rel="up" title="Python Hildon Overview" href="hildon_overview.html" />
+    <link rel="next" title="Hildon Core Reference" href="hildonbase.html" />
+    <link rel="prev" title="Python Hildon Overview" href="hildon_overview.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="hildonbase.html" title="Hildon Core Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hildon_overview.html" title="Python Hildon Overview"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li>
+          <li><a href="hildon_overview.html" accesskey="U">Python Hildon Overview</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="running-hildon-applications">
+<span id="hildon-running"></span><span id="hildon"></span><h1>Running Hildon Applications<a class="headerlink" href="#running-hildon-applications" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-and-debugging-hildon-applications">
+<h2>Running and debugging Hildon Applications<a class="headerlink" href="#running-and-debugging-hildon-applications" title="Permalink to this headline">¶</a></h2>
+<p>Since Python Hildon is an extension of PyGtk which is build on top of GTK+, all Python Hildon applications support the same standard commandline options and inspect the same environment variables that PyGtk and GTK+ applications does. To know more about this, read <a class="reference external" href="http://maemo.org/api_refs/5.0/beta/gtk/gtk-running.html">Running GTK+ Applications</a></p>
+<p>If you are running a Python Hildon application on a Scratchbox target remember to call it with <tt class="docutils literal"><span class="pre">run-standalone.sh</span></tt> so it can use the system theme.</p>
+<div class="highlight-python"><pre>$ run-standalone.sh ./yourpythonprogram.py</pre>
+</div>
+</div>
+</div>
+<div class="section" id="mailing-lists-and-bug-reports">
+<span id="hildon-resources"></span><h1>Mailing lists and bug reports<a class="headerlink" href="#mailing-lists-and-bug-reports" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="filing-a-bug-report-or-feature-request">
+<h2>Filing a bug report or feature request<a class="headerlink" href="#filing-a-bug-report-or-feature-request" title="Permalink to this headline">¶</a></h2>
+<p>If you encounter a bug, misfeature, or missing feature in Hildon, please file a bug report on <a class="reference external" href="http://bugs.maemo.org">http://bugs.maemo.org</a> . File those against the &#8220;PyMaemo&#8221; product of the &#8220;Extras&#8221; group.</p>
+<p>Don&#8217;t hesitate to file a bug report, even if you think we may know about it already, or aren&#8217;t sure of the details. Just give us as much information as you have, and if it&#8217;s already fixed or has already been discussed, we&#8217;ll add a note to that effect in the report.</p>
+<p>The bug tracker should definitely be used for feature requests, it&#8217;s not only for bugs. We track all PyMaemo and Hildon development in Bugzilla, so it&#8217;s the way to be sure the PyMaemo and Hildon developers won&#8217;t forget about an issue.</p>
+</div>
+<div class="section" id="submitting-patches">
+<h2>Submitting Patches<a class="headerlink" href="#submitting-patches" title="Permalink to this headline">¶</a></h2>
+<p>If you develop a bugfix or enhancement for Hildon, please file that in Bugzilla as well. Bugzilla allows you to attach files; please attach a patch generated by the <tt class="docutils literal"><span class="pre">diff</span></tt> utility, using the <tt class="docutils literal"><span class="pre">-u</span></tt> option to make the patch more readable. All patches must be offered under the terms of the GNU LGPL license, so be sure you are authorized to give us the patch under those terms.</p>
+<p>If you want to discuss your patch before or after developing it use the <a class="reference external" href="https://garage.maemo.org/mail/?group_id=40">PyMaemo</a> mailist. But be sure to file the Bugzilla report as well; if the patch is only on the list and not in Bugzilla, it&#8217;s likely to slip through the cracks.</p>
+</div>
+<div class="section" id="mailing-lists">
+<h2>Mailing lists<a class="headerlink" href="#mailing-lists" title="Permalink to this headline">¶</a></h2>
+<p>The mailing list for PyMaemo can be found at <a class="reference external" href="https://garage.maemo.org/mail/?group_id=40">https://garage.maemo.org/mail/?group_id=40</a>.
+There are also several mailing lists dedicated to Maemo platform and related libraries as Hildon. You can find more information on mailing lists at <a class="reference external" href="http://maemo.org/community/mailing-lists">http://maemo.org/community/mailing-lists</a> .</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Running Hildon Applications</a><ul>
+<li><a class="reference external" href="#running-and-debugging-hildon-applications">Running and debugging Hildon Applications</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#mailing-lists-and-bug-reports">Mailing lists and bug reports</a><ul>
+<li><a class="reference external" href="#filing-a-bug-report-or-feature-request">Filing a bug report or feature request</a></li>
+<li><a class="reference external" href="#submitting-patches">Submitting Patches</a></li>
+<li><a class="reference external" href="#mailing-lists">Mailing lists</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hildon_overview.html"
+                                  title="previous chapter">Python Hildon Overview</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="hildonbase.html"
+                                  title="next chapter">Hildon Core Reference</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/hildon.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hildonbase.html" title="Hildon Core Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hildon_overview.html" title="Python Hildon Overview"
+             >previous</a> |</li>
+        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li>
+          <li><a href="hildon_overview.html" >Python Hildon Overview</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright , .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Migration &mdash; Hildon Reference Manual v documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Reference Manual v documentation" href="index.html" />
+    <link rel="prev" title="Hildon Widgets and Objects" href="hildonobjects.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="hildonobjects.html" title="Hildon Widgets and Objects"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="migration">
+<span id="hildonmigration"></span><h1>Migration<a class="headerlink" href="#migration" title="Permalink to this headline">¶</a></h1>
+<p>This section helps you migrate widgets that are deprecated by providing an alternative to them. Most sections have examples of how a given deprecated widget was used and provide another example of how the functionality of that widget should be accomplished in newly written code.</p>
+<div class="section" id="control-bar">
+<span id="hildon-migration-control-bar"></span><h2>Control Bar<a class="headerlink" href="#control-bar" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-control-bars">
+<span id="hildon-migrating-control-bar"></span><h3>Migrating Control Bars<a class="headerlink" href="#migrating-control-bars" title="Permalink to this headline">¶</a></h3>
+<p>ControlBar widgets are deprecated since Hildon 2.2 and a gtk.Scale should be used to accomplish the same functionality.</p>
+<p>To make a gtk.Scale have the same functionality as a control bar you&#8217;ll need to change some properties of the widget&#8217;s Adjustment so it has a range equal to the control bar&#8217;s as well as the step increment.</p>
+<p>The following example shows a control bar with the range of 0 to 4.</p>
+</div>
+<div class="section" id="a-typical-control-bar">
+<h3>A Typical Control Bar<a class="headerlink" href="#a-typical-control-bar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bar</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">ControlBar</span><span class="p">()</span>
+<span class="n">bar</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">4</span><span class="p">)</span>
+<span class="n">bar</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mf">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To accomplish the same functionality as the previous control bar example, one could use something like in the following example.</p>
+</div>
+<div class="section" id="a-replacement-for-the-control-bar">
+<h3>A Replacement for the Control Bar<a class="headerlink" href="#a-replacement-for-the-control-bar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">scale</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkHScale</span><span class="p">()</span>
+<span class="n">adjustment</span> <span class="o">=</span> <span class="n">scale</span><span class="o">.</span><span class="n">get_adjustment</span><span class="p">()</span>
+<span class="n">adjustment</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;step-increment&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
+<span class="n">adjustment</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;lower&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+<span class="n">adjustment</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;upper&quot;</span><span class="p">,</span> <span class="mf">4</span><span class="p">)</span>
+<span class="n">adjustment</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="volume-bar">
+<span id="hildon-migration-volume-bar"></span><h2>Volume Bar<a class="headerlink" href="#volume-bar" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-volume-bars">
+<span id="hildon-migrating-volume-bar"></span><h3>Migrating Volume Bars<a class="headerlink" href="#migrating-volume-bars" title="Permalink to this headline">¶</a></h3>
+<p>VolumeBar widgets are deprecated since Hildon 2.2 and the way to exactly reproduce their functionality is to use a gtk.Scale together with a toggle button. Instead of the toggle button, a Hildon picker button could be used or two radio buttons or any other widgets that allow the user to choose from two options. The toggle button is used in this example since it is the very similar with the deprecated volume bar&#8217;s button.</p>
+<p>The deprecated volume bar is shown on the example bellow.</p>
+</div>
+<div class="section" id="a-typical-volume-bar">
+<h3>A Typical Volume Bar<a class="headerlink" href="#a-typical-volume-bar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bar</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">VVolumebar</span><span class="p">()</span>
+<span class="n">bar</span><span class="o">.</span><span class="n">set_size_request</span><span class="p">(</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span> <span class="mf">300</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A very similar widget can be done like the following example shows.</p>
+</div>
+<div class="section" id="a-replacement-for-the-volume-bar">
+<h3>A Replacement for the Volume Bar<a class="headerlink" href="#a-replacement-for-the-volume-bar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>def toggle_volume_state_cb (toggle, bar)
+    mute = toggle.get_active()
+    bar.set_sensitive(!mute)
+
+bar = hildon.GtkVScale()
+bar.set_size_request(-1, 300)
+bar.set_restrict_to_fill_level(True)
+
+toggle_volume = hildon.GtkToggleButton(gtk.HILDON_SIZE_FINGER_HEIGHT)
+toggle_volume.set_label("Mute")
+toggle_volume.connect("toggled", toggle_volume_state_cb, bar)
+
+volume = gtk.VBox(0, False)
+volume.add(bar)
+volume.pack_end(toggle_volume, False, False, 0)</pre>
+</div>
+</div>
+</div>
+<div class="section" id="date-widgets">
+<span id="hildon-migration-date-widgets"></span><h2>Date Widgets<a class="headerlink" href="#date-widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-date-widgets">
+<span id="hildon-migrating-date-widgets"></span><h3>Migrating Date Widgets<a class="headerlink" href="#migrating-date-widgets" title="Permalink to this headline">¶</a></h3>
+<p>Being deprecated since Hildon 2.2, the calendar popup and date editor can be substituded by a hildon.DateButton.</p>
+<p>Examples of a typical calendar popup and a date editor are presented bellow.</p>
+</div>
+<div class="section" id="a-typical-calendar-popup">
+<h3>A Typical Calendar Popup<a class="headerlink" href="#a-typical-calendar-popup" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">y</span> <span class="o">=</span> <span class="mf">2009</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">4</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">25</span>
+
+<span class="n">popup</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">CalendarPopup</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">popup</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">popup</span><span class="o">.</span><span class="n">get_date</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-typical-date-editor">
+<h3>A Typical Date Editor<a class="headerlink" href="#a-typical-date-editor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">on_error</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">error_type</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Error: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">error_type</span>
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+<span class="n">date_editor</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">DateEditor</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Choose a date&quot;</span><span class="p">),</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">10</span><span class="p">)</span>
+<span class="n">doalog</span><span class="o">.</span><span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">date_editor</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">10</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">add_button</span><span class="p">(</span><span class="s">&quot;Close&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_CANCEL</span><span class="p">)</span>
+
+<span class="n">date_editor</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;date_error&quot;</span><span class="p">,</span> <span class="n">on_error</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">date_editor</span><span class="o">.</span><span class="n">get_date</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The following example accomplishes equivalent functionality using a hildon.DateButton.</p>
+</div>
+<div class="section" id="a-replacement-for-the-calendar-popup">
+<h3>A Replacement for the Calendar Popup<a class="headerlink" href="#a-replacement-for-the-calendar-popup" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">2009</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">3</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">25</span>
+
+<span class="n">date_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">DateButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span><span class="p">,</span>
+                                <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+<span class="n">date_button</span><span class="o">.</span><span class="n">set_date</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">vbox</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">date_button</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">date_button</span><span class="o">.</span><span class="n">get_date</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="weekday-picker">
+<h3>Weekday Picker<a class="headerlink" href="#weekday-picker" title="Permalink to this headline">¶</a></h3>
+<p>A weekday picker (deprecated since Hildon 2.2) can be easily replaced by a HildonPickerButton.</p>
+<p>The following example presents the deprecated weekday picker in a dialog.</p>
+</div>
+<div class="section" id="a-typical-weekday-picker">
+<h3>A Typical Weekday Picker<a class="headerlink" href="#a-typical-weekday-picker" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+<span class="n">picker</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">WeekdayPicker</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">add_button</span><span class="p">(</span><span class="s">&quot;Close&quot;</span><span class="p">,</span> <span class="n">gtk</span><span class="o">.</span><span class="n">RESPONSE_CLOSE</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>With a hildon.PickerButton it is easy to add the weekdays to its TouchSelector and thus having the same functionality.</p>
+</div>
+<div class="section" id="a-replacement-for-the-weekday-picker">
+<h3>A Replacement for the Weekday Picker<a class="headerlink" href="#a-replacement-for-the-weekday-picker" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>dialog = gtk.Dialog()
+picker = hildon.PickerButton(gtk.HILDON_SIZE_THUMB_HEIGHT,
+                             gtk.HILDON_BUTTON_ARRANGEMENT_VERTICAL)
+picker.set_title("Weekday:")
+selector = hildon.hildon_touch_selector_new_text()
+
+weekdays = ["Sunday", "Monday", "Tuesday", "Thursday", "Friday", "Saturday"]
+for day_name in weekdays:
+  selector.append_text(day_name)
+
+selector.set_column_selection_mode(hildon.SELECTION_MODE_MULTIPLE)
+picker.set_selector(selector)
+picker.set_active(0)
+
+dialog-&gt;vbox-&gt;pack_start(picker, True, True, 0)
+dialog.show_all()
+dialog.run()</pre>
+</div>
+</div>
+</div>
+<div class="section" id="time-widgets">
+<span id="hildon-migration-time-widgets"></span><h2>Time Widgets<a class="headerlink" href="#time-widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-time-widgets">
+<span id="hildon-migrating-time-widgets"></span><h3>Migrating Time Widgets<a class="headerlink" href="#migrating-time-widgets" title="Permalink to this headline">¶</a></h3>
+<p>A hildon.TimeButton is the way to replace the time picker and time editor widgets (deprecated since Hildon version 2.2).</p>
+<p>A time picker and time editor are shown in the examples bellow.</p>
+</div>
+<div class="section" id="a-typical-time-picker">
+<h3>A Typical Time Picker<a class="headerlink" href="#a-typical-time-picker" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialog</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TimePicker</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-typical-time-editor">
+<h3>A Typical Time Editor<a class="headerlink" href="#a-typical-time-editor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>dialog = gtk.Dialog()
+time_editor = hildon.TimeEditor()
+
+dialog-&gt;vbox-&gt;pack_start(timer_editor, False, False, 0)
+dialog.add_button("Close", gtk.RESPONSE_CANCEL)
+
+dialog.show_all()
+dialog.run()</pre>
+</div>
+<p>The same functionality can be achieved as the following example shows.</p>
+</div>
+<div class="section" id="a-replacement-for-the-time-picker">
+<h3>A Replacement for the Time Picker<a class="headerlink" href="#a-replacement-for-the-time-picker" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+<span class="n">time_button</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TimeButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span><span class="p">,</span>
+                                <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">vbox</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">time_button</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="number-widgets">
+<span id="hildon-migration-number-widgets"></span><h2>Number Widgets<a class="headerlink" href="#number-widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-number-widgets">
+<span id="hildon-migrating-number-widgets"></span><h3>Migrating Number Widgets<a class="headerlink" href="#migrating-number-widgets" title="Permalink to this headline">¶</a></h3>
+<p>To achieve the same functionlity of hildon.NumberEditor you can use a hildon.PickerButton with a hildon.TouchSelectorEntry assigned to it. With these widgets you can also easily have the functionality of a hildon.RangeEditor (not covered in this example). Both the hildon.NumberEditor and the hildon.RangeEditor are deprecated since Hildon 2.2.</p>
+<p>The following example shows a typical NumberEditor.</p>
+</div>
+<div class="section" id="a-typical-number-editor">
+<h3>A Typical Number Editor<a class="headerlink" href="#a-typical-number-editor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+<span class="n">editor</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">NumberEditor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">30</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Number:&quot;</span><span class="p">)</span>
+<span class="n">hbox</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mf">12</span><span class="p">)</span>
+
+<span class="n">hbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+<span class="n">hbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">editor</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The functionality of the example above is shown on the example bellow using by validating the HildonPickerButton&#8217;s value every time it&#8217;s changed. The choices given in the hildon.TouchSelectorShould be the most common choices.</p>
+</div>
+<div class="section" id="a-replacement-for-the-number-editor">
+<h3>A Replacement for the Number Editor<a class="headerlink" href="#a-replacement-for-the-number-editor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">changed_value_cb</span> <span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="n">picker</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+    <span class="n">picker</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+
+<span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+<span class="n">picker</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">PickerButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span><span class="p">,</span>
+                             <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+
+<span class="n">picker</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Number:&quot;</span><span class="p">)</span>
+<span class="n">selector</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_touch_selector_entry_new_text</span><span class="p">()</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;0&quot;</span><span class="p">,</span> <span class="s">&quot;5&quot;</span><span class="p">,</span> <span class="s">&quot;10&quot;</span><span class="p">,</span> <span class="s">&quot;15&quot;</span><span class="p">,</span> <span class="s">&quot;20&quot;</span><span class="p">,</span> <span class="s">&quot;25&quot;</span><span class="p">,</span> <span class="s">&quot;30&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+  <span class="n">selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+
+<span class="n">picker</span><span class="o">.</span><span class="n">set_selector</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span>
+<span class="n">picker</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="n">picker</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;value-changed&quot;</span><span class="p">,</span> <span class="n">changed_value_cb</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">picker</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+<span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="hildon-dialogs">
+<span id="hildon-migration-hildon-dialogs"></span><h2>Hildon Dialogs<a class="headerlink" href="#hildon-dialogs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-hildon-dialogs">
+<span id="hildon-migrating-hildon-dialogs"></span><h3>Migrating Hildon Dialogs<a class="headerlink" href="#migrating-hildon-dialogs" title="Permalink to this headline">¶</a></h3>
+<p>The substitution of a hildon.Dialog should be easy. Since version 2.2, dialogs in Hildon should be used as normal gtk.Dialog objects.</p>
+</div>
+</div>
+<div class="section" id="sort-dialogs">
+<span id="hildon-migration-sort-dialogs"></span><h2>Sort Dialogs<a class="headerlink" href="#sort-dialogs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-sort-dialogs">
+<span id="hildon-migrating-sort-dialogs"></span><h3>Migrating Sort Dialogs<a class="headerlink" href="#migrating-sort-dialogs" title="Permalink to this headline">¶</a></h3>
+<p>hildon.SortDialog is deprecated since Hildon 2.2. The correct way to let the user sort contents is with menu filters.</p>
+<p>The following example shows a typical NumberEditor.</p>
+</div>
+<div class="section" id="id1">
+<h3>A Typical Number Editor<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialog</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">SortDialog</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">add_sort_key</span><span class="p">(</span><span class="s">&quot;First key&quot;</span><span class="p">)</span>
+<span class="n">dialog</span><span class="o">.</span><span class="n">add_sort_key_reversed</span><span class="p">(</span><span class="s">&quot;Second, key&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The functionality of the example above is shown on the example bellow using by validating the hildon.PickerButton&#8217;s value every time it&#8217;s changed. The choices given in the hildon.TouchSelectorShould be the most common choices.</p>
+</div>
+<div class="section" id="id2">
+<h3>A Replacement for the Number Editor<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
+<span class="n">window</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Sort Example&quot;</span><span class="p">)</span>
+
+<span class="n">menu</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">AppMenu</span><span class="p">()</span>
+
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkRadioButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span> <span class="s">&quot;1st Key&quot;</span><span class="p">);</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="nb">filter</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_gtk_radio_button_new_from_widget</span><span class="p">(</span>
+                            <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&quot;2nd Key&quot;</span><span class="p">)</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="nb">filter</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">GtkRadioButton</span><span class="p">(</span><span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_THUMB_HEIGHT</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="s">&quot;A-Z&quot;</span><span class="p">)</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="nb">filter</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_gtk_radio_button_new_from_widget</span><span class="p">(</span>
+                            <span class="n">gtk</span><span class="o">.</span><span class="n">HILDON_SIZE_FINGER_HEIGHT</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>
+
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="s">&quot;Z-A&quot;</span><span class="p">)</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="nb">filter</span><span class="p">)</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="n">window</span><span class="o">.</span><span class="n">set_main_menu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Migration</a><ul>
+<li><a class="reference external" href="#control-bar">Control Bar</a><ul>
+<li><a class="reference external" href="#migrating-control-bars">Migrating Control Bars</a></li>
+<li><a class="reference external" href="#a-typical-control-bar">A Typical Control Bar</a></li>
+<li><a class="reference external" href="#a-replacement-for-the-control-bar">A Replacement for the Control Bar</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#volume-bar">Volume Bar</a><ul>
+<li><a class="reference external" href="#migrating-volume-bars">Migrating Volume Bars</a></li>
+<li><a class="reference external" href="#a-typical-volume-bar">A Typical Volume Bar</a></li>
+<li><a class="reference external" href="#a-replacement-for-the-volume-bar">A Replacement for the Volume Bar</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#date-widgets">Date Widgets</a><ul>
+<li><a class="reference external" href="#migrating-date-widgets">Migrating Date Widgets</a></li>
+<li><a class="reference external" href="#a-typical-calendar-popup">A Typical Calendar Popup</a></li>
+<li><a class="reference external" href="#a-typical-date-editor">A Typical Date Editor</a></li>
+<li><a class="reference external" href="#a-replacement-for-the-calendar-popup">A Replacement for the Calendar Popup</a></li>
+<li><a class="reference external" href="#weekday-picker">Weekday Picker</a></li>
+<li><a class="reference external" href="#a-typical-weekday-picker">A Typical Weekday Picker</a></li>
+<li><a class="reference external" href="#a-replacement-for-the-weekday-picker">A Replacement for the Weekday Picker</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#time-widgets">Time Widgets</a><ul>
+<li><a class="reference external" href="#migrating-time-widgets">Migrating Time Widgets</a></li>
+<li><a class="reference external" href="#a-typical-time-picker">A Typical Time Picker</a></li>
+<li><a class="reference external" href="#a-typical-time-editor">A Typical Time Editor</a></li>
+<li><a class="reference external" href="#a-replacement-for-the-time-picker">A Replacement for the Time Picker</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#number-widgets">Number Widgets</a><ul>
+<li><a class="reference external" href="#migrating-number-widgets">Migrating Number Widgets</a></li>
+<li><a class="reference external" href="#a-typical-number-editor">A Typical Number Editor</a></li>
+<li><a class="reference external" href="#a-replacement-for-the-number-editor">A Replacement for the Number Editor</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#hildon-dialogs">Hildon Dialogs</a><ul>
+<li><a class="reference external" href="#migrating-hildon-dialogs">Migrating Hildon Dialogs</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#sort-dialogs">Sort Dialogs</a><ul>
+<li><a class="reference external" href="#migrating-sort-dialogs">Migrating Sort Dialogs</a></li>
+<li><a class="reference external" href="#id1">A Typical Number Editor</a></li>
+<li><a class="reference external" href="#id2">A Replacement for the Number Editor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hildonobjects.html"
+                                  title="previous chapter">Hildon Widgets and Objects</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/hildonmigration.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hildonobjects.html" title="Hildon Widgets and Objects"
+             >previous</a> |</li>
+        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright , .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>
