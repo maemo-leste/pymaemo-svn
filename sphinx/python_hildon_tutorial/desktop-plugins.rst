@@ -23,9 +23,9 @@ Home pug-ins should inherit from libhildondesktop's HDHomePluginItem. The follow
 Source file for TimeOut applet: lib-timeout-home-applet.py
 ==========================================================
 
-.. literalinclude:: ../examples/lib-timeout-home-applet.py
- 
-              
+.. literalinclude:: _static/examples/lib-timeout-home-applet.py
+
+
 As you can see in the example above, the controls used in the applet (``build_ui`` function) should be added to "TimeOutPlugin". In this case, the applet works as a standalone application but it could just provide a widget to activate a program defined in another header and independent from the applet.
 
 .. _desktop-applets-desktop-file:
@@ -38,15 +38,15 @@ Although other fields can be assigned in a .desktop file, the example bellow sho
 A .desktop file for the TimeOut applet: timeout-applet.desktop
 ==============================================================
 
-.. literalinclude:: ../examples/timeout-applet.desktop
-                  
+.. literalinclude:: _static/examples/timeout-applet.desktop
+
 For Home Area applets, .desktop files should be placed in the directory outputed by the following command:
 
 ::
-  
+
   pkg-config libhildondesktop-1 --variable=hildonhomedesktopentrydir --variable=homedesktopentrydir
-  
-              
+
+
 .. _desktop-plugins-status-menu:
 
 Status Menu widgets
@@ -56,12 +56,12 @@ Status Menu widgets are placed in the Status Menu and can be divided into three 
 
 The way to write a plug-in for the Status Menu is pretty similar to writing it for the Home Area. The plug-in should inherit from HDStatusMenuItem. The next examples present a Status Menu plug-in which only shows a message when clicked.
 
-              
+
 Source file for Example Status Menu Plug-in: lib-example-status-menu-applet.py
 ==============================================================================
 
-.. literalinclude:: ../examples/lib-example-status-menu-applet.py
-              
+.. literalinclude:: _static/examples/lib-example-status-menu-applet.py
+
 .. _desktop-applets-status-menu-desktop-file:
 
 The .desktop File
@@ -72,17 +72,17 @@ The .desktop file for the Status Menu is analogous to the Home Area one but shou
 A .desktop file for the Status Menu example applet: lib-example-applet.desktop
 ==============================================================================
 
-  
-.. literalinclude:: ../examples/lib-example-applet.desktop
 
-                  
+.. literalinclude:: _static/examples/lib-example-applet.desktop
+
+
 For Home Area applets, .desktop files should be placed in the directory outputed by the following command:
 
 ::
 
   pkg-config libhildondesktop-1 --variable=homedesktopentrydir
-  
-              
+
+
 .. _desktop-applets-buildin-applets:
 
 Intall Applets
@@ -97,5 +97,5 @@ Now you need to add the newly installed home widget to the desktop. For that you
    3. It will be shown a menu bar containing "Desktop menu" and "Done". Click on "Desktop menu".
    4. You should now see a menu with 4 buttons. Click on the "Add widget" button.
    5. A menu containing the list of installed widgets will appear. Select the one we installed.
-   6. Finally, click on "Done". 
+   6. Finally, click on "Done".
 

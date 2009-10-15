@@ -33,8 +33,8 @@ Let's see a simple example to show the use of this widget. This simple program c
 Example of stackable windows
 ============================
 
-.. literalinclude:: ../examples/hildon-nested-views-simple-example.py
-          
+.. literalinclude:: _static/examples/hildon-nested-views-simple-example.py
+
 The function show_new_window(widget) is set up as a handler for when the signal "clicked" is emitted. This function creates a new stackable window which will be added on top of the stack by calling show_all().
 
 When a stackable window is shown by calling gtk_widget_show() or gtk_widget_show_all(), it will be automatically added on top of the default stack.
@@ -55,17 +55,17 @@ To access the default stack you can use the function hildon_window_stack_get_def
 
 ::
 
-  
-  
+
+
   hildon.hildon_window_stack_get_default()
-  
-        
+
+
 There are several function to push and/or pop windows on a stack. Below, you can see the currently available.
 
 ::
 
-  
-  
+
+
   def hildon_window_stack_push(stackablewindow, ...)
   def hildon_window_stack_push_list(windows_list)
   def hildon_window_stack_push_1(stackablewindow)
@@ -86,7 +86,7 @@ Pushing a new window into a stack
 
       win = hildon.StackableWindow()
       stack = hildon.hildon_window_stack_get_default()
-      stack.push_1(win) 
+      stack.push_1(win)
 
 
 The push functions also show the window, thus, it is unnecessary to call show_all() after performing a push operation.
@@ -110,7 +110,7 @@ Pushing a list of windows into a stack
 
       while nwindows > 0:
           parent = hildon.StackableWindow()
-          win_list.append(parent) 
+          win_list.append(parent)
           nwindows -= 1;
 
       #TODO: push_list must be implemented as an override
@@ -185,38 +185,38 @@ To create a new wizard dialog you should call:
 
 ::
 
-  
-  
+
+
   hildon.WizardDialog(parent_window, wizard_name, gtk_notebook)
-  
-        
+
+
 The parent window is usually the current visible view. The wizard name will be displayed as title in the wizard dialog.
 
 Usually, you will want to validate user input to decide whether it should move to the next step or not. To do that you can set a user function by using:
 
 ::
 
-  
-  
+
+
   hildon.WizardDialog.set_forward_page_func(page_func, data, destroy_notify)
-  
-        
+
+
 The function above sets the function "page_func" to be used to decide whether users can go to the next page when they press the forward button. The function should have the following signature:
 
 ::
 
- 
+
   def some_page_func(notebook, current_page_number, user_data)
-  
-        
+
+
 Here, an example of using a hildon.WizardDialog
 
 Example of a Hildon wizard dialog
 =================================
 
-.. literalinclude:: ../examples/hildon-wizard-dialog-example.py
-  
-          
+.. literalinclude:: _static/examples/hildon-wizard-dialog-example.py
+
+
 Apart from how to create and use a wizard dialog, this example also sets up a handler to catch the signal "switch-page" from the notepad. This signal is emitted by the widget gtk.Notebook when the user or a function changes the current page.
 
 Using GtkDialogs in Hildon applications
@@ -232,5 +232,5 @@ Here an example which create a task-modal dialog.
 Application modal dialog example
 ================================
 
-.. literalinclude:: ../examples/hildon-task-modal-dialog-example.py
+.. literalinclude:: _static/examples/hildon-task-modal-dialog-example.py
 

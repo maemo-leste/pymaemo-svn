@@ -22,10 +22,10 @@ To create a new pannable area you can choose either of the following functions:
 
 ::
 
-  
+
   hildon.PannableArea()
-  hildon.hildon_pannable_area_new_full(mode, enabled, vel_min, vel_max, decel, sps)  
-      
+  hildon.hildon_pannable_area_new_full(mode, enabled, vel_min, vel_max, decel, sps)
+
 The first one creates a new pannable area with the properties set to the default values. The second one allows you to set the value of the most important properties of this widget:
 
 * mode : Used to change the behaviour of the pannable area allowing to choose whether to use the "kinetic" effect described above.
@@ -40,9 +40,9 @@ Once the area is created you can then place your object into the pannable window
 
 ::
 
-  def add_with_viewport(self, child) 
-        
-      
+  def add_with_viewport(self, child)
+
+
 That is a convenience function used to add a child to a GtkViewport, and add the viewport to the pannable area.
 
 .. warning:: Widgets that have native scrolling should be added directly inside a pannable area. For example, widgets such as GtkTextView, GtkTreeView, GtkIconView and GtkLayout should be added by calling add(). Otherwise, panning could not work properly.
@@ -55,9 +55,9 @@ Functions explained above are enough for a simple example. The following example
 Example of a pannable area
 ==========================
 
-.. literalinclude:: ../examples/hildon-pannable-area.py
+.. literalinclude:: _static/examples/hildon-pannable-area.py
 
-      
+
 In the example above you can see that the following two calls are enough to use a pannable area. The rest of the code of the example is no different to that used in a GTK+ application.
 
 .. code-block:: python
@@ -66,8 +66,8 @@ In the example above you can see that the following two calls are enough to use 
     pannable_area = hildon.PannableArea()
     # Pack the table into the pannable area
     pannable_area.add_with_viewport(table);
-  
-          
+
+
 To see all the buttons, users can scroll with the fingers. In this example, horizontal and vertical panning are activated as that is needed to allow users to be able to interact both all the widgets. The property "mov-mode" controls if the area can scroll horizontally, vertically (default value) or both, using hildon.MOVEMENT_MODE_HORIZ, hildon.MOVEMENT_MODE_VERT or hildon.MOVEMENT_MODE_BOTH, respectively.
 
 Additional features
@@ -82,24 +82,24 @@ For example, the first of the functions changes the current position on the pann
 ::
 
   def jump_to(self, x, y)
-  def scroll_to(self, x, y) 
-  
-      
+  def scroll_to(self, x, y)
+
+
 It is also possible to jump or scroll to a certain descendent of the area using the following functions, the argument should be a reference to a descendent widget.
 
 ::
 
-  
-  def jump_to_child(self, child) 
+
+  def jump_to_child(self, child)
   def scroll_to_child(self, child)
-  
-      
+
+
 Here is a modified version of the previous example. The pannable area is packed into an gtk.VBox and a new button is also added to navigate to the last clicked button.
 
 Example of a pannable area and a "jump-to" button
 =================================================
 
-.. literalinclude:: ../examples/hildon-pannable-area-whith-jump-to-button.py
+.. literalinclude:: _static/examples/hildon-pannable-area-whith-jump-to-button.py
 
 The example used a global variable to store a reference to the last clicked button. This reference will be used by the callback go_to_last_clicked to jump to it by calling one of the navigation functions. This is the function used as a handler for the signal "clicked" of the button outside the pannable area.
 

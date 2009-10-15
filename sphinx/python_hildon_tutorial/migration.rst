@@ -44,8 +44,8 @@ Menu example
   Help
       \ Contents
       \ About
-  
-              
+
+
 A few decisions of what menus to include and which ones to divide or leave out need to be taken. For example, the "File" menu is a mandatory one and should be accessible from the main window's menu. On the other hand, the "Quit" sub menu is not really necessary since the user can quit the application using the upper right corner's cross. Considering that the device has "+" and "-" keys, those can be assigned the functions of zooming in and out of the "View" menu. The "Copy", "Paste" and "Cut" actions from the "Edit" menu are also present in the application's toolbar as well as by using keyboard shortcuts so, they are not included in the menu. The "Indent Type" menu can be accomplished using app menu filters being, for this, removed from the "Edit" menu as well. This results in the "Edit" menu having only a sub menu "Preferences" which can be added to the app menu directly instead.
 
 The following example shows the implementation of the menu following the above decisions. Figure @@IMAGE@@ shows the final result of the app menu. Figures @@IMAGE@@ and @@IMAGE@@ show the sub views activated by the menus "View" and "Help", respectively.
@@ -53,7 +53,7 @@ The following example shows the implementation of the menu following the above d
 Migrating a menu
 ================
 
-.. literalinclude:: ../examples/hildon-migration-menus.py
+.. literalinclude:: _static/examples/hildon-migration-menus.py
 
 .. _migration-choices:
 
@@ -74,9 +74,9 @@ Consider a dialog where, among other widgets, there's a frame labeled "Proxy Pre
 Migrating choice widgets
 ========================
 
-.. literalinclude:: ../examples/hildon-migration-choices.py
- 
-              
+.. literalinclude:: _static/examples/hildon-migration-choices.py
+
+
 .. _migration-notebooks:
 
 Notebooks
@@ -98,6 +98,6 @@ The example shows the code to produce a replacement for the notebook (see @@IMAG
 Migrating a notebook
 ====================
 
-.. literalinclude:: ../examples/hildon-migration-notebooks.py
- 
-              
+.. literalinclude:: _static/examples/hildon-migration-notebooks.py
+
+
