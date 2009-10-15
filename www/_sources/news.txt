@@ -1,8 +1,8 @@
 News
 ****
 
-PyMaemo release candidate for for Maemo 5 *2009-10-15*
-------------------------------------------------------
+PyMaemo release candidate for Maemo 5 *2009-10-15*
+--------------------------------------------------
 
 New packages:
 
@@ -58,7 +58,7 @@ Known issues:
 * MB#5364
 * MB#4734
 
-See <http://lists.maemo.org/pipermail/maemo-developers/2009-October/021433.html> for details.
+See http://lists.maemo.org/pipermail/maemo-developers/2009-October/021433.html for details.
 
 PyMaemo for Maemo 5 beta 2 SDK just released *2009-08-09*
 ---------------------------------------------------------
