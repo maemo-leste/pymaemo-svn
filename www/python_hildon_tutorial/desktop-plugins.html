@@ -53,9 +53,9 @@
 <p>Home pug-ins should inherit from libhildondesktop&#8217;s HDHomePluginItem. The following example presents the python code  for the mentioned applet.</p>
 <div class="section" id="source-file-for-timeout-applet-lib-timeout-home-applet-py">
 <h3>13.1.1. Source file for TimeOut applet: lib-timeout-home-applet.py<a class="headerlink" href="#source-file-for-timeout-applet-lib-timeout-home-applet-py" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hildon</span>
-<span class="kn">import</span> <span class="nn">hildondesktop</span>
-<span class="kn">import</span> <span class="nn">gtk</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">hildondesktop</span>
+<span class="k">import</span> <span class="nn">gtk</span>
 
 
 <span class="k">class</span> <span class="nc">ExampleStatusPlugin</span><span class="p">(</span><span class="n">hildondesktop</span><span class="o">.</span><span class="n">StatusMenuItem</span><span class="p">):</span>
@@ -118,10 +118,10 @@ X-Path=lib-timeout-home-applet.py
 <p>The way to write a plug-in for the Status Menu is pretty similar to writing it for the Home Area. The plug-in should inherit from HDStatusMenuItem. The next examples present a Status Menu plug-in which only shows a message when clicked.</p>
 <div class="section" id="source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py">
 <h3>13.2.1. Source file for Example Status Menu Plug-in: lib-example-status-menu-applet.py<a class="headerlink" href="#source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hildon</span>
-<span class="kn">import</span> <span class="nn">hildondesktop</span>
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">gobject</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">hildondesktop</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">gobject</span>
 
 <span class="k">class</span> <span class="nc">TimeOutPlugin</span><span class="p">(</span><span class="n">hildondesktop</span><span class="o">.</span><span class="n">HomePluginItem</span><span class="p">):</span>
     <span class="n">__gtype_name__</span> <span class="o">=</span> <span class="s">&#39;TimeOutPlugin&#39;</span>
@@ -217,20 +217,20 @@ X-Path=lib-example-status-menu-applet.py
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">13. Writing Desktop Widgets</a><ul>
-<li><a class="reference external" href="#home-widgets">13.1. Home widgets</a><ul>
-<li><a class="reference external" href="#source-file-for-timeout-applet-lib-timeout-home-applet-py">13.1.1. Source file for TimeOut applet: lib-timeout-home-applet.py</a></li>
-<li><a class="reference external" href="#the-desktop-file">13.1.2. The .desktop File</a></li>
-<li><a class="reference external" href="#a-desktop-file-for-the-timeout-applet-timeout-applet-desktop">13.1.3. A .desktop file for the TimeOut applet: timeout-applet.desktop</a></li>
+<li><a class="reference" href="">13. Writing Desktop Widgets</a><ul>
+<li><a class="reference" href="#home-widgets">13.1. Home widgets</a><ul>
+<li><a class="reference" href="#source-file-for-timeout-applet-lib-timeout-home-applet-py">13.1.1. Source file for TimeOut applet: lib-timeout-home-applet.py</a></li>
+<li><a class="reference" href="#the-desktop-file">13.1.2. The .desktop File</a></li>
+<li><a class="reference" href="#a-desktop-file-for-the-timeout-applet-timeout-applet-desktop">13.1.3. A .desktop file for the TimeOut applet: timeout-applet.desktop</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#status-menu-widgets">13.2. Status Menu widgets</a><ul>
-<li><a class="reference external" href="#source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py">13.2.1. Source file for Example Status Menu Plug-in: lib-example-status-menu-applet.py</a></li>
-<li><a class="reference external" href="#desktop-applets-status-menu-desktop-file">13.2.2. The .desktop File</a></li>
-<li><a class="reference external" href="#a-desktop-file-for-the-status-menu-example-applet-lib-example-applet-desktop">13.2.3. A .desktop file for the Status Menu example applet: lib-example-applet.desktop</a></li>
+<li><a class="reference" href="#status-menu-widgets">13.2. Status Menu widgets</a><ul>
+<li><a class="reference" href="#source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py">13.2.1. Source file for Example Status Menu Plug-in: lib-example-status-menu-applet.py</a></li>
+<li><a class="reference" href="#desktop-applets-status-menu-desktop-file">13.2.2. The .desktop File</a></li>
+<li><a class="reference" href="#a-desktop-file-for-the-status-menu-example-applet-lib-example-applet-desktop">13.2.3. A .desktop file for the Status Menu example applet: lib-example-applet.desktop</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#intall-applets">13.3. Intall Applets</a></li>
+<li><a class="reference" href="#intall-applets">13.3. Intall Applets</a></li>
 </ul>
 </li>
 </ul>
@@ -274,7 +274,7 @@ X-Path=lib-example-status-menu-applet.py
     </div>
     <div class="footer">
       &copy; Copyright 2009, Nokia Corporation.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
     </div>
   </body>
 </html>

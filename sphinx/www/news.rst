@@ -1,6 +1,65 @@
 News
 ****
 
+PyMaemo release candidate for for Maemo 5 *2009-10-15*
+------------------------------------------------------
+
+New packages:
+
+* python-alarm (0.1-0maemo1)
+
+Updated packages:
+
+* python-hildon (0.9.0-1maemo13)
+* cython (0.11.2-1maemo1)
+* gst0.10-python (0.10.14-2maemo5)
+* pyclutter (0.8.0-1maemo3)
+* python-osso (0.4-0maemo1)
+* python2.5 (2.5.4-1maemo2)
+* pygtk (2.12.1-6maemo8)
+* python-hildondesktop (0.0.3-1maemo2)
+* ipython (0.10-1maemo1)
+
+Bugs closed:
+
+* MB#4782
+* MB#4821
+* MB#4897
+* MB#4920
+* MB#4923
+* MB#4936
+* MB#4947
+* MB#4957
+* MB#4969
+* MB#4977
+* MB#5015
+* MB#5026
+* MB#5027
+* MB#5096
+* MB#5102
+* MB#5143
+* MB#5164
+* MB#5199
+* MB#5226
+* MB#5244
+
+Known issues:
+
+* MB#4919
+* MB#4824
+* MB#4932
+* MB#4839
+* MB#4849
+* MB#5232
+* MB#5091
+* MB#5141
+* MB#4829
+* MB#5157
+* MB#5364
+* MB#4734
+
+See <http://lists.maemo.org/pipermail/maemo-developers/2009-October/021433.html> for details.
+
 PyMaemo for Maemo 5 beta 2 SDK just released *2009-08-09*
 ---------------------------------------------------------
 

@@ -92,17 +92,17 @@
   <div class="section" id="python-osso-examples">
 <h1>Python-OSSO examples<a class="headerlink" href="#python-osso-examples" title="Permalink to this headline">¶</a></h1>
 <p>This document shows some examples of the functionalities available in the python-osso package.</p>
-<p><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/osso_examples.tar.gz">Download all examples</a></p>
+<p><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/osso_examples.tar.gz">Download all examples</a></p>
 <div class="section" id="application">
 <h2>Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
 <p>This example shows how to bring an application to foreground using
 osso.Application.application_top().</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/application/osso_test_app.py">osso_test_app.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/application/osso_test_app.py">osso_test_app.py</a>
 - Application that will be brought to foreground.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/application/osso_test_app.service">osso_test_app.service</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/application/osso_test_app.service">osso_test_app.service</a>
 - Service file for the target application.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/application/osso_test_sender.py">osso_test_sender.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/application/osso_test_sender.py">osso_test_sender.py</a>
 - Application that will call the OSSO service.</li>
 </ul>
 </div>
@@ -111,11 +111,11 @@ osso.Application.application_top().</p>
 <p>These examples show how to use the auto-saving and state saving features
 from python-osso. Each file is a separate example.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/autosave/osso_test_autosave.py">osso_test_autosave.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/autosave/osso_test_autosave.py">osso_test_autosave.py</a>
 - The same objects from the example below, but instead of calling the save
 function directly, any changes call user_data_changed, and when exiting
 force_autosave is called.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/autosave/osso_test_statesaving.py">osso_test_statesaving.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/autosave/osso_test_statesaving.py">osso_test_statesaving.py</a>
 - Creates a gtk.Entry and a gtk.HScale. It saves the state when the
 application goes to background or exits, restoring the state on
 the next startup, unless the device resets or is turned off.</li>
@@ -125,12 +125,12 @@ the next startup, unless the device resets or is turned off.</li>
 <h2>Device State<a class="headerlink" href="#device-state" title="Permalink to this headline">¶</a></h2>
 <p>These examples show how to interact with the display and the device.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/device-state/osso_test_device_on.py">osso_test_device_on.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/device-state/osso_test_device_on.py">osso_test_device_on.py</a>
 - Requests to turn on the display.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/device-state/osso_test_device_blank_pause.py">osso_test_device_blank_pause.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/device-state/osso_test_device_blank_pause.py">osso_test_device_blank_pause.py</a>
 - Requests to do not blank the screen. This will keep the screen on for
 60 seconds.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/device-state/osso_test_device_state_cb.py">osso_test_device_state_cb.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/device-state/osso_test_device_state_cb.py">osso_test_device_state_cb.py</a>
 - Registers a callback for device state changes (Offline mode, etc...).</li>
 </ul>
 </div>
@@ -138,7 +138,7 @@ the next startup, unless the device resets or is turned off.</li>
 <h2>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h2>
 <p>These examples show how to use HELP and enable the &#8220;?&#8221; button in dialogs</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/helplib/osso_test_help.py">osso_test_help.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/helplib/osso_test_help.py">osso_test_help.py</a>
 - Shows two buttons: one to load a help topic and another to open a dialog
 with an &#8220;?&#8221; button in titlebar.</li>
 </ul>
@@ -147,13 +147,13 @@ with an &#8220;?&#8221; button in titlebar.</li>
 <h2>Mime<a class="headerlink" href="#mime" title="Permalink to this headline">¶</a></h2>
 <p>These examples show how use the MIME functions.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_category.py">osso_test_mime_category.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_category.py">osso_test_mime_category.py</a>
 - Prints the category the specified mime type is in.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_default-app.py">osso_test_mime_default-app.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_default-app.py">osso_test_mime_default-app.py</a>
 - Prints information about the current default application for the given mime type.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_open.py">osso_test_mime_open.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_open.py">osso_test_mime_open.py</a>
 - Opens an file using the default application for its mime type.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_icons.py">osso_test_mime_icons.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/mime/osso_test_mime_icons.py">osso_test_mime_icons.py</a>
 - Shows icons associated with a given mime type.</li>
 </ul>
 </div>
@@ -161,11 +161,11 @@ with an &#8220;?&#8221; button in titlebar.</li>
 <h2>Plugin<a class="headerlink" href="#plugin" title="Permalink to this headline">¶</a></h2>
 <p>This example shows how to load plugins.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/plugin/test_plugin_app.py">test_plugin_app.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/plugin/test_plugin_app.py">test_plugin_app.py</a>
 - Loads the test plugin.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/plugin/testplugin.c">testplugin.c</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/plugin/testplugin.c">testplugin.c</a>
 - Test plugin.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/plugin/testplugin.desktop">testplugin.desktop</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/plugin/testplugin.desktop">testplugin.desktop</a>
 - Desktop file for the test plugin.</li>
 </ul>
 </div>
@@ -173,9 +173,9 @@ with an &#8220;?&#8221; button in titlebar.</li>
 <h2>RPC<a class="headerlink" href="#rpc" title="Permalink to this headline">¶</a></h2>
 <p>These examples show how to make remote procedure calls using python-osso.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/rpc/osso_test_sender.py">osso_test_sender.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/rpc/osso_test_sender.py">osso_test_sender.py</a>
 - GUI app that requests a service from the target app.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/rpc/osso_test_receiver.py">osso_test_receiver.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/rpc/osso_test_receiver.py">osso_test_receiver.py</a>
 - Sample service that will be called by osso_test_sender.py</li>
 </ul>
 </div>
@@ -183,7 +183,7 @@ with an &#8220;?&#8221; button in titlebar.</li>
 <h2>Status Bar<a class="headerlink" href="#status-bar" title="Permalink to this headline">¶</a></h2>
 <p>This example shows how to send events to status bar applets.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/statusbar/osso_test_statusbar.py">osso_test_statusbar.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/statusbar/osso_test_statusbar.py">osso_test_statusbar.py</a>
 - Requests the display applet to change the display brightness.</li>
 </ul>
 </div>
@@ -192,9 +192,9 @@ with an &#8220;?&#8221; button in titlebar.</li>
 <p>These examples show how to use notification dialogs with applications
 that run without gui.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/systemnote/osso_test_note_dialog.py">osso_test_note_dialog.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/systemnote/osso_test_note_dialog.py">osso_test_note_dialog.py</a>
 - Shows a dialog note.</li>
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/systemnote/osso_test_note_infoprint.py">osso_test_note_infoprint.py</a>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/systemnote/osso_test_note_infoprint.py">osso_test_note_infoprint.py</a>
 - Shows an information banner.</li>
 </ul>
 </div>
@@ -203,14 +203,14 @@ that run without gui.</p>
 <p>This example registers a callback and tries to set the system time.
 Notice: Currently this won&#8217;t change the time. (Even in C).</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/timenotification/osso_test_timenotification.py">osso_test_timenotification.py</a></li>
+<li><a class="reference" href="http://pymaemo.garage.maemo.org/documentation/python_osso_examples/code/timenotification/osso_test_timenotification.py">osso_test_timenotification.py</a></li>
 </ul>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Debian New Maintainers&#8217; Guide:
-<a class="reference external" href="http://www.us.debian.org/doc/maint-guide">http://www.us.debian.org/doc/maint-guide</a></li>
+<a class="reference" href="http://www.us.debian.org/doc/maint-guide">http://www.us.debian.org/doc/maint-guide</a></li>
 </ul>
 </div>
 </div>

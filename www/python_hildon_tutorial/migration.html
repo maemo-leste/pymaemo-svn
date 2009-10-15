@@ -89,8 +89,8 @@ Help
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 10.2, &quot;Migrating a menu&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">normal_zoom_cb</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="n">hildon</span><span class="o">.</span><span class="n">WindowStack</span><span class="o">.</span><span class="n">get_default</span><span class="p">()</span><span class="o">.</span><span class="n">pop_1</span><span class="p">()</span>
@@ -233,8 +233,8 @@ Help
 <div class="section" id="choices">
 <span id="migration-choices"></span><h2>12.2. Choices<a class="headerlink" href="#choices" title="Permalink to this headline">¶</a></h2>
 <p>Some widgets for choosing options also need to be adapted to the new Hildon way of designing interfaces. When having several radio buttons to express a choice, it is a good idea to replace those with a picker button.</p>
-<p>Consider a dialog where, among other widgets, there&#8217;s a frame labeled &#8220;Proxy Preferences&#8221; and three radio buttons: &#8220;None&#8221;, &#8220;Auto&#8221; and &#8220;Manual&#8221;, displayed vertically like <a class="reference internal" href="#example-choices"><em>Three radio buttons</em></a> shows. The following example shows how such task could be accomplished using a picker button. The frame label becomes the picker button&#8217;s title and the three radio buttons&#8217; labels become the choices in the picker&#8217;s touch selector. &#64;&#64;IMAGE&#64;&#64; shows a screenshot of the resulting graphical user interface.</p>
-<div class="figure align-center" id="example-choices">
+<p>Consider a dialog where, among other widgets, there&#8217;s a frame labeled &#8220;Proxy Preferences&#8221; and three radio buttons: &#8220;None&#8221;, &#8220;Auto&#8221; and &#8220;Manual&#8221;, displayed vertically like <a class="reference" href="#example-choices"><em>Three radio buttons</em></a> shows. The following example shows how such task could be accomplished using a picker button. The frame label becomes the picker button&#8217;s title and the three radio buttons&#8217; labels become the choices in the picker&#8217;s touch selector. &#64;&#64;IMAGE&#64;&#64; shows a screenshot of the resulting graphical user interface.</p>
+<div align="center" class="figure" id="example-choices">
 <img alt="_images/choices.png" src="_images/choices.png" />
 <p class="caption">Three radio buttons</p>
 </div>
@@ -244,8 +244,8 @@ Help
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example Example 10.3, &quot;Migrating choice widgets&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span>
@@ -281,8 +281,8 @@ Help
 <div class="section" id="notebooks">
 <span id="migration-notebooks"></span><h2>12.3. Notebooks<a class="headerlink" href="#notebooks" title="Permalink to this headline">¶</a></h2>
 <p>Since the use of notebooks is not advised in Hildon, there&#8217;s the need to replace this widget with something that accomplishes the same task.</p>
-<p>Imagine a preferences dialog that has a notebook to divide the preferences in &#8220;General&#8221;, &#8220;Colors&#8221; and &#8220;Tools&#8221; like depicted in <a class="reference internal" href="#example-notebook"><em>Typical Notebook</em></a> . The way to accomplish the same functionality without having a notebook is to have a window with buttons that open other windows as sub views. Each of the windows opened from the buttons should have the contents that the respective page in the notebook had.</p>
-<div class="figure align-center" id="example-notebook">
+<p>Imagine a preferences dialog that has a notebook to divide the preferences in &#8220;General&#8221;, &#8220;Colors&#8221; and &#8220;Tools&#8221; like depicted in <a class="reference" href="#example-notebook"><em>Typical Notebook</em></a> . The way to accomplish the same functionality without having a notebook is to have a window with buttons that open other windows as sub views. Each of the windows opened from the buttons should have the contents that the respective page in the notebook had.</p>
+<div align="center" class="figure" id="example-notebook">
 <img alt="_images/notebook.png" src="_images/notebook.png" />
 <p class="caption">Typical Notebook</p>
 </div>
@@ -291,8 +291,8 @@ Help
 <h3>12.3.1. Migrating a notebook<a class="headerlink" href="#migrating-a-notebook" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python2.5</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">new_preferences_window</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
     <span class="n">pref_window</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">StackableWindow</span><span class="p">()</span>
@@ -354,18 +354,18 @@ Help
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">12. Migration</a><ul>
-<li><a class="reference external" href="#menus">12.1. Menus</a><ul>
-<li><a class="reference external" href="#menu-example">12.1.1. Menu example</a></li>
-<li><a class="reference external" href="#migrating-a-menu">12.1.2. Migrating a menu</a></li>
+<li><a class="reference" href="">12. Migration</a><ul>
+<li><a class="reference" href="#menus">12.1. Menus</a><ul>
+<li><a class="reference" href="#menu-example">12.1.1. Menu example</a></li>
+<li><a class="reference" href="#migrating-a-menu">12.1.2. Migrating a menu</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#choices">12.2. Choices</a><ul>
-<li><a class="reference external" href="#migrating-choice-widgets">12.2.1. Migrating choice widgets</a></li>
+<li><a class="reference" href="#choices">12.2. Choices</a><ul>
+<li><a class="reference" href="#migrating-choice-widgets">12.2.1. Migrating choice widgets</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#notebooks">12.3. Notebooks</a><ul>
-<li><a class="reference external" href="#migrating-a-notebook">12.3.1. Migrating a notebook</a></li>
+<li><a class="reference" href="#notebooks">12.3. Notebooks</a><ul>
+<li><a class="reference" href="#migrating-a-notebook">12.3.1. Migrating a notebook</a></li>
 </ul>
 </li>
 </ul>
@@ -417,7 +417,7 @@ Help
     </div>
     <div class="footer">
       &copy; Copyright 2009, Nokia Corporation.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
     </div>
   </body>
 </html>

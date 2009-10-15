@@ -2,11 +2,10 @@
 # Project: Hildon Reference Manual
 # Version: 2.1.62
 hildon mod hildonobjects.html
-hildon.RemoteTexture.set_offset method hildonobjects.html
 hildon.StackableWindow.get_stack method hildonobjects.html
 hildon.Program.peek_window_stack method hildonbase.html
 hildon.SizeRequestPolicy data hildonobjects.html
-hildon.AnimationActor.send_message method hildonobjects.html
+hildon.RemoteTexture.set_offset method hildonobjects.html
 hildon.WindowStack.get_windows method hildonobjects.html
 hildon.Caption.set_icon_image method hildonobjects.html
 hildon.AnimationActor.set_depth method hildonobjects.html
@@ -73,7 +72,6 @@ hildon.Banner.__init__ method hildonobjects.html
 hildon.hildon_helper_set_logical_color function hildonbase.html
 hildon.Banner.set_fraction method hildonobjects.html
 hildon.TouchSelector.get_model method hildonobjects.html
-hildon.RemoteTexture.set_position method hildonobjects.html
 hildon.HildonPickerButton.get_done_button_text method hildonobjects.html
 hildon.Caption.get_icon_image method hildonobjects.html
 hildon.PickerDialog.get_selector method hildonobjects.html
@@ -136,7 +134,6 @@ hildon.Program.get_common_menu method hildonbase.html
 hildon.WindowStack.push_1 method hildonobjects.html
 hildon.HildonTimeButton.get_time method hildonobjects.html
 hildon.HILDON_ICON_SIZE_THUMB data hildonbase.html
-hildon.RemoteTexture.set_parent method hildonobjects.html
 hildon.EditToolbar.__init__ method hildonobjects.html
 hildon.FindToolbar.set_active method hildonobjects.html
 hildon.EditToolbar.set_label method hildonobjects.html
@@ -144,7 +141,7 @@ hildon.AppMenu.append method hildonobjects.html
 hildon.MovementDirection data hildonobjects.html
 hildon.hildon_gtk_tree_view_set_ui_mode function hildonbase.html
 hildon.Program.get_can_hibernate method hildonbase.html
-hildon.TextView.get_buffer method hildonobjects.html
+hildon.AnimationActor.send_message method hildonobjects.html
 hildon.HILDON_ICON_PIXEL_SIZE_XLARGE data hildonbase.html
 hildon.TouchSelector.__init__ method hildonobjects.html
 hildon.TouchSelector.prepend_text method hildonobjects.html
@@ -220,6 +217,7 @@ hildon.PannableArea.jump_to_child method hildonobjects.html
 hildon.HildonPickerButton.set_selector method hildonobjects.html
 hildon.hildon_helper_event_button_is_finger function hildonbase.html
 hildon.HildonPickerButton.set_active method hildonobjects.html
+hildon.TextView.get_buffer method hildonobjects.html
 hildon.Caption.get_separator method hildonobjects.html
 hildon.HILDON_ICON_PIXEL_SIZE_THUMB data hildonbase.html
 hildon.FindToolbar.__init__ method hildonobjects.html
@@ -232,7 +230,7 @@ hildon.Caption.set_child_expand method hildonobjects.html
 hildon.HILDON_ICON_PIXEL_SIZE_SMALL data hildonbase.html
 hildon.user_function function hildonobjects.html
 hildon.Program.set_can_hibernate method hildonbase.html
-hildon.AnimationActor.set_anchor_from_gravity method hildonobjects.html
+hildon.AnimationActor.__init__ method hildonobjects.html
 hildon.RemoteTexture.set_image method hildonobjects.html
 hildon.AppMenu.__init_ method hildonobjects.html
 hildon.DateSelector.select_day method hildonobjects.html
@@ -312,6 +310,7 @@ hildon.Button.set_value method hildonobjects.html
 hildon.Window.remove_toolbar method hildonobjects.html
 hildon.Button.add_title_size_group method hildonobjects.html
 hildon.hildon_banner_show_animation function hildonobjects.html
+hildon.AnimationActor.set_anchor_from_gravity method hildonobjects.html
 hildon.Program.add_window method hildonbase.html
 hildon.HILDON_ICON_PIXEL_SIZE_XSMALL data hildonbase.html
 hildon.hildon_gtk_hscale_new function hildonbase.html
@@ -323,6 +322,7 @@ hildon.AppMenu.menu_insert method hildonobjects.html
 hildon.AppMenu.menu_popup method hildonobjects.html
 hildon.WindowStack.get_default method hildonobjects.html
 hildon.AnimationActor.set_opacity method hildonobjects.html
+hildon.RemoteTexture.set_position method hildonobjects.html
 hildon.Button.set_style method hildonobjects.html
 hildon.PickerDialog class hildonobjects.html
 hildon.Window.add_toolbar method hildonobjects.html
@@ -330,7 +330,7 @@ hildon.Banner class hildonobjects.html
 hildon.TouchSelectorSelectionMode data hildonobjects.html
 hildon.PickerDialog.set_selector method hildonobjects.html
 hildon.DateSelector class hildonobjects.html
-hildon.AnimationActor.__init__ method hildonobjects.html
+hildon.RemoteTexture.set_parent method hildonobjects.html
 hildon.StackableWindow.set_main_menu method hildonobjects.html
 hildon.DateSelector.select_current_date method hildonobjects.html
 hildon.AnimationActor.set_parent method hildonobjects.html

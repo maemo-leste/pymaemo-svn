@@ -239,7 +239,7 @@
 </div>
 <p>All functions above require a widget as an argument that should be a pointer to the owner widget of the banner. Usually, the owner is the window that represents the currently displayed view.</p>
 <p>Function hildon.hildon_banner_show_information() shows a banner with the given text.</p>
-<p>You can also apply a <a class="reference external" href="http://maemo.org/api_refs/5.0/beta/pango/PangoMarkupFormat.html">Pango markup</a> and add some attributes to the displayed text. To do that you can either use hildon.hildon_banner_show_information_with_markup() to create the banner or setup the markup by calling hildon.Banner.set_markup() after the initialization.</p>
+<p>You can also apply a <a class="reference" href="http://maemo.org/api_refs/5.0/beta/pango/PangoMarkupFormat.html">Pango markup</a> and add some attributes to the displayed text. To do that you can either use hildon.hildon_banner_show_information_with_markup() to create the banner or setup the markup by calling hildon.Banner.set_markup() after the initialization.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Currently, icons are not displayed in banners, so any value that you pass as the icon_name will be ignored.</p>
@@ -360,36 +360,36 @@ def hildon_note_new_cancel_with_progress_bar(parent, description, progressbar)</
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">9. Controls</a><ul>
-<li><a class="reference external" href="#buttons">9.1. Buttons</a><ul>
-<li><a class="reference external" href="#hildon-button">9.1.1. Hildon Button</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-button-with-a-label-and-an-image">9.1.2. Example of a Hildon button with a label and an image</a></li>
-<li><a class="reference external" href="#hildon-check-button">9.1.3. Hildon Check Button</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-check-button">9.1.4. Example of a Hildon check button</a></li>
-<li><a class="reference external" href="#using-gtk-buttons-and-toggles">9.1.5. Using Gtk Buttons and Toggles</a></li>
-<li><a class="reference external" href="#hildon-gtkbutton">9.1.6. hildon.GtkButton</a></li>
-<li><a class="reference external" href="#hildon-gtktogglebutton">9.1.7. hildon.GtkToggleButton</a></li>
-<li><a class="reference external" href="#hildon-gtkradiobutton">9.1.8. hildon.GtkRadioButton</a></li>
+<li><a class="reference" href="">9. Controls</a><ul>
+<li><a class="reference" href="#buttons">9.1. Buttons</a><ul>
+<li><a class="reference" href="#hildon-button">9.1.1. Hildon Button</a></li>
+<li><a class="reference" href="#example-of-a-hildon-button-with-a-label-and-an-image">9.1.2. Example of a Hildon button with a label and an image</a></li>
+<li><a class="reference" href="#hildon-check-button">9.1.3. Hildon Check Button</a></li>
+<li><a class="reference" href="#example-of-a-hildon-check-button">9.1.4. Example of a Hildon check button</a></li>
+<li><a class="reference" href="#using-gtk-buttons-and-toggles">9.1.5. Using Gtk Buttons and Toggles</a></li>
+<li><a class="reference" href="#hildon-gtkbutton">9.1.6. hildon.GtkButton</a></li>
+<li><a class="reference" href="#hildon-gtktogglebutton">9.1.7. hildon.GtkToggleButton</a></li>
+<li><a class="reference" href="#hildon-gtkradiobutton">9.1.8. hildon.GtkRadioButton</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#text-display-and-handling">9.2. Text Display and Handling</a><ul>
-<li><a class="reference external" href="#hildon-text-entry">9.2.1. Hildon Text Entry</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-entry">9.2.2. Example of a Hildon entry</a></li>
-<li><a class="reference external" href="#hildon-text-area">9.2.3. Hildon Text Area</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-text-view-with-a-placeholder">9.2.4. Example of a Hildon text view with a placeholder</a></li>
+<li><a class="reference" href="#text-display-and-handling">9.2. Text Display and Handling</a><ul>
+<li><a class="reference" href="#hildon-text-entry">9.2.1. Hildon Text Entry</a></li>
+<li><a class="reference" href="#example-of-a-hildon-entry">9.2.2. Example of a Hildon entry</a></li>
+<li><a class="reference" href="#hildon-text-area">9.2.3. Hildon Text Area</a></li>
+<li><a class="reference" href="#example-of-a-hildon-text-view-with-a-placeholder">9.2.4. Example of a Hildon text view with a placeholder</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#notification-widgets">9.3. Notification widgets</a><ul>
-<li><a class="reference external" href="#banners">9.3.1. Banners</a></li>
-<li><a class="reference external" href="#setting-up-an-informational-banner">9.3.2. Setting up an informational banner</a></li>
-<li><a class="reference external" href="#notes">9.3.3. Notes</a></li>
-<li><a class="reference external" href="#information-notes">9.3.4. Information Notes</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-information-note">9.3.5. Example of a Hildon information note</a></li>
-<li><a class="reference external" href="#confirmation-notes">9.3.6. Confirmation Notes</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-confirmation-note">9.3.7. Example of a Hildon confirmation note</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-copnfirmation-note-with-custom-buttons">9.3.8. Example of a Hildon copnfirmation note with custom buttons</a></li>
-<li><a class="reference external" href="#cancel-notes">9.3.9. Cancel Notes</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-cancel-note-with-a-progress-bar">9.3.10. Example of a Hildon cancel note with a progress bar</a></li>
+<li><a class="reference" href="#notification-widgets">9.3. Notification widgets</a><ul>
+<li><a class="reference" href="#banners">9.3.1. Banners</a></li>
+<li><a class="reference" href="#setting-up-an-informational-banner">9.3.2. Setting up an informational banner</a></li>
+<li><a class="reference" href="#notes">9.3.3. Notes</a></li>
+<li><a class="reference" href="#information-notes">9.3.4. Information Notes</a></li>
+<li><a class="reference" href="#example-of-a-hildon-information-note">9.3.5. Example of a Hildon information note</a></li>
+<li><a class="reference" href="#confirmation-notes">9.3.6. Confirmation Notes</a></li>
+<li><a class="reference" href="#example-of-a-hildon-confirmation-note">9.3.7. Example of a Hildon confirmation note</a></li>
+<li><a class="reference" href="#example-of-a-hildon-copnfirmation-note-with-custom-buttons">9.3.8. Example of a Hildon copnfirmation note with custom buttons</a></li>
+<li><a class="reference" href="#cancel-notes">9.3.9. Cancel Notes</a></li>
+<li><a class="reference" href="#example-of-a-hildon-cancel-note-with-a-progress-bar">9.3.10. Example of a Hildon cancel note with a progress bar</a></li>
 </ul>
 </li>
 </ul>
@@ -441,7 +441,7 @@ def hildon_note_new_cancel_with_progress_bar(parent, description, progressbar)</
     </div>
     <div class="footer">
       &copy; Copyright 2009, Nokia Corporation.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
     </div>
   </body>
 </html>

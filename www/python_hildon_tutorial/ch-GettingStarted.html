@@ -47,7 +47,7 @@
             
   <div class="section" id="getting-started">
 <span id="ch-gettingstarted"></span><h1>3. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>Before starting to develop your Hildon applications you need to get and properly install and configure a Maemo SDK. You can download and learn how to use the latest SDK in <a class="reference external" href="MaemoSDKReleases">Maemo SDK Releases</a> .</p>
+<p>Before starting to develop your Hildon applications you need to get and properly install and configure a Maemo SDK. You can download and learn how to use the latest SDK in <a class="reference" href="MaemoSDKReleases">Maemo SDK Releases</a> .</p>
 <p>To begin our introduction to Hildon, we will start with the simplest program possible. This program creates a window and has no way of exiting except to be killed by using the shell.</p>
 <div class="section" id="simple-hildon-program">
 <h2>3.1. Simple Hildon program<a class="headerlink" href="#simple-hildon-program" title="Permalink to this headline">¶</a></h2>
@@ -55,8 +55,8 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 1.1, &quot;Simple Hildon program&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">gtk</span><span class="o">.</span><span class="n">set_application_name</span><span class="p">(</span><span class="s">&quot;Simplest example&quot;</span><span class="p">)</span>
@@ -98,8 +98,8 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 1.2, &quot;Hildon Hello World program&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="c"># This is a callback function. The data arguments are ignored in this example.</span>
 <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -165,7 +165,7 @@
 </pre></div>
 </div>
 <p>Before using Hildon, it is needed to import it. This import connects to the window system display.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hildon</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">import</span> <span class="nn">hildon</span>
 </pre></div>
 </div>
 <p>Only one HildonProgram can be created per process. Therefore, it should be accessed with hildon_program_get_instance().</p>
@@ -192,7 +192,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="n">button</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;clicked&quot;</span><span class="p">,</span> <span class="n">hello</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This is a packing call. It simply tells GTK+ that the button is to be placed in the window where it will be displayed. Only Hildon containers will be deeply explained in this tutorial, so it is highly recommended to read the Packing Widgets section of the <a class="reference external" href="GTK+2.0Tutorial">GTK+ 2.0 Tutorial</a> .</p>
+<p>This is a packing call. It simply tells GTK+ that the button is to be placed in the window where it will be displayed. Only Hildon containers will be deeply explained in this tutorial, so it is highly recommended to read the Packing Widgets section of the <a class="reference" href="GTK+2.0Tutorial">GTK+ 2.0 Tutorial</a> .</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">window</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -216,14 +216,14 @@
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">3. Getting Started</a><ul>
-<li><a class="reference external" href="#simple-hildon-program">3.1. Simple Hildon program</a><ul>
-<li><a class="reference external" href="#hello-world-in-hildon">3.1.1. Hello World in Hildon</a></li>
+<li><a class="reference" href="">3. Getting Started</a><ul>
+<li><a class="reference" href="#simple-hildon-program">3.1. Simple Hildon program</a><ul>
+<li><a class="reference" href="#hello-world-in-hildon">3.1.1. Hello World in Hildon</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#hildon-hello-world-program">3.2. Hildon Hello World program</a><ul>
-<li><a class="reference external" href="#running-hello-world">3.2.1. Running Hello World</a></li>
-<li><a class="reference external" href="#stepping-through-hello-world">3.2.2. Stepping Through Hello World</a></li>
+<li><a class="reference" href="#hildon-hello-world-program">3.2. Hildon Hello World program</a><ul>
+<li><a class="reference" href="#running-hello-world">3.2.1. Running Hello World</a></li>
+<li><a class="reference" href="#stepping-through-hello-world">3.2.2. Stepping Through Hello World</a></li>
 </ul>
 </li>
 </ul>
@@ -275,7 +275,7 @@
     </div>
     <div class="footer">
       &copy; Copyright 2009, Nokia Corporation.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
     </div>
   </body>
 </html>

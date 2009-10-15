@@ -64,8 +64,8 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 5.6, &quot;Example of a single-column selector&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">selection_changed</span><span class="p">(</span><span class="n">selector</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>
     <span class="n">current_selection</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">get_current_text</span><span class="p">()</span>
@@ -149,9 +149,9 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 6.2 &quot;Example of a selector with a custom column&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
-<span class="kn">import</span> <span class="nn">gobject</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gobject</span>
 
 <span class="k">def</span> <span class="nf">selection_changed</span><span class="p">(</span><span class="n">selector</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>
     <span class="n">current_selection</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">get_current_text</span><span class="p">()</span>
@@ -251,9 +251,9 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 6.3, &quot;Example of a Hildon picker button&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
-<span class="kn">import</span> <span class="nn">gobject</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gobject</span>
 
 <span class="k">def</span> <span class="nf">on_picker_value_changed</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">print</span> <span class="s">&quot;Newly selected value: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">button</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
@@ -352,8 +352,8 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 6.4, &quot;Hildon picker button with a selector entry&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">app_quit</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">()</span>
@@ -421,8 +421,8 @@
 <span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
 <span class="c"># Example 6.5, &quot;Example of a Hildon date button&quot;</span>
 
-<span class="kn">import</span> <span class="nn">gtk</span>
-<span class="kn">import</span> <span class="nn">hildon</span>
+<span class="k">import</span> <span class="nn">gtk</span>
+<span class="k">import</span> <span class="nn">hildon</span>
 
 <span class="k">def</span> <span class="nf">app_quit</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="n">gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">()</span>
@@ -464,26 +464,26 @@
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">8. Data Selection</a><ul>
-<li><a class="reference external" href="#touch-selector">8.1. Touch selector</a><ul>
-<li><a class="reference external" href="#text-columns-example">8.1.1. Text Columns Example</a></li>
-<li><a class="reference external" href="#example-of-a-single-column-selector">8.1.2. Example of a single-column selector</a></li>
-<li><a class="reference external" href="#custom-columns">8.1.3. Custom columns</a></li>
-<li><a class="reference external" href="#example-of-a-selector-with-a-custom-column">8.1.4. Example of a selector with a custom column</a></li>
+<li><a class="reference" href="">8. Data Selection</a><ul>
+<li><a class="reference" href="#touch-selector">8.1. Touch selector</a><ul>
+<li><a class="reference" href="#text-columns-example">8.1.1. Text Columns Example</a></li>
+<li><a class="reference" href="#example-of-a-single-column-selector">8.1.2. Example of a single-column selector</a></li>
+<li><a class="reference" href="#custom-columns">8.1.3. Custom columns</a></li>
+<li><a class="reference" href="#example-of-a-selector-with-a-custom-column">8.1.4. Example of a selector with a custom column</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#picker-dialog-and-picker-buttons">8.2. Picker Dialog and Picker buttons</a><ul>
-<li><a class="reference external" href="#example">8.2.1. Example</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-picker-button">8.2.2. Example of a Hildon picker button</a></li>
+<li><a class="reference" href="#picker-dialog-and-picker-buttons">8.2. Picker Dialog and Picker buttons</a><ul>
+<li><a class="reference" href="#example">8.2.1. Example</a></li>
+<li><a class="reference" href="#example-of-a-hildon-picker-button">8.2.2. Example of a Hildon picker button</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#touch-selector-entry">8.3. Touch Selector Entry</a><ul>
-<li><a class="reference external" href="#id1">8.3.1. Example</a></li>
-<li><a class="reference external" href="#example-of-a-hildon-picker-button-with-a-selector-entry">8.3.2. Example of a Hildon picker button with a selector entry</a></li>
+<li><a class="reference" href="#touch-selector-entry">8.3. Touch Selector Entry</a><ul>
+<li><a class="reference" href="#id1">8.3.1. Example</a></li>
+<li><a class="reference" href="#example-of-a-hildon-picker-button-with-a-selector-entry">8.3.2. Example of a Hildon picker button with a selector entry</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#pre-built-selectors">8.4. Pre-built Selectors</a><ul>
-<li><a class="reference external" href="#example-of-a-hildon-date-button">8.4.1. Example of a Hildon date button</a></li>
+<li><a class="reference" href="#pre-built-selectors">8.4. Pre-built Selectors</a><ul>
+<li><a class="reference" href="#example-of-a-hildon-date-button">8.4.1. Example of a Hildon date button</a></li>
 </ul>
 </li>
 </ul>
@@ -535,7 +535,7 @@
     </div>
     <div class="footer">
       &copy; Copyright 2009, Nokia Corporation.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
     </div>
   </body>
 </html>

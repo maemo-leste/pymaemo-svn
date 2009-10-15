@@ -53,7 +53,7 @@
 <div class="section" id="module-hildon">
 <h2>Main<a class="headerlink" href="#module-hildon" title="Permalink to this headline">¶</a></h2>
 <p>Before using Hildon, you need to initialize it; initialization connects to the window system display, and parses some standard command line arguments. See also <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> to know more details on this topic.</p>
-<p>Hildon should be initialized by using <a title="hildon.hildon_gtk_init" class="reference internal" href="#hildon.hildon_gtk_init"><tt class="xref docutils literal"><span class="pre">hildon_gtk_init()</span></tt></a> . Notice this function also initialize gtk by calling <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> . In case you need a customized initialization of GTK+ library you could use <a title="hildon.hildon_init" class="reference internal" href="#hildon.hildon_init"><tt class="xref docutils literal"><span class="pre">hildon_init()</span></tt></a> after the customized GTK+ initialization.</p>
+<p>Hildon should be initialized by using <a title="hildon.hildon_gtk_init" class="reference" href="#hildon.hildon_gtk_init"><tt class="xref docutils literal"><span class="pre">hildon_gtk_init()</span></tt></a> . Notice this function also initialize gtk by calling <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> . In case you need a customized initialization of GTK+ library you could use <a title="hildon.hildon_init" class="reference" href="#hildon.hildon_init"><tt class="xref docutils literal"><span class="pre">hildon_init()</span></tt></a> after the customized GTK+ initialization.</p>
 <div class="section" id="typical-main-function-for-a-hildon-application">
 <h3>Typical main function for a Hildon application<a class="headerlink" href="#typical-main-function-for-a-hildon-application" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre>import gtk
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 <dl class="function">
 <dt id="hildon.hildon_gtk_init">
 <tt class="descclassname">hildon.</tt><tt class="descname">hildon_gtk_init</tt><big>(</big><em>argc</em>, <em>argv</em><big>)</big><a class="headerlink" href="#hildon.hildon_gtk_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience function to initialize the GTK+ and hildon libraries. Use this function to replace a call to <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> and also initialize the hildon library. See <a title="hildon.hildon_init" class="reference internal" href="#hildon.hildon_init"><tt class="xref docutils literal"><span class="pre">hildon_init()</span></tt></a> and <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> for details.</p>
+<dd><p>Convenience function to initialize the GTK+ and hildon libraries. Use this function to replace a call to <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> and also initialize the hildon library. See <a title="hildon.hildon_init" class="reference" href="#hildon.hildon_init"><tt class="xref docutils literal"><span class="pre">hildon_init()</span></tt></a> and <tt class="xref docutils literal"><span class="pre">gtk_init()</span></tt> for details.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -320,7 +320,7 @@ if __name__ == "__main__":
 <dl class="function">
 <dt id="hildon.hildon_gtk_window_set_progress_indicator">
 <tt class="descclassname">hildon.</tt><tt class="descname">hildon_gtk_window_set_progress_indicator</tt><big>(</big><em>window</em>, <em>state</em><big>)</big><a class="headerlink" href="#hildon.hildon_gtk_window_set_progress_indicator" title="Permalink to this definition">¶</a></dt>
-<dd><p>This functions tells the window manager to show/hide a progress indicator in the window title. It applies to <tt class="xref docutils literal"><span class="pre">hildon.Dialog</span></tt> and <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> (including subclasses).</p>
+<dd><p>This functions tells the window manager to show/hide a progress indicator in the window title. It applies to <tt class="xref docutils literal"><span class="pre">hildon.Dialog</span></tt> and <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> (including subclasses).</p>
 <p>Note that <tt class="docutils literal"><span class="pre">window</span></tt> must be realized for this to work.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -370,7 +370,7 @@ if __name__ == "__main__":
 <div class="section" id="see-also">
 <h3>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<a title="hildon.Button" class="reference external" href="hildonobjects.html#hildon.Button"><tt class="xref docutils literal"><span class="pre">hildon.Button</span></tt></a> <tt class="xref docutils literal"><span class="pre">hildon.CheckButton</span></tt></blockquote>
+<a title="hildon.Button" class="reference" href="hildonobjects.html#hildon.Button"><tt class="xref docutils literal"><span class="pre">hildon.Button</span></tt></a> <tt class="xref docutils literal"><span class="pre">hildon.CheckButton</span></tt></blockquote>
 </div>
 </div>
 <div class="section" id="constants">
@@ -608,7 +608,7 @@ if __name__ == "__main__":
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>event</em> &#8211; A <a class="reference external" href="GtkEventButton">GtkEventButton</a> to check</td>
+<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>event</em> &#8211; A <a class="reference" href="GtkEventButton">GtkEventButton</a> to check</td>
 </tr>
 <tr class="field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref docutils literal"><span class="pre">True</span></tt> if the event is a finger event.</td>
 </tr>
@@ -621,9 +621,9 @@ if __name__ == "__main__":
 <tt class="descclassname">hildon.</tt><tt class="descname">hildon_helper_set_insensitive_message</tt><big>(</big><em>widget</em>, <em>message</em><big>)</big><a class="headerlink" href="#hildon.hildon_helper_set_insensitive_message" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.hildon_helper_set_insensitive_message" class="reference internal" href="#hildon.hildon_helper_set_insensitive_message"><tt class="xref docutils literal"><span class="pre">hildon_helper_set_insensitive_message()</span></tt></a> is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.</p>
+<p class="last"><a title="hildon.hildon_helper_set_insensitive_message" class="reference" href="#hildon.hildon_helper_set_insensitive_message"><tt class="xref docutils literal"><span class="pre">hildon_helper_set_insensitive_message()</span></tt></a> is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.</p>
 </div>
-<p>This function assigns an insensitive message to a <tt class="docutils literal"><span class="pre">widget</span></tt>. When the <tt class="docutils literal"><span class="pre">widget</span></tt> is in an insensitive state and the user activates it, the <tt class="docutils literal"><span class="pre">message</span></tt> will be displayed using a standard <a title="hildon.Banner" class="reference external" href="hildonobjects.html#hildon.Banner"><tt class="xref docutils literal"><span class="pre">hildon.Banner</span></tt></a>.</p>
+<p>This function assigns an insensitive message to a <tt class="docutils literal"><span class="pre">widget</span></tt>. When the <tt class="docutils literal"><span class="pre">widget</span></tt> is in an insensitive state and the user activates it, the <tt class="docutils literal"><span class="pre">message</span></tt> will be displayed using a standard <a title="hildon.Banner" class="reference" href="hildonobjects.html#hildon.Banner"><tt class="xref docutils literal"><span class="pre">hildon.Banner</span></tt></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -643,7 +643,7 @@ if __name__ == "__main__":
 <tt class="descclassname">hildon.</tt><tt class="descname">hildon_helper_set_insensitive_messagef</tt><big>(</big><em>widget</em>, <em>format</em>, <em>...</em><big>)</big><a class="headerlink" href="#hildon.hildon_helper_set_insensitive_messagef" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.hildon_helper_set_insensitive_messagef" class="reference internal" href="#hildon.hildon_helper_set_insensitive_messagef"><tt class="xref docutils literal"><span class="pre">hildon_helper_set_insensitive_messagef()</span></tt></a> is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.</p>
+<p class="last"><a title="hildon.hildon_helper_set_insensitive_messagef" class="reference" href="#hildon.hildon_helper_set_insensitive_messagef"><tt class="xref docutils literal"><span class="pre">hildon_helper_set_insensitive_messagef()</span></tt></a> is deprecated and should not be used in newly-written code. As of hildon 2.2, it is strongly discouraged to use insensitive messages.</p>
 </div>
 <p>A version of hildon_helper_set_insensitive_message with string formatting.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -712,10 +712,10 @@ if __name__ == "__main__":
 </div>
 <div class="section" id="id4">
 <h3>Description<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p><a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> is an object used to represent an application running in the Hildon framework.</p>
-<p>Applications can have one or more <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s. These can be registered in the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> with <a title="hildon.Program.add_window" class="reference internal" href="#hildon.Program.add_window"><tt class="xref docutils literal"><span class="pre">Program.add_window()</span></tt></a> , and can be unregistered similarly with <a title="hildon.Program.remove_window" class="reference internal" href="#hildon.Program.remove_window"><tt class="xref docutils literal"><span class="pre">Program.remove_window()</span></tt></a> .</p>
-<p><a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> provides the programmer with commodities such as applying a common toolbar and menu to all registered <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s. This is done with <a title="hildon.Program.set_common_menu" class="reference internal" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> , <a title="hildon.Program.set_common_app_menu" class="reference internal" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> and <a title="hildon.Program.set_common_toolbar" class="reference internal" href="#hildon.Program.set_common_toolbar"><tt class="xref docutils literal"><span class="pre">Program.set_common_toolbar()</span></tt></a>.</p>
-<p><a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> is also used to apply program-wide properties that are specific to the Hildon framework. For instance <a title="hildon.Program.set_can_hibernate" class="reference internal" href="#hildon.Program.set_can_hibernate"><tt class="xref docutils literal"><span class="pre">Program.set_can_hibernate()</span></tt></a> sets whether or not an application can be set to hibernate by the Hildon task navigator, in situations of low memory.</p>
+<p><a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> is an object used to represent an application running in the Hildon framework.</p>
+<p>Applications can have one or more <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s. These can be registered in the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> with <a title="hildon.Program.add_window" class="reference" href="#hildon.Program.add_window"><tt class="xref docutils literal"><span class="pre">Program.add_window()</span></tt></a> , and can be unregistered similarly with <a title="hildon.Program.remove_window" class="reference" href="#hildon.Program.remove_window"><tt class="xref docutils literal"><span class="pre">Program.remove_window()</span></tt></a> .</p>
+<p><a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> provides the programmer with commodities such as applying a common toolbar and menu to all registered <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s. This is done with <a title="hildon.Program.set_common_menu" class="reference" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> , <a title="hildon.Program.set_common_app_menu" class="reference" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> and <a title="hildon.Program.set_common_toolbar" class="reference" href="#hildon.Program.set_common_toolbar"><tt class="xref docutils literal"><span class="pre">Program.set_common_toolbar()</span></tt></a>.</p>
+<p><a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> is also used to apply program-wide properties that are specific to the Hildon framework. For instance <a title="hildon.Program.set_can_hibernate" class="reference" href="#hildon.Program.set_can_hibernate"><tt class="xref docutils literal"><span class="pre">Program.set_can_hibernate()</span></tt></a> sets whether or not an application can be set to hibernate by the Hildon task navigator, in situations of low memory.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">program</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Program</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
 
 <span class="n">window1</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span>
@@ -742,17 +742,16 @@ if __name__ == "__main__":
 <h3>Details<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="hildon.Program">
-<em class="property">
-class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</tt><a class="headerlink" href="#hildon.Program" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</tt><a class="headerlink" href="#hildon.Program" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="hildon.Program.get_instance">
 <tt class="descname">get_instance</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.get_instance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> for the current process. The object is created on the first call. Note that you&#8217;re not supposed to unref the returned object since it&#8217;s not reffed in the first place.</p>
+<dd><p>Returns the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> for the current process. The object is created on the first call. Note that you&#8217;re not supposed to unref the returned object since it&#8217;s not reffed in the first place.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body">the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</td>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</td>
 </tr>
 </tbody>
 </table>
@@ -761,12 +760,12 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.add_window">
 <tt class="descname">add_window</tt><big>(</big><em>window</em><big>)</big><a class="headerlink" href="#hildon.Program.add_window" title="Permalink to this definition">¶</a></dt>
-<dd><p>Registers a <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> as belonging to a given <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . This allows to apply program-wide settings as all the registered windows, such as <a title="hildon.Program.set_common_menu" class="reference internal" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> , <a title="hildon.Program.set_common_app_menu" class="reference internal" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> and <a title="hildon.Program.set_common_toolbar" class="reference internal" href="#hildon.Program.set_common_toolbar"><tt class="xref docutils literal"><span class="pre">Program.set_common_toolbar()</span></tt></a>.</p>
+<dd><p>Registers a <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> as belonging to a given <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . This allows to apply program-wide settings as all the registered windows, such as <a title="hildon.Program.set_common_menu" class="reference" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> , <a title="hildon.Program.set_common_app_menu" class="reference" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> and <a title="hildon.Program.set_common_toolbar" class="reference" href="#hildon.Program.set_common_toolbar"><tt class="xref docutils literal"><span class="pre">Program.set_common_toolbar()</span></tt></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>window</em> &#8211; A <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> to be added</td>
+<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>window</em> &#8211; A <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> to be added</td>
 </tr>
 </tbody>
 </table>
@@ -775,12 +774,12 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.remove_window">
 <tt class="descname">remove_window</tt><big>(</big><em>window</em><big>)</big><a class="headerlink" href="#hildon.Program.remove_window" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used to unregister a window from the program. Subsequent calls to <a title="hildon.Program.set_common_menu" class="reference internal" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> , <a title="hildon.Program.set_common_app_menu" class="reference internal" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> and <a title="hildon.Program.set_common_toolbar" class="reference internal" href="#hildon.Program.set_common_toolbar"><tt class="xref docutils literal"><span class="pre">Program.set_common_toolbar()</span></tt></a> will not affect the window.</p>
+<dd><p>Used to unregister a window from the program. Subsequent calls to <a title="hildon.Program.set_common_menu" class="reference" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> , <a title="hildon.Program.set_common_app_menu" class="reference" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> and <a title="hildon.Program.set_common_toolbar" class="reference" href="#hildon.Program.set_common_toolbar"><tt class="xref docutils literal"><span class="pre">Program.set_common_toolbar()</span></tt></a> will not affect the window.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>window</em> &#8211; The <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> to unregister</td>
+<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>window</em> &#8211; The <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> to unregister</td>
 </tr>
 </tbody>
 </table>
@@ -794,7 +793,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>can_hibernate</em> &#8211; whether or not the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> can hibernate</td>
+<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>can_hibernate</em> &#8211; whether or not the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> can hibernate</td>
 </tr>
 </tbody>
 </table>
@@ -803,7 +802,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.get_can_hibernate">
 <tt class="descname">get_can_hibernate</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.get_can_hibernate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns whether the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> is set to be support hibernation from the Hildon task navigator</p>
+<dd><p>Returns whether the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> is set to be support hibernation from the Hildon task navigator</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -817,8 +816,8 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.set_common_menu">
 <tt class="descname">set_common_menu</tt><big>(</big><em>menu</em><big>)</big><a class="headerlink" href="#hildon.Program.set_common_menu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> that will appear in all <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s registered with the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . Only one common <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> can be set, further calls will detach the previous common <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> . A <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> can use its own <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> with <a title="hildon.Window.set_menu" class="reference external" href="hildonobjects.html#hildon.Window.set_menu"><tt class="xref docutils literal"><span class="pre">hildon.Window.set_menu()</span></tt></a></p>
-<p>This method does not support <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> s. See <a title="hildon.Program.set_common_app_menu" class="reference internal" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> for that.</p>
+<dd><p>Sets a <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> that will appear in all <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s registered with the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . Only one common <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> can be set, further calls will detach the previous common <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> . A <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> can use its own <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> with <a title="hildon.Window.set_menu" class="reference" href="hildonobjects.html#hildon.Window.set_menu"><tt class="xref docutils literal"><span class="pre">hildon.Window.set_menu()</span></tt></a></p>
+<p>This method does not support <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> s. See <a title="hildon.Program.set_common_app_menu" class="reference" href="#hildon.Program.set_common_app_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_app_menu()</span></tt></a> for that.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -832,7 +831,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.get_common_menu">
 <tt class="descname">get_common_menu</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.get_common_menu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> that was set as common menu for this <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</p>
+<dd><p>Returns the <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> that was set as common menu for this <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -846,13 +845,13 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.set_common_app_menu">
 <tt class="descname">set_common_app_menu</tt><big>(</big><em>menu</em><big>)</big><a class="headerlink" href="#hildon.Program.set_common_app_menu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> that will appear in all <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s registered with the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . Only one common <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> can be set, further calls will detach the previous common <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> . A <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> can use its own <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> with <a title="hildon.Window.set_app_menu" class="reference external" href="hildonobjects.html#hildon.Window.set_app_menu"><tt class="xref docutils literal"><span class="pre">hildon.Window.set_app_menu()</span></tt></a></p>
-<p>This method does not support <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> s. See <a title="hildon.Program.set_common_menu" class="reference internal" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> for that.</p>
+<dd><p>Sets a <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> that will appear in all <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> s registered with the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . Only one common <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> can be set, further calls will detach the previous common <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> . A <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> can use its own <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> with <a title="hildon.Window.set_app_menu" class="reference" href="hildonobjects.html#hildon.Window.set_app_menu"><tt class="xref docutils literal"><span class="pre">hildon.Window.set_app_menu()</span></tt></a></p>
+<p>This method does not support <tt class="xref docutils literal"><span class="pre">gtk.Menu</span></tt> s. See <a title="hildon.Program.set_common_menu" class="reference" href="#hildon.Program.set_common_menu"><tt class="xref docutils literal"><span class="pre">Program.set_common_menu()</span></tt></a> for that.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>menu</em> &#8211; A <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> to use as common menu for the program</td>
+<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>menu</em> &#8211; A <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> to use as common menu for the program</td>
 </tr>
 </tbody>
 </table>
@@ -861,12 +860,12 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.get_common_app_menu">
 <tt class="descname">get_common_app_menu</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.get_common_app_menu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> that was set as common menu for this <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</p>
+<dd><p>Returns the <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> that was set as common menu for this <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body">the <a title="hildon.AppMenu" class="reference external" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> or <tt class="xref docutils literal"><span class="pre">None</span></tt> of no common app menu was set.</td>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">the <a title="hildon.AppMenu" class="reference" href="hildonobjects.html#hildon.AppMenu"><tt class="xref docutils literal"><span class="pre">hildon.AppMenu</span></tt></a> or <tt class="xref docutils literal"><span class="pre">None</span></tt> of no common app menu was set.</td>
 </tr>
 </tbody>
 </table>
@@ -875,7 +874,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.set_common_toolbar">
 <tt class="descname">set_common_toolbar</tt><big>(</big><em>toolbar</em><big>)</big><a class="headerlink" href="#hildon.Program.set_common_toolbar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets a <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> that will appear in all the <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> registered to the <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . Only one common <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> can be set, further call will detach the previous common <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> . A <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> can use its own <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> with <a title="hildon.Window.add_toolbar" class="reference external" href="hildonobjects.html#hildon.Window.add_toolbar"><tt class="xref docutils literal"><span class="pre">hildon.Window.add_toolbar()</span></tt></a> . Both <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> and <a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> specific toolbars will be shown</p>
+<dd><p>Sets a <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> that will appear in all the <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> registered to the <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> . Only one common <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> can be set, further call will detach the previous common <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> . A <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> can use its own <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> with <a title="hildon.Window.add_toolbar" class="reference" href="hildonobjects.html#hildon.Window.add_toolbar"><tt class="xref docutils literal"><span class="pre">hildon.Window.add_toolbar()</span></tt></a> . Both <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> and <a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> specific toolbars will be shown</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -889,7 +888,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <dl class="method">
 <dt id="hildon.Program.get_common_toolbar">
 <tt class="descname">get_common_toolbar</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.get_common_toolbar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> that was set as common toolbar for this <a title="hildon.Program" class="reference internal" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</p>
+<dd><p>Returns the <tt class="xref docutils literal"><span class="pre">gtk.Toolbar</span></tt> that was set as common toolbar for this <a title="hildon.Program" class="reference" href="#hildon.Program"><tt class="xref docutils literal"><span class="pre">Program</span></tt></a> .</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -919,14 +918,14 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <tt class="descname">pop_window_stack</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.pop_window_stack" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.Program.pop_window_stack" class="reference internal" href="#hildon.Program.pop_window_stack"><tt class="xref docutils literal"><span class="pre">Program.pop_window_stack()</span></tt></a> is deprecated and should not be used in newly-written code. Use <tt class="xref docutils literal"><span class="pre">hildon.Window.stack_pop()</span></tt> instead</p>
+<p class="last"><a title="hildon.Program.pop_window_stack" class="reference" href="#hildon.Program.pop_window_stack"><tt class="xref docutils literal"><span class="pre">Program.pop_window_stack()</span></tt></a> is deprecated and should not be used in newly-written code. Use <tt class="xref docutils literal"><span class="pre">hildon.Window.stack_pop()</span></tt> instead</p>
 </div>
 <p>Pops a window from the stack.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body">A <a title="hildon.StackableWindow" class="reference external" href="hildonobjects.html#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">hildon.StackableWindow</span></tt></a> , or <tt class="xref docutils literal"><span class="pre">None</span></tt></td>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">A <a title="hildon.StackableWindow" class="reference" href="hildonobjects.html#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">hildon.StackableWindow</span></tt></a> , or <tt class="xref docutils literal"><span class="pre">None</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -937,13 +936,13 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <tt class="descname">peek_window_stack</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.peek_window_stack" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.Program.peek_window_stack" class="reference internal" href="#hildon.Program.peek_window_stack"><tt class="xref docutils literal"><span class="pre">Program.peek_window_stack()</span></tt></a> is deprecated and should not be used in newly-written code. Use <tt class="xref docutils literal"><span class="pre">hildon.Window.stack_peek()</span></tt> instead</p>
+<p class="last"><a title="hildon.Program.peek_window_stack" class="reference" href="#hildon.Program.peek_window_stack"><tt class="xref docutils literal"><span class="pre">Program.peek_window_stack()</span></tt></a> is deprecated and should not be used in newly-written code. Use <tt class="xref docutils literal"><span class="pre">hildon.Window.stack_peek()</span></tt> instead</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body">A <a title="hildon.StackableWindow" class="reference external" href="hildonobjects.html#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">hildon.StackableWindow</span></tt></a> , or <tt class="xref docutils literal"><span class="pre">None</span></tt></td>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">A <a title="hildon.StackableWindow" class="reference" href="hildonobjects.html#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">hildon.StackableWindow</span></tt></a> , or <tt class="xref docutils literal"><span class="pre">None</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -954,7 +953,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 <tt class="descname">go_to_root_window</tt><big>(</big><big>)</big><a class="headerlink" href="#hildon.Program.go_to_root_window" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.Program.go_to_root_window" class="reference internal" href="#hildon.Program.go_to_root_window"><tt class="xref docutils literal"><span class="pre">Program.go_to_root_window()</span></tt></a> is deprecated and should not be used in newly-written code. See <a title="hildon.WindowStack" class="reference external" href="hildonobjects.html#hildon.WindowStack"><tt class="xref docutils literal"><span class="pre">hildon.WindowStack</span></tt></a></p>
+<p class="last"><a title="hildon.Program.go_to_root_window" class="reference" href="#hildon.Program.go_to_root_window"><tt class="xref docutils literal"><span class="pre">Program.go_to_root_window()</span></tt></a> is deprecated and should not be used in newly-written code. See <a title="hildon.WindowStack" class="reference" href="hildonobjects.html#hildon.WindowStack"><tt class="xref docutils literal"><span class="pre">hildon.WindowStack</span></tt></a></p>
 </div>
 <p>Goes to the root window of the stack.</p>
 </dd></dl>
@@ -998,7 +997,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
 </div>
 <div class="section" id="id6">
 <h3>See Also<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p><a title="hildon.Window" class="reference external" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> <a title="hildon.StackableWindow" class="reference external" href="hildonobjects.html#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">hildon.StackableWindow</span></tt></a></p>
+<p><a title="hildon.Window" class="reference" href="hildonobjects.html#hildon.Window"><tt class="xref docutils literal"><span class="pre">hildon.Window</span></tt></a> <a title="hildon.StackableWindow" class="reference" href="hildonobjects.html#hildon.StackableWindow"><tt class="xref docutils literal"><span class="pre">hildon.StackableWindow</span></tt></a></p>
 </div>
 </div>
 </div>
@@ -1011,33 +1010,33 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
-<li><a class="reference external" href="">Hildon Core Reference</a><ul>
-<li><a class="reference external" href="#module-hildon">Main</a><ul>
-<li><a class="reference external" href="#typical-main-function-for-a-hildon-application">Typical main function for a Hildon application</a></li>
-<li><a class="reference external" href="#details">Details</a></li>
+<li><a class="reference" href="">Hildon Core Reference</a><ul>
+<li><a class="reference" href="#module-hildon">Main</a><ul>
+<li><a class="reference" href="#typical-main-function-for-a-hildon-application">Typical main function for a Hildon application</a></li>
+<li><a class="reference" href="#details">Details</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#additions-to-gtk">Additions to GTK+</a><ul>
-<li><a class="reference external" href="#id1">Details</a></li>
-<li><a class="reference external" href="#see-also">See Also</a></li>
+<li><a class="reference" href="#additions-to-gtk">Additions to GTK+</a><ul>
+<li><a class="reference" href="#id1">Details</a></li>
+<li><a class="reference" href="#see-also">See Also</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#constants">Constants</a></li>
-<li><a class="reference external" href="#helper-functions">Helper Functions</a><ul>
-<li><a class="reference external" href="#description">Description</a></li>
-<li><a class="reference external" href="#id2">Details</a></li>
+<li><a class="reference" href="#constants">Constants</a></li>
+<li><a class="reference" href="#helper-functions">Helper Functions</a><ul>
+<li><a class="reference" href="#description">Description</a></li>
+<li><a class="reference" href="#id2">Details</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#sound-utilities">Sound Utilities</a><ul>
-<li><a class="reference external" href="#id3">Details</a></li>
+<li><a class="reference" href="#sound-utilities">Sound Utilities</a><ul>
+<li><a class="reference" href="#id3">Details</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#program">Program</a><ul>
-<li><a class="reference external" href="#object-hierarchy">Object Hierarchy</a></li>
-<li><a class="reference external" href="#id4">Description</a></li>
-<li><a class="reference external" href="#id5">Details</a></li>
-<li><a class="reference external" href="#property-details">Property Details</a></li>
-<li><a class="reference external" href="#id6">See Also</a></li>
+<li><a class="reference" href="#program">Program</a><ul>
+<li><a class="reference" href="#object-hierarchy">Object Hierarchy</a></li>
+<li><a class="reference" href="#id4">Description</a></li>
+<li><a class="reference" href="#id5">Details</a></li>
+<li><a class="reference" href="#property-details">Property Details</a></li>
+<li><a class="reference" href="#id6">See Also</a></li>
 </ul>
 </li>
 </ul>
@@ -1092,7 +1091,7 @@ class </em><tt class="descclassname">hildon.</tt><tt class="descname">Program</t
     </div>
     <div class="footer">
       &copy; Copyright , .
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
     </div>
   </body>
 </html>
