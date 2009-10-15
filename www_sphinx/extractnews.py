@@ -1,4 +1,4 @@
-import json
+import simplejson as json
 import codecs
 
 NUM_NEWS = 2
