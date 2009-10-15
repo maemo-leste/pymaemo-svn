@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10. Additions to GTK+ &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="next" title="11. Utilities" href="ch-Utilities.html" />
+    <link rel="prev" title="9. Controls" href="ch-Controls.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch-Utilities.html" title="11. Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-Controls.html" title="9. Controls"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="additions-to-gtk">
+<span id="ch-gtkadditions"></span><h1>10. Additions to GTK+<a class="headerlink" href="#additions-to-gtk" title="Permalink to this headline">¶</a></h1>
+<p>A Hildon application might use any Gtk widget but in some cases could be needed to adapt those widgets to get that they fit perfectly.</p>
+<p>Hildon provides a set of convenience functions to do that. Next sections explains these addictions</p>
+<div class="section" id="hildon-size-types">
+<h2>10.1. Hildon Size Types<a class="headerlink" href="#hildon-size-types" title="Permalink to this headline">¶</a></h2>
+<p>Hildon defines the following sizes to be used as sizes for widgets such as buttons or entries in your Hildon application.</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Const</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_AUTO_WIDTH</span></tt></td>
+<td>set to automatic width</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_HALFSCREEN_WIDTH</span></tt></td>
+<td>set to 50% screen width</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_FULLSCREEN_WIDTH</span></tt></td>
+<td>set to 100% screen width</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_AUTO_HEIGHT</span></tt></td>
+<td>set to automatic height</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_FINGER_HEIGHT</span></tt></td>
+<td>set to finger height</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_THUMB_HEIGHT</span></tt></td>
+<td>set to thumb height</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">HILDON_SIZE_AUTO</span></tt></td>
+<td>set to automatic width and automatic height</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>Hildon widgets allows to set their sizes in their construction functions, but in case you want to set the size of a GTK+ widget, Hildon also provides functions to do that:</p>
+<div class="highlight-python"><pre>gtk.Button(size)
+gtk.ToggleButton(size)
+gtk.RadioButton(type_size, group)
+def hildon_gtk_radio_button_new_from_widget(size, radio_group_member):</pre>
+</div>
+</div>
+<div class="section" id="ui-modes">
+<h2>10.2. UI Modes<a class="headerlink" href="#ui-modes" title="Permalink to this headline">¶</a></h2>
+<p>Hildon defines two modes in the UI that change the way user interacts with certain widgets. The main purpose of these modes is to enable direct manipulation of items, while still allowing user to select single or multiple items, when it is necessary. The following modes are supported:</p>
+<dl class="docutils">
+<dt>Normal mode</dt>
+<dd>It is the default mode. In lists and grids, tapping on an item causes a direct action. In views, this direct action could open a new subview to perform a certain action with the item.</dd>
+<dt>Edit mode</dt>
+<dd>Edit mode is used in views. The purpose of this mode is providing multiple selection functionality in list or grid and providing standard UI for editing single content item.</dd>
+</dl>
+<p>Hildon provides the following functions to set mode for a treeview or icon view.</p>
+<div class="highlight-python"><pre>gtk.TreeView(mode)
+gtk.TreeView(mode, model)
+def hildon_gtk_tree_view_set_ui_mode(treeview, mode):
+
+gtk.IconView(mode)
+gtk.IconView(mode, model)
+def hildon_gtk_icon_view_set_ui_mode(iconview, mode):</pre>
+</div>
+<p>The enum HildonUIMode defines the following flags:</p>
+<p><tt class="docutils literal"><span class="pre">HILDON_UI_MODE_NORMAL</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">HILDON_UI_MODE_EDIT</span></tt></p>
+<p>When you use a list or grid in edit mode inside a window you should use a hildon.EditToolbar to control the edition and set the window to fullscreen, building an Edit subview. To know more about edit views you can check chapter toolbars. In that chapter you can check an example of HildonToolbar which uses the concepts explained above.</p>
+</div>
+<div class="section" id="seek-bars">
+<h2>10.3. Seek bars<a class="headerlink" href="#seek-bars" title="Permalink to this headline">¶</a></h2>
+<p>The seek bars are useful to select a value from a range of predetermined values by adjusting the slider with a finger. These seek bars could be horizontal or vertical and are implemented using gtk.VScale and gtk.HScale. Thus, you can use this GTK+ widget in your Hildon application as seek bar but you should use following creation function instead of the GTK ones:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">gtk</span><span class="o">.</span><span class="n">HScale</span><span class="p">()</span>
+<span class="n">gtk</span><span class="o">.</span><span class="n">VScale</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Scales created by using these constructors has a hildonized behavior, meaning that when user tap or click in a point of the bar immediately jumps to the desired position.</p>
+</div>
+<div class="section" id="progress-indicators">
+<h2>10.4. Progress indicators<a class="headerlink" href="#progress-indicators" title="Permalink to this headline">¶</a></h2>
+<p>A convenience way to inform the user that a long-term task is being performed is to show a progress indicator icon in the window or dialog title.</p>
+<p>Hildon provides the following function to show a progress icon. This function applies to hildon.Window and gtk.Dialog.</p>
+<div class="highlight-python"><pre>def hildon_gtk_window_set_progress_indicator(window, state)</pre>
+</div>
+<p>The argument state should be 1 to show the indicator and 0 to hide it.</p>
+<p>Here, a little example that sets a progress indicator in a gtk.Dialog.</p>
+<div class="section" id="adding-a-progress-indicator-to-a-dialog">
+<h3>10.4.1. Adding a progress indicator to a dialog<a class="headerlink" href="#adding-a-progress-indicator-to-a-dialog" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Based on C code from:</span>
+<span class="c"># &quot;Hildon Tutorial&quot; version 2009-04-28</span>
+<span class="c"># Example 8.1, &quot;Adding a progress indicator to a dialog&quot;</span>
+
+<span class="kn">import</span> <span class="nn">gtk</span>
+<span class="kn">import</span> <span class="nn">hildon</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="p">()</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Performing a long task&quot;</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+    <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_gtk_window_set_progress_indicator</span><span class="p">(</span><span class="n">dialog</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Additionally, if you consider that aditional text information should be give to the user you could use an informational banner.</p>
+<p>Another convenience way to indicate to users that a long opearion is being performed is using the gtk.ProgressBar widget. This is the usual way in GTK+ applications and you can use them like you would use them in a GTK+ application. This widget is specially useful if you need to show the status of the operation.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">10. Additions to GTK+</a><ul>
+<li><a class="reference external" href="#hildon-size-types">10.1. Hildon Size Types</a></li>
+<li><a class="reference external" href="#ui-modes">10.2. UI Modes</a></li>
+<li><a class="reference external" href="#seek-bars">10.3. Seek bars</a></li>
+<li><a class="reference external" href="#progress-indicators">10.4. Progress indicators</a><ul>
+<li><a class="reference external" href="#adding-a-progress-indicator-to-a-dialog">10.4.1. Adding a progress indicator to a dialog</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ch-Controls.html"
+                                  title="previous chapter">9. Controls</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ch-Utilities.html"
+                                  title="next chapter">11. Utilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ch-GtkAdditions.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ch-Utilities.html" title="11. Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ch-Controls.html" title="9. Controls"
+             >previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

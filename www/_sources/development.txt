@@ -4,8 +4,8 @@ Development
 Documentation
 -------------
 
-* `Python Hildon tutorial <http://pymaemo.garage.maemo.org/documentation/python_hildon_tutorial/html/>`_
-* `Python Hildon manual <http://pymaemo.garage.maemo.org/documentation/python_hildon_manual/html/>`_
+* `Python Hildon tutorial <./python_hildon_tutorial/>`_
+* `Python Hildon manual <./python_hildon_manual/>`_
 
 .. _pymaemo-components:
 

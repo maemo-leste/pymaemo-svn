@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>13. Writing Desktop Widgets &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="prev" title="12. Migration" href="migration.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="migration.html" title="12. Migration"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="writing-desktop-widgets">
+<span id="desktop-plugins"></span><h1>13. Writing Desktop Widgets<a class="headerlink" href="#writing-desktop-widgets" title="Permalink to this headline">¶</a></h1>
+<p>Desktop widgets are programs designed to provide a certain functionality from the desktop area. These programs are usually limited, in the sense that they are not complex applications, normally representing &#8220;small&#8221; utilities or an extension of an existing application.</p>
+<p>Desktop widgets can be written as python module and need also to provide a desktop file that describes them. According to where they&#8217;ll be placed there can be Status Menu widgets and Home Area widgets.</p>
+<p>Applets need to have a .desktop file describing them. The file contents are fields that describe certain properties of the applet.</p>
+<div class="section" id="home-widgets">
+<span id="desktop-plugins-home-plugins"></span><h2>13.1. Home widgets<a class="headerlink" href="#home-widgets" title="Permalink to this headline">¶</a></h2>
+<p>Home widgets are located in the Home Area of the desktop. Since Hildon 2.2, Home Area applets stopped being resizable.</p>
+<p>To better show how to write a Home Area applet, consider an applet &#8220;TimeOut&#8221; that allows the user to choose an action to be performed at a given time.</p>
+<p>Home pug-ins should inherit from libhildondesktop&#8217;s HDHomePluginItem. The following example presents the python code  for the mentioned applet.</p>
+<div class="section" id="source-file-for-timeout-applet-lib-timeout-home-applet-py">
+<h3>13.1.1. Source file for TimeOut applet: lib-timeout-home-applet.py<a class="headerlink" href="#source-file-for-timeout-applet-lib-timeout-home-applet-py" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hildon</span>
+<span class="kn">import</span> <span class="nn">hildondesktop</span>
+<span class="kn">import</span> <span class="nn">gtk</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleStatusPlugin</span><span class="p">(</span><span class="n">hildondesktop</span><span class="o">.</span><span class="n">StatusMenuItem</span><span class="p">):</span>
+    <span class="n">__gtype_name__</span> <span class="o">=</span> <span class="s">&#39;Example&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hildondesktop</span><span class="o">.</span><span class="n">StatusMenuItem</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_ui</span><span class="p">()</span>
+        
+
+    <span class="k">def</span> <span class="nf">build_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">STATUS_AREA_EXAMPLE_ICON_SIZE</span> <span class="o">=</span> <span class="mf">64</span>
+
+        <span class="n">icon_theme</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">icon_theme_get_default</span><span class="p">()</span>
+        <span class="n">pixbuf</span> <span class="o">=</span> <span class="n">icon_theme</span><span class="o">.</span><span class="n">load_icon</span><span class="p">(</span><span class="s">&quot;general_email&quot;</span><span class="p">,</span>
+                                      <span class="n">STATUS_AREA_EXAMPLE_ICON_SIZE</span><span class="p">,</span>
+                                      <span class="n">gtk</span><span class="o">.</span><span class="n">ICON_LOOKUP_NO_SVG</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_status_area_icon</span><span class="p">(</span><span class="n">pixbuf</span><span class="p">)</span>
+
+        <span class="n">b</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Example message&quot;</span><span class="p">)</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">hd_plugin_get_object</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">gobject</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">ExampleStatusPlugin</span><span class="p">,</span> <span class="n">plugin_id</span><span class="o">=</span><span class="s">&quot;Example&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">hd_plugin_get_object</span><span class="p">()</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As you can see in the example above, the controls used in the applet (<tt class="docutils literal"><span class="pre">build_ui</span></tt> function) should be added to &#8220;TimeOutPlugin&#8221;. In this case, the applet works as a standalone application but it could just provide a widget to activate a program defined in another header and independent from the applet.</p>
+</div>
+<div class="section" id="the-desktop-file">
+<span id="desktop-applets-desktop-file"></span><h3>13.1.2. The .desktop File<a class="headerlink" href="#the-desktop-file" title="Permalink to this headline">¶</a></h3>
+<p>Although other fields can be assigned in a .desktop file, the example bellow shows a simple .desktop file for the &#8220;TimeOut&#8221; applet. The &#8220;Name&#8221; field will be the applet&#8217;s name in the list when the user is choosing applets to add to the desktop. The &#8220;X-Path&#8221; field should be set to the .so file that was previously generated.</p>
+</div>
+<div class="section" id="a-desktop-file-for-the-timeout-applet-timeout-applet-desktop">
+<h3>13.1.3. A .desktop file for the TimeOut applet: timeout-applet.desktop<a class="headerlink" href="#a-desktop-file-for-the-timeout-applet-timeout-applet-desktop" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>[Desktop Entry]
+Name=TimeOut Applet
+Comment=Execute an action at a given time
+Type=python
+X-Path=lib-timeout-home-applet.py
+
+</pre>
+</div>
+<p>For Home Area applets, .desktop files should be placed in the directory outputed by the following command:</p>
+<div class="highlight-python"><pre>pkg-config libhildondesktop-1 --variable=hildonhomedesktopentrydir --variable=homedesktopentrydir</pre>
+</div>
+</div>
+</div>
+<div class="section" id="status-menu-widgets">
+<span id="desktop-plugins-status-menu"></span><h2>13.2. Status Menu widgets<a class="headerlink" href="#status-menu-widgets" title="Permalink to this headline">¶</a></h2>
+<p>Status Menu widgets are placed in the Status Menu and can be divided into three categories: permanent, conditional and temporary. Permanent widgets are shown all the time. Conditional and temporary widgets are shown when a certain condition is fulfilled.</p>
+<p>The way to write a plug-in for the Status Menu is pretty similar to writing it for the Home Area. The plug-in should inherit from HDStatusMenuItem. The next examples present a Status Menu plug-in which only shows a message when clicked.</p>
+<div class="section" id="source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py">
+<h3>13.2.1. Source file for Example Status Menu Plug-in: lib-example-status-menu-applet.py<a class="headerlink" href="#source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hildon</span>
+<span class="kn">import</span> <span class="nn">hildondesktop</span>
+<span class="kn">import</span> <span class="nn">gtk</span>
+<span class="kn">import</span> <span class="nn">gobject</span>
+
+<span class="k">class</span> <span class="nc">TimeOutPlugin</span><span class="p">(</span><span class="n">hildondesktop</span><span class="o">.</span><span class="n">HomePluginItem</span><span class="p">):</span>
+    <span class="n">__gtype_name__</span> <span class="o">=</span> <span class="s">&#39;TimeOutPlugin&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hildondesktop</span><span class="o">.</span><span class="n">HomePluginItem</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_ui</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">build_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;Time out applet.&quot;</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">PickerButton</span><span class="p">(</span><span class="n">hildon</span><span class="o">.</span><span class="n">SIZE_FINGER_HEIGHT</span><span class="p">,</span>
+                                     <span class="n">hildon</span><span class="o">.</span><span class="n">BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+
+        <span class="n">action_selector</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_touch_selector_new_text</span><span class="p">()</span>
+        <span class="n">action</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Action&quot;</span><span class="p">)</span>
+        <span class="n">action_selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&quot;Blank Screen&quot;</span><span class="p">)</span>
+        <span class="n">action_selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&quot;Suspend&quot;</span><span class="p">)</span>
+        <span class="n">action_selector</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="s">&quot;Turn Off&quot;</span><span class="p">)</span>
+
+        <span class="n">action</span><span class="o">.</span><span class="n">set_selector</span><span class="p">(</span><span class="n">action_selector</span><span class="p">)</span>
+        <span class="n">action</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+
+
+        <span class="n">time</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">TimeButton</span><span class="p">(</span><span class="n">hildon</span><span class="o">.</span><span class="n">SIZE_FINGER_HEIGHT</span><span class="p">,</span>
+                                 <span class="n">hildon</span><span class="o">.</span><span class="n">BUTTON_ARRANGEMENT_VERTICAL</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="mf">22</span><span class="p">,</span> <span class="mf">00</span><span class="p">)</span>
+
+        <span class="n">buttons</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">buttons</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">buttons</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="n">contents</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+        <span class="n">contents</span><span class="o">.</span><span class="n">pack_end</span><span class="p">(</span><span class="n">buttons</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+
+        <span class="n">contents</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hd_plugin_get_object</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">gobject</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">TimeOutPlugin</span><span class="p">,</span> <span class="n">plugin_id</span><span class="o">=</span><span class="s">&quot;TimeOutPlugin&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">hd_plugin_get_object</span><span class="p">()</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+    <span class="n">gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="desktop-applets-status-menu-desktop-file">
+<span id="id1"></span><h3>13.2.2. The .desktop File<a class="headerlink" href="#desktop-applets-status-menu-desktop-file" title="Permalink to this headline">¶</a></h3>
+<p>The .desktop file for the Status Menu is analogous to the Home Area one but should have also the &#8220;Category&#8221; field where the priority of the applet is set (permanent, conditional or temporary) and the &#8220;Icon&#8221; field to set the icon&#8217;s name. If the &#8220;Category&#8221; key is not set, then it is considered as permanent.</p>
+</div>
+<div class="section" id="a-desktop-file-for-the-status-menu-example-applet-lib-example-applet-desktop">
+<h3>13.2.3. A .desktop file for the Status Menu example applet: lib-example-applet.desktop<a class="headerlink" href="#a-desktop-file-for-the-status-menu-example-applet-lib-example-applet-desktop" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>[Desktop Entry]
+Name=Example
+Icon=general_email
+Comment=An example status menu applet
+Category=permanent
+Type=python
+X-Path=lib-example-status-menu-applet.py
+
+</pre>
+</div>
+<p>For Home Area applets, .desktop files should be placed in the directory outputed by the following command:</p>
+<div class="highlight-python"><pre>pkg-config libhildondesktop-1 --variable=homedesktopentrydir</pre>
+</div>
+</div>
+</div>
+<div class="section" id="intall-applets">
+<span id="desktop-applets-buildin-applets"></span><h2>13.3. Intall Applets<a class="headerlink" href="#intall-applets" title="Permalink to this headline">¶</a></h2>
+<p>To use an applet, it needs to copy .py file to &#8220;/usr/lib/hildon-desktop/&#8221;</p>
+<p>Now you need to add the newly installed home widget to the desktop. For that you can either manually add it to the ~/.config/hildon-desktop/home.plugins file, or follow these instructions to add it using the Hildon Desktop interface:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Click anywhere on the Maemo desktop background.</li>
+<li>You should see a &#8220;engine&#8221; icon on the top right. Click on it.</li>
+<li>It will be shown a menu bar containing &#8220;Desktop menu&#8221; and &#8220;Done&#8221;. Click on &#8220;Desktop menu&#8221;.</li>
+<li>You should now see a menu with 4 buttons. Click on the &#8220;Add widget&#8221; button.</li>
+<li>A menu containing the list of installed widgets will appear. Select the one we installed.</li>
+<li>Finally, click on &#8220;Done&#8221;.</li>
+</ol>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">13. Writing Desktop Widgets</a><ul>
+<li><a class="reference external" href="#home-widgets">13.1. Home widgets</a><ul>
+<li><a class="reference external" href="#source-file-for-timeout-applet-lib-timeout-home-applet-py">13.1.1. Source file for TimeOut applet: lib-timeout-home-applet.py</a></li>
+<li><a class="reference external" href="#the-desktop-file">13.1.2. The .desktop File</a></li>
+<li><a class="reference external" href="#a-desktop-file-for-the-timeout-applet-timeout-applet-desktop">13.1.3. A .desktop file for the TimeOut applet: timeout-applet.desktop</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#status-menu-widgets">13.2. Status Menu widgets</a><ul>
+<li><a class="reference external" href="#source-file-for-example-status-menu-plug-in-lib-example-status-menu-applet-py">13.2.1. Source file for Example Status Menu Plug-in: lib-example-status-menu-applet.py</a></li>
+<li><a class="reference external" href="#desktop-applets-status-menu-desktop-file">13.2.2. The .desktop File</a></li>
+<li><a class="reference external" href="#a-desktop-file-for-the-status-menu-example-applet-lib-example-applet-desktop">13.2.3. A .desktop file for the Status Menu example applet: lib-example-applet.desktop</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#intall-applets">13.3. Intall Applets</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="migration.html"
+                                  title="previous chapter">12. Migration</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/desktop-plugins.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="migration.html" title="12. Migration"
+             >previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11. Utilities &mdash; Hildon Tutorial v0.9 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Hildon Tutorial v0.9 documentation" href="index.html" />
+    <link rel="next" title="12. Migration" href="migration.html" />
+    <link rel="prev" title="10. Additions to GTK+" href="ch-GtkAdditions.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="migration.html" title="12. Migration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch-GtkAdditions.html" title="10. Additions to GTK+"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="utilities">
+<span id="ch-utilities"></span><h1>11. Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<p>Apart from the widgets, Hildon provides a set of helper functions and objects to make easier the development of applications. This chapter will review them and explain how they can help you.</p>
+<div class="section" id="the-program-object">
+<h2>11.1. The Program object<a class="headerlink" href="#the-program-object" title="Permalink to this headline">¶</a></h2>
+<p>Hildon provides an object to represent a whole application, the hildon.ProgramObject. This object provides several convenience functions that make it easier to develop Hildon applications.</p>
+<p>The hildon.Program provides the programmer with commodities such as applying a common menu or toolbar to every hildon.Window registered to it.</p>
+<p>It is necessary to register all the windows as belonging to the program in order to apply a common menu and toolbar.</p>
+<p>To register or unregister windows you should use the following functions:</p>
+<div class="highlight-python"><pre>def add_window(self, window)
+def remove_window(self, window)</pre>
+</div>
+<p>And the following functions will take effect over each registered window. This is a convenient way to setup common elements for each registered window in your application.</p>
+<div class="highlight-python"><pre>def set_common_menu(self, menu)
+def get_common_menu(self)
+def set_common_toolbar(self, toolbar)
+def get_common_toolbar(self)</pre>
+</div>
+<p>hildon.Program also allows users to apply program-wide properties. For example, the property &#8220;can-hibernate&#8221; that specify whether the program should be set to hibernate by the Task Navigator in a low memory situation or not.</p>
+<p>The following convenience functions are provided to set and retrieve the value of the property &#8220;can-hibernate&#8221;.</p>
+<div class="highlight-python"><pre>def set_can_hibernat(self, can_hibernate)
+def get_can_hibernate(self)</pre>
+</div>
+</div>
+<div class="section" id="sound-utilities">
+<h2>11.2. Sound utilities<a class="headerlink" href="#sound-utilities" title="Permalink to this headline">¶</a></h2>
+<p>Hildon provides the following function to play a sample. The function receives the sample file name as parameter and the volume level is controlled by the gconf variable <em>/apps/osso/sound/system_alert_volume</em></p>
+<div class="highlight-python"><pre>def hildon_play_system_sound (sample)</pre>
+</div>
+</div>
+<div class="section" id="miscellaneous-helper-functions">
+<h2>11.3. Miscellaneous Helper Functions<a class="headerlink" href="#miscellaneous-helper-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="text-font-and-colors">
+<h3>11.3.1. Text Font and Colors<a class="headerlink" href="#text-font-and-colors" title="Permalink to this headline">¶</a></h3>
+<p>The following funtions allows you to set a font or color for the text diplayed by a certain widget. The size or color is identified by a logical name which should be defined by the GTK&#8217;s rc files defined as part of the themes definition.</p>
+<p>Since logical names are used to identify the colors and font, they are independent from the theme, meaning that if the theme is changed the widget keeps the same logical font or color set by these functions.</p>
+<div class="highlight-python"><pre>def set_logical_font(widget, logicalfontname)
+def set_logical_color(widget, rcflags, state, logicalcolorname)</pre>
+</div>
+<p>These functions achieve to keep the set logical font or color by connecting to &#8220;style-set&#8221; signal. The returned signal identifier can be used to disconnect the signal.</p>
+<p>To set a logical color is necessary to pass in the gtk.RcFlags and gtk.StateType to indicate which color you want to modify. For example, to modify the foreground color of the widget during normal operations then set rcflags to gtk.RC_BG and state to gtk.STATE_NORMAL.</p>
+</div>
+<div class="section" id="finger-events">
+<h3>11.3.2. Finger Events<a class="headerlink" href="#finger-events" title="Permalink to this headline">¶</a></h3>
+<p>The following function can be in callbacks that handle button events to check if the given button event is a finger event, meaning that the event was emitted as a result of a push with the finger somewhere on the touchscreen.</p>
+<div class="highlight-python"><pre>def hildon_helper_event_button_is_finger(event)</pre>
+</div>
+<p>This function is rarely used in applications development.</p>
+</div>
+<div class="section" id="thumbable-scrollbars">
+<h3>11.3.3. Thumbable Scrollbars<a class="headerlink" href="#thumbable-scrollbars" title="Permalink to this headline">¶</a></h3>
+<p>The function showed bellow enables a thumb scrollbar on a given scrolled window, converting the existing normal scrollbar into a larger, finger-usable scrollbar that works without a stylus.</p>
+<div class="highlight-python"><pre>def hildon_helper_set_thumb_scrollbar(win, thumb)</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">11. Utilities</a><ul>
+<li><a class="reference external" href="#the-program-object">11.1. The Program object</a></li>
+<li><a class="reference external" href="#sound-utilities">11.2. Sound utilities</a></li>
+<li><a class="reference external" href="#miscellaneous-helper-functions">11.3. Miscellaneous Helper Functions</a><ul>
+<li><a class="reference external" href="#text-font-and-colors">11.3.1. Text Font and Colors</a></li>
+<li><a class="reference external" href="#finger-events">11.3.2. Finger Events</a></li>
+<li><a class="reference external" href="#thumbable-scrollbars">11.3.3. Thumbable Scrollbars</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ch-GtkAdditions.html"
+                                  title="previous chapter">10. Additions to GTK+</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="migration.html"
+                                  title="next chapter">12. Migration</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ch-Utilities.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="migration.html" title="12. Migration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ch-GtkAdditions.html" title="10. Additions to GTK+"
+             >previous</a> |</li>
+        <li><a href="index.html">Hildon Tutorial v0.9 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Nokia Corporation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>
