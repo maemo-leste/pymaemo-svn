@@ -1,3 +1,10 @@
+pyclutter (0.8.0-1maemo3) unstable; urgency=low
+
+  * Add opengles-sgx-img-common-dev as an alternative dependency to libgl-dev; this is
+    needed for building pyclutter on ARMEL targets
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue, 13 Oct 2009 10:27:31 -0400
+
 pyclutter (0.8.0-1maemo2) unstable; urgency=low
 
   * Add support to clutter-gtk and clutter-cairo
