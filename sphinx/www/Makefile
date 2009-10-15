@@ -33,7 +33,7 @@ clean:
 html: json
 	python extractnews.py
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
-	rsync -a ./ ../www/
+	rsync -a $(BUILDDIR)/html ../../www/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
