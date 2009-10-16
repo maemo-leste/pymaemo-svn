@@ -1,0 +1,86 @@
+Source: python2.5
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
+Build-Depends: debhelper (>= 5), autoconf, automake1.9, libreadline4-dev, zlib1g-dev, libgdbm-dev, libssl-dev, libbz2-dev, libbluetooth3-dev, locales, libffi-dev (>= 3.0.5-2), netbase, lsb-release, bzip2
+Build-Depends-Indep: libhtml-tree-perl, texinfo, debiandoc-sgml, sharutils
+Build-Conflicts: tcl8.3-dev, tk8.3-dev, python2.5-xml, python-xml
+XS-Python-Version: 2.5
+Standards-Version: 3.8.0
+Homepage: http://python.org/
+Vcs-Browser: https://code.launchpad.net/~doko/python/pkg2.5
+Vcs-Bzr: http://bazaar.launchpad.net/~doko/python/pkg2.5
+
+Package: python2.5
+Architecture: any
+Priority: optional
+Depends: python2.5-minimal (= ${binary:Version}), ${shlibs:Depends}
+Suggests: python2.5-doc, python-profiler
+Provides: python2.5-cjkcodecs, python2.5-ctypes, python2.5-elementtree, python2.5-celementtree, python2.5-wsgiref, python2.5-plistlib
+Replaces: python2.5-minimal (<< 2.5), python2.5-dev (<< 2.5.1), idle-python2.5 (<< 2.4.3+2.5b2-2), python-tk (<< 2.4.3-2)
+Conflicts: python-central (<< 0.5.9), idle-python2.5 (<< 2.4.3+2.5b2-2), python-tk (<< 2.4.3-2)
+XB-Python-Version: 2.5
+Description: An interactive high-level object-oriented language (version 2.5)
+ Version 2.5 of the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+
+Package: python2.5-minimal
+Architecture: any
+Priority: optional
+Depends: ${shlibs:Depends}
+Replaces: python2.5 (<< 2.5.2-1)
+Suggests: binfmt-support
+Conflicts: binfmt-support (<< 1.1.2), python2.5 (<< 2.5.2-11.1maemo1)
+Recommends: python2.5
+XB-Python-Runtime: python2.5
+XB-Python-Version: 2.5
+Description: A minimal subset of the Python language (version 2.5)
+ This package contains the interpreter and some essential modules.  It can
+ be used in the boot process for some basic tasks.
+ See /usr/share/doc/python2.5-minimal/README.Debian for a list of the modules
+ contained in this package.
+
+Package: python2.5-examples
+Architecture: all
+Depends: python2.5 (>= ${binary:Version})
+Description: Examples for the Python language (v2.5)
+ Examples, Demos and Tools for Python (v2.5). These are files included in
+ the upstream Python distribution (v2.5).
+
+Package: python2.5-dev
+Architecture: any
+Depends: python2.5 (= ${binary:Version})
+Replaces: python2.5 (<< 2.5.1-6)
+Recommends: libc6-dev | libc-dev, gcc
+Description: Header files and a static library for Python (v2.5)
+ Header files, a static library and development tools for building
+ Python (v2.5) modules, extending the Python interpreter or embedding
+ Python (v2.5) in applications.
+ .
+ Maintainers of Python packages should read README.maintainers.
+
+Package: idle-python2.5
+Architecture: all
+Depends: python2.5, python-tk (>= 2.4.3-2), python2.5-tk
+Enhances: python2.5
+XB-Python-Version: 2.5
+Description: An IDE for Python (v2.5) using Tkinter
+ IDLE is an Integrated Development Environment for Python (v2.5).
+ IDLE is written using Tkinter and therefore quite platform-independent.
+
+Package: python2.5-dbg
+Architecture: any
+Priority: extra
+Depends: python2.5 (>= ${binary:Version}), ${shlibs:Depends}
+Suggests: python-gdbm-dbg, python-tk-dbg
+Description: Debug Build of the Python Interpreter (version 2.5)
+ Python interpreter configured with --pydebug. Dynamically loaded modules are
+ searched in /usr/lib/python2.5/lib-dynload/debug first.
+
+Package: python2.5-testing
+Architecture: any
+Depends: python2.5-dev (= ${binary:Version}), mime-support
+Description: Regression testing modules for Python
+ Modules used to test python (regression tests).
