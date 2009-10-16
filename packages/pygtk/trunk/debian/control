@@ -4,10 +4,10 @@ Priority: optional
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
 XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
 Build-Depends: debhelper (>= 5),
-               python-support (>= 0.7.6),
+               python-support,
                gnome-pkg-tools (>= 0.10),
                cdbs,
-               python-all-dev (>= 2.5),
+               python-dev (>= 2.5),
                libgtk2.0-dev (>= 2.12.0),
                libglib2.0-dev (>= 2.8.0),
                libpango1.0-dev (>= 1.16.0),
