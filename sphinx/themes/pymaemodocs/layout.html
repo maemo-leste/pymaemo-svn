@@ -1,0 +1,178 @@
+{%- block doctype -%}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{%- endblock %}
+{%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
+{%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {{ metatags }}
+    <title>{{ project }} &mdash; {{ title }}</title>
+    <link rel="stylesheet" href="{{ pathto('_static/pymaemo.css', 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/highslide/highslide.css', 1) }}" type="text/css" />
+
+    {%- if not embedded %}
+    <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '{{ pathto("", 1) }}',
+        VERSION:     '{{ release|e }}',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '{{ file_suffix }}',
+        HAS_SOURCE:  {{ has_source|lower }}
+    };
+    function preLoadImages() {
+        // create object
+        imageObj = new Image();
+        // set image list
+        images = [
+            "./_static/bt_devel_normal.jpg",
+            "./_static/bt_devel_over.jpg",
+            "./_static/bt_devel_selected.jpg",
+            "./_static/bt_faq_normal.jpg",
+            "./_static/bt_faq_over.jpg",
+            "./_static/bt_faq_selected.jpg",
+            "./_static/bt_get_normal.jpg",
+            "./_static/bt_get_over.jpg",
+            "./_static/bt_get_selected.jpg",
+            "./_static/bt_install_normal.jpg",
+            "./_static/bt_install_over.jpg",
+            "./_static/bt_install_selected.jpg",
+            "./_static/bt_news_normal.jpg",
+            "./_static/bt_news_over.jpg",
+            "./_static/bt_news_selected.jpg",
+            "./_static/bt_screen_normal.jpg",
+            "./_static/bt_screen_over.jpg",
+            "./_static/bt_screen_selected.jpg",
+            "./_static/bt_search.jpg"
+        ];
+
+        // start preloading
+        for(i=0; i < images.length; i++)
+            imageObj.src=images[i];
+    }
+    </script>
+    {%- for scriptfile in script_files %}
+    <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+    {%- endfor %}
+    {%- if pagename == "screenshots" %}
+    <script type="text/javascript" src="_static/highslide/highslide.js"></script>
+    <script type="text/javascript">
+        hs.graphicsDir = '_static/highslide/graphics/';
+    </script>
+    {%- endif %}
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+
+    {%- if use_opensearch %}
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
+          href="{{ pathto('_static/opensearch.xml', 1) }}"/>
+    {%- endif %}
+    {%- if favicon %}
+    <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}"/>
+    {%- endif %}
+    {%- endif %}
+{%- block linktags %}
+    {%- if hasdoc('about') %}
+    <link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}" />
+    {%- endif %}
+    {%- if hasdoc('genindex') %}
+    <link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}" />
+    {%- endif %}
+    {%- if hasdoc('search') %}
+    <link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}" />
+    {%- endif %}
+    {%- if hasdoc('copyright') %}
+    <link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}" />
+    {%- endif %}
+    <link rel="top" title="{{ docstitle|e }}" href="{{ pathto('index') }}" />
+    {%- if parents %}
+    <link rel="up" title="{{ parents[-1].title|striptags }}" href="{{ parents[-1].link|e }}" />
+    {%- endif %}
+    {%- if next %}
+    <link rel="next" title="{{ next.title|striptags }}" href="{{ next.link|e }}" />
+    {%- endif %}
+    {%- if prev %}
+    <link rel="prev" title="{{ prev.title|striptags }}" href="{{ prev.link|e }}" />
+    {%- endif %}
+{%- endblock %}
+{%- block extrahead %} {% endblock %}
+  </head>
+  <body onload="preLoadImages()" id="{{ pagename }}">
+{%- block header %}{% endblock %}
+
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="{{ pathto('search') }}" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+        <ul id="relbar">
+            {%- for rellink in rellinks %}
+            <li class="right">
+            <a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}"
+                {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a>
+            {%- if not loop.first %}{{ reldelim2 }}{% endif %}</li>
+            {%- endfor %}
+            {%- block rootrellink %}
+            <li><a href="{{ pathto(master_doc) }}">{{ shorttitle|e }}</a>{{ reldelim1 }}</li>
+            {%- endblock %}
+            {%- for parent in parents %}
+            <li><a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a>{{ reldelim1 }}</li>
+            {%- endfor %}
+            {%- block relbaritems %} {% endblock %}
+        </ul>
+    </div>
+</div>
+
+<div id="body" >
+    <div id="sidebar">
+          {%- block sidebartoc %}
+          {%- if display_toc %}
+            <h3><a href="{{ pathto(master_doc) }}">{{ _('Table Of Contents') }}</a></h3>
+            {{ toc }}
+          {%- endif %}
+          {%- endblock %}
+          {%- block sidebarrel %}
+          {%- if prev %}
+            <h4>{{ _('Previous topic') }}</h4>
+            <p class="topless"><a href="{{ prev.link|e }}"
+                                  title="{{ _('previous chapter') }}">{{ prev.title }}</a></p>
+          {%- endif %}
+          {%- if next %}
+            <h4>{{ _('Next topic') }}</h4>
+            <p class="topless"><a href="{{ next.link|e }}"
+                                  title="{{ _('next chapter') }}">{{ next.title }}</a></p>
+          {%- endif %}
+          {%- endblock %}
+
+    </div>
+
+    {%- block document %}
+    {% block body %} {% endblock %}
+    {%- endblock %}
+</div> <!-- container    -->
+
+{%- block footer %}
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="{{ pathto('_static/logo_indt.jpg', 1) }}" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="{{ pathto('_static/logo_maemo.jpg', 1) }}" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="{{ pathto('_static/logo_python.jpg', 1) }}" alt="Python" border="0" /></a>
+</div>
+{%- endblock %}
+</div>
+</body>
+</html>

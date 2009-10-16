@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% set title = _('Search') %}
+{% set script_files = script_files + ['_static/searchtools.js', '_static/highslide/highslide.js'] %}
+{% block body %}
+
+<script type="text/javascript">
+    hs.graphicsDir = '_static/highslide/graphics/';
+    hs.dimmingOpacity = 0.75;
+</script>
+<style type="text/css">
+.highslide-dimming {
+    background: black;
+}
+</style>
+<div class="section">
+  <h1 id="search-documentation">Screenshots</h1>
+
+
+<a id="thumb1" href="_static/screenshots/fremantle_gpodder.png" class="highslide" onclick="return hs.expand(this);">
+    <img width="120" height="90" src="_static/screenshots/fremantle_gpodder.png" title="Click to enlarge" />
+</a>
+
+
+
+
+</div>
+{% endblock %}
+{% block footer %}
+  {{ super() }}
+  <script type="text/javascript" src="searchindex.js"></script>
+{% endblock %}
