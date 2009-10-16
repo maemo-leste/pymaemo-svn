@@ -1,0 +1,28 @@
+Source: ipython
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 5.0.37.2), cdbs (>= 0.4.43), python, python-support (>= 0.4), quilt
+Homepage: http://ipython.scipy.org/
+Vcs-Svn: svn://svn.debian.org/python-modules/packages/ipython/trunk/
+Vcs-Browser: http://svn.debian.org/viewsvn/python-modules/packages/ipython/trunk/
+Standards-Version: 3.8.3
+DM-Upload-Allowed: yes
+
+Package: ipython
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}
+Conflicts: python2.3-ipython, python2.4-ipython, python2.5-ipython, ipython-common
+Replaces: python2.3-ipython, python2.4-ipython, python2.5-ipython, ipython-common
+Suggests: python-profiler, python-numpy, python-matplotlib, libjs-jquery, python-gobject, python-gtk2, python-qt3 | python-qt4
+Recommends: python-wxgtk2.8, global, python-openssl (>= 0.6), python (>= 2.5) | python-ctypes, python-foolscap, python-zope.interface, python-twisted-core
+Description: enhanced interactive Python shell
+ IPython can be used as a replacement for the standard Python shell,
+ or it can be used as a complete working environment for scientific
+ computing (like Matlab or Mathematica) when paired with the standard
+ Python scientific and numerical tools. It supports dynamic object
+ introspections, numbered input/output prompts, a macro system,
+ session logging, session restoring, complete system shell access,
+ verbose and colored traceback reports, auto-parentheses, auto-quoting,
+ and is embeddable in other Python programs.
