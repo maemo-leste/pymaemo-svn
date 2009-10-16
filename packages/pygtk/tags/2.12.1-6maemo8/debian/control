@@ -1,0 +1,127 @@
+Source: pygtk
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
+Build-Depends: debhelper (>= 5),
+               python-support,
+               gnome-pkg-tools (>= 0.10),
+               cdbs,
+               python-dev (>= 2.5),
+               libgtk2.0-dev (>= 2.12.0),
+               libglib2.0-dev (>= 2.8.0),
+               libpango1.0-dev (>= 1.16.0),
+               libatk1.0-dev (>= 1.12.0),
+               libglade2-dev (>= 2.5.0),
+               python-numeric (>= 24.2-3),
+               python-cairo-dev (>= 1.0.2),
+               python-gobject-dev (>= 2.14.0),
+               xsltproc,
+               docbook-xsl,
+               autotools-dev
+XS-Python-Version: >= 2.3
+Standards-Version: 3.7.3
+
+Package: python-gtk2
+Architecture: any
+Depends: ${python:Depends},
+         python (>= 2.5),
+         ${shlibs:Depends},
+         ${misc:Depends}
+Python-Depends: python-numeric (>= 24.2-3),
+                python-cairo (>= 1.0.2-1.1),
+                python-gobject (>= 2.14.0)
+Suggests: python-gtk2-doc
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Replaces: python2.5-gtk2 (<< 2.12.1-6maemo3)
+Conflicts: python-gdk-imlib,
+           python-glade,
+           python-gnome,
+           python-gtk,
+           python2.3-gtk2,
+           python2.4-gtk2,
+           python-gtk-1.2 (<< 0.6.12-7),
+           python2.5-gtk2 (<< 2.12.1-6maemo3)
+Description: Python bindings for the GTK+ widget set
+ This archive contains modules that allow you to use GTK+ in Python
+ programs. This package contains the bindings for the version 2.0
+ of that toolkit.
+ .
+ URL: http://www.daa.com.au/~james/software/pygtk/
+
+Package: python-gtk2-dev
+Architecture: all
+Depends: ${python:Depends},
+         python-gtk2 (>= ${source:Version}),
+         libglib2.0-dev (>= 2.8),
+         libgtk2.0-dev (>= 2.12.0),
+         python-dev (>= 2.5),
+         python-gobject-dev (>= 2.14.0)
+Recommends: python-gtk2-doc
+Replaces: python2.2-gtk2 (<< 1.99.17-4),
+          python2.3-gtk2 (<< 1.99.17-4),
+          python2.2-glade2 (<< 1.99.17-4),
+          python2.3-glade2 (<< 1.99.17-4)
+Conflicts: python2.2-gtk2 (<< 1.99.17-4),
+           python2.3-gtk2 (<< 1.99.17-4),
+           python2.2-glade2 (<< 1.99.17-4),
+           python2.3-glade2 (<< 1.99.17-4),
+           python-gdk-imlib,
+           python-glade,
+           python-gnome,
+           python-gtk
+Description: GTK+ bindings: devel files
+ This archive contains files that allow you to build wrappers for addon
+ that interoperate python-gtk2 (pygtk).
+ .
+ URL: http://www.daa.com.au/~james/software/pygtk/
+
+Package: python-glade2
+Architecture: any
+Depends: ${python:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python-gtk2 (= ${binary:Version})
+Suggests: python-gtk2-doc
+Conflicts: python-gdk-imlib,
+           python-glade,
+           python-gnome,
+           python-gtk,
+           python2.3-glade2,
+           python2.4-glade2
+Provides: ${python:Provides}
+Description: GTK+ bindings: Glade support
+ Contains bindings for the glade library from use within Python. Glade
+ makes it very easy to create a user interface. In the target
+ application you just need to load the interface description from
+ the .glade file instead of constructing the GUI at runtime.
+ .
+ URL: http://www.daa.com.au/~james/software/pygtk/
+
+Package: python-gtk2-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Conflicts: python-gtk2 (<< 2.10.4-3)
+Recommends: python-gtk2
+Suggests: devhelp, python-glade2
+Description: Python bindings for the GTK+ widget set - documentation
+ This package contains the documentation and API reference for the
+ Python bindings of the Pango, ATK, GDK, GTK+ and Glade libraries.
+ It is well structured and easy to use.
+ .
+ The documentation can be browsed with the devhelp documentation
+ browser, or with a regular web browser.
+ .
+ This package also provides several examples showing how to use these
+ bindings to build simple GUI applications.
+
+Package: python-gtk2-tests
+Section: tests
+Priority: optional
+Architecture: any
+Depends: ${shlibs:Depends}, ${python:Depends}, python-gtk2
+Description: Tests for python-gtk2 package.
+ Standalone tests for python-gtk2 package; these tests can be 
+ executed directly by calling /usr/share/python-gtk2-tests/runtests.sh.

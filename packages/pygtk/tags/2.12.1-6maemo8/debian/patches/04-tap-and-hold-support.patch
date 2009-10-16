@@ -1,0 +1,341 @@
+Index: pygtk-2.12.0/gtk/gtk-base.defs
+===================================================================
+--- pygtk-2.12.0.orig/gtk/gtk-base.defs	2007-09-15 12:00:42.000000000 -0300
++++ pygtk-2.12.0/gtk/gtk-base.defs	2007-10-25 16:00:48.000000000 -0300
+@@ -6111,6 +6111,31 @@
+   (return-type "none")
+ )
+ 
++; INDT: maemo extensions...
++
++(define-function tap_and_hold_menu_position_top
++  (c-name "gtk_widget_tap_and_hold_menu_position_top")
++  (return-type "none")
++  (parameters
++    '("gint*" "x")
++    '("gint*" "y")
++    '("gboolean*" "push_in")
++    '("GtkWidget*" "widget")
++  )
++)
++
++(define-method tap_and_hold_setup
++  (of-object "GtkWidget")
++  (c-name "gtk_widget_tap_and_hold_setup")
++  (return-type "none")
++  (parameters
++    '("GtkWidget*" "menu")
++    '("GtkCallback" "func")
++    '("GtkWidgetTapAndHoldFlags" "flags")
++  )
++)
++; /INDT: maemo extensions...
++
+ (define-function target_list_add_text_targets
+   (c-name "gtk_target_list_add_text_targets")
+   (return-type "none")
+Index: pygtk-2.12.0/gtk/gtk.override
+===================================================================
+--- pygtk-2.12.0.orig/gtk/gtk.override	2007-09-15 12:00:42.000000000 -0300
++++ pygtk-2.12.0/gtk/gtk.override	2007-10-25 16:00:48.000000000 -0300
+@@ -8495,3 +8495,190 @@
+ 
+     return 0;
+ }
++%%
++override gtk_widget_tap_and_hold_setup kwargs
++
++static GHashTable *tap_pairs = NULL;
++
++static void
++pygtk_tap_menu_position(GtkMenu *menu, int *x, int *y, gboolean *push_in,
++                        gpointer user_data)
++{
++    PyGILState_STATE state;
++    GtkWidget *widget;
++    PyGtkCustomNotify *cunote;
++    PyObject *ret;
++
++    widget = GTK_WIDGET(user_data);
++    cunote = (PyGtkCustomNotify *)g_hash_table_lookup(tap_pairs, widget);
++
++    g_assert(cunote->func);
++
++    state = pyg_gil_state_ensure();
++
++    /* Copied from pygtk_menu_position */
++    if (cunote->data) {
++        ret = PyObject_CallFunction(cunote->func, "(NNO)",
++                                    pygobject_new((GObject *)menu),
++                                    pygobject_new((GObject *)widget),
++                                    cunote->data);
++    } else {
++        ret = PyObject_CallFunction(cunote->func, "(NN)",
++                                    pygobject_new((GObject *)menu),
++                                    pygobject_new((GObject *)widget));
++    }
++
++    if (ret == NULL || !PyArg_ParseTuple(ret, "iii", x, y, push_in)) {
++        PyErr_Print();
++        Py_XDECREF(ret);
++    } else {
++        Py_DECREF(ret);
++    } /* End of copy */
++
++    pyg_gil_state_release(state);
++}
++
++/* pygtk_tap_source_destroy
++ * Called when an object serving as key to tap hashtable is finalized
++ *
++ * Steals the reference to the CustoNotify and removes it manually.
++ */
++static gboolean
++pygtk_tap_source_destroy(gpointer data, GObject *old_source)
++{
++    PyGILState_STATE state;
++    PyGtkCustomNotify *cunote;
++
++    cunote = (PyGtkCustomNotify *)data;
++
++    state = pyg_gil_state_ensure();
++
++    if (tap_pairs != NULL) {
++        g_hash_table_steal(tap_pairs, old_source);
++        pygtk_custom_destroy_notify(cunote);
++    }
++
++    pyg_gil_state_release(state);
++
++    return FALSE;
++}
++
++/* pygtk_tap_source_remove_ref
++ * Called when removing an entry from tap hashtable manually
++ */
++static void
++pygtk_tap_source_remove_ref(gpointer data)
++{
++    GObject *obj;
++    gpointer *cunote = NULL;
++    PyGILState_STATE state;
++
++    state = pyg_gil_state_ensure();
++
++    obj = (GObject *)data;
++
++    if (tap_pairs != NULL)
++        cunote = g_hash_table_lookup(tap_pairs, obj);
++
++    g_object_weak_unref(obj, pygtk_tap_source_destroy, cunote);
++
++    pyg_gil_state_release(state);
++}
++
++static PyObject *
++_wrap_gtk_widget_tap_and_hold_setup(PyGObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] = {"menu", "callback", "data", NULL};
++    PyGObject *py_menu = Py_None;
++    PyObject *func = Py_None;
++    PyObject *data = NULL;
++    GtkWidget *menu = NULL;
++    PyGtkCustomNotify *cunote;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                     "|OOO:gtk.Widget.tap_and_hold_setup",
++                                     kwlist, &py_menu, &func, &data))
++        return NULL;
++
++    if (pygobject_check(py_menu, &PyGtkMenu_Type)) {
++           menu = GTK_WIDGET(py_menu->obj);
++    } else if (py_menu != Py_None) {
++        PyErr_SetString(PyExc_TypeError,
++                        "menu must be a gtk.Menu or None");
++        return NULL;
++    }
++
++    if (func != Py_None && !PyCallable_Check(func)) {
++        PyErr_SetString(PyExc_TypeError,
++                        "func must be a callable or None");
++        return NULL;
++    }
++
++    if (func != Py_None) {
++        cunote = g_new0(PyGtkCustomNotify, 1);
++        cunote->func = func;
++        cunote->data = data;
++        Py_INCREF(func);
++        Py_XINCREF(data);
++
++        /* Create the hashtable for func/data pairs. */
++        if (tap_pairs == NULL)
++            tap_pairs = g_hash_table_new_full(NULL, NULL, pygtk_tap_source_remove_ref,
++                                              pygtk_custom_destroy_notify);
++
++        /* Store the cunote */
++        g_object_weak_ref(self->obj, pygtk_tap_source_destroy, cunote);
++        g_hash_table_replace(tap_pairs, self->obj, cunote);
++        /* When deleting this widget, remove from the hash_table */
++
++        gtk_widget_tap_and_hold_setup(GTK_WIDGET(self->obj), menu,
++                                      pygtk_tap_menu_position, 0);
++    } else {
++        gtk_widget_tap_and_hold_setup(GTK_WIDGET(self->obj), menu, NULL, 0);
++    }
++
++    Py_INCREF(Py_None);
++    return Py_None;
++}
++
++%%
++override gtk_widget_tap_and_hold_menu_position_top kwargs
++static PyObject *
++_wrap_gtk_widget_tap_and_hold_menu_position_top(PyObject *self, PyObject *args, PyObject *kwargs)
++{
++    static char *kwlist[] = {"menu", "widget", "data", NULL};
++    PyGObject *pymenu;
++    PyGObject *pywidget;
++    PyObject *data = NULL;
++    PyObject *pytuple;
++    PyObject *pyx;
++    PyObject *pyy;
++    PyObject *pypush_in;
++
++    int x, y;
++    gboolean push_in = FALSE;
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
++                                     "O!O!|O:gtk.Widget.tap_and_hold_menu_position_top",
++                                     kwlist,
++                                     &PyGtkMenu_Type, &pymenu,
++                                     &PyGtkWidget_Type, &pywidget,
++                                     &data))
++        return NULL;
++
++    gtk_widget_tap_and_hold_menu_position_top(GTK_WIDGET(pymenu->obj),
++                                              &x, & y, &push_in,
++                                              GTK_WIDGET(pywidget->obj));
++
++    pyx = PyInt_FromLong(x);
++    pyy = PyInt_FromLong(y);
++    pypush_in = PyBool_FromLong(push_in);
++
++    pytuple = PyTuple_New(3);
++
++    PyTuple_SetItem(pytuple, 0, pyx);
++    PyTuple_SetItem(pytuple, 1, pyy);
++    PyTuple_SetItem(pytuple, 2, pypush_in);
++
++    return pytuple;
++}
+Index: pygtk-2.12.0/examples/tap/tap_example.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ pygtk-2.12.0/examples/tap/tap_example.py	2007-10-25 16:00:48.000000000 -0300
+@@ -0,0 +1,105 @@
++#!/usr/bin/env python2.5
++
++import gtk
++import hildon
++
++# Simple example about using tap-and-hold.
++
++class Prog(object):
++
++    def __init__(self):
++        object.__init__(self)
++        self.window = hildon.Window()
++        self.window.connect("destroy", gtk.main_quit)
++        
++        menu = gtk.Menu()
++        for i in range(3):
++            item = gtk.MenuItem("Item %d" % i)
++            menu.append(item)
++            item.show()
++        
++        menu.show()
++
++        vbox = gtk.VBox()
++
++        hboxX = gtk.HBox()
++        hboxX.pack_start(gtk.Label("X coord"), False, False)
++        self.spin_x = gtk.SpinButton(gtk.Adjustment(lower=-100,upper=100,
++                                                    step_incr=5))
++        hboxX.pack_start(self.spin_x, True, True)
++        vbox.pack_start(hboxX)
++
++        hboxY = gtk.HBox()
++        hboxY.pack_start(gtk.Label("Y coord"), False, False)
++        self.spin_y = gtk.SpinButton(gtk.Adjustment(lower=-100,upper=100,
++                                                    step_incr=5))
++        hboxY.pack_start(self.spin_y, True, True)
++        vbox.pack_start(hboxY)
++
++        self.check_push = gtk.CheckButton(label="Push-In")
++        vbox.pack_start(self.check_push)
++
++        self.button_box = gtk.HBox()
++
++        self.button = gtk.Button("Tap test")
++        #Registers this widget to listen to tap-and-hold signals.
++        #The callback is used to position the menu.
++        self.button.tap_and_hold_setup(menu=menu, callback=self.cb,
++                                       data="Foo data")
++        self.button_box.pack_start(self.button)
++
++        but_del = gtk.Button("Delete Source")
++        but_del.connect("clicked", self.del_source)
++        self.button_box.pack_start(but_del)
++
++        vbox.pack_start(self.button_box)
++    
++        self.window.add(vbox)
++
++    def del_source(self, button, data=None):
++        print "Deleting source button"
++        self.button.destroy()
++
++    def cb(self, menu, widget=None, data=None):
++
++        print menu
++        print widget
++        print data
++
++        req_w, req_h = menu.size_request()
++
++        top = widget.get_toplevel()
++        w_x, w_y = top.window.get_origin()
++
++        point_x, point_y, mods = top.window.get_pointer()
++
++        menu_x = point_x + w_x
++        menu_y = point_y + w_y - req_h
++        
++        #if widget.get_direction == gtk.TEXT_DIR_RTL:
++        #    menu_x = menu_x + widget.allocation.width - req_w
++
++        scr_w = widget.get_screen().get_width()
++
++        if (menu_x < w_x):
++            menu_x = w_x
++        elif (menu_x + req_w) > scr_w:
++            menu_x -= ((menu_x + req_w) - scr_w)
++
++        if menu_y < w_y:
++                meny_y = w_y
++
++        menu_x += int(self.spin_x.get_value())
++        menu_y += int(self.spin_y.get_value())
++
++        print "Setting menu at (%d, %d, %d)" % (menu_x, menu_y, self.check_push.get_active())
++
++        return menu_x, menu_y, self.check_push.get_active()
++
++    def run(self):
++        self.window.show_all()
++        gtk.main()
++
++if __name__ == "__main__":
++    prog = Prog()
++    prog.run()
