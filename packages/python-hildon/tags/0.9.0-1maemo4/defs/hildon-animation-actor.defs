@@ -1,0 +1,172 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AnimationActor
+  (in-module "Hildon")
+  (parent "GtkWindow")
+  (c-name "HildonAnimationActor")
+  (gtype-id "HILDON_TYPE_ANIMATION_ACTOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-animation-actor.h
+
+(define-function hildon_animation_actor_get_type
+  (c-name "hildon_animation_actor_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_animation_actor_new
+  (c-name "hildon_animation_actor_new")
+  (is-constructor-of "HildonAnimationActor")
+  (return-type "GtkWidget*")
+)
+
+(define-method send_message
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_send_message")
+  (return-type "none")
+  (parameters
+    '("guint32" "message_type")
+    '("guint32" "l0")
+    '("guint32" "l1")
+    '("guint32" "l2")
+    '("guint32" "l3")
+    '("guint32" "l4")
+  )
+)
+
+(define-method set_show_full
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_show_full")
+  (return-type "none")
+  (parameters
+    '("gint" "show")
+    '("gint" "opacity")
+  )
+)
+
+(define-method set_show
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_show")
+  (return-type "none")
+  (parameters
+    '("gint" "show")
+  )
+)
+
+(define-method set_opacity
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_opacity")
+  (return-type "none")
+  (parameters
+    '("gint" "opacity")
+  )
+)
+
+(define-method set_position_full
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_position_full")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "depth")
+  )
+)
+
+(define-method set_position
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_position")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method set_depth
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_depth")
+  (return-type "none")
+  (parameters
+    '("gint" "depth")
+  )
+)
+
+(define-method set_scalex
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_scalex")
+  (return-type "none")
+  (parameters
+    '("gint32" "x_scale")
+    '("gint32" "y_scale")
+  )
+)
+
+(define-method set_scale
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_scale")
+  (return-type "none")
+  (parameters
+    '("double" "x_scale")
+    '("double" "y_scale")
+  )
+)
+
+(define-method set_rotationx
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_rotationx")
+  (return-type "none")
+  (parameters
+    '("gint" "axis")
+    '("gint32" "degrees")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-method set_rotation
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_rotation")
+  (return-type "none")
+  (parameters
+    '("gint" "axis")
+    '("double" "degrees")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-method set_anchor
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_anchor")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method set_anchor_from_gravity
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_anchor_from_gravity")
+  (return-type "none")
+  (parameters
+    '("guint" "gravity")
+  )
+)
+
+(define-method set_parent
+  (of-object "HildonAnimationActor")
+  (c-name "hildon_animation_actor_set_parent")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+  )
+)
+
+

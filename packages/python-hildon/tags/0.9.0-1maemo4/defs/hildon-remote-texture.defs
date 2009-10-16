@@ -1,0 +1,133 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object RemoteTexture
+  (in-module "Hildon")
+  (parent "GtkWindow")
+  (c-name "HildonRemoteTexture")
+  (gtype-id "HILDON_TYPE_REMOTE_TEXTURE")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-remote-texture.h
+
+(define-function hildon_remote_texture_get_type
+  (c-name "hildon_remote_texture_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_remote_texture_new
+  (c-name "hildon_remote_texture_new")
+  (is-constructor-of "HildonRemoteTexture")
+  (return-type "GtkWidget*")
+)
+
+(define-method send_message
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_send_message")
+  (return-type "none")
+  (parameters
+    '("guint32" "message_type")
+    '("guint32" "l0")
+    '("guint32" "l1")
+    '("guint32" "l2")
+    '("guint32" "l3")
+    '("guint32" "l4")
+  )
+)
+
+(define-method set_image
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_image")
+  (return-type "none")
+  (parameters
+    '("key_t" "key")
+    '("guint" "width")
+    '("guint" "height")
+    '("guint" "bpp")
+  )
+)
+
+(define-method update_area
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_update_area")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method set_show_full
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_show_full")
+  (return-type "none")
+  (parameters
+    '("gint" "show")
+    '("gint" "opacity")
+  )
+)
+
+(define-method set_show
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_show")
+  (return-type "none")
+  (parameters
+    '("gint" "show")
+  )
+)
+
+(define-method set_opacity
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_opacity")
+  (return-type "none")
+  (parameters
+    '("gint" "opacity")
+  )
+)
+
+(define-method set_position
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_position")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method set_offset
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_offset")
+  (return-type "none")
+  (parameters
+    '("double" "x")
+    '("double" "y")
+  )
+)
+
+(define-method set_scale
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_scale")
+  (return-type "none")
+  (parameters
+    '("double" "x_scale")
+    '("double" "y_scale")
+  )
+)
+
+(define-method set_parent
+  (of-object "HildonRemoteTexture")
+  (c-name "hildon_remote_texture_set_parent")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+  )
+)
+
+

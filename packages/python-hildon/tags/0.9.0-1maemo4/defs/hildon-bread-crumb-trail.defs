@@ -1,0 +1,72 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object BreadCrumbTrail
+  (in-module "Hildon")
+  (parent "GtkContainer")
+  (c-name "HildonBreadCrumbTrail")
+  (gtype-id "HILDON_TYPE_BREAD_CRUMB_TRAIL")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-bread-crumb-trail.h
+
+(define-function hildon_bread_crumb_trail_get_type
+  (c-name "hildon_bread_crumb_trail_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_bread_crumb_trail_new
+  (c-name "hildon_bread_crumb_trail_new")
+  (is-constructor-of "HildonBreadCrumbTrail")
+  (return-type "GtkWidget*")
+)
+
+(define-method push
+  (of-object "HildonBreadCrumbTrail")
+  (c-name "hildon_bread_crumb_trail_push")
+  (return-type "none")
+  (parameters
+    '("HildonBreadCrumb*" "item")
+    '("gpointer" "id")
+    '("GDestroyNotify" "destroy")
+  )
+)
+
+(define-method push_text
+  (of-object "HildonBreadCrumbTrail")
+  (c-name "hildon_bread_crumb_trail_push_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("gpointer" "id")
+    '("GDestroyNotify" "destroy")
+  )
+)
+
+(define-method push_icon
+  (of-object "HildonBreadCrumbTrail")
+  (c-name "hildon_bread_crumb_trail_push_icon")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("GtkWidget*" "icon")
+    '("gpointer" "id")
+    '("GDestroyNotify" "destroy")
+  )
+)
+
+(define-method pop
+  (of-object "HildonBreadCrumbTrail")
+  (c-name "hildon_bread_crumb_trail_pop")
+  (return-type "none")
+)
+
+(define-method clear
+  (of-object "HildonBreadCrumbTrail")
+  (c-name "hildon_bread_crumb_trail_clear")
+  (return-type "none")
+)
+
+
