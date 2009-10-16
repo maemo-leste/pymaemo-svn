@@ -1,0 +1,60 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TimeButton
+  (in-module "Hildon")
+  (parent "HildonPickerButton")
+  (c-name "HildonTimeButton")
+  (gtype-id "HILDON_TYPE_TIME_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-time-button.h
+
+(define-function hildon_time_button_get_type
+  (c-name "hildon_time_button_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_time_button_new
+  (c-name "hildon_time_button_new")
+  (is-constructor-of "HildonTimeButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+  )
+)
+
+(define-function hildon_time_button_new_step
+  (c-name "hildon_time_button_new_step")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+    '("guint" "minutes_step")
+  )
+)
+
+(define-method get_time
+  (of-object "HildonTimeButton")
+  (c-name "hildon_time_button_get_time")
+  (return-type "none")
+  (parameters
+    '("guint*" "hours")
+    '("guint*" "minutes")
+  )
+)
+
+(define-method set_time
+  (of-object "HildonTimeButton")
+  (c-name "hildon_time_button_set_time")
+  (return-type "none")
+  (parameters
+    '("guint" "hours")
+    '("guint" "minutes")
+  )
+)
+
+
