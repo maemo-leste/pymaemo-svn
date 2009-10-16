@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Example
-Icon=general_email
-Comment=An example status menu applet
-Category=permanent
-Type=python
-X-Path=lib-example-status-menu-applet.py
-
