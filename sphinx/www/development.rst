@@ -4,7 +4,7 @@ Development
 Documentation
 -------------
 
-* `Python Hildon tutorial <./python_hildon_tutorial/>`_
+* `Python Hildon tutorial <http://wiki.maemo.org/PyMaemo/UITutorial>`_
 * `Python Hildon manual <./python_hildon_manual/>`_
 
 .. _pymaemo-components:
