@@ -1,0 +1,173 @@
+cython (0.11.2-1maemo1) unstable; urgency=low
+
+  * New upstream release (from Debian squeeze).
+  * Remove modifications related to test package.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Thu, 08 Oct 2009 08:01:00 -0400
+
+cython (0.11.2-1) unstable; urgency=low
+
+  [ Ryan Kavanagh ]
+  * New upstream release (Closes: #525620, #536213)
+
+  [ Jakub Wilk ]
+  * debian/rules: remove generated files.
+
+  [ Piotr Ożarowski ]
+  * Standards-Version bumped to 3.8.2 (no change needed)
+
+ -- Python Applications Packaging Team <python-apps-team@lists.alioth.debian.org>  Mon, 10 Aug 2009 23:18:51 +0200
+
+cython (0.10.3-1) unstable; urgency=low
+
+  [ Vernon Tang ]
+  * New upstream release
+  * debian/watch: corrected regexp
+
+ -- Ondrej Certik <ondrej@certik.cz>  Sun, 15 Feb 2009 11:27:13 -0800
+
+cython (0.10.2-1) unstable; urgency=low
+
+  [ Sandro Tosi ]
+  * debian/control
+    - switch Vcs-Browser field to viewsvn
+
+  [ Ondrej Certik ]
+  * New upstream release
+  * Description updated
+  * ${shlibs:Depends} added to depends
+  * architecture changed from all to any
+  * python-support moved from Build-Depends-Indep to Build-Depends
+
+ -- Ondrej Certik <ondrej@certik.cz>  Tue, 02 Dec 2008 12:06:41 +0100
+
+cython (0.9.8-1maemo5) unstable; urgency=low
+
+  * Remove hardcoded 'site-packages' paths allowing install without
+    problems in either python2.5 ou python2.6
+  * debian/rules:
+    - Drop fixed version passed to cdbs_python_compile_version
+    - Pass --install-layout=deb flag to setup.py via CDBS
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon,  8 Jun 2009 15:20:50 -0400
+
+cython (0.9.8-1maemo4) unstable; urgency=low
+
+  [ Bruno dos Santos de Araujo ]
+  * Add some more tests (from the source code of cython)
+  * Remove quilt dependency (needed for runtests.sh, storing it inside ./debian)
+  * Misc. fixes for cleanup and improving compatibility of runtests.sh
+  * Add Conflicts/Replaces in debian/control:
+    -  python2.5-cython (<< 0.9.8-1maemo4)
+  * Small fix in clean rule from debian/rules
+
+  [ Anderson Lizardo ]
+  * debian/control:
+    + Remove "Uploaders" field (not applicable to maemo).
+    + Put the pymaemo-developers mailing list address in "Maintainer" field and
+      move original value to a separate field.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 31 Mar 2009 15:25:38 -0400
+
+cython (0.9.8-1maemo3) unstable; urgency=low
+
+  * Avoid using quilt provided by maemo3-tools devkit.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Tue, 30 Dec 2008 10:53:54 -0400
+
+cython (0.9.8-1maemo2) unstable; urgency=low
+
+  * Add cython-tests binary package, containing standalone tests from
+    the source code of cython.
+  * New patch: 01-create-runtests.sh.patch (needed to run the standalone 
+    tests for this package)
+  * Add quilt build dependency in debian/control
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Mon, 15 Dec 2008 07:54:04 -0400
+
+cython (0.9.8-1maemo1) unstable; urgency=low
+
+  * Remove minimum version for cdbs and python-support dependencies
+  * Change python dependency to python-all
+  * Force python version to 2.5 in debian/rules for proper compiling 
+    inside scratchbox
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 14 Nov 2008 11:48:02 -0400
+
+cython (0.9.8-1) unstable; urgency=low
+
+  * New upstream release
+  * python-all-dev added to build-depends (upstream now compiles
+    Cython.Plex.Scanners with Cython). The .so file is not included in the
+    .deb for some reason, so until this is fixed, the package stays
+    architecture all and remains pure Python.
+
+ -- Ondrej Certik <ondrej@certik.cz>  Sun, 20 Jul 2008 12:43:45 +0200
+
+cython (0.9.6.14-1) unstable; urgency=low
+
+  * New upstream version
+  * Description improved (SAGE -> Sage), whitespace removed
+  * Standards-Version bumped (no change needed)
+  * README.Debian updated to recent cython way of doing things
+
+ -- Ondrej Certik <ondrej@certik.cz>  Wed, 11 Jun 2008 13:22:09 +0200
+
+cython (0.9.6.13.1-1) unstable; urgency=low
+
+  * New upstream version (Closes: #478077)
+
+ -- Ondrej Certik <ondrej@certik.cz>  Sun, 27 Apr 2008 00:54:05 +0200
+
+cython (0.9.6.12-1) unstable; urgency=low
+
+  * New upstream version (Closes: #463625)
+  * get-orig-tarball targed removed from debian/rules (uscan now works to get
+    orig.tar.gz)
+
+ -- Ondrej Certik <ondrej@certik.cz>  Thu, 14 Feb 2008 13:58:23 +0100
+
+cython (0.9.6.11.ds-1) unstable; urgency=low
+
+  [ Marco Rodrigues ]
+  * debian/watch:
+    + Fixed path (Closes: #460006).
+  * debian/control:
+    + Bump cdbs version to matches policy.
+
+  [ Ondrej Certik ]
+  * New upstream version 
+
+ -- Ondrej Certik <ondrej@certik.cz>  Fri, 18 Jan 2008 00:21:42 +0100
+
+cython (0.9.6.10.ds-1) unstable; urgency=low
+
+  * New upstream version
+  * Moved from pycentral to pysupport
+  * removed patches, since upstream has integrated them
+
+ -- Ondrej Certik <ondrej@certik.cz>  Mon, 31 Dec 2007 03:28:34 +0100
+
+cython (0.9.6.8.ds-2) unstable; urgency=low
+
+  * DM-Upload-Allowed changed to XS-Upload-Allowed
+  * Update Standards-Version to 3.7.3.
+  * Build-depend on python instead of python-all-dev
+  * ${misc:Depends} added to Depends
+  * Depend on debhelper >= 5.0.38
+  * gcc added to Suggests
+  * README.Debian gcc command fixed by adding -fPIC
+
+ -- Ondrej Certik <ondrej@certik.cz>  Sat, 22 Dec 2007 22:12:00 +0100
+
+cython (0.9.6.8.ds-1) unstable; urgency=low
+
+  [ Ondrej Certik ]
+  * Initial Debian upload (Closes: 451039)
+  * Added a patch for handling the @classmethod decorators
+
+  [ Sandro Tosi ]
+  * debian/watch
+    - added missing file
+
+ -- Ondrej Certik <ondrej@certik.cz>  Fri, 30 Nov 2007 13:00:44 +0100

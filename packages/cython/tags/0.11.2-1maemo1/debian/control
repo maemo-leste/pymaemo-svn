@@ -1,0 +1,31 @@
+Source: cython
+Section: python
+Priority: optional
+Maintainer: Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Python Applications Packaging Team <python-apps-team@lists.alioth.debian.org>
+Build-Depends: cdbs, debhelper (>= 5.0.38), python (>= 2.4.4-6), python-all-dev (>= 2.4.4-6), python-support (>= 0.7.5)
+Standards-Version: 3.8.2
+Homepage: http://cython.org/
+Vcs-Svn: svn://svn.debian.org/svn/python-apps/packages/cython/trunk
+Vcs-Browser: http://svn.debian.org/viewsvn/python-apps/packages/cython/trunk/
+XS-DM-Upload-Allowed: yes
+
+Package: cython
+Architecture: any
+Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: gcc
+Replaces: python2.5-cython (<< 0.9.8-1maemo4)
+Conflicts: python2.5-cython (<< 0.9.8-1maemo4)
+XB-Python-Version: ${python:Versions}
+Description: C-Extensions for Python
+ Cython is a language that makes writing C extensions for the Python language as
+ easy as Python itself. Cython is based on the well-known Pyrex, but supports
+ more cutting edge functionality and optimizations.
+ .
+ The Cython language is very close to the Python language, but Cython
+ additionally supports calling C functions and declaring C types on variables
+ and class attributes. This allows the compiler to generate very efficient C
+ code from Cython code.
+ .
+ This makes Cython the ideal language for wrapping for external C libraries, and
+ for fast C modules that speed up the execution of Python code.
