@@ -1,0 +1,81 @@
+pyclutter (0.8.0-1maemo3) unstable; urgency=low
+
+  * Add opengles-sgx-img-common-dev as an alternative dependency to libgl-dev; this is
+    needed for building pyclutter on ARMEL targets
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Tue, 13 Oct 2009 10:27:31 -0400
+
+pyclutter (0.8.0-1maemo2) unstable; urgency=low
+
+  * Add support to clutter-gtk and clutter-cairo
+  * Build-Depends (debian/control):
+    - Add libclutter-gtk-0.8-dev (GTK+ widget integration)
+    - Add libclutter-cairo-0.8-dev (Cairo integration)
+  * Add support to ARMEL build, as the dependency problem was solved.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 12 Jun 2009 11:26:41 -0400
+
+pyclutter (0.8.0-1maemo1) unstable; urgency=low
+
+  * Initial import from Debian squeeze.
+  * Drop build dependencies: libclutter-cairo-0.8-dev, libclutter-gtk-0.8-dev,
+    libclutter-gst-0.8-dev.
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
+  * Remove Uploaders field from debian/control, as it is not applicable to
+    maemo.
+  * Building for i386 only for the time being because one of the dependencies 
+    in ARMEL is broken. See https://bugs.maemo.org/show_bug.cgi?id=4197 for more info.
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Thu, 30 Apr 2009 08:04:08 -0400
+
+pyclutter (0.8.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Rob Bradford <robster@debian.org>  Wed, 15 Oct 2008 15:25:57 +0100
+
+pyclutter (0.6.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Rob Bradford <robster@debian.org>  Tue, 15 Apr 2008 13:34:16 +0100
+
+pyclutter (0.6.0-1) unstable; urgency=low
+
+  * New upstream release.
+  - Fix copyright file.
+  - Add missing dependency on clutter-python to clutter-python-dbg.
+
+ -- Rob Bradford <robster@debian.org>  Tue, 19 Feb 2008 14:57:04 +0000
+
+pyclutter (0.5.2-1) unstable; urgency=low
+
+  * New (unstable) upstream release.
+
+ -- Rob Bradford <robster@debian.org>  Mon, 11 Feb 2008 17:36:34 +0000
+
+pyclutter (0.4.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ross Burton <ross@debian.org>  Tue, 18 Sep 2007 11:31:59 +0100
+
+pyclutter (0.4.1-1) unstable; urgency=low
+
+  * New  upstream release.
+
+ -- Ross Burton <ross@debian.org>  Wed,  8 Aug 2007 20:41:00 +0100
+
+pyclutter (0.4.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ross Burton <ross@debian.org>  Wed,  8 Aug 2007 15:32:53 +0100
+
+pyclutter (0.2.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Ross Burton <ross@debian.org>  Wed,  7 Feb 2007 16:44:39 +0000
+
