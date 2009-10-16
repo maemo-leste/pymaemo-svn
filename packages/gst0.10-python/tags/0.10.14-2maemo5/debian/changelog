@@ -1,0 +1,420 @@
+gst0.10-python (0.10.14-2maemo5) unstable; urgency=low
+
+  * debian/control
+    - Add python2.5-gstreamer to Provides/Replaces/Conflicts keywords
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 11 Sep 2009 08:44:34 -0400
+
+gst0.10-python (0.10.14-2maemo4) unstable; urgency=low
+
+  * Recompile for python2.6
+
+ -- Renato Araujo Oliveira Filho <renato.filho@ind.org.br>  Thu, 18 Jun 2009 13:10:00 -0300
+
+gst0.10-python (0.10.14-2maemo3) unstable; urgency=low
+
+  * Effectively remove python-libxml2 dependency. Additionally, this
+    dependency seems only necessary for the "XML" class.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 06 Apr 2009 13:08:35 -0400
+
+gst0.10-python (0.10.14-2maemo2) unstable; urgency=low
+
+  * Remove dependency on python-libxml2 (not needed for maemo).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 06 Apr 2009 12:26:37 -0400
+
+gst0.10-python (0.10.14-2maemo1) unstable; urgency=low
+
+  * Import of new version from Debian.
+  * debian/control:
+    + Remove "Uploaders" field (not applicable to maemo).
+    + Put the pymaemo-developers mailing list address in "Maintainer" field
+      and move original value to a separate field.
+  * debian/rules: fix cleanup so that *.pyo files are also removed.
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Mon, 06 Apr 2009 11:28:02 -0400
+
+gst0.10-python (0.10.14-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 15 Feb 2009 20:03:41 +0100
+
+gst0.10-python (0.10.14-1) experimental; urgency=low
+
+  * New upstream release, 'You better think':
+    + debian/control:
+      - Update GStreamer build dependency.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 20 Jan 2009 09:13:05 +0100
+
+gst0.10-python (0.10.13.3-1) experimental; urgency=low
+
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 11 Jan 2009 21:22:37 +0100
+
+gst0.10-python (0.10.13.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update build dependencies.
+    + debian/patches/03_rtld-constants.patch,
+      debian/patches/04_import-order.patch:
+      - Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 08 Jan 2009 07:43:13 +0100
+
+gst0.10-python (0.10.13-1) experimental; urgency=low
+
+  * New upstream release, 'Feel The Sun Rise'.
+  * debian/patches/03_rtld-constants.patch:
+    + Use correct values for RTLD_GLOBAL and RTLD_LAZY on Linux/MIPS
+      as the values are different there from all other Linux platforms.
+      Thanks to Thiemo Seufer for the patch (Closes: #499135).
+  * ACK 0.10.12-1.1 NMU. Thanks to Alexander Wirt for fixing this issue.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 05 Oct 2008 15:39:08 +0200
+
+gst0.10-python (0.10.12-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Add dependency to python-libxml2 and change load order in
+    the init of gst0.10-python (Closes: #449341)
+
+ -- Alexander Wirt <formorer@debian.org>  Mon, 08 Sep 2008 20:22:47 +0000
+
+gst0.10-python (0.10.12-1) unstable; urgency=low
+
+  * New upstream release, 'A Wild Finish'.
+  * debian/control:
+    + Update Standards-Version to 3.8.0, no additional changes needed.
+    + Fix typo.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 18 Jun 2008 20:20:34 +0200
+
+gst0.10-python (0.10.11.3-1) experimental; urgency=low
+
+  * debian/rules:
+    + Append -Wno-error to CFLAGS and CXXFLAGS.
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 12 Jun 2008 12:30:23 +0200
+
+gst0.10-python (0.10.11.2-1) experimental; urgency=low
+
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 05 Jun 2008 08:40:46 +0200
+
+gst0.10-python (0.10.11-1) unstable; urgency=low
+
+  * New upstream release, "What I got".
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 21 Mar 2008 01:18:37 +0100
+
+gst0.10-python (0.10.10.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Build depend on gstreamer and gst-plugins-base >= 0.10.17.1.
+  * debian/control:
+    + Add Homepage field.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 04 Mar 2008 16:30:10 +0100
+
+gst0.10-python (0.10.10-1) unstable; urgency=low
+
+  * New upstream release, "Destination Overtime", with API additions:
+    + debian/control:
+      - Build depend on gstreamer/gst-plugins-base >= 0.10.16.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 29 Jan 2008 11:46:12 +0100
+
+gst0.10-python (0.10.9.4-1) experimental; urgency=low
+
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 22 Jan 2008 13:24:18 +0100
+
+gst0.10-python (0.10.9.3-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/patches/01_pbutils-override.patch:
+      - Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 18 Jan 2008 05:59:24 +0100
+
+gst0.10-python (0.10.9.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + Update gstreamer build dependencies to >= 0.10.15.1.
+    + debian/patches/01_acinclude-python.patch,
+      debian/patches/99_autoreconf.patch:
+      - Dropped, merged upstream.
+  * debian/patches/01_pbutils-override.patch:
+    + Patch from upstream CVS to fix build with python 2.4.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 15 Jan 2008 16:00:59 +0100
+
+gst0.10-python (0.10.9-5) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/control:
+    + Drop w3m build dependency as it is not needed (Closes: #454110).
+    + Update Standards-Version to 3.7.3, no additional changes needed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 15 Jan 2008 15:41:27 +0100
+
+gst0.10-python (0.10.9-4) experimental; urgency=low
+
+  * Add a python-gst0.10-dbg package; from Ubuntu; tweak rules and control.
+    - Target at experimental.
+  * Wrap more fields in control.
+  * Pass CFLAGS to configure; doh!
+
+ -- Loic Minier <lool@dooz.org>  Sun, 02 Dec 2007 12:19:28 +0100
+
+gst0.10-python (0.10.9-3) unstable; urgency=high
+
+  * Fix the path generated in pygst.py by patch 02_pygstdir, it was missing
+    the version of the GStreamer API suffix; closes: #453767.
+  * Wrap build-deps even more.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 02 Dec 2007 11:50:49 +0100
+
+gst0.10-python (0.10.9-2) unstable; urgency=low
+
+  [ Sebastian Dröge ]
+  * Merges from the Ubuntu package:
+    + debian/rules:
+      - Don't ship the *.la files.
+      - Sort python versions and also build for the default python version
+        even if this wasn't requested.
+    + debian/patches/01_acinclude-python.patch,
+      debian/patches/99_autoreconf.patch:
+      - Fix detection of the Python include path.
+    + TODO: add debug package after pygobject got one.
+  * debian/patches/02_pygstdir.patch:
+    + Fix Python packages path for different python versions (Closes: #453402).
+
+  [ Loic Minier ]
+  * New patch, 02_pygstdir, compute path to gst0.10 module dir at runtime
+    based on the path of pygst.py (usually, it's a symlink).
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 29 Nov 2007 16:21:29 +0100
+
+gst0.10-python (0.10.9-1) unstable; urgency=low
+
+  * New upstream release, "I've heard a lot of stories in my time":
+    + Fixes crash at exit (Closes: #448621).
+  * debian/control:
+    + Build depend on gstreamer and gst-plugins-base >= 0.10.15 to get
+      bindings for the new APIs.
+  * debian/rules:
+    + Don't call dh_python anymore.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 28 Nov 2007 10:52:09 +0100
+
+gst0.10-python (0.10.8-1) unstable; urgency=low
+
+  * New upstream release 0.10.8; "This time I know our side will win."
+  * Honor make distclean failures.
+  * List patch in .PHONY.
+  * Misc cleanups.
+  * Fix permissions of the rtupdate script.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 01 Aug 2007 22:33:48 +0200
+
+gst0.10-python (0.10.7-1) unstable; urgency=low
+
+  * New upstream release 0.10.7, "You want to feel sorry for yourself,
+    Don't you ?"
+  * Merge experimental branch and upload to unstable:
+    [ Loic Minier ]
+    + New upstream pre-release 0.10.6.3:
+      - Downgrade libgstreamer-plugins-base0.10-dev build-dep back to >=
+        0.10.0.2.
+    + New upstream pre-release 0.10.6.1:
+      - Install upstream DOAP file.
+      - Bump up libgstreamer-plugins-base0.10-dev build-dep to >= 0.10.11-3 to
+        workaround a temporary build failure with older gst-plugins-base0.10.
+    + New upstream release 0.10.6,
+      "You're not very subtle, but you are effective".
+    + New upstream pre-release 0.10.5.3:
+      - Target at experimental.
+      - Build-depend on python-gobject-dev >= 2.11.2 instead of python-gtk2-dev;
+        depend on python-gobject >= 2.11.2 instead of python-gtk2.
+      - Drop patch 10_retab-examples, syntax of examples was fixed upstream.
+    + Bump the pygtk dep to >= 2.8.
+  * debian/control:
+    + Add myself to Uploaders.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 16 Apr 2007 18:28:38 +0200
+
+gst0.10-python (0.10.5-5) unstable; urgency=medium
+
+  * Let python-gst0.10 depend on python-gtk2 as gst/__init__.py imports
+    pygtk.
+  * Remove Joe Wreschnig from Uploaders.
+  * Only pass --host to configure if DEB_HOST_GNU_TYPE and DEB_BUILD_GNU_TYPE
+    differ.
+  * Switch back to pycentral as the prefix for Python modules is not
+    distinguishable from the general prefix and this was required for
+    python-support.  Such a switch would need a careful review of all types of
+    prefixes in use during the build and at runtime; closes: #390192, #390309.
+  * Add support for patches in debian/patches.
+    - Update config.guess and .sub during build, not in clean.
+    - Backup config.guess and .sub before updating them; restore patches
+      before unpatch.
+    - Build-depend on quilt.
+    - Add an empty patch series.
+  * New patch, 10_retab-examples, to expand tabs in the examples; fixes
+    byte-compilation at installation time; permits keeping pycentral for now.
+
+ -- Loic Minier <lool@dooz.org>  Sun,  1 Oct 2006 11:02:53 +0200
+
+gst0.10-python (0.10.5-4) unstable; urgency=high
+
+  * Add watch file.
+  * Ship rtupdate file, doh; previous installations that went through a
+    default python runtime change are not affected since the .pc files have
+    the same name for python2.3 and python2.4.
+  * Move examples to the Debian location via dh_install as well.
+  * Remove now useless *.dirs / dh_installdirs.
+  * Switch to pysupport as pycentral can't exclude the examples dir from byte
+    compilation.
+
+ -- Loic Minier <lool@dooz.org>  Thu, 28 Sep 2006 11:28:39 +0200
+
+gst0.10-python (0.10.5-3) unstable; urgency=low
+
+  * Add debian/control to the pyversions -r call since it's mandatory, even if
+    the man page claims it's optional.
+  * Fix typo in default python runtime retrieval.
+
+ -- Loic Minier <lool@dooz.org>  Sat,  5 Aug 2006 22:08:35 +0200
+
+gst0.10-python (0.10.5-2) unstable; urgency=low
+
+  * Update rtupdate script to handle calls with three arguments.
+
+ -- Loic Minier <lool@dooz.org>  Thu,  3 Aug 2006 23:00:01 +0200
+
+gst0.10-python (0.10.5-1) unstable; urgency=low
+
+  * New upstream release, "My Little Poney wants some Funk".
+    - Bump up libgstreamer0.10-dev build-dep to >= 0.10.8.
+  * Version the libgstreamer-plugins-base0.10-dev build-dep to >= 0.10.0.2.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 30 Jul 2006 14:27:50 +0200
+
+gst0.10-python (0.10.4-5) unstable; urgency=low
+
+  * Build against per-python runtime pygtk pkg-config files.
+    * Set PKG_CONFIG_PATH to /usr/lib/pkgconfig/<runtime> for configure.
+    * Bump up python-gtk2-dev build-dep to >= 2.8.6-4.
+  * Add myself to Uploaders too.
+  * Add dummy binary-indep rule.
+  * Attempt at supporting pkg-config files for multiple Python runtimes:
+    - Move *.pc files for each runtime in /usr/lib/pkg-config/pythonXXX.
+    - Symlink the *.pc files for the default runtime in /usr/lib/pkg-config
+      during python-gst0.10's postinst and remove the symlinks in prerm.
+    - Delete and re-create the symlinks on default runtime change via a
+      *.rtupdate script shipped by python-gst0.10.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 24 Jul 2006 20:09:56 +0200
+
+gst0.10-python (0.10.4-4) unstable; urgency=low
+
+  * Set pkg-gstreamer as Maintainer and make Joe Wreschnig an Uploader; thanks
+    for your work.
+  * Update again for latest Python policy.
+    - Bump up debhelper build-dep to >= 5.0.37.2.
+    - Declare dh_python compatibility level to 2.
+    - Bump up python-all-dev build-dep to >= 2.3.5-11.
+    - Call pyversions without an explicit control file.
+    - Bump up python-central build-dep to >= 0.4.17.
+  * Add autotools-dev to build-deps for config.guess / .sub updates.
+  * Drop most dirs from debian/python-gst0.10.dirs and drop debian/dirs.
+  * Update upstream list of upstream authors / copyright holders and include
+    full license blob.
+  * Misc cleanups.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 25 Jun 2006 19:37:45 +0200
+
+gst0.10-python (0.10.4-3) unstable; urgency=low
+
+  * debian/control: XS-Python-Version: >= 2.3.
+  * debian/rules: Use pyversions to get available versions.
+  * Use python-central/dh_pycentral.
+
+ -- Joe Wreschnig <piman@debian.org>  Mon, 12 Jun 2006 23:09:35 -0500
+
+gst0.10-python (0.10.4-2) unstable; urgency=low
+
+  * debian/control: python2.3-gst0.10 replaces python-gst0.10 << 0.10.4.
+    (Closes: #370250)
+
+ -- Joe Wreschnig <piman@debian.org>  Sun,  4 Jun 2006 12:51:10 -0500
+
+gst0.10-python (0.10.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Provide Python 2.4 packages. (Closes: #363666)
+  * Standards-Version 3.7.2 (no changes necessary).
+
+ -- Joe Wreschnig <piman@debian.org>  Sat, 13 May 2006 02:56:06 -0500
+
+gst0.10-python (0.10.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * (Build-)Dep on PyGTK >= 2.8 to prevent ABI issue.
+  * debhelper compatibility level 5.
+
+ -- Joe Wreschnig <piman@debian.org>  Tue, 31 Jan 2006 18:57:14 -0600
+
+gst0.10-python (0.10.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * New source/binary package names for 0.8/0.10 parallel installations.
+  * debian/copyright: LGPL, not GPL.
+  * debian/docs: Remove README, TODO.
+
+ -- Joe Wreschnig <piman@debian.org>  Fri, 30 Dec 2005 03:08:03 -0600
+
+gst-python (0.8.2-1) unstable; urgency=low
+
+  * New upstream version. (Closes: #318315)
+  * Add AUTHORS to debian/docs, remove README-docs, docs/README.html.
+  * Standards-Version 3.6.2.
+
+ -- Joe Wreschnig <piman@debian.org>  Thu, 28 Jul 2005 00:15:09 -0500
+
+gst-python (0.8.1-2) unstable; urgency=low
+
+  * Copy documentation from /usr/share/gst-python/examples. (Closes: #291610)
+  * Depend on python-gtk2. (Closes: #304889)
+
+ -- Joe Wreschnig <piman@debian.org>  Sat, 16 Apr 2005 14:34:46 -0500
+
+gst-python (0.8.1-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Joe Wreschnig <piman@debian.org>  Tue, 14 Dec 2004 18:11:50 -0600
+
+gst-python (0.8.0-1) unstable; urgency=low
+
+  * Build-Depend on libgstreamer-plugins0.8-dev (thanks to Sebastien Bacher).
+  * New upstream version.
+
+ -- Joe Wreschnig <piman@debian.org>  Wed, 17 Nov 2004 14:54:58 -0600
+
+gst-python (0.7.93-1) unstable; urgency=low
+
+  * Initial Release. (Closes: #201353)
+
+ -- Joe Wreschnig <piman@debian.org>  Wed,  6 Oct 2004 21:54:18 -0500
+

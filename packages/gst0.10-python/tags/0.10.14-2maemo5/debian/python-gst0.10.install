@@ -1,0 +1,2 @@
+debian/python-gst0.10.rtupdate usr/share/python/runtime.d
+debian/python-gst0.10/usr/share/gst-python/0.10/examples usr/share/doc/python-gst0.10
