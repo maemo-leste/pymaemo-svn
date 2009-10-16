@@ -1,0 +1,28 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-help.h
+
+(define-function hildon_help_show
+  (c-name "hildon_help_show")
+  (return-type "osso_return_t")
+  (parameters
+    '("osso_context_t*" "osso")
+    '("const-gchar*" "topic_id")
+    '("guint" "flags")
+  )
+)
+
+(define-function hildon_help_dialog_help_enable
+  (c-name "hildon_help_dialog_help_enable")
+  (return-type "gboolean")
+  (parameters
+    '("GtkDialog*" "dialog")
+    '("const-gchar*" "topic")
+    '("osso_context_t*" "osso")
+  )
+)
+
+

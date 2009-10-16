@@ -1,0 +1,54 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TimeSelector
+  (in-module "Hildon")
+  (parent "HildonTouchSelector")
+  (c-name "HildonTimeSelector")
+  (gtype-id "HILDON_TYPE_TIME_SELECTOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-time-selector.h
+
+(define-function hildon_time_selector_get_type
+  (c-name "hildon_time_selector_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_time_selector_new
+  (c-name "hildon_time_selector_new")
+  (is-constructor-of "HildonTimeSelector")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_time_selector_new_step
+  (c-name "hildon_time_selector_new_step")
+  (return-type "GtkWidget*")
+  (parameters
+    '("guint" "minutes_step")
+  )
+)
+
+(define-method set_time
+  (of-object "HildonTimeSelector")
+  (c-name "hildon_time_selector_set_time")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "hours")
+    '("guint" "minutes")
+  )
+)
+
+(define-method get_time
+  (of-object "HildonTimeSelector")
+  (c-name "hildon_time_selector_get_time")
+  (return-type "none")
+  (parameters
+    '("guint*" "hours")
+    '("guint*" "minutes")
+  )
+)
+
+

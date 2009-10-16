@@ -1,0 +1,83 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object FindToolbar
+  (in-module "Hildon")
+  (parent "GtkToolbar")
+  (c-name "HildonFindToolbar")
+  (gtype-id "HILDON_TYPE_FIND_TOOLBAR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-find-toolbar.h
+
+(define-function hildon_find_toolbar_new
+  (c-name "hildon_find_toolbar_new")
+  (is-constructor-of "HildonFindToolbar")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+  )
+)
+
+(define-function hildon_find_toolbar_new_with_model
+  (c-name "hildon_find_toolbar_new_with_model")
+  (is-constructor-of "HildonFindToolbar")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("GtkListStore*" "model")
+    '("gint" "column")
+  )
+)
+
+(define-method highlight_entry
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_highlight_entry")
+  (return-type "none")
+  (parameters
+    '("gboolean" "get_focus")
+  )
+)
+
+(define-method set_active
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_set_active")
+  (return-type "none")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+(define-method get_active
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_get_active")
+  (return-type "gint")
+)
+
+(define-method set_active_iter
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_set_active_iter")
+  (return-type "none")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method get_active_iter
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_get_active_iter")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreeIter*" "iter")
+  )
+)
+
+(define-method get_last_index
+  (of-object "HildonFindToolbar")
+  (c-name "hildon_find_toolbar_get_last_index")
+  (return-type "gint32")
+)
+
+

@@ -1,0 +1,22 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From hildon-main.h
+
+(define-function hildon_init
+  (c-name "hildon_init")
+  (return-type "none")
+)
+
+(define-function hildon_gtk_init
+  (c-name "hildon_gtk_init")
+  (return-type "none")
+  (parameters
+    '("int*" "argc")
+    '("char***" "argv")
+  )
+)
+
+

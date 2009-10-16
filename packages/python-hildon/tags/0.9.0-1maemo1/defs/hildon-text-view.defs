@@ -1,0 +1,50 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TextView
+  (in-module "Hildon")
+  (parent "GtkTextView")
+  (c-name "HildonTextView")
+  (gtype-id "HILDON_TYPE_TEXT_VIEW")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-text-view.h
+
+(define-function hildon_text_view_get_type
+  (c-name "hildon_text_view_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_text_view_new
+  (c-name "hildon_text_view_new")
+  (is-constructor-of "HildonTextView")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_buffer
+  (of-object "HildonTextView")
+  (c-name "hildon_text_view_set_buffer")
+  (return-type "none")
+  (parameters
+    '("GtkTextBuffer*" "buffer")
+  )
+)
+
+(define-method get_buffer
+  (of-object "HildonTextView")
+  (c-name "hildon_text_view_get_buffer")
+  (return-type "GtkTextBuffer*")
+)
+
+(define-method set_placeholder
+  (of-object "HildonTextView")
+  (c-name "hildon_text_view_set_placeholder")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+

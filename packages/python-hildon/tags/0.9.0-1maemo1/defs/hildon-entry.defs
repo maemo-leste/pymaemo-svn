@@ -1,0 +1,53 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Entry
+  (in-module "Hildon")
+  (parent "GtkEntry")
+  (c-name "HildonEntry")
+  (gtype-id "HILDON_TYPE_ENTRY")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-entry.h
+
+(define-function hildon_entry_get_type
+  (c-name "hildon_entry_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_entry_new
+  (c-name "hildon_entry_new")
+  (is-constructor-of "HildonEntry")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+  )
+)
+
+(define-method set_text
+  (of-object "HildonEntry")
+  (c-name "hildon_entry_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_text
+  (of-object "HildonEntry")
+  (c-name "hildon_entry_get_text")
+  (return-type "const-gchar*")
+)
+
+(define-method set_placeholder
+  (of-object "HildonEntry")
+  (c-name "hildon_entry_set_placeholder")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+

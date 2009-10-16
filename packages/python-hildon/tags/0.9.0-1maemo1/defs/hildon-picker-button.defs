@@ -1,0 +1,75 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object PickerButton
+  (in-module "Hildon")
+  (parent "HildonButton")
+  (c-name "HildonPickerButton")
+  (gtype-id "HILDON_TYPE_PICKER_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-picker-button.h
+
+(define-function hildon_picker_button_get_type
+  (c-name "hildon_picker_button_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_picker_button_new
+  (c-name "hildon_picker_button_new")
+  (is-constructor-of "HildonPickerButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("HildonSizeType" "size")
+    '("HildonButtonArrangement" "arrangement")
+  )
+)
+
+(define-method set_selector
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_set_selector")
+  (return-type "none")
+  (parameters
+    '("HildonTouchSelector*" "selector")
+  )
+)
+
+(define-method get_selector
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_get_selector")
+  (return-type "HildonTouchSelector*")
+)
+
+(define-method set_active
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_set_active")
+  (return-type "none")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+(define-method get_active
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_get_active")
+  (return-type "gint")
+)
+
+(define-method get_done_button_text
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_get_done_button_text")
+  (return-type "const-gchar*")
+)
+
+(define-method set_done_button_text
+  (of-object "HildonPickerButton")
+  (c-name "hildon_picker_button_set_done_button_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "done_button_text")
+  )
+)
+
+

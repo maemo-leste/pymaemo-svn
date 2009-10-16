@@ -1,0 +1,76 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object DateSelector
+  (in-module "Hildon")
+  (parent "HildonTouchSelector")
+  (c-name "HildonDateSelector")
+  (gtype-id "HILDON_TYPE_DATE_SELECTOR")
+)
+
+;; Enumerations and flags ...
+
+
+;; From hildon-date-selector.h
+
+(define-function hildon_date_selector_get_type
+  (c-name "hildon_date_selector_get_type")
+  (return-type "GType")
+)
+
+(define-function hildon_date_selector_new
+  (c-name "hildon_date_selector_new")
+  (is-constructor-of "HildonDateSelector")
+  (return-type "GtkWidget*")
+)
+
+(define-function hildon_date_selector_new_with_year_range
+  (c-name "hildon_date_selector_new_with_year_range")
+  (return-type "GtkWidget*")
+  (parameters
+    '("gint" "min_year")
+    '("gint" "max_year")
+  )
+)
+
+(define-method select_month
+  (of-object "HildonDateSelector")
+  (c-name "hildon_date_selector_select_month")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "month")
+    '("guint" "year")
+  )
+)
+
+(define-method select_day
+  (of-object "HildonDateSelector")
+  (c-name "hildon_date_selector_select_day")
+  (return-type "none")
+  (parameters
+    '("guint" "day")
+  )
+)
+
+(define-method select_current_date
+  (of-object "HildonDateSelector")
+  (c-name "hildon_date_selector_select_current_date")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "year")
+    '("guint" "month")
+    '("guint" "day")
+  )
+)
+
+(define-method get_date
+  (of-object "HildonDateSelector")
+  (c-name "hildon_date_selector_get_date")
+  (return-type "none")
+  (parameters
+    '("guint*" "year")
+    '("guint*" "month")
+    '("guint*" "day")
+  )
+)
+
+
