@@ -12,7 +12,6 @@
     <title>{{ project }} &mdash; {{ title }}</title>
     <link rel="stylesheet" href="{{ pathto('_static/pymaemo.css', 1) }}" type="text/css" />
     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
-    <link rel="stylesheet" href="{{ pathto('_static/highslide/highslide.css', 1) }}" type="text/css" />
 
     {%- if not embedded %}
     <script type="text/javascript">
@@ -23,45 +22,11 @@
         FILE_SUFFIX: '{{ file_suffix }}',
         HAS_SOURCE:  {{ has_source|lower }}
     };
-    function preLoadImages() {
-        // create object
-        imageObj = new Image();
-        // set image list
-        images = [
-            "./_static/bt_devel_normal.jpg",
-            "./_static/bt_devel_over.jpg",
-            "./_static/bt_devel_selected.jpg",
-            "./_static/bt_faq_normal.jpg",
-            "./_static/bt_faq_over.jpg",
-            "./_static/bt_faq_selected.jpg",
-            "./_static/bt_get_normal.jpg",
-            "./_static/bt_get_over.jpg",
-            "./_static/bt_get_selected.jpg",
-            "./_static/bt_install_normal.jpg",
-            "./_static/bt_install_over.jpg",
-            "./_static/bt_install_selected.jpg",
-            "./_static/bt_news_normal.jpg",
-            "./_static/bt_news_over.jpg",
-            "./_static/bt_news_selected.jpg",
-            "./_static/bt_screen_normal.jpg",
-            "./_static/bt_screen_over.jpg",
-            "./_static/bt_screen_selected.jpg",
-            "./_static/bt_search.jpg"
-        ];
-
-        // start preloading
-        for(i=0; i < images.length; i++)
-            imageObj.src=images[i];
-    }
     </script>
     {%- for scriptfile in script_files %}
     <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
     {%- endfor %}
     {%- if pagename == "screenshots" %}
-    <script type="text/javascript" src="_static/highslide/highslide.js"></script>
-    <script type="text/javascript">
-        hs.graphicsDir = '_static/highslide/graphics/';
-    </script>
     {%- endif %}
     <!--[if lt IE 7]>
     <style media="screen" type="text/css">
@@ -106,7 +71,7 @@
 {%- endblock %}
 {%- block extrahead %} {% endblock %}
   </head>
-  <body onload="preLoadImages()" id="{{ pagename }}">
+  <body id="{{ pagename }}">
 {%- block header %}{% endblock %}
 
 <div id="container">
