@@ -1,6 +1,13 @@
+python-setuptools (0.6c9-1maemo2) unstable; urgency=low
+
+  * debian/rules: make easy_install always be called with the default Python
+    version (/usr/bin/pythonX.Y).
+
+ -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 21 Oct 2009 20:18:35 -0400
+
 python-setuptools (0.6c9-1maemo1) unstable; urgency=low
 
-  * New release from jaunty 
+  * New release from jaunty
   * debian/control:
     + Remove "Uploaders" field (not applicable to maemo).
     + Put the pymaemo-developers mailing list address in "Maintainer" field and
