@@ -1,7 +1,7 @@
 python-setuptools (0.6c9-1maemo2) unstable; urgency=low
 
   * debian/rules: make easy_install always be called with the default Python
-    version (/usr/bin/pythonX.Y).
+    version (/usr/bin/pythonX.Y). Fixes: MB#5275.
 
  -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Wed, 21 Oct 2009 20:18:35 -0400
 
