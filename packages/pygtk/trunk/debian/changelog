@@ -1,3 +1,9 @@
+pygtk (2.12.1-6maemo9) unstable; urgency=low
+
+  * Update gtk.Dialog with Maemo changes (Fixes: MB#5154) 
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@indt.org.br>  Fri, 23 Oct 2009 13:57:08 -0400
+
 pygtk (2.12.1-6maemo8) unstable; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
