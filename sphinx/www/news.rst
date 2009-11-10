@@ -1,6 +1,33 @@
 News
 ****
 
+PyMaemo final release for Maemo 5 *2009-11-10*
+----------------------------------------------
+
+Removed packages:
+
+* libffi
+* pyid3lib
+
+Updated packages:
+
+* pygobjec (2.16.1-1maemo1)
+* pygt (2.12.1-6maemo9)
+* python-hildondeskto (0.1.0-1maemo1)
+* python-setuptool (0.6c9-1maemo2)
+* python-xm (0.8.4-10.1maemo4)
+
+Bugs closed:
+
+* MB#5091
+* MB#5141
+* MB#5154
+* MB#5232
+* MB#5275
+* MB#5467
+
+See http://lists.maemo.org/pipermail/maemo-developers/2009-November/022322.html for details.
+
 PyMaemo release candidate for Maemo 5 *2009-10-15*
 --------------------------------------------------
 
