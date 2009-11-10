@@ -1,0 +1,35 @@
+Source: python-setuptools
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends-Indep: debhelper (>= 5.0.37.1), python-all-dev, python-central (>= 0.6.11)
+XS-Python-Version: 2.5
+Standards-Version: 3.8.0
+
+Package: python-setuptools
+Architecture: all
+Depends: ${python:Depends}, python-pkg-resources (= ${source:Version})
+Conflicts: python2.3-setuptools (<< 0.6b2), python2.4-setuptools (<< 0.6b2), python2.5-setuptools (<< 0.6c8-4maemo1)
+Replaces: python2.3-setuptools, python2.4-setuptools, python2.5-setuptools (<< 0.6c8-4maemo1)
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Python Distutils Enhancements
+ Extensions to the python-distutils for large or complex distributions.
+
+Package: python-pkg-resources
+Architecture: all
+Depends: ${python:Depends}
+Conflicts: python2.3-setuptools (<< 0.6b2), python2.4-setuptools (<< 0.6b2), python-setuptools (<< 0.6c8-3), python2.5-setuptools (<< 0.6c8-4maemo1)
+Replaces: python2.3-setuptools, python2.4-setuptools, python2.5-setuptools (<< 0.6c8-4maemo1)
+Provides: ${python:Provides}
+Suggests: python-setuptools
+XB-Python-Version: ${python:Versions}
+Description: Package Discovery and Resource Access using pkg_resources
+ The pkg_resources module provides an API for Python libraries to
+ access their resource files, and for extensible applications and
+ frameworks to automatically discover plugins.  It also provides
+ runtime support for using C extensions that are inside zipfile-format
+ eggs, support for merging packages that have separately-distributed
+ modules or subpackages, and APIs for managing Python's current
+ "working set" of active packages.
