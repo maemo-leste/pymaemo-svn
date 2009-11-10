@@ -1,0 +1,73 @@
+#! /bin/sh -e
+
+# DP:
+
+# remove the next line
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p1 < $0
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p1 < $0
+        ;;
+    *)
+	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+Index: python-xml-0.8.4/test/dom/html/test_map.py
+===================================================================
+--- python-xml-0.8.4.orig/test/dom/html/test_map.py	2009-06-22 14:38:08.000000000 -0400
++++ python-xml-0.8.4/test/dom/html/test_map.py	2009-06-22 14:38:20.000000000 -0400
+@@ -13,9 +13,9 @@
+     print "testing get/set"
+     m.appendChild(a);
+     print "get Areas"
+-    as = m._get_areas()
++    as1 = m._get_areas()
+ 
+-    if as[0].nodeName != a.nodeName:
++    if as1[0].nodeName != a.nodeName:
+         error('getAreas failed')
+ 
+ 
+Index: python-xml-0.8.4/xml/xpath/ParsedAbbreviatedAbsoluteLocationPath.py
+===================================================================
+--- python-xml-0.8.4.orig/xml/xpath/ParsedAbbreviatedAbsoluteLocationPath.py	2009-06-22 14:38:29.000000000 -0400
++++ python-xml-0.8.4/xml/xpath/ParsedAbbreviatedAbsoluteLocationPath.py	2009-06-22 14:38:44.000000000 -0400
+@@ -24,8 +24,8 @@
+         self._rel = rel
+         nt = ParsedNodeTest.ParsedNodeTest('node', '')
+         ppl = ParsedPredicateList.ParsedPredicateList([])
+-        as = ParsedAxisSpecifier.ParsedAxisSpecifier('descendant-or-self')
+-        self._step = ParsedStep.ParsedStep(as, nt, ppl)
++        as1 = ParsedAxisSpecifier.ParsedAxisSpecifier('descendant-or-self')
++        self._step = ParsedStep.ParsedStep(as1, nt, ppl)
+         return
+ 
+     def evaluate(self, context):
+Index: python-xml-0.8.4/xml/xpath/ParsedAbbreviatedRelativeLocationPath.py
+===================================================================
+--- python-xml-0.8.4.orig/xml/xpath/ParsedAbbreviatedRelativeLocationPath.py	2009-06-22 14:39:53.000000000 -0400
++++ python-xml-0.8.4/xml/xpath/ParsedAbbreviatedRelativeLocationPath.py	2009-06-22 14:40:03.000000000 -0400
+@@ -28,8 +28,8 @@
+         self._right = right
+         nt = ParsedNodeTest.ParsedNodeTest('node','')
+         ppl = ParsedPredicateList.ParsedPredicateList([])
+-        as = ParsedAxisSpecifier.ParsedAxisSpecifier('descendant-or-self')
+-        self._middle = ParsedStep.ParsedStep(as, nt, ppl)
++        as1 = ParsedAxisSpecifier.ParsedAxisSpecifier('descendant-or-self')
++        self._middle = ParsedStep.ParsedStep(as1, nt, ppl)
+ 
+     def evaluate(self, context):
+         res = []
