@@ -1,0 +1,53 @@
+--- gtk/gtk.override.orig	2008-06-07 14:13:22.259007849 +0200
++++ gtk/gtk.override	2008-06-07 15:07:41.158504434 +0200
+@@ -37,6 +37,8 @@
+ 
+ #include "pygtk-private.h"
+ 
++#include <fcntl.h>
++
+ #define PYGTK_CONTAINER_FOREACH 0
+ #define PYGTK_CONTAINER_FORALL 1
+ #define countof(array) (sizeof(array)/sizeof(array[0]))
+@@ -1068,7 +1070,10 @@
+ pygtk_main_watch_prepare(GSource *source,
+ 			 int     *timeout)
+ {
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
+     PySignalWatchSource *real_source = (PySignalWatchSource *)source;
++    int flag;
++#endif
+ 
+     /* Python only invokes signal handlers from the main thread,
+      * so if a thread other than the main thread receives the signal
+@@ -1102,6 +1107,11 @@
+     real_source->fd.events = G_IO_IN | G_IO_HUP | G_IO_ERR;
+     g_source_add_poll(source, &real_source->fd);
+ 
++    /* Make the read end of the fd non blocking */
++    flag = fcntl(real_source->fds[0], F_GETFL, 0);
++    flag |= O_NONBLOCK;
++    fcntl(real_source->fds[0], F_SETFL, flag);
++
+     PySignal_SetWakeupFd(real_source->fds[1]);
+ 
+ #else /* !HAVE_PYSIGNAL_SETWAKEUPFD */
+@@ -1121,8 +1131,18 @@
+ {
+     PyGILState_STATE state;
+ 
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
++    PySignalWatchSource *real_source = (PySignalWatchSource *)source;
++    char buf[1];
++#endif
++
+     state = pyg_gil_state_ensure();
+ 
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
++    if (real_source->fds[0])
++        read(real_source->fds[0], &buf, 1);
++#endif
++
+     if (PyErr_CheckSignals() == -1 && gtk_main_level() > 0) {
+ 	PyErr_SetNone(PyExc_KeyboardInterrupt);
+ 	gtk_main_quit();

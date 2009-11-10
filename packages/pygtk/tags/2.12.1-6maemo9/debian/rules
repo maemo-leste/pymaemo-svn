@@ -1,0 +1,177 @@
+#!/usr/bin/make -f
+
+TEAM_LIST = $(CURDIR)/debian/pkg-gnome.team
+
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
+-include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
+
+CFLAGS += -Wall -g -O$(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),0,2)
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+configure_flags += --prefix=/usr --enable-thread --build=$(DEB_BUILD_GNU_TYPE)
+
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
+endif
+
+PYVERS := $(shell pyversions --requested --version debian/control)
+PYDEFAULTVER := $(shell pyversions --default --version)
+
+with_glade = yes
+with_doc = no
+with_tests = no
+
+ifneq ($(with_glade),yes)
+NOPKGS += -Npython-glade2
+endif
+
+ifneq ($(with_doc),yes)
+NOPKGS += -Npython-gtk2-doc
+endif
+
+ifneq ($(with_tests),yes)
+NOPKGS += -Npython-gtk2-tests
+endif
+
+export DH_OPTIONS = $(NOPKGS)
+
+build-%/configure-stamp: apply-patches
+	dh_testdir
+	mkdir -p build-$*
+	cd build-$* && \
+		PYTHON=/usr/bin/python$* CFLAGS="$(CFLAGS)" \
+			$(CURDIR)/configure $(configure_flags)
+	touch $@
+
+build-%/build-stamp: build-%/configure-stamp
+	dh_testdir
+	#environment fix for using the correct version of python
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$*
+	touch $@
+
+build: $(PYVERS:%=build-%/build-stamp)
+
+install-clean:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+install-%: build-%/build-stamp
+	dh_testdir
+	dh_testroot
+	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/tmp
+	# move installed files to a per python runtime location to allow
+	# comparison of the resulting files across runtimes or shipping
+	# multiple versions
+	# pkg-config file (this is shipped twice because of varying pyexecdir)
+	mkdir debian/tmp/usr/lib/pkgconfig/python$*
+	mv debian/tmp/usr/lib/pkgconfig/*.pc debian/tmp/usr/lib/pkgconfig/python$*
+	# codegen helper, should be the same code whatever the build-time
+	# python runtime
+	mkdir debian/tmp/usr/share/pygtk/2.0/codegen/python$*
+	mv debian/tmp/usr/share/pygtk/2.0/codegen/*.py debian/tmp/usr/share/pygtk/2.0/codegen/python$*
+	# defs files, should be the same whatever the build-time python runtime
+	mkdir debian/tmp/usr/share/pygtk/2.0/defs/python$*
+	mv debian/tmp/usr/share/pygtk/2.0/defs/*.defs debian/tmp/usr/share/pygtk/2.0/defs/python$*
+	# headers, should be the same whatever the build-time python runtime
+	mkdir debian/tmp/usr/include/python$*
+	mv debian/tmp/usr/include/pygtk-2.0 debian/tmp/usr/include/python$*
+
+install: build install-clean $(PYVERS:%=install-%)
+	# check that all builds with various Python runtimes produced the same
+	# *.defs files and codegen (or fail)
+	for v in $(PYVERS); do \
+	    echo "Comparing defs files for the default Python version ($(PYDEFAULTVER)) with defs files for Python $$v"; \
+	    diff --brief --recursive debian/tmp/usr/share/pygtk/2.0/defs/python$(PYDEFAULTVER) debian/tmp/usr/share/pygtk/2.0/defs/python$$v; \
+	    echo "Comparing codegen for the default Python version ($(PYDEFAULTVER)) with codegen for Python $$v"; \
+	    diff --brief --recursive debian/tmp/usr/share/pygtk/2.0/codegen/python$(PYDEFAULTVER) debian/tmp/usr/share/pygtk/2.0/codegen/python$$v; \
+	    echo "Comparing headers for the default Python version ($(PYDEFAULTVER)) with headers for Python $$v"; \
+	    diff --brief --recursive debian/tmp/usr/include/python$(PYDEFAULTVER) debian/tmp/usr/include/python$$v; \
+	done
+	# since all Python runtimes produced the same files, only keep one set
+	echo "Cleaning up"
+	mv debian/tmp/usr/share/pygtk/2.0/defs/python$(PYDEFAULTVER)/*.defs debian/tmp/usr/share/pygtk/2.0/defs
+	mv debian/tmp/usr/share/pygtk/2.0/codegen/python$(PYDEFAULTVER)/*.py debian/tmp/usr/share/pygtk/2.0/codegen
+	mv debian/tmp/usr/include/python$(PYDEFAULTVER)/* debian/tmp/usr/include
+	for v in $(PYVERS); do \
+	    rm --force --recursive debian/tmp/usr/share/pygtk/2.0/defs/python$$v; \
+	    rm --force --recursive debian/tmp/usr/share/pygtk/2.0/codegen/python$$v; \
+	    rm --force --recursive debian/tmp/usr/share/include/python$$v; \
+	done
+	
+ifeq ($(with_tests),yes)
+	#python-gtk2-tests
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/python-gtk2-tests
+	cp $(CURDIR)/debian/api_dump.py $(CURDIR)/debian/tmp/usr/share/python-gtk2-tests
+	cp $(CURDIR)/debian/runtests.sh $(CURDIR)/debian/tmp/usr/share/python-gtk2-tests
+	cp $(CURDIR)/debian/gtk_baseline.txt $(CURDIR)/debian/tmp/usr/share/python-gtk2-tests
+	cp $(CURDIR)/debian/api_helper.py $(CURDIR)/debian/tmp/usr/share/python-gtk2-tests
+	chmod u+x $(CURDIR)/debian/tmp/usr/share/python-gtk2-tests/runtests.sh
+	dh_install -ppython-gtk2-tests
+endif
+	# finally, install files from DESTDIR in the per-package dirs
+	dh_install
+	# install rtupdate script to handle Python default runtime change
+	install -d debian/python-gtk2-dev/usr/share/python/runtime.d
+	install debian/python-gtk2-dev.rtupdate debian/python-gtk2-dev/usr/share/python/runtime.d
+
+
+clean:: reverse-patches
+	dh_testdir
+	dh_testroot
+	rm -Rf debian/tmp-*
+	rm -Rf build-*
+	-test -f config.sub && \
+	  test -r /usr/share/misc/config.sub && \
+	  cp -f /usr/share/misc/config.sub config.sub
+	-test -f config.guess && \
+	  test -r /usr/share/misc/config.guess && \
+	  cp -f /usr/share/misc/config.guess config.guess
+	dh_clean codegen/*.pyc
+	#remove stray .svn dirs
+	find docs -name .svn | xargs rm -fr
+	#remove .pyo files generated in the last build; does nothing if the package is being built for the first time
+	find . -name "*.py[co]" | xargs rm -fr
+
+# Build architecture-independent files here.
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs -i
+	dh_installexamples -i
+	find debian/python-gtk2-doc/usr/share/doc -name '*.py[co]' | xargs rm -rf
+	dh_installchangelogs ChangeLog -i
+	dh_link -i
+	dh_compress -i -X.py -X.glade
+	dh_fixperms -i
+	# More permission fixing
+	chmod 755 `grep -rl "^#\!.*python" debian/python-gtk2-dev/usr`
+	dh_pysupport -i /usr/share/pygtk/2.0/codegen/
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs -s
+	dh_installexamples -s
+	dh_installchangelogs ChangeLog -s
+	dh_strip -s
+	dh_link -s
+	dh_compress -s -X.py -X.glade
+	dh_fixperms -s
+	dh_pysupport -s
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install

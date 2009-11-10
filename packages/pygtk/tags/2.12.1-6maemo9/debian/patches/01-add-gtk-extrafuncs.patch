@@ -1,0 +1,23 @@
+Index: pygtk-2.12.0/gtk/gtk-extrafuncs.defs
+===================================================================
+--- pygtk-2.12.0.orig/gtk/gtk-extrafuncs.defs	2007-09-15 12:00:42.000000000 -0300
++++ pygtk-2.12.0/gtk/gtk-extrafuncs.defs	2007-11-27 17:28:46.000000000 -0300
+@@ -126,3 +126,18 @@
+   (return-type "GtkCellRenderer*")
+ )
+ 
++;; glib functions
++
++(define-function set_application_name
++  (c-name "g_set_application_name")
++  (return-type "none")
++  (parameters
++    '("const-gchar*" "application")
++  )
++)
++
++(define-function get_application_name
++  (c-name "g_get_application_name")
++  (return-type "const-gchar*")
++)
++
