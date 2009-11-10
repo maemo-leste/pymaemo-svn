@@ -11,11 +11,11 @@ Removed packages:
 
 Updated packages:
 
-* pygobjec (2.16.1-1maemo1)
-* pygt (2.12.1-6maemo9)
-* python-hildondeskto (0.1.0-1maemo1)
-* python-setuptool (0.6c9-1maemo2)
-* python-xm (0.8.4-10.1maemo4)
+* pygobject (2.16.1-1maemo1)
+* pygtk (2.12.1-6maemo9)
+* python-hildondesktop (0.1.0-1maemo1)
+* python-setuptools (0.6c9-1maemo2)
+* python-xml (0.8.4-10.1maemo4)
 
 Bugs closed:
 
