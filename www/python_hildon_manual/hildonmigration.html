@@ -5,45 +5,118 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Migration &mdash; Hildon Reference Manual v documentation</title>
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <title>Hildon Reference Manual &mdash; Migration</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
+    var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
         VERSION:     '',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
-      };
+    };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
     <link rel="top" title="Hildon Reference Manual v documentation" href="index.html" />
     <link rel="prev" title="Hildon Widgets and Objects" href="hildonobjects.html" /> 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             accesskey="M">modules</a> |</li>
-        <li class="right" >
-          <a href="hildonobjects.html" title="Hildon Widgets and Objects"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body id="hildonmigration">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+        <ul id="relbar">
+            <li class="right">
+            <a href="genindex.html" title="General Index"
+                accesskey="I">index</a></li>
+            <li class="right">
+            <a href="modindex.html" title="Global Module Index"
+                accesskey="M">modules</a> |</li>
+            <li class="right">
+            <a href="hildonobjects.html" title="Hildon Widgets and Objects"
+                accesskey="P">previous</a> |</li>
+            <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
+        </ul>
+    </div>
+</div>
+
+<div id="body" >
+    <div id="sidebar">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference" href="">Migration</a><ul>
+<li><a class="reference" href="#control-bar">Control Bar</a><ul>
+<li><a class="reference" href="#migrating-control-bars">Migrating Control Bars</a></li>
+<li><a class="reference" href="#a-typical-control-bar">A Typical Control Bar</a></li>
+<li><a class="reference" href="#a-replacement-for-the-control-bar">A Replacement for the Control Bar</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#volume-bar">Volume Bar</a><ul>
+<li><a class="reference" href="#migrating-volume-bars">Migrating Volume Bars</a></li>
+<li><a class="reference" href="#a-typical-volume-bar">A Typical Volume Bar</a></li>
+<li><a class="reference" href="#a-replacement-for-the-volume-bar">A Replacement for the Volume Bar</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#date-widgets">Date Widgets</a><ul>
+<li><a class="reference" href="#migrating-date-widgets">Migrating Date Widgets</a></li>
+<li><a class="reference" href="#a-typical-calendar-popup">A Typical Calendar Popup</a></li>
+<li><a class="reference" href="#a-typical-date-editor">A Typical Date Editor</a></li>
+<li><a class="reference" href="#a-replacement-for-the-calendar-popup">A Replacement for the Calendar Popup</a></li>
+<li><a class="reference" href="#weekday-picker">Weekday Picker</a></li>
+<li><a class="reference" href="#a-typical-weekday-picker">A Typical Weekday Picker</a></li>
+<li><a class="reference" href="#a-replacement-for-the-weekday-picker">A Replacement for the Weekday Picker</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#time-widgets">Time Widgets</a><ul>
+<li><a class="reference" href="#migrating-time-widgets">Migrating Time Widgets</a></li>
+<li><a class="reference" href="#a-typical-time-picker">A Typical Time Picker</a></li>
+<li><a class="reference" href="#a-typical-time-editor">A Typical Time Editor</a></li>
+<li><a class="reference" href="#a-replacement-for-the-time-picker">A Replacement for the Time Picker</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#number-widgets">Number Widgets</a><ul>
+<li><a class="reference" href="#migrating-number-widgets">Migrating Number Widgets</a></li>
+<li><a class="reference" href="#a-typical-number-editor">A Typical Number Editor</a></li>
+<li><a class="reference" href="#a-replacement-for-the-number-editor">A Replacement for the Number Editor</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#hildon-dialogs">Hildon Dialogs</a><ul>
+<li><a class="reference" href="#migrating-hildon-dialogs">Migrating Hildon Dialogs</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#sort-dialogs">Sort Dialogs</a><ul>
+<li><a class="reference" href="#migrating-sort-dialogs">Migrating Sort Dialogs</a></li>
+<li><a class="reference" href="#id1">A Typical Number Editor</a></li>
+<li><a class="reference" href="#id2">A Replacement for the Number Editor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hildonobjects.html"
+                                  title="previous chapter">Hildon Widgets and Objects</a></p>
+
+    </div>
+    
   <div class="section" id="migration">
 <span id="hildonmigration"></span><h1>Migration<a class="headerlink" href="#migration" title="Permalink to this headline">¶</a></h1>
 <p>This section helps you migrate widgets that are deprecated by providing an alternative to them. Most sections have examples of how a given deprecated widget was used and provide another example of how the functionality of that widget should be accomplished in newly written code.</p>
@@ -366,106 +439,12 @@ dialog.run()</pre>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference" href="">Migration</a><ul>
-<li><a class="reference" href="#control-bar">Control Bar</a><ul>
-<li><a class="reference" href="#migrating-control-bars">Migrating Control Bars</a></li>
-<li><a class="reference" href="#a-typical-control-bar">A Typical Control Bar</a></li>
-<li><a class="reference" href="#a-replacement-for-the-control-bar">A Replacement for the Control Bar</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#volume-bar">Volume Bar</a><ul>
-<li><a class="reference" href="#migrating-volume-bars">Migrating Volume Bars</a></li>
-<li><a class="reference" href="#a-typical-volume-bar">A Typical Volume Bar</a></li>
-<li><a class="reference" href="#a-replacement-for-the-volume-bar">A Replacement for the Volume Bar</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#date-widgets">Date Widgets</a><ul>
-<li><a class="reference" href="#migrating-date-widgets">Migrating Date Widgets</a></li>
-<li><a class="reference" href="#a-typical-calendar-popup">A Typical Calendar Popup</a></li>
-<li><a class="reference" href="#a-typical-date-editor">A Typical Date Editor</a></li>
-<li><a class="reference" href="#a-replacement-for-the-calendar-popup">A Replacement for the Calendar Popup</a></li>
-<li><a class="reference" href="#weekday-picker">Weekday Picker</a></li>
-<li><a class="reference" href="#a-typical-weekday-picker">A Typical Weekday Picker</a></li>
-<li><a class="reference" href="#a-replacement-for-the-weekday-picker">A Replacement for the Weekday Picker</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#time-widgets">Time Widgets</a><ul>
-<li><a class="reference" href="#migrating-time-widgets">Migrating Time Widgets</a></li>
-<li><a class="reference" href="#a-typical-time-picker">A Typical Time Picker</a></li>
-<li><a class="reference" href="#a-typical-time-editor">A Typical Time Editor</a></li>
-<li><a class="reference" href="#a-replacement-for-the-time-picker">A Replacement for the Time Picker</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#number-widgets">Number Widgets</a><ul>
-<li><a class="reference" href="#migrating-number-widgets">Migrating Number Widgets</a></li>
-<li><a class="reference" href="#a-typical-number-editor">A Typical Number Editor</a></li>
-<li><a class="reference" href="#a-replacement-for-the-number-editor">A Replacement for the Number Editor</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#hildon-dialogs">Hildon Dialogs</a><ul>
-<li><a class="reference" href="#migrating-hildon-dialogs">Migrating Hildon Dialogs</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#sort-dialogs">Sort Dialogs</a><ul>
-<li><a class="reference" href="#migrating-sort-dialogs">Migrating Sort Dialogs</a></li>
-<li><a class="reference" href="#id1">A Typical Number Editor</a></li>
-<li><a class="reference" href="#id2">A Replacement for the Number Editor</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="hildonobjects.html"
-                                  title="previous chapter">Hildon Widgets and Objects</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="_sources/hildonmigration.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="hildonobjects.html" title="Hildon Widgets and Objects"
-             >previous</a> |</li>
-        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-      &copy; Copyright , .
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
-    </div>
-  </body>
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
 </html>

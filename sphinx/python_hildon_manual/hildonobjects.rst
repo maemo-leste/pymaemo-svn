@@ -1568,18 +1568,14 @@ Note implements :class:`atk.ImplementorIface` and :class:`gtk.Buildable` .
 Description
 ===========
 
-:class:`Note` is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a progress bar.
+:class:`Note` is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a :class:`gtk.ProgressBar`.
 
-This widget provides convenient functions to create either information notes, confirmation notes or cancel notes, which are useful to show the progress of a requested task allowing the user to cancel it.
-
-To create information notes you can use :func:`hildon_note_new_information` . :func:`hildon_note_new_confirmation` creates a note with a text and two buttons to confirm or cancel.
-
-To create a note with a text, a progress bar and cancel button, :func:`hildon_note_new_cancel_with_progress_bar` can be used.
+This widget provides convenient methods to create either information notes, confirmation notes or cancel notes, which are useful to show the progress of a requested task allowing the user to cancel it.
 
 ::
 
   def show_confirmation_note(parent):
-      note = hildon.hildon_note_new_confirmation(parent, "Confirmation message...")
+      note = hildon.Note("confirmation", parent, "Confirmation message...")
   
       retcode = gtk.Dialog.run(note)
   
@@ -1594,55 +1590,22 @@ To create a note with a text, a progress bar and cancel button, :func:`hildon_no
 Details
 =======
 
-.. function:: hildon_note_new_confirmation (parent, description)
-
-    Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
-
-    :param parent:the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
-    :param description: the message to confirm
-    :returns: a :class:`gtk.Widget` pointer of the note
-
-.. function:: hildon_note_new_confirmation_with_icon_name (parent, description, icon_name)
-
-    .. warning:: :func:`hildon_note_new_confirmation_with_icon_name` is deprecated and should not be used in newly-written code. Since Hildon 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use :func:`hildon_note_new_confirmation` instead.
-
-    Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.
-
-    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
-    :param description: the message to confirm
-    :param icon_name: icon to be displayed. If NULL, default icon is used.
-    :returns: a :class:`gtk.Widget` pointer of the note
-
-.. function:: hildon_note_new_cancel_with_progress_bar (parent, description, progressbar)
-
-    Create a new cancel note with a progress bar. Cancel note has text(description) that you specify, a Cancel button and a progress bar.
-
-    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
-    :param description: the action to cancel
-    :param progressbar: a pointer to :class:`gtk.ProgressBar` to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.
-    :returns: a :class:`gtk.Dialog` . Use this to get rid of this note when you no longer need it.
-
-.. function:: hildon_note_new_information (parent, description)
-
-    Create a new information note. Information note has a text (description) that you specify and an OK button.
-
-    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
-    :param description: the message to confirm
-    :returns: a :class:`gtk.Widget` pointer of the note
-
-.. function:: hildon_note_new_information_with_icon_name (parent, description, icon_name)
-
-    .. warning:: :func:`hildon_note_new_information_with_icon_name` is deprecated and should not be used in newly-written code. Since Hildon 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use :func:`hildon_note_new_information` instead.
-
-    Create a new information note. Information note has text(description) that you specify, an OK button and an icon.
-
-    :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
-    :param description: the message to confirm
-    :param icon_name: icon to be displayed. If NULL, default icon is used.
-    :returns: a :class:`gtk.Widget` pointer of the note
-
-
 .. class:: Note
+
+    .. method:: __init__ (note_type, parent, description, icon_name=None, progressbar=None)
+
+        .. note:: :class:`Note` constructor has changed API since Diablo.
+
+        Creates a new :class:`Note`.
+
+        :param note_type: type of note to be created. Can be one of "confirmation", "information" and "cancel".
+        :param parent: the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
+        :param description: the message to be displayed on the note.
+        :param icon_name: icon to be displayed. If None, default icon is used.
+        :param progressbar: a :class:`gtk.ProgressBar` assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.
+
+        :returns:
+          A newly created :class:`Note`.
 
     .. method:: set_button_text (text)
 

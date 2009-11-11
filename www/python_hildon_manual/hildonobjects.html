@@ -5,49 +5,309 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Hildon Widgets and Objects &mdash; Hildon Reference Manual v documentation</title>
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <title>Hildon Reference Manual &mdash; Hildon Widgets and Objects</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
+    var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
         VERSION:     '',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
-      };
+    };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
     <link rel="top" title="Hildon Reference Manual v documentation" href="index.html" />
     <link rel="next" title="Migration" href="hildonmigration.html" />
     <link rel="prev" title="Hildon Core Reference" href="hildonbase.html" /> 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             accesskey="M">modules</a> |</li>
-        <li class="right" >
-          <a href="hildonmigration.html" title="Migration"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="hildonbase.html" title="Hildon Core Reference"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body id="hildonobjects">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+        <ul id="relbar">
+            <li class="right">
+            <a href="genindex.html" title="General Index"
+                accesskey="I">index</a></li>
+            <li class="right">
+            <a href="modindex.html" title="Global Module Index"
+                accesskey="M">modules</a> |</li>
+            <li class="right">
+            <a href="hildonmigration.html" title="Migration"
+                accesskey="N">next</a> |</li>
+            <li class="right">
+            <a href="hildonbase.html" title="Hildon Core Reference"
+                accesskey="P">previous</a> |</li>
+            <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
+        </ul>
+    </div>
+</div>
+
+<div id="body" >
+    <div id="sidebar">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference" href="">Hildon Widgets and Objects</a><ul>
+<li><a class="reference" href="#window">Window</a><ul>
+<li><a class="reference" href="#object-hierarchy">Object Hierarchy</a></li>
+<li><a class="reference" href="#implemented-interfaces">Implemented Interfaces</a></li>
+<li><a class="reference" href="#signals">Signals</a></li>
+<li><a class="reference" href="#description">Description</a></li>
+<li><a class="reference" href="#creating-a-window">Creating a Window</a></li>
+<li><a class="reference" href="#details">Details</a></li>
+<li><a class="reference" href="#properties">Properties</a></li>
+<li><a class="reference" href="#style-properties">Style Properties</a></li>
+<li><a class="reference" href="#signal-details">Signal Details</a></li>
+<li><a class="reference" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#stackablewindow">StackableWindow</a><ul>
+<li><a class="reference" href="#id2">Object Hierarchy</a></li>
+<li><a class="reference" href="#id3">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id4">Description</a></li>
+<li><a class="reference" href="#basic-stackablewindow-example">Basic <tt class="docutils literal"><span class="pre">StackableWindow</span></tt> example</a></li>
+<li><a class="reference" href="#id5">Details</a></li>
+<li><a class="reference" href="#id6">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#windowstack">WindowStack</a><ul>
+<li><a class="reference" href="#id7">Object Hierarchy</a></li>
+<li><a class="reference" href="#id8">Description</a></li>
+<li><a class="reference" href="#id9">Details</a></li>
+<li><a class="reference" href="#id10">Properties</a></li>
+<li><a class="reference" href="#id11">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#button">Button</a><ul>
+<li><a class="reference" href="#button-object-hierarchy">Object Hierarchy</a></li>
+<li><a class="reference" href="#button-implemented-interfaces">Implemented Interfaces</a></li>
+<li><a class="reference" href="#button-description">Description</a></li>
+<li><a class="reference" href="#creating-a-button">Creating a Button</a></li>
+<li><a class="reference" href="#button-details">Details</a></li>
+<li><a class="reference" href="#button-property-details">Properties</a></li>
+<li><a class="reference" href="#id18">Style Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#checkbutton">CheckButton</a><ul>
+<li><a class="reference" href="#id20">Object Hierarchy</a></li>
+<li><a class="reference" href="#id21">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id22">Description</a></li>
+<li><a class="reference" href="#using-a-hildon-check-button">Using a Hildon check button</a></li>
+<li><a class="reference" href="#id23">Details</a></li>
+<li><a class="reference" href="#id24">Style Properties</a></li>
+<li><a class="reference" href="#id25">Signal Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#pickerbutton">PickerButton</a><ul>
+<li><a class="reference" href="#id26">Object Hierarchy</a></li>
+<li><a class="reference" href="#id27">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id28">Description</a></li>
+<li><a class="reference" href="#id29">Details</a></li>
+<li><a class="reference" href="#id30">Properties</a></li>
+<li><a class="reference" href="#id31">Signal Details</a></li>
+<li><a class="reference" href="#id32">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#datebutton">DateButton</a><ul>
+<li><a class="reference" href="#id33">Object Hierarchy</a></li>
+<li><a class="reference" href="#id34">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id35">Description</a></li>
+<li><a class="reference" href="#id36">Details</a></li>
+<li><a class="reference" href="#id37">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#timebutton">TimeButton</a><ul>
+<li><a class="reference" href="#id38">Object Hierarchy</a></li>
+<li><a class="reference" href="#id39">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id40">Description</a></li>
+<li><a class="reference" href="#id41">Details</a></li>
+<li><a class="reference" href="#id42">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#caption">Caption</a><ul>
+<li><a class="reference" href="#id43">Object Hierarchy</a></li>
+<li><a class="reference" href="#id44">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id45">Description</a></li>
+<li><a class="reference" href="#id46">Details</a></li>
+<li><a class="reference" href="#id47">Properties</a></li>
+<li><a class="reference" href="#child-properties">Child Properties</a></li>
+<li><a class="reference" href="#id48">Signal Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#banner">Banner</a><ul>
+<li><a class="reference" href="#banner-object-hierarchy">Object Hierarchy</a></li>
+<li><a class="reference" href="#banner-implemented-interfaces">Implemented Interfaces</a></li>
+<li><a class="reference" href="#banner-description">Description</a></li>
+<li><a class="reference" href="#banner-details">Details</a></li>
+<li><a class="reference" href="#banner-property-details">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#note">Note</a><ul>
+<li><a class="reference" href="#id57">Object Hierarchy</a></li>
+<li><a class="reference" href="#id58">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id59">Description</a></li>
+<li><a class="reference" href="#id60">Details</a></li>
+<li><a class="reference" href="#id61">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#touchselector">TouchSelector</a><ul>
+<li><a class="reference" href="#id62">Object Hierarchy</a></li>
+<li><a class="reference" href="#id63">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id64">Description</a></li>
+<li><a class="reference" href="#creating-a-touchselector">Creating a TouchSelector</a></li>
+<li><a class="reference" href="#id65">Details</a></li>
+<li><a class="reference" href="#related-functions">Related Functions</a></li>
+<li><a class="reference" href="#id66">Properties</a></li>
+<li><a class="reference" href="#id67">Signal Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#touchselectorcolumn">TouchSelectorColumn</a><ul>
+<li><a class="reference" href="#id68">Object Hierarchy</a></li>
+<li><a class="reference" href="#id69">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id70">Description</a></li>
+<li><a class="reference" href="#id71">Details</a></li>
+<li><a class="reference" href="#id72">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#selectorentry">SelectorEntry</a><ul>
+<li><a class="reference" href="#id73">Object Hierarchy</a></li>
+<li><a class="reference" href="#id74">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id75">Description</a></li>
+<li><a class="reference" href="#id76">Details</a></li>
+<li><a class="reference" href="#id77">Related Functions</a></li>
+<li><a class="reference" href="#id78">Properties</a></li>
+<li><a class="reference" href="#id79">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#dateselector">DateSelector</a><ul>
+<li><a class="reference" href="#id80">Object Hierarchy</a></li>
+<li><a class="reference" href="#id81">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id82">Description</a></li>
+<li><a class="reference" href="#id83">Details</a></li>
+<li><a class="reference" href="#id84">Related Functions</a></li>
+<li><a class="reference" href="#id85">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#timeselector">TimeSelector</a><ul>
+<li><a class="reference" href="#id86">Object Hierarchy</a></li>
+<li><a class="reference" href="#id87">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id88">Description</a></li>
+<li><a class="reference" href="#id89">Details</a></li>
+<li><a class="reference" href="#id90">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#pannablearea">PannableArea</a><ul>
+<li><a class="reference" href="#pannablearea-object-hierarchy">Object Hierarchy</a></li>
+<li><a class="reference" href="#pannablearea-implemented-interfaces">Implemented Interfaces</a></li>
+<li><a class="reference" href="#pannablearea-description">Description</a></li>
+<li><a class="reference" href="#pannablearea-details">Details</a></li>
+<li><a class="reference" href="#functions">Functions</a></li>
+<li><a class="reference" href="#id95">Properties</a></li>
+<li><a class="reference" href="#id96">Style Properties</a></li>
+<li><a class="reference" href="#id97">Signal Details</a></li>
+<li><a class="reference" href="#id98">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#entry">Entry</a><ul>
+<li><a class="reference" href="#id99">Object Hierarchy</a></li>
+<li><a class="reference" href="#id100">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id101">Description</a></li>
+<li><a class="reference" href="#creating-a-entry-with-a-placeholder">Creating a Entry with a placeholder</a></li>
+<li><a class="reference" href="#id102">Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#textview">TextView</a><ul>
+<li><a class="reference" href="#id103">Object Hierarchy</a></li>
+<li><a class="reference" href="#id104">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id105">Description</a></li>
+<li><a class="reference" href="#creating-a-textview-with-a-placeholder">Creating a TextView with a placeholder</a></li>
+<li><a class="reference" href="#id106">Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#appmenu">AppMenu</a><ul>
+<li><a class="reference" href="#id107">Object Hierarchy</a></li>
+<li><a class="reference" href="#id108">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id109">Description</a></li>
+<li><a class="reference" href="#creating-a-appmenu">Creating a AppMenu</a></li>
+<li><a class="reference" href="#id110">Details</a></li>
+<li><a class="reference" href="#id111">Style Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#findtoolbar">FindToolbar</a><ul>
+<li><a class="reference" href="#id112">Object Hierarchy</a></li>
+<li><a class="reference" href="#id113">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id114">Description</a></li>
+<li><a class="reference" href="#id115">Details</a></li>
+<li><a class="reference" href="#id116">Properties</a></li>
+<li><a class="reference" href="#id117">Signal Details</a></li>
+<li><a class="reference" href="#id118">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#edittoolbar">EditToolbar</a><ul>
+<li><a class="reference" href="#id119">Object Hierarchy</a></li>
+<li><a class="reference" href="#id120">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id121">Description</a></li>
+<li><a class="reference" href="#edittoolbar-details">Details</a></li>
+<li><a class="reference" href="#id123">Style Properties</a></li>
+<li><a class="reference" href="#id124">Signal Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#wizarddialog">WizardDialog</a><ul>
+<li><a class="reference" href="#id125">Object Hierarchy</a></li>
+<li><a class="reference" href="#id126">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id127">Description</a></li>
+<li><a class="reference" href="#id128">Details</a></li>
+<li><a class="reference" href="#id129">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#pickerdialog">PickerDialog</a><ul>
+<li><a class="reference" href="#id130">Object Hierarchy</a></li>
+<li><a class="reference" href="#id131">Implemented Interfaces</a></li>
+<li><a class="reference" href="#id132">Description</a></li>
+<li><a class="reference" href="#id133">Details</a></li>
+<li><a class="reference" href="#id134">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#animationactor">AnimationActor</a><ul>
+<li><a class="reference" href="#id135">Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#remotetexture">RemoteTexture</a><ul>
+<li><a class="reference" href="#id136">Description</a></li>
+<li><a class="reference" href="#id137">Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hildonbase.html"
+                                  title="previous chapter">Hildon Core Reference</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="hildonmigration.html"
+                                  title="next chapter">Migration</a></p>
+
+    </div>
+    
   <div class="section" id="hildon-widgets-and-objects">
 <span id="module-hildon"></span><h1>Hildon Widgets and Objects<a class="headerlink" href="#hildon-widgets-and-objects" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="window">
@@ -2557,12 +2817,10 @@ screen. Allowed values: 10000</td>
 </div>
 <div class="section" id="id59">
 <h3>Description<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h3>
-<p><a title="hildon.Note" class="reference" href="#hildon.Note"><tt class="xref docutils literal"><span class="pre">Note</span></tt></a> is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a progress bar.</p>
-<p>This widget provides convenient functions to create either information notes, confirmation notes or cancel notes, which are useful to show the progress of a requested task allowing the user to cancel it.</p>
-<p>To create information notes you can use <a title="hildon.hildon_note_new_information" class="reference" href="#hildon.hildon_note_new_information"><tt class="xref docutils literal"><span class="pre">hildon_note_new_information()</span></tt></a> . <a title="hildon.hildon_note_new_confirmation" class="reference" href="#hildon.hildon_note_new_confirmation"><tt class="xref docutils literal"><span class="pre">hildon_note_new_confirmation()</span></tt></a> creates a note with a text and two buttons to confirm or cancel.</p>
-<p>To create a note with a text, a progress bar and cancel button, <a title="hildon.hildon_note_new_cancel_with_progress_bar" class="reference" href="#hildon.hildon_note_new_cancel_with_progress_bar"><tt class="xref docutils literal"><span class="pre">hildon_note_new_cancel_with_progress_bar()</span></tt></a> can be used.</p>
+<p><a title="hildon.Note" class="reference" href="#hildon.Note"><tt class="xref docutils literal"><span class="pre">Note</span></tt></a> is a convenient way to prompt users for a small amount of input. A simple note contains an information text and, in case of confirmation notes, it shows buttons to confirm or cancel. It also can include a <tt class="xref docutils literal"><span class="pre">gtk.ProgressBar</span></tt>.</p>
+<p>This widget provides convenient methods to create either information notes, confirmation notes or cancel notes, which are useful to show the progress of a requested task allowing the user to cancel it.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">show_confirmation_note</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
-    <span class="n">note</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">hildon_note_new_confirmation</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s">&quot;Confirmation message...&quot;</span><span class="p">)</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">hildon</span><span class="o">.</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;confirmation&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="s">&quot;Confirmation message...&quot;</span><span class="p">)</span>
 
     <span class="n">retcode</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Dialog</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
 
@@ -2577,114 +2835,38 @@ screen. Allowed values: 10000</td>
 </div>
 <div class="section" id="id60">
 <h3>Details<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="hildon.hildon_note_new_confirmation">
-<tt class="descclassname">hildon.</tt><tt class="descname">hildon_note_new_confirmation</tt><big>(</big><em>parent</em>, <em>description</em><big>)</big><a class="headerlink" href="#hildon.hildon_note_new_confirmation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.</p>
-<p>:param parent:the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.
-:param description: the message to confirm
-:returns: a <tt class="xref docutils literal"><span class="pre">gtk.Widget</span></tt> pointer of the note</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="hildon.hildon_note_new_confirmation_with_icon_name">
-<tt class="descclassname">hildon.</tt><tt class="descname">hildon_note_new_confirmation_with_icon_name</tt><big>(</big><em>parent</em>, <em>description</em>, <em>icon_name</em><big>)</big><a class="headerlink" href="#hildon.hildon_note_new_confirmation_with_icon_name" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.hildon_note_new_confirmation_with_icon_name" class="reference" href="#hildon.hildon_note_new_confirmation_with_icon_name"><tt class="xref docutils literal"><span class="pre">hildon_note_new_confirmation_with_icon_name()</span></tt></a> is deprecated and should not be used in newly-written code. Since Hildon 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use <a title="hildon.hildon_note_new_confirmation" class="reference" href="#hildon.hildon_note_new_confirmation"><tt class="xref docutils literal"><span class="pre">hildon_note_new_confirmation()</span></tt></a> instead.</p>
-</div>
-<p>Create a new confirmation note. Confirmation note has a text (description) that you specify and two buttons.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><em>parent</em> &#8211; the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.</li>
-<li><em>description</em> &#8211; the message to confirm</li>
-<li><em>icon_name</em> &#8211; icon to be displayed. If NULL, default icon is used.</li>
-</ul>
-</td>
-</tr>
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <tt class="xref docutils literal"><span class="pre">gtk.Widget</span></tt> pointer of the note</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="hildon.hildon_note_new_cancel_with_progress_bar">
-<tt class="descclassname">hildon.</tt><tt class="descname">hildon_note_new_cancel_with_progress_bar</tt><big>(</big><em>parent</em>, <em>description</em>, <em>progressbar</em><big>)</big><a class="headerlink" href="#hildon.hildon_note_new_cancel_with_progress_bar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new cancel note with a progress bar. Cancel note has text(description) that you specify, a Cancel button and a progress bar.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><em>parent</em> &#8211; the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.</li>
-<li><em>description</em> &#8211; the action to cancel</li>
-<li><em>progressbar</em> &#8211; a pointer to <tt class="xref docutils literal"><span class="pre">gtk.ProgressBar</span></tt> to be filled with the progressbar assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.</li>
-</ul>
-</td>
-</tr>
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <tt class="xref docutils literal"><span class="pre">gtk.Dialog</span></tt> . Use this to get rid of this note when you no longer need it.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="hildon.hildon_note_new_information">
-<tt class="descclassname">hildon.</tt><tt class="descname">hildon_note_new_information</tt><big>(</big><em>parent</em>, <em>description</em><big>)</big><a class="headerlink" href="#hildon.hildon_note_new_information" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new information note. Information note has a text (description) that you specify and an OK button.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><em>parent</em> &#8211; the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.</li>
-<li><em>description</em> &#8211; the message to confirm</li>
-</ul>
-</td>
-</tr>
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <tt class="xref docutils literal"><span class="pre">gtk.Widget</span></tt> pointer of the note</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="hildon.hildon_note_new_information_with_icon_name">
-<tt class="descclassname">hildon.</tt><tt class="descname">hildon_note_new_information_with_icon_name</tt><big>(</big><em>parent</em>, <em>description</em>, <em>icon_name</em><big>)</big><a class="headerlink" href="#hildon.hildon_note_new_information_with_icon_name" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><a title="hildon.hildon_note_new_information_with_icon_name" class="reference" href="#hildon.hildon_note_new_information_with_icon_name"><tt class="xref docutils literal"><span class="pre">hildon_note_new_information_with_icon_name()</span></tt></a> is deprecated and should not be used in newly-written code. Since Hildon 2.2, icons are not shown in confirmation notes. Icons set with this function will be ignored. Use <a title="hildon.hildon_note_new_information" class="reference" href="#hildon.hildon_note_new_information"><tt class="xref docutils literal"><span class="pre">hildon_note_new_information()</span></tt></a> instead.</p>
-</div>
-<p>Create a new information note. Information note has text(description) that you specify, an OK button and an icon.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><em>parent</em> &#8211; the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.</li>
-<li><em>description</em> &#8211; the message to confirm</li>
-<li><em>icon_name</em> &#8211; icon to be displayed. If NULL, default icon is used.</li>
-</ul>
-</td>
-</tr>
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <tt class="xref docutils literal"><span class="pre">gtk.Widget</span></tt> pointer of the note</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="class">
 <dt id="hildon.Note">
 <em class="property">class </em><tt class="descclassname">hildon.</tt><tt class="descname">Note</tt><a class="headerlink" href="#hildon.Note" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
+<dt id="hildon.Note.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>note_type</em>, <em>parent</em>, <em>description</em>, <em>icon_name=None</em>, <em>progressbar=None</em><big>)</big><a class="headerlink" href="#hildon.Note.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a title="hildon.Note" class="reference" href="#hildon.Note"><tt class="xref docutils literal"><span class="pre">Note</span></tt></a> constructor has changed API since Diablo.</p>
+</div>
+<p>Creates a new <a title="hildon.Note" class="reference" href="#hildon.Note"><tt class="xref docutils literal"><span class="pre">Note</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><em>note_type</em> &#8211; type of note to be created. Can be one of &#8220;confirmation&#8221;, &#8220;information&#8221; and &#8220;cancel&#8221;.</li>
+<li><em>parent</em> &#8211; the parent window. The X window ID of the parent window has to be the same as the X window ID of the application. This is important so that the window manager could handle the windows correctly.</li>
+<li><em>description</em> &#8211; the message to be displayed on the note.</li>
+<li><em>icon_name</em> &#8211; icon to be displayed. If None, default icon is used.</li>
+<li><em>progressbar</em> &#8211; a <tt class="xref docutils literal"><span class="pre">gtk.ProgressBar</span></tt> assigned to this note. Use this to set the fraction of progressbar done. This parameter can be None as well, in which case plain text cancel note appears.</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A newly created <a title="hildon.Note" class="reference" href="#hildon.Note"><tt class="xref docutils literal"><span class="pre">Note</span></tt></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="hildon.Note.set_button_text">
 <tt class="descname">set_button_text</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#hildon.Note.set_button_text" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the button text to be used by the hildon_note widget.</p>
@@ -6288,296 +6470,12 @@ current selection when it is showed.</td>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference" href="">Hildon Widgets and Objects</a><ul>
-<li><a class="reference" href="#window">Window</a><ul>
-<li><a class="reference" href="#object-hierarchy">Object Hierarchy</a></li>
-<li><a class="reference" href="#implemented-interfaces">Implemented Interfaces</a></li>
-<li><a class="reference" href="#signals">Signals</a></li>
-<li><a class="reference" href="#description">Description</a></li>
-<li><a class="reference" href="#creating-a-window">Creating a Window</a></li>
-<li><a class="reference" href="#details">Details</a></li>
-<li><a class="reference" href="#properties">Properties</a></li>
-<li><a class="reference" href="#style-properties">Style Properties</a></li>
-<li><a class="reference" href="#signal-details">Signal Details</a></li>
-<li><a class="reference" href="#see-also">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#stackablewindow">StackableWindow</a><ul>
-<li><a class="reference" href="#id2">Object Hierarchy</a></li>
-<li><a class="reference" href="#id3">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id4">Description</a></li>
-<li><a class="reference" href="#basic-stackablewindow-example">Basic <tt class="docutils literal"><span class="pre">StackableWindow</span></tt> example</a></li>
-<li><a class="reference" href="#id5">Details</a></li>
-<li><a class="reference" href="#id6">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#windowstack">WindowStack</a><ul>
-<li><a class="reference" href="#id7">Object Hierarchy</a></li>
-<li><a class="reference" href="#id8">Description</a></li>
-<li><a class="reference" href="#id9">Details</a></li>
-<li><a class="reference" href="#id10">Properties</a></li>
-<li><a class="reference" href="#id11">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#button">Button</a><ul>
-<li><a class="reference" href="#button-object-hierarchy">Object Hierarchy</a></li>
-<li><a class="reference" href="#button-implemented-interfaces">Implemented Interfaces</a></li>
-<li><a class="reference" href="#button-description">Description</a></li>
-<li><a class="reference" href="#creating-a-button">Creating a Button</a></li>
-<li><a class="reference" href="#button-details">Details</a></li>
-<li><a class="reference" href="#button-property-details">Properties</a></li>
-<li><a class="reference" href="#id18">Style Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#checkbutton">CheckButton</a><ul>
-<li><a class="reference" href="#id20">Object Hierarchy</a></li>
-<li><a class="reference" href="#id21">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id22">Description</a></li>
-<li><a class="reference" href="#using-a-hildon-check-button">Using a Hildon check button</a></li>
-<li><a class="reference" href="#id23">Details</a></li>
-<li><a class="reference" href="#id24">Style Properties</a></li>
-<li><a class="reference" href="#id25">Signal Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#pickerbutton">PickerButton</a><ul>
-<li><a class="reference" href="#id26">Object Hierarchy</a></li>
-<li><a class="reference" href="#id27">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id28">Description</a></li>
-<li><a class="reference" href="#id29">Details</a></li>
-<li><a class="reference" href="#id30">Properties</a></li>
-<li><a class="reference" href="#id31">Signal Details</a></li>
-<li><a class="reference" href="#id32">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#datebutton">DateButton</a><ul>
-<li><a class="reference" href="#id33">Object Hierarchy</a></li>
-<li><a class="reference" href="#id34">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id35">Description</a></li>
-<li><a class="reference" href="#id36">Details</a></li>
-<li><a class="reference" href="#id37">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#timebutton">TimeButton</a><ul>
-<li><a class="reference" href="#id38">Object Hierarchy</a></li>
-<li><a class="reference" href="#id39">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id40">Description</a></li>
-<li><a class="reference" href="#id41">Details</a></li>
-<li><a class="reference" href="#id42">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#caption">Caption</a><ul>
-<li><a class="reference" href="#id43">Object Hierarchy</a></li>
-<li><a class="reference" href="#id44">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id45">Description</a></li>
-<li><a class="reference" href="#id46">Details</a></li>
-<li><a class="reference" href="#id47">Properties</a></li>
-<li><a class="reference" href="#child-properties">Child Properties</a></li>
-<li><a class="reference" href="#id48">Signal Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#banner">Banner</a><ul>
-<li><a class="reference" href="#banner-object-hierarchy">Object Hierarchy</a></li>
-<li><a class="reference" href="#banner-implemented-interfaces">Implemented Interfaces</a></li>
-<li><a class="reference" href="#banner-description">Description</a></li>
-<li><a class="reference" href="#banner-details">Details</a></li>
-<li><a class="reference" href="#banner-property-details">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#note">Note</a><ul>
-<li><a class="reference" href="#id57">Object Hierarchy</a></li>
-<li><a class="reference" href="#id58">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id59">Description</a></li>
-<li><a class="reference" href="#id60">Details</a></li>
-<li><a class="reference" href="#id61">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#touchselector">TouchSelector</a><ul>
-<li><a class="reference" href="#id62">Object Hierarchy</a></li>
-<li><a class="reference" href="#id63">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id64">Description</a></li>
-<li><a class="reference" href="#creating-a-touchselector">Creating a TouchSelector</a></li>
-<li><a class="reference" href="#id65">Details</a></li>
-<li><a class="reference" href="#related-functions">Related Functions</a></li>
-<li><a class="reference" href="#id66">Properties</a></li>
-<li><a class="reference" href="#id67">Signal Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#touchselectorcolumn">TouchSelectorColumn</a><ul>
-<li><a class="reference" href="#id68">Object Hierarchy</a></li>
-<li><a class="reference" href="#id69">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id70">Description</a></li>
-<li><a class="reference" href="#id71">Details</a></li>
-<li><a class="reference" href="#id72">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#selectorentry">SelectorEntry</a><ul>
-<li><a class="reference" href="#id73">Object Hierarchy</a></li>
-<li><a class="reference" href="#id74">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id75">Description</a></li>
-<li><a class="reference" href="#id76">Details</a></li>
-<li><a class="reference" href="#id77">Related Functions</a></li>
-<li><a class="reference" href="#id78">Properties</a></li>
-<li><a class="reference" href="#id79">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#dateselector">DateSelector</a><ul>
-<li><a class="reference" href="#id80">Object Hierarchy</a></li>
-<li><a class="reference" href="#id81">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id82">Description</a></li>
-<li><a class="reference" href="#id83">Details</a></li>
-<li><a class="reference" href="#id84">Related Functions</a></li>
-<li><a class="reference" href="#id85">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#timeselector">TimeSelector</a><ul>
-<li><a class="reference" href="#id86">Object Hierarchy</a></li>
-<li><a class="reference" href="#id87">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id88">Description</a></li>
-<li><a class="reference" href="#id89">Details</a></li>
-<li><a class="reference" href="#id90">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#pannablearea">PannableArea</a><ul>
-<li><a class="reference" href="#pannablearea-object-hierarchy">Object Hierarchy</a></li>
-<li><a class="reference" href="#pannablearea-implemented-interfaces">Implemented Interfaces</a></li>
-<li><a class="reference" href="#pannablearea-description">Description</a></li>
-<li><a class="reference" href="#pannablearea-details">Details</a></li>
-<li><a class="reference" href="#functions">Functions</a></li>
-<li><a class="reference" href="#id95">Properties</a></li>
-<li><a class="reference" href="#id96">Style Properties</a></li>
-<li><a class="reference" href="#id97">Signal Details</a></li>
-<li><a class="reference" href="#id98">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#entry">Entry</a><ul>
-<li><a class="reference" href="#id99">Object Hierarchy</a></li>
-<li><a class="reference" href="#id100">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id101">Description</a></li>
-<li><a class="reference" href="#creating-a-entry-with-a-placeholder">Creating a Entry with a placeholder</a></li>
-<li><a class="reference" href="#id102">Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#textview">TextView</a><ul>
-<li><a class="reference" href="#id103">Object Hierarchy</a></li>
-<li><a class="reference" href="#id104">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id105">Description</a></li>
-<li><a class="reference" href="#creating-a-textview-with-a-placeholder">Creating a TextView with a placeholder</a></li>
-<li><a class="reference" href="#id106">Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#appmenu">AppMenu</a><ul>
-<li><a class="reference" href="#id107">Object Hierarchy</a></li>
-<li><a class="reference" href="#id108">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id109">Description</a></li>
-<li><a class="reference" href="#creating-a-appmenu">Creating a AppMenu</a></li>
-<li><a class="reference" href="#id110">Details</a></li>
-<li><a class="reference" href="#id111">Style Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#findtoolbar">FindToolbar</a><ul>
-<li><a class="reference" href="#id112">Object Hierarchy</a></li>
-<li><a class="reference" href="#id113">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id114">Description</a></li>
-<li><a class="reference" href="#id115">Details</a></li>
-<li><a class="reference" href="#id116">Properties</a></li>
-<li><a class="reference" href="#id117">Signal Details</a></li>
-<li><a class="reference" href="#id118">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#edittoolbar">EditToolbar</a><ul>
-<li><a class="reference" href="#id119">Object Hierarchy</a></li>
-<li><a class="reference" href="#id120">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id121">Description</a></li>
-<li><a class="reference" href="#edittoolbar-details">Details</a></li>
-<li><a class="reference" href="#id123">Style Properties</a></li>
-<li><a class="reference" href="#id124">Signal Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#wizarddialog">WizardDialog</a><ul>
-<li><a class="reference" href="#id125">Object Hierarchy</a></li>
-<li><a class="reference" href="#id126">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id127">Description</a></li>
-<li><a class="reference" href="#id128">Details</a></li>
-<li><a class="reference" href="#id129">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#pickerdialog">PickerDialog</a><ul>
-<li><a class="reference" href="#id130">Object Hierarchy</a></li>
-<li><a class="reference" href="#id131">Implemented Interfaces</a></li>
-<li><a class="reference" href="#id132">Description</a></li>
-<li><a class="reference" href="#id133">Details</a></li>
-<li><a class="reference" href="#id134">Properties</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#animationactor">AnimationActor</a><ul>
-<li><a class="reference" href="#id135">Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#remotetexture">RemoteTexture</a><ul>
-<li><a class="reference" href="#id136">Description</a></li>
-<li><a class="reference" href="#id137">Details</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="hildonbase.html"
-                                  title="previous chapter">Hildon Core Reference</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="hildonmigration.html"
-                                  title="next chapter">Migration</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="_sources/hildonobjects.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="hildonmigration.html" title="Migration"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="hildonbase.html" title="Hildon Core Reference"
-             >previous</a> |</li>
-        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-      &copy; Copyright , .
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
-    </div>
-  </body>
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
 </html>

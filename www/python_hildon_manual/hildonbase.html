@@ -5,49 +5,108 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Hildon Core Reference &mdash; Hildon Reference Manual v documentation</title>
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <title>Hildon Reference Manual &mdash; Hildon Core Reference</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
+    var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
         VERSION:     '',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
-      };
+    };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
     <link rel="top" title="Hildon Reference Manual v documentation" href="index.html" />
     <link rel="next" title="Hildon Widgets and Objects" href="hildonobjects.html" />
     <link rel="prev" title="Running Hildon Applications" href="hildon.html" /> 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             accesskey="M">modules</a> |</li>
-        <li class="right" >
-          <a href="hildonobjects.html" title="Hildon Widgets and Objects"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="hildon.html" title="Running Hildon Applications"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body id="hildonbase">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+        <ul id="relbar">
+            <li class="right">
+            <a href="genindex.html" title="General Index"
+                accesskey="I">index</a></li>
+            <li class="right">
+            <a href="modindex.html" title="Global Module Index"
+                accesskey="M">modules</a> |</li>
+            <li class="right">
+            <a href="hildonobjects.html" title="Hildon Widgets and Objects"
+                accesskey="N">next</a> |</li>
+            <li class="right">
+            <a href="hildon.html" title="Running Hildon Applications"
+                accesskey="P">previous</a> |</li>
+            <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
+        </ul>
+    </div>
+</div>
+
+<div id="body" >
+    <div id="sidebar">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference" href="">Hildon Core Reference</a><ul>
+<li><a class="reference" href="#module-hildon">Main</a><ul>
+<li><a class="reference" href="#typical-main-function-for-a-hildon-application">Typical main function for a Hildon application</a></li>
+<li><a class="reference" href="#details">Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#additions-to-gtk">Additions to GTK+</a><ul>
+<li><a class="reference" href="#id1">Details</a></li>
+<li><a class="reference" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#constants">Constants</a></li>
+<li><a class="reference" href="#helper-functions">Helper Functions</a><ul>
+<li><a class="reference" href="#description">Description</a></li>
+<li><a class="reference" href="#id2">Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#sound-utilities">Sound Utilities</a><ul>
+<li><a class="reference" href="#id3">Details</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#program">Program</a><ul>
+<li><a class="reference" href="#object-hierarchy">Object Hierarchy</a></li>
+<li><a class="reference" href="#id4">Description</a></li>
+<li><a class="reference" href="#id5">Details</a></li>
+<li><a class="reference" href="#property-details">Property Details</a></li>
+<li><a class="reference" href="#id6">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hildon.html"
+                                  title="previous chapter">Running Hildon Applications</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="hildonobjects.html"
+                                  title="next chapter">Hildon Widgets and Objects</a></p>
+
+    </div>
+    
   <div class="section" id="hildon-core-reference">
 <h1>Hildon Core Reference<a class="headerlink" href="#hildon-core-reference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-hildon">
@@ -1003,95 +1062,12 @@ if __name__ == "__main__":
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference" href="">Hildon Core Reference</a><ul>
-<li><a class="reference" href="#module-hildon">Main</a><ul>
-<li><a class="reference" href="#typical-main-function-for-a-hildon-application">Typical main function for a Hildon application</a></li>
-<li><a class="reference" href="#details">Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#additions-to-gtk">Additions to GTK+</a><ul>
-<li><a class="reference" href="#id1">Details</a></li>
-<li><a class="reference" href="#see-also">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#constants">Constants</a></li>
-<li><a class="reference" href="#helper-functions">Helper Functions</a><ul>
-<li><a class="reference" href="#description">Description</a></li>
-<li><a class="reference" href="#id2">Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#sound-utilities">Sound Utilities</a><ul>
-<li><a class="reference" href="#id3">Details</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#program">Program</a><ul>
-<li><a class="reference" href="#object-hierarchy">Object Hierarchy</a></li>
-<li><a class="reference" href="#id4">Description</a></li>
-<li><a class="reference" href="#id5">Details</a></li>
-<li><a class="reference" href="#property-details">Property Details</a></li>
-<li><a class="reference" href="#id6">See Also</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="hildon.html"
-                                  title="previous chapter">Running Hildon Applications</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="hildonobjects.html"
-                                  title="next chapter">Hildon Widgets and Objects</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="_sources/hildonbase.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="hildonobjects.html" title="Hildon Widgets and Objects"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="hildon.html" title="Running Hildon Applications"
-             >previous</a> |</li>
-        <li><a href="index.html">Hildon Reference Manual v documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-      &copy; Copyright , .
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
-    </div>
-  </body>
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
 </html>
