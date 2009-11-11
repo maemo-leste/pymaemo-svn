@@ -1,13 +1,12 @@
 #!/usr/bin/make -f
 
-PY = $(shell pyversions -d)
-PYVER = $(shell pyversions -vd)
+# workaround to avoid calling Scratchbox python2.3
+PATH := /usr/bin:$(PATH)
+export PATH
+SBOX_REDIRECT_IGNORE = /usr/bin/python
+export SBOX_REDIRECT_IGNORE
 
 DEB_PYTHON_SYSTEM = pycentral
-
-# workaround to force using pythonX.Y inside Scratchbox
-# this is a internal variable from /usr/share/cdbs/1/class/python-distutils.mk
-cdbs_python_compile_version = $(PYVER)
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
@@ -23,9 +22,10 @@ DEB_PYTHON_INSTALL_ARGS_ALL = --no-compile -O0
 
 common-install-arch common-install-indep:: common-install-impl
 common-install-impl::
-	# Force interpreter version to $(PYVER)
+	# Make scripts call pythonX.Y instead of just python (so they do not
+	# call wrong python in Scratchbox)
 	for f in `find $(DEB_DESTDIR) -type f`; do \
-	    sed "1s,#\!.*python[^ ]*\(.*\),#\!/usr/bin/env $(PY)\1," $$f > $$f.tmp; \
+	    sed "1s,#\!.*python[^ ]*\(.*\),#\!/usr/bin/env $(shell pyversions -d)\1," $$f > $$f.tmp; \
 	    cat $$f.tmp > $$f; \
 	    rm $$f.tmp; \
 	done
