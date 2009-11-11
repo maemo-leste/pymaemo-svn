@@ -232,37 +232,44 @@ _wrap_hildon_note_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "note_type", "parent", "description", "icon_name", "progressbar", NULL };
     PyGObject *parent, *progressbar = NULL;
-    char *note_type, *description, *icon_name = NULL;
+    PyObject *pynote_type;
+    HildonNoteType note_type;
+    char *description, *icon_name = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sO!s|sO!:HildonNote.__init__", kwlist, &note_type, &PyGtkWindow_Type, &parent, &description, &icon_name, &PyGtkProgressBar_Type, &progressbar))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO!s|sO!:HildonNote.__init__", kwlist, &pynote_type, &PyGtkWindow_Type, &parent, &description, &icon_name, &PyGtkProgressBar_Type, &progressbar))
         return -1;
-    if (strcmp (note_type, "confirmation") == 0) {
-        if (icon_name == NULL) {
-            self->obj = (GObject *)hildon_note_new_confirmation(GTK_WINDOW(parent->obj), description);
+    if (pyg_enum_get_value(HILDON_TYPE_NOTE_TYPE, pynote_type, (gpointer)&note_type) < 0) {
+        /* Clear any error set by pyg_enum_get_value() */
+        PyErr_Clear();
+        char *note_type_str = PyString_AsString(pynote_type);
+        /* Keep compatibility with older API */
+        if (note_type_str != NULL) {
+            if (strcmp(note_type_str, "confirmation") == 0)
+                note_type = HILDON_NOTE_TYPE_CONFIRMATION;
+            else if (strcmp(note_type_str, "information") == 0)
+                note_type = HILDON_NOTE_TYPE_INFORMATION_THEME;
+            else if (strcmp(note_type_str, "cancel") == 0)
+                note_type = HILDON_NOTE_TYPE_PROGRESSBAR;
+            else {
+                PyErr_SetString(PyExc_ValueError, "invalid value for note_type");
+                return -1;
+            }
         } else {
-            self->obj = (GObject *)hildon_note_new_confirmation_with_icon_name(GTK_WINDOW(parent->obj), description, icon_name);
-        }
-    } else if (strcmp (note_type, "information") == 0) {
-        if (icon_name == NULL) {
-            self->obj = (GObject *)hildon_note_new_information(GTK_WINDOW(parent->obj), description);
-        } else {
-            self->obj = (GObject *)hildon_note_new_information_with_icon_name(GTK_WINDOW(parent->obj), description, icon_name);
-        }
-    } else if (strcmp (note_type, "cancel") == 0) {
-        if (progressbar == NULL) {
-            PyErr_SetString(PyExc_TypeError, "progress bar must be specified");
+            PyErr_SetString(PyExc_ValueError, "note_type argument must be either string or a NoteType");
             return -1;
-        } else {
-            self->obj = (GObject *)hildon_note_new_cancel_with_progress_bar(GTK_WINDOW(parent->obj), description, GTK_PROGRESS_BAR(progressbar->obj));
         }
-    } else {
-        PyErr_SetString(PyExc_ValueError, "unknown note type");
-        return -1;
     }
+    self->obj = (GObject *)g_object_new(HILDON_TYPE_NOTE, "note-type", note_type, "description", description, NULL);
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create HildonNote object");
         return -1;
     }
+    gtk_window_set_transient_for(GTK_WINDOW(self->obj), GTK_WINDOW(parent->obj));
+    if (icon_name != NULL)
+        g_object_set(self->obj, "icon", icon_name, NULL);
+    if (progressbar != NULL)
+        g_object_set(self->obj, "progressbar", progressbar->obj, NULL);
+
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
