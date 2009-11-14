@@ -18,6 +18,11 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+# This package has no effect inside Scratchbox
+if [ -e /targets/links/scratchbox.config ]; then
+    exit 0
+fi
+
 case "$1" in
     remove)
         if [ -f /etc/default/pymaemo-optify ]; then
