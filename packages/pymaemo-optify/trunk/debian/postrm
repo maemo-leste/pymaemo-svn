@@ -18,15 +18,19 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-echo "XXX: postrm: $@"
-
 case "$1" in
     remove)
         if [ -f /etc/default/pymaemo-optify ]; then
-            OPT_DIR="/opt"
+            OPT_DIR="/opt/pymaemo"
             . /etc/default/pymaemo-optify
             for d in $BIND_MOUNTS; do
                 rmdir -p $d $OPT_DIR/$d 2>/dev/null || true
+                if [ -d $d ]; then
+                    echo "WARNING: files remained in $d" >&2
+                fi
+                if [ -d $OPT_DIR/$d ]; then
+                    echo "WARNING: files remained in $OPT_DIR$d" >&2
+                fi
             done
         fi
     ;;

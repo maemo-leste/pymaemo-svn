@@ -17,8 +17,6 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-echo "XXX: postinst: $@"
-
 case "$1" in
     configure)
     ;;
@@ -31,6 +29,30 @@ case "$1" in
         exit 1
     ;;
 esac
+
+# Remove known left-over from old version of python-osso (but only if it is not installed)
+if [ ! -f /var/lib/dpkg/info/python-osso.list ]; then
+    rm -f /usr/lib/python2.5/site-packages/osso/__init__.py
+    rmdir -p /usr/lib/python2.5/site-packages/osso 2>/dev/null || true
+fi
+
+if [ -f /etc/default/pymaemo-optify ]; then
+    OPT_DIR="/opt/pymaemo"
+    . /etc/default/pymaemo-optify
+    for d in $BIND_MOUNTS; do
+        rmdir $d $OPT_DIR/$d 2>/dev/null || true
+        if [ -d $d ]; then
+            if [ -d $OPT_DIR/$d ]; then
+                echo "WARNING: both \"$d\" and \"$OPT_DIR$d\" exist and are not empty, files will NOT be migrated to $OPT_DIR" >&2
+            else
+                echo "Migrating files from $d to $OPT_DIR$d..."
+                # command below will create all components but delete the last one
+                mkdir -p $OPT_DIR/$d && rmdir $OPT_DIR/$d
+                mv $d $OPT_DIR/$d
+            fi
+        fi
+    done
+fi
 
 /etc/init.d/pymaemo-optify start
 
