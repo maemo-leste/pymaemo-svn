@@ -1,3 +1,10 @@
+python2.5 (2.5.4-1maemo3) unstable; urgency=low
+
+  * Add dependency on pymaemo-optify, so that Python packages are
+    automatically optified.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Sat, 14 Nov 2009 15:39:04 -0400
+
 python2.5 (2.5.4-1maemo2) unstable; urgency=low
 
   * Drop patch:

@@ -29,7 +29,7 @@ Description: An interactive high-level object-oriented language (version 2.5)
 Package: python2.5-minimal
 Architecture: any
 Priority: optional
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, pymaemo-optify
 Replaces: python2.5 (<< 2.5.2-1)
 Suggests: binfmt-support
 Conflicts: binfmt-support (<< 1.1.2), python2.5 (<< 2.5.2-11.1maemo1)
