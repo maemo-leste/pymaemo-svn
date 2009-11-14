@@ -1,0 +1,11 @@
+Source: pymaemo-optify
+Section: devel
+Priority: extra
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: pymaemo-optify
+Architecture: all
+Depends: upstart, ${shlibs:Depends}, ${misc:Depends}
+Description: PyMaemo optification package

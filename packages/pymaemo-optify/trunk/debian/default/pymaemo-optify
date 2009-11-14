@@ -1,0 +1,2 @@
+BIND_MOUNTS="/usr/lib/python2.5"
+OPT_DIR="/opt/pymaemo"

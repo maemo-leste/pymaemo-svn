@@ -1,0 +1,3 @@
+debian/init.d/pymaemo-optify etc/init.d
+debian/event.d/pymaemo-optify etc/event.d
+debian/default/pymaemo-optify etc/default
