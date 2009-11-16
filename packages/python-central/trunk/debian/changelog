@@ -1,3 +1,9 @@
+python-central (0.6.11.1maemo2) unstable; urgency=low
+
+  * postrm: remove /usr/share/pycentral-data/pyversions.pyo
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Sat, 14 Nov 2009 16:47:17 -0400
+
 python-central (0.6.11.1maemo1) unstable; urgency=low
 
   * New version from jaunty

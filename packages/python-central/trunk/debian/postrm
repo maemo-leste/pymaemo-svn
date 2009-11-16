@@ -3,7 +3,7 @@
 if [ "$1" = "purge" ]; then
     # remove log file
     rm -f /var/log/pycentral.log
-    rm -f /usr/share/pycentral-data/pyversions.pyc
+    rm -f /usr/share/pycentral-data/pyversions.py[co]
     if [ -d /var/lib/pycentral ]; then
 	rm -f /var/lib/pycentral/delayed-pkgs
 	rm -f /var/lib/pycentral/pkgremove
