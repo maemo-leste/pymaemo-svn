@@ -20,7 +20,8 @@ help:
 	@echo "  linkcheck to check all external links for integrity"
 
 clean:
-	-rm -rf $(BUILDDIR)/*
+	rm -rf $(BUILDDIR)
+	rm -f *.py[co]
 
 html: json
 	python extractnews.py

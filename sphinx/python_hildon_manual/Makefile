@@ -17,6 +17,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html      to make standalone HTML files"
+	@echo "  html-sbox to make standalone HTML files (with inheritance data from modules inside Scratchbox)"
 	@echo "  dirhtml   to make HTML files named index.html in directories"
 	@echo "  pickle    to make pickle files"
 	@echo "  json      to make JSON files"
@@ -28,13 +29,21 @@ help:
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
 
 clean:
-	-rm -rf $(BUILDDIR)/*
+	rm -rf $(BUILDDIR)
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	rsync -a $(BUILDDIR)/html/ ../../www/python_hildon_manual/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+html-sbox:
+	LD_LIBRARY_PATH=/scratchbox/users/$$USER/targets/FREMANTLE_X86/usr/lib \
+	PYTHONPATH=/scratchbox/users/$$USER/targets/FREMANTLE_X86/usr/lib/python2.5/site-packages \
+	$(SPHINXBUILD) -D graphviz_dot=./graphviz_dot_wrapper.sh -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	rsync -a $(BUILDDIR)/html/ ../../www/python_hildon_manual/
+	@echo
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
