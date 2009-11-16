@@ -26,6 +26,29 @@ for h in $headers; do
 done
 $codegen_dir/createdefs.py $pkg_name.defs $pkg_name-extras.defs defs/*.defs
 
+
+cat >> mafw.defs << "EOF"
+
+(define-function mafw_extension_new
+  (c-name "mafw_extension_new")
+  (is-constructor-of "MafwExtension")
+  (return-type "MafwExtension")
+)
+
+(define-function mafw_renderer_new
+  (c-name "mafw_renderer_new")
+  (is-constructor-of "MafwRenderer")
+  (return-type "MafwRenderer")
+)
+
+(define-function mafw_source_new
+  (c-name "mafw_source_new")
+  (is-constructor-of "MafwSource")
+  (return-type "MafwSource")
+)
+
+EOF
+
 # show modifications in diff format
 function show_changes()
 {
