@@ -54,7 +54,7 @@ override mafw_registry_get_instance noargs staticmethod
 static PyObject *
 _wrap_mafw_registry_get_instance(PyGObject *self)
 {
-    MafwRegistry *registry;
+    MafwRegistry *registry = NULL;
 
     registry = mafw_registry_get_instance();
 
@@ -114,9 +114,26 @@ _wrap_mafw_registry_get_renderers(PyGObject *self)
         PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
         PyList_SetItem(list, i, item);
     }
-    g_list_free(wlist);
 
     return list;
+}
+
+%%
+override mafw_registry_add_extension kwargs
+static PyObject *
+_wrap_mafw_registry_add_extension(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "extension", NULL };
+    PyGObject *extension;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!:MafwRegistry.add_extension",
+                                     kwlist, &PyMafwExtension_Type, &extension))
+        return NULL;
+
+    mafw_registry_add_extension(MAFW_REGISTRY(self->obj), MAFW_EXTENSION(extension->obj));
+
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 %%
@@ -139,7 +156,6 @@ _wrap_mafw_registry_get_sources(PyGObject *self)
         PyObject *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
         PyList_SetItem(list, i, item);
     }
-    g_list_free(wlist);
 
     return list;
 }
@@ -156,11 +172,6 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
 
     wlist = mafw_registry_list_plugins(MAFW_REGISTRY(self->obj));
 
-    if (!wlist) {
-        PyErr_SetString(PyExc_RuntimeError, "No plugins found");
-        return NULL;
-    }
-
     nwlist = g_list_length(wlist);
 
     if ((list = PyList_New(nwlist)) == NULL)
@@ -173,7 +184,8 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
         MafwPluginDescriptorPublic *item = (MafwPluginDescriptorPublic*)g_list_nth_data(wlist, i);
         if (!item) {
             PyErr_SetString(PyExc_RuntimeError, "Invalid plugin descriptor found");
-            g_list_free(wlist);
+            if (wlist)
+                g_list_free(wlist);
             return NULL;
         }
 
