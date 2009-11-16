@@ -1,5 +1,11 @@
 #!/usr/bin/make -f
 
+# Hack to avoid calling scratchbox' python
+PATH := /usr/bin:$(PATH)
+export PATH
+SBOX_REDIRECT_IGNORE = /usr/bin/python
+export SBOX_REDIRECT_IGNORE
+
 PY = $(shell pyversions -d)
 PYVER = $(shell pyversions -vd)
 

@@ -405,3 +405,25 @@ _wrap_METADATA_KEY_CHILDCOUNT(PyGObject *self, PyObject *args)
 
     return Py_BuildValue("s", MAFW_METADATA_KEY_CHILDCOUNT(n));
 }
+
+%%
+override mafw_source_get_update_progress noargs
+static PyObject *
+_wrap_mafw_source_get_update_progress(PyGObject *self)
+{
+    PyObject *results;
+    int ret, processed, remaining_items, remaining_time;
+
+    ret = mafw_source_get_update_progress( MAFW_SOURCE(self->obj), &processed,
+                                          &remaining_items,
+                                          &remaining_time);
+
+    results = PyTuple_New(4);
+
+    PyTuple_SetItem(results, 0, PyInt_FromLong(ret));
+    PyTuple_SetItem(results, 1, PyInt_FromLong(processed));
+    PyTuple_SetItem(results, 2, PyInt_FromLong(remaining_items));
+    PyTuple_SetItem(results, 3, PyInt_FromLong(remaining_time));
+
+    return results;
+}
