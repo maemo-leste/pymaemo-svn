@@ -4,10 +4,10 @@ import mafw
 
 class MySourcePlugin(mafw.Source):
     __gtype_name__ = 'MySourcePlugin'
-    
+
 class MyRendererPlugin(mafw.Renderer):
     __gtype_name__ = 'MyRendererPlugin'
-  
+
 class TestMafwRegistry(unittest.TestCase):
     def test_get_instance(self):
         reg = mafw.Registry.get_instance()
@@ -28,7 +28,7 @@ class TestMafwRegistry(unittest.TestCase):
         reg.add_extension(x1)
         reg.add_extension(x2)
         self.assertEquals(set(reg.get_renderers()), set([x1, x2]))
-        
+
     def test_list_plugins(self):
         # FIXME: test currently fails because list_plugins() is always
         # returning a empty list (even on C).

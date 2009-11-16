@@ -22,6 +22,7 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include <pygobject.h>
+#include <Python.h>
 
 #include "mafw-includes.h"
 #include "mafw-types.h"
@@ -143,216 +144,71 @@ _wrap_mafw_registry_get_sources(PyGObject *self)
     return list;
 }
 
-typedef struct 
-{
-    PyObject_HEAD
-    gchar *name;
-    gchar *description;
-    gchar *version;
-} PyMafwPluginDescriptorPublic;
-
-static void
-pyplugin_descriptor_public_dealloc(PyMafwPluginDescriptorPublic *self)
-{
-    PyObject_DEL(self);
-}
-
-static PyMemberDef plugindescriptorpublic_members[] = {
-    {"name", T_OBJECT_EX, offsetof(PyMafwPluginDescriptorPublic, name), 0, "name"},
-    {"description", T_OBJECT_EX, offsetof(PyMafwPluginDescriptorPublic, description), 0, "description"},
-    {"version", T_OBJECT_EX, offsetof(PyMafwPluginDescriptorPublic, version), 0, "version number"},
-    {NULL}  /* Sentinel */
-};
-
-static PyObject *
-plugindescriptorpublic_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
-{
-    PyMafwPluginDescriptorPublic *self;
-
-    self = (PyMafwPluginDescriptorPublic *)type->tp_alloc(type, 0);
-
-    if (self != NULL) {
-        self->name = PyString_FromString("");
-        if (self->name == NULL) {
-            Py_DECREF(self);
-            return NULL;
-        }
-
-        self->description = PyString_FromString("");
-        if (self->description == NULL) {
-            Py_DECREF(self);
-            return NULL;
-        }
-
-        self->version = PyString_FromString("");
-        if (self->version == NULL) {
-            Py_DECREF(self);
-            return NULL;
-        }
-    }
-
-    return (PyObject *)self;
-}
-
-PyTypeObject PyMafwPluginDescriptorPublic_Type = {
-    PyObject_HEAD_INIT(NULL)
-    0,                                  /* ob_size */
-    "mafw.PluginDescriptorPublic",      /* tp_name */
-    sizeof(PyMafwPluginDescriptorPublic), /* tp_basicsize */
-    0,                                  /* tp_itemsize */
-    /* methods */
-    (destructor)pyplugin_descriptor_public_dealloc, /* tp_dealloc */
-    (printfunc)0,                       /* tp_print */
-    (getattrfunc)0,                     /* tp_getattr */
-    (setattrfunc)0,                     /* tp_setattr */
-    (cmpfunc)0,                         /* tp_compare */
-    (reprfunc)0,                        /* tp_repr */
-    0,                                  /* tp_as_number */
-    0,                                  /* tp_as_sequence */
-    0,                                  /* tp_as_mapping */
-    (hashfunc)0,                        /* tp_hash */
-    (ternaryfunc)0,                     /* tp_call */
-    (reprfunc)0,                        /* tp_str */
-    (getattrofunc)0,                    /* tp_getattro */
-    (setattrofunc)0,                    /* tp_setattro */
-    0,                                  /* tp_as_buffer */
-    Py_TPFLAGS_DEFAULT,                 /* tp_flags */
-    "Information about a plugin",       /* Documentation string */
-    (traverseproc)0,                    /* tp_traverse */
-    (inquiry)0,                         /* tp_clear */
-    (richcmpfunc)0,                     /* tp_richcompare */
-    0,                                  /* tp_weaklistoffset */
-    (getiterfunc)0,                     /* tp_iter */
-    (iternextfunc)0,                    /* tp_iternext */
-    0,                                  /* tp_methods */
-    plugindescriptorpublic_members,     /* tp_members */
-    0,                                  /* tp_getset */
-    (PyTypeObject *)0,                  /* tp_base */
-    (PyObject *)0,                      /* tp_dict */
-    0,                                  /* tp_descr_get */
-    0,                                  /* tp_descr_set */
-    0,                                  /* tp_dictoffset */
-    (initproc)0,                        /* tp_init */
-    0,                                  /* tp_alloc */
-    plugindescriptorpublic_new,         /* tp_new */
-    0,                                  /* tp_free */
-    (inquiry)0,                         /* tp_is_gc */
-    (PyObject *)0,                      /* tp_bases */
-};
-
-typedef struct 
-{
-    PyObject_HEAD
-} PyMafwMetaData;
-
-static void
-py_mafwmetadata_dealloc(PyMafwMetaData *self)
-{
-    PyObject_DEL(self);
-}
-
-static PyObject *
-PyMafwMetaData_get(PyMafwMetaData* self, PyObject *args)
-{
-    char *m;
-    char *res;
-
-    if (!PyArg_ParseTuple(args, "s", &m))
-        return NULL;
-
-    res = mafw_metadata_first (self, m);
-
-    return res;
-}
-
-static PyMethodDef metadata_methods[] = {
-    {"get", (PyCFunction)PyMafwMetaData_get, METH_VARARGS, ""},
-    {NULL}  /* Sentinel */
-};
-
-PyTypeObject PyMafwMetaData_Type = {
-    PyObject_HEAD_INIT(NULL)
-    0,                                  /* ob_size */
-    "mafw.MetaData",                    /* tp_name */
-    sizeof(PyMafwMetaData),             /* tp_basicsize */
-    0,                                  /* tp_itemsize */
-    /* methods */
-    (destructor)py_mafwmetadata_dealloc,/* tp_dealloc */
-    (printfunc)0,                       /* tp_print */
-    (getattrfunc)0,                     /* tp_getattr */
-    (setattrfunc)0,                     /* tp_setattr */
-    (cmpfunc)0,                         /* tp_compare */
-    (reprfunc)0,                        /* tp_repr */
-    0,                                  /* tp_as_number */
-    0,                                  /* tp_as_sequence */
-    0,                                  /* tp_as_mapping */
-    (hashfunc)0,                        /* tp_hash */
-    (ternaryfunc)0,                     /* tp_call */
-    (reprfunc)0,                        /* tp_str */
-    (getattrofunc)0,                    /* tp_getattro */
-    (setattrofunc)0,                    /* tp_setattro */
-    0,                                  /* tp_as_buffer */
-    Py_TPFLAGS_DEFAULT,                 /* tp_flags */
-    "MetaData",       /* Documentation string */
-    (traverseproc)0,                    /* tp_traverse */
-    (inquiry)0,                         /* tp_clear */
-    (richcmpfunc)0,                     /* tp_richcompare */
-    0,                                  /* tp_weaklistoffset */
-    (getiterfunc)0,                     /* tp_iter */
-    (iternextfunc)0,                    /* tp_iternext */
-    metadata_methods,                   /* tp_methods */
-    0,                                  /* tp_members */
-    0,                                  /* tp_getset */
-    (PyTypeObject *)0,                  /* tp_base */
-    (PyObject *)0,                      /* tp_dict */
-    0,                                  /* tp_descr_get */
-    0,                                  /* tp_descr_set */
-    0,                                  /* tp_dictoffset */
-    (initproc)0,                        /* tp_init */
-    0,                                  /* tp_alloc */
-    0,                                  /* tp_new */
-    0,                                  /* tp_free */
-    (inquiry)0,                         /* tp_is_gc */
-    (PyObject *)0,                      /* tp_bases */
-};
-
-%%
-init
-    if (PyType_Ready(&PyMafwPluginDescriptorPublic_Type) < 0) {
-        g_return_if_reached();
-    }
-    if (PyDict_SetItemString(d, "PluginDescriptorPublic", (PyObject *)&PyMafwPluginDescriptorPublic_Type) < 0) {
-        g_return_if_reached();
-    }
-
-    if (PyType_Ready(&PyMafwMetaData_Type) < 0) {
-        g_return_if_reached();
-    }
-    if (PyDict_SetItemString(d, "MetaData", (PyObject *)&PyMafwMetaData_Type) < 0) {
-        g_return_if_reached();
-    }
-
 %%
 override mafw_registry_list_plugins noargs
 static PyObject *
 _wrap_mafw_registry_list_plugins(PyGObject *self)
 {
-    GList *wlist;
+    GList *wlist = NULL;
     guint nwlist;
     int i;
-    PyObject *list;
+    PyObject *list = NULL;
 
     wlist = mafw_registry_list_plugins(MAFW_REGISTRY(self->obj));
+
+    if (!wlist) {
+        PyErr_SetString(PyExc_RuntimeError, "No plugins found");
+        return NULL;
+    }
+
     nwlist = g_list_length(wlist);
 
     if ((list = PyList_New(nwlist)) == NULL)
         return NULL;
 
     for (i = 0; i < nwlist; i++) {
-        PyMafwPluginDescriptorPublic *item = pygobject_new((GObject *)g_list_nth_data(wlist, i));
-        PyList_SetItem(list, i, item);
+        PyObject *pyitem = NULL;
+        PyObject *attr = NULL;
+
+        MafwPluginDescriptorPublic *item = (MafwPluginDescriptorPublic*)g_list_nth_data(wlist, i);
+        if (!item) {
+            PyErr_SetString(PyExc_RuntimeError, "Invalid plugin descriptor found");
+            g_list_free(wlist);
+            return NULL;
+        }
+
+        pyitem = PyTuple_New(3);
+
+        if (item->name) {
+            attr = PyString_FromString(item->name);
+        } else{
+            attr = Py_None;
+            Py_INCREF(attr);
+        }
+        PyTuple_SetItem(pyitem, 0, attr);
+
+        if (item->description) {
+            attr = PyString_FromString(item->description);
+        } else{
+            attr = Py_None;
+            Py_INCREF(attr);
+        }
+        PyTuple_SetItem(pyitem, 1, attr);
+
+
+        if (item->version) {
+            attr = PyString_FromString(item->version);
+        } else{
+            attr = Py_None;
+            Py_INCREF(attr);
+        }
+        PyTuple_SetItem(pyitem, 2, attr);
+
+        PyList_SetItem(list, i, pyitem);
     }
-    g_list_free(wlist);
+    if (wlist) {
+        g_list_free(wlist);
+    }
 
     return list;
 }
