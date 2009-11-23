@@ -108,13 +108,14 @@ class SourceBrowsing(object):
 
         keys = [mafw.METADATA_KEY_TITLE, mafw.METADATA_KEY_ARTIST,
                 mafw.METADATA_KEY_ALBUM, mafw.METADATA_KEY_GENRE]
+        filt = '(artist=*)'
 
         self.browse_id = self.app_source.browse(
-            self.obj_id, recursive=False, keys=keys, count=30,
-                        callback=browse_request_cb)
+            self.obj_id, filt, self.browse_request_cb, keys=keys, count=30)
 
-        if self.browse_id == mafw.SOURCE_INVALID_BROWSE_ID:
+        if self.browse_id == mafw.SOURCE_ERROR_INVALID_BROWSE_ID:
             logging.warning('Incorrect browse request.')
+            self.mainloop.quit()
 
         return False
 
@@ -123,7 +124,7 @@ class SourceBrowsing(object):
 
         name = source.get_name()
         logging.info('Source %s available.' % name)
-        
+
         if name == WANTED_SOURCE:
             logging.info('Wanted source found!')
             self.app_source = source
@@ -135,7 +136,7 @@ class SourceBrowsing(object):
         """Checks if the referenced source is removed, and if so, exits."""
 
         logging.info('Source %s removed' % source.get_name())
-        
+
         if source == sef.app_source:
             logging.error('Wanted source removed! Exiting...')
             self.mainloop.quit()
