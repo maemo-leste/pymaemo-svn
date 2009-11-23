@@ -226,39 +226,210 @@ _wrap_mafw_registry_list_plugins(PyGObject *self)
 }
 
 %%
-override mafw_source_browse varargs
-static PyObject *
-_wrap_mafw_source_browse(PyObject *self, PyObject *args, PyObject *kwds)
+override mafw_source_browse kwargs
+
+static
+PyObject *
+ghashtable_to_pydict(const GHashTable *table)
 {
-    char *object_id;
-    int recursive;
-    char *filter;
-    char *sort_criteria;
-    char *metadata_keys;
-    int skip_count;
-    int item_count;
-    PyObject *browse_cb;
-    gpointer user_data = NULL;
+    PyObject *pytable = PyDict_New();
+    GList *keys = NULL;
+    GList *current_key = NULL;
 
-    int browse_id = 0;
+    keys = g_hash_table_get_keys(table);
+    current_key = keys;
 
-    if (!PyArg_ParseTuple(args, "ssO", &object_id, &metadata_keys, &browse_cb))
+    while (current_key) {
+        PyObject *pyvalue;
+
+        GValue *value = g_hash_table_lookup(table, current_key->data);
+        const gchar *key = (const gchar *)current_key->data;
+
+        if (G_VALUE_HOLDS_STRING(value)) {
+            pyvalue = PyString_FromString(g_value_get_string(value));
+        } else if (G_VALUE_HOLDS_INT(value)) {
+            pyvalue = PyInt_FromLong(g_value_get_int(value));
+        } else { // TODO Support other stuff
+            pyvalue = Py_None;
+            Py_XINCREF(pyvalue);
+        }
+
+        PyDict_SetItemString(pytable, key, pyvalue);
+
+        current_key = g_list_next(current_key);
+    }
+
+    if (keys)
+        g_list_free(keys);
+
+    return pytable;
+}
+
+/**
+ * Callback for mafw.Source.browse
+ */
+void
+pymafw_browse_cb(MafwSource *self, guint browse_id, gint remaining_count,
+                 guint index, const char *object_id, GHashTable *metadata,
+                 gpointer user_data, const GError *error)
+{
+    PyObject *pymetadata = NULL;
+    PyObject *pycallback = (PyObject *)user_data;
+    PyObject *pyargs = NULL;
+    PyGILState_STATE gil_lock;
+
+
+    if (error) {
+        PyErr_SetString(PyExc_RuntimeError, error->message);
+        PyErr_Print();
+        return;
+    }
+
+    gil_lock = PyGILState_Ensure();
+
+    if (object_id == NULL) {
+        g_debug("Object_id null, returning");
+        Py_XDECREF((PyObject *)user_data); // Finished, callback not needed anymore
+        goto cleanup;
+    }
+
+    pymetadata = ghashtable_to_pydict(metadata);
+
+    pyargs = PyTuple_New(6); // TODO Support user_data?
+
+    PyTuple_SetItem(pyargs, 0, pygobject_new(self));
+    PyTuple_SetItem(pyargs, 1, PyInt_FromLong(browse_id));
+    PyTuple_SetItem(pyargs, 2, PyInt_FromLong(remaining_count));
+    PyTuple_SetItem(pyargs, 3, PyInt_FromLong(index));
+    PyTuple_SetItem(pyargs, 4, PyString_FromString(object_id));
+    PyTuple_SetItem(pyargs, 5, pymetadata);
+
+
+    PyObject_Call(pycallback, pyargs, PyDict_New());
+
+    if (PyErr_Occurred())
+        PyErr_Print();
+
+cleanup:
+
+    if (pyargs)
+        Py_XDECREF(pyargs);
+
+    if (pymetadata)
+        Py_XDECREF(pymetadata);
+
+    PyGILState_Release(gil_lock);
+
+    return;
+}
+
+/**
+ * mafw.Source.browse
+ *
+ * Arguments:
+ *
+ * Requided
+ * object_id
+ * filter // mafw.Filter or string
+ * callback
+ *
+ * Optional
+ * recursive=False/0
+ * sort_criteria="+name"
+ * metadata_keys = NULL
+ * skip_count = 0
+ * item_count = 0
+ * data=None - Not supported yet
+ */
+static PyObject *
+_wrap_mafw_source_browse(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "object_id", "filter", "callback", "recursive",
+                              "sort", "keys", "count",
+                              "count", "data", NULL };
+
+    char *object_id = NULL;
+    PyObject *pyfilter = NULL;
+    PyObject *pycallback = NULL;
+    int recursive = 0;
+    char *sort_criteria = "+name"; /* Should we require this? */
+    PyObject *pymetadata_keys = NULL;
+    int skip_count = 0;
+    int item_count = MAFW_SOURCE_BROWSE_ALL;
+    PyObject *pydata = NULL;
+
+    MafwFilter *filter = NULL;
+
+    char **metadata_keys = NULL;
+    int i = 0;
+    int size;
+
+    int browse_id = MAFW_SOURCE_ERROR_INVALID_BROWSE_ID;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sOO|isOiiO:mafw.Source.browse",
+                                     kwlist, &object_id, &pyfilter, &pycallback,
+                                     &recursive, &sort_criteria, &pymetadata_keys,
+                                     &skip_count, &item_count, &pydata))
         return NULL;
 
-    g_print("DEBUG::object_id: %s \n", object_id);
-    g_print("DEBUG::metadata_keys: %s \n", metadata_keys);
+    /* Check filter */
+    if (PyString_Check(pyfilter)) {
+        filter = mafw_filter_parse(PyString_AsString(pyfilter));
+    } else { // TODO Support mafw.Filter
+        PyErr_SetString(PyExc_TypeError, "filter must be a string");
+        goto cleanup;
+    }
 
-    browse_id = mafw_source_browse(self,            /* Source */
-                                   object_id,       /* Object identifier */
-                                   FALSE,           /* Recursive */
-                                   NULL,            /* Filter */
-                                   NULL,            /* Sorting */
-                                   metadata_keys,   /* Requested keys */
-                                   0, 30,            /* Offset, Count*/
-                                   browse_cb,        /* Callback */
-                                   NULL);            /* User data */
+    /* Check callback */
+    if (!PyCallable_Check(pycallback)) {
+        PyErr_SetString(PyExc_TypeError, "Callback must be a callable");
+        goto cleanup;
+    }
+    /* Convert metadata keys */
+    if (pymetadata_keys == Py_None || pymetadata_keys == NULL) {
+        // Empty on purpose
+    } else if (PySequence_Check(pymetadata_keys) && !PyString_Check(pymetadata_keys)) {
+        size = PySequence_Size(pymetadata_keys);
+        metadata_keys = g_new(char **, size+1);
+        for (i = 0; i < size; i++) {
+            PyObject *key = PySequence_GetItem(pymetadata_keys, i);
+            if (!PyString_Check(key)) {
+                PyErr_SetString(PyExc_TypeError, "Metadata keys must be a sequence of strings");
+                goto cleanup;
+            }
+            metadata_keys[i] = PyString_AsString(key);
+        }
+        metadata_keys[size] = NULL;
+    } else {
+        PyErr_SetString(PyExc_TypeError, "Metadata keys must be a sequence of strings or None");
+        goto cleanup;
+    }
 
-    return Py_BuildValue("i", browse_id);
+    Py_XINCREF(pycallback);
+
+    /* TODO Currently we do not allow the user sending user data */
+    browse_id = mafw_source_browse(MAFW_SOURCE(self->obj),
+                                   object_id,
+                                   recursive,
+                                   filter,
+                                   sort_criteria,
+                                   metadata_keys,
+                                   skip_count,
+                                   item_count,
+                                   pymafw_browse_cb,
+                                   pycallback);
+
+cleanup:
+    if (filter)
+        mafw_filter_free(filter);
+
+    if (metadata_keys)
+        g_free(metadata_keys);
+
+    if (PyErr_Occurred())
+        return NULL;
+    else
+        return Py_BuildValue("i", browse_id);
 }
 
 %%

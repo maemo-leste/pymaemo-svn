@@ -1,3 +1,10 @@
+python-mafw (0.1-1maemo2) unstable; urgency=low
+
+  * mafw.Source.browse working - MB#4932.
+  * Basic metadata support - MB#4934.
+
+ -- Lauro Moura <lauro.neto@openbossa.org>  Thu, 19 Nov 2009 15:18:25 -0300
+
 python-mafw (0.1-1maemo1) unstable; urgency=low
 
   * Initial release. Fixes: MB#4675.
