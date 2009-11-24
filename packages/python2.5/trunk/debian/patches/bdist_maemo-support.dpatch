@@ -1,0 +1,668 @@
+#! /bin/sh -e
+
+# DP: bdist_maemo support on distutils
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p0 < $0
+        #cd ${dir}gcc && autoconf
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
+        #rm ${dir}gcc/configure
+        ;;
+    *)
+        echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
+        exit 1
+esac
+exit 0
+
+Index: Lib/distutils/command/__init__.py
+===================================================================
+--- Lib/distutils/command/__init__.py.orig	2008-05-12 11:07:57.000000000 -0300
++++ Lib/distutils/command/__init__.py	2008-05-12 11:08:03.000000000 -0300
+@@ -22,6 +22,7 @@
+            'register',
+            'bdist',
+            'bdist_dumb',
++           'bdist_maemo',
+            'bdist_rpm',
+            'bdist_wininst',
+            # These two are reserved for future use:
+Index: Lib/distutils/command/bdist_maemo.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ Lib/distutils/command/bdist_maemo.py	2008-05-12 11:08:03.000000000 -0300
+@@ -0,0 +1,133 @@
++#
++# bdist_maemo.py
++#
++# Script to add 'bdist_maemo' binary package distribution command to
++# 'distutils'. This command builds '.deb' packages suitable for installation
++# on the Maemo platform (e.g. Nokia 770) by the Application Installer.
++#
++#  Author: follower@rancidbacon.com
++#
++#    Date: 15 September 2006
++#
++# License: GPL 2.0
++# 
++# (Based on standard Python-supplied 'command_template' file.)
++# 
++"""distutils.command.bdist_maemo
++
++Implements the Distutils 'bdist_maemo' command.
++"""
++
++from distutils.core import Command
++from distutils.file_util import copy_file
++
++import os
++
++class bdist_maemo(Command):
++
++    # Brief (40-50 characters) description of the command
++    description = "Package for distribution on Maemo platform"
++
++    # List of option tuples: long name, short name (None if no short
++    # name), and help string.
++    user_options = [('name=', None,
++                     "Package name"),
++                    ('section=', None,
++                     "Section (Only 'user/*' will display in AI usually)"),
++                    ('priority=', None,
++                     "Priority"),
++                    ('architecture=', None,
++                     "Architecture"),
++                    ('depends=', None,
++                     "Other Debian package dependencies (comma separated)"),
++                   ]
++
++
++    def initialize_options (self):
++        self.dist_dir = None
++        self.section = None
++        self.priority = None
++        self.architecture = None
++        self.depends = None
++
++    # initialize_options()
++
++
++    def finalize_options (self):
++        if self.dist_dir is None:
++            self.dist_dir = "dist"
++
++        if self.section is None:
++            self.section = "user/other"
++
++        if self.priority is None:
++            self.priority = "optional"
++
++        if self.architecture is None:
++            self.architecture = "all"
++
++        self.maintainer = "%s <%s>" % \
++                          (self.distribution.get_maintainer(),
++                           self.distribution.get_maintainer_email())
++
++        if self.depends is None:
++            self.depends = "python, python-hildon, python-gtk2"
++
++        self.name = self.distribution.get_name()
++        self.description = self.distribution.get_description()
++        self.long_description = self.distribution.get_long_description()
++        self.version = self.distribution.get_version()
++
++    # finalize_options()
++
++
++    def run (self):
++        """
++        """
++        ROOT_DIR = "root"
++        BASE_DIR = os.path.join(ROOT_DIR, "usr")
++
++        script_dir = os.path.join(self.dist_dir, BASE_DIR, "bin/")
++        try:
++            os.makedirs(script_dir)
++        except: # TODO: Check exception is exists
++            pass
++
++        for script in self.distribution.scripts:
++            copy_file(script, script_dir)
++
++        for theDir, theFiles in self.distribution.data_files:
++            fulldirpath = os.path.join(self.dist_dir, BASE_DIR, theDir)
++            try:
++                os.makedirs(fulldirpath)
++            except: # TODO: Check exception is exists
++                pass
++
++            for currFile in theFiles:
++                copy_file(currFile, fulldirpath)
++
++        from debfile import MaemoPackage, ControlFile
++
++        theMaemoPackage = MaemoPackage(
++            ControlFile(Package=self.name,
++                        Version=self.version,
++                        Section=self.section,
++                        Priority=self.priority,
++                        Architecture=self.architecture,
++                        Maintainer=self.maintainer,
++                        Depends=self.depends,
++                        Description=self.description,
++                        long_description=self.long_description
++                        ),
++            os.path.join(self.dist_dir, ROOT_DIR)
++            )
++
++        packageFilename="%s_%s-1_%s.deb" % (self.name,
++                                             self.version,
++                                             self.architecture)
++        open(os.path.join(self.dist_dir, packageFilename),
++             "wb").write(theMaemoPackage.packed())
++        
++    # run()
++
++# class x
+Index: Lib/distutils/command/arfile.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ Lib/distutils/command/arfile.py	2008-05-12 11:08:03.000000000 -0300
+@@ -0,0 +1,195 @@
++#!/usr/bin/python
++#
++# "Incomplete" module to create `ar` (archive) format files.
++#
++# Author: follower@rancidbacon.com
++#
++# Date: 13 September 2006
++#
++# License: GPL 2.0
++#
++# Note:
++#
++#  * This has been written based on the format described in the AR(5) man page.
++#
++#  * This module does not fully implement the file format as described--there
++#    is no support for file names longer than 16 characters--nor is there
++#    any error checking that this does not occur.
++#
++#  * There is no functionality for reading `ar` format files--only writing for
++#    them.
++#
++#  * The motivation for writing this was for creating a pure-Python way
++#    of constructing ".deb" files--which is an archive file with 3 specific
++#    files in it--thus a limited functionality requirement.
++#
++import os
++
++MAGIC_STRING = "!<arch>\n"
++
++def paddedString(text, length):
++    """
++
++    Return a string with (possibly no) trailing spaces so the total
++    length of the string is `length` characters.
++    
++    """
++    return (text + length * " ")[:length]
++    
++
++NAME_BUFFER_LENGTH = 16
++MOD_TIME_BUFFER_LENGTH = 12
++ID_BUFFER_LENGTH = 6
++FILE_MODE_BUFFER_LENGTH = 8
++FILE_SIZE_BUFFER_LENGTH = 10
++
++NO_PADDING_CHAR = ""
++PADDING_CHAR = "\n"
++
++FILE_HEADER_TRAILER = "`\n"
++
++class FileInfo(object):
++    """
++
++    Represents a single file in the archive.
++
++    The name is a little of a misnomer as it also (currently) holds the
++    file content.
++    
++    """
++
++    def __init__(self,
++                 name,
++                 modificationTime, 
++                 userId, groupId,
++                 fileMode,
++                 fileSize,
++                 data):
++        """
++        """
++        self.name = name # TODO: Ensure ar-compatible
++        self.modificationTime = modificationTime
++        self.userId = userId
++        self.groupId = groupId
++        self.fileMode = fileMode
++        self.fileSize = fileSize
++        self.data = data
++
++
++    def _getHeader(self):
++        """
++
++        Returns the header for the file as documented in AR(5).
++        
++        """
++        data = []
++
++        data.append(paddedString(self.name, NAME_BUFFER_LENGTH))
++
++        data.append(paddedString(str(self.modificationTime),
++                                 MOD_TIME_BUFFER_LENGTH))
++
++        data.append(paddedString(str(self.userId), ID_BUFFER_LENGTH))
++
++        data.append(paddedString(str(self.groupId), ID_BUFFER_LENGTH))
++
++        data.append(paddedString("%o" % self.fileMode,
++                                 FILE_MODE_BUFFER_LENGTH))
++
++        data.append(paddedString(str(self.fileSize), FILE_SIZE_BUFFER_LENGTH))
++
++        data.append(FILE_HEADER_TRAILER)
++
++        return "".join(data)
++
++    header = property(_getHeader, doc="")
++
++
++    def packed(self):
++        """
++
++        Returns the "packed" form suitable for appended to an `ar` file.
++
++        The packing concatenates the header, data and--if
++        necessary--trailing padding. The padding is required to obey
++        the "Objects in the archive are always an even number of bytes
++        long;" requirement of the file format.
++        
++        """
++        return self.header + \
++               self.data + \
++               [NO_PADDING_CHAR, PADDING_CHAR][self.fileSize % 2] #Pad odd size
++        
++
++    def _fromFilePath(filepath):
++        """
++        """
++        statResult = os.stat(filepath)
++        return FileInfo(name = os.path.basename(filepath),
++                        modificationTime = statResult.st_mtime,
++                        userId = statResult.st_uid,
++                        groupId = statResult.st_gid,
++                        fileMode = statResult.st_mode,
++                        fileSize = statResult.st_size,
++                        data = open(filepath, "rb").read()) # Hardly efficient!
++
++    fromFilePath = staticmethod(_fromFilePath)
++
++
++class ArFile(object):
++    """
++
++    Represents a complete archive.
++
++    Files can be added by appending the paths to the `files` list.
++    
++    """
++
++    def __init__(self):
++        """
++        """
++        self.files = [] # Can be a string file path or a FileInfo instance.
++
++
++    def packed(self):
++        """
++        
++        Returns the "packed" form of the archive--suitable for writing
++        to disc.
++
++        """
++        content = []
++
++        content.append(MAGIC_STRING)
++
++        for theFile in self.files:
++            if isinstance(theFile, FileInfo):
++                packedFile = theFile.packed()
++            else:
++                packedFile = FileInfo.fromFilePath(theFile).packed()
++
++            content.append(packedFile)
++
++        return "".join(content)
++        
++        
++
++if __name__ == "__main__":
++    import sys
++
++    if len(sys.argv) < 2:
++        print "Usage: %s  <filepath> [...]" % sys.argv[0]
++        raise SystemExit
++
++    #print FileInfo.fromFilePath(filepath).header
++    #print FileInfo.fromFilePath(filepath).packed()
++
++    archiveFile = ArFile()
++
++    for theFilepath in sys.argv[1:]:
++        archiveFile.files.append(theFilepath)
++
++    sys.stdout.write(archiveFile.packed())
++    
++    
++    
+Index: Lib/distutils/command/debfile.py
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ Lib/distutils/command/debfile.py	2008-05-12 11:08:03.000000000 -0300
+@@ -0,0 +1,265 @@
++#!/usr/bin/python
++#
++# debfile.py
++#
++# A pure Python way of producing .deb files suitable installation
++# on the Maemo platform.
++#
++#
++# Notes:
++#
++#  * Intended for use with companion `distutils` `bdist_maemo` command but
++#    may also be able to be used standalone.
++#
++#  * May _also_ be used as a generic .deb packager but it's not
++#    been tested for that.
++#
++#
++#  Author: follower@rancidbacon.com
++#
++#    Date: 15 September 2006
++#
++# License: GPL 2.0
++#
++#
++
++import os
++import stat
++import time
++import tarfile
++from tarfile import TarFile as _TarFile
++
++from cStringIO import StringIO
++
++import arfile
++
++FILENAME_DEB_VERSION = "debian-binary"
++FILE_CONTENT_DEB_VERSION = "2.0\x0a"
++
++FILENAME_CONTROL_TAR_GZ = "control.tar.gz"
++FILENAME_DATA_TAR_GZ = "data.tar.gz"
++
++PERMS_URW_GRW_OR = stat.S_IRUSR | stat.S_IWUSR | \
++                   stat.S_IRGRP | stat.S_IWGRP | \
++                   stat.S_IROTH
++
++UID_ROOT = 0
++GID_ROOT = 0
++
++class ControlFile(object):
++    """
++    """
++
++    def __init__(self,
++                 long_description = "",
++                 Description = "",
++                 **kwargs):
++        """
++        """
++        self.options = kwargs # TODO: Is order important?
++
++        # TODO: Clean-up special handling of description
++        self.description = Description
++        self.long_description = long_description
++        
++
++
++    def _getContent(self):
++        """
++        """
++        content = ["%s: %s" % (k, v)
++                   for k,v in self.options.iteritems()]
++
++        if self.description:
++            content.append("Description: %s" % self.description)
++            if self.long_description:
++                content.append(" " + self.long_description)
++
++        return "\n".join(content) + "\n"
++
++    content = property(_getContent, doc="")
++
++
++class TarFile(_TarFile):
++    """
++    """
++
++    def addfilefromstring(self, name, theString):
++        """
++        """
++        content = StringIO(theString)
++
++        theFileInfo = tarfile.TarInfo(name = name)
++        theFileInfo.mtime = int(time.time()) # Absence seems to break tgz file.
++        theFileInfo.size = len(content.getvalue())
++
++        self.addfile(theFileInfo, fileobj = content)        
++
++
++class MaemoPackage(object):
++    """
++    """
++
++    def __init__(self, controlFile, dataDirectoryPath):
++        """
++        """
++        self.controlFile = controlFile
++        self._dataDirectoryPath = dataDirectoryPath
++
++
++    def packed(self):
++        """
++        """
++        theDeb = arfile.ArFile()
++
++        ## Add the debian package version
++        theDeb.files.append(self._getVersionFile())
++        
++        ## Add the compressed control related file(s)
++        theDeb.files.append(self._getControlFiles())
++
++        ## Add compressed data file(s)
++        theDeb.files.append(self._getDataFiles())
++
++        return theDeb.packed()
++        
++
++    def _getVersionFile(self):
++        """
++        """
++        debVersionFile = \
++                arfile.FileInfo(name = FILENAME_DEB_VERSION,
++                                modificationTime = int(time.time()),
++                                userId = UID_ROOT,
++                                groupId = GID_ROOT,
++                                fileMode = PERMS_URW_GRW_OR,
++                                fileSize = len(FILE_CONTENT_DEB_VERSION),
++                                data = FILE_CONTENT_DEB_VERSION)
++
++        return debVersionFile
++
++
++    def _getControlFiles(self):
++        """
++        """
++        debControlFile = self.controlFile.content
++
++        outputFileObj = StringIO() # TODO: Do more transparently?
++
++        tarOutput = TarFile.open(FILENAME_CONTROL_TAR_GZ,
++                                 mode = "w:gz",
++                                 fileobj = outputFileObj)
++
++        tarOutput.addfilefromstring("control", debControlFile)
++
++        # TODO: Add `postinst` here if needed.
++
++        tarOutput.close()
++
++        control_tar_gz = outputFileObj.getvalue()
++
++        controlFile = arfile.FileInfo(name = FILENAME_CONTROL_TAR_GZ,
++                                      modificationTime = int(time.time()),
++                                      userId = UID_ROOT,
++                                      groupId = GID_ROOT,
++                                      fileMode = PERMS_URW_GRW_OR,
++                                      fileSize = len(control_tar_gz),
++                                      data = control_tar_gz)
++
++        return controlFile
++
++
++    def _getDataFiles(self):
++        """
++        """
++        directoryPath = self._dataDirectoryPath
++
++        outputFileObj = StringIO() # TODO: Do more transparently?
++
++        tarOutput = TarFile.open(FILENAME_DATA_TAR_GZ,
++                                 mode = "w:gz",
++                                 fileobj = outputFileObj)
++
++        # Note: We can't use this because we need to fiddle permissions:
++        #       tarOutput.add(directoryPath, arcname = "")
++
++        # TODO: Add this as a method for TarFile and tidy-up?
++        for root, dirs, files in os.walk(directoryPath):
++            archiveRoot = root[len(directoryPath):]
++
++            tarinfo = tarOutput.gettarinfo(root, archiveRoot)
++            # TODO: Make configurable?
++            tarinfo.uid = UID_ROOT
++            tarinfo.gid = GID_ROOT
++            tarinfo.uname = ""
++            tarinfo.gname = ""
++            tarOutput.addfile(tarinfo)
++
++            for f in  files:
++                tarinfo = tarOutput.gettarinfo(os.path.join(root, f),
++                                               os.path.join(archiveRoot, f))
++                tarinfo.uid = UID_ROOT
++                tarinfo.gid = GID_ROOT
++                tarinfo.uname = ""
++                tarinfo.gname = ""
++                
++                # Fix up file permissions
++                suggested_perm = tarinfo.mode
++                ## remove all WRITE perms (possibly this should be done in bdist_maemo)
++                suggested_perm = suggested_perm & ~stat.S_IWUSR & ~stat.S_IWGRP & ~stat.S_IWOTH
++                if tarinfo.name.startswith('usr/bin/'):
++                    # Tack on EXECUTE perms, some file systems do not have EXECUTE permissions (e.g. FAT)
++                    suggested_perm = suggested_perm | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH ## S_IEXEC  doesn't do what I expect under win32 not sure about linux
++                tarinfo.mode = suggested_perm
++                
++                tarOutput.addfile(tarinfo, file(os.path.join(root, f)))
++
++        tarOutput.close()
++
++        data_tar_gz = outputFileObj.getvalue()
++
++        dataFile = arfile.FileInfo(name = FILENAME_DATA_TAR_GZ,
++                                   modificationTime = int(time.time()),
++                                   userId = UID_ROOT,
++                                   groupId = GID_ROOT,
++                                   fileMode = PERMS_URW_GRW_OR,
++                                   fileSize = len(data_tar_gz),
++                                   data = data_tar_gz)
++        return dataFile
++            
++            
++
++
++if __name__ == "__main__":
++    # debian-binary
++    # control.tgz
++    # data.tgz
++
++    import sys
++
++    try:
++        directoryPath = sys.argv[1]
++    except IndexError:
++        print "Usage: %s <directory path>" % sys.argv[0]
++        raise SystemExit
++
++    theMaemoPackage = MaemoPackage(
++        ControlFile(Package="xx-example",
++                    Version="0.1.0",
++                    Section="user/other",
++                    Priority="optional",
++                    Architecture="all",
++                    Maintainer="follower <follower@rancidbacon.com>",
++                    Depends="python, python-hildon, python-gtk2",
++                    Description="Example packaged Maemo application."
++                    ),
++        directoryPath
++        )
++
++    sys.stdout.write(theMaemoPackage.packed())
++
++    
++                                     
++
++    
++
+Index: Lib/distutils/command/bdist.py
+===================================================================
+--- Lib/distutils/command/bdist.py.orig	2008-05-12 11:09:18.000000000 -0300
++++ Lib/distutils/command/bdist.py	2008-05-12 11:09:50.000000000 -0300
+@@ -64,7 +64,7 @@
+ 
+     # Establish the preferred order (for the --help-formats option).
+     format_commands = ['rpm', 'gztar', 'bztar', 'ztar', 'tar',
+-                       'wininst', 'zip',
++                       'wininst', 'zip', 'maemo',
+                        #'pkgtool', 'sdux'
+                        ]
+ 
+@@ -78,6 +78,7 @@
+                        'wininst': ('bdist_wininst',
+                                    "Windows executable installer"),
+                        'zip':   ('bdist_dumb', "ZIP file"),
++                       'maemo':   ('bdist_maemo', "deb file"),
+                        #'pkgtool': ('bdist_pkgtool',
+                        #            "Solaris pkgtool distribution"),
+                        #'sdux':  ('bdist_sdux', "HP-UX swinstall depot"),

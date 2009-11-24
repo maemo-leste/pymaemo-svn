@@ -964,6 +964,7 @@ debian_patches = \
 	ctypes_findlib \
 	sbox-arm-segfault \
 	04-import \
+	bdist_maemo-support \
 
 #	svn-updates \
 #	svn-doc-updates \

@@ -1,3 +1,11 @@
+python2.5 (2.5.4-1maemo4) unstable; urgency=low
+
+  * Add patch:  
+    - bdist_maemo-support.dpatch: Add 'bdist_maemo' binary package
+      distribution command to distutils (Fixes: MB#6161)
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@openbossa.org>  Mon, 23 Nov 2009 16:25:43 -0400
+
 python2.5 (2.5.4-1maemo3) unstable; urgency=low
 
   * Add dependency on pymaemo-optify, so that Python packages are
