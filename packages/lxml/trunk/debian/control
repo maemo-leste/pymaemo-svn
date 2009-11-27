@@ -1,0 +1,41 @@
+Source: lxml
+Section: python
+Priority: optional
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Matthias Klose <doko@debian.org>
+Build-Depends: debhelper (>= 5.0.37.1), python-central (>= 0.6.1), python-all-dev (>= 2.3.5-9), python-all-dbg, python-pyrex (>= 0.9.4.1-1), libxml2-dev, libxslt1-dev, zlib1g-dev, cython
+Build-Conflicts: python-pkg-resources
+XS-Python-Version: all
+Standards-Version: 3.7.3
+
+Package: python-lxml
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}
+Conflicts: python2.3-lxml, python2.4-lxml
+Replaces: python2.3-lxml, python2.4-lxml
+Provides: ${python:Provides}
+Suggests: python-lxml-dbg
+XB-Python-Version: ${python:Versions}
+Description: pythonic binding for the libxml2 and libxslt libraries
+ lxml is a new Python binding for libxml2 and libxslt, completely
+ independent from these existing Python bindings. Its aim:
+ .
+   * Pythonic API.
+   * Documented.
+   * Use Python unicode strings in API.
+   * Safe (no segfaults).
+   * No manual memory management!
+ .
+ lxml aims to provide a Pythonic API by following as much as possible
+ the ElementTree API, trying to avoid having to invent too many new APIs,
+ or you having to learn new things -- XML is complicated enough.
+
+Package: python-lxml-dbg
+Priority: extra
+Architecture: any
+Depends: python-lxml (= ${Source-Version}), python-dbg, ${shlibs:Depends}
+Description: pythonic binding for the libxml2 and libxslt libraries (debug extension)
+ lxml is a new Python binding for libxml2 and libxslt, completely
+ independent from these existing Python bindings.
+ .
+ This package contains the extension built for the python debug interpreter.
