@@ -1,0 +1,13 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From location-misc.h
+
+(define-function location_make_resident
+  (c-name "location_make_resident")
+  (return-type "none")
+)
+
+

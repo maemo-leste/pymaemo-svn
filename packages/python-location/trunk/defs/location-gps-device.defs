@@ -1,0 +1,63 @@
+;; -*- scheme -*-
+; object definitions ...
+
+
+(define-object GPSDevice
+  (in-module "Location")
+  (parent "GObject")
+  (c-name "LocationGPSDevice")
+  (gtype-id "LOCATION_TYPE_GPS_DEVICE")
+)
+
+;; Enumerations and flags ...
+
+(define-enum GPSDeviceStatus
+  (in-module "Location")
+  (c-name "LocationGPSDeviceStatus")
+  (gtype-id "LOCATION_TYPE_GPS_DEVICE_STATUS")
+  (values
+    '("no-fix" "LOCATION_GPS_DEVICE_STATUS_NO_FIX")
+    '("fix" "LOCATION_GPS_DEVICE_STATUS_FIX")
+    '("dgps-fix" "LOCATION_GPS_DEVICE_STATUS_DGPS_FIX")
+  )
+)
+
+(define-enum GPSDeviceMode
+  (in-module "Location")
+  (c-name "LocationGPSDeviceMode")
+  (gtype-id "LOCATION_TYPE_GPS_DEVICE_MODE")
+  (values
+    '("not-seen" "LOCATION_GPS_DEVICE_MODE_NOT_SEEN")
+    '("no-fix" "LOCATION_GPS_DEVICE_MODE_NO_FIX")
+    '("2d" "LOCATION_GPS_DEVICE_MODE_2D")
+    '("3d" "LOCATION_GPS_DEVICE_MODE_3D")
+  )
+)
+
+
+;; From location-gps-device.h
+
+(define-function location_gps_device_get_type
+  (c-name "location_gps_device_get_type")
+  (return-type "GType")
+)
+
+(define-method reset_last_known
+  (of-object "LocationGPSDevice")
+  (c-name "location_gps_device_reset_last_known")
+  (return-type "none")
+)
+
+(define-method start
+  (of-object "LocationGPSDevice")
+  (c-name "location_gps_device_start")
+  (return-type "none")
+)
+
+(define-method stop
+  (of-object "LocationGPSDevice")
+  (c-name "location_gps_device_stop")
+  (return-type "none")
+)
+
+

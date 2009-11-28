@@ -1,0 +1,75 @@
+;; -*- scheme -*-
+; object definitions ...
+
+
+(define-object GPSDControl
+  (in-module "Location")
+  (parent "GObject")
+  (c-name "LocationGPSDControl")
+  (gtype-id "LOCATION_TYPE_GPSD_CONTROL")
+)
+
+;; Enumerations and flags ...
+
+(define-enum GPSDControlInterval
+  (in-module "Location")
+  (c-name "LocationGPSDControlInterval")
+  (gtype-id "LOCATION_TYPE_GPSD_CONTROL_INTERVAL")
+  (values
+    '("default" "LOCATION_INTERVAL_DEFAULT")
+    '("1s" "LOCATION_INTERVAL_1S")
+    '("2s" "LOCATION_INTERVAL_2S")
+    '("5s" "LOCATION_INTERVAL_5S")
+    '("10s" "LOCATION_INTERVAL_10S")
+    '("20s" "LOCATION_INTERVAL_20S")
+    '("30s" "LOCATION_INTERVAL_30S")
+    '("60s" "LOCATION_INTERVAL_60S")
+    '("120s" "LOCATION_INTERVAL_120S")
+  )
+)
+
+(define-enum GPSDControlError
+  (in-module "Location")
+  (c-name "LocationGPSDControlError")
+  (gtype-id "LOCATION_TYPE_GPSD_CONTROL_ERROR")
+  (values
+    '("user-rejected-dialog" "LOCATION_ERROR_USER_REJECTED_DIALOG")
+    '("user-rejected-settings" "LOCATION_ERROR_USER_REJECTED_SETTINGS")
+    '("bt-gps-not-available" "LOCATION_ERROR_BT_GPS_NOT_AVAILABLE")
+    '("method-not-allowed-in-offline-mode" "LOCATION_ERROR_METHOD_NOT_ALLOWED_IN_OFFLINE_MODE")
+    '("system" "LOCATION_ERROR_SYSTEM")
+  )
+)
+
+
+;; From location-gpsd-control.h
+
+(define-function location_gpsd_control_get_type
+  (c-name "location_gpsd_control_get_type")
+  (return-type "GType")
+)
+
+(define-function location_gpsd_control_get_default
+  (c-name "location_gpsd_control_get_default")
+  (return-type "LocationGPSDControl*")
+)
+
+(define-method start
+  (of-object "LocationGPSDControl")
+  (c-name "location_gpsd_control_start")
+  (return-type "none")
+)
+
+(define-method stop
+  (of-object "LocationGPSDControl")
+  (c-name "location_gpsd_control_stop")
+  (return-type "none")
+)
+
+(define-method request_status
+  (of-object "LocationGPSDControl")
+  (c-name "location_gpsd_control_request_status")
+  (return-type "none")
+)
+
+

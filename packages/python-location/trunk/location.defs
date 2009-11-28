@@ -1,0 +1,7 @@
+;; -*- scheme -*-
+;; THIS FILE IS GENERATED - DO NOT EDIT
+(include "location-extras.defs")
+(include "defs/location-distance-utils.defs")
+(include "defs/location-gps-device.defs")
+(include "defs/location-gpsd-control.defs")
+(include "defs/location-misc.defs")

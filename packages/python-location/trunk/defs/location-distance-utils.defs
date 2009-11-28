@@ -1,0 +1,19 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From location-distance-utils.h
+
+(define-function location_distance_between
+  (c-name "location_distance_between")
+  (return-type "double")
+  (parameters
+    '("double" "latitude_s")
+    '("double" "longitude_s")
+    '("double" "latitude_f")
+    '("double" "longitude_f")
+  )
+)
+
+
