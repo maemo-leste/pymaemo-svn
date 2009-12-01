@@ -33,7 +33,7 @@ clean:
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
-	rsync -a $(BUILDDIR)/html/ ../../www/python_hildon_manual/
+	rsync -a $(BUILDDIR)/html/ ../../www/python_location_manual/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
@@ -41,7 +41,7 @@ html-sbox:
 	LD_LIBRARY_PATH=/scratchbox/users/$$USER/targets/FREMANTLE_X86/usr/lib \
 	PYTHONPATH=/scratchbox/users/$$USER/targets/FREMANTLE_X86/usr/lib/python2.5/site-packages \
 	$(SPHINXBUILD) -D graphviz_dot=./graphviz_dot_wrapper.sh -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
-	rsync -a $(BUILDDIR)/html/ ../../www/python_hildon_manual/
+	rsync -a $(BUILDDIR)/html/ ../../www/python_location_manual/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)
 

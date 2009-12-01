@@ -1,0 +1,21 @@
+# Sphinx inventory version 1
+# Project: python-location Reference Manual
+# Version: 0.1
+location.GPSDControl mod location.html
+location.GPSDevice mod location.html
+location mod location.html
+location.GPSDevice.GPSDeviceStatus data location.html
+location.GPSDControl.stop function location.html
+location.GPSDControl.GPSDControlInterval data location.html
+location.GPSDControl.request_status function location.html
+location.GPSDControl.get_type function location.html
+location.GPSDControl.GPSDControlError data location.html
+location.GPSDevice.get_type function location.html
+location.GPSDevice.start function location.html
+location.GPSDControl.get_default function location.html
+location.GPSDControl.start function location.html
+location.GPSDevice.GPSDeviceMode data location.html
+location.GPSDevice.reset_last_known function location.html
+location.GPSDevice.location.make_resident function location.html
+location.distance_between function location.html
+location.GPSDevice.stop function location.html

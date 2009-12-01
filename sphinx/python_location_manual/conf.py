@@ -38,7 +38,7 @@ source_encoding = 'utf-8'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Hildon Reference Manual'
+project = u'python-location Reference Manual'
 copyright = u', '
 
 # The version info for the project you're documenting, acts as replacement for
@@ -46,7 +46,7 @@ copyright = u', '
 # built documents.
 #
 # The short X.Y version.
-version = '2.1.62'
+version = '0.1'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
@@ -173,7 +173,7 @@ html_show_sourcelink = True
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', u'Hildon Reference Manual',
+  ('index', u'python-location Reference Manual',
    u'', 'manual'),
 ]
 
