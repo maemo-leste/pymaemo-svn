@@ -28,6 +28,7 @@ headers
 
 #include "location-includes.h"
 #include "location-types.h"
+#include "location-types-extras.h"
 
 %%
 modulename location
@@ -38,4 +39,33 @@ import gobject.GObject as PyGObject_Type
 %%
 ignore-glob *_get_type
 
+
 %%
+override location_gpsd_control_get_default noargs staticmethod
+static PyObject *
+_wrap_location_gpsd_control_get_default(PyGObject *self)
+{
+    LocationGPSDControl *control;
+
+    control = location_gpsd_control_get_default();
+
+    return pygobject_new((GObject *)control);
+}
+
+%%
+override-attr LocationGPSDevice.fix
+static PyObject *
+_wrap_location_gps_device__get_fix(PyGObject *self, void *closure)
+{
+    LocationGPSDevice *device = LOCATION_GPS_DEVICE(self->obj);
+    PyObject *ret;
+
+    ret = Py_BuildValue("(Nkddddddddddddd)",
+        pyg_enum_from_gtype(LOCATION_TYPE_GPS_DEVICE_SET, device->fix->mode), device->fix->fields,
+        device->fix->time, device->fix->ept, device->fix->latitude, device->fix->longitude,
+        device->fix->eph, device->fix->altitude, device->fix->epv, device->fix->track,
+        device->fix->epd, device->fix->speed, device->fix->eps, device->fix->climb,
+        device->fix->epc);
+
+    return ret;
+}

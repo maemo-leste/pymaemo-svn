@@ -38,8 +38,34 @@ function remove_duplicate_object()
     rm $defs_file.bak
 }
 
+# Turn a function into a method of a class
+function to_method()
+{
+    defs_file=$1
+    fn=$2
+    meth=$3
+    class=$4
+    sed -i.bak "s/^(define-function $fn$/(define-method $meth\n  (of-object \"$class\")/" $defs_file
+    diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
+    rm $defs_file.bak
+}
+
+# Add a field to a object definition
+function add_field
+{
+    defs_file=$1
+    class=$2
+    c_type=$3
+    name=$4
+    sed -i.bak "/^(define-object $class\$/{:x; N; s/\n)/&/; Tx; s/\n  (fields/&\n   '(\"$c_type\" \"$name\")/; t end; s/\n)/\n  (fields\n   '(\"$c_type\" \"$name\")\n  )&/; :end }" $defs_file
+    diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
+    rm $defs_file.bak
+}
+
 remove_duplicate_object defs/location-gps-device.defs GPSDevice LOCATION_TYPE_GPS_DEVICE
 remove_duplicate_object defs/location-gpsd-control.defs GPSDControl LOCATION_TYPE_GPSD_CONTROL
+to_method defs/location-gpsd-control.defs location_gpsd_control_get_default get_default LocationGPSDControl
+add_field defs/location-gps-device.defs GPSDevice 'LocationGPSDeviceFix*' fix
 
 #echo Generating $module-types.c and $module-types.h...
 ## It is necessary to create some enum introspection declarations missing from headers.

@@ -7,6 +7,9 @@
   (parent "GObject")
   (c-name "LocationGPSDevice")
   (gtype-id "LOCATION_TYPE_GPS_DEVICE")
+  (fields
+   '("LocationGPSDeviceFix*" "fix")
+  )
 )
 
 ;; Enumerations and flags ...

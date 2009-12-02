@@ -1,0 +1,27 @@
+(define-enum GPSDControlMethod
+  (in-module "Location")
+  (c-name "LocationGPSDControlMethod")
+  (gtype-id "LOCATION_TYPE_GPSD_CONTROL_METHOD")
+  (values
+    '("user-selected" "LOCATION_METHOD_USER_SELECTED")
+    '("cwp" "LOCATION_METHOD_CWP")
+    '("acwp" "LOCATION_METHOD_ACWP")
+    '("gnss" "LOCATION_METHOD_GNSS")
+    '("agnss" "LOCATION_METHOD_AGNSS")
+  )
+)
+
+(define-flags GPSDeviceSet
+   (in-module "Location")
+   (c-name "LocationGPSDeviceSet")
+   (gtype-id "LOCATION_TYPE_GPS_DEVICE_SET")
+   (values
+     '("none" "LOCATION_GPS_DEVICE_NONE_SET")
+     '("altitude" "LOCATION_GPS_DEVICE_ALTITUDE_SET")
+     '("speed" "LOCATION_GPS_DEVICE_SPEED_SET")
+     '("track" "LOCATION_GPS_DEVICE_TRACK_SET")
+     '("climb" "LOCATION_GPS_DEVICE_CLIMB_SET")
+     '("latlong" "LOCATION_GPS_DEVICE_LATLONG_SET")
+     '("time" "LOCATION_GPS_DEVICE_TIME_SET")
+   )
+)
