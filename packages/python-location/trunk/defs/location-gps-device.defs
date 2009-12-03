@@ -8,7 +8,11 @@
   (c-name "LocationGPSDevice")
   (gtype-id "LOCATION_TYPE_GPS_DEVICE")
   (fields
+   '("int" "satellites_in_use")
+   '("int" "satellites_in_view")
    '("LocationGPSDeviceFix*" "fix")
+   '("LocationGPSDeviceStatus" "status")
+   '("gboolean" "online")
   )
 )
 

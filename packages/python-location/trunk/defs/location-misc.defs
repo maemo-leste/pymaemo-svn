@@ -5,7 +5,7 @@
 
 ;; From location-misc.h
 
-(define-function location_make_resident
+(define-function make_resident
   (c-name "location_make_resident")
   (return-type "none")
 )

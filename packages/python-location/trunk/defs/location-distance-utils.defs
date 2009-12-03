@@ -5,7 +5,7 @@
 
 ;; From location-distance-utils.h
 
-(define-function location_distance_between
+(define-function distance_between
   (c-name "location_distance_between")
   (return-type "double")
   (parameters

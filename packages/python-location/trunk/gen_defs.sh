@@ -62,10 +62,29 @@ function add_field
     rm $defs_file.bak
 }
 
+# Strip module name from functions
+function strip_module_prefix
+{
+    defs_file=$1
+    mod=$2
+    sed -i.bak "/^(define-function/s/ ${mod}_/ /" $defs_file
+    diff -u $defs_file.bak $defs_file && echo "WARNING: $defs_file is unchanged" || true
+    rm $defs_file.bak
+}
+
 remove_duplicate_object defs/location-gps-device.defs GPSDevice LOCATION_TYPE_GPS_DEVICE
 remove_duplicate_object defs/location-gpsd-control.defs GPSDControl LOCATION_TYPE_GPSD_CONTROL
 to_method defs/location-gpsd-control.defs location_gpsd_control_get_default get_default LocationGPSDControl
+add_field defs/location-gps-device.defs GPSDevice gboolean online
+add_field defs/location-gps-device.defs GPSDevice LocationGPSDeviceStatus status
 add_field defs/location-gps-device.defs GPSDevice 'LocationGPSDeviceFix*' fix
+add_field defs/location-gps-device.defs GPSDevice int satellites_in_view
+add_field defs/location-gps-device.defs GPSDevice int satellites_in_use
+# FIXME: not supported yet
+#add_field defs/location-gps-device.defs GPSDevice 'GPtrArray*' satellites
+#add_field defs/location-gps-device.defs GPSDevice 'LocationCellInfo*' cell_info
+strip_module_prefix defs/location-misc.defs $module
+strip_module_prefix defs/location-distance-utils.defs $module
 
 #echo Generating $module-types.c and $module-types.h...
 ## It is necessary to create some enum introspection declarations missing from headers.

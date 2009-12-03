@@ -2,7 +2,7 @@ Source: python-location
 Section: devel
 Priority: extra
 Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
-Build-Depends: cdbs, debhelper (>= 5), python-central, python-dev, python-gtk2-dev, liblocation-dev
+Build-Depends: cdbs, debhelper (>= 5), python-central, python-dev, python-gtk2-dev, liblocation-dev, libgconf2-dev
 XS-Python-Version: all
 Standards-Version: 3.7.2
 

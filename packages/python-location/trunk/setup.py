@@ -13,14 +13,6 @@ extensions = []
 location = TemplateExtension(name = "location",
                              pkc_name = "liblocation",
                              pkc_version = "0.99",
-                             #pygobject_pkc = ("hildon-fm-2",
-                             #               "pygobject-2.0",
-                             #               "gconf-2.0", # needed by hildon-fm-2 (see MB#4538)
-                             #               "gnome-vfs-2.0", # needed by hildon-fm-2 (see MB#4538)
-                             #               "hildon-notify",
-                             #               "dbus-1",
-                             #               "dbus-glib-1",
-                             #              ),
                              sources = ["locationmodule.c",
                                         "location.c",
                                         "location-types.c",
