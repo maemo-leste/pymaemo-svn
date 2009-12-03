@@ -6,3 +6,5 @@ Table of contents
    :maxdepth: 3
 
    location.rst
+   device.rst
+   control.rst

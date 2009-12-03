@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>python-location Reference Manual &mdash; GPSDControl</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+    };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+    <link rel="top" title="python-location Reference Manual v documentation" href="index.html" />
+    <link rel="prev" title="GPSDevice" href="device.html" /> 
+  </head>
+  <body id="control">
+
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+        <ul id="relbar">
+            <li class="right">
+            <a href="genindex.html" title="General Index"
+                accesskey="I">index</a></li>
+            <li class="right">
+            <a href="modindex.html" title="Global Module Index"
+                accesskey="M">modules</a> |</li>
+            <li class="right">
+            <a href="device.html" title="GPSDevice"
+                accesskey="P">previous</a> |</li>
+            <li><a href="index.html">python-location Reference Manual v documentation</a> &raquo;</li> 
+        </ul>
+    </div>
+</div>
+
+<div id="body" >
+    <div id="sidebar">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">GPSDControl</a><ul>
+<li><a class="reference external" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="device.html"
+                                  title="previous chapter">GPSDevice</a></p>
+
+    </div>
+    
+  <div class="section" id="gpsdcontrol">
+<span id="module-location.GPSDControl"></span><h1>GPSDControl<a class="headerlink" href="#gpsdcontrol" title="Permalink to this headline">¶</a></h1>
+<p>From <a class="reference external" href="http://wiki.maemo.org/PyMaemo/Using_Location_API#Using_liblocation_from_Python">http://wiki.maemo.org/PyMaemo/Using_Location_API#Using_liblocation_from_Python</a>: GPSDControl is used for starting and stopping of location services, setting location method and interval, and listening for errors.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="location.GPSDControl.get_default">
+<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">get_default</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.get_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used by applications to obtain a single instance of the GPSDControl object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">an instance of the GPSDControl object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="location.GPSDControl.start">
+<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.start" title="Permalink to this definition">¶</a></dt>
+<dd>Starts an active connection to Location server. In other words, by calling this function the application informs that it wants to use the location service.</dd></dl>
+
+<dl class="function">
+<dt id="location.GPSDControl.stop">
+<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.stop" title="Permalink to this definition">¶</a></dt>
+<dd>Informs the location framework that the application is no longer interested about the current location. Location service is kept running as long as there is at least one application using it. Please note that GPSDevice still sends data as long as the location framework is running.</dd></dl>
+
+<dl class="function">
+<dt id="location.GPSDControl.request_status">
+<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">request_status</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.request_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">location.GPSDControl.request_status is deprecated and should not be used in newly-written code.</p>
+</div>
+</div>
+</div>
+
+
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
+</html>

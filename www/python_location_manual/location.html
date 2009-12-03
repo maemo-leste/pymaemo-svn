@@ -27,6 +27,7 @@
     </style>
     <![endif]-->
     <link rel="top" title="python-location Reference Manual v documentation" href="index.html" />
+    <link rel="next" title="GPSDevice" href="device.html" />
     <link rel="prev" title="Table of contents" href="index.html" /> 
   </head>
   <body id="location">
@@ -50,6 +51,9 @@
             <a href="modindex.html" title="Global Module Index"
                 accesskey="M">modules</a> |</li>
             <li class="right">
+            <a href="device.html" title="GPSDevice"
+                accesskey="N">next</a> |</li>
+            <li class="right">
             <a href="index.html" title="Table of contents"
                 accesskey="P">previous</a> |</li>
             <li><a href="index.html">python-location Reference Manual v documentation</a> &raquo;</li> 
@@ -62,22 +66,15 @@
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
 <li><a class="reference external" href="">Python bindings for liblocation</a><ul>
-<li><a class="reference external" href="#module-location">location-distance-utils</a><ul>
-<li><a class="reference external" href="#details">Details</a></li>
+<li><a class="reference external" href="#module-constants">Module constants</a><ul>
+<li><a class="reference external" href="#interval-between-fixes">Interval between fixes:</a></li>
+<li><a class="reference external" href="#location-methods">Location methods</a></li>
+<li><a class="reference external" href="#location-errors">Location errors</a></li>
+<li><a class="reference external" href="#fix-statuses">Fix statuses</a></li>
+<li><a class="reference external" href="#device-modes">Device modes</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#module-location.GPSDControl">LocationGPSDControl</a><ul>
-<li><a class="reference external" href="#id1">Details</a></li>
-</ul>
-</li>
-<li><a class="reference external" href="#module-location.GPSDevice">LocationGPSDevice</a><ul>
-<li><a class="reference external" href="#id2">Details</a></li>
-</ul>
-</li>
-<li><a class="reference external" href="#location-misc">location-misc</a><ul>
-<li><a class="reference external" href="#id3">Details</a></li>
-</ul>
-</li>
+<li><a class="reference external" href="#miscellaneous-functions">Miscellaneous functions</a></li>
 </ul>
 </li>
 </ul>
@@ -85,16 +82,190 @@
             <h4>Previous topic</h4>
             <p class="topless"><a href="index.html"
                                   title="previous chapter">Table of contents</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="device.html"
+                                  title="next chapter">GPSDevice</a></p>
 
     </div>
     
-  <div class="section" id="python-bindings-for-liblocation">
-<h1>Python bindings for liblocation<a class="headerlink" href="#python-bindings-for-liblocation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-location">
-<h2>location-distance-utils<a class="headerlink" href="#module-location" title="Permalink to this headline">¶</a></h2>
-<p>Utility functions for calculating distances.</p>
-<div class="section" id="details">
-<h3>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h3>
+  <div class="section" id="module-location">
+<h1>Python bindings for liblocation<a class="headerlink" href="#module-location" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-constants">
+<h2>Module constants<a class="headerlink" href="#module-constants" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="interval-between-fixes">
+<h3>Interval between fixes:<a class="headerlink" href="#interval-between-fixes" title="Permalink to this headline">¶</a></h3>
+<dl class="data">
+<dt id="location.INTERVAL_DEFAULT">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_DEFAULT</tt><a class="headerlink" href="#location.INTERVAL_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Default value for the system.</p>
+<dl class="data">
+<dt id="location.INTERVAL_1S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_1S</tt><a class="headerlink" href="#location.INTERVAL_1S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>1 second between subsequent fixes.</p>
+<dl class="data">
+<dt id="location.INTERVAL_2S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_2S</tt><a class="headerlink" href="#location.INTERVAL_2S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>2 seconds between subsequent fixes.</p>
+<dl class="data">
+<dt id="location.INTERVAL_5S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_5S</tt><a class="headerlink" href="#location.INTERVAL_5S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>5 seconds between subsequent fixes</p>
+<dl class="data">
+<dt id="location.INTERVAL_10S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_10S</tt><a class="headerlink" href="#location.INTERVAL_10S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>10 seconds between subsequent fixes.</p>
+<dl class="data">
+<dt id="location.INTERVAL_20S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_20S</tt><a class="headerlink" href="#location.INTERVAL_20S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>20 seconds between subsequent fixes.</p>
+<dl class="data">
+<dt id="location.INTERVAL_30S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_30S</tt><a class="headerlink" href="#location.INTERVAL_30S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>30 seconds between subsequent fixes.</p>
+<dl class="data">
+<dt id="location.INTERVAL_60S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_60S</tt><a class="headerlink" href="#location.INTERVAL_60S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>60 seconds between subsequent fixes.</p>
+<dl class="data">
+<dt id="location.INTERVAL_120S">
+<tt class="descclassname">location.</tt><tt class="descname">INTERVAL_120S</tt><a class="headerlink" href="#location.INTERVAL_120S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>120 seconds between subsequent fixes.</p>
+</div>
+<div class="section" id="location-methods">
+<h3>Location methods<a class="headerlink" href="#location-methods" title="Permalink to this headline">¶</a></h3>
+<dl class="data">
+<dt id="location.LOCATION_METHOD_USER_SELECTED">
+<tt class="descclassname">location.</tt><tt class="descname">LOCATION_METHOD_USER_SELECTED</tt><a class="headerlink" href="#location.LOCATION_METHOD_USER_SELECTED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The method is based on the current device settings. This is the default.</p>
+<dl class="data">
+<dt id="location.LOCATION_METHOD_CWP">
+<tt class="descclassname">location.</tt><tt class="descname">LOCATION_METHOD_CWP</tt><a class="headerlink" href="#location.LOCATION_METHOD_CWP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Use the Complimentary Wireless Position method.</p>
+<dl class="data">
+<dt id="location.LOCATION_METHOD_ACWP">
+<tt class="descclassname">location.</tt><tt class="descname">LOCATION_METHOD_ACWP</tt><a class="headerlink" href="#location.LOCATION_METHOD_ACWP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Use the Assisted Complimentary Wireless Position method.</p>
+<dl class="data">
+<dt id="location.LOCATION_METHOD_GNSS">
+<tt class="descclassname">location.</tt><tt class="descname">LOCATION_METHOD_GNSS</tt><a class="headerlink" href="#location.LOCATION_METHOD_GNSS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Use the Global Navigation Satellite System method.</p>
+<dl class="data">
+<dt id="location.LOCATION_METHOD_AGNSS">
+<tt class="descclassname">location.</tt><tt class="descname">LOCATION_METHOD_AGNSS</tt><a class="headerlink" href="#location.LOCATION_METHOD_AGNSS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Use the Assisted Global Navigation Satellite System method.</p>
+</div>
+<div class="section" id="location-errors">
+<h3>Location errors<a class="headerlink" href="#location-errors" title="Permalink to this headline">¶</a></h3>
+<dl class="data">
+<dt id="location.ERROR_USER_REJECTED_DIALOG">
+<tt class="descclassname">location.</tt><tt class="descname">ERROR_USER_REJECTED_DIALOG</tt><a class="headerlink" href="#location.ERROR_USER_REJECTED_DIALOG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>User rejected location enabling dialog.</p>
+<dl class="data">
+<dt id="location.ERROR_USER_REJECTED_SETTINGS">
+<tt class="descclassname">location.</tt><tt class="descname">ERROR_USER_REJECTED_SETTINGS</tt><a class="headerlink" href="#location.ERROR_USER_REJECTED_SETTINGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>User changed settings which disabled locationing.</p>
+<dl class="data">
+<dt id="location.ERROR_BT_GPS_NOT_AVAILABLE">
+<tt class="descclassname">location.</tt><tt class="descname">ERROR_BT_GPS_NOT_AVAILABLE</tt><a class="headerlink" href="#location.ERROR_BT_GPS_NOT_AVAILABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Problems using BT GPS.</p>
+<dl class="data">
+<dt id="location.ERROR_METHOD_NOT_ALLOWED_IN_OFFLINE_MODE">
+<tt class="descclassname">location.</tt><tt class="descname">ERROR_METHOD_NOT_ALLOWED_IN_OFFLINE_MODE</tt><a class="headerlink" href="#location.ERROR_METHOD_NOT_ALLOWED_IN_OFFLINE_MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Method unavailable in offline mode.</p>
+<dl class="data">
+<dt id="location.ERROR_SYSTEM">
+<tt class="descclassname">location.</tt><tt class="descname">ERROR_SYSTEM</tt><a class="headerlink" href="#location.ERROR_SYSTEM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>System error, dbus, hildon, etc.</p>
+</div>
+<div class="section" id="fix-statuses">
+<h3>Fix statuses<a class="headerlink" href="#fix-statuses" title="Permalink to this headline">¶</a></h3>
+<dl class="data">
+<dt id="location.GPS_DEVICE_STATUS_NO_FIX">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_STATUS_NO_FIX</tt><a class="headerlink" href="#location.GPS_DEVICE_STATUS_NO_FIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device does not have a fix.</p>
+<dl class="data">
+<dt id="location.GPS_DEVICE_STATUS_FIX">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_STATUS_FIX</tt><a class="headerlink" href="#location.GPS_DEVICE_STATUS_FIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device has a fix.</p>
+<dl class="data">
+<dt id="location.GPS_DEVICE_STATUS_DGPS_FIX">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_STATUS_DGPS_FIX</tt><a class="headerlink" href="#location.GPS_DEVICE_STATUS_DGPS_FIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device has a DGPS fix. (<em>Deprecated: this constant is not used anymore.</em>)</p>
+</div>
+<div class="section" id="device-modes">
+<h3>Device modes<a class="headerlink" href="#device-modes" title="Permalink to this headline">¶</a></h3>
+<dl class="data">
+<dt id="location.GPS_DEVICE_MODE_NOT_SEEN">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_MODE_NOT_SEEN</tt><a class="headerlink" href="#location.GPS_DEVICE_MODE_NOT_SEEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device has not seen a satellite yet.</p>
+<dl class="data">
+<dt id="location.GPS_DEVICE_MODE_NO_FIX">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_MODE_NO_FIX</tt><a class="headerlink" href="#location.GPS_DEVICE_MODE_NO_FIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device has no fix.</p>
+<dl class="data">
+<dt id="location.GPS_DEVICE_MODE_2D">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_MODE_2D</tt><a class="headerlink" href="#location.GPS_DEVICE_MODE_2D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device has latitude and longitude fix.</p>
+<dl class="data">
+<dt id="location.GPS_DEVICE_MODE_3D">
+<tt class="descclassname">location.</tt><tt class="descname">GPS_DEVICE_MODE_3D</tt><a class="headerlink" href="#location.GPS_DEVICE_MODE_3D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The device has latitude, longitude, and altitude.</p>
+</div>
+</div>
+<div class="section" id="miscellaneous-functions">
+<h2>Miscellaneous functions<a class="headerlink" href="#miscellaneous-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="location.distance_between">
 <tt class="descclassname">location.</tt><tt class="descname">distance_between</tt><big>(</big><em>latitude_s</em>, <em>longitude_s</em>, <em>latitude_f</em>, <em>longitude_f</em><big>)</big><a class="headerlink" href="#location.distance_between" title="Permalink to this definition">¶</a></dt>
@@ -118,239 +289,15 @@
 </table>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="module-location.GPSDControl">
-<h2>LocationGPSDControl<a class="headerlink" href="#module-location.GPSDControl" title="Permalink to this headline">¶</a></h2>
-<p>Object for controlling location services.</p>
-<div class="section" id="id1">
-<h3>Details<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<dl class="data">
-<dt id="location.GPSDControl.GPSDControlInterval">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">GPSDControlInterval</tt><a class="headerlink" href="#location.GPSDControl.GPSDControlInterval" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<table border="1" class="docutils">
-<colgroup>
-<col width="43%" />
-<col width="57%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Value</th>
-<th class="head">Meaning</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_DEFAULT</span></tt></td>
-<td>Default value for the system.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_1S</span></tt></td>
-<td>1 second between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_2S</span></tt></td>
-<td>2 seconds between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_5S</span></tt></td>
-<td>5 seconds between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_10S</span></tt></td>
-<td>10 seconds between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_20S</span></tt></td>
-<td>20 seconds between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_30S</span></tt></td>
-<td>30 seconds between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_60S</span></tt></td>
-<td>60 seconds between subsequent fixes.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_INTERVAL_120S</span></tt></td>
-<td>120 seconds between subsequent fixes.</td>
-</tr>
-</tbody>
-</table>
-<dl class="data">
-<dt id="location.GPSDControl.GPSDControlError">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">GPSDControlError</tt><a class="headerlink" href="#location.GPSDControl.GPSDControlError" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<table border="1" class="docutils">
-<colgroup>
-<col width="53%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Value</th>
-<th class="head">Meaning</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_ERROR_USER_REJECTED_DIALOG</span></tt></td>
-<td>User rejected location enabling dialog.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_ERROR_USER_REJECTED_SETTINGS</span></tt></td>
-<td>User changed settings which disabled locationing.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_ERROR_BT_GPS_NOT_AVAILABLE</span></tt></td>
-<td>Problems using BT GPS.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_ERROR_METHOD_NOT_ALLOWED_IN_OFFLINE_MODE</span></tt></td>
-<td>Method unavailable in offline mode.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_ERROR_SYSTEM</span></tt></td>
-<td>System error, dbus, hildon, etc.</td>
-</tr>
-</tbody>
-</table>
 <dl class="function">
-<dt id="location.GPSDControl.get_type">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">get_type</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.get_type" title="Permalink to this definition">¶</a></dt>
+<dt id="location.make_resident">
+<tt class="descclassname">location.</tt><tt class="descname">make_resident</tt><big>(</big><big>)</big><a class="headerlink" href="#location.make_resident" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="location.GPSDControl.get_default">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">get_default</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.get_default" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is used by applications to obtain a single instance of the LocationGPSDControl object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body">an instance of the LocationGPSDControl object.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="location.GPSDControl.start">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.start" title="Permalink to this definition">¶</a></dt>
-<dd>Starts an active connection to Location server. In other words, by calling this function the application informs that it wants to use the location service.</dd></dl>
-
-<dl class="function">
-<dt id="location.GPSDControl.stop">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.stop" title="Permalink to this definition">¶</a></dt>
-<dd>Informs the location framework that the application is no longer interested about the current location. Location service is kept running as long as there is at least one application using it. Please note that LocationGPSDevice still sends data as long as the location framework is running.</dd></dl>
-
-<dl class="function">
-<dt id="location.GPSDControl.request_status">
-<tt class="descclassname">location.GPSDControl.</tt><tt class="descname">request_status</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDControl.request_status" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">location.GPSDControl.request_status is deprecated and should not be used in newly-written code.</p>
-</div>
-</div>
-</div>
-<div class="section" id="module-location.GPSDevice">
-<h2>LocationGPSDevice<a class="headerlink" href="#module-location.GPSDevice" title="Permalink to this headline">¶</a></h2>
-<p>Client side listener of location changes.</p>
-<div class="section" id="id2">
-<h3>Details<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<dl class="data">
-<dt id="location.GPSDevice.GPSDeviceStatus">
-<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">GPSDeviceStatus</tt><a class="headerlink" href="#location.GPSDevice.GPSDeviceStatus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<table border="1" class="docutils">
-<colgroup>
-<col width="34%" />
-<col width="66%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Value</th>
-<th class="head">Meaning</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_STATUS_NO_FIX</span></tt></td>
-<td>The device does not have a fix.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_STATUS_FIX</span></tt></td>
-<td>The device has a fix.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_STATUS_DGPS_FIX</span></tt></td>
-<td>The device has a DGPS fix. (<em>Deprecated: this constant is not used anymore.</em>)</td>
-</tr>
-</tbody>
-</table>
-<dl class="data">
-<dt id="location.GPSDevice.GPSDeviceMode">
-<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">GPSDeviceMode</tt><a class="headerlink" href="#location.GPSDevice.GPSDeviceMode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<table border="1" class="docutils">
-<colgroup>
-<col width="43%" />
-<col width="57%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Value</th>
-<th class="head">Meaning</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_MODE_NOT_SEEN</span></tt></td>
-<td>The device has not seen a satellite yet.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_MODE_NO_FIX</span></tt></td>
-<td>The device has no fix.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_MODE_2D</span></tt></td>
-<td>The device has latitude and longitude fix.</td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">LOCATION_GPS_DEVICE_MODE_3D</span></tt></td>
-<td>The device has latitude, longitude, and altitude.</td>
-</tr>
-</tbody>
-</table>
-<dl class="function">
-<dt id="location.GPSDevice.get_type">
-<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">get_type</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.get_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="location.GPSDevice.reset_last_known">
-<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">reset_last_known</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.reset_last_known" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Resets the last known location to unknown.</p>
-<dl class="function">
-<dt id="location.GPSDevice.start">
-<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.start" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">location.GPSDevice.start() is deprecated and should not be used in newly-written code. This function does nothing.</p>
-</div>
-<dl class="function">
-<dt id="location.GPSDevice.stop">
-<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.stop" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">location.GPSDevice.stop() is deprecated and should not be used in newly-written code. This function does nothing.</p>
-</div>
-</div>
-</div>
-<div class="section" id="location-misc">
-<h2>location-misc<a class="headerlink" href="#location-misc" title="Permalink to this headline">¶</a></h2>
-<p>Miscellaneous utility functions.</p>
-<div class="section" id="id3">
-<h3>Details<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="location.GPSDevice.location.make_resident">
-<tt class="descclassname">location.</tt><tt class="descname">make_resident</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.location.make_resident" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">location.make_resident is deprecated and should not be used in newly-written code.</p>
-</div>
 <p>Loads the location library into memory and makes it resident so that it cannot be unloaded.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">make_resident is deprecated and should not be used in newly-written code.</p>
 </div>
 </div>
 </div>

@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>python-location Reference Manual &mdash; GPSDevice</title>
+    <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+    };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+    <link rel="top" title="python-location Reference Manual v documentation" href="index.html" />
+    <link rel="next" title="GPSDControl" href="control.html" />
+    <link rel="prev" title="Python bindings for liblocation" href="location.html" /> 
+  </head>
+  <body id="device">
+
+<div id="container">
+<div id="header">
+    <div id="header_container">
+        <form id="search_box" action="search.html" method="get">
+        <input type="text" name="q" id="q" />
+        <input type="submit" value="" id="search_button" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        </form>
+
+        <div id="logo"></div>
+        <ul id="relbar">
+            <li class="right">
+            <a href="genindex.html" title="General Index"
+                accesskey="I">index</a></li>
+            <li class="right">
+            <a href="modindex.html" title="Global Module Index"
+                accesskey="M">modules</a> |</li>
+            <li class="right">
+            <a href="control.html" title="GPSDControl"
+                accesskey="N">next</a> |</li>
+            <li class="right">
+            <a href="location.html" title="Python bindings for liblocation"
+                accesskey="P">previous</a> |</li>
+            <li><a href="index.html">python-location Reference Manual v documentation</a> &raquo;</li> 
+        </ul>
+    </div>
+</div>
+
+<div id="body" >
+    <div id="sidebar">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">GPSDevice</a><ul>
+<li><a class="reference external" href="#attributes">Attributes</a></li>
+<li><a class="reference external" href="#fix-attribute-members">Fix attribute members</a></li>
+<li><a class="reference external" href="#methods">Methods</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="location.html"
+                                  title="previous chapter">Python bindings for liblocation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="control.html"
+                                  title="next chapter">GPSDControl</a></p>
+
+    </div>
+    
+  <div class="section" id="gpsdevice">
+<span id="module-location.GPSDevice"></span><h1>GPSDevice<a class="headerlink" href="#gpsdevice" title="Permalink to this headline">¶</a></h1>
+<p>From <a class="reference external" href="http://wiki.maemo.org/PyMaemo/Using_Location_API#Using_liblocation_from_Python">http://wiki.maemo.org/PyMaemo/Using_Location_API#Using_liblocation_from_Python</a>: GPSDevice has information about device status and contains the actual fix when one exists.</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="location.GPSDevice.online">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">online</tt><a class="headerlink" href="#location.GPSDevice.online" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Whether there is a connection to the hardware</p>
+<dl class="data">
+<dt id="location.GPSDevice.status">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">status</tt><a class="headerlink" href="#location.GPSDevice.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Status of the device</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">fix</tt><a class="headerlink" href="#location.GPSDevice.fix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Tuple containing actual fix data (latitude, longitude, etc)</p>
+<dl class="data">
+<dt id="location.GPSDevice.satellites_in_view">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">satellites_in_view</tt><a class="headerlink" href="#location.GPSDevice.satellites_in_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Number of satellites in view</p>
+<dl class="data">
+<dt id="location.GPSDevice.satellites_in_use">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">satellites_in_use</tt><a class="headerlink" href="#location.GPSDevice.satellites_in_use" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Number of satellites in use</p>
+<dl class="data">
+<dt id="location.GPSDevice.satellites">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">satellites</tt><a class="headerlink" href="#location.GPSDevice.satellites" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Array of satellites</p>
+<dl class="data">
+<dt id="location.GPSDevice.cell_info">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">cell_info</tt><a class="headerlink" href="#location.GPSDevice.cell_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Information about cell the device is connected to</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Currently the attributes <cite>satellites</cite> and <cite>cell_info</cite> are not supported in Python.</p>
+</div>
+</div>
+<div class="section" id="fix-attribute-members">
+<h2>Fix attribute members<a class="headerlink" href="#fix-attribute-members" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="location.GPSDevice.fix.mode">
+<tt class="descclassname">fix.</tt><tt class="descname">mode</tt><a class="headerlink" href="#location.GPSDevice.fix.mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The mode of the fix</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.fields">
+<tt class="descclassname">fix.</tt><tt class="descname">fields</tt><a class="headerlink" href="#location.GPSDevice.fix.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>A bitfield representing which items of this tuple contain valid data</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.time">
+<tt class="descclassname">fix.</tt><tt class="descname">time</tt><a class="headerlink" href="#location.GPSDevice.fix.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The timestamp of the update (location.GPS_DEVICE_TIME_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.lept">
+<tt class="descclassname">fix.</tt><tt class="descname">lept</tt><a class="headerlink" href="#location.GPSDevice.fix.lept" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Time accuracy</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.latitude">
+<tt class="descclassname">fix.</tt><tt class="descname">latitude</tt><a class="headerlink" href="#location.GPSDevice.fix.latitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Fix latitude (location.GPS_DEVICE_LATLONG_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.longitude">
+<tt class="descclassname">fix.</tt><tt class="descname">longitude</tt><a class="headerlink" href="#location.GPSDevice.fix.longitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Fix longitude (location.GPS_DEVICE_LATLONG_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.eph">
+<tt class="descclassname">fix.</tt><tt class="descname">eph</tt><a class="headerlink" href="#location.GPSDevice.fix.eph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Horizontal position accuracy</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.altitude">
+<tt class="descclassname">fix.</tt><tt class="descname">altitude</tt><a class="headerlink" href="#location.GPSDevice.fix.altitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Fix altitude in meters (location.GPS_DEVICE_ALTITUDE_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.epv">
+<tt class="descclassname">fix.</tt><tt class="descname">epv</tt><a class="headerlink" href="#location.GPSDevice.fix.epv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Vertical position accuracy</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.track">
+<tt class="descclassname">fix.</tt><tt class="descname">track</tt><a class="headerlink" href="#location.GPSDevice.fix.track" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Direction of motion in degrees (location.GPS_DEVICE_TRACK_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.epd">
+<tt class="descclassname">fix.</tt><tt class="descname">epd</tt><a class="headerlink" href="#location.GPSDevice.fix.epd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Track accuracy</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.speed">
+<tt class="descclassname">fix.</tt><tt class="descname">speed</tt><a class="headerlink" href="#location.GPSDevice.fix.speed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Current speed in km/h (location.GPS_DEVICE_SPEED_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.eps">
+<tt class="descclassname">fix.</tt><tt class="descname">eps</tt><a class="headerlink" href="#location.GPSDevice.fix.eps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Speed accuracy</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.climb">
+<tt class="descclassname">fix.</tt><tt class="descname">climb</tt><a class="headerlink" href="#location.GPSDevice.fix.climb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Current rate of climb in m/s (location.GPS_DEVICE_CLIMB_SET)</p>
+<dl class="data">
+<dt id="location.GPSDevice.fix.epc">
+<tt class="descclassname">fix.</tt><tt class="descname">epc</tt><a class="headerlink" href="#location.GPSDevice.fix.epc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Climb accuracy</p>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="location.GPSDevice.reset_last_known">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">reset_last_known</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.reset_last_known" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Resets the last known location to unknown.</p>
+<dl class="function">
+<dt id="location.GPSDevice.start">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">location.GPSDevice.start() is deprecated and should not be used in newly-written code. This function does nothing.</p>
+</div>
+<dl class="function">
+<dt id="location.GPSDevice.stop">
+<tt class="descclassname">location.GPSDevice.</tt><tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#location.GPSDevice.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">location.GPSDevice.stop() is deprecated and should not be used in newly-written code. This function does nothing.</p>
+</div>
+</div>
+</div>
+
+
+</div> <!-- container    -->
+<div id="footer">
+    <a href="http://www.indt.org.br"><img src="_static/logo_indt.jpg" alt="Indt" border="0" /></a>
+    <a href="http://www.maemo.org"><img src="_static/logo_maemo.jpg" alt="Maemo" border="0" /></a>
+    <a href="http://www.python.org"><img src="_static/logo_python.jpg" alt="Python" border="0" /></a>
+</div>
+</div>
+</body>
+</html>
