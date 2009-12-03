@@ -6,6 +6,7 @@ Documentation
 
 * `Python Hildon tutorial <http://wiki.maemo.org/PyMaemo/UITutorial>`_
 * `Python Hildon manual <./python_hildon_manual/>`_
+* `Python Location manual <./python_location_manual/>`_
 
 .. _pymaemo-components:
 

@@ -44,6 +44,11 @@ strong {
     width: 100%;
 }
 
+#footer img {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
 #sidebar {
     float: left;
     width: 250px;
@@ -126,6 +131,7 @@ pre {
     background-color: #fafafa;
     padding: 5px;
     font: 100% monospace;
+    overflow: auto;
 }
 
 pre * {
@@ -176,6 +182,11 @@ div.warning {
     border: 1px solid #f66;
 }
 
+div.seealso {
+    background-color: #ffffcc;
+    border: 1px solid #ffff66;
+}
+
 div.note {
     border: 1px solid #e3e3e3;
 }
@@ -194,7 +205,7 @@ table.docutils td {
 table.docutils th {
     border: none;
     font-weight: bold;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 h2 em {
@@ -349,4 +360,49 @@ em {
 
 .align-center {
     text-align: center;
+}
+
+.contentstable {
+    width: 100%;
+}
+
+.contentstable td {
+    padding-left: 30px;
+    vertical-align: top;
+}
+
+p.biglink a {
+    font-size: 20px;
+}
+
+dt:target, .highlight {
+    background-color: #fbe54e;
+}
+
+img {
+    border: 0px;
+}
+
+.figure .caption {
+    font-style:italic;
+}
+
+table.footnote {
+    margin: 0px;
+}
+
+#synopsis table, table.field-list {
+    margin: 0px;
+}
+
+tt.descname {
+    font-weight: bold;
+}
+
+dl.method {
+    border-top: 1px solid #c2c2c2;
+    margin-right: -100px;
+    position: relative;
+    left: -50px;
+    padding: 10px 50px 0px 50px;
 }
