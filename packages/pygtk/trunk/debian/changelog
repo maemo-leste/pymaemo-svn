@@ -1,3 +1,9 @@
+pygtk (2.12.1-6maemo10) unstable; urgency=low
+
+  * Update gtk.TreeView with Maemo changes (Fixes: MB#6244)
+
+ -- Bruno dos Santos de Araujo <bruno.araujo@openbossa.org>  Wed,  9 Dec 2009 14:49:08 -0400
+
 pygtk (2.12.1-6maemo9) unstable; urgency=low
 
   * Update gtk.Dialog with Maemo changes (Fixes: MB#5154) 
