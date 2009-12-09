@@ -1,3 +1,10 @@
+pymaemo-optify (0.2) unstable; urgency=low
+
+  * Make optify process more resilient to busy mounts and files left behind by
+    uninstallations.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Mon, 07 Dec 2009 16:10:43 -0400
+
 pymaemo-optify (0.1) unstable; urgency=low
 
   * Initial Release.
