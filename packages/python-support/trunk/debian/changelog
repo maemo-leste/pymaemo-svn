@@ -1,8 +1,34 @@
-python-support (1.0.3maemo1) unstable; urgency=low
+python-support (1.0.4maemo1) unstable; urgency=low
 
-  * Maemo port
+  * New version ported from Debian testing.
+  * Put the pymaemo-developers mailing list address in "Maintainer" field and
+    move original value to a separate field.
+  * Downgrade debhelper compatibility level to 5, the highest supported by
+    Maemo 5.
+  * debian/rules: replace calls to "python" with "python2.5", avoiding usage
+    of Python from Scratchbox.
+  * Add *.pyo to cleanup rules.
+  * pysupport.py: modify Python version table to match those from pyversions.
+  * update-python-modules: remove code that depends on dpkg trigger
+    activation, which does not seem to be called on Maemo (fixes MB#5871).
 
- -- Anderson Lizardo <anderson.lizardo@indt.org.br>  Thu, 18 Jun 2009 15:26:17 -0400
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Fri, 11 Dec 2009 14:40:54 -0400
+
+python-support (1.0.4) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * README: fix small but confusing mistake about public extensions.
+  * update-python-modules.8: fix typo, thanks Nacho Barrientos.
+  * Add Bernd and Piotr to uploaders.
+  * dh_pysupport: fix a variable getting included in a regexp.
+    Closes: #549283.
+  * dh_pysupport: patch by Luca Falavigna to not generate substvars for 
+    Python versions not supported by python-defaults. Closes: #549713.
+
+  [ Piotr Ożarowski ]
+  * control: add Vcs-Browser and Vcs-Svn fields
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 08 Oct 2009 22:39:22 +0200
 
 python-support (1.0.3) unstable; urgency=low
 

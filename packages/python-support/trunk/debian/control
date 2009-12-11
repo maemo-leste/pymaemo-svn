@@ -1,10 +1,13 @@
 Source: python-support
 Section: python
 Priority: optional
-Maintainer: Josselin Mouette <joss@debian.org>
+Maintainer: PyMaemo Team <pymaemo-developers@garage.maemo.org>
+XSBC-Original-Maintainer: Josselin Mouette <joss@debian.org>
 Build-Depends: debhelper (>= 5), cdbs
 Build-Depends-Indep: python (>= 2.5)
 Standards-Version: 3.8.1
+Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/python-support/trunk
+Vcs-Browser: http://svn.debian.org/viewsvn/collab-maint/deb-maint/python-support/trunk
 
 Package: python-support
 Architecture: all
