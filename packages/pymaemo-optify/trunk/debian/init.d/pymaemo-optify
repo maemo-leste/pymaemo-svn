@@ -23,7 +23,7 @@ umount_optify()
         grep -q " $d " /proc/mounts && umount $d
         if grep -q " $d " /proc/mounts; then
             echo "WARNING: \"$d\" could not be umounted, using mount --move" >&2
-            tmpdir=`mktemp -d $d.move.XXXXXXXXXX` || continue
+            tmpdir=`mktemp -d $d.move.XXXXXX` || continue
             chmod 755 $tmpdir
             mount --move $d $tmpdir
         fi

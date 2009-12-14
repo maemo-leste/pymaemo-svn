@@ -35,36 +35,6 @@ case "$1" in
     ;;
 esac
 
-# Remove known left-over from old version of python-osso (but only if it is not installed)
-if [ ! -f /var/lib/dpkg/info/python-osso.list ]; then
-    rm -f /usr/lib/python2.5/site-packages/osso/__init__.py
-    rmdir -p /usr/lib/python2.5/site-packages/osso 2>/dev/null || true
-fi
-
-# Attempt to umount any left directories, just in case
-/etc/init.d/pymaemo-optify stop
-
-OPT_DIR="/opt/pymaemo"
-. /etc/default/pymaemo-optify
-for d in $BIND_MOUNTS; do
-    rmdir $d $OPT_DIR/$d 2>/dev/null || true
-    if [ -d $d ]; then
-        if [ -d $OPT_DIR/$d ]; then
-            mkdir -p $OPT_DIR
-            tmpdir=`mktemp -d $OPT_DIR/bak.XXXXXXXXXX`
-            chmod 755 $tmpdir
-            echo "WARNING: destination \"$OPT_DIR$d\" exists, moving files to $tmpdir" >&2
-            # command below will create all components but delete the last one
-            mkdir -p $tmpdir/$d
-            rmdir $tmpdir/$d && mv $OPT_DIR/$d $tmpdir/$d || true
-        fi
-        echo "Migrating files from $d to $OPT_DIR$d..."
-        # command below will create all components but delete the last one
-        mkdir -p $OPT_DIR/$d
-        rmdir $OPT_DIR/$d && mv $d $OPT_DIR/$d || true
-    fi
-done
-
 /etc/init.d/pymaemo-optify start
 
 # dh_installdeb will replace this with shell code automatically
