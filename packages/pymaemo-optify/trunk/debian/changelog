@@ -1,3 +1,10 @@
+pymaemo-optify (0.4) unstable; urgency=low
+
+  * Partially revert changes from 0.3: move migration back to postinst, as
+    preinst is run too early in the installation.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Tue, 15 Dec 2009 09:19:58 -0400
+
 pymaemo-optify (0.3) unstable; urgency=low
 
   * Fix maintainer scripts to properly handle upgrade (Fixes: MB#6886).
