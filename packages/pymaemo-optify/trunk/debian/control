@@ -6,6 +6,7 @@ Build-Depends: debhelper (>= 5)
 Standards-Version: 3.7.2
 
 Package: pymaemo-optify
+Section: user/hidden
 Architecture: all
 Depends: upstart, ${shlibs:Depends}, ${misc:Depends}
 Description: PyMaemo optification package

@@ -2,6 +2,8 @@ pymaemo-optify (0.3) unstable; urgency=low
 
   * Fix maintainer scripts to properly handle upgrade (Fixes: MB#6886).
   * busybox's mktemp only handles XXXXXX in template.
+  * Add package to user/hidden section so it can be upgraded through the
+    Application Manager.
 
  -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Mon, 14 Dec 2009 12:36:51 -0400
 
