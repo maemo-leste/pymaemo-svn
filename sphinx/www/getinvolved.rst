@@ -33,4 +33,18 @@ Resources
 |                               | members can easily contribute with new proposals and ideas.                                   |
 +-------------------------------+-----------------------------------------------------------------------------------------------+
 
+For developers
+--------------
+
+The PyMaemo source code repository, web site and mailing lists are hosted on
+Maemo Garage. See the `garage project page
+<https://garage.maemo.org/projects/pymaemo/>`_ for the available resources.
+Developers will be probably interested only on the `instructions on how to
+access our Subversion repository <https://garage.maemo.org/scm/?group_id=40>`_.
+
+Note that the following resources should not be used anymore, and remain
+available just for archival purposes:
+
+* `Maemo garage wiki <https://garage.maemo.org/plugins/wiki/index.php?id=40&type=g>`_ (replaced by the `Maemo wiki <http://wiki.maemo.org/PyMaemo>`_)
+* `Maemo garage tracker <https://garage.maemo.org/tracker/?group_id=40>`_ (replaced by the `Maemo bugzilla <https://bugs.maemo.org/enter_bug.cgi?product=PyMaemo>`_)
 
