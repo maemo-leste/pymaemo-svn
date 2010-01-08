@@ -1,8 +1,8 @@
-Development
-***********
-
 Documentation
--------------
+*************
+
+Tutorials and manuals
+---------------------
 
 * `Python Hildon tutorial <http://wiki.maemo.org/PyMaemo/UITutorial>`_
 * `Python Hildon manual <./python_hildon_manual/>`_

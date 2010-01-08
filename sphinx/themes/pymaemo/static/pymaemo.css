@@ -276,7 +276,7 @@ form #q {
 #menu {
     padding: 0px;
     margin: 23px auto 0px auto;
-    width: 735px;
+    width: 749px;
     list-style-type: none;
 }
 
@@ -345,17 +345,17 @@ form #q {
     background-image: url(bt_faq_selected.jpg);
 }
 
-#menu_development {
-    width: 146px;
-    background-image: url(bt_devel_normal.jpg);
+#menu_docs {
+    width: 80px;
+    background-image: url(bt_docs_normal.jpg);
 }
 
-#menu_development:hover {
-    background-image: url(bt_devel_over.jpg);
+#menu_docs:hover {
+    background-image: url(bt_docs_over.jpg);
 }
 
-#development #menu_development {
-    background-image: url(bt_devel_selected.jpg);
+#docs #menu_docs {
+    background-image: url(bt_docs_selected.jpg);
 }
 
 #menu_installation {
@@ -369,6 +369,15 @@ form #q {
 
 #installation #menu_installation {
     background-image: url(bt_install_selected.jpg);
+}
+
+#menu_wiki {
+    width: 80px;
+    background-image: url(bt_wiki_normal.jpg);
+}
+
+#menu_wiki:hover {
+    background-image: url(bt_wiki_over.jpg);
 }
 
 #search-results h2 {
