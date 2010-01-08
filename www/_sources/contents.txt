@@ -9,7 +9,7 @@ Site Map
     installation
     installation_device
     installation_scratchbox
-    development
+    docs
     pyosso
     abook
     conic

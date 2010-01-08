@@ -6,8 +6,6 @@ About PyMaemo
 
 Python for Maemo (PyMaemo for short) was brought to the public at end of 2005 by `INdT <http://www.indt.org.br>`_. It is the result of an effort to provide `Python <http://www.python.org>`_ programming language support on  `Maemo <http://www.maemo.org>`_ Platform. PyMaemo is designed to have a smaller size and has some optimizations to be more responsive in Maemo based devices. Among this, there is a constant effort to increase the number of modules available on the platform. Putting all together, it provides a better alternative for fast prototyping and programming in Maemo environment besides the C programming language.
 
-For a detailed list of supported modules, check :ref:`pymaemo-components`.
-
 Resources
 ---------
 
