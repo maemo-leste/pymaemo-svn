@@ -1,0 +1,224 @@
+Test cases for pymaemo-optify
+=============================
+
+ Test case for installation on a clean device
+
+ -> Description
+
+   * Install a Python application on a clean (just flashed) device.
+
+ -> Pre-condition
+
+   * There should be no trace of previous installation of any PyMaemo package.
+
+ -> Execution steps
+
+   1. Open Application manager
+   2. Enable Extras repository:
+      1. Tap: Menu -> Application catalogs -> Extras
+      2. Uncheck Disabled
+      3. Tap Save
+   4. Install gPodder
+   5. Open gPodder
+
+ -> Post-condition
+
+   * gPodder is successfully installed (checked by Application manager)
+   * gPodder main screen opens successfully
+
+-------------------------------------------------------------------------------
+
+ Test case for application removal
+
+ -> Description
+
+   * Test removal of python applications that use optified pymaemo.
+
+ -> Pre-condition
+
+   * gPodder is installed and functional.
+      * See instructions in the clean installation test case
+
+ -> Execution steps
+
+   1. Open Application Manager
+   2. Uninstall gPodder
+
+ -> Post-condition
+
+   * All gPodder files were removed successfully
+   * Automatically generated files (like .pyo or .pyc) are removed.
+   * If gPodder was the only python application and maemo-python-device-env
+      wasn't installed, pymaemo should be uninstalled.
+
+-------------------------------------------------------------------------------
+
+ Test case for pymaemo-optify removal
+
+ -> Description
+
+   * Test removal of python interpreter
+
+ -> Pre-conditions
+
+   * Package maemo-python-device-env is installed
+
+ -> Execution steps
+
+   1. Open terminal and become root (run: 'sudo /usr/sbin/gainroot')
+   2. Run: 'apt-get remove pymaemo-optify'
+
+ -> Post-conditions
+
+   * No traces of PyMaemo installed
+   * bind mount removed for /usr/lib/python<VERSION>
+
+-------------------------------------------------------------------------------
+
+ Test case for pymaemo-optify upgrading
+
+ -> Description
+
+   * Test upgrade of pymaemo-optify.
+
+ -> Pre-condition
+
+   * gPodder installed and only "Extras" repository enabled.
+      * See instructions in the clean installation test case
+
+ -> Execution steps
+
+   1. Open Application Manager
+   2. Add Extras-devel repository:
+      1. Tap: Menu -> Application catalogs -> New
+      2. Fill data:
+         1. Catalog name: Maemo Extras-devel
+         2. Web address: http://repository.maemo.org/extras-devel
+         3. Distribution: fremantle
+         4. Components: free non-free
+      3. Tap Save
+   3. Update catalogs
+   4. Open terminal and become root (run: 'sudo /usr/sbin/gainroot')
+   5. Run: 'apt-get install pymaemo-optify'
+
+ -> Post-condition
+
+   * No errors during upgrade.
+   * gPodder main screen opens successfully.
+
+-------------------------------------------------------------------------------
+
+ Test case for pymaemo-optify downgrade
+
+ -> Description
+
+   * Test downgrade of pymaemo-optify.
+
+ -> Pre-condition
+
+   * Execute "Test case for pymaemo-optify upgrading" test case.
+
+ -> Execution steps
+
+   1. Open terminal and become root (run: 'sudo /usr/sbin/gainroot')
+   2. Run: 'apt-get install pymaemo-optify=0.2'
+
+ -> Post-condition
+
+   * No errors during downgrade.
+   * gPodder main screen opens successfully.
+
+-------------------------------------------------------------------------------
+ 
+ Test case for software backup
+
+ -> Description
+
+   * Test software backup support.
+
+ -> Pre-condition
+
+   * gPodder installed and only "Extras" repository enabled.
+      * See instructions in the clean installation test case
+
+ -> Execution steps
+
+   1. Open the "Backup" utility 
+   2. Choose "New backup" option
+   3. Enter a valid name and click "Proceed"
+   4. Select all items and click "Select". Wait until it finishes.
+   5. Close Backup application.
+   6. Open Application manager
+   7. Remove "gPodder" app
+   8. Open the "Backup" utility again
+   9. Choose "Restore" option
+   10. After reboot, allow re-installation of all applications needed
+
+ -> Post-condition
+
+   * No errors during reinstall.
+   * gPodder main screen opens successfully
+
+-------------------------------------------------------------------------------
+
+Test case for dirty installation 1/2 - Files in /opt/pymaemo
+
+ -> Description
+
+   * Install a python application when there are already files on /opt/pymaemo.
+
+ -> Pre-condition
+
+   * pymaemo-optify not installed, files already present on /opt/pymaemo.
+
+ -> Execution steps
+
+   1. Open Application Manager
+   2. Enable Extras repository:
+      1. Tap: Menu -> Application catalogs -> Extras
+      2. Uncheck Disabled
+      3. Tap Save
+   4. Update catalogs
+   5. Install gPodder
+
+ -> Post-condition
+
+   1. gPodder is sucessfully installed (checked by Application manager)
+   2. gPodder main screen opens successfully
+   3. Stray files in /opt/pymaemo moved to backup directories
+      1. To see these directories, open Terminal and run 'ls /opt/pymaemo', you'll see one or more 'bak.XXXXXX' directories
+
+-------------------------------------------------------------------------------
+
+ Test case for dirty installation 2/2 - Files in dirs managed by pymaemo-optify
+
+ -> Description
+
+   * Install a python application when there are already files on any directory managed by pymaemo-optify
+
+ -> Pre-condition
+
+   * pymaemo-optify not installed, files already present in any directory managed by pymaemo-optify.
+
+ -> Execution steps
+
+   1. Open Application Manager
+   2. Enable Extras repository:
+      1. Tap: Menu -> Application catalogs -> Extras
+      2. Uncheck Disabled
+      3. Tap Save
+   4. Update catalogs
+   5. Install gPodder
+
+ -> Post-condition
+
+   1. gPodder is sucessfully installed (checked by Application manager)
+   2. gPodder main screen opens successfully
+   3. Stray files are migrated to /opt/pymaemo along with the normal ones, causing a side effect explained in [1].
+
+[1] The side effect is that these stray files will remain in /opt/pymaemo when 
+pymaemo-optify is uninstalled; dpkg doesn't remove them because they don't belong
+to any package. This leads to the scenario described in the dirty installation 1 
+if pymaemo-optify is installed again, generating backup directories. Multiple
+installation/uninstallations cycles of pymaemo-optify may cause a lot of backup 
+directories to be created.
