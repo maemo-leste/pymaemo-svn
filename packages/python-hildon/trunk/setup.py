@@ -34,6 +34,8 @@ hildon = TemplateExtension(name = "hildon",
                                       ],
                            extra_compile_args = ["-DMAEMO_CHANGES",
                                                  "-DMAEMO_GTK",
+                                                 "-Werror",
+                                                 "-Wno-strict-prototypes",
                                                 ],
                           )
 

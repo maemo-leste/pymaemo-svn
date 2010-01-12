@@ -275,7 +275,7 @@ _wrap_hildon_note_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 }
 
 %%
-override hildon_range_editor_get_range noargs 
+override hildon_range_editor_get_range noargs
 static PyObject *
 _wrap_hildon_range_editor_get_range(PyGObject *self)
 {
@@ -986,10 +986,42 @@ _wrap_hildon_touch_selector_append_column(PyGObject *self, PyObject *args, PyObj
             }
             gtk_cell_layout_add_attribute(GTK_CELL_LAYOUT(column),
                                           cell,
-					  attr, PyInt_AsLong(item));
+                                          attr, PyInt_AsLong(item));
         }
     }
     return pygobject_new ((GObject *) column);
+}
+
+%%
+override hildon_touch_selector_get_selected_rows kwargs
+static PyObject *
+_wrap_hildon_touch_selector_get_selected_rows(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "column", NULL };
+    GList *wlist;
+    guint nwlist, column;
+    int i;
+    PyObject *list;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:HildonTouchSelector.get_selected_rows",
+                                     kwlist, &column))
+        return NULL;
+
+    wlist = hildon_touch_selector_get_selected_rows(HILDON_TOUCH_SELECTOR(self->obj), column);
+    nwlist = g_list_length(wlist);
+
+    if ((list = PyList_New(nwlist)) == NULL)
+        return NULL;
+
+    for (i = 0; i < nwlist; i++) {
+        GtkTreePath *path = g_list_nth_data(wlist, i);
+        PyObject *item = pygtk_tree_path_to_pyobject(path);
+        PyList_SetItem(list, i, item);
+        gtk_tree_path_free(path);
+    }
+    g_list_free(wlist);
+
+    return list;
 }
 
 %%

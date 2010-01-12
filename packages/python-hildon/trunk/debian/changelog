@@ -1,3 +1,13 @@
+python-hildon (0.9.0-1maemo15) unstable; urgency=low
+
+  * hildon.TouchSelector: implement get_selected_rows() method (Fixes:
+    MB#7818).
+  * setup.py: Add -Werror (turn warnings into errors).
+  * tests/test_hildon_touch_selector.py: fix existing unit test and add test
+    for get_selected_rows().
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Tue, 12 Jan 2010 15:38:57 -0400
+
 python-hildon (0.9.0-1maemo14) unstable; urgency=low
 
   * hildon.Note: allow note_type argument to also receive a hildon.NoteType,
