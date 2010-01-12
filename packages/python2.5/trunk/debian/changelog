@@ -1,3 +1,10 @@
+python2.5 (2.5.4-1maemo5) unstable; urgency=low
+
+  * Bump version in attempt to fix some nasty Maemo autobuilder bug, which
+    calculated the wrong md5sum/size for this package.
+
+ -- Anderson Lizardo <anderson.lizardo@openbossa.org>  Thu, 26 Nov 2009 15:02:00 -0400
+
 python2.5 (2.5.4-1maemo4) unstable; urgency=low
 
   * Add patch:  
