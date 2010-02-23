@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta http-equiv="REFRESH" content="5;http://wiki.maemo.org/PyMaemo/FAQ"> 
     <title>PyMaemo &mdash; FAQ</title>
     <link rel="stylesheet" href="_static/pymaemo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -59,9 +59,7 @@
     }
     </style>
     <![endif]-->
-    <link rel="top" title="PyMaemo v0.1 documentation" href="index.html" />
-    <link rel="next" title="Installation" href="installation.html" />
-    <link rel="prev" title="Get Involved" href="getinvolved.html" /> 
+    <link rel="top" title="PyMaemo v0.1 documentation" href="index.html" /> 
   </head>
   <body onload="preLoadImages()" id="faq">
 
@@ -81,7 +79,7 @@
         <li><a id="menu_news" href="index.html"><spam>News</spam></a></li>
         <li><a id="menu_screenshots" href="screenshots.html"><spam>Screenshots</spam></a></li>
         <li><a id="menu_getinvolved" href="getinvolved.html"><spam>Get incolved</spam></a></li>
-        <li><a id="menu_faq" href=""><spam>FAQ</spam></a></li>
+        <li><a id="menu_faq" href="http://wiki.maemo.org/PyMaemo/FAQ"><spam>FAQ</spam></a></li>
         <li><a id="menu_docs" href="docs.html"><spam>Documentation</spam></a></li>
         <li><a id="menu_wiki" href="http://wiki.maemo.org/PyMaemo"><spam>Wiki</spam></a></li>
         <li><a id="menu_installation" href="installation.html"><spam>Installation</spam></a></li>
@@ -91,64 +89,14 @@
 
 
 <div id="body" >
-    
-  <div class="section" id="faq">
-<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
-<p><strong>What is Python?</strong></p>
-<blockquote>
-Python is a dynamic object-oriented programming language that can be used
-for many kinds of software development. It offers strong support for
-integration with other languages and tools, comes with extensive standard
-libraries, and can be learned in a few days.</blockquote>
-<p><strong>What is PyMaemo?</strong></p>
-<blockquote>
-It is the Python package ported to run in Maemo based devices.</blockquote>
-<p><strong>Does PyMaemo come installed by default?</strong></p>
-<blockquote>
-No, but there are some requirements and we expect to fulfill all of them in
-a near future.</blockquote>
-<p><strong>Why to use two diferent .install files?</strong></p>
-<blockquote>
-Due to a limitation in Application Manager, only one repository can be
-handled by a .install file. PyMaemo depends on two repositories, to avoid
-duplication of packages. One repository contains base packages and another
-contains PyMaemo itself. This behaviour will change in a next release of
-Application Manager.</blockquote>
-<p><strong>Why I get &#8220;missing dependencies&#8221; message when I try to install PyMaemo?</strong></p>
-<blockquote>
-Because you have to use both .install files (read previous question) as
-described at installation page.</blockquote>
-<p><strong>Why do some modules (e.g.: curses) are missing?</strong></p>
-<blockquote>
-In order to keep the platform small and supportable, PyMaemo only comes
-with the most commonly used packages.</blockquote>
-<p><strong>I get errors like &#8220;ImportError: No module named xyz&#8221; even though module xyz is installed under /usr/lib/python2.5</strong></p>
-<p><strong>Why do I get the error &lt;put some error message here&gt;?</strong></p>
-<blockquote>
-<p>Inside Scratchbox, if you call just &#8220;python&#8221; it will run the internal
-Python interpreter used by Scratchbox (/scratchbox/tools/bin/python), which
-is at version 2.3. This interpreter will not see any modules installed
-inside your target.</p>
-<p>This occurs <strong>even</strong> if you use the complete path (/usr/bin/python), due to
-some path redirection trick done by Scratchbox. Therefore, to make sure you
-are using the correct Python interpreter (currently at version 2.5), make
-sure to call &#8220;python2.5&#8221; explicitely, i.e. use &#8220;#!/usr/bin/python2.5 at the
-beginning of your scripts and modify Debian packaging so that python2.5 is
-called instead of just &#8220;python&#8221;.</p>
-</blockquote>
-<p><strong>When I build my Python application on Scratchbox, files are installed in /scratchbox/...</strong></p>
-<p><strong>How do I modify Debian packaging so the correct Python interpreter is called?</strong></p>
-<blockquote>
-<p>You can try adding these lines to the beginning of your debian/rules (after
-the first &#8220;#!/usr/bin/make -f&#8221; line):</p>
-<div class="highlight-python"><pre>PATH := /usr/bin:$(PATH)
-export PATH
-SBOX_REDIRECT_IGNORE = /usr/bin/python
-export SBOX_REDIRECT_IGNORE</pre>
+
+<div id="section" >
+
+You will be redirected to the PyMaemo FAQ in 5 seconds.
+
+If you don't want to wait, click <a href="http://wiki.maemo.org/PyMaemo/FAQ">here</a>.
+
 </div>
-<p>If that still does not work, please post your error messages to our
-<a class="reference" href="https://garage.maemo.org/mailman/listinfo/pymaemo-developers/">mailing list</a>.</p>
-</blockquote>
 </div>
 
 

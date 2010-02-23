@@ -5,7 +5,6 @@ Site Map
 
     news
     getinvolved
-    faq
     installation
     installation_device
     installation_scratchbox
