@@ -2627,7 +2627,7 @@ Creating a Entry with a placeholder
 ::
 
     def create_entry():
-        entry = hildon.Entry(hildon.SIZE_AUTO)
+        entry = hildon.Entry(gtk.HILDON_SIZE_AUTO)
         entry.set_placeholder("First name")
         return entry
 
