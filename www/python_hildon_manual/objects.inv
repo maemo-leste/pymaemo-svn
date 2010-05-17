@@ -121,6 +121,7 @@ hildon.HildonTimeButton.__init__ method hildonobjects.html
 hildon.HildonPickerButton class hildonobjects.html
 hildon.HILDON_AA_SE_GRAVITY data hildonobjects.html
 hildon.Window.set_main_menu method hildonobjects.html
+hildon.AppMenu.popup method hildonobjects.html
 hildon.MovementMode data hildonobjects.html
 hildon.TouchSelector.set_column_attributes method hildonobjects.html
 hildon.HILDON_AA_E_GRAVITY data hildonobjects.html
@@ -237,7 +238,6 @@ hildon.Window.get_main_menu method hildonobjects.html
 hildon.WindowStack.push method hildonobjects.html
 hildon.Window.get_app_menu method hildonobjects.html
 hildon.StackableWindow.__init__ method hildonobjects.html
-hildon.AppMenu.menu_popup method hildonobjects.html
 hildon.Caption.set_label_markup method hildonobjects.html
 hildon.Button.set_value_alignment method hildonobjects.html
 hildon.Button.add_image_size_group method hildonobjects.html
