@@ -2864,7 +2864,7 @@ Details
         :returns: a newly-allocated list containing the filters in ``menu``
 
 
-    .. method:: menu_popup(parent_window)
+    .. method:: popup(parent_window)
 
         Displays a menu on top of a window and makes it available for selection.
 

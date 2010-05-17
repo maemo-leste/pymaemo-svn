@@ -43,7 +43,7 @@ html-sbox:
 	$(SPHINXBUILD) -D graphviz_dot=./graphviz_dot_wrapper.sh -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	rsync -a $(BUILDDIR)/html/ ../../www/python_hildon_manual/
 	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)"
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
