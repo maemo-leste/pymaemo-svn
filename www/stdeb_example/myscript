@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import gtk
+
+def main():
+    window = gtk.Window()
+    window.connect('delete-event', lambda x,y: gtk.main_quit())
+
+    button = gtk.Button('Click to close')
+    button.connect('clicked', lambda x: gtk.main_quit())
+
+    window.add(button)
+    window.show_all()
+    gtk.main()
+
+if __name__ == '__main__':
+    main()
