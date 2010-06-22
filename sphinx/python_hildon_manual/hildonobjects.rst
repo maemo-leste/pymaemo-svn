@@ -1846,15 +1846,15 @@ Value                                             Meaning
         :param column: column number
         :returns: an integer which is the index of the currently active item, or -1 if there's no active item.
 
-    .. method:: selector_get_selected(column)
+    .. method:: get_selected(column)
 
         Sets ``iter`` to the currently selected node on the nth-column, if selection is set to TOUCH_SELECTOR_SINGLE or TOUCH_SELECTOR_MULTIPLE with a column different that the first one. ``iter`` may be None if you just want to test if selection has any selected items.
         This function will not work if selection is in TOUCH_SELECTOR_MULTIPLE mode and the column is the first one.
 
-        See :meth:`get_selected()` for more information.
+        See `gtk.TreeSelection.get_selected() <http://www.pygtk.org/docs/pygtk/class-gtktreeselection.html#method-gtktreeselection--get-selected>`_ for more information.
 
         :param column: the column number we want to get the element
-        :returns: class:`GtkTreeIter` currently selected or None otherwise
+        :returns: a 2-tuple containing a reference to the `GtkTreeModel` and a `GtkTreeIter` pointing to the currently selected node.
 
     .. method:: center_on_selected()
 
@@ -1889,7 +1889,7 @@ Value                                             Meaning
 
         Creates a list of :class:`gtk.TreePath` s of all selected rows in a column. Additionally, if you to plan to modify the model after calling this function, you may want to convert the returned list into a list of GtkTreeRowReferences. To do this, you can use `gtk.TreeRowReference`.
 
-        See :meth:`get_selected_rows()` for more information.
+        See `gtk.TreeSelection.get_selected_rows() <http://www.pygtk.org/docs/pygtk/class-gtktreeselection.html#method-gtktreeselection--get-selected-rows>`_ for more information.
 
         :param column: the position of the column to get the selected rows from
         :returns:  A new list containing a :class:`gtk.TreePath` for each selected row in the column ``column``.
