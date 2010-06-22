@@ -1848,10 +1848,10 @@ Value                                             Meaning
 
     .. method:: get_selected(column)
 
-        Sets ``iter`` to the currently selected node on the nth-column, if selection is set to TOUCH_SELECTOR_SINGLE or TOUCH_SELECTOR_MULTIPLE with a column different that the first one. ``iter`` may be None if you just want to test if selection has any selected items.
-        This function will not work if selection is in TOUCH_SELECTOR_MULTIPLE mode and the column is the first one.
+        Returns a 2-tuple with a `GtkTreeModel` and `GtkTreIter` to the currently selected node on the nth-column, if selection is set to TOUCH_SELECTOR_SINGLE or TOUCH_SELECTOR_MULTIPLE with a column different that the first one. Iterator may be None if you just want to test if selection has any selected items.
+        This function will return None if selection is in TOUCH_SELECTOR_MULTIPLE mode and the column is the first one.
 
-        See `gtk.TreeSelection.get_selected() <http://www.pygtk.org/docs/pygtk/class-gtktreeselection.html#method-gtktreeselection--get-selected>`_ for more information.
+        See `gtk.TreeSelection.get_selected() <http://www.pygtk.org/pygtk2tutorial/sec-TreeSelections.html>`_ for more information.
 
         :param column: the column number we want to get the element
         :returns: a 2-tuple containing a reference to the `GtkTreeModel` and a `GtkTreeIter` pointing to the currently selected node.

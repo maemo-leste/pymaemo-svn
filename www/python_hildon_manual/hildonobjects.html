@@ -3312,9 +3312,9 @@ This method basically adds a <tt class="xref docutils literal"><span class="pre"
 <dl class="method">
 <dt id="hildon.TouchSelector.get_selected">
 <tt class="descname">get_selected</tt><big>(</big><em>column</em><big>)</big><a class="headerlink" href="#hildon.TouchSelector.get_selected" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets <tt class="docutils literal"><span class="pre">iter</span></tt> to the currently selected node on the nth-column, if selection is set to TOUCH_SELECTOR_SINGLE or TOUCH_SELECTOR_MULTIPLE with a column different that the first one. <tt class="docutils literal"><span class="pre">iter</span></tt> may be None if you just want to test if selection has any selected items.
-This function will not work if selection is in TOUCH_SELECTOR_MULTIPLE mode and the column is the first one.</p>
-<p>See <a class="reference external" href="http://www.pygtk.org/docs/pygtk/class-gtktreeselection.html#method-gtktreeselection--get-selected">gtk.TreeSelection.get_selected()</a> for more information.</p>
+<dd><p>Returns a 2-tuple with a <cite>GtkTreeModel</cite> and <cite>GtkTreIter</cite> to the currently selected node on the nth-column, if selection is set to TOUCH_SELECTOR_SINGLE or TOUCH_SELECTOR_MULTIPLE with a column different that the first one. Iterator may be None if you just want to test if selection has any selected items.
+This function will return None if selection is in TOUCH_SELECTOR_MULTIPLE mode and the column is the first one.</p>
+<p>See <a class="reference external" href="http://www.pygtk.org/pygtk2tutorial/sec-TreeSelections.html">gtk.TreeSelection.get_selected()</a> for more information.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
