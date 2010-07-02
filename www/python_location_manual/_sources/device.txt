@@ -38,66 +38,66 @@ Information about cell the device is connected to
 
 .. warning:: Currently the attributes `satellites` and `cell_info` are not supported in Python.
 
-Fix attribute members
+Fix attribute indexes
 =====================
 
-.. data::  fix.mode 
+.. data::  fix[0]
 
 The mode of the fix
 
-.. data::  fix.fields
+.. data::  fix[1]
 
 A bitfield representing which items of this tuple contain valid data
 
-.. data::  fix.time
+.. data::  fix[2]
 
 The timestamp of the update (location.GPS_DEVICE_TIME_SET)
 
-.. data::  fix.lept
+.. data::  fix[3]
 
 Time accuracy
 
-.. data::  fix.latitude
+.. data::  fix[4]
 
 Fix latitude (location.GPS_DEVICE_LATLONG_SET)
 
-.. data::  fix.longitude
+.. data::  fix[5]
 
 Fix longitude (location.GPS_DEVICE_LATLONG_SET)
 
-.. data::  fix.eph
+.. data::  fix[6]
 
 Horizontal position accuracy
 
-.. data::  fix.altitude
+.. data::  fix[7]
 
 Fix altitude in meters (location.GPS_DEVICE_ALTITUDE_SET)
 
-.. data::   fix.epv
+.. data::   fix[8]
 
 Vertical position accuracy
 
-.. data::   fix.track
+.. data::   fix[9]
 
 Direction of motion in degrees (location.GPS_DEVICE_TRACK_SET)
 
-.. data::   fix.epd
+.. data::   fix[10]
 
 Track accuracy
 
-.. data::   fix.speed
+.. data::   fix[11]
 
 Current speed in km/h (location.GPS_DEVICE_SPEED_SET)
 
-.. data::   fix.eps
+.. data::   fix[12]
 
 Speed accuracy
 
-.. data::   fix.climb
+.. data::   fix[13]
 
 Current rate of climb in m/s (location.GPS_DEVICE_CLIMB_SET)
 
-.. data::   fix.epc
+.. data::   fix[14]
 
 Climb accuracy 
 
